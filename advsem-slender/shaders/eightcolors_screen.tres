@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://jrdt3tuyanlv"]
+
+[ext_resource type="Shader" uid="uid://kf1kqs6nnm7k" path="res://shaders/eightcolors_screen.gdshader" id="1_npdrq"]
+
+[resource]
+shader = ExtResource("1_npdrq")
+shader_parameter/shade_0 = Color(1, 1, 1, 1)
+shader_parameter/shade_1 = Color(0.878431, 0.878431, 0.878431, 1)
+shader_parameter/shade_2 = Color(0.752941, 0.752941, 0.752941, 1)
+shader_parameter/shade_3 = Color(0.627451, 0.627451, 0.627451, 1)
+shader_parameter/shade_4 = Color(0.501961, 0.501961, 0.501961, 1)
+shader_parameter/shade_5 = Color(0.376471, 0.376471, 0.376471, 1)
+shader_parameter/shade_6 = Color(0.25098, 0.25098, 0.25098, 1)
+shader_parameter/shade_7 = Color(0.12549, 0.12549, 0.12549, 1)

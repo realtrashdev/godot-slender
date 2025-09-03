@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bc7hql44xra6s"]
+
+[ext_resource type="Shader" uid="uid://cfkv011pjej6f" path="res://shaders/fourcolors_postprocess.gdshader" id="1_ca4ci"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_ca4ci")
+shader_parameter/shade_0 = Color(0.784314, 0.784314, 0.784314, 1)
+shader_parameter/shade_1 = Color(0.588235, 0.588235, 0.588235, 1)
+shader_parameter/shade_2 = Color(0.392157, 0.392157, 0.392157, 1)
+shader_parameter/shade_3 = Color(0.196078, 0.196078, 0.196078, 1)

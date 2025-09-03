@@ -1,15 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://bi81fe12i10ix"]
+[gd_scene load_steps=5 format=3 uid="uid://bi81fe12i10ix"]
 
-[ext_resource type="Script" uid="uid://cgc8dpbgyxdtb" path="res://page.gd" id="1_nl5ea"]
+[ext_resource type="Script" uid="uid://cgc8dpbgyxdtb" path="res://scripts/page.gd" id="1_nl5ea"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nl5ea"]
-albedo_color = Color(0.919865, 0.868178, 0.81211, 1)
+albedo_color = Color(0.376471, 0.376471, 0.376471, 1)
 metallic_specular = 0.2
 emission = Color(1, 1, 1, 1)
 emission_energy_multiplier = 0.1
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kkqxg"]
+albedo_color = Color(0, 0, 0, 1)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_nl5ea"]
-size = Vector3(1, 1.2, 0.1)
+size = Vector3(1.8, 1.4, 0.5)
 
 [node name="Page" type="Node3D"]
 script = ExtResource("1_nl5ea")
@@ -19,11 +22,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.86265e-08, -5.21541e-08, 0.
 size = Vector3(0.4, 0.6, 0.01)
 material = SubResource("StandardMaterial3D_nl5ea")
 
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.01)
+size = Vector3(0.2, 0.4, 0.01)
+material = SubResource("StandardMaterial3D_kkqxg")
+
 [node name="InteractionArea" type="Area3D" parent="."]
 collision_layer = 128
 collision_mask = 128
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.05)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.9407e-08, 5.96046e-08, 0.25)
 shape = SubResource("BoxShape3D_nl5ea")
 debug_color = Color(0, 0.6, 0.701961, 1)

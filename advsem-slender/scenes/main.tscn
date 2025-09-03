@@ -1,0 +1,189 @@
+[gd_scene load_steps=11 format=3 uid="uid://b2fcrx7ohgn2i"]
+
+[ext_resource type="PackedScene" uid="uid://dqhlmv6mga3ln" path="res://scenes/player.tscn" id="1_ig7tw"]
+[ext_resource type="Material" uid="uid://dfno40i012odi" path="res://shaders/fourcolor_screen.tres" id="1_jyhfs"]
+[ext_resource type="Script" uid="uid://cjehxq1f2vicp" path="res://scenes/screenshaderdebug.gd" id="1_tbgi4"]
+[ext_resource type="PackedScene" uid="uid://bi81fe12i10ix" path="res://scenes/page.tscn" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://e2xkriepiibj" path="res://scenes/dummy.tscn" id="4_jyhfs"]
+
+[sub_resource type="Sky" id="Sky_0xm2m"]
+
+[sub_resource type="Environment" id="Environment_h2yge"]
+background_mode = 1
+sky = SubResource("Sky_0xm2m")
+ambient_light_source = 1
+ambient_light_color = Color(1, 1, 1, 1)
+tonemap_mode = 2
+fog_mode = 1
+fog_light_color = Color(0, 0, 0, 1)
+fog_density = 1.0
+fog_depth_begin = 0.0
+fog_depth_end = 4000.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h2yge"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sugp2"]
+albedo_color = Color(0.753984, 0.753984, 0.753984, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0xm2m"]
+albedo_color = Color(0.753984, 0.753984, 0.753984, 1)
+
+[node name="Playground Area" type="Node3D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("1_tbgi4")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = ExtResource("1_jyhfs")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_h2yge")
+
+[node name="Map" type="Node3D" parent="."]
+
+[node name="Walls and Floor" type="Node3D" parent="Map"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Map/Walls and Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, 15.5)
+use_collision = true
+size = Vector3(45, 1, 42)
+material = SubResource("StandardMaterial3D_h2yge")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Map/Walls and Floor"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 17, 3.5, 37)
+use_collision = true
+size = Vector3(45, 6, 1)
+material = SubResource("StandardMaterial3D_sugp2")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Map/Walls and Floor"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 40, 3.5, 15.5)
+use_collision = true
+size = Vector3(42, 6, 1)
+material = SubResource("StandardMaterial3D_0xm2m")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Map/Walls and Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 3.5, -6)
+use_collision = true
+size = Vector3(45, 6, 1)
+material = SubResource("StandardMaterial3D_sugp2")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Map/Walls and Floor"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6, 3.5, 15.5)
+use_collision = true
+size = Vector3(42, 6, 1)
+material = SubResource("StandardMaterial3D_0xm2m")
+
+[node name="Trees" type="Node3D" parent="Map"]
+
+[node name="Tree1" type="Node3D" parent="Map/Trees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 0, 4)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Map/Trees/Tree1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+height = 8.0
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Map/Trees/Tree1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0)
+radius = 3.0
+
+[node name="Tree2" type="Node3D" parent="Map/Trees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 0, 12)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Map/Trees/Tree2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+height = 8.0
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Map/Trees/Tree2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0)
+radius = 3.0
+
+[node name="Tree3" type="Node3D" parent="Map/Trees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 0, 12)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Map/Trees/Tree3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+height = 8.0
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Map/Trees/Tree3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0)
+radius = 3.0
+
+[node name="Tree4" type="Node3D" parent="Map/Trees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 0, 31)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Map/Trees/Tree4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+height = 8.0
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Map/Trees/Tree4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0)
+radius = 3.0
+
+[node name="Tree5" type="Node3D" parent="Map/Trees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 26)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Map/Trees/Tree5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+height = 8.0
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Map/Trees/Tree5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0)
+radius = 3.0
+
+[node name="Tree6" type="Node3D" parent="Map/Trees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 21)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Map/Trees/Tree6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+height = 8.0
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Map/Trees/Tree6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0)
+radius = 3.0
+
+[node name="Tree7" type="Node3D" parent="Map/Trees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 12)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Map/Trees/Tree7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+height = 8.0
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Map/Trees/Tree7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0)
+radius = 3.0
+
+[node name="Tree8" type="Node3D" parent="Map/Trees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 2)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Map/Trees/Tree8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+height = 8.0
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Map/Trees/Tree8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0)
+radius = 3.0
+
+[node name="Tree9" type="Node3D" parent="Map/Trees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 31)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Map/Trees/Tree9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+height = 8.0
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Map/Trees/Tree9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0)
+radius = 3.0
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("1_ig7tw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 18)
+
+[node name="Page" parent="." instance=ExtResource("2_0xm2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 2, -5)
+
+[node name="Dummy" parent="." instance=ExtResource("4_jyhfs")]
+transform = Transform3D(0.173648, 0, -0.984808, 0, 1, 0, 0.984808, 0, 0.173648, 31.4666, 0.500001, 5.79933)

@@ -3,12 +3,14 @@ extends CharacterBody3D
 
 const SPEED = 2.0
 const SPRINT_SPEED = 3.0
-const ACCELERATION = 30.0
+const ACCELERATION = 7.0
 
 const MOUSE_SENSITIVITY = 0.002
 const CAMERA_SMOOTHING = 10
 
 var camera_rotation := Vector3(0, 0, 0)
+var camera_fov: float
+
 var flashlight_offset := Vector3(0, 0, 0)
 var flashlight_target = null
 
@@ -22,6 +24,7 @@ var bobbing_speed: float
 
 
 func _ready() -> void:
+	camera_fov = camera.fov
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _process(delta: float) -> void:
@@ -51,6 +54,7 @@ func _physics_process(delta: float) -> void:
 	rotation.y = lerp_angle(rotation.y, camera_rotation.y, CAMERA_SMOOTHING * delta)
 	head.rotation.x = lerp_angle(head.rotation.x, camera_rotation.x, CAMERA_SMOOTHING * delta)
 	camera_bobbing()
+	camera_field_of_view()
 	
 	if not point_flashlight():
 		get_flashlight_offset(delta)
@@ -91,15 +95,20 @@ func get_flashlight_offset(delta: float) -> void:
 	flashlight_offset = lerp(flashlight_offset, Vector3.ZERO, CAMERA_SMOOTHING / 1.5 * delta)
 	flashlight.rotation.y = lerp(flashlight.rotation.y, flashlight_offset.y, CAMERA_SMOOTHING * delta)
 	
+	# occurs when a page is collected, holds light down briefly
+	if flashlight.rotation_override != 0:
+		flashlight.rotation.x = lerp(flashlight.rotation.x, flashlight_offset.x + flashlight.rotation_override, 8 * delta)
+		return
+	
 	# sprinting
 	if check_sprinting():
-		flashlight.rotation.x = lerp(flashlight.rotation.x, flashlight_offset.x + deg_to_rad(-45), CAMERA_SMOOTHING * (0.5 * delta))
+		flashlight.rotation.x = lerp(flashlight.rotation.x, flashlight_offset.x + deg_to_rad(flashlight.SPRINT_ANGLE), 8 * delta)
 	# walking
 	elif velocity.length() != 0:
-		flashlight.rotation.x = lerp(flashlight.rotation.x, flashlight_offset.x + deg_to_rad(-5), CAMERA_SMOOTHING * (0.5 * delta))
+		flashlight.rotation.x = lerp(flashlight.rotation.x, flashlight_offset.x + deg_to_rad(-5), 8 * delta)
 	# standing
 	else:
-		flashlight.rotation.x = lerp(flashlight.rotation.x, flashlight_offset.x, CAMERA_SMOOTHING * delta)
+		flashlight.rotation.x = lerp(flashlight.rotation.x, flashlight_offset.x, 8 * delta)
 
 ## points flashlight at designated object and overrides the offset function
 func point_flashlight():
@@ -134,6 +143,12 @@ func camera_bobbing():
 		camera.rotation.z = lerp(camera.rotation.z, (sin(time_count * bobbing_speed) * (0.01 * get_movement_speed())), 5 * delta)
 	else:
 		camera.rotation.z = lerp(camera.rotation.z, 0.0, 5 * delta)
+
+func camera_field_of_view():
+	if check_sprinting():
+		camera.fov = lerp(camera.fov, camera_fov + 10, 3 * get_physics_process_delta_time())
+	else:
+		camera.fov = lerp(camera.fov, camera_fov, 3 * get_physics_process_delta_time())
 #endregion
 
 ## DISABLE IN BUILDS

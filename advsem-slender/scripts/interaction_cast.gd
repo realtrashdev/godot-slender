@@ -1,16 +1,24 @@
 extends RayCast3D
 
+signal object_collected
+
 var interactible_position: Vector3
 
 func _process(delta: float) -> void:
 	if is_colliding():
-		var obj = get_collider().get_parent()
+		var col = get_collider()
+		
+		if col is not Node:
+			return
+		
+		var obj = col.get_parent()
 		
 		if obj is Interactible and obj.attract_flashlight:
 			interactible_position = obj.get("global_position")
 		
 		# collecting
-		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and get_collider().get_parent().has_method("collect"):
-			get_collider().get_parent().collect()
+		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and obj.has_method("collect"):
+			obj.collect()
+			object_collected.emit()
 	else:
 		interactible_position = Vector3.ZERO

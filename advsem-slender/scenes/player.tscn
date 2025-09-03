@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dqhlmv6mga3ln"]
+[gd_scene load_steps=6 format=3 uid="uid://dqhlmv6mga3ln"]
 
-[ext_resource type="Script" uid="uid://e6rwi0hmxjmt" path="res://player.gd" id="1_4flbx"]
-[ext_resource type="Script" uid="uid://b1w1fm55k1ows" path="res://interaction_cast.gd" id="2_onrkg"]
+[ext_resource type="Script" uid="uid://e6rwi0hmxjmt" path="res://scripts/player.gd" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://b1w1fm55k1ows" path="res://scripts/interaction_cast.gd" id="2_onrkg"]
+[ext_resource type="Script" uid="uid://crcq4fsku0kwi" path="res://scripts/flashlight.gd" id="3_i3pqv"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_onrkg"]
 
@@ -31,9 +32,20 @@ script = ExtResource("2_onrkg")
 
 [node name="Flashlight" type="Node3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+script = ExtResource("3_i3pqv")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Head/Flashlight"]
-light_color = Color(0.818822, 0.686607, 1, 1)
-light_energy = 5.0
-spot_range = 10.0
-spot_angle = 30.0
+transform = Transform3D(0.999391, 0, 0.0348995, 0, 1, 0, -0.0348995, 0, 0.999391, 0.3, 0, 0)
+light_energy = 2.0
+light_indirect_energy = 0.0
+light_specular = 0.0
+spot_range = 40.0
+spot_attenuation = 0.75
+spot_angle = 35.0
+spot_angle_attenuation = 0.5
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_energy = 0.2
+omni_range = 2.0
+
+[connection signal="object_collected" from="Head/Camera3D/RayCast3D" to="Head/Flashlight" method="_on_ray_cast_3d_object_collected"]
