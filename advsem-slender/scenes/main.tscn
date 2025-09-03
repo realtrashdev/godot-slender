@@ -1,10 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://b2fcrx7ohgn2i"]
+[gd_scene load_steps=13 format=3 uid="uid://b2fcrx7ohgn2i"]
 
 [ext_resource type="PackedScene" uid="uid://dqhlmv6mga3ln" path="res://scenes/player.tscn" id="1_ig7tw"]
 [ext_resource type="Material" uid="uid://dfno40i012odi" path="res://shaders/fourcolor_screen.tres" id="1_jyhfs"]
-[ext_resource type="Script" uid="uid://cjehxq1f2vicp" path="res://scenes/screenshaderdebug.gd" id="1_tbgi4"]
+[ext_resource type="Script" uid="uid://cjehxq1f2vicp" path="res://scripts/screenshaderdebug.gd" id="1_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://bi81fe12i10ix" path="res://scenes/page.tscn" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://ddr4dh2ckopug" path="res://scripts/in_game_ui_manager.gd" id="3_tefeu"]
 [ext_resource type="PackedScene" uid="uid://e2xkriepiibj" path="res://scenes/dummy.tscn" id="4_jyhfs"]
+[ext_resource type="FontFile" uid="uid://b78ski6kf8hw1" path="res://fonts/ari-w9500-display.ttf" id="4_o6xl0"]
 
 [sub_resource type="Sky" id="Sky_0xm2m"]
 
@@ -30,16 +32,38 @@ albedo_color = Color(0.753984, 0.753984, 0.753984, 1)
 
 [node name="Playground Area" type="Node3D"]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="ColorChangeCanvas" type="CanvasLayer" parent="."]
+layer = 10
 script = ExtResource("1_tbgi4")
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+[node name="ColorRect" type="ColorRect" parent="ColorChangeCanvas"]
 material = ExtResource("1_jyhfs")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="InGameUICanvas" type="CanvasLayer" parent="."]
+script = ExtResource("3_tefeu")
+
+[node name="PagesText" type="RichTextLabel" parent="InGameUICanvas"]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_fonts/normal_font = ExtResource("4_o6xl0")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[wave]Collect all 8 pages"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_h2yge")
@@ -180,10 +204,40 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0)
 radius = 3.0
 
 [node name="CharacterBody3D" parent="." instance=ExtResource("1_ig7tw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 18)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13, 18)
 
 [node name="Page" parent="." instance=ExtResource("2_0xm2m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 2, -5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2, -5.5)
+
+[node name="Page2" parent="." instance=ExtResource("2_0xm2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 2, -5.5)
+
+[node name="Page3" parent="." instance=ExtResource("2_0xm2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2, -5.5)
+
+[node name="Page4" parent="." instance=ExtResource("2_0xm2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2, -5.5)
+
+[node name="Page5" parent="." instance=ExtResource("2_0xm2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 2, -5.5)
+
+[node name="Page6" parent="." instance=ExtResource("2_0xm2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 2, -5.5)
+
+[node name="Page7" parent="." instance=ExtResource("2_0xm2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 2, -5.5)
+
+[node name="Page8" parent="." instance=ExtResource("2_0xm2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 2, -5.5)
 
 [node name="Dummy" parent="." instance=ExtResource("4_jyhfs")]
 transform = Transform3D(0.173648, 0, -0.984808, 0, 1, 0, 0.984808, 0, 0.173648, 31.4666, 0.500001, 5.79933)
+
+[connection signal="page_collected" from="Page" to="InGameUICanvas" method="display_pages"]
+[connection signal="page_collected" from="Page2" to="InGameUICanvas" method="display_pages"]
+[connection signal="page_collected" from="Page3" to="InGameUICanvas" method="display_pages"]
+[connection signal="page_collected" from="Page4" to="InGameUICanvas" method="display_pages"]
+[connection signal="page_collected" from="Page5" to="InGameUICanvas" method="display_pages"]
+[connection signal="page_collected" from="Page6" to="InGameUICanvas" method="display_pages"]
+[connection signal="page_collected" from="Page7" to="InGameUICanvas" method="display_pages"]
+[connection signal="page_collected" from="Page8" to="InGameUICanvas" method="display_pages"]

@@ -1,5 +1,6 @@
 extends CharacterBody3D
 
+@export var movement_gravel: Array[AudioStreamWAV]
 
 const SPEED = 2.0
 const SPRINT_SPEED = 3.0
@@ -13,14 +14,19 @@ var camera_fov: float
 
 var flashlight_offset := Vector3(0, 0, 0)
 var flashlight_target = null
+var flashlight_brightness
 
 var time_count: float
 var bobbing_speed: float
+
+var previous_sound_index: int
+var move_sound_timer: float
 
 @onready var head: Node3D = $Head
 @onready var flashlight: Node3D = $Head/Flashlight
 @onready var camera: Camera3D = $Head/Camera3D
 @onready var interaction_cast: RayCast3D = $Head/Camera3D/RayCast3D
+@onready var movement_audio: AudioStreamPlayer3D = $MovementAudio
 
 
 func _ready() -> void:
@@ -31,7 +37,8 @@ func _process(delta: float) -> void:
 	if Input.is_key_pressed(KEY_ESCAPE):
 		get_tree().quit()
 	
-	debug_tools()
+	move_sound_timer -= delta
+	#debug_tools()
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -49,7 +56,8 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, ACCELERATION * delta)
 
 	move_and_slide()
-	
+	move_audio()
+
 	# camera rotation/bobbing
 	rotation.y = lerp_angle(rotation.y, camera_rotation.y, CAMERA_SMOOTHING * delta)
 	head.rotation.x = lerp_angle(head.rotation.x, camera_rotation.x, CAMERA_SMOOTHING * delta)
@@ -85,6 +93,27 @@ func check_sprinting() -> bool:
 		return true
 	else:
 		return false
+
+## plays stepping sounds while moving
+func move_audio():
+	# if not moving fast enough or in the air, don't make sounds
+	if not velocity.length() > 1 or not is_on_floor():
+		return
+	
+	if move_sound_timer > 0:
+		return
+	
+	movement_audio.pitch_scale = randf_range(0.9, 1.1)
+	var index = randf_range(0, movement_gravel.size())
+	
+	# prevents repeat sounds
+	while index == previous_sound_index:
+		index = randf_range(0, movement_gravel.size())
+	
+	previous_sound_index = index
+	movement_audio.stream = movement_gravel[index]
+	movement_audio.play()
+	move_sound_timer = 1.5 / get_movement_speed()
 #endregion
 
 #region Flashlight
@@ -97,12 +126,12 @@ func get_flashlight_offset(delta: float) -> void:
 	
 	# occurs when a page is collected, holds light down briefly
 	if flashlight.rotation_override != 0:
-		flashlight.rotation.x = lerp(flashlight.rotation.x, flashlight_offset.x + flashlight.rotation_override, 8 * delta)
+		flashlight.global_rotation.x = lerp(flashlight.global_rotation.x, flashlight_offset.x + flashlight.rotation_override, 8 * delta)
 		return
 	
 	# sprinting
 	if check_sprinting():
-		flashlight.rotation.x = lerp(flashlight.rotation.x, flashlight_offset.x + deg_to_rad(flashlight.SPRINT_ANGLE), 8 * delta)
+		flashlight.global_rotation.x = lerp(flashlight.global_rotation.x, flashlight_offset.x + deg_to_rad(flashlight.SPRINT_ANGLE), 8 * delta)
 	# walking
 	elif velocity.length() != 0:
 		flashlight.rotation.x = lerp(flashlight.rotation.x, flashlight_offset.x + deg_to_rad(-5), 8 * delta)
@@ -137,7 +166,7 @@ func point_flashlight():
 func camera_bobbing():
 	var delta = get_physics_process_delta_time()
 	time_count += delta
-	bobbing_speed = get_movement_speed() * 2
+	bobbing_speed = get_movement_speed() * 3
 	
 	if velocity.length() > 1:
 		camera.rotation.z = lerp(camera.rotation.z, (sin(time_count * bobbing_speed) * (0.01 * get_movement_speed())), 5 * delta)
