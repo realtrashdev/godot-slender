@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b2fcrx7ohgn2i"]
+[gd_scene load_steps=14 format=3 uid="uid://b2fcrx7ohgn2i"]
 
 [ext_resource type="PackedScene" uid="uid://dqhlmv6mga3ln" path="res://scenes/player.tscn" id="1_ig7tw"]
 [ext_resource type="Material" uid="uid://dfno40i012odi" path="res://shaders/fourcolor_screen.tres" id="1_jyhfs"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://ddr4dh2ckopug" path="res://scripts/in_game_ui_manager.gd" id="3_tefeu"]
 [ext_resource type="PackedScene" uid="uid://e2xkriepiibj" path="res://scenes/dummy.tscn" id="4_jyhfs"]
 [ext_resource type="FontFile" uid="uid://b78ski6kf8hw1" path="res://fonts/ari-w9500-display.ttf" id="4_o6xl0"]
+[ext_resource type="Script" uid="uid://cd3rioc31ppei" path="res://scenes/funny_business.gd" id="8_tipki"]
 
 [sub_resource type="Sky" id="Sky_0xm2m"]
 
@@ -232,6 +233,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 2, -5.5)
 
 [node name="Dummy" parent="." instance=ExtResource("4_jyhfs")]
 transform = Transform3D(0.173648, 0, -0.984808, 0, 1, 0, 0.984808, 0, 0.173648, 31.4666, 0.500001, 5.79933)
+
+[node name="Funny Business" type="Node3D" parent="."]
+script = ExtResource("8_tipki")
+shader_material = ExtResource("1_jyhfs")
 
 [connection signal="page_collected" from="Page" to="InGameUICanvas" method="display_pages"]
 [connection signal="page_collected" from="Page2" to="InGameUICanvas" method="display_pages"]
