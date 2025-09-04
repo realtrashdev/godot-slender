@@ -6,6 +6,7 @@ var pages: int = 0
 
 func _ready() -> void:
 	await get_tree().create_timer(3).timeout
+	Signals.page_collected.connect(display_pages)
 	pages_text.text = ""
 
 func display_pages():
