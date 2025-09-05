@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://b2fcrx7ohgn2i"]
+[gd_scene load_steps=29 format=3 uid="uid://b2fcrx7ohgn2i"]
 
 [ext_resource type="PackedScene" uid="uid://dqhlmv6mga3ln" path="res://scenes/player.tscn" id="1_ig7tw"]
 [ext_resource type="Material" uid="uid://dfno40i012odi" path="res://shaders/fourcolor_screen.tres" id="1_jyhfs"]
@@ -12,6 +12,7 @@
 [ext_resource type="Resource" uid="uid://cv5fnmupvjqsc" path="res://resources/color sets/colorset_green.tres" id="4_ya4ey"]
 [ext_resource type="Resource" uid="uid://yqp2gio83wnu" path="res://resources/color sets/colorset_red.tres" id="5_trceg"]
 [ext_resource type="Resource" uid="uid://w12qf506p7v2" path="res://resources/color sets/colorset_blue.tres" id="7_a8y0u"]
+[ext_resource type="Resource" uid="uid://clb54htu6fqy4" path="res://resources/color sets/colorset_purple.tres" id="8_dp3eg"]
 [ext_resource type="Script" uid="uid://cd3rioc31ppei" path="res://scripts/funny_business.gd" id="8_tipki"]
 [ext_resource type="NavigationMesh" uid="uid://dsmij2wanukbg" path="res://navigation_mesh.tres" id="10_jkv2x"]
 [ext_resource type="Texture2D" uid="uid://id3wqgcl4sqd" path="res://resources/color sets/ao oni sprites.png" id="14_a8y0u"]
@@ -86,6 +87,7 @@ color_sets = Dictionary[String, ExtResource("3_choun")]({
 "BLUE": ExtResource("7_a8y0u"),
 "GREEN": ExtResource("4_ya4ey"),
 "MONO": ExtResource("4_eb6dy"),
+"PURPLE": ExtResource("8_dp3eg"),
 "RED": ExtResource("5_trceg")
 })
 

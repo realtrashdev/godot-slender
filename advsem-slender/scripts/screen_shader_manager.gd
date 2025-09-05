@@ -14,7 +14,7 @@ func _process(delta: float) -> void:
 		change_game_color("MONO", 1)
 	
 	if Input.is_action_just_pressed("ui_left"):
-		change_game_color("RED", 1)
+		change_game_color("PURPLE", 1)
 	
 	if Input.is_action_just_pressed("ui_right"):
 		change_game_color("BLUE", 1)
