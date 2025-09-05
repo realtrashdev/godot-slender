@@ -14,7 +14,6 @@ var camera_fov: float
 
 var flashlight_offset := Vector3(0, 0, 0)
 var flashlight_target = null
-var flashlight_brightness
 
 var time_count: float
 var bobbing_speed: float
@@ -131,7 +130,7 @@ func get_flashlight_offset(delta: float) -> void:
 	
 	# sprinting
 	if check_sprinting():
-		flashlight.global_rotation.x = lerp(flashlight.global_rotation.x, flashlight_offset.x + deg_to_rad(flashlight.SPRINT_ANGLE), 8 * delta)
+		flashlight.global_rotation.x = lerp(flashlight.global_rotation.x, flashlight_offset.x + deg_to_rad(flashlight.sprint_angle), 8 * delta)
 	# walking
 	elif velocity.length() != 0:
 		flashlight.rotation.x = lerp(flashlight.rotation.x, flashlight_offset.x + deg_to_rad(-5) + sin(time_count * 5) * 0.015, 8 * delta)

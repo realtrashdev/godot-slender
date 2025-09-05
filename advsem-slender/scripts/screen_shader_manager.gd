@@ -19,7 +19,7 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_right"):
 		change_game_color("BLUE", 1)
 
-# if speed is 0/not entered, instant change
+# if speed is 0 or not entered, instant change
 func change_game_color(color_name: String = "MONO", speed: float = 0):
 	var color_set = color_sets[color_name.to_upper()]
 	

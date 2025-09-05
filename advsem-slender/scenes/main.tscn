@@ -288,7 +288,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 1.492, 25)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 script = ExtResource("14_jbj1t")
 
-[node name="ao oni" type="AnimatedSprite3D" parent="Ao Oni"]
+[node name="Sprite3D" type="AnimatedSprite3D" parent="Ao Oni"]
 transform = Transform3D(4.3118, 0, 0, 0, 4.3118, 0, 0, 0, 1, 0, 2.51878, 0)
 billboard = 2
 shaded = true
