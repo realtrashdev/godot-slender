@@ -1,6 +1,7 @@
-[gd_scene load_steps=20 format=3 uid="uid://b2fcrx7ohgn2i"]
+[gd_scene load_steps=21 format=3 uid="uid://b2fcrx7ohgn2i"]
 
 [ext_resource type="PackedScene" uid="uid://dqhlmv6mga3ln" path="res://scenes/player.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://ds3f284sk35dn" path="res://scenes/enemy_spawner.tscn" id="1_jkv2x"]
 [ext_resource type="Material" uid="uid://dfno40i012odi" path="res://shaders/fourcolor_screen.tres" id="1_jyhfs"]
 [ext_resource type="Script" uid="uid://cjehxq1f2vicp" path="res://scripts/screen_shader_manager.gd" id="1_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://bi81fe12i10ix" path="res://scenes/page.tscn" id="2_0xm2m"]
@@ -38,6 +39,14 @@ albedo_color = Color(0.753984, 0.753984, 0.753984, 1)
 albedo_color = Color(0.753984, 0.753984, 0.753984, 1)
 
 [node name="Playground Area" type="Node3D"]
+
+[node name="Player" parent="." groups=["Player"] instance=ExtResource("1_ig7tw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 1.5, 25)
+
+[node name="EnemySpawner" parent="." instance=ExtResource("1_jkv2x")]
+min_spawn_time = 40.0
+max_spawn_time = 55.0
+spawn_distance = 35.0
 
 [node name="ColorChangeCanvas" type="CanvasLayer" parent="."]
 layer = 10
@@ -243,9 +252,6 @@ transform = Transform3D(0.661246, 0, 0.750169, 0, 1, 0, -0.750169, 0, 0.661246, 
 
 [node name="Page3" parent="Map" instance=ExtResource("2_0xm2m")]
 transform = Transform3D(-0.401276, 0, -0.915957, 0, 1, 0, 0.915957, 0, -0.401276, 12.2069, 1.57065, 16.6367)
-
-[node name="Player" parent="." groups=["Player"] instance=ExtResource("1_ig7tw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 1.492, 25)
 
 [node name="Funny Business" type="Node3D" parent="."]
 script = ExtResource("8_tipki")

@@ -2,24 +2,28 @@ extends CharacterBody3D
 
 @export var movement_gravel: Array[AudioStreamWAV]
 
+# Base Movement
 const SPEED = 2.5
 const SPRINT_SPEED = 4.0
 const ACCELERATION = 7.0
 
+# Camera
 const MOUSE_SENSITIVITY = 0.002
 const CAMERA_SMOOTHING = 10
-
-const CAMERA_BOB_AMOUNT = 0.01
+const CAMERA_BOB_AMOUNT = 0.015
 
 var camera_rotation := Vector3(0, 0, 0)
 var camera_fov: float
 
+# Flashlight
 var flashlight_offset := Vector3(0, 0, 0)
 var flashlight_target = null
 
+# Movement Bobbing
 var time_count: float
 var bobbing_speed: float
 
+# Audio
 var previous_sound_index: int
 var move_sound_timer: float
 
@@ -132,14 +136,14 @@ func get_flashlight_offset(delta: float) -> void:
 	
 	# sprinting
 	if check_sprinting():
-		flashlight.global_rotation.x = lerp(flashlight.global_rotation.x, flashlight_offset.x + deg_to_rad(flashlight.sprint_angle), 8 * delta)
+		flashlight.global_rotation.x = lerp(flashlight.global_rotation.x, flashlight_offset.x + deg_to_rad(flashlight.sprint_angle), 10 * delta)
 	# walking
 	elif velocity.length() != 0:
-		flashlight.rotation.x = lerp(flashlight.rotation.x, flashlight_offset.x + deg_to_rad(-5) + sin(time_count * 5) * 0.015, 8 * delta)
-		flashlight.rotation.y = lerp(flashlight.rotation.y, flashlight_offset.y + deg_to_rad(-5) + sin(time_count * 5) * 0.015, 8 * delta)
+		flashlight.rotation.x = lerp(flashlight.rotation.x, flashlight_offset.x + deg_to_rad(-5) + sin(time_count * 5) * 0.015, 6 * delta)
+		flashlight.rotation.y = lerp(flashlight.rotation.y, flashlight_offset.y + deg_to_rad(-5) + sin(time_count * 5) * 0.015, 6 * delta)
 	# standing
 	else:
-		flashlight.rotation.x = lerp(flashlight.rotation.x, flashlight_offset.x + cos(time_count) * 0.01, 8 * delta)
+		flashlight.rotation.x = lerp(flashlight.rotation.x, flashlight_offset.x + cos(time_count) * 0.01, 6 * delta)
 
 ## points flashlight at designated object and overrides the offset function
 func point_flashlight():
@@ -171,7 +175,7 @@ func camera_bobbing():
 	bobbing_speed = get_movement_speed() * 2
 	
 	if velocity.length() > 1:
-		camera.rotation.z = lerp(camera.rotation.z, (sin(time_count * bobbing_speed) * (0.01 * get_movement_speed())), 5 * delta)
+		camera.rotation.z = lerp(camera.rotation.z, (sin(time_count * bobbing_speed) * (0.005 * get_movement_speed())), 5 * delta)
 	else:
 		camera.rotation.z = lerp(camera.rotation.z, 0.0, 5 * delta)
 
