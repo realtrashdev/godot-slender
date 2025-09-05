@@ -166,10 +166,10 @@ func point_flashlight():
 func camera_bobbing():
 	var delta = get_physics_process_delta_time()
 	time_count += delta
-	bobbing_speed = get_movement_speed() * 3
+	bobbing_speed = get_movement_speed()
 	
 	if velocity.length() > 1:
-		camera.rotation.z = lerp(camera.rotation.z, (sin(time_count * bobbing_speed) * (0.01 * get_movement_speed())), 5 * delta)
+		camera.rotation.z = lerp(camera.rotation.z, (sin(time_count * bobbing_speed * bobbing_speed) * (0.01 * get_movement_speed())), 5 * delta)
 	else:
 		camera.rotation.z = lerp(camera.rotation.z, 0.0, 5 * delta)
 

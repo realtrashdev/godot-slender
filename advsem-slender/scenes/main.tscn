@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b2fcrx7ohgn2i"]
+[gd_scene load_steps=28 format=3 uid="uid://b2fcrx7ohgn2i"]
 
 [ext_resource type="PackedScene" uid="uid://dqhlmv6mga3ln" path="res://scenes/player.tscn" id="1_ig7tw"]
 [ext_resource type="Material" uid="uid://dfno40i012odi" path="res://shaders/fourcolor_screen.tres" id="1_jyhfs"]
@@ -13,6 +13,10 @@
 [ext_resource type="Resource" uid="uid://yqp2gio83wnu" path="res://resources/color sets/colorset_red.tres" id="5_trceg"]
 [ext_resource type="Resource" uid="uid://w12qf506p7v2" path="res://resources/color sets/colorset_blue.tres" id="7_a8y0u"]
 [ext_resource type="Script" uid="uid://cd3rioc31ppei" path="res://scripts/funny_business.gd" id="8_tipki"]
+[ext_resource type="NavigationMesh" uid="uid://dsmij2wanukbg" path="res://navigation_mesh.tres" id="10_jkv2x"]
+[ext_resource type="Texture2D" uid="uid://id3wqgcl4sqd" path="res://resources/color sets/ao oni sprites.png" id="14_a8y0u"]
+[ext_resource type="Script" uid="uid://bhnr1i6xo0hdc" path="res://scripts/ao_oni.gd" id="14_jbj1t"]
+[ext_resource type="AudioStream" uid="uid://c8oi7ibd26wfm" path="res://sounds/ao oni chase.wav" id="16_muem4"]
 
 [sub_resource type="Sky" id="Sky_0xm2m"]
 
@@ -35,6 +39,42 @@ albedo_color = Color(0.753984, 0.753984, 0.753984, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0xm2m"]
 albedo_color = Color(0.753984, 0.753984, 0.753984, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jkv2x"]
+atlas = ExtResource("14_a8y0u")
+region = Rect2(62, 0, 62, 124)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jbj1t"]
+atlas = ExtResource("14_a8y0u")
+region = Rect2(0, 0, 62, 124)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_muem4"]
+atlas = ExtResource("14_a8y0u")
+region = Rect2(124, 0, 62, 124)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dp3eg"]
+animations = [{
+"frames": [{
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_jkv2x")
+}, {
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_jbj1t")
+}, {
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_jkv2x")
+}, {
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_muem4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jkv2x"]
+radius = 0.856761
+height = 1.99066
 
 [node name="Playground Area" type="Node3D"]
 
@@ -81,9 +121,12 @@ vertical_alignment = 1
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_h2yge")
 
-[node name="Map" type="Node3D" parent="."]
+[node name="Map" type="NavigationRegion3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.365, 0.5, 14.171)
+navigation_mesh = ExtResource("10_jkv2x")
 
 [node name="Walls and Floor" type="Node3D" parent="Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.365, -0.5, -14.171)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Map/Walls and Floor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, 15.5)
@@ -116,12 +159,14 @@ size = Vector3(42, 6, 1)
 material = SubResource("StandardMaterial3D_0xm2m")
 
 [node name="Trees" type="Node3D" parent="Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.365, -0.5, -14.171)
 
 [node name="Tree1" type="Node3D" parent="Map/Trees"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 0, 4)
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="Map/Trees/Tree1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+use_collision = true
 height = 8.0
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="Map/Trees/Tree1"]
@@ -133,6 +178,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 0, 12)
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="Map/Trees/Tree2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+use_collision = true
 height = 8.0
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="Map/Trees/Tree2"]
@@ -144,6 +190,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 0, 12)
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="Map/Trees/Tree3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+use_collision = true
 height = 8.0
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="Map/Trees/Tree3"]
@@ -155,6 +202,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 0, 31)
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="Map/Trees/Tree4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+use_collision = true
 height = 8.0
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="Map/Trees/Tree4"]
@@ -166,6 +214,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 26)
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="Map/Trees/Tree5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+use_collision = true
 height = 8.0
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="Map/Trees/Tree5"]
@@ -177,6 +226,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 21)
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="Map/Trees/Tree6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+use_collision = true
 height = 8.0
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="Map/Trees/Tree6"]
@@ -188,6 +238,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 12)
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="Map/Trees/Tree7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+use_collision = true
 height = 8.0
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="Map/Trees/Tree7"]
@@ -199,6 +250,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 2)
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="Map/Trees/Tree8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+use_collision = true
 height = 8.0
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="Map/Trees/Tree8"]
@@ -210,26 +262,49 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 31)
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="Map/Trees/Tree9"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+use_collision = true
 height = 8.0
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="Map/Trees/Tree9"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0)
 radius = 3.0
 
-[node name="CharacterBody3D" parent="." instance=ExtResource("1_ig7tw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.49162, 18)
+[node name="Dummy" parent="Map" instance=ExtResource("4_jyhfs")]
+transform = Transform3D(0.173648, 0, -0.984808, 0, 1, 0, 0.984808, 0, 0.173648, 12.1016, 1.01328e-06, -8.37167)
 
-[node name="Page" parent="." instance=ExtResource("2_0xm2m")]
-transform = Transform3D(0.700374, 0, -0.713776, 0, 1, 0, 0.713776, 0, 0.700374, 14.6389, 2.01759, 2.35855)
+[node name="Page" parent="Map" instance=ExtResource("2_0xm2m")]
+transform = Transform3D(0.700374, 0, -0.713776, 0, 1, 0, 0.713776, 0, 0.700374, -4.7261, 1.51759, -11.8124)
 
-[node name="Page2" parent="." instance=ExtResource("2_0xm2m")]
-transform = Transform3D(0.661246, 0, 0.750169, 0, 1, 0, -0.750169, 0, 0.661246, 32.3684, 1.97218, 12.3472)
+[node name="Page2" parent="Map" instance=ExtResource("2_0xm2m")]
+transform = Transform3D(0.661246, 0, 0.750169, 0, 1, 0, -0.750169, 0, 0.661246, 13.0034, 1.47218, -1.8238)
 
-[node name="Page3" parent="." instance=ExtResource("2_0xm2m")]
-transform = Transform3D(-0.401276, 0, -0.915957, 0, 1, 0, 0.915957, 0, -0.401276, 31.5719, 2.07065, 30.8077)
+[node name="Page3" parent="Map" instance=ExtResource("2_0xm2m")]
+transform = Transform3D(-0.401276, 0, -0.915957, 0, 1, 0, 0.915957, 0, -0.401276, 12.2069, 1.57065, 16.6367)
 
-[node name="Dummy" parent="." instance=ExtResource("4_jyhfs")]
-transform = Transform3D(0.173648, 0, -0.984808, 0, 1, 0, 0.984808, 0, 0.173648, 31.4666, 0.500001, 5.79933)
+[node name="Player" parent="." groups=["Player"] instance=ExtResource("1_ig7tw")]
+transform = Transform3D(0.800386, 0, 0.599485, 0, 1, 0, -0.599485, 0, 0.800386, 25, 1.492, 25)
+
+[node name="Ao Oni" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0.5, 0)
+script = ExtResource("14_jbj1t")
+
+[node name="ao oni" type="AnimatedSprite3D" parent="Ao Oni"]
+transform = Transform3D(4.3118, 0, 0, 0, 4.3118, 0, 0, 0, 1, 0, 2.51878, 0)
+billboard = 2
+shaded = true
+sprite_frames = SubResource("SpriteFrames_dp3eg")
+autoplay = "default"
+frame_progress = 0.0581115
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ao Oni"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_jkv2x")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="Ao Oni"]
+
+[node name="Ambient Music" type="AudioStreamPlayer3D" parent="Ao Oni"]
+stream = ExtResource("16_muem4")
+max_distance = 10.0
 
 [node name="Funny Business" type="Node3D" parent="."]
 script = ExtResource("8_tipki")
