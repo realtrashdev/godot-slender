@@ -2,12 +2,14 @@ extends CharacterBody3D
 
 @export var movement_gravel: Array[AudioStreamWAV]
 
-const SPEED = 2.0
-const SPRINT_SPEED = 3.0
+const SPEED = 2.5
+const SPRINT_SPEED = 4.0
 const ACCELERATION = 7.0
 
 const MOUSE_SENSITIVITY = 0.002
 const CAMERA_SMOOTHING = 10
+
+const CAMERA_BOB_AMOUNT = 0.01
 
 var camera_rotation := Vector3(0, 0, 0)
 var camera_fov: float
@@ -134,9 +136,10 @@ func get_flashlight_offset(delta: float) -> void:
 	# walking
 	elif velocity.length() != 0:
 		flashlight.rotation.x = lerp(flashlight.rotation.x, flashlight_offset.x + deg_to_rad(-5) + sin(time_count * 5) * 0.015, 8 * delta)
+		flashlight.rotation.y = lerp(flashlight.rotation.y, flashlight_offset.y + deg_to_rad(-5) + sin(time_count * 5) * 0.015, 8 * delta)
 	# standing
 	else:
-		flashlight.rotation.x = lerp(flashlight.rotation.x, flashlight_offset.x + sin(time_count) * 0.01, 8 * delta)
+		flashlight.rotation.x = lerp(flashlight.rotation.x, flashlight_offset.x + cos(time_count) * 0.01, 8 * delta)
 
 ## points flashlight at designated object and overrides the offset function
 func point_flashlight():
@@ -165,10 +168,10 @@ func point_flashlight():
 func camera_bobbing():
 	var delta = get_physics_process_delta_time()
 	time_count += delta
-	bobbing_speed = get_movement_speed()
+	bobbing_speed = get_movement_speed() * 2
 	
 	if velocity.length() > 1:
-		camera.rotation.z = lerp(camera.rotation.z, (sin(time_count * bobbing_speed * bobbing_speed) * (0.01 * get_movement_speed())), 5 * delta)
+		camera.rotation.z = lerp(camera.rotation.z, (sin(time_count * bobbing_speed) * (0.01 * get_movement_speed())), 5 * delta)
 	else:
 		camera.rotation.z = lerp(camera.rotation.z, 0.0, 5 * delta)
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://b2fcrx7ohgn2i"]
+[gd_scene load_steps=20 format=3 uid="uid://b2fcrx7ohgn2i"]
 
 [ext_resource type="PackedScene" uid="uid://dqhlmv6mga3ln" path="res://scenes/player.tscn" id="1_ig7tw"]
 [ext_resource type="Material" uid="uid://dfno40i012odi" path="res://shaders/fourcolor_screen.tres" id="1_jyhfs"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" uid="uid://cr2cb0aew1jk5" path="res://scripts/color_set.gd" id="3_choun"]
 [ext_resource type="Script" uid="uid://ddr4dh2ckopug" path="res://scripts/in_game_ui_manager.gd" id="3_tefeu"]
 [ext_resource type="Resource" uid="uid://dxqerx2bro4kp" path="res://resources/color sets/colorset_mono.tres" id="4_eb6dy"]
-[ext_resource type="PackedScene" uid="uid://e2xkriepiibj" path="res://scenes/dummy.tscn" id="4_jyhfs"]
 [ext_resource type="FontFile" uid="uid://b78ski6kf8hw1" path="res://fonts/ari-w9500-display.ttf" id="4_o6xl0"]
 [ext_resource type="Resource" uid="uid://cv5fnmupvjqsc" path="res://resources/color sets/colorset_green.tres" id="4_ya4ey"]
 [ext_resource type="Resource" uid="uid://yqp2gio83wnu" path="res://resources/color sets/colorset_red.tres" id="5_trceg"]
@@ -15,9 +14,6 @@
 [ext_resource type="Resource" uid="uid://clb54htu6fqy4" path="res://resources/color sets/colorset_purple.tres" id="8_dp3eg"]
 [ext_resource type="Script" uid="uid://cd3rioc31ppei" path="res://scripts/funny_business.gd" id="8_tipki"]
 [ext_resource type="NavigationMesh" uid="uid://dsmij2wanukbg" path="res://navigation_mesh.tres" id="10_jkv2x"]
-[ext_resource type="Texture2D" uid="uid://id3wqgcl4sqd" path="res://resources/color sets/ao oni sprites.png" id="14_a8y0u"]
-[ext_resource type="Script" uid="uid://bhnr1i6xo0hdc" path="res://scripts/ao_oni.gd" id="14_jbj1t"]
-[ext_resource type="AudioStream" uid="uid://c8oi7ibd26wfm" path="res://sounds/ao oni chase.wav" id="16_muem4"]
 
 [sub_resource type="Sky" id="Sky_0xm2m"]
 
@@ -40,42 +36,6 @@ albedo_color = Color(0.753984, 0.753984, 0.753984, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0xm2m"]
 albedo_color = Color(0.753984, 0.753984, 0.753984, 1)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jkv2x"]
-atlas = ExtResource("14_a8y0u")
-region = Rect2(62, 0, 62, 124)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jbj1t"]
-atlas = ExtResource("14_a8y0u")
-region = Rect2(0, 0, 62, 124)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_muem4"]
-atlas = ExtResource("14_a8y0u")
-region = Rect2(124, 0, 62, 124)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_dp3eg"]
-animations = [{
-"frames": [{
-"duration": 1.5,
-"texture": SubResource("AtlasTexture_jkv2x")
-}, {
-"duration": 1.5,
-"texture": SubResource("AtlasTexture_jbj1t")
-}, {
-"duration": 1.5,
-"texture": SubResource("AtlasTexture_jkv2x")
-}, {
-"duration": 1.5,
-"texture": SubResource("AtlasTexture_muem4")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jkv2x"]
-radius = 0.856761
-height = 1.99066
 
 [node name="Playground Area" type="Node3D"]
 
@@ -138,24 +98,28 @@ material = SubResource("StandardMaterial3D_h2yge")
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="Map/Walls and Floor"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 17, 3.5, 37)
+visible = false
 use_collision = true
 size = Vector3(45, 6, 1)
 material = SubResource("StandardMaterial3D_sugp2")
 
 [node name="CSGBox3D5" type="CSGBox3D" parent="Map/Walls and Floor"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 40, 3.5, 15.5)
+visible = false
 use_collision = true
 size = Vector3(42, 6, 1)
 material = SubResource("StandardMaterial3D_0xm2m")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="Map/Walls and Floor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 3.5, -6)
+visible = false
 use_collision = true
 size = Vector3(45, 6, 1)
 material = SubResource("StandardMaterial3D_sugp2")
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="Map/Walls and Floor"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6, 3.5, 15.5)
+visible = false
 use_collision = true
 size = Vector3(42, 6, 1)
 material = SubResource("StandardMaterial3D_0xm2m")
@@ -271,9 +235,6 @@ height = 8.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0)
 radius = 3.0
 
-[node name="Dummy" parent="Map" instance=ExtResource("4_jyhfs")]
-transform = Transform3D(0.173648, 0, -0.984808, 0, 1, 0, 0.984808, 0, 0.173648, 12.1016, 1.01328e-06, -8.37167)
-
 [node name="Page" parent="Map" instance=ExtResource("2_0xm2m")]
 transform = Transform3D(0.700374, 0, -0.713776, 0, 1, 0, 0.713776, 0, 0.700374, -4.7261, 1.51759, -11.8124)
 
@@ -285,28 +246,6 @@ transform = Transform3D(-0.401276, 0, -0.915957, 0, 1, 0, 0.915957, 0, -0.401276
 
 [node name="Player" parent="." groups=["Player"] instance=ExtResource("1_ig7tw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 1.492, 25)
-
-[node name="Ao Oni" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-script = ExtResource("14_jbj1t")
-
-[node name="Sprite3D" type="AnimatedSprite3D" parent="Ao Oni"]
-transform = Transform3D(4.3118, 0, 0, 0, 4.3118, 0, 0, 0, 1, 0, 2.51878, 0)
-billboard = 2
-shaded = true
-sprite_frames = SubResource("SpriteFrames_dp3eg")
-autoplay = "default"
-frame_progress = 0.0581115
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ao Oni"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_jkv2x")
-
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="Ao Oni"]
-
-[node name="Ambient Music" type="AudioStreamPlayer3D" parent="Ao Oni"]
-stream = ExtResource("16_muem4")
-max_distance = 10.0
 
 [node name="Funny Business" type="Node3D" parent="."]
 script = ExtResource("8_tipki")
