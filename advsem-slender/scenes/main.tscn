@@ -282,10 +282,10 @@ transform = Transform3D(0.661246, 0, 0.750169, 0, 1, 0, -0.750169, 0, 0.661246, 
 transform = Transform3D(-0.401276, 0, -0.915957, 0, 1, 0, 0.915957, 0, -0.401276, 12.2069, 1.57065, 16.6367)
 
 [node name="Player" parent="." groups=["Player"] instance=ExtResource("1_ig7tw")]
-transform = Transform3D(0.800386, 0, 0.599485, 0, 1, 0, -0.599485, 0, 0.800386, 25, 1.492, 25)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 1.492, 25)
 
 [node name="Ao Oni" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 script = ExtResource("14_jbj1t")
 
 [node name="ao oni" type="AnimatedSprite3D" parent="Ao Oni"]

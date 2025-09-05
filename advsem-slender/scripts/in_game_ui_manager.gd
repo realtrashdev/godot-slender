@@ -18,8 +18,8 @@ func display_pages():
 	await get_tree().create_timer(3).timeout
 	pages_text.text = ""
 
-func get_shake_rate(pages: int) -> int:
-	var rate = pages - 3
+func get_shake_rate(page_amount: int) -> int:
+	var rate = page_amount - 3
 	if rate < 1:
 		return 0
 	else:
