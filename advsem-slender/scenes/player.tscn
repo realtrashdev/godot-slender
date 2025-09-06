@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dqhlmv6mga3ln"]
+[gd_scene load_steps=14 format=3 uid="uid://dqhlmv6mga3ln"]
 
 [ext_resource type="Script" uid="uid://e6rwi0hmxjmt" path="res://scripts/player.gd" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://b1w1fm55k1ows" path="res://scripts/interaction_cast.gd" id="2_onrkg"]
@@ -9,12 +9,16 @@
 [ext_resource type="AudioStream" uid="uid://uwn8e8s5nxqp" path="res://sounds/flashlight_click1.wav" id="4_dqkch"]
 [ext_resource type="AudioStream" uid="uid://cbn5bcpofo1t7" path="res://sounds/walking/walking_gravel4.wav" id="5_3v2ag"]
 [ext_resource type="AudioStream" uid="uid://cjhuo4wswyhft" path="res://sounds/walking/walking_gravel5.wav" id="6_jej6c"]
+[ext_resource type="Script" uid="uid://mpp1r0s6esp1" path="res://scripts/flashlight_cast.gd" id="10_y4r1p"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_onrkg"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_i3pqv"]
 
-[node name="CharacterBody3D" type="CharacterBody3D"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ur7pv"]
+height = 20.0
+
+[node name="Player" type="CharacterBody3D" groups=["Player"]]
 script = ExtResource("1_4flbx")
 movement_gravel = Array[AudioStreamWAV]([ExtResource("2_ur7pv"), ExtResource("3_y4r1p"), ExtResource("4_d2wvv"), ExtResource("5_3v2ag"), ExtResource("6_jej6c")])
 
@@ -61,6 +65,14 @@ light_indirect_energy = 0.0
 light_specular = 0.0
 omni_range = 3.0
 omni_attenuation = 0.0
+
+[node name="ShapeCast3D" type="ShapeCast3D" parent="Head/Flashlight"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CylinderShape3D_ur7pv")
+target_position = Vector3(0, -10, 0)
+max_results = 1
+collision_mask = 33
+script = ExtResource("10_y4r1p")
 
 [node name="MovementAudio" type="AudioStreamPlayer3D" parent="."]
 

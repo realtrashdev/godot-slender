@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+signal player_dead
+
 @export var movement_gravel: Array[AudioStreamWAV]
 
 # Base Movement
@@ -185,6 +187,16 @@ func camera_field_of_view():
 	else:
 		camera.fov = lerp(camera.fov, camera_fov, 3 * get_physics_process_delta_time())
 #endregion
+
+func die(enemy_name: String):
+	player_dead.emit(enemy_name)
+	set_physics_process(false)
+	flashlight.visible = false
+	$Head/Flashlight/OmniLight3D.visible = false
+	flashlight.set_process(false)
+	
+	await get_tree().create_timer(1).timeout
+	get_tree().quit()
 
 ## DISABLE IN BUILDS
 func debug_tools():

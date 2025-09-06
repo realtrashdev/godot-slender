@@ -20,7 +20,7 @@ func _ready() -> void:
 	rotation.y = deg_to_rad(-30)
 	play_audio()
 
-func _input(event: InputEvent) -> void:
+func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("toggle_light"):
 		light.visible = !light.visible
 		omni_light.visible = !omni_light.visible

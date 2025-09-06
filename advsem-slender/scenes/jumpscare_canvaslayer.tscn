@@ -1,0 +1,85 @@
+[gd_scene load_steps=8 format=3 uid="uid://c5j4dypjweuc2"]
+
+[ext_resource type="Script" uid="uid://b34b0y7wk1a2p" path="res://scripts/jumpscare_canvas.gd" id="1_8ub55"]
+[ext_resource type="Script" uid="uid://6um422lsglit" path="res://scripts/jumpscare.gd" id="2_0lgb3"]
+[ext_resource type="Resource" uid="uid://3vkwuf2sbniw" path="res://resources/jumpscares/ao_oni_jumpscare.tres" id="3_3nbv1"]
+[ext_resource type="Texture2D" uid="uid://id3wqgcl4sqd" path="res://resources/color sets/ao oni sprites.png" id="4_0lgb3"]
+
+[sub_resource type="Animation" id="Animation_3nbv1"]
+resource_name = "jumpscare"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 1080), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333, 0.566667, 0.6, 0.633333, 0.666667, 0.7, 0.733333, 0.766667, 0.8, 0.833333, 0.866667, 0.9, 0.933333, 0.966667, 1),
+"transitions": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"update": 0,
+"values": [Vector2(740, 46.5), Vector2(720, 46.5), Vector2(740, 46.5), Vector2(720, 46.5), Vector2(740, 46.5), Vector2(720, 46.5), Vector2(740, 46.5), Vector2(720, 46.5), Vector2(740, 46.5), Vector2(720, 46.5), Vector2(740, 46.5), Vector2(720, 46.5), Vector2(740, 46.5), Vector2(720, 46.5), Vector2(740, 46.5), Vector2(720, 46.5), Vector2(740, 46.5), Vector2(720, 46.5), Vector2(740, 46.5), Vector2(720, 46.5), Vector2(740, 46.5), Vector2(720, 46.5), Vector2(740, 46.5), Vector2(720, 46.5), Vector2(740, 46.5), Vector2(720, 46.5), Vector2(740, 46.5), Vector2(720, 46.5), Vector2(740, 46.5), Vector2(720, 46.5), Vector2(740, 46.5)]
+}
+
+[sub_resource type="Animation" id="Animation_cvdyi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 1080)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mji47"]
+_data = {
+&"RESET": SubResource("Animation_cvdyi"),
+&"jumpscare": SubResource("Animation_3nbv1")
+}
+
+[node name="JumpscareCanvas" type="CanvasLayer"]
+offset = Vector2(0, 1080)
+transform = Transform2D(1, 0, 0, 1, 0, 1080)
+script = ExtResource("1_8ub55")
+jumpscares = Dictionary[String, ExtResource("2_0lgb3")]({
+"CHASER": ExtResource("3_3nbv1")
+})
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -493.5
+offset_right = 245.0
+offset_bottom = 493.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("4_0lgb3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TextureRect"]
+libraries = {
+&"": SubResource("AnimationLibrary_mji47")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
