@@ -6,15 +6,19 @@ extends Enemy
 ## Gets faster for each page collected.
 ## Speed starts at 2.75 (Slightly higher than player default walk speed)
 ## Increases by .25 for each page collected.
+## Shining the light on it will slow it down by 1.
 
 ## TODO
-## Rework death to not close the game
+## Implement death so it does not close the game
 
 const NAME: String = "Chaser"
+# speed it chases at
 const SPEED: float = 2.75
 const SPEED_INCREMENT: float = 0.25
+# how long it chases
 const CHASE_TIME: float = 15.0
 const CHASE_TIME_INCREMENT: float = 1
+# speed when leaving
 const RUN_SPEED: float = 15
 
 var run_away: bool = false
@@ -71,7 +75,7 @@ func life_cycle():
 	queue_free()
 
 func get_speed():
-	return (SPEED + SPEED_INCREMENT * get_parent().pages_collected) / (int(lit) + 1)
+	return (SPEED + SPEED_INCREMENT * get_parent().pages_collected) - int(lit)
 
 func get_chase_time():
 	return CHASE_TIME + CHASE_TIME_INCREMENT * get_parent().pages_collected

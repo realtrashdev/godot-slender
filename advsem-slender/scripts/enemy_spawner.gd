@@ -17,8 +17,16 @@ var pages_collected: int = 0
 
 func _ready() -> void:
 	Signals.page_collected.connect(page_collected)
+	set_timer()
 
 func _process(delta: float) -> void:
+	spawn_timer -= delta
+	print(spawn_timer)
+	
+	if spawn_timer <= 0:
+		spawn_enemy()
+		set_timer()
+	
 	if Input.is_action_just_pressed("ui_focus_next"):
 		spawn_enemy()
 
@@ -58,3 +66,6 @@ func spawn_enemy():
 
 func page_collected():
 	pages_collected += 1
+
+func set_timer():
+	spawn_timer = randf_range(min_spawn_time, max_spawn_time)

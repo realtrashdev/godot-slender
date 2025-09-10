@@ -13,6 +13,10 @@ func _ready() -> void:
 func jumpscare(enemy: String):
 	var enemy_name = enemy.to_upper()
 	visible = true
+	
+	if enemy_name == "":
+		return
+	
 	texture.texture = jumpscares[enemy_name].sprite
 	audio.stream = jumpscares[enemy_name].sound
 	audio.play()

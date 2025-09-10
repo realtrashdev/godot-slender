@@ -5,6 +5,21 @@
 [ext_resource type="Resource" uid="uid://3vkwuf2sbniw" path="res://resources/jumpscares/ao_oni_jumpscare.tres" id="3_3nbv1"]
 [ext_resource type="Texture2D" uid="uid://id3wqgcl4sqd" path="res://resources/color sets/ao oni sprites.png" id="4_0lgb3"]
 
+[sub_resource type="Animation" id="Animation_cvdyi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 1080)]
+}
+
 [sub_resource type="Animation" id="Animation_3nbv1"]
 resource_name = "jumpscare"
 tracks/0/type = "value"
@@ -30,21 +45,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 "update": 0,
 "values": [Vector2(740, 46.5), Vector2(720, 46.5), Vector2(740, 46.5), Vector2(720, 46.5), Vector2(740, 46.5), Vector2(720, 46.5), Vector2(740, 46.5), Vector2(720, 46.5), Vector2(740, 46.5), Vector2(720, 46.5), Vector2(740, 46.5), Vector2(720, 46.5), Vector2(740, 46.5), Vector2(720, 46.5), Vector2(740, 46.5), Vector2(720, 46.5), Vector2(740, 46.5), Vector2(720, 46.5), Vector2(740, 46.5), Vector2(720, 46.5), Vector2(740, 46.5), Vector2(720, 46.5), Vector2(740, 46.5), Vector2(720, 46.5), Vector2(740, 46.5), Vector2(720, 46.5), Vector2(740, 46.5), Vector2(720, 46.5), Vector2(740, 46.5), Vector2(720, 46.5), Vector2(740, 46.5)]
-}
-
-[sub_resource type="Animation" id="Animation_cvdyi"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("..:offset")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 1080)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mji47"]

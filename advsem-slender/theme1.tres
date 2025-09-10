@@ -1,0 +1,15 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://bommyqwo15hbx"]
+
+[ext_resource type="FontFile" uid="uid://b78ski6kf8hw1" path="res://fonts/ari-w9500-display.ttf" id="1_rgm6y"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rgm6y"]
+
+[resource]
+default_font = ExtResource("1_rgm6y")
+default_font_size = 12
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_color = Color(0.768728, 0.76873, 0.76873, 1)
+Button/colors/font_hover_pressed_color = Color(0.246588, 0.246588, 0.246588, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 0)
+Button/colors/font_pressed_color = Color(0, 0, 0, 1)
+Button/styles/focus = SubResource("StyleBoxEmpty_rgm6y")

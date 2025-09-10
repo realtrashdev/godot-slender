@@ -1,28 +1,22 @@
-[gd_scene load_steps=21 format=3 uid="uid://b2fcrx7ohgn2i"]
+[gd_scene load_steps=15 format=3 uid="uid://b2fcrx7ohgn2i"]
 
-[ext_resource type="PackedScene" uid="uid://dqhlmv6mga3ln" path="res://scenes/player.tscn" id="1_ig7tw"]
-[ext_resource type="PackedScene" uid="uid://ds3f284sk35dn" path="res://scenes/enemy_spawner.tscn" id="1_jkv2x"]
-[ext_resource type="Material" uid="uid://dfno40i012odi" path="res://shaders/fourcolor_screen.tres" id="1_jyhfs"]
-[ext_resource type="Script" uid="uid://cjehxq1f2vicp" path="res://scripts/screen_shader_manager.gd" id="1_tbgi4"]
-[ext_resource type="PackedScene" uid="uid://bi81fe12i10ix" path="res://scenes/page.tscn" id="2_0xm2m"]
-[ext_resource type="Script" uid="uid://dbqw8nqpf0afo" path="res://scripts/enemy_spawn_manager.gd" id="2_jbj1t"]
-[ext_resource type="Script" uid="uid://cr2cb0aew1jk5" path="res://scripts/color_set.gd" id="3_choun"]
-[ext_resource type="Script" uid="uid://ddr4dh2ckopug" path="res://scripts/in_game_ui_manager.gd" id="3_tefeu"]
-[ext_resource type="Resource" uid="uid://dxqerx2bro4kp" path="res://resources/color sets/colorset_mono.tres" id="4_eb6dy"]
-[ext_resource type="PackedScene" uid="uid://c5j4dypjweuc2" path="res://scenes/jumpscare_canvaslayer.tscn" id="4_muem4"]
-[ext_resource type="FontFile" uid="uid://b78ski6kf8hw1" path="res://fonts/ari-w9500-display.ttf" id="4_o6xl0"]
-[ext_resource type="Resource" uid="uid://cv5fnmupvjqsc" path="res://resources/color sets/colorset_green.tres" id="4_ya4ey"]
-[ext_resource type="Resource" uid="uid://yqp2gio83wnu" path="res://resources/color sets/colorset_red.tres" id="5_trceg"]
-[ext_resource type="Resource" uid="uid://w12qf506p7v2" path="res://resources/color sets/colorset_blue.tres" id="7_a8y0u"]
-[ext_resource type="Resource" uid="uid://clb54htu6fqy4" path="res://resources/color sets/colorset_purple.tres" id="8_dp3eg"]
-[ext_resource type="Script" uid="uid://cd3rioc31ppei" path="res://scripts/funny_business.gd" id="8_tipki"]
-[ext_resource type="NavigationMesh" uid="uid://dsmij2wanukbg" path="res://navigation_mesh.tres" id="10_jkv2x"]
+[ext_resource type="PackedScene" uid="uid://dqhlmv6mga3ln" path="res://scenes/player.tscn" id="1_eorrb"]
+[ext_resource type="Script" uid="uid://dbqw8nqpf0afo" path="res://scripts/enemy_spawn_manager.gd" id="2_sx324"]
+[ext_resource type="PackedScene" uid="uid://ds3f284sk35dn" path="res://scenes/enemy_spawner.tscn" id="3_2hixw"]
+[ext_resource type="PackedScene" uid="uid://b44g52cw8jhlu" path="res://scenes/4colorpalette_canvas.tscn" id="4_kyvai"]
+[ext_resource type="Material" uid="uid://dfno40i012odi" path="res://shaders/fourcolor_screen.tres" id="5_vlqo6"]
+[ext_resource type="Script" uid="uid://ddr4dh2ckopug" path="res://scripts/in_game_ui_manager.gd" id="12_afbog"]
+[ext_resource type="FontFile" uid="uid://b78ski6kf8hw1" path="res://fonts/ari-w9500-display.ttf" id="13_ridf6"]
+[ext_resource type="PackedScene" uid="uid://c5j4dypjweuc2" path="res://scenes/jumpscare_canvaslayer.tscn" id="14_oldvi"]
+[ext_resource type="NavigationMesh" uid="uid://dsmij2wanukbg" path="res://navigation_mesh.tres" id="15_xekjp"]
+[ext_resource type="PackedScene" uid="uid://bi81fe12i10ix" path="res://scenes/page.tscn" id="16_cpbh5"]
+[ext_resource type="Script" uid="uid://cd3rioc31ppei" path="res://scripts/funny_business.gd" id="17_jvsue"]
 
-[sub_resource type="Sky" id="Sky_0xm2m"]
+[sub_resource type="Sky" id="Sky_kyvai"]
 
 [sub_resource type="Environment" id="Environment_h2yge"]
 background_mode = 1
-sky = SubResource("Sky_0xm2m")
+sky = SubResource("Sky_kyvai")
 ambient_light_source = 1
 ambient_light_color = Color(1, 1, 1, 1)
 tonemap_mode = 2
@@ -36,40 +30,22 @@ fog_depth_end = 4000.0
 
 [node name="Playground Area" type="Node3D"]
 
-[node name="Player" parent="." instance=ExtResource("1_ig7tw")]
+[node name="Player" parent="." instance=ExtResource("1_eorrb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
 [node name="EnemySpawners" type="Node3D" parent="." node_paths=PackedStringArray("nav_region")]
-script = ExtResource("2_jbj1t")
+script = ExtResource("2_sx324")
 nav_region = NodePath("../Map")
 
-[node name="EnemySpawner" parent="EnemySpawners" instance=ExtResource("1_jkv2x")]
+[node name="EnemySpawner" parent="EnemySpawners" instance=ExtResource("3_2hixw")]
 min_spawn_time = 40.0
 max_spawn_time = 55.0
 spawn_distance = 35.0
 
-[node name="ColorChangeCanvas" type="CanvasLayer" parent="."]
-layer = 10
-script = ExtResource("1_tbgi4")
-shader_material = ExtResource("1_jyhfs")
-color_sets = Dictionary[String, ExtResource("3_choun")]({
-"BLUE": ExtResource("7_a8y0u"),
-"GREEN": ExtResource("4_ya4ey"),
-"MONO": ExtResource("4_eb6dy"),
-"PURPLE": ExtResource("8_dp3eg"),
-"RED": ExtResource("5_trceg")
-})
-
-[node name="ColorRect" type="ColorRect" parent="ColorChangeCanvas"]
-material = ExtResource("1_jyhfs")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="ColorChangeCanvas" parent="." instance=ExtResource("4_kyvai")]
 
 [node name="InGameUICanvas" type="CanvasLayer" parent="."]
-script = ExtResource("3_tefeu")
+script = ExtResource("12_afbog")
 
 [node name="PagesText" type="RichTextLabel" parent="InGameUICanvas"]
 anchors_preset = 14
@@ -79,7 +55,7 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
-theme_override_fonts/normal_font = ExtResource("4_o6xl0")
+theme_override_fonts/normal_font = ExtResource("13_ridf6")
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "[wave]Collect all 8 pages"
@@ -89,7 +65,7 @@ shortcut_keys_enabled = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="JumpscareCanvas" parent="." instance=ExtResource("4_muem4")]
+[node name="JumpscareCanvas" parent="." instance=ExtResource("14_oldvi")]
 layer = 9
 visible = false
 
@@ -97,7 +73,7 @@ visible = false
 environment = SubResource("Environment_h2yge")
 
 [node name="Map" type="NavigationRegion3D" parent="."]
-navigation_mesh = ExtResource("10_jkv2x")
+navigation_mesh = ExtResource("15_xekjp")
 
 [node name="Walls and Floor" type="Node3D" parent="Map"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
@@ -219,15 +195,15 @@ height = 8.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0)
 radius = 3.0
 
-[node name="Page" parent="Map" instance=ExtResource("2_0xm2m")]
+[node name="Page" parent="Map" instance=ExtResource("16_cpbh5")]
 transform = Transform3D(0.700374, 0, -0.713776, 0, 1, 0, 0.713776, 0, 0.700374, -4.7261, 1.51759, -11.8124)
 
-[node name="Page2" parent="Map" instance=ExtResource("2_0xm2m")]
+[node name="Page2" parent="Map" instance=ExtResource("16_cpbh5")]
 transform = Transform3D(0.661246, 0, 0.750169, 0, 1, 0, -0.750169, 0, 0.661246, 13.0034, 1.47218, -1.8238)
 
-[node name="Page3" parent="Map" instance=ExtResource("2_0xm2m")]
+[node name="Page3" parent="Map" instance=ExtResource("16_cpbh5")]
 transform = Transform3D(-0.401276, 0, -0.915957, 0, 1, 0, 0.915957, 0, -0.401276, 12.2069, 1.57065, 16.6367)
 
 [node name="Funny Business" type="Node3D" parent="."]
-script = ExtResource("8_tipki")
-shader_material = ExtResource("1_jyhfs")
+script = ExtResource("17_jvsue")
+shader_material = ExtResource("5_vlqo6")

@@ -42,7 +42,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if Input.is_key_pressed(KEY_ESCAPE):
-		get_tree().quit()
+		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 	
 	move_sound_timer -= delta
 	#debug_tools()
@@ -196,7 +196,7 @@ func die(enemy_name: String):
 	flashlight.set_process(false)
 	
 	await get_tree().create_timer(1).timeout
-	get_tree().quit()
+	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 
 ## DISABLE IN BUILDS
 func debug_tools():
