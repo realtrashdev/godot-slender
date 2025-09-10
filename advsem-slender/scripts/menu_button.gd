@@ -16,7 +16,7 @@ var focused: bool = false
 
 func _ready() -> void:
 	setup()
-	await get_tree().create_timer(2).timeout
+	#await get_tree().create_timer(2).timeout
 	display_text()
 
 func _process(delta: float) -> void:

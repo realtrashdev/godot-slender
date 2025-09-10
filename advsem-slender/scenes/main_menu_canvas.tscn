@@ -5,13 +5,29 @@
 [ext_resource type="PackedScene" uid="uid://6lvn3tolsp7r" path="res://scenes/menu_button.tscn" id="4_dkf5t"]
 
 [node name="MainMenuCanvas" type="CanvasLayer"]
+follow_viewport_enabled = true
 script = ExtResource("1_jjl53")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-offset_left = 150.0
-offset_top = 200.0
-offset_right = 869.0
-offset_bottom = 282.0
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control"]
+layout_mode = 0
+offset_left = -790.0
+offset_top = -320.0
+offset_right = -71.0
+offset_bottom = -238.0
 theme = ExtResource("1_l6cm7")
 theme_override_font_sizes/normal_font_size = 64
 bbcode_enabled = true
@@ -19,32 +35,33 @@ text = "[tornado radius=2 freq=3 connected=0][wave]Collect Stuff Scary"
 fit_content = true
 horizontal_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.357
 anchor_bottom = 0.643
-offset_left = 200.0
-offset_top = 0.439972
-offset_right = 520.0
-offset_bottom = -0.440002
+offset_left = -740.0
+offset_top = -148.28
+offset_right = -420.0
+offset_bottom = 148.28
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="PlayButton" parent="VBoxContainer" instance=ExtResource("4_dkf5t")]
+[node name="PlayButton" parent="Control/VBoxContainer" instance=ExtResource("4_dkf5t")]
 layout_mode = 2
 default_button_text = "Play"
 focused_text_addition = "[wave freq=5 amp=20]"
 
-[node name="OptionsButton" parent="VBoxContainer" instance=ExtResource("4_dkf5t")]
+[node name="OptionsButton" parent="Control/VBoxContainer" instance=ExtResource("4_dkf5t")]
 layout_mode = 2
 default_button_text = "Options"
 focused_text_addition = ""
 
-[node name="QuitButton" parent="VBoxContainer" instance=ExtResource("4_dkf5t")]
+[node name="QuitButton" parent="Control/VBoxContainer" instance=ExtResource("4_dkf5t")]
 layout_mode = 2
 default_button_text = "Quit"
 focused_text_addition = "[shake]"
 
-[connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="start_game"]
-[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="quit_game"]
+[connection signal="pressed" from="Control/VBoxContainer/PlayButton" to="." method="start_game"]
+[connection signal="pressed" from="Control/VBoxContainer/QuitButton" to="." method="quit_game"]

@@ -14,6 +14,7 @@ const MOUSE_SENSITIVITY = 0.002
 const CAMERA_SMOOTHING = 10
 const CAMERA_BOB_AMOUNT = 0.015
 
+var camera_sensitivity: float = 0
 var camera_rotation := Vector3(0, 0, 0)
 var camera_fov: float
 
@@ -37,8 +38,9 @@ var move_sound_timer: float
 
 
 func _ready() -> void:
-	camera_fov = camera.fov
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	var tween = create_tween()
+	tween.tween_property(self, "camera_sensitivity", MOUSE_SENSITIVITY, 2)
 
 func _process(delta: float) -> void:
 	if Input.is_key_pressed(KEY_ESCAPE):
@@ -69,7 +71,7 @@ func _physics_process(delta: float) -> void:
 	rotation.y = lerp_angle(rotation.y, camera_rotation.y, CAMERA_SMOOTHING * delta)
 	head.rotation.x = lerp_angle(head.rotation.x, camera_rotation.x, CAMERA_SMOOTHING * delta)
 	camera_bobbing()
-	camera_field_of_view()
+	#camera_field_of_view()
 	
 	if not point_flashlight():
 		get_flashlight_offset(delta)
@@ -78,8 +80,8 @@ func _physics_process(delta: float) -> void:
 func _input(event):
 	# get camera rotation
 	if event is InputEventMouseMotion:
-		camera_rotation.y += -event.relative.x * MOUSE_SENSITIVITY
-		camera_rotation.x += -event.relative.y * MOUSE_SENSITIVITY
+		camera_rotation.y += -event.relative.x * camera_sensitivity
+		camera_rotation.x += -event.relative.y * camera_sensitivity
 		
 		camera_rotation.x = clamp(camera_rotation.x, deg_to_rad(-89), deg_to_rad(89))
 		
@@ -181,11 +183,11 @@ func camera_bobbing():
 	else:
 		camera.rotation.z = lerp(camera.rotation.z, 0.0, 5 * delta)
 
-func camera_field_of_view():
-	if check_sprinting():
-		camera.fov = lerp(camera.fov, camera_fov + 10, 3 * get_physics_process_delta_time())
-	else:
-		camera.fov = lerp(camera.fov, camera_fov, 3 * get_physics_process_delta_time())
+#func camera_field_of_view():
+	#if check_sprinting():
+		#camera.fov = lerp(camera.fov, camera_fov + 10, 3 * get_physics_process_delta_time())
+	#else:
+		#camera.fov = lerp(camera.fov, camera_fov, 3 * get_physics_process_delta_time())
 #endregion
 
 func die(enemy_name: String):

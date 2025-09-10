@@ -83,5 +83,5 @@ func get_chase_time():
 func set_targeted(active: bool):
 	lit = active
 
-func die(ename: String):
+func die(e_name: String):
 	queue_free()

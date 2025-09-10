@@ -7,6 +7,7 @@ var pages: int = 0
 func _ready() -> void:
 	Signals.page_collected.connect(display_pages)
 	
+	await get_tree().create_timer(1).timeout
 	change_visible_characters(pages_text.get_total_character_count(), 1)
 	await get_tree().create_timer(3).timeout
 	change_visible_characters(0, 1)
