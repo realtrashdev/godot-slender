@@ -64,6 +64,8 @@ scroll_active = false
 shortcut_keys_enabled = false
 horizontal_alignment = 1
 vertical_alignment = 1
+visible_characters = 0
+visible_ratio = 0.0
 
 [node name="JumpscareCanvas" parent="." instance=ExtResource("14_oldvi")]
 layer = 9

@@ -7,13 +7,34 @@
 
 [node name="PlayButton" type="Button"]
 custom_minimum_size = Vector2(0, 100)
+offset_right = 300.0
+offset_bottom = 100.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme = ExtResource("1_sd4kj")
 theme_override_font_sizes/font_size = 48
 theme_override_styles/focus = SubResource("StyleBoxEmpty_wld85")
-text = "Play"
 flat = true
 alignment = 0
 script = ExtResource("2_fpmxc")
 
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_sd4kj")
+bbcode_enabled = true
+text = "Button"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+vertical_alignment = 1
+
+[connection signal="button_down" from="." to="." method="_on_button_down"]
+[connection signal="button_up" from="." to="." method="_on_button_up"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

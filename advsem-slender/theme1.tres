@@ -6,10 +6,11 @@
 
 [resource]
 default_font = ExtResource("1_rgm6y")
-default_font_size = 12
+default_font_size = 48
 Button/colors/font_color = Color(1, 1, 1, 1)
 Button/colors/font_hover_color = Color(0.768728, 0.76873, 0.76873, 1)
 Button/colors/font_hover_pressed_color = Color(0.246588, 0.246588, 0.246588, 1)
 Button/colors/font_outline_color = Color(0, 0, 0, 0)
 Button/colors/font_pressed_color = Color(0, 0, 0, 1)
+Button/font_sizes/font_size = 48
 Button/styles/focus = SubResource("StyleBoxEmpty_rgm6y")
