@@ -1,2 +1,1 @@
-extends CharacterBody3D
-class_name Enemy
+class_name Enemy extends CharacterBody3D

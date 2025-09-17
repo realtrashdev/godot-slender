@@ -6,10 +6,10 @@
 [ext_resource type="Script" uid="uid://crcq4fsku0kwi" path="res://scripts/flashlight.gd" id="3_i3pqv"]
 [ext_resource type="AudioStream" uid="uid://dpik2u7s2kc7f" path="res://sounds/walking/walking_gravel2.wav" id="3_y4r1p"]
 [ext_resource type="AudioStream" uid="uid://cejdlhxbn83ey" path="res://sounds/walking/walking_gravel3.wav" id="4_d2wvv"]
-[ext_resource type="AudioStream" uid="uid://uwn8e8s5nxqp" path="res://sounds/flashlight_click1.wav" id="4_dqkch"]
 [ext_resource type="AudioStream" uid="uid://cbn5bcpofo1t7" path="res://sounds/walking/walking_gravel4.wav" id="5_3v2ag"]
 [ext_resource type="AudioStream" uid="uid://cjhuo4wswyhft" path="res://sounds/walking/walking_gravel5.wav" id="6_jej6c"]
 [ext_resource type="Script" uid="uid://c6jkupiqfdi62" path="res://scripts/player_camera.gd" id="7_d2wvv"]
+[ext_resource type="AudioStream" uid="uid://b3sk41yuadbx2" path="res://sounds/slendytubbies_scream_1.wav" id="10_d2wvv"]
 [ext_resource type="Script" uid="uid://mpp1r0s6esp1" path="res://scripts/flashlight_cast.gd" id="10_y4r1p"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_onrkg"]
@@ -58,7 +58,7 @@ spot_angle = 35.0
 spot_angle_attenuation = 0.5
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Head/Flashlight"]
-stream = ExtResource("4_dqkch")
+stream = ExtResource("10_d2wvv")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Head/Flashlight"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)

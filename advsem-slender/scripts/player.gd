@@ -201,8 +201,9 @@ func die(enemy_name: String):
 	$Head/Flashlight/OmniLight3D.visible = false
 	flashlight.set_process(false)
 	
+	var tree := get_tree()
 	await get_tree().create_timer(1).timeout
-	get_tree().change_scene_to_file(MENU_SCENE)
+	tree.change_scene_to_file(MENU_SCENE)
 
 ## DISABLE IN BUILDS
 func debug_tools():

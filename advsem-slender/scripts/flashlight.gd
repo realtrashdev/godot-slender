@@ -2,6 +2,7 @@ extends Node3D
 
 const LIGHT_BRIGHTNESS: float = 5.0
 const DEFAULT_SPRINT_ANGLE: float = -60
+const TURN_ON_ANGLE: Vector2 = Vector2(-60, -30)
 
 var sprint_angle: float = -60
 var rotation_override: float = 0
@@ -16,16 +17,16 @@ func _ready() -> void:
 	sprint_angle = get_sprint_angle()
 	
 	omni_light.visible = false
-	rotation.x = deg_to_rad(-60)
-	rotation.y = deg_to_rad(-30)
+	rotation.x = deg_to_rad(TURN_ON_ANGLE.x)
+	rotation.y = deg_to_rad(TURN_ON_ANGLE.y)
 	play_audio()
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("toggle_light"):
 		light.visible = !light.visible
 		omni_light.visible = !omni_light.visible
-		rotation.x = deg_to_rad(-60)
-		rotation.y = deg_to_rad(-30)
+		rotation.x = deg_to_rad(TURN_ON_ANGLE.x)
+		rotation.y = deg_to_rad(TURN_ON_ANGLE.y)
 		play_audio()
 
 func _on_ray_cast_3d_object_collected() -> void:
