@@ -2,6 +2,7 @@ extends CharacterBody3D
 
 signal player_dead
 
+@export_group("Sounds")
 @export var movement_gravel: Array[AudioStreamWAV]
 
 const MENU_SCENE = "res://scenes/main_menu.tscn"
