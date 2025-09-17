@@ -7,7 +7,7 @@ func start_game():
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
 	zoom_effect(Vector2(5, 5))
 	await get_tree().create_timer(1).timeout
-	get_tree().change_scene_to_file("res://scenes/playground_level.tscn")
+	get_tree().change_scene_to_file("res://scenes/playground_scenes/playground_level.tscn")
 
 func quit_game():
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN

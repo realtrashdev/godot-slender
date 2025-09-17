@@ -4,6 +4,8 @@ signal player_dead
 
 @export var movement_gravel: Array[AudioStreamWAV]
 
+const MENU_SCENE = "res://scenes/main_menu.tscn"
+
 # Base Movement
 const SPEED = 2.5
 const SPRINT_SPEED = 4.0
@@ -36,7 +38,7 @@ var move_sound_timer: float
 @onready var interaction_cast: RayCast3D = $Head/Camera3D/RayCast3D
 @onready var movement_audio: AudioStreamPlayer3D = $MovementAudio
 
-
+#region Virtual Methods
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	var tween = create_tween()
@@ -87,6 +89,7 @@ func _input(event):
 		
 		flashlight_offset.y = clamp(flashlight_offset.y + (-event.relative.x * 0.0005), -0.5, 0.5)
 		flashlight_offset.x = clamp(flashlight_offset.x + (-event.relative.y * 0.0005), -0.5, 0.5)
+#endregion
 
 #region Movement
 ## returns movement speed constants based on if the player is sprinting or not
@@ -113,13 +116,14 @@ func move_audio():
 		return
 	
 	movement_audio.pitch_scale = randf_range(0.9, 1.1)
-	var index = randf_range(0, movement_gravel.size())
 	
 	# prevents repeat sounds
+	var rand_max = movement_gravel.size() - 1
+	var index = randi_range(0, rand_max)
 	while index == previous_sound_index:
-		index = randf_range(0, movement_gravel.size())
-	
+		index = randi_range(0, rand_max)
 	previous_sound_index = index
+	
 	movement_audio.stream = movement_gravel[index]
 	movement_audio.play()
 	move_sound_timer = 1.5 / get_movement_speed()
@@ -198,7 +202,7 @@ func die(enemy_name: String):
 	flashlight.set_process(false)
 	
 	await get_tree().create_timer(1).timeout
-	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+	get_tree().change_scene_to_file(MENU_SCENE)
 
 ## DISABLE IN BUILDS
 func debug_tools():

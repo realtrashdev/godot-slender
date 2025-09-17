@@ -45,13 +45,14 @@ collision_layer = 41
 script = ExtResource("1_abhlf")
 
 [node name="Sprite3D" type="AnimatedSprite3D" parent="."]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 1, 0, -0.0329485, 0)
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 1, -0.00126767, -0.132977, -0.00245506)
 offset = Vector2(0, 63)
 billboard = 2
 shaded = true
 sprite_frames = SubResource("SpriteFrames_dp3eg")
 autoplay = "default"
-frame_progress = 0.0581115
+frame = 1
+frame_progress = 0.0666956
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.01971, 0)
