@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bp8gxg7ropaoq"]
+
+[ext_resource type="Material" uid="uid://ch0bekt0ms7x5" path="res://shaders/pixelation.tres" id="1_g2yft"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_m0fn6"]
+viewport_path = NodePath("/root")
+
+[node name="PixelationCanvas" type="CanvasLayer"]
+layer = 9
+follow_viewport_enabled = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = ExtResource("1_g2yft")
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = SubResource("ViewportTexture_m0fn6")

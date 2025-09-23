@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bi81fe12i10ix"]
+[gd_scene load_steps=7 format=3 uid="uid://bi81fe12i10ix"]
 
-[ext_resource type="Script" uid="uid://cgc8dpbgyxdtb" path="res://scripts/page.gd" id="1_nl5ea"]
+[ext_resource type="Script" uid="uid://cgc8dpbgyxdtb" path="res://scripts/pages/page.gd" id="1_nl5ea"]
 [ext_resource type="AudioStream" uid="uid://s71mlkmeekwd" path="res://sounds/paper_collect.wav" id="2_1g3qv"]
+[ext_resource type="FontFile" uid="uid://b78ski6kf8hw1" path="res://fonts/ari-w9500-display.ttf" id="2_6ni5k"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nl5ea"]
 size = Vector3(1.8, 1.4, 0.5)
@@ -15,7 +16,7 @@ emission_energy_multiplier = 0.1
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kkqxg"]
 albedo_color = Color(0, 0, 0, 1)
 
-[node name="Page" type="Node3D"]
+[node name="CollectiblePage" type="Node3D"]
 script = ExtResource("1_nl5ea")
 
 [node name="InteractionArea" type="Area3D" parent="."]
@@ -32,9 +33,24 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.86265e-08, -5.21541e-08, 0.
 size = Vector3(0.4, 0.6, 0.01)
 material = SubResource("StandardMaterial3D_nl5ea")
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="InteractionArea"]
+[node name="Label3D" type="Label3D" parent="InteractionArea/CSGBox3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.01)
-size = Vector3(0.2, 0.4, 0.01)
+pixel_size = 0.003
+shaded = true
+text = "aaah!!!
+scared!"
+font = ExtResource("2_6ni5k")
+font_size = 24
+outline_size = 0
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="InteractionArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.001)
+size = Vector3(0.4158203, 0.615918, 0.01)
+material = SubResource("StandardMaterial3D_kkqxg")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="InteractionArea/CSGBox3D2"]
+operation = 2
+size = Vector3(0.35715333, 0.55839235, 0.01)
 material = SubResource("StandardMaterial3D_kkqxg")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]

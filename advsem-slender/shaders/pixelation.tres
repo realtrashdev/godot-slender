@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://ch0bekt0ms7x5"]
+
+[ext_resource type="Shader" uid="uid://e7ix3tyywbhc" path="res://shaders/pixelation.gdshader" id="1_pycny"]
+
+[resource]
+shader = ExtResource("1_pycny")
+shader_parameter/amount = 320

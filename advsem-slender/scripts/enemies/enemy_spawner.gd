@@ -21,7 +21,6 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	spawn_timer -= delta
-	print(spawn_timer)
 	
 	if spawn_timer <= 0:
 		spawn_enemy()

@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="Jumpscare" load_steps=4 format=3 uid="uid://3vkwuf2sbniw"]
 
-[ext_resource type="Script" uid="uid://6um422lsglit" path="res://scripts/jumpscare.gd" id="1_8187x"]
+[ext_resource type="Script" uid="uid://6um422lsglit" path="res://scripts/ui/jumpscare.gd" id="1_8187x"]
 [ext_resource type="AudioStream" uid="uid://qe8svc3ucsh1" path="res://sounds/fnaf_jumpscare.wav" id="2_nypvm"]
-[ext_resource type="Texture2D" uid="uid://dydjldjs2c0wm" path="res://resources/color sets/ao.png" id="3_rltgq"]
+[ext_resource type="Texture2D" uid="uid://dydjldjs2c0wm" path="res://art/2d/ao.png" id="3_rltgq"]
 
 [resource]
 script = ExtResource("1_8187x")

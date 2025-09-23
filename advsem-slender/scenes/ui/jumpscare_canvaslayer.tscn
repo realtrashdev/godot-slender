@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://c5j4dypjweuc2"]
 
-[ext_resource type="Script" uid="uid://b34b0y7wk1a2p" path="res://scripts/jumpscare_canvas.gd" id="1_8ub55"]
-[ext_resource type="Script" uid="uid://6um422lsglit" path="res://scripts/jumpscare.gd" id="2_0lgb3"]
+[ext_resource type="Script" uid="uid://b34b0y7wk1a2p" path="res://scripts/ui/jumpscare_canvas.gd" id="1_8ub55"]
+[ext_resource type="Script" uid="uid://6um422lsglit" path="res://scripts/ui/jumpscare.gd" id="2_0lgb3"]
 [ext_resource type="Resource" uid="uid://3vkwuf2sbniw" path="res://resources/jumpscares/ao_oni_jumpscare.tres" id="3_3nbv1"]
-[ext_resource type="Texture2D" uid="uid://id3wqgcl4sqd" path="res://resources/color sets/ao oni sprites.png" id="4_0lgb3"]
+[ext_resource type="Texture2D" uid="uid://id3wqgcl4sqd" path="res://art/2d/ao oni sprites.png" id="4_0lgb3"]
 
 [sub_resource type="Animation" id="Animation_cvdyi"]
 length = 0.001

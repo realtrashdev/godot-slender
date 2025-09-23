@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://0rnvcc30hitf"]
 
-[ext_resource type="Script" uid="uid://bhnr1i6xo0hdc" path="res://scripts/chaser_enemy.gd" id="1_abhlf"]
-[ext_resource type="Texture2D" uid="uid://id3wqgcl4sqd" path="res://resources/color sets/ao oni sprites.png" id="2_cyd77"]
+[ext_resource type="Script" uid="uid://bhnr1i6xo0hdc" path="res://scripts/enemies/chaser_enemy.gd" id="1_abhlf"]
+[ext_resource type="Texture2D" uid="uid://id3wqgcl4sqd" path="res://art/2d/ao oni sprites.png" id="2_cyd77"]
 [ext_resource type="AudioStream" uid="uid://c8oi7ibd26wfm" path="res://sounds/ao oni chase.wav" id="3_7iohh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jkv2x"]
