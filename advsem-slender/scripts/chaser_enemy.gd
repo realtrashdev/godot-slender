@@ -8,9 +8,6 @@ extends Enemy
 ## Increases by .25 for each page collected.
 ## Shining the light on it will slow it down by 1.
 
-## TODO
-## Implement death so it does not close the game
-
 const NAME: String = "Chaser"
 # speed it chases at
 const SPEED: float = 2.75
