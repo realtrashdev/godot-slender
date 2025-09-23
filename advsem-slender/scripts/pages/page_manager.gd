@@ -15,6 +15,10 @@ func generate_pages(amount):
 	
 	var locations = get_tree().get_nodes_in_group("PageLocation")
 	
+	if locations.size() == 0:
+		push_warning("No PageLocations found on map. No pages generated.")
+		return
+	
 	for i in amount:
 		var selection = randi_range(0, locations.size() - 1)
 		locations[selection].generate_page()

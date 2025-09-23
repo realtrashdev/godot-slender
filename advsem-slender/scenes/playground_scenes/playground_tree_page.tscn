@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://dq6178lkha864"]
+
+[ext_resource type="PackedScene" uid="uid://cuouj5je2wv8g" path="res://scenes/page_location.tscn" id="1_0nfkb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h2yge"]
+
+[node name="PG_Tree" type="Node3D"]
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+use_collision = true
+height = 8.0
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0)
+radius = 3.0
+material = SubResource("StandardMaterial3D_h2yge")
+
+[node name="PageLocation" parent="." instance=ExtResource("1_0nfkb")]
+transform = Transform3D(0.9961947, 0.08715574, 0, -0.08715574, 0.9961947, 0, 0, 0, 1, 0, 1.5, 0.5)

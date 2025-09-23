@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://c6pe2a6g7kie7"]
+[gd_scene load_steps=2 format=3 uid="uid://c6pe2a6g7kie7"]
+
+[ext_resource type="PackedScene" uid="uid://cuouj5je2wv8g" path="res://scenes/page_location.tscn" id="1_26c3m"]
 
 [node name="Building" type="Node3D"]
 
@@ -35,3 +37,12 @@ size = Vector3(10, 6, 2)
 [node name="CSGBox3D5" type="CSGBox3D" parent="."]
 use_collision = true
 size = Vector3(15, 0.1, 15)
+
+[node name="PageLocation" parent="." instance=ExtResource("1_26c3m")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -6.5, 1.5, 0)
+
+[node name="PageLocation2" parent="." instance=ExtResource("1_26c3m")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 7.5, 1.5, -6)
+
+[node name="PageLocation3" parent="." instance=ExtResource("1_26c3m")]
+transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, -7.5, 1.5, 6)
