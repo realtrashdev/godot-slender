@@ -1,12 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://bf05ntktimsst"]
+[gd_scene load_steps=6 format=3 uid="uid://bf05ntktimsst"]
 
 [ext_resource type="Script" uid="uid://qocwrt8r6cqj" path="res://scripts/ui/main_menu_manager.gd" id="1_jjl53"]
 [ext_resource type="Theme" uid="uid://bommyqwo15hbx" path="res://theme1.tres" id="1_l6cm7"]
+[ext_resource type="AudioStream" uid="uid://xjt0f2pu0a11" path="res://sounds/menu/hopping_fence.mp3" id="2_cak61"]
+[ext_resource type="AudioStream" uid="uid://b3sk41yuadbx2" path="res://sounds/enemies/slendytubbies_scream_1.wav" id="3_newh7"]
 [ext_resource type="PackedScene" uid="uid://6lvn3tolsp7r" path="res://scenes/ui/menu_button.tscn" id="4_dkf5t"]
 
 [node name="MainMenuCanvas" type="CanvasLayer"]
 follow_viewport_enabled = true
 script = ExtResource("1_jjl53")
+
+[node name="PlayAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_cak61")
+
+[node name="QuitAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_newh7")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3

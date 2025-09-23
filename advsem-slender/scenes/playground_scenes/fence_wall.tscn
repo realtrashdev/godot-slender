@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bgyh66k3gr8hl"]
+
+[ext_resource type="Texture2D" uid="uid://c4he6fivjqx5e" path="res://art/2d/chain_fence.aseprite" id="1_n6q2g"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1fnbc"]
+transparency = 1
+albedo_texture = ExtResource("1_n6q2g")
+metallic_specular = 0.0
+uv1_triplanar = true
+uv1_triplanar_sharpness = 150.0
+texture_filter = 0
+
+[sub_resource type="QuadMesh" id="QuadMesh_ajba2"]
+material = SubResource("StandardMaterial3D_1fnbc")
+size = Vector2(255, 6.12)
+
+[node name="Fence" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, -1, -1.509958e-07, 0, 1.509958e-07, -1, 0, 0, 0)
+mesh = SubResource("QuadMesh_ajba2")

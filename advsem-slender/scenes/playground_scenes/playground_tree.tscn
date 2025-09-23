@@ -1,8 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://cxsorime4wuh2"]
+[gd_scene load_steps=3 format=3 uid="uid://cxsorime4wuh2"]
+
+[ext_resource type="Script" uid="uid://dkw83jr6dbkgd" path="res://scripts/playground_tree.gd" id="1_j21aw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h2yge"]
 
 [node name="PG_Tree" type="Node3D"]
+script = ExtResource("1_j21aw")
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)

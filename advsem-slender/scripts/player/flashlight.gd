@@ -10,7 +10,7 @@ var rotation_override: float = 0
 var sprint_angle_modifier: float = 20
 
 @onready var light: SpotLight3D = $SpotLight3D
-@onready var audio_source: AudioStreamPlayer = $AudioStreamPlayer
+@onready var audio_source: AudioStreamPlayer = $FlashlightAudio
 @onready var omni_light: OmniLight3D = $OmniLight3D
 
 func _ready() -> void:

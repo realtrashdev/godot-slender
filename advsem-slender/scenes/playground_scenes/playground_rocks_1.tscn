@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://dv7qx4tyi7gih"]
+
+[ext_resource type="Texture2D" uid="uid://blvkr31gwee1i" path="res://art/2d/rock1.aseprite" id="1_hstwy"]
+[ext_resource type="PackedScene" uid="uid://cuouj5je2wv8g" path="res://scenes/page_location.tscn" id="1_rrbxv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a5npi"]
+albedo_texture = ExtResource("1_hstwy")
+uv1_scale = Vector3(0.05, 0.05, 0.05)
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7rrll"]
+albedo_texture = ExtResource("1_hstwy")
+uv1_scale = Vector3(0.05, 0.05, 0.05)
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ge3mm"]
+albedo_texture = ExtResource("1_hstwy")
+uv1_scale = Vector3(0.05, 0.05, 0.05)
+uv1_triplanar = true
+texture_filter = 0
+
+[node name="PG_Rocks1" type="Node3D"]
+transform = Transform3D(0.96592605, 0, -0.2588191, 0, 1, 0, 0.2588191, 0, 0.96592605, 0, 0, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(-0.024977975, -0.99805397, 0.057124346, 0.99636006, -0.029513275, -0.07997457, 0.081505075, 0.054919615, 0.9951585, -2.8387892, 3.0333982, 0.8579494)
+use_collision = true
+size = Vector3(11, 7, 8)
+material = SubResource("StandardMaterial3D_a5npi")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(-0.1163312, -0.95589024, -0.26970452, 0.9910254, -0.09371113, -0.0953251, 0.06584594, -0.27837348, 0.95821255, 2.3654642, 2.2402048, 5.0922737)
+use_collision = true
+size = Vector3(7, 7, 6)
+material = SubResource("StandardMaterial3D_7rrll")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(-0.07293299, -0.6622393, 0.7457335, 0.96820825, 0.13237715, 0.21224706, -0.23927642, 0.7375052, 0.63153046, 1.6326468, 1.6053264, -2.570436)
+use_collision = true
+size = Vector3(9, 10, 10)
+material = SubResource("StandardMaterial3D_ge3mm")
+
+[node name="PageLocation" parent="." instance=ExtResource("1_rrbxv")]
+transform = Transform3D(0, 0, -0.9999994, 0, 1, 0, 0.9999994, 0, 0, -6.3220434, 1.428484, 1.3835542)

@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://qe8svc3ucsh1"
-path="res://.godot/imported/fnaf_jumpscare.wav-b6cdfdcf92e6699bdd4c5466730a1ffa.sample"
+path="res://.godot/imported/fnaf_jumpscare.wav-fb97bb2bd1f382581be4abe316b0ba2c.sample"
 
 [deps]
 
-source_file="res://sounds/fnaf_jumpscare.wav"
-dest_files=["res://.godot/imported/fnaf_jumpscare.wav-b6cdfdcf92e6699bdd4c5466730a1ffa.sample"]
+source_file="res://sounds/enemies/fnaf_jumpscare.wav"
+dest_files=["res://.godot/imported/fnaf_jumpscare.wav-fb97bb2bd1f382581be4abe316b0ba2c.sample"]
 
 [params]
 

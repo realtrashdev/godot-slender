@@ -10,12 +10,14 @@ func _ready() -> void:
 func start_game():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	zoom_effect(Vector2(5, 5))
-	await get_tree().create_timer(1).timeout
+	$PlayAudio.play()
+	await get_tree().create_timer(5).timeout
 	get_tree().change_scene_to_file(GAME_SCENE)
 
 func quit_game():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	zoom_effect(Vector2.ZERO)
+	$QuitAudio.play()
 	await get_tree().create_timer(1.25).timeout
 	get_tree().quit()
 
