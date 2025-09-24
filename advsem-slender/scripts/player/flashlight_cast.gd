@@ -1,10 +1,10 @@
-extends ShapeCast3D
+extends RayCast3D
 
 var last_target: Enemy = null
 
 func _process(delta):
 	if is_colliding():
-		var collider = get_collider(0)
+		var collider = get_collider()
 		if collider is Enemy:
 			# Notify current target
 			collider.set_targeted(true)

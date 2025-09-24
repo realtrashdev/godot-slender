@@ -8,9 +8,10 @@ signal player_dead
 const MENU_SCENE = "res://scenes/main_menu.tscn"
 
 # Base Movement
-const SPEED = 2.5
-const SPRINT_SPEED = 4.0
+const SPEED = 2.0
+const SPRINT_SPEED = 3.5
 const ACCELERATION = 7.0
+const PATH_MODIFIER = 0.5
 
 # Camera
 const MOUSE_SENSITIVITY = 0.002
@@ -96,9 +97,9 @@ func _input(event):
 ## returns movement speed constants based on if the player is sprinting or not
 func get_movement_speed() -> float:
 	if check_sprinting():
-		return SPRINT_SPEED
+		return SPRINT_SPEED + get_path_boost()
 	else:
-		return SPEED
+		return SPEED + get_path_boost()
 
 ## returns true if sprint key is pressed and player is moving
 func check_sprinting() -> bool:
@@ -128,6 +129,12 @@ func move_audio():
 	movement_audio.stream = movement_gravel[index]
 	movement_audio.play()
 	move_sound_timer = 1.5 / get_movement_speed()
+
+func get_path_boost() -> float:
+	if $GroundRayCast.is_colliding():
+		return PATH_MODIFIER
+	else:
+		return 0
 #endregion
 
 #region Flashlight

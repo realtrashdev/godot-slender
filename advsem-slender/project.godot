@@ -89,6 +89,7 @@ shader_toggle={
 
 [layer_names]
 
+3d_physics/layer_2="Path"
 3d_physics/layer_4="Enemy"
 3d_physics/layer_6="Flashlight Cast"
 3d_physics/layer_8="Interactible"
