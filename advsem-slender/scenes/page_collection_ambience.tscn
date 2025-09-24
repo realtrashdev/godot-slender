@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://x286lkut7nsk"]
+
+[ext_resource type="Script" uid="uid://pmqdndfj8d4t" path="res://page_collection_ambience.gd" id="1_otsxu"]
+[ext_resource type="AudioStream" uid="uid://dhy2oiyhu6p67" path="res://sounds/ambient/stomp_regular.mp3" id="2_evisa"]
+
+[node name="PageCollectionAmbience" type="Node3D"]
+script = ExtResource("1_otsxu")
+
+[node name="Stomping" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_evisa")
+volume_db = -15.0

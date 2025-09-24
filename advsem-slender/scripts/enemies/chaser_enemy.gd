@@ -1,7 +1,7 @@
 extends Enemy
 
 ## Chaser Monster
-## Chases after player in a straight line. Disappears after about 15 seconds.
+## Chases after player in a straight line. Disappears after the light shines on it for a period of time.
 
 ## Gets faster for each page collected.
 ## Speed starts at 2.75 (Slightly higher than player default walk speed)
@@ -10,16 +10,17 @@ extends Enemy
 
 const NAME: String = "Chaser"
 # speed it chases at
-const SPEED: float = 2.75
-const SPEED_INCREMENT: float = 0.25
+const SPEED: float = 2.8
+const SPEED_INCREMENT: float = 0.2
 # how long it chases
-const CHASE_TIME: float = 15.0
-const CHASE_TIME_INCREMENT: float = 1
+const CHASE_TIME: float = 3.0
+const CHASE_TIME_INCREMENT: float = 0.15
 # speed when leaving
 const RUN_SPEED: float = 15
 
 var run_away: bool = false
 var lit: bool = false
+var _chase_time: float = 0
 
 @onready var nav_agent = $NavigationAgent3D
 @onready var player = get_parent().player
@@ -31,14 +32,23 @@ func _ready() -> void:
 	var tween = create_tween()
 	tween.tween_property(sprite, "scale", Vector3(4, 4, 1), 0.25).set_trans(Tween.TRANS_CUBIC)
 	print("Spawned " + NAME + " with " + str(get_speed()) + " speed and " + str(get_chase_time()) + " chase time")
-	life_cycle()
+	_chase_time = get_chase_time()
 
 func _process(delta: float) -> void:
-	# check if touching player, if so quit the game for now
+	# check if touching player, if so, play jumpscare
 	for i in get_slide_collision_count():
 		var coll = get_slide_collision(i)
 		if coll.get_collider().is_in_group("Player"):
 			coll.get_collider().die(NAME)
+	
+	if lit:
+		_chase_time -= delta
+		sprite.start_shake(0.1)
+		if _chase_time <= 0:
+			stop_chase()
+			_chase_time = 10000
+	else:
+		sprite.stop_shake()
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -63,8 +73,10 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 
-func life_cycle():
-	await get_tree().create_timer(get_chase_time()).timeout
+func stop_chase():
+	$"Ambient Music".stream = preload("uid://b3sk41yuadbx2")
+	$"Ambient Music".play(0.05)
+	$"Ambient Music".max_distance = 60
 	run_away = true
 	var tween = create_tween()
 	tween.tween_property(sprite, "scale", Vector3(0.01, 0.01, 1), 3)

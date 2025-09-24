@@ -63,6 +63,8 @@ focused_text_addition = "[wave freq=5 amp=20]"
 
 [node name="OptionsButton" parent="Control/VBoxContainer" instance=ExtResource("4_dkf5t")]
 layout_mode = 2
+disabled = true
+enabled = false
 default_button_text = "Options"
 focused_text_addition = ""
 

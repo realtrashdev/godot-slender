@@ -9,8 +9,8 @@ const MENU_SCENE = "res://scenes/main_menu.tscn"
 
 # Base Movement
 const SPEED = 2.5
-const SPRINT_SPEED = 20.0
-const ACCELERATION = 15.0
+const SPRINT_SPEED = 4.0
+const ACCELERATION = 7.0
 
 # Camera
 const MOUSE_SENSITIVITY = 0.002

@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://0rnvcc30hitf"]
+[gd_scene load_steps=10 format=3 uid="uid://0rnvcc30hitf"]
 
 [ext_resource type="Script" uid="uid://bhnr1i6xo0hdc" path="res://scripts/enemies/chaser_enemy.gd" id="1_abhlf"]
 [ext_resource type="Texture2D" uid="uid://id3wqgcl4sqd" path="res://art/2d/ao oni sprites.png" id="2_cyd77"]
 [ext_resource type="AudioStream" uid="uid://c8oi7ibd26wfm" path="res://sounds/enemies/ao oni chase.wav" id="3_7iohh"]
+[ext_resource type="Script" uid="uid://dmj552fu1iv7a" path="res://scripts/enemies/enemy_sprite.gd" id="3_cyd77"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jkv2x"]
 atlas = ExtResource("2_cyd77")
@@ -53,6 +54,7 @@ sprite_frames = SubResource("SpriteFrames_dp3eg")
 autoplay = "default"
 frame = 1
 frame_progress = 0.0666956
+script = ExtResource("3_cyd77")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.01971, 0)
@@ -64,4 +66,3 @@ autoplay = true
 max_distance = 10.0
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-debug_enabled = true

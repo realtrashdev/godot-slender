@@ -12,15 +12,20 @@ var max_spawn_modifier: float
 var spawn_timer
 var pages_collected: int = 0
 
+var go = false
+
 @onready var player = get_tree().get_first_node_in_group("Player")
 @onready var nav_region = get_parent().nav_region
 
 func _ready() -> void:
 	Signals.page_collected.connect(page_collected)
 	set_timer()
+	taking_too_long()
 
 func _process(delta: float) -> void:
-	spawn_timer -= delta
+	# should be removed later on, as these spawners should be dynamically added to the scene tree.
+	if pages_collected > 0 or go:
+		spawn_timer -= delta
 	
 	if spawn_timer <= 0:
 		spawn_enemy()
@@ -32,7 +37,7 @@ func _process(delta: float) -> void:
 func spawn_enemy():
 	var map_rid = nav_region.get_navigation_map()
 	if map_rid == RID():
-		push_warning("no navigation map available to spawn enemy")
+		push_warning("No navigation map available to spawn enemy!")
 		return
 
 	var enemy = enemy_to_spawn.instantiate()
@@ -60,7 +65,7 @@ func spawn_enemy():
 		enemy.position = spawn_pos
 		add_child(enemy)
 	else:
-		# no valid spots -> try again later
+		# no valid spots, try again later
 		spawn_timer = 1
 
 func page_collected():
@@ -68,3 +73,7 @@ func page_collected():
 
 func set_timer():
 	spawn_timer = randf_range(min_spawn_time, max_spawn_time)
+
+func taking_too_long():
+	await get_tree().create_timer(45).timeout
+	go = true

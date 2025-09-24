@@ -3,6 +3,7 @@ extends Button
 var default_size: Vector2
 var default_font_size: float
 
+@export var enabled: bool = true
 @export var default_button_text: String
 @export var focused_size: Vector2 = Vector2(0, 130)
 @export var focused_font_size: float = 64
@@ -20,7 +21,8 @@ func _ready() -> void:
 	display_text()
 
 func _process(delta: float) -> void:
-	lerp_size(delta)
+	if enabled:
+		lerp_size(delta)
 
 func _on_mouse_entered() -> void:
 	focused = true
