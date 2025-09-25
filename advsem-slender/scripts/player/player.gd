@@ -132,8 +132,10 @@ func move_audio():
 
 func get_path_boost() -> float:
 	if $GroundRayCast.is_colliding():
+		print("on path")
 		return PATH_MODIFIER
 	else:
+		print("not on path")
 		return 0
 #endregion
 

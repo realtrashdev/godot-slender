@@ -1,8 +1,11 @@
 extends Node3D
 
+enum SPAWN_TYPE { RING }
+
 @export var enemy_to_spawn: PackedScene
 
 @export_category("Spawning")
+@export var spawn_type: SPAWN_TYPE
 @export var min_spawn_time: float
 @export var max_spawn_time: float
 @export var spawn_distance: float
@@ -43,7 +46,6 @@ func spawn_enemy():
 	var enemy = enemy_to_spawn.instantiate()
 
 	var max_attempts = 10
-	var found = false
 	var spawn_pos = Vector3.ZERO
 
 	for i in range(max_attempts):
@@ -58,10 +60,9 @@ func spawn_enemy():
 		# success if navmesh gives something
 		if closest_point != Vector3.ZERO:
 			spawn_pos = closest_point
-			found = true
 			break
 
-	if found:
+	if spawn_pos != null:
 		enemy.position = spawn_pos
 		add_child(enemy)
 	else:
@@ -77,3 +78,8 @@ func set_timer():
 func taking_too_long():
 	await get_tree().create_timer(45).timeout
 	go = true
+
+#region Spawning
+func spawn_ring():
+	pass
+#endregion
