@@ -78,8 +78,3 @@ func set_timer():
 func taking_too_long():
 	await get_tree().create_timer(45).timeout
 	go = true
-
-#region Spawning
-func spawn_ring():
-	pass
-#endregion

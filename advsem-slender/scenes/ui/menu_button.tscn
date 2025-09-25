@@ -5,7 +5,7 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wld85"]
 
-[node name="PlayButton" type="Button"]
+[node name="MenuButton" type="Button"]
 custom_minimum_size = Vector2(0, 100)
 offset_right = 300.0
 offset_bottom = 100.0

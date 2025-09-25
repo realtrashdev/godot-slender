@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bf05ntktimsst"]
 
-[ext_resource type="Script" uid="uid://qocwrt8r6cqj" path="res://scripts/ui/main_menu_manager.gd" id="1_jjl53"]
+[ext_resource type="Script" uid="uid://qocwrt8r6cqj" path="res://scripts/ui/menu_main.gd" id="1_jjl53"]
 [ext_resource type="Theme" uid="uid://bommyqwo15hbx" path="res://theme1.tres" id="1_l6cm7"]
 [ext_resource type="AudioStream" uid="uid://xjt0f2pu0a11" path="res://sounds/menu/hopping_fence.mp3" id="2_cak61"]
 [ext_resource type="AudioStream" uid="uid://b3sk41yuadbx2" path="res://sounds/enemies/slendytubbies_scream_1.wav" id="3_newh7"]
@@ -9,12 +9,6 @@
 [node name="MainMenuCanvas" type="CanvasLayer"]
 follow_viewport_enabled = true
 script = ExtResource("1_jjl53")
-
-[node name="PlayAudio" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_cak61")
-
-[node name="QuitAudio" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_newh7")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -61,6 +55,9 @@ layout_mode = 2
 default_button_text = "Play"
 focused_text_addition = "[wave freq=5 amp=20]"
 
+[node name="PlayAudio" type="AudioStreamPlayer" parent="Control/VBoxContainer/PlayButton"]
+stream = ExtResource("2_cak61")
+
 [node name="OptionsButton" parent="Control/VBoxContainer" instance=ExtResource("4_dkf5t")]
 layout_mode = 2
 disabled = true
@@ -72,6 +69,9 @@ focused_text_addition = ""
 layout_mode = 2
 default_button_text = "Quit"
 focused_text_addition = "[shake]"
+
+[node name="QuitAudio" type="AudioStreamPlayer" parent="Control/VBoxContainer/QuitButton"]
+stream = ExtResource("3_newh7")
 
 [connection signal="pressed" from="Control/VBoxContainer/PlayButton" to="." method="start_game"]
 [connection signal="pressed" from="Control/VBoxContainer/QuitButton" to="." method="quit_game"]

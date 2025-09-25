@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cjehxq1f2vicp" path="res://scripts/ui/screen_shader_manager.gd" id="1_cjvg8"]
 [ext_resource type="Material" uid="uid://dfno40i012odi" path="res://shaders/fourcolor_screen.tres" id="2_alglh"]
-[ext_resource type="Script" uid="uid://cr2cb0aew1jk5" path="res://scripts/ui/color_set.gd" id="3_5a6s4"]
+[ext_resource type="Script" uid="uid://cr2cb0aew1jk5" path="res://scripts/resources/color_set.gd" id="3_5a6s4"]
 [ext_resource type="Resource" uid="uid://w12qf506p7v2" path="res://resources/color sets/colorset_blue.tres" id="4_43gw8"]
 [ext_resource type="Resource" uid="uid://cv5fnmupvjqsc" path="res://resources/color sets/colorset_green.tres" id="5_nevdi"]
 [ext_resource type="Resource" uid="uid://dxqerx2bro4kp" path="res://resources/color sets/colorset_mono.tres" id="6_p0e4a"]

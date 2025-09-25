@@ -3,8 +3,12 @@ extends Button
 var default_size: Vector2
 var default_font_size: float
 
+@export_group("Default")
 @export var enabled: bool = true
-@export var default_button_text: String
+@export var default_text: String
+@export var justification: HorizontalAlignment
+
+@export_group("Focusing")
 @export var focused_size: Vector2 = Vector2(0, 130)
 @export var focused_font_size: float = 64
 @export var focused_text_addition: String = "[wave]"
@@ -17,7 +21,7 @@ var focused: bool = false
 
 func _ready() -> void:
 	setup()
-	#await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(0.5).timeout
 	display_text()
 
 func _process(delta: float) -> void:
@@ -26,11 +30,11 @@ func _process(delta: float) -> void:
 
 func _on_mouse_entered() -> void:
 	focused = true
-	text_label.text = focused_text_addition + default_button_text
+	text_label.text = focused_text_addition + default_text
 
 func _on_mouse_exited() -> void:
 	focused = false
-	text_label.text = default_button_text
+	text_label.text = default_text
 	text_label.add_theme_color_override("default_color", Color.WHITE)
 
 func _on_button_down() -> void:
@@ -59,6 +63,7 @@ func display_text():
 func setup():
 	default_size = custom_minimum_size
 	default_font_size = float(text_label.get_theme_default_font_size())
-	text_label.text = default_button_text
+	text_label.text = default_text
 	text_label.visible_characters = 0
+	text_label.horizontal_alignment = justification
 	interp_font_size = default_font_size

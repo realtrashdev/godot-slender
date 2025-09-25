@@ -117,7 +117,8 @@ func move_audio():
 	if move_sound_timer > 0:
 		return
 	
-	movement_audio.pitch_scale = randf_range(0.9, 1.1)
+	var pitch = 0.9 + (get_path_boost() / 5)
+	movement_audio.pitch_scale = randf_range(pitch - 0.1, pitch + 0.1)
 	
 	# prevents repeat sounds
 	var rand_max = movement_gravel.size() - 1
@@ -132,10 +133,8 @@ func move_audio():
 
 func get_path_boost() -> float:
 	if $GroundRayCast.is_colliding():
-		print("on path")
 		return PATH_MODIFIER
 	else:
-		print("not on path")
 		return 0
 #endregion
 
