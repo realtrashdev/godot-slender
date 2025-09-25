@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://v8rvsqsanr0r" path="res://scripts/ui/menu_play.gd" id="1_5owl3"]
 [ext_resource type="Theme" uid="uid://bommyqwo15hbx" path="res://theme1.tres" id="2_pbvuy"]
 [ext_resource type="PackedScene" uid="uid://6lvn3tolsp7r" path="res://scenes/ui/menu_button.tscn" id="3_f83us"]
-[ext_resource type="Script" uid="uid://c3ysaqnmo1oo8" path="res://scenes/ui/text_animation.gd" id="3_pbvuy"]
+[ext_resource type="Script" uid="uid://c3ysaqnmo1oo8" path="res://scripts/ui/text_animation.gd" id="3_pbvuy"]
 [ext_resource type="AudioStream" uid="uid://xjt0f2pu0a11" path="res://sounds/menu/hopping_fence.mp3" id="4_0btdj"]
 [ext_resource type="AudioStream" uid="uid://b3sk41yuadbx2" path="res://sounds/enemies/slendytubbies_scream_1.wav" id="5_rqg85"]
 
