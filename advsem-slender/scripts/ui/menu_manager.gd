@@ -1,8 +1,8 @@
 extends Node3D
 
-const MENU_OPEN_DELAY: float = 0.5
-
 @export var menus: Dictionary[String, PackedScene]
+
+const MENU_OPEN_DELAY: float = 0.5
 
 @onready var current_menu: CanvasLayer = $MainMenuCanvas
 
@@ -15,10 +15,12 @@ func open_new_menu(menu_name: String, direction: Menu.MenuDirection):
 	
 	await get_tree().create_timer(MENU_OPEN_DELAY).timeout
 	
+	# delete current menu, add new one to scene tree
 	current_menu.queue_free()
 	var menu = new_menu.instantiate()
 	add_child(menu)
 	
+	# connect signal, reassign current_menu to the one being opened
 	menu.menu_selected.connect(open_new_menu)
 	current_menu = menu
 	

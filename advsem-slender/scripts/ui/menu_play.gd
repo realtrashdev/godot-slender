@@ -9,9 +9,10 @@ func _ready() -> void:
 	menu_zoom_effect(Vector2(1, 1), 0.5, Tween.TRANS_QUART, Tween.EASE_OUT)
 
 func start_game():
-	menu_selected.emit("Play", MenuDirection.FORWARD)
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	menu_zoom_effect(Vector2(5, 5), 0.5, Tween.TRANS_QUART, Tween.EASE_IN)
+	await get_tree().create_timer(1).timeout
+	get_tree().change_scene_to_file(GAME_SCENE)
 
 func back():
 	menu_selected.emit("Main", MenuDirection.BACKWARD)
