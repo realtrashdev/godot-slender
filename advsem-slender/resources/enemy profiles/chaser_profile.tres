@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="EnemyProfile" load_steps=6 format=3 uid="uid://5btde08a1exu"]
+
+[ext_resource type="Script" uid="uid://c426kdmp0e6tf" path="res://scripts/resources/enemy_profile.gd" id="1_hrl1i"]
+[ext_resource type="Resource" uid="uid://3vkwuf2sbniw" path="res://resources/jumpscares/ao_oni_jumpscare.tres" id="1_wsgv0"]
+[ext_resource type="PackedScene" uid="uid://0rnvcc30hitf" path="res://scenes/enemies/chaser.tscn" id="2_puspk"]
+[ext_resource type="Script" uid="uid://d0hm3sts6wa7d" path="res://scripts/enemies/spawning/spawn_markers.gd" id="4_puspk"]
+
+[sub_resource type="Resource" id="Resource_nklym"]
+script = ExtResource("4_puspk")
+radius = 50.0
+min_distance = 30.0
+metadata/_custom_type_script = "uid://d0hm3sts6wa7d"
+
+[resource]
+script = ExtResource("1_hrl1i")
+scene = ExtResource("2_puspk")
+name = "Chaser"
+spawn_behavior = SubResource("Resource_nklym")
+min_spawn_time = 35.0
+max_spawn_time = 45.0
+spawn_distance = 40.0
+jumpscare = ExtResource("1_wsgv0")
+metadata/_custom_type_script = "uid://c426kdmp0e6tf"

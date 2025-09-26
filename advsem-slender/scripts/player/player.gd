@@ -3,9 +3,17 @@ extends CharacterBody3D
 signal player_dead
 
 @export_group("Sounds")
-@export var movement_gravel: Array[AudioStreamWAV]
+@export var movement_gravel: Array[AudioStream]
+@export var movement_grass: Array[AudioStream]
+@export var movement_tile: Array[AudioStream]
 
-const MENU_SCENE = "res://scenes/main_menu.tscn"
+var ground_layer_names = {
+	25: "Path",
+	26: "Grass",
+	27: "Tile",
+}
+
+const MENU_SCENE = "res://scenes/ui/menus/menu_base.tscn"
 
 # Base Movement
 const SPEED = 2.0
@@ -38,17 +46,15 @@ var move_sound_timer: float
 @onready var flashlight: Node3D = $Head/Flashlight
 @onready var camera: Camera3D = $Head/Camera3D
 @onready var interaction_cast: RayCast3D = $Head/Camera3D/RayCast3D
-@onready var movement_audio: AudioStreamPlayer3D = $MovementAudio
+@onready var movement_audio: AudioStreamPlayer = $MovementAudio
 
-#region Virtual Methods
+#region Default Methods
 func _ready() -> void:
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	var tween = create_tween()
-	tween.tween_property(self, "camera_sensitivity", MOUSE_SENSITIVITY, 2)
+	deactivate()
 
 func _process(delta: float) -> void:
 	if Input.is_key_pressed(KEY_ESCAPE):
-		get_tree().change_scene_to_file("res://scenes/ui/menu_base.tscn")
+		get_tree().change_scene_to_file("res://scenes/ui/menus/menu_base.tscn")
 	
 	move_sound_timer -= delta
 	#debug_tools()
@@ -108,6 +114,12 @@ func check_sprinting() -> bool:
 	else:
 		return false
 
+func get_path_boost() -> float:
+	if $GroundRayCast.is_colliding():
+		if not $GroundRayCast.get_collider().is_in_group("Grass"):
+			return PATH_MODIFIER
+	return 0
+
 ## plays stepping sounds while moving
 func move_audio():
 	# if not moving fast enough or in the air, don't make sounds
@@ -117,25 +129,42 @@ func move_audio():
 	if move_sound_timer > 0:
 		return
 	
-	var pitch = 0.9 + (get_path_boost() / 5)
+	# randomize footstep pitch
+	var pitch = 1.0
 	movement_audio.pitch_scale = randf_range(pitch - 0.1, pitch + 0.1)
 	
+	# get sounds depending on ground material
+	var sound_array = get_ground_sounds()
+	if sound_array.size() == 0:
+		push_warning("No ground sounds found. Defaulting.")
+		sound_array = movement_gravel
+	
 	# prevents repeat sounds
-	var rand_max = movement_gravel.size() - 1
+	var rand_max = sound_array.size() - 1
 	var index = randi_range(0, rand_max)
 	while index == previous_sound_index:
 		index = randi_range(0, rand_max)
 	previous_sound_index = index
 	
-	movement_audio.stream = movement_gravel[index]
+	# play sound
+	movement_audio.stream = sound_array[index]
 	movement_audio.play()
 	move_sound_timer = 1.5 / get_movement_speed()
 
-func get_path_boost() -> float:
+func get_ground_sounds():
 	if $GroundRayCast.is_colliding():
-		return PATH_MODIFIER
-	else:
-		return 0
+		var collider = $GroundRayCast.get_collider()
+		if collider.is_in_group("Path"):
+			print("found path")
+			return movement_gravel
+		elif collider.is_in_group("Grass"):
+			print("found grass")
+			return movement_grass
+		elif collider.is_in_group("Tile"):
+			print("found tile")
+			return movement_tile
+	print("defaulting")
+	return movement_gravel
 #endregion
 
 #region Flashlight
@@ -167,7 +196,7 @@ func point_flashlight():
 	var pos = interaction_cast.interactible_position
 	if pos != Vector3.ZERO:
 		# Target orientation (like look_at)
-		var target_transform = flashlight.global_transform.looking_at(pos, Vector3.UP)
+		var target_transform = flashlight.global_transform.looking_at(pos)
 
 		# Orthonormalize bases before converting
 		var current_quat: Quaternion = Quaternion(flashlight.global_transform.basis.orthonormalized())
@@ -210,9 +239,27 @@ func die(enemy_name: String):
 	$Head/Flashlight/OmniLight3D.visible = false
 	flashlight.set_process(false)
 	
+	## TODO switch to use lives
 	var tree := get_tree()
 	await get_tree().create_timer(1).timeout
 	tree.change_scene_to_file(MENU_SCENE)
+
+func activate():
+	set_physics_process(true)
+	flashlight.visible = true
+	flashlight.set_process(true)
+	flashlight.toggle_light(true)
+	
+	camera_sensitivity = 0
+	create_tween().tween_property(self, "camera_sensitivity", MOUSE_SENSITIVITY, 2)
+	camera.fov = 150.0
+	camera.set_fov_smooth(80.0, 1.0)
+
+func deactivate():
+	set_physics_process(false)
+	flashlight.visible = false
+	flashlight.set_process(false)
+	$Head/Flashlight/OmniLight3D.visible = false
 
 ## DISABLE IN BUILDS
 func debug_tools():

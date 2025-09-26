@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dq6178lkha864"]
 
-[ext_resource type="PackedScene" uid="uid://cuouj5je2wv8g" path="res://scenes/page_location.tscn" id="1_0nfkb"]
+[ext_resource type="PackedScene" uid="uid://cuouj5je2wv8g" path="res://scenes/collection/page_location.tscn" id="1_0nfkb"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h2yge"]
 

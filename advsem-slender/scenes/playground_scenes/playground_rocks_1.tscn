@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dv7qx4tyi7gih"]
 
 [ext_resource type="Texture2D" uid="uid://blvkr31gwee1i" path="res://art/2d/rock1.aseprite" id="1_hstwy"]
-[ext_resource type="PackedScene" uid="uid://cuouj5je2wv8g" path="res://scenes/page_location.tscn" id="1_rrbxv"]
+[ext_resource type="PackedScene" uid="uid://cuouj5je2wv8g" path="res://scenes/collection/page_location.tscn" id="1_rrbxv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a5npi"]
 albedo_texture = ExtResource("1_hstwy")

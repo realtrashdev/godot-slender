@@ -15,24 +15,22 @@ var sprint_angle_modifier: float = 20
 
 func _ready() -> void:
 	sprint_angle = get_sprint_angle()
-	
-	omni_light.visible = false
-	rotation.x = deg_to_rad(TURN_ON_ANGLE.x)
-	rotation.y = deg_to_rad(TURN_ON_ANGLE.y)
-	play_audio()
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("toggle_light"):
-		light.visible = !light.visible
-		omni_light.visible = !omni_light.visible
-		rotation.x = deg_to_rad(TURN_ON_ANGLE.x)
-		rotation.y = deg_to_rad(TURN_ON_ANGLE.y)
-		play_audio()
+		toggle_light(!light.visible)
 
 func _on_ray_cast_3d_object_collected() -> void:
 	rotation_override = deg_to_rad(sprint_angle)
 	await get_tree().create_timer(3).timeout
 	rotation_override = 0
+
+func toggle_light(on: bool):
+	light.visible = on
+	omni_light.visible = !light.visible
+	rotation.x = deg_to_rad(TURN_ON_ANGLE.x)
+	rotation.y = deg_to_rad(TURN_ON_ANGLE.y)
+	play_audio()
 
 func play_audio():
 	audio_source.pitch_scale = randf_range(0.9, 1.1)

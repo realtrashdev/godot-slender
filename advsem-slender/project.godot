@@ -21,12 +21,17 @@ aseprite_executable_path="C:/Program Files (x86)/Steam/steamapps/common/Aseprite
 
 [autoload]
 
-Signals="*res://scripts/signals.gd"
+Signals="*res://scripts/globals/signals.gd"
+
+[debug]
+
+gdscript/warnings/unused_parameter=0
 
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/size/mode=3
 window/stretch/mode="viewport"
 
 [editor_plugins]
@@ -37,6 +42,9 @@ enabled=PackedStringArray("res://addons/nklbdev.aseprite_importers/plugin.cfg")
 
 Player="The player"
 PageLocation="A place where a page can generate."
+Tile=""
+Grass=""
+Path=""
 
 [input]
 
@@ -88,6 +96,7 @@ shader_toggle={
 
 [layer_names]
 
+3d_physics/layer_1="Default"
 3d_physics/layer_2="Path"
 3d_physics/layer_4="Enemy"
 3d_physics/layer_6="Flashlight Cast"
@@ -95,6 +104,8 @@ shader_toggle={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+scaling_3d/fsr_sharpness=0.2
 environment/defaults/default_clear_color=Color(0.196078, 0.196078, 0.196078, 1)

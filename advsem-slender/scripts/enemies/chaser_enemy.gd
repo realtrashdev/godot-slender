@@ -29,8 +29,9 @@ var _chase_time: float = 0
 
 func _ready() -> void:
 	player.player_dead.connect(die)
-	var tween = create_tween()
-	tween.tween_property(sprite, "scale", Vector3(4, 4, 1), 0.25).set_trans(Tween.TRANS_CUBIC)
+	var default_scale = sprite.scale
+	sprite.scale = Vector3.ZERO
+	create_tween().tween_property(sprite, "scale", default_scale, 0.25).set_trans(Tween.TRANS_CUBIC)
 	print("Spawned " + NAME + " with " + str(get_speed()) + " speed and " + str(get_chase_time()) + " chase time")
 	_chase_time = get_chase_time()
 
@@ -38,7 +39,7 @@ func _process(delta: float) -> void:
 	# check if touching player, if so, play jumpscare
 	for i in get_slide_collision_count():
 		var coll = get_slide_collision(i)
-		if coll.get_collider().is_in_group("Player"):
+		if coll.get_collider() != null and coll.get_collider().is_in_group("Player"):
 			coll.get_collider().die(NAME)
 	
 	if lit:
