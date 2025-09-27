@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://b2fcrx7ohgn2i"]
+[gd_scene load_steps=36 format=3 uid="uid://b2fcrx7ohgn2i"]
 
 [ext_resource type="Script" uid="uid://wnd51kqayidl" path="res://scripts/game_manager.gd" id="1_61hdk"]
 [ext_resource type="AudioStream" uid="uid://b5g34w47yw0di" path="res://sounds/ambient/forest_bitcrushed_ambient1.mp3" id="1_nt4qc"]
@@ -12,7 +12,6 @@
 [ext_resource type="Script" uid="uid://ny0s8850mmpr" path="res://scripts/audio_player.gd" id="4_y68vu"]
 [ext_resource type="Script" uid="uid://ddr4dh2ckopug" path="res://scripts/ui/in_game_ui_manager.gd" id="5_1fnbc"]
 [ext_resource type="FontFile" uid="uid://b78ski6kf8hw1" path="res://fonts/ari-w9500-display.ttf" id="6_ajba2"]
-[ext_resource type="Script" uid="uid://c426kdmp0e6tf" path="res://scripts/resources/enemy_profile.gd" id="7_5urav"]
 [ext_resource type="PackedScene" uid="uid://c5j4dypjweuc2" path="res://scenes/ui/jumpscare_canvaslayer.tscn" id="7_jyewl"]
 [ext_resource type="PackedScene" uid="uid://cuouj5je2wv8g" path="res://scenes/collection/page_location.tscn" id="8_wn8qo"]
 [ext_resource type="Resource" uid="uid://5btde08a1exu" path="res://resources/enemy profiles/chaser_profile.tres" id="8_xfafm"]
@@ -105,9 +104,6 @@ script = ExtResource("2_msooh")
 
 [node name="EnemySpawners" type="Node3D" parent="." node_paths=PackedStringArray("nav_region")]
 script = ExtResource("2_wn8qo")
-all_enemies = Dictionary[String, ExtResource("7_5urav")]({
-"Chaser": ExtResource("8_xfafm")
-})
 nav_region = NodePath("../Map")
 
 [node name="EnemySpawner" parent="EnemySpawners" instance=ExtResource("3_msooh")]

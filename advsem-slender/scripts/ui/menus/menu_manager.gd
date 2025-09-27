@@ -25,7 +25,7 @@ func open_new_menu(menu_name: String, direction: Menu.MenuDirection):
 	var menu = menus[menu_name].instantiate()
 	add_child(menu)
 	
-	# connect signal, reassign current_menu to the one being opened
+	# reconnect menu_selected signal, reassign current_menu to the one being opened
 	menu.menu_selected.connect(open_new_menu)
 	current_menu = menu
 	

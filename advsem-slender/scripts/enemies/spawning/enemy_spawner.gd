@@ -32,15 +32,20 @@ func _process(delta: float) -> void:
 		spawn_enemy()
 
 func spawn_enemy():
-	var pos = enemy_profile.spawn_behavior.get_spawn_position(spawn_context)
 	var enemy = enemy_profile.scene.instantiate()
-	add_child(enemy)
-	enemy.global_position = pos
+	
+	if enemy_profile.spawn_behavior:
+		var pos = enemy_profile.spawn_behavior.get_spawn_position(spawn_context)
+		add_child(enemy)
+		enemy.global_position = pos
+	else:
+		add_child(enemy)
 
 func populate_spawn_context():
 	spawn_context = SpawnContext.new()
 	spawn_context.player = player
 	spawn_context.spawner = self
+	# gross
 	spawn_context.spawn_markers = $"../../SpawnMarkers"
 
 func page_collected():

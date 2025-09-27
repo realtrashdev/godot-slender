@@ -85,8 +85,9 @@ func page_collected():
 	total_pages_collected += 1
 
 func taking_too_long():
+	var pages: int = total_pages_collected
 	await get_tree().create_timer(FIRST_PAGE_TIME_LIMIT).timeout
-	if pages_collected == 0:
+	if total_pages_collected == pages:
 		enemy_spawners.taking_too_long()
 		game_ui.taking_too_long()
 		collection_ambience.taking_too_long()

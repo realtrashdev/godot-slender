@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c6pe2a6g7kie7"]
+[gd_scene load_steps=7 format=3 uid="uid://c6pe2a6g7kie7"]
 
 [ext_resource type="PackedScene" uid="uid://cuouj5je2wv8g" path="res://scenes/collection/page_location.tscn" id="1_26c3m"]
 [ext_resource type="Texture2D" uid="uid://cm3mccsb71gu" path="res://art/2d/bricks1.aseprite" id="1_kg451"]
+[ext_resource type="Texture2D" uid="uid://dy7u3orydtoks" path="res://art/2d/tile1.aseprite" id="2_fmncw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fmncw"]
 albedo_texture = ExtResource("1_kg451")
@@ -14,6 +15,14 @@ albedo_texture = ExtResource("1_kg451")
 uv1_scale = Vector3(0.2, 0.2, 0.2)
 uv1_triplanar = true
 texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gi6r3"]
+albedo_texture = ExtResource("2_fmncw")
+uv1_scale = Vector3(0.4, 0.4, 0.4)
+uv1_triplanar = true
+texture_filter = 0
+stencil_flags = 2
+stencil_outline_thickness = 0.763
 
 [node name="Building" type="Node3D"]
 
@@ -58,6 +67,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
 use_collision = true
 collision_layer = 3
 size = Vector3(14.8, 0.1, 14.8)
+material = SubResource("StandardMaterial3D_gi6r3")
 
 [node name="PageLocations" type="Node3D" parent="."]
 
