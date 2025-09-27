@@ -1,0 +1,54 @@
+[gd_scene load_steps=4 format=3 uid="uid://dcy7ewx8f37mf"]
+
+[ext_resource type="Script" uid="uid://ddr4dh2ckopug" path="res://scripts/ui/in_game_ui_manager.gd" id="1_eeonk"]
+[ext_resource type="FontFile" uid="uid://b78ski6kf8hw1" path="res://fonts/ari-w9500-display.ttf" id="2_qvqbd"]
+[ext_resource type="Script" uid="uid://c3ysaqnmo1oo8" path="res://scripts/ui/ui_text.gd" id="3_3nhwc"]
+
+[node name="InGameUI" type="CanvasLayer"]
+script = ExtResource("1_eeonk")
+
+[node name="PagesText" type="RichTextLabel" parent="."]
+anchors_preset = -1
+anchor_top = 0.48100004
+anchor_right = 1.0
+anchor_bottom = 0.51900005
+offset_top = 20.519958
+offset_bottom = -20.52008
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_fonts/normal_font = ExtResource("2_qvqbd")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[wave]Collect all 8 pages"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+vertical_alignment = 1
+visible_characters = 0
+visible_ratio = 0.0
+script = ExtResource("3_3nhwc")
+
+[node name="TooLongText" type="RichTextLabel" parent="."]
+anchors_preset = -1
+anchor_top = 0.86100006
+anchor_right = 1.0
+anchor_bottom = 0.89900005
+offset_top = 0.11993408
+offset_bottom = 0.079956055
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_fonts/normal_font = ExtResource("2_qvqbd")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[wave]The forest grows restless..."
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+vertical_alignment = 1
+visible_characters = 0
+visible_ratio = 0.0
+script = ExtResource("3_3nhwc")

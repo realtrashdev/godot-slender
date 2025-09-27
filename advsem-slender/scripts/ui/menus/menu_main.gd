@@ -11,7 +11,7 @@ func _ready() -> void:
 func start_game():
 	menu_selected.emit("Play", MenuDirection.FORWARD)
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	menu_zoom_effect(Vector2(5, 5), 0.5, Tween.TRANS_QUART, Tween.EASE_IN)
+	menu_zoom_effect(Vector2(10, 10), 0.5, Tween.TRANS_QUART, Tween.EASE_IN)
 
 func quit_game():
 	menu_selected.emit("Quit", MenuDirection.BACKWARD)

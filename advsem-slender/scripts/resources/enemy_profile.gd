@@ -1,7 +1,6 @@
 class_name EnemyProfile extends Resource
 
 enum EnemyType { LETHAL, DANGEROUS, NUISANCE }
-enum SpawnType { RING, BEHIND }
 
 @export_group("Basic Info")
 @export var scene: PackedScene

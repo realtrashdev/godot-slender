@@ -7,12 +7,6 @@ signal player_dead
 @export var movement_grass: Array[AudioStream]
 @export var movement_tile: Array[AudioStream]
 
-var ground_layer_names = {
-	25: "Path",
-	26: "Grass",
-	27: "Tile",
-}
-
 const MENU_SCENE = "res://scenes/ui/menus/menu_base.tscn"
 
 # Base Movement

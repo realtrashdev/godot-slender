@@ -27,6 +27,6 @@ func change_game_color(color_name: String = "MONO", speed: float = 0):
 		for i in range(4):
 			shader_material.set_shader_parameter("shade_" + str(i), color_set.colors[i])
 	else:
+		var tween = create_tween()
 		for i in range(4):
-			var tween = create_tween()
 			tween.parallel().tween_property(shader_material, "shader_parameter/shade_" + str(i), color_set.colors[i], speed)
