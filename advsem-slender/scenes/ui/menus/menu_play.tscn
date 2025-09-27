@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://v8rvsqsanr0r" path="res://scripts/ui/menus/menu_play.gd" id="1_5owl3"]
 [ext_resource type="Theme" uid="uid://bommyqwo15hbx" path="res://theme1.tres" id="2_pbvuy"]
 [ext_resource type="PackedScene" uid="uid://6lvn3tolsp7r" path="res://scenes/ui/menu_button.tscn" id="3_f83us"]
-[ext_resource type="Script" uid="uid://c3ysaqnmo1oo8" path="res://scripts/ui/text_animation.gd" id="3_pbvuy"]
+[ext_resource type="Script" uid="uid://c3ysaqnmo1oo8" path="res://scripts/ui/ui_text.gd" id="3_pbvuy"]
 [ext_resource type="AudioStream" uid="uid://xjt0f2pu0a11" path="res://sounds/menu/hopping_fence.mp3" id="4_0btdj"]
 [ext_resource type="AudioStream" uid="uid://b3sk41yuadbx2" path="res://sounds/enemies/slendytubbies_scream_1.wav" id="5_rqg85"]
 
@@ -37,7 +37,33 @@ pivot_offset = Vector2(360, 41)
 theme = ExtResource("2_pbvuy")
 theme_override_font_sizes/normal_font_size = 64
 bbcode_enabled = true
-text = "[wave]This is a Play Menu"
+text = "[wave freq=3]Game Mode Select"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+script = ExtResource("3_pbvuy")
+sr_enabled = true
+sr_rotation = 3.0
+
+[node name="DescriptionText" type="RichTextLabel" parent="Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = 60.0
+offset_right = 500.0
+offset_bottom = 210.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(500, 75)
+theme = ExtResource("2_pbvuy")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "descriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescription"
 fit_content = true
 scroll_active = false
 shortcut_keys_enabled = false
@@ -53,7 +79,6 @@ offset_right = 1120.0
 offset_bottom = 900.0
 default_text = "Start"
 justification = 1
-focused_text_addition = "[wave freq=5 amp=20]"
 
 [node name="BackButton" parent="Menu" instance=ExtResource("3_f83us")]
 layout_mode = 1
@@ -69,7 +94,41 @@ offset_bottom = -50.0
 grow_horizontal = 0
 grow_vertical = 0
 default_text = "Back"
-focused_font_size = 56.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -100.0
+offset_right = 400.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="ClassicButton" parent="Menu/HBoxContainer" instance=ExtResource("3_f83us")]
+layout_mode = 2
+toggle_mode = true
+default_text = "Classic"
+justification = 2
+focus_font_size = 56.0
+focus_text_effect = ""
+toggle_text_effect = "[wave amp=20]"
+
+[node name="Container" type="Container" parent="Menu/HBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="EndlessButton" parent="Menu/HBoxContainer" instance=ExtResource("3_f83us")]
+layout_mode = 2
+toggle_mode = true
+default_text = "Endless"
+focus_font_size = 56.0
+focus_text_effect = ""
+toggle_text_effect = "[wave amp=20]"
 
 [node name="StartAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_0btdj")
@@ -79,3 +138,5 @@ stream = ExtResource("5_rqg85")
 
 [connection signal="pressed" from="Menu/PlayButton" to="." method="start_game"]
 [connection signal="pressed" from="Menu/BackButton" to="." method="back"]
+[connection signal="toggled" from="Menu/HBoxContainer/ClassicButton" to="Menu/HBoxContainer/EndlessButton" method="automatic_toggle_off"]
+[connection signal="toggled" from="Menu/HBoxContainer/EndlessButton" to="Menu/HBoxContainer/ClassicButton" method="automatic_toggle_off"]

@@ -18,13 +18,11 @@ func open_new_menu(menu_name: String, direction: Menu.MenuDirection):
 		get_tree().quit()
 		return
 	
-	var new_menu = load(menus[menu_name].resource_path)
-	
 	await get_tree().create_timer(MENU_OPEN_DELAY).timeout
 	
 	# delete current menu, add new one to scene tree
 	current_menu.queue_free()
-	var menu = new_menu.instantiate()
+	var menu = menus[menu_name].instantiate()
 	add_child(menu)
 	
 	# connect signal, reassign current_menu to the one being opened
