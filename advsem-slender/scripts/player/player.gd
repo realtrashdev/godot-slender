@@ -52,3 +52,6 @@ func remove_restrictions_from_source(source: String):
 
 func check_for_restriction(type: PlayerRestriction.RestrictionType) -> bool:
 	return restriction_component.check_for_restriction(type)
+
+func debug_tools():
+	pass

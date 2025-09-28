@@ -4,8 +4,8 @@ extends CanvasLayer
 @export var color_sets: Dictionary[String, ColorSet]
 
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("shader_toggle"):
-		visible = !visible
+	#if Input.is_action_just_pressed("shader_toggle"):
+	#	visible = !visible
 	
 	if Input.is_action_just_pressed("ui_up"):
 		change_game_color("GREEN", 1)

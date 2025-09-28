@@ -1,10 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://cpyvj4jwigbxg"]
+[gd_scene load_steps=10 format=3 uid="uid://cpyvj4jwigbxg"]
 
 [ext_resource type="Script" uid="uid://bqbf2ydcc8e4r" path="res://scripts/enemies/gum.gd" id="1_lql08"]
 [ext_resource type="PackedScene" uid="uid://pufj0h6bsit6" path="res://art/2d/gum.aseprite" id="2_w8oyp"]
 [ext_resource type="Theme" uid="uid://bommyqwo15hbx" path="res://theme1.tres" id="3_2pmne"]
-[ext_resource type="AudioStream" uid="uid://72tfvmcfwef" path="res://sounds/enemies/gum_running.mp3" id="4_uf3fo"]
-[ext_resource type="AudioStream" uid="uid://dlrwt67trjq2x" path="res://sounds/enemies/gum_death1.mp3" id="5_jlpo3"]
+[ext_resource type="AudioStream" uid="uid://cof5ff1i0io4f" path="res://sounds/gum_running.mp3" id="4_0j83e"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w8oyp"]
 
@@ -17,7 +16,6 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jlpo3"]
 
 [node name="GumEnemy" type="CanvasLayer"]
-visible = false
 script = ExtResource("1_lql08")
 
 [node name="BounceArea" type="Control" parent="."]
@@ -81,18 +79,15 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_2pmne")
 bbcode_enabled = true
-text = "[shake]K I L L   H I M"
+text = "[shake][rainbow]KILL HIM"
 shortcut_keys_enabled = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="RunningSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_uf3fo")
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_0j83e")
 volume_db = -5.0
+autoplay = true
 parameters/looping = true
 
-[node name="DeathSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_jlpo3")
-volume_db = -5.0
-
-[connection signal="button_down" from="BounceArea/Control/Button" to="." method="_on_button_down"]
+[connection signal="button_down" from="BounceArea/Control/Button" to="BounceArea/Control" method="_on_button_down"]
