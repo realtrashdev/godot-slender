@@ -22,6 +22,7 @@ aseprite_executable_path="C:/Program Files (x86)/Steam/steamapps/common/Aseprite
 [autoload]
 
 Signals="*res://scripts/globals/signals.gd"
+CurrentGameData="*res://scripts/globals/current_game_data.gd"
 
 [debug]
 
@@ -46,6 +47,7 @@ PageLocation="A place where a page can generate."
 Tile=""
 Grass=""
 Path=""
+SpawnMarkers="Pre placed markers some 3D enemies use for spawning."
 
 [input]
 

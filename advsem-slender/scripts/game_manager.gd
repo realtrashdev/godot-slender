@@ -30,23 +30,25 @@ const PLAYER_SPAWN: Vector3 = Vector3(-27.0, 1.0, 124.0)
 #region Pages
 const DEFAULT_PAGES_REQUIRED: int = 3
 const FIRST_PAGE_TIME_LIMIT: float = 90.0
-
-var total_pages_collected: int
-
-var pages_collected: int
 #endregion
 
 #region @onready
 @onready var player: CharacterBody3D = $Player
-@onready var page_spawn_manager: Node3D = $PageSpawnManager
-@onready var enemy_spawners: Node3D = $EnemySpawners
+@onready var page_spawn_manager: PageSpawnManager = $PageSpawnManager
+@onready var enemy_spawn_manager: EnemySpawnManager
 @onready var ambience: AudioStreamPlayer = $Ambient
 @onready var game_ui: CanvasLayer = $InGameUI
-@onready var collection_ambience: Node3D = $CollectionAmbient
+@onready var collection_ambience: Node = $CollectionAmbient
 #endregion
 
 func _ready() -> void:
-	Signals.page_collected.connect(page_collected)
+	enemy_spawn_manager = EnemySpawnManager.new()
+	enemy_spawn_manager.name = "EnemySpawnerManager"
+	add_child(enemy_spawn_manager)
+	
+	enemy_spawn_manager.add_enemy_spawner(preload("res://resources/enemy profiles/chaser_profile.tres"))
+	enemy_spawn_manager.add_enemy_spawner(preload("res://resources/enemy profiles/gum_profile.tres"))
+	
 	first_start_game()
 
 func first_start_game():
@@ -68,7 +70,7 @@ func first_start_game():
 
 func start_game():
 	player.position = PLAYER_SPAWN
-	pages_collected = 0
+	CurrentGameData.current_pages_collected = 0
 	ambience.volume_db = -50
 	ambience.play()
 	ambience.set_volume_smooth(ambience.default_volume, 3)
@@ -80,15 +82,11 @@ func start_game():
 func finish_game():
 	pass
 
-func page_collected():
-	pages_collected += 1
-	total_pages_collected += 1
-
 func taking_too_long():
-	var pages: int = total_pages_collected
+	var pages: int = CurrentGameData.total_pages_collected
 	await get_tree().create_timer(FIRST_PAGE_TIME_LIMIT).timeout
-	if total_pages_collected == pages:
-		enemy_spawners.taking_too_long()
+	if CurrentGameData.total_pages_collected == pages:
+		enemy_spawn_manager.taking_too_long()
 		game_ui.taking_too_long()
 		collection_ambience.taking_too_long()
 

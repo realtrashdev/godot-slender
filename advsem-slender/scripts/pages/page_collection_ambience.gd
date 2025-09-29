@@ -1,4 +1,4 @@
-extends Node3D
+extends Node
 
 const DEFAULT_INTERVAL: float = 3.0
 

@@ -1,14 +1,46 @@
-extends Node3D
+class_name EnemySpawnManager extends Node
 
-@export var enemy_pool: Array[EnemyProfile]
+# enemy_name, spawner
+var spawners: Dictionary = {}
 
-# dictionary with enemy names and their corresponding spawner node
-@export var nav_region: NavigationRegion3D
+func add_enemy_spawner(enemy_profile: EnemyProfile):
+	# Create new spawner for this enemy type
+	var spawner = EnemySpawner.new()
+	spawner.profile = enemy_profile
+	
+	# Add to scene
+	add_child(spawner)
+	spawners[enemy_profile.name] = spawner
+	
+	print("Added enemy: ", enemy_profile.name)
+
+func remove_enemy_type(enemy_name: String):
+	if enemy_name in spawners:
+		var spawner = spawners[enemy_name]
+		spawner.clear_all_enemies()
+		spawner.queue_free()
+		spawners.erase(enemy_name)
+
+func disable_enemy_type(enemy_name: String):
+	if enemy_name in spawners:
+		spawners[enemy_name].disable_spawner()
+
+func enable_enemy_type(enemy_name: String):
+	if enemy_name in spawners:
+		spawners[enemy_name].enable_spawner()
+
+func set_enemy_spawn_rate(enemy_name: String, min_time: float, max_time: float):
+	if enemy_name in spawners:
+		spawners[enemy_name].set_spawn_rate(min_time, max_time)
+
+func get_active_enemy_count(enemy_name: String) -> int:
+	if enemy_name in spawners:
+		return spawners[enemy_name].active_enemies.size()
+	return 0
+
+func clear_all_enemies():
+	for spawner in spawners.values():
+		spawner.clear_all_enemies()
 
 func taking_too_long():
-	for child in get_children():
-		child.taking_too_long()
-
-func add_enemy_spawners():
-	for spawner in enemy_pool:
-		add_child(enemy_pool[spawner].scene.instantiate())
+	pass

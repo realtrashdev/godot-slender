@@ -1,9 +1,12 @@
-[gd_resource type="Resource" script_class="EnemyProfile" load_steps=2 format=3 uid="uid://ceka8pclkwv8e"]
+[gd_resource type="Resource" script_class="EnemyProfile" load_steps=3 format=3 uid="uid://ceka8pclkwv8e"]
 
 [ext_resource type="Script" uid="uid://c426kdmp0e6tf" path="res://scripts/resources/enemy_profile.gd" id="1_adrbv"]
+[ext_resource type="PackedScene" uid="uid://cpyvj4jwigbxg" path="res://scenes/enemies/gum.tscn" id="1_v8grk"]
 
 [resource]
 script = ExtResource("1_adrbv")
+scene = ExtResource("1_v8grk")
+is_2d_enemy = true
 name = "Gum"
 type = 2
 description = "He'll show up on your screen and lock your camera in place. Click on him to send him away! He gets smaller and faster for each page collected."

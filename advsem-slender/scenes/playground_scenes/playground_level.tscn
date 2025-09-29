@@ -1,21 +1,17 @@
-[gd_scene load_steps=37 format=3 uid="uid://b2fcrx7ohgn2i"]
+[gd_scene load_steps=33 format=3 uid="uid://b2fcrx7ohgn2i"]
 
 [ext_resource type="Script" uid="uid://wnd51kqayidl" path="res://scripts/game_manager.gd" id="1_61hdk"]
-[ext_resource type="AudioStream" uid="uid://b5g34w47yw0di" path="res://sounds/ambient/forest_bitcrushed_ambient1.mp3" id="1_nt4qc"]
+[ext_resource type="AudioStream" uid="uid://b5g34w47yw0di" path="res://audio/ambient/forest_bitcrushed_ambient1.mp3" id="1_nt4qc"]
 [ext_resource type="PackedScene" uid="uid://dqhlmv6mga3ln" path="res://scenes/player.tscn" id="1_u1wns"]
 [ext_resource type="Script" uid="uid://d1anmy68tuwe6" path="res://scripts/pages/page_manager.gd" id="2_msooh"]
-[ext_resource type="Script" uid="uid://dbqw8nqpf0afo" path="res://scripts/enemies/spawning/enemy_spawn_manager.gd" id="2_wn8qo"]
-[ext_resource type="AudioStream" uid="uid://xjt0f2pu0a11" path="res://sounds/menu/hopping_fence.mp3" id="3_b751n"]
-[ext_resource type="PackedScene" uid="uid://ds3f284sk35dn" path="res://scenes/enemies/enemy_spawner.tscn" id="3_msooh"]
+[ext_resource type="AudioStream" uid="uid://xjt0f2pu0a11" path="res://audio/menu/hopping_fence.mp3" id="3_b751n"]
 [ext_resource type="PackedScene" uid="uid://x286lkut7nsk" path="res://scenes/collection/page_collection_ambience.tscn" id="3_xmb83"]
 [ext_resource type="PackedScene" uid="uid://b44g52cw8jhlu" path="res://scenes/ui/screen_color_canvas.tscn" id="4_nt4qc"]
 [ext_resource type="Script" uid="uid://ny0s8850mmpr" path="res://scripts/audio_player.gd" id="4_y68vu"]
 [ext_resource type="Script" uid="uid://ddr4dh2ckopug" path="res://scripts/ui/in_game_ui_manager.gd" id="5_1fnbc"]
 [ext_resource type="FontFile" uid="uid://b78ski6kf8hw1" path="res://fonts/ari-w9500-display.ttf" id="6_ajba2"]
-[ext_resource type="PackedScene" uid="uid://cpyvj4jwigbxg" path="res://scenes/enemies/gum.tscn" id="7_802kl"]
 [ext_resource type="PackedScene" uid="uid://c5j4dypjweuc2" path="res://scenes/ui/jumpscare_canvaslayer.tscn" id="7_jyewl"]
 [ext_resource type="PackedScene" uid="uid://cuouj5je2wv8g" path="res://scenes/collection/page_location.tscn" id="8_wn8qo"]
-[ext_resource type="Resource" uid="uid://5btde08a1exu" path="res://resources/enemy profiles/chaser_profile.tres" id="8_xfafm"]
 [ext_resource type="PackedScene" uid="uid://cxsorime4wuh2" path="res://scenes/playground_scenes/playground_tree.tscn" id="9_wn8qo"]
 [ext_resource type="Texture2D" uid="uid://c4he6fivjqx5e" path="res://art/2d/chain_fence.aseprite" id="10_1fnbc"]
 [ext_resource type="Script" uid="uid://cd3rioc31ppei" path="res://scripts/ui/funny_business.gd" id="10_i2ncu"]
@@ -90,32 +86,12 @@ script = ExtResource("1_61hdk")
 [node name="Player" parent="." instance=ExtResource("1_u1wns")]
 transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, -27, 1, 124)
 
-[node name="FenceClimbAudio" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_b751n")
-volume_db = -2.0
-
-[node name="Ambient" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("1_nt4qc")
-volume_db = -10.0
-parameters/looping = true
-script = ExtResource("4_y68vu")
-
-[node name="PageSpawnManager" type="Node3D" parent="."]
+[node name="PageSpawnManager" type="Node" parent="."]
 script = ExtResource("2_msooh")
 
-[node name="NonSpawnedEnemies" type="Node" parent="."]
+[node name="CollectionAmbient" parent="." instance=ExtResource("3_xmb83")]
 
-[node name="GumEnemy" parent="NonSpawnedEnemies" instance=ExtResource("7_802kl")]
-
-[node name="EnemySpawners" type="Node3D" parent="." node_paths=PackedStringArray("nav_region")]
-script = ExtResource("2_wn8qo")
-nav_region = NodePath("../Map")
-
-[node name="EnemySpawner" parent="EnemySpawners" instance=ExtResource("3_msooh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0125961, -0.0419838, -0.0225043)
-enemy_profile = ExtResource("8_xfafm")
-
-[node name="SpawnMarkers" type="Node3D" parent="."]
+[node name="SpawnMarkers" type="Node3D" parent="." groups=["SpawnMarkers"]]
 
 [node name="SpawnMarker1" parent="SpawnMarkers" instance=ExtResource("11_2v4pv")]
 editor_description = "Markers for enemies to use when trying to spawn."
@@ -316,8 +292,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 121, 0, 68)
 [node name="SpawnMarker50" parent="SpawnMarkers" instance=ExtResource("11_2v4pv")]
 editor_description = "Markers for enemies to use when trying to spawn."
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -74, 0, -15)
-
-[node name="CollectionAmbient" parent="." instance=ExtResource("3_xmb83")]
 
 [node name="Map" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_u1wns")
@@ -2721,7 +2695,17 @@ visible_ratio = 0.0
 [node name="Jumpscare" parent="." instance=ExtResource("7_jyewl")]
 layer = 9
 
-[node name="Funny Business" type="Node3D" parent="."]
+[node name="FenceClimbAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_b751n")
+volume_db = -2.0
+
+[node name="Ambient" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_nt4qc")
+volume_db = -10.0
+parameters/looping = true
+script = ExtResource("4_y68vu")
+
+[node name="Funny Business" type="Node" parent="."]
 script = ExtResource("10_i2ncu")
 shader_material = ExtResource("11_61hdk")
 

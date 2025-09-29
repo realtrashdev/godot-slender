@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://0rnvcc30hitf"]
 
-[ext_resource type="Script" uid="uid://bhnr1i6xo0hdc" path="res://scripts/enemies/chaser_enemy.gd" id="1_3pbm7"]
+[ext_resource type="Script" uid="uid://bhnr1i6xo0hdc" path="res://scripts/enemies/enemy_chaser.gd" id="1_3pbm7"]
 [ext_resource type="SpriteFrames" uid="uid://pyvqr1dpcew3" path="res://art/2d/chaser_1.aseprite" id="2_3pbm7"]
-[ext_resource type="Script" uid="uid://dmj552fu1iv7a" path="res://scripts/enemies/enemy_sprite.gd" id="3_hm5ih"]
-[ext_resource type="AudioStream" uid="uid://c8oi7ibd26wfm" path="res://sounds/enemies/ao oni chase.wav" id="4_tkoxo"]
+[ext_resource type="Script" uid="uid://dmj552fu1iv7a" path="res://scripts/enemies/enemy_spriteshake.gd" id="3_hm5ih"]
+[ext_resource type="AudioStream" uid="uid://c8oi7ibd26wfm" path="res://audio/enemies/ao oni chase.wav" id="4_tkoxo"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jkv2x"]
 radius = 0.856761

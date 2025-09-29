@@ -1,4 +1,4 @@
-extends Node3D
+class_name PageSpawnManager extends Node
 
 const DEFAULT_GENERATED_PAGES: int = 8
 

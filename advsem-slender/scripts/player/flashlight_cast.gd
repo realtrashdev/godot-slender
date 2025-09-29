@@ -1,13 +1,13 @@
 extends RayCast3D
 
-var last_target: Enemy = null
+var last_target: Enemy3D = null
 
 ## TODO needs refactor
 
 func _process(delta):
 	if is_colliding():
 		var collider = get_collider()
-		if collider is Enemy:
+		if collider is Enemy3D:
 			# notify current target
 			collider.set_targeted(true)
 
