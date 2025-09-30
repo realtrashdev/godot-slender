@@ -1,11 +1,11 @@
 class_name PlayerMovementComponent extends Node 
 
 const SPEED = 2.0
-const SPRINT_SPEED = 3.5
+const SPRINT_SPEED = 4.0
 # delay before the player can move at the start
 const START_SPEED_DELAY = 1
 const ACCELERATION = 7.0
-const PATH_MODIFIER = 0.5
+const PATH_MODIFIER = 1.0
 
 var player: CharacterBody3D
 var restriction_component: PlayerRestrictionComponent

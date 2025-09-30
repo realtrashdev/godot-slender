@@ -29,6 +29,7 @@ var focus: bool = false
 func _ready() -> void:
 	setup()
 	await get_tree().create_timer(0.5).timeout
+	update_text_effect()
 	display_text()
 
 func _process(delta: float) -> void:
@@ -54,13 +55,6 @@ func _on_toggled(toggled_on: bool) -> void:
 	update_text_effect()
 #endregion
 
-## Connect to other buttons' on_toggled signals.
-## Useful if two or more buttons cannot be toggled at the same time.
-func automatic_toggle_off(toggled_on: bool):
-	if toggled_on:
-		button_pressed = false
-		update_text_effect()
-
 #region Display
 func lerp_size(delta: float) -> void:
 	if button_pressed:
@@ -76,6 +70,9 @@ func lerp_size(delta: float) -> void:
 	text_label.add_theme_font_size_override("normal_font_size", int(interp_font_size))
 
 func update_text_effect():
+	if not text_label:
+		return
+	
 	if button_pressed:
 		text_label.text = toggle_text_effect + default_text
 	elif focus:

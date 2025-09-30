@@ -5,9 +5,9 @@ extends Enemy3D
 ## Gets faster for each page collected.
 
 # movement constants
-const BASE_SPEED: float = 2.8
+const BASE_SPEED: float = 3.8
 const SPEED_INCREMENT: float = 0.2
-const LIGHT_SPEED_PENALTY: float = 1.0
+const LIGHT_SPEED_PENALTY: float = 2.0
 const RUN_SPEED_MULTIPLIER: float = 15.0
 
 # chase timing constants

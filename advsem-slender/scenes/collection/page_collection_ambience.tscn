@@ -6,6 +6,10 @@
 [node name="PageCollectionAmbience" type="Node"]
 script = ExtResource("1_otsxu")
 
-[node name="Stomping" type="AudioStreamPlayer" parent="."]
+[node name="StompingNormal" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_evisa")
 volume_db = -15.0
+
+[node name="StompingDistorted" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_evisa")
+volume_db = -5.0

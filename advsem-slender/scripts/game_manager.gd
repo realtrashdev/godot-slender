@@ -36,7 +36,7 @@ const FIRST_PAGE_TIME_LIMIT: float = 90.0
 @onready var player: CharacterBody3D = $Player
 @onready var page_spawn_manager: PageSpawnManager = $PageSpawnManager
 @onready var enemy_spawn_manager: EnemySpawnManager
-@onready var ambience: AudioStreamPlayer = $Ambient
+@onready var ambience: CustomAudioPlayer = $Ambient
 @onready var game_ui: CanvasLayer = $InGameUI
 @onready var collection_ambience: Node = $CollectionAmbient
 #endregion
@@ -58,9 +58,8 @@ func _ready() -> void:
 	first_start_game()
 
 func first_start_game():
-	ambience.volume_db = -30
 	ambience.play()
-	ambience.set_volume_smooth(ambience.default_volume, 1)
+	ambience.set_volume_smooth(ambience.default_volume, 1, -30)
 	
 	await get_tree().create_timer(1).timeout
 	$FenceClimbAudio.play()
@@ -71,12 +70,12 @@ func first_start_game():
 
 func start_game():
 	if not ambience.playing:
-		ambience.volume_db = -30
 		ambience.play()
-		ambience.set_volume_smooth(ambience.default_volume, 1)
+		ambience.set_volume_smooth(ambience.default_volume, 1, -30)
 	
 	CurrentGameData.current_pages_collected = 0
 	page_spawn_manager.generate_pages()
+	collection_ambience.on_game_started()
 	
 	player.position = PLAYER_SPAWN
 	player.activate()
@@ -84,7 +83,7 @@ func start_game():
 	taking_too_long()
 	
 	await get_tree().create_timer(1).timeout
-	game_ui.display_text("[wave]Collect all " + str(CurrentGameData.current_pages_required) + " pages", 1, 3, 1)
+	game_ui.display_text("[wave]Collect " + str(CurrentGameData.current_pages_required) + " pages", 1, 3, 1)
 
 func finish_game():
 	player.deactivate()

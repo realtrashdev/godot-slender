@@ -8,12 +8,6 @@ func collect():
 	CurrentGameData.total_pages_collected += 1
 	CurrentGameData.current_pages_collected += 1
 	Signals.page_collected.emit()
+	AudioTools.play_one_shot_3d(get_tree(), audio.stream, audio.global_position, audio.max_distance, audio.pitch_scale, audio.volume_db)
 	
-	# play audio
-	audio.pitch_scale = randf_range(0.95, 1.15)
-	audio.play()
-	
-	# prevent additional interaction, and then wait for sound to finish before deleting fully
-	interaction_area.queue_free()
-	await get_tree().create_timer(2).timeout
 	queue_free()

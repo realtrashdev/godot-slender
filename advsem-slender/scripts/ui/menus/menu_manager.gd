@@ -5,6 +5,7 @@ extends Node3D
 const MENU_OPEN_DELAY: float = 0.5
 
 @onready var current_menu: CanvasLayer = $MainMenuCanvas
+@onready var typing_sounds: AudioStreamPlayer = $TypingSounds
 
 func _ready() -> void:
 	create_tween().tween_property($Music, "volume_db", -7.0, 1)
