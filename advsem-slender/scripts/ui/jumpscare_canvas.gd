@@ -8,10 +8,10 @@ extends CanvasLayer
 @onready var animation: AnimationPlayer = $TextureRect/AnimationPlayer
 
 func _ready() -> void:
-	Signals.player_died.connect(jumpscare)
+	Signals.killed_player.connect(jumpscare)
 
-func jumpscare(enemy: String):
-	var enemy_name = enemy.to_upper()
+func jumpscare(ename: String):
+	var enemy_name = ename.to_upper()
 	visible = true
 	
 	if enemy_name == "":

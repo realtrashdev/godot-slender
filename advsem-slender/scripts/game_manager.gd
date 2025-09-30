@@ -43,6 +43,7 @@ const FIRST_PAGE_TIME_LIMIT: float = 90.0
 
 func _ready() -> void:
 	Signals.page_collected.connect(on_page_collected)
+	Signals.player_died.connect(finish_game)
 	
 	enemy_spawn_manager = EnemySpawnManager.new()
 	enemy_spawn_manager.name = "EnemySpawnerManager"

@@ -13,3 +13,7 @@ signal player_died
 # Pages
 @warning_ignore("unused_signal")
 signal page_collected
+
+# Enemies
+@warning_ignore("unused_signal")
+signal killed_player(name: String)

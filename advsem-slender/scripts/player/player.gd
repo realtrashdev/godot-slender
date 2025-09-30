@@ -23,8 +23,8 @@ func _physics_process(delta: float) -> void:
 func _input(event):
 	camera_component.handle_input(event)
 
-func die(enemy_name: String):
-	Signals.player_died.emit(enemy_name)
+func die():
+	Signals.player_died.emit()
 	deactivate()
 	var tree: SceneTree = get_tree()
 	await get_tree().create_timer(1).timeout
