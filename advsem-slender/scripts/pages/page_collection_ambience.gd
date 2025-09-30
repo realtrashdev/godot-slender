@@ -8,7 +8,7 @@ var interval: float
 var play_interval: bool = false
 var too_long: bool = false
 
-var active_sounds: Array[AudioStreamPlayer]
+var active_interval_sounds: Array[AudioStreamPlayer]
 
 func _ready():
 	Signals.page_collected.connect(on_page_collected)
@@ -20,19 +20,20 @@ func on_page_collected():
 				return
 			play_interval = true
 			
-			active_sounds.append($StompingNormal)
+			active_interval_sounds.append($StompingNormal)
 			await get_tree().create_timer(1).timeout
 			sound_interval_loop()
 		2:
-			create_tween().tween_property($StompingNormal, "volume_db", -10, 1)
+			create_tween().tween_property($StompingNormal, "volume_db", -12, 1)
 		3:
-			pass
-		4:
-			create_tween().tween_property($StompingNormal, "volume_db", -5, 1)
-		5:
-			active_sounds.erase($StompingNormal)
 			await get_tree().create_timer(1).timeout
-			active_sounds.append($StompingDistorted)
+			$GameMusic1.play()
+		4:
+			create_tween().tween_property($StompingNormal, "volume_db", -10, 1)
+		5:
+			active_interval_sounds.erase($StompingNormal)
+			await get_tree().create_timer(1).timeout
+			active_interval_sounds.append($StompingDistorted)
 		6:
 			interval -= 0.25
 		7:
@@ -42,7 +43,7 @@ func on_page_collected():
 
 func sound_interval_loop():
 	while play_interval:
-		for sound in active_sounds:
+		for sound in active_interval_sounds:
 			sound.play()
 		await get_tree().create_timer(interval).timeout
 
@@ -58,6 +59,7 @@ func on_game_started():
 	$StompingDistorted.volume_db = DISTOMPING_DEFAULT_VOLUME
 
 func on_game_finished():
-	active_sounds.clear()
+	active_interval_sounds.clear()
+	$GameMusic1.stop()
 	play_interval = false
 	too_long = false

@@ -7,18 +7,18 @@ const MODE_CONFIG = {
 		"description": "Collect all eight pages, and then the game ends.\nThe shop is disabled and enemies are randomly selected.\n[shake](shop and random enemies not implemented)",
 		"pages_required": 8,
 		"extra_pages": 1,
-		"default_lives": 3,
+		"default_lives": 1,
 	},
 	GameMode.SHORT_CLASSIC: {
 		"pages_required": 4,
 		"extra_pages": 2,
-		"default_lives": 5,
+		"default_lives": 1,
 	},
 	GameMode.ENDLESS: {
-		"description": "Collect an increasing amount of required pages,\nthen visit the shop to add more threats and buy things.\nKeep going until you lose all your lives!\n[shake](lives and shop not implemented)",
+		"description": "Collect an increasing amount of required pages.\nVisit the shop to add more threats and buy things.\nKeep going until you lose all your lives!\n[shake](lives and shop not implemented)",
 		"pages_required": 3,
 		"extra_pages": 2,
-		"default_lives": 1,
+		"default_lives": 3,
 	}
 }
 

@@ -96,6 +96,11 @@ func finish_game():
 	# For now
 	CurrentGameData.current_pages_required += 1
 	await get_tree().create_timer(5).timeout
+	
+	if CurrentGameData.game_mode != GameConfig.GameMode.ENDLESS:
+		get_tree().change_scene_to_file("res://scenes/ui/menus/menu_base.tscn")
+		return
+	
 	start_game()
 
 func taking_too_long():
