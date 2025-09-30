@@ -24,6 +24,7 @@ aseprite_executable_path="C:/Program Files (x86)/Steam/steamapps/common/Aseprite
 Signals="*res://scripts/globals/signals.gd"
 CurrentGameData="*res://scripts/globals/current_game_data.gd"
 ScreenColorCanvas="*res://scenes/ui/screen_color_canvas.tscn"
+StaticGameData="*res://scripts/globals/static_game_data.gd"
 
 [debug]
 
@@ -48,6 +49,7 @@ Tile=""
 Grass=""
 Path=""
 SpawnMarkers="Pre placed markers some 3D enemies use for spawning."
+Pathfinder="Enemies that pathfind to the player. Uses a tick system to prevent lag and stagger enemy pathfinding updates."
 
 [input]
 

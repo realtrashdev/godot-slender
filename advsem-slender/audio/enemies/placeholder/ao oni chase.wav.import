@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://c8oi7ibd26wfm"
-path="res://.godot/imported/ao oni chase.wav-8e36074ee4144f62adbb6acdf5bf9aa5.sample"
+path="res://.godot/imported/ao oni chase.wav-c2ecc32e42774f4c67aaafcfb4917968.sample"
 
 [deps]
 
-source_file="res://audio/enemies/ao oni chase.wav"
-dest_files=["res://.godot/imported/ao oni chase.wav-8e36074ee4144f62adbb6acdf5bf9aa5.sample"]
+source_file="res://audio/enemies/placeholder/ao oni chase.wav"
+dest_files=["res://.godot/imported/ao oni chase.wav-c2ecc32e42774f4c67aaafcfb4917968.sample"]
 
 [params]
 

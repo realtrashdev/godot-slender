@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://bi81fe12i10ix"]
 
 [ext_resource type="Script" uid="uid://cgc8dpbgyxdtb" path="res://scripts/pages/page.gd" id="1_nl5ea"]
-[ext_resource type="AudioStream" uid="uid://s71mlkmeekwd" path="res://audio/paper_collect.wav" id="2_1g3qv"]
+[ext_resource type="AudioStream" uid="uid://s71mlkmeekwd" path="res://audio/player/paper_collect.wav" id="2_1g3qv"]
 [ext_resource type="FontFile" uid="uid://b78ski6kf8hw1" path="res://fonts/ari-w9500-display.ttf" id="2_6ni5k"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nl5ea"]

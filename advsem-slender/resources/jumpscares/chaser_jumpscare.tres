@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Jumpscare" load_steps=4 format=3 uid="uid://3vkwuf2sbniw"]
 
 [ext_resource type="Script" uid="uid://6um422lsglit" path="res://scripts/resources/jumpscare.gd" id="1_i3fk8"]
-[ext_resource type="AudioStream" uid="uid://qe8svc3ucsh1" path="res://audio/enemies/fnaf_jumpscare.wav" id="2_1ychl"]
+[ext_resource type="AudioStream" uid="uid://qe8svc3ucsh1" path="res://audio/enemies/placeholder/fnaf_jumpscare.wav" id="2_1ychl"]
 [ext_resource type="Texture2D" uid="uid://cxuiukn8ax0oi" path="res://art/2d/chaser_1_jumpscare.aseprite" id="3_iyqfa"]
 
 [resource]

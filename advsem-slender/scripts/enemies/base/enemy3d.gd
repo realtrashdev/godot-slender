@@ -4,3 +4,6 @@
 signal died
 
 var profile: EnemyProfile
+
+func pathfind():
+	pass

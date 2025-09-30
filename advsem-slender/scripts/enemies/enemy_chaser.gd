@@ -19,16 +19,13 @@ enum State { CHASING, FLEEING, DISABLED }
 var current_state: State = State.CHASING
 var is_lit: bool = false
 var remaining_chase_time: float = 0.0
-var collision_check_timer: float = 0.0
-
-# performance constants
-const COLLISION_CHECK_RATE: float = 0.1  # seconds
 
 # onready references
-@onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
 @onready var player: CharacterBody3D = get_tree().get_first_node_in_group("Player")
+@onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
 @onready var ambient_music: AudioStreamPlayer3D = $"Ambient Music"
 @onready var sprite: AnimatedSprite3D = $Sprite3D
+@onready var pathfinding_component: PathfindingComponent = $PathfindingComponent
 
 func _ready() -> void:
 	setup_signals()
@@ -37,11 +34,6 @@ func _ready() -> void:
 	debug_print_stats()
 
 func _process(delta: float) -> void:
-	collision_check_timer += delta
-	if collision_check_timer >= COLLISION_CHECK_RATE:
-		check_player_collision()
-		collision_check_timer = 0.0
-	
 	update_light_state(delta)
 
 func _physics_process(delta: float) -> void:
@@ -50,8 +42,6 @@ func _physics_process(delta: float) -> void:
 	if not player or current_state == State.DISABLED:
 		return
 	
-	update_navigation()
-	update_movement()
 	move_and_slide()
 
 
@@ -74,6 +64,11 @@ func debug_print_stats() -> void:
 
 
 ## main update logic
+func pathfind() -> void:
+	check_player_collision()
+	update_navigation()
+	update_movement()
+
 func check_player_collision() -> void:
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
@@ -90,7 +85,7 @@ func update_light_state(delta: float) -> void:
 		sprite.start_shake(0.1)
 		
 		if remaining_chase_time <= 0:
-			_begin_fleeing()
+			begin_fleeing()
 	else:
 		sprite.stop_shake()
 
@@ -104,11 +99,11 @@ func update_navigation() -> void:
 func update_movement() -> void:
 	match current_state:
 		State.CHASING:
-			_move_toward_player()
+			move_toward_player()
 		State.FLEEING:
-			_move_away_from_player()
+			move_away_from_player()
 
-func _move_toward_player() -> void:
+func move_toward_player() -> void:
 	if nav_agent.is_navigation_finished():
 		return
 	
@@ -116,28 +111,28 @@ func _move_toward_player() -> void:
 	var direction = (next_position - global_position).normalized()
 	velocity = direction * calculate_speed()
 
-func _move_away_from_player() -> void:
+func move_away_from_player() -> void:
 	var direction = (global_position - player.global_position).normalized()
 	velocity = direction * (calculate_speed() * RUN_SPEED_MULTIPLIER)
 
 
 ## state changes
-func _begin_fleeing() -> void:
+func begin_fleeing() -> void:
 	current_state = State.FLEEING
-	_play_flee_audio()
-	_play_shrink_animation()
+	play_flee_audio()
+	play_shrink_animation()
 
-func _play_flee_audio() -> void:
+func play_flee_audio() -> void:
 	ambient_music.stream = preload("uid://b3sk41yuadbx2")
 	ambient_music.play(0.05)
 	ambient_music.max_distance = 60
 
-func _play_shrink_animation() -> void:
+func play_shrink_animation() -> void:
 	var tween = create_tween()
 	tween.tween_property(sprite, "scale", Vector3(0.01, 0.01, 1), 3.0)
-	tween.finished.connect(_on_flee_complete)
+	tween.finished.connect(on_flee_complete)
 
-func _on_flee_complete() -> void:
+func on_flee_complete() -> void:
 	died.emit()
 	queue_free()
 

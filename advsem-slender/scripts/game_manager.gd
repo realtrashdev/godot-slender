@@ -29,7 +29,7 @@ const PLAYER_SPAWN: Vector3 = Vector3(-27.0, 1.0, 124.0)
 
 #region Pages
 const DEFAULT_PAGES_REQUIRED: int = 3
-const FIRST_PAGE_TIME_LIMIT: float = 1.0
+const FIRST_PAGE_TIME_LIMIT: float = 90.0
 #endregion
 
 #region @onready

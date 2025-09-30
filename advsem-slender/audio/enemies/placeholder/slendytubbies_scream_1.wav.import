@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://b3sk41yuadbx2"
-path="res://.godot/imported/slendytubbies_scream_1.wav-34c591786612f8a61f2b3ca1d8f117c4.sample"
+path="res://.godot/imported/slendytubbies_scream_1.wav-adcc21eeb84597768fbd7474846ab4f4.sample"
 
 [deps]
 
-source_file="res://audio/enemies/slendytubbies_scream_1.wav"
-dest_files=["res://.godot/imported/slendytubbies_scream_1.wav-34c591786612f8a61f2b3ca1d8f117c4.sample"]
+source_file="res://audio/enemies/placeholder/slendytubbies_scream_1.wav"
+dest_files=["res://.godot/imported/slendytubbies_scream_1.wav-adcc21eeb84597768fbd7474846ab4f4.sample"]
 
 [params]
 
