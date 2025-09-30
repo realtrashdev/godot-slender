@@ -1,13 +1,14 @@
 class_name EnemySpawner extends Node
 
-@export var profile: EnemyProfile
-@export var max_instances: int = 3
-@export var enabled: bool = true
+var profile: EnemyProfile
+var enabled: bool = false
 
 var enemy_scene: PackedScene
 var min_spawn_time: float
 var max_spawn_time: float
+
 var spawn_timer: float = 0.0
+var required_pages: int = 1
 var active_enemies: Array[Node] = []
 
 @onready var player = get_tree().get_first_node_in_group("Player")
@@ -17,22 +18,26 @@ func _ready() -> void:
 	min_spawn_time = profile.min_spawn_time
 	max_spawn_time = profile.max_spawn_time
 	
-	_reset_timer()
+	connect_signals()
+	reset_timer()
 
 func _process(delta: float) -> void:
-	if not enabled or not enemy_scene:
-		return
-	
 	if Input.is_action_just_pressed("ui_focus_next"):
 		spawn_enemy()
 	
-	if active_enemies.size() >= max_instances:
+	if not enabled or not enemy_scene:
 		return
-		
+	
+	if active_enemies.size() >= profile.max_instances:
+		return
+	
 	spawn_timer -= delta
 	if spawn_timer <= 0:
 		spawn_enemy()
-		_reset_timer()
+		reset_timer()
+
+func connect_signals():
+	Signals.page_collected.connect(check_enable)
 
 func spawn_enemy() -> Node:
 	if not enemy_scene:
@@ -43,22 +48,22 @@ func spawn_enemy() -> Node:
 	
 	# Connect cleanup signals
 	if enemy.has_signal("died"):
-		enemy.died.connect(_on_enemy_died.bind(enemy))
+		enemy.died.connect(on_enemy_died.bind(enemy))
 	
 	if profile.is_2d_enemy:
-		_spawn_2d_enemy(enemy)
+		spawn_2d_enemy(enemy)
 	else:
-		_spawn_3d_enemy(enemy)
+		spawn_3d_enemy(enemy)
 	
 	return enemy
 
-func _spawn_2d_enemy(enemy: Enemy2D):
+func spawn_2d_enemy(enemy: Enemy2D):
 	print("Enemy2D Spawned")
 	get_tree().current_scene.add_child(enemy)
 	enemy.profile = profile
 	enemy.activate()
 
-func _spawn_3d_enemy(enemy: Enemy3D):
+func spawn_3d_enemy(enemy: Enemy3D):
 	print("Enemy3D Spawned")
 	add_child(enemy)
 	enemy.profile = profile
@@ -71,13 +76,18 @@ func _spawn_3d_enemy(enemy: Enemy3D):
 	
 	enemy.global_position = pos
 
-func _on_enemy_died(enemy: Node):
+func on_enemy_died(enemy: Node):
 	active_enemies.erase(enemy)
 
-func _reset_timer():
+func reset_timer():
 	spawn_timer = randf_range(min_spawn_time, max_spawn_time)
 
+func check_enable():
+	if CurrentGameData.current_pages_collected == required_pages and not enabled:
+		enable_spawner()
+
 func enable_spawner():
+	print("Enabled " + profile.name + " Spawner")
 	enabled = true
 
 func disable_spawner():

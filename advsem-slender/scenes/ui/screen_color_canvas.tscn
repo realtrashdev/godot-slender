@@ -1,25 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://b44g52cw8jhlu"]
+[gd_scene load_steps=3 format=3 uid="uid://b44g52cw8jhlu"]
 
 [ext_resource type="Script" uid="uid://cjehxq1f2vicp" path="res://scripts/ui/screen_shader_manager.gd" id="1_cjvg8"]
 [ext_resource type="Material" uid="uid://dfno40i012odi" path="res://shaders/fourcolor_screen.tres" id="2_alglh"]
-[ext_resource type="Script" uid="uid://cr2cb0aew1jk5" path="res://scripts/resources/color_set.gd" id="3_5a6s4"]
-[ext_resource type="Resource" uid="uid://w12qf506p7v2" path="res://resources/color sets/colorset_blue.tres" id="4_43gw8"]
-[ext_resource type="Resource" uid="uid://cv5fnmupvjqsc" path="res://resources/color sets/colorset_green.tres" id="5_nevdi"]
-[ext_resource type="Resource" uid="uid://dxqerx2bro4kp" path="res://resources/color sets/colorset_mono.tres" id="6_p0e4a"]
-[ext_resource type="Resource" uid="uid://clb54htu6fqy4" path="res://resources/color sets/colorset_purple.tres" id="7_bixbt"]
-[ext_resource type="Resource" uid="uid://yqp2gio83wnu" path="res://resources/color sets/colorset_red.tres" id="8_bd33w"]
 
-[node name="ColorChangeCanvas" type="CanvasLayer"]
+[node name="ScreenColorCanvas" type="CanvasLayer"]
 layer = 10
 script = ExtResource("1_cjvg8")
 shader_material = ExtResource("2_alglh")
-color_sets = Dictionary[String, ExtResource("3_5a6s4")]({
-"BLUE": ExtResource("4_43gw8"),
-"GREEN": ExtResource("5_nevdi"),
-"MONO": ExtResource("6_p0e4a"),
-"PURPLE": ExtResource("7_bixbt"),
-"RED": ExtResource("8_bd33w")
-})
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = ExtResource("2_alglh")

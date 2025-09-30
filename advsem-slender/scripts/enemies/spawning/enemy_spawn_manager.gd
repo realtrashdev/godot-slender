@@ -3,12 +3,13 @@ class_name EnemySpawnManager extends Node
 # enemy_name, spawner
 var spawners: Dictionary = {}
 
-func add_enemy_spawner(enemy_profile: EnemyProfile):
+func add_enemy_spawner(enemy_profile: EnemyProfile, required: int):
 	# Create new spawner for this enemy type
 	var spawner = EnemySpawner.new()
 	spawner.profile = enemy_profile
+	spawner.required_pages = required
 	
-	# Add to scene
+	# add to scene
 	add_child(spawner)
 	spawners[enemy_profile.name] = spawner
 	
@@ -21,13 +22,17 @@ func remove_enemy_type(enemy_name: String):
 		spawner.queue_free()
 		spawners.erase(enemy_name)
 
+func enable_enemy_type(enemy_name: String):
+	if enemy_name in spawners:
+		spawners[enemy_name].enable_spawner()
+
 func disable_enemy_type(enemy_name: String):
 	if enemy_name in spawners:
 		spawners[enemy_name].disable_spawner()
 
-func enable_enemy_type(enemy_name: String):
-	if enemy_name in spawners:
-		spawners[enemy_name].enable_spawner()
+func disable_all_spawners():
+	for spawner in spawners.values():
+		spawner.disable_spawner()
 
 func set_enemy_spawn_rate(enemy_name: String, min_time: float, max_time: float):
 	if enemy_name in spawners:
@@ -43,4 +48,6 @@ func clear_all_enemies():
 		spawner.clear_all_enemies()
 
 func taking_too_long():
-	pass
+	for spawner in spawners.values():
+		if spawner.required_pages == 1:
+			spawner.enable_spawner()

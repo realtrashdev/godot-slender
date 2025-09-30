@@ -4,7 +4,7 @@
 
 [resource]
 shader = ExtResource("1_vuqbl")
-shader_parameter/shade_0 = Color(0.784314, 0.784314, 0.784314, 1)
-shader_parameter/shade_1 = Color(0.588235, 0.588235, 0.588235, 1)
-shader_parameter/shade_2 = Color(0.392157, 0.392157, 0.392157, 1)
-shader_parameter/shade_3 = Color(0.196078, 0.196078, 0.196078, 1)
+shader_parameter/shade_0 = Color(0.39215687, 0.39215687, 0.78431374, 1)
+shader_parameter/shade_1 = Color(0.29411766, 0.29411766, 0.5882353, 1)
+shader_parameter/shade_2 = Color(0.19607843, 0.19607843, 0.39215687, 1)
+shader_parameter/shade_3 = Color(0.09803922, 0.09803922, 0.19607843, 1)

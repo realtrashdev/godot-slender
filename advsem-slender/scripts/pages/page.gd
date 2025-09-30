@@ -5,9 +5,9 @@ extends Interactible
 
 
 func collect():
-	Signals.page_collected.emit()
 	CurrentGameData.total_pages_collected += 1
 	CurrentGameData.current_pages_collected += 1
+	Signals.page_collected.emit()
 	
 	# play audio
 	audio.pitch_scale = randf_range(0.95, 1.15)

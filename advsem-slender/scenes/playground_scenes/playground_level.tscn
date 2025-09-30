@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://b2fcrx7ohgn2i"]
+[gd_scene load_steps=32 format=3 uid="uid://b2fcrx7ohgn2i"]
 
 [ext_resource type="Script" uid="uid://wnd51kqayidl" path="res://scripts/game_manager.gd" id="1_61hdk"]
 [ext_resource type="AudioStream" uid="uid://b5g34w47yw0di" path="res://audio/ambient/forest_bitcrushed_ambient1.mp3" id="1_nt4qc"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" uid="uid://d1anmy68tuwe6" path="res://scripts/pages/page_manager.gd" id="2_msooh"]
 [ext_resource type="AudioStream" uid="uid://xjt0f2pu0a11" path="res://audio/menu/hopping_fence.mp3" id="3_b751n"]
 [ext_resource type="PackedScene" uid="uid://x286lkut7nsk" path="res://scenes/collection/page_collection_ambience.tscn" id="3_xmb83"]
-[ext_resource type="PackedScene" uid="uid://b44g52cw8jhlu" path="res://scenes/ui/screen_color_canvas.tscn" id="4_nt4qc"]
 [ext_resource type="Script" uid="uid://ny0s8850mmpr" path="res://scripts/audio_player.gd" id="4_y68vu"]
 [ext_resource type="Script" uid="uid://ddr4dh2ckopug" path="res://scripts/ui/in_game_ui_manager.gd" id="5_1fnbc"]
 [ext_resource type="FontFile" uid="uid://b78ski6kf8hw1" path="res://fonts/ari-w9500-display.ttf" id="6_ajba2"]
@@ -84,7 +83,7 @@ fog_depth_end = 4000.0
 script = ExtResource("1_61hdk")
 
 [node name="Player" parent="." instance=ExtResource("1_u1wns")]
-transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, -27, 1, 124)
+transform = Transform3D(0.96592593, 0, -0.25881907, 0, 1, 0, 0.25881907, 0, 0.96592593, -27, 1, 124)
 
 [node name="PageSpawnManager" type="Node" parent="."]
 script = ExtResource("2_msooh")
@@ -2643,8 +2642,6 @@ use_collision = true
 collision_layer = 3
 size = Vector3(63.46692, 1, 6)
 material = SubResource("StandardMaterial3D_u1wns")
-
-[node name="ColorPalette" parent="." instance=ExtResource("4_nt4qc")]
 
 [node name="InGameUI" type="CanvasLayer" parent="."]
 script = ExtResource("5_1fnbc")

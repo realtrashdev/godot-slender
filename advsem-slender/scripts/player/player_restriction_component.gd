@@ -2,6 +2,9 @@ class_name PlayerRestrictionComponent extends Node
 
 var restrictions: Array[PlayerRestriction] = []
 
+func _ready() -> void:
+	Signals.game_finished.connect(clear_restrictions)
+
 func add_restriction(type: PlayerRestriction.RestrictionType, source: String):
 	var restrict: PlayerRestriction = PlayerRestriction.new()
 	restrict.restriction = type
@@ -15,6 +18,15 @@ func remove_restrictions_from_source(source: String):
 		if restrictions[i].source == source:
 			print("Removed restriction: " + str(restrictions[i].restriction) + " from: " + source)
 			restrictions.remove_at(i)
+			return
+
+func remove_all_restrictions_from_source(source: String):
+	var i = restrictions.size() - 1
+	while i >= 0:
+		if restrictions[i].source == source:
+			print("Removed restriction: " + str(restrictions[i].restriction) + " from: " + source)
+			restrictions.remove_at(i)
+			return
 		i -= 1
 
 func check_for_restriction(type: PlayerRestriction.RestrictionType) -> bool:

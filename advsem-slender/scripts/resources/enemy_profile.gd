@@ -16,6 +16,8 @@ enum EnemyType { LETHAL, DANGEROUS, NUISANCE }
 @export var min_spawn_time: float
 ## Maximum amount of time this enemy can wait before spawning.
 @export var max_spawn_time: float
+## Maximum amount of this enemy that can be active at once.
+@export var max_instances: int = 3
 
 @export_group("Death")
 ## AAAAAAHH!!

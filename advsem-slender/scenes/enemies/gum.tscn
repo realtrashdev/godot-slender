@@ -27,6 +27,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="Control" type="Control" parent="BounceArea"]
 layout_mode = 1
@@ -40,9 +41,13 @@ grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="Button" type="Button" parent="BounceArea/Control"]
-layout_mode = 0
-offset_right = 250.0
-offset_bottom = 250.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.00012207031
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_colors/font_color = Color(0.8745098, 0.8745098, 0.8745098, 0)
 theme_override_colors/font_focus_color = Color(0.9490196, 0.9490196, 0.9490196, 0)
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
@@ -70,6 +75,7 @@ autoplay = "Run"
 frame_progress = 0.85556746
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -93,4 +99,4 @@ stream = ExtResource("4_uf3fo")
 volume_db = -5.0
 parameters/looping = true
 
-[connection signal="button_down" from="BounceArea/Control/Button" to="." method="_on_button_down"]
+[connection signal="button_down" from="BounceArea/Control/Button" to="." method="on_button_down"]

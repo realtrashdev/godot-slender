@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://c3f6y28ur3tma"]
+[gd_scene load_steps=6 format=3 uid="uid://c3f6y28ur3tma"]
 
 [ext_resource type="Script" uid="uid://b5rrwodfv7prw" path="res://scripts/ui/menus/menu_manager.gd" id="1_mbnms"]
 [ext_resource type="PackedScene" uid="uid://bf05ntktimsst" path="res://scenes/ui/menus/menu_main.tscn" id="2_r4bvl"]
-[ext_resource type="PackedScene" uid="uid://b44g52cw8jhlu" path="res://scenes/ui/screen_color_canvas.tscn" id="3_k37y1"]
 [ext_resource type="PackedScene" uid="uid://dfyinwfqrduhg" path="res://scenes/ui/menus/menu_play.tscn" id="3_r4bvl"]
 
 [sub_resource type="Sky" id="Sky_0xm2m"]
@@ -25,8 +24,6 @@ menus = Dictionary[String, PackedScene]({
 "Main": ExtResource("2_r4bvl"),
 "Play": ExtResource("3_r4bvl")
 })
-
-[node name="ColorChangeCanvas" parent="." instance=ExtResource("3_k37y1")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ekxnf")

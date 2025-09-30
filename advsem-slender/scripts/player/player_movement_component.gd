@@ -2,12 +2,16 @@ class_name PlayerMovementComponent extends Node
 
 const SPEED = 2.0
 const SPRINT_SPEED = 3.5
+# delay before the player can move at the start
+const START_SPEED_DELAY = 1
 const ACCELERATION = 7.0
 const PATH_MODIFIER = 0.5
 
 var player: CharacterBody3D
 var restriction_component: PlayerRestrictionComponent
 var audio_component: PlayerAudioComponent
+
+var active: bool = false
 
 @onready var ground_raycast: RayCast3D
 
@@ -18,6 +22,9 @@ func _ready():
 	ground_raycast = player.get_node("GroundRayCast")
 
 func handle_physics(delta: float):
+	if not active:
+		return
+	
 	# Add gravity
 	if not player.is_on_floor():
 		player.velocity += player.get_gravity() * delta
@@ -58,7 +65,9 @@ func get_path_boost() -> float:
 	return 0
 
 func activate():
-	set_process(true)
+	await get_tree().create_timer(START_SPEED_DELAY).timeout
+	active = true
 
 func deactivate():
-	set_process(false)
+	player.velocity = Vector3.ZERO
+	active = false

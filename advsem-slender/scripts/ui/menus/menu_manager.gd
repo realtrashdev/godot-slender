@@ -10,6 +10,7 @@ func _ready() -> void:
 	create_tween().tween_property($Music, "volume_db", -7.0, 1)
 	current_menu.menu_selected.connect(open_new_menu)
 	current_menu.change_scale(Vector2.ZERO)
+	gum()
 
 func open_new_menu(menu_name: String, direction: Menu.MenuDirection):
 	if menu_name == "Quit":
@@ -35,3 +36,14 @@ func open_new_menu(menu_name: String, direction: Menu.MenuDirection):
 			menu.change_scale(Vector2.ZERO)
 		Menu.MenuDirection.BACKWARD:
 			menu.change_scale(Vector2(5, 5))
+
+## 1 in 500 chance every second to spawn gum enemy on title screen
+## Fun little easter egg, should decrease the odds probably
+func gum():
+	await get_tree().create_timer(1).timeout
+	var num = randi_range(1, 500)
+	if num == 500:
+		var scene = preload("res://scenes/enemies/gum.tscn").instantiate()
+		add_child(scene)
+		scene.activate()
+	gum()

@@ -4,16 +4,13 @@ const DEFAULT_INTERVAL: float = 3.0
 
 var interval: float = DEFAULT_INTERVAL
 var play_interval: bool = false
-var pages: int = 0
 var too_long = false
 
 func _ready():
-	Signals.page_collected.connect(collected)
+	Signals.page_collected.connect(on_page_collected)
 
-func collected():
-	pages += 1
-	
-	match pages:
+func on_page_collected():
+	match CurrentGameData.current_pages_collected:
 		1:
 			if too_long:
 				return
@@ -53,3 +50,8 @@ func taking_too_long():
 	play_interval = true
 	await get_tree().create_timer(1).timeout
 	sound_interval_loop()
+
+func on_game_finished():
+	$Stomping.stop()
+	play_interval = false
+	too_long = false

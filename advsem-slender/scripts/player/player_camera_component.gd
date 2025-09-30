@@ -4,7 +4,8 @@ const MOUSE_SENSITIVITY = 0.002
 const CAMERA_SMOOTHING = 10
 
 var camera_sensitivity: float = 0
-var camera_rotation := Vector3(0, 0, 0)
+var camera_rotation: Vector3
+var start_rotation: Vector3
 var time_count: float
 
 var flashlight_offset := Vector3(0, 0, 0)
@@ -24,6 +25,9 @@ func _ready():
 	flashlight_component = player.get_node("FlashlightComponent")
 	head = player.get_node("Head")
 	camera = player.get_node("Head/Camera3D")
+	
+	start_rotation = Vector3(0, player.rotation.y, 0)
+	camera_rotation = start_rotation
 
 func handle_input(event):
 	if event is InputEventMouseMotion:
@@ -68,6 +72,7 @@ func handle_camera_bobbing(delta: float):
 		camera.rotation.z = lerp(camera.rotation.z, 0.0, 5 * delta)
 
 func activate():
+	camera_rotation = start_rotation
 	camera_sensitivity = 0
 	create_tween().tween_property(self, "camera_sensitivity", MOUSE_SENSITIVITY, 2)
 	camera.fov = 150.0

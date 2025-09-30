@@ -1,7 +1,5 @@
 extends CharacterBody3D
 
-signal player_dead
-
 const MENU_SCENE = "res://scenes/ui/menus/menu_base.tscn"
 
 @onready var movement_component: PlayerMovementComponent = $MovementComponent
@@ -12,7 +10,6 @@ const MENU_SCENE = "res://scenes/ui/menus/menu_base.tscn"
 
 func _ready() -> void:
 	deactivate()
-	#restriction_component.add_restriction(PlayerRestriction.RestrictionType.CAMERA, "Self")
 
 func _process(delta: float) -> void:
 	if Input.is_key_pressed(KEY_ESCAPE):
@@ -27,7 +24,7 @@ func _input(event):
 	camera_component.handle_input(event)
 
 func die(enemy_name: String):
-	player_dead.emit(enemy_name)
+	Signals.player_died.emit(enemy_name)
 	deactivate()
 	var tree: SceneTree = get_tree()
 	await get_tree().create_timer(1).timeout
@@ -42,6 +39,7 @@ func deactivate():
 	movement_component.deactivate()
 	camera_component.deactivate()
 	flashlight_component.deactivate()
+	restriction_component.clear_restrictions()
 
 # Restriction convenience methods
 func add_restriction(type: PlayerRestriction.RestrictionType, source: String):

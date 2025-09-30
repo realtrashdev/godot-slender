@@ -10,6 +10,9 @@ func generate_page():
 # For regenerating page locations, called if player reaches page quota without collecting this one
 # Deletes all uncollected pages
 func reset():
+	print("Attempting page reset")
 	for child in get_children():
-		if child.scene_file_path == PAGE_SCENE:
+		if child is Interactible:
+			print("Reset page")
 			child.queue_free()
+			return
