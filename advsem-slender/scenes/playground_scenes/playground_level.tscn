@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://b2fcrx7ohgn2i"]
+[gd_scene load_steps=31 format=3 uid="uid://b2fcrx7ohgn2i"]
 
 [ext_resource type="Script" uid="uid://wnd51kqayidl" path="res://scripts/game_manager.gd" id="1_61hdk"]
 [ext_resource type="AudioStream" uid="uid://b5g34w47yw0di" path="res://audio/ambient/forest_bitcrushed_ambient1.mp3" id="1_nt4qc"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://ny0s8850mmpr" path="res://scripts/audio_player.gd" id="4_y68vu"]
 [ext_resource type="Script" uid="uid://ddr4dh2ckopug" path="res://scripts/ui/in_game_ui_manager.gd" id="5_1fnbc"]
 [ext_resource type="FontFile" uid="uid://b78ski6kf8hw1" path="res://fonts/ari-w9500-display.ttf" id="6_ajba2"]
+[ext_resource type="Texture2D" uid="uid://bhiinw8g1lsjp" path="res://art/2d/water1.aseprite" id="7_61hdk"]
 [ext_resource type="PackedScene" uid="uid://c5j4dypjweuc2" path="res://scenes/ui/jumpscare_canvaslayer.tscn" id="7_jyewl"]
 [ext_resource type="PackedScene" uid="uid://cuouj5je2wv8g" path="res://scenes/collection/page_location.tscn" id="8_wn8qo"]
 [ext_resource type="PackedScene" uid="uid://cxsorime4wuh2" path="res://scenes/playground_scenes/playground_tree.tscn" id="9_wn8qo"]
@@ -33,8 +34,12 @@ uv1_triplanar = true
 texture_filter = 0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nbvtq"]
-albedo_color = Color(0, 0, 0, 1)
+albedo_texture = ExtResource("7_61hdk")
 metallic_specular = 0.0
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ajba2"]
 albedo_texture = ExtResource("11_nbvtq")
@@ -308,24 +313,29 @@ use_collision = true
 size = Vector3(255, 1, 255)
 material = SubResource("StandardMaterial3D_h2yge")
 
-[node name="CSGTorus3D" type="CSGTorus3D" parent="Map/Walls and Floor"]
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Map/Walls and Floor"]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 0.01, 0, -8.742278e-08, 0, -1, -67, 0.5, 27)
-inner_radius = 7.0
-outer_radius = 24.0
+radius = 24.0
 material = SubResource("StandardMaterial3D_nbvtq")
 
-[node name="NavigationObstacle3D2" type="NavigationObstacle3D" parent="Map/Walls and Floor/CSGTorus3D"]
+[node name="NavigationObstacle3D2" type="NavigationObstacle3D" parent="Map/Walls and Floor/CSGCylinder3D"]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 100, 0, 8.742278e-08, 0, -1, -67, 0, 27.000006)
 height = 9.85
 vertices = PackedVector3Array(-68.727806, 0, 20.623165, -67.020775, 0, 19.83973, -62.11853, 0, 22.148144, -59.94012, 0, 26.939075, -61.904533, 0, 32.08073, -66.91279, 0, 33.963234, -71.8758, 0, 31.953053, -73.83469, 0, 27.222343, -73.11455, 0, 24.803257, -85.12173, 0, 12.89773, -91.26221, 0, 27.000198, -84.128044, 0, 44.334656, -67.04497, 0, 51.355793, -49.712498, 0, 44.200874, -43.002617, 0, 27.292423, -50.10364, 0, 9.974119, -67.1732, 0, 2.9485397, -80.60714, 0, 8.529098)
 affect_navigation_mesh = true
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="Map/Walls and Floor/CSGTorus3D"]
+[node name="CSGBox3D" type="CSGBox3D" parent="Map/Walls and Floor/CSGCylinder3D"]
 transform = Transform3D(-0.7071068, 0, 0.7071067, 0, 100, 0, -0.7071067, 0, -0.7071068, 10.570503, 350, 11.065528)
 operation = 2
 size = Vector3(20, 9, 5.988023)
 
-[node name="CSGTorus3D2" type="CSGTorus3D" parent="Map/Walls and Floor"]
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Map/Walls and Floor/CSGCylinder3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 29.749996, 0)
+operation = 2
+radius = 7.0
+height = 60.0
+
+[node name="CSGTorus3D" type="CSGTorus3D" parent="Map/Walls and Floor"]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1.1203921, 0, -8.742278e-08, 0, -1, -67, 0.5, 27)
 visible = false
 use_collision = true
@@ -334,24 +344,23 @@ inner_radius = 7.0
 outer_radius = 24.0
 material = SubResource("StandardMaterial3D_nbvtq")
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="Map/Walls and Floor/CSGTorus3D2"]
+[node name="CSGBox3D" type="CSGBox3D" parent="Map/Walls and Floor/CSGTorus3D"]
 transform = Transform3D(-0.7071068, 0, 0.7071067, 0, 0.8925447, 0, -0.7071067, 0, -0.7071068, 10.570717, 3.1239064, 11.065324)
 operation = 2
 size = Vector3(20, 9, 6.0005126)
 
-[node name="CSGTorus3D3" type="CSGTorus3D" parent="Map/Walls and Floor"]
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Map/Walls and Floor"]
 transform = Transform3D(-0.70710665, 0, -1.1313708, 0, 0.009999998, 0, 0.7071066, 0, -1.1313709, 48, 0.5, 17)
-inner_radius = 0.001
-outer_radius = 24.0
+radius = 24.0
 material = SubResource("StandardMaterial3D_nbvtq")
 
-[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="Map/Walls and Floor/CSGTorus3D3"]
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="Map/Walls and Floor/CSGCylinder3D2"]
 transform = Transform3D(-0.70710695, 0, 0.7071069, 0, 100.00002, 0, -0.4419417, 0, -0.44194177, 21.920315, 0, 28.726212)
 height = 9.85
 vertices = PackedVector3Array(31.09609, 0, 33.829258, 55.042816, 0, 47.858883, 75.115166, 0, 44.044033, 79.23239, 0, 24.479416, 65.06996, 0, -0.021389961, 40.832928, 0, -14.275332, 20.758024, 0, -10.24928, 16.894836, 0, 9.810536)
 affect_navigation_mesh = true
 
-[node name="CSGTorus3D4" type="CSGTorus3D" parent="Map/Walls and Floor"]
+[node name="CSGTorus3D2" type="CSGTorus3D" parent="Map/Walls and Floor"]
 transform = Transform3D(-0.70710653, 0, -1.1313708, 0, 0.8108099, 0, 0.7071066, 0, -1.1313709, 48, 0.5, 17)
 visible = false
 use_collision = true

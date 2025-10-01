@@ -14,6 +14,7 @@ var game_tips: Array[String] = [
 	#"Some enemies are harmless until bad timing from them gets you killed.",
 	"Pay attention to the brightness of your light.",
 	#"Most of them come from the woods."
+	"Consider checking your surroundings before taking a page."
 ]
 
 var rare_game_tips: Array[String] = [

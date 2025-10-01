@@ -22,14 +22,14 @@ const MODE_CONFIG = {
 	}
 }
 
-func get_default_pages_required(mode: GameMode) -> int:
-	return MODE_CONFIG[mode]["pages_required"]
-
-func get_default_extra_pages(mode: GameMode) -> int:
-	return MODE_CONFIG[mode]["extra_pages"]
-	
-func get_default_lives(mode: GameMode) -> int:
-	return MODE_CONFIG[mode]["default_lives"]
-
 func get_mode_description(mode: GameMode = CurrentGameData.game_mode) -> String:
 	return MODE_CONFIG[mode]["description"]
+
+func get_default_pages_required(mode: GameMode = CurrentGameData.game_mode) -> int:
+	return MODE_CONFIG[mode]["pages_required"]
+
+func get_default_extra_pages(mode: GameMode = CurrentGameData.game_mode) -> int:
+	return MODE_CONFIG[mode]["extra_pages"]
+	
+func get_default_lives(mode: GameMode = CurrentGameData.game_mode) -> int:
+	return MODE_CONFIG[mode]["default_lives"]
