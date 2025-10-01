@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dqhlmv6mga3ln"]
+[gd_scene load_steps=28 format=3 uid="uid://dqhlmv6mga3ln"]
 
 [ext_resource type="Script" uid="uid://e6rwi0hmxjmt" path="res://scripts/player/player.gd" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://b1w1fm55k1ows" path="res://scripts/player/interaction_cast.gd" id="2_onrkg"]
@@ -25,7 +25,6 @@
 [ext_resource type="Script" uid="uid://bbeekljcyfied" path="res://scripts/player/components/player_camera_component.gd" id="18_ujl30"]
 [ext_resource type="Script" uid="uid://c05dbsrlk1jcc" path="res://scripts/player/components/player_audio_component.gd" id="19_31cv2"]
 [ext_resource type="Script" uid="uid://b6m4rxuada185" path="res://scripts/player/components/player_flashlight_component.gd" id="19_ke2ow"]
-[ext_resource type="PackedScene" uid="uid://bq183qk6mi1ke" path="res://scenes/ui/viewmodel_arm.tscn" id="26_ujl30"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_onrkg"]
 
@@ -61,16 +60,12 @@ shape = SubResource("CapsuleShape3D_onrkg")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_i3pqv")
 
-[node name="GroundRayCast" type="RayCast3D" parent="."]
-target_position = Vector3(0, -1.2, 0)
-collision_mask = 3
-
 [node name="Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
 current = true
-fov = 80.0
+fov = 150.0
 script = ExtResource("7_d2wvv")
 
 [node name="RayCast3D" type="RayCast3D" parent="Head/Camera3D"]
@@ -108,13 +103,8 @@ target_position = Vector3(0, 0, -10)
 collision_mask = 3
 script = ExtResource("10_y4r1p")
 
-[node name="Viewmodel" type="CanvasLayer" parent="."]
-
-[node name="LeftArm" parent="Viewmodel" instance=ExtResource("26_ujl30")]
-
-[node name="RightArm" parent="Viewmodel" instance=ExtResource("26_ujl30")]
-offset_left = 1170.0
-offset_right = 1170.0
-default_state = 3
+[node name="GroundRayCast" type="RayCast3D" parent="."]
+target_position = Vector3(0, -1.2, 0)
+collision_mask = 3
 
 [connection signal="object_collected" from="Head/Camera3D/RayCast3D" to="Head/Flashlight" method="_on_ray_cast_3d_object_collected"]
