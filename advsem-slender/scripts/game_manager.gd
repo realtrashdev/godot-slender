@@ -5,14 +5,14 @@ extends Node3D
 const RARE_TIP_CHANCE: int = 50
 
 var game_tips: Array[String] = [
-	"Your light is attracted to important things.",
+	#"Your light is attracted to important things.",
 	"Some enemies require you to fight back.",
 	# trauma
 	"You are slower in the grass.",
 	"The path will guide your way.",
-	"You can still see around yourself without your light on.",
-	"Some enemies are harmless until bad timing from them gets you killed.",
-	#"Pay attention to the brightness of your light.",
+	#"You can still see around yourself without your light on.",
+	#"Some enemies are harmless until bad timing from them gets you killed.",
+	"Pay attention to the brightness of your light.",
 	#"Most of them come from the woods."
 ]
 

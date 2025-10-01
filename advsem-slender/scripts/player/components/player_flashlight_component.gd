@@ -1,5 +1,7 @@
 class_name PlayerFlashlightComponent extends Node
 
+signal target_brightness_reached
+
 const LIGHT_BRIGHTNESS: float = 5.0
 const DEFAULT_SPRINT_ANGLE: float = -60
 const TURN_ON_ANGLE: Vector2 = Vector2(-60, -30)
@@ -10,6 +12,8 @@ var rotation_override: float = 0
 var sprint_angle_modifier: float = 20
 var flashlight_offset := Vector3(0, 0, 0)
 var time_count: float
+
+var target_brightness: float
 
 var player: CharacterBody3D
 var restriction_component: PlayerRestrictionComponent
@@ -24,6 +28,7 @@ var camera_component: PlayerCameraComponent
 
 func _ready() -> void:
 	Signals.page_collected.connect(on_page_collected)
+	Signals.enemy_spawned.connect(on_enemy_spawned)
 	
 	player = get_parent()
 	restriction_component = player.get_node("RestrictionComponent")
@@ -36,6 +41,7 @@ func _ready() -> void:
 	omni_light = flashlight.get_node("OmniLight3D")
 	interaction_cast = player.get_node("Head/Camera3D/RayCast3D")
 	
+	target_brightness = light.light_energy
 	sprint_angle = get_sprint_angle()
 	call_deferred("deactivate")
 
@@ -46,6 +52,9 @@ func _process(delta: float) -> void:
 		toggle_light(!light.visible)
 
 func handle_flashlight_physics(delta: float):
+	if light.light_energy != target_brightness:
+		flicker_light()
+	
 	if not point_flashlight():
 		get_flashlight_offset(delta)
 
@@ -106,7 +115,29 @@ func toggle_light(on: bool):
 	omni_light.visible = !light.visible
 	flashlight.rotation.x = deg_to_rad(TURN_ON_ANGLE.x)
 	flashlight.rotation.y = deg_to_rad(TURN_ON_ANGLE.y)
+	$"../Head/Flashlight/RayCast3D".enabled = on
 	play_audio()
+
+func set_flicker_light(starting_energy: float):
+	var energy = light.light_energy
+	
+	target_brightness = starting_energy
+	await target_brightness_reached
+	target_brightness = energy
+
+func flicker_light():
+	if light.light_energy > target_brightness:
+		light.light_energy += randf_range(-0.2, 0.05)
+		
+		if light.light_energy <= target_brightness:
+			light.light_energy = target_brightness
+			target_brightness_reached.emit()
+	else:
+		light.light_energy += randf_range(-0.05, 0.2)
+		
+		if light.light_energy >= target_brightness:
+			light.light_energy = target_brightness
+			target_brightness_reached.emit()
 
 func play_audio():
 	audio_source.pitch_scale = randf_range(0.9, 1.1)
@@ -117,7 +148,6 @@ func get_sprint_angle() -> float:
 
 func activate():
 	set_process(true)
-	light.visible = true
 	flashlight.visible = true
 	flashlight.set_process(true)
 	toggle_light(true)
@@ -128,3 +158,12 @@ func deactivate():
 	omni_light.visible = false
 	flashlight.visible = false
 	flashlight.set_process(false)
+
+func on_enemy_spawned(type: EnemyProfile.EnemyType):
+	match type:
+		EnemyProfile.EnemyType.LETHAL:
+			set_flicker_light(light.light_energy / 3)
+		EnemyProfile.EnemyType.DANGEROUS:
+			set_flicker_light(light.light_energy / 1.5)
+		EnemyProfile.EnemyType.NUISANCE:
+			pass

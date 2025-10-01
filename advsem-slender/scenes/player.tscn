@@ -20,11 +20,11 @@
 [ext_resource type="AudioStream" uid="uid://c0107jqfbsdk8" path="res://audio/player/walking/tile/walking_tile3.mp3" id="14_4ni07"]
 [ext_resource type="AudioStream" uid="uid://c0fwqi2qadp3e" path="res://audio/player/walking/tile/walking_tile4.mp3" id="15_l71n6"]
 [ext_resource type="AudioStream" uid="uid://dktt3xhu5sgs7" path="res://audio/player/walking/tile/walking_tile5.mp3" id="16_ke2ow"]
-[ext_resource type="Script" uid="uid://veenudwxgh0m" path="res://scripts/player/player_restriction_component.gd" id="17_a38lo"]
-[ext_resource type="Script" uid="uid://cwdxs3exqkduy" path="res://scripts/player/player_movement_component.gd" id="17_ke2ow"]
-[ext_resource type="Script" uid="uid://bbeekljcyfied" path="res://scripts/player/player_camera_component.gd" id="18_ujl30"]
-[ext_resource type="Script" uid="uid://c05dbsrlk1jcc" path="res://scripts/player/player_audio_component.gd" id="19_31cv2"]
-[ext_resource type="Script" uid="uid://b6m4rxuada185" path="res://scripts/player/player_flashlight_component.gd" id="19_ke2ow"]
+[ext_resource type="Script" uid="uid://veenudwxgh0m" path="res://scripts/player/components/player_restriction_component.gd" id="17_a38lo"]
+[ext_resource type="Script" uid="uid://cwdxs3exqkduy" path="res://scripts/player/components/player_movement_component.gd" id="17_ke2ow"]
+[ext_resource type="Script" uid="uid://bbeekljcyfied" path="res://scripts/player/components/player_camera_component.gd" id="18_ujl30"]
+[ext_resource type="Script" uid="uid://c05dbsrlk1jcc" path="res://scripts/player/components/player_audio_component.gd" id="19_31cv2"]
+[ext_resource type="Script" uid="uid://b6m4rxuada185" path="res://scripts/player/components/player_flashlight_component.gd" id="19_ke2ow"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_onrkg"]
 

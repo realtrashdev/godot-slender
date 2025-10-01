@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://b2fcrx7ohgn2i"]
+[gd_scene load_steps=30 format=3 uid="uid://b2fcrx7ohgn2i"]
 
 [ext_resource type="Script" uid="uid://wnd51kqayidl" path="res://scripts/game_manager.gd" id="1_61hdk"]
 [ext_resource type="AudioStream" uid="uid://b5g34w47yw0di" path="res://audio/ambient/forest_bitcrushed_ambient1.mp3" id="1_nt4qc"]
@@ -13,9 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://cuouj5je2wv8g" path="res://scenes/collection/page_location.tscn" id="8_wn8qo"]
 [ext_resource type="PackedScene" uid="uid://cxsorime4wuh2" path="res://scenes/playground_scenes/playground_tree.tscn" id="9_wn8qo"]
 [ext_resource type="Texture2D" uid="uid://c4he6fivjqx5e" path="res://art/2d/chain_fence.aseprite" id="10_1fnbc"]
-[ext_resource type="Script" uid="uid://cd3rioc31ppei" path="res://scripts/ui/funny_business.gd" id="10_i2ncu"]
 [ext_resource type="PackedScene" uid="uid://d2ilqs2rsu4l1" path="res://scenes/enemies/spawn_marker.tscn" id="11_2v4pv"]
-[ext_resource type="Material" uid="uid://dfno40i012odi" path="res://shaders/fourcolor_screen.tres" id="11_61hdk"]
 [ext_resource type="PackedScene" uid="uid://dq6178lkha864" path="res://scenes/playground_scenes/playground_tree_page.tscn" id="11_msooh"]
 [ext_resource type="Texture2D" uid="uid://b0oaoqusfayma" path="res://art/2d/grass1.aseprite" id="11_nbvtq"]
 [ext_resource type="PackedScene" uid="uid://c6pe2a6g7kie7" path="res://scenes/playground_scenes/building.tscn" id="12_wn8qo"]
@@ -2701,10 +2699,6 @@ stream = ExtResource("1_nt4qc")
 volume_db = -10.0
 parameters/looping = true
 script = ExtResource("4_y68vu")
-
-[node name="Funny Business" type="Node" parent="."]
-script = ExtResource("10_i2ncu")
-shader_material = ExtResource("11_61hdk")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_h2yge")

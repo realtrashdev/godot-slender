@@ -9,6 +9,8 @@ func add_enemy_spawner(enemy_profile: EnemyProfile, required: int):
 	spawner.profile = enemy_profile
 	spawner.required_pages = required
 	
+	# brosdy wuz here
+	
 	# add to scene
 	add_child(spawner)
 	spawners[enemy_profile.name] = spawner

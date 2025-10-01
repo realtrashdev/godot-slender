@@ -4,6 +4,8 @@ extends Node3D
 
 const MENU_OPEN_DELAY: float = 0.5
 
+var recent_keys: Array[String] = []
+
 @onready var current_menu: CanvasLayer = $MainMenuCanvas
 @onready var typing_sounds: AudioStreamPlayer = $TypingSounds
 
@@ -11,7 +13,30 @@ func _ready() -> void:
 	create_tween().tween_property($Music, "volume_db", -7.0, 1)
 	current_menu.menu_selected.connect(open_new_menu)
 	current_menu.change_scale(Vector2.ZERO)
-	gum()
+	check_gum()
+
+func _input(event: InputEvent) -> void:
+	if event is not InputEventKey:
+		return
+	
+	if event.is_released() or event.is_echo():
+		return
+	
+	print(event.as_text())
+	recent_keys.append(event.as_text())
+	
+	if recent_keys.size() > 10:
+		recent_keys.remove_at(0)
+	
+	if recent_keys.size() < 3:
+		return
+	
+	var last_idx = recent_keys.size() - 1
+	if last_idx >= 2:
+		if recent_keys[last_idx - 2] == "G" and \
+		   recent_keys[last_idx - 1] == "U" and \
+		   recent_keys[last_idx] == "M":
+			spawn_gum()
 
 func open_new_menu(menu_name: String, direction: Menu.MenuDirection):
 	if menu_name == "Quit":
@@ -40,11 +65,14 @@ func open_new_menu(menu_name: String, direction: Menu.MenuDirection):
 
 ## 1 in 500 chance every second to spawn gum enemy on title screen
 ## Fun little easter egg, should decrease the odds probably
-func gum():
+func check_gum():
 	await get_tree().create_timer(1).timeout
 	var num = randi_range(1, 500)
 	if num == 500:
-		var scene = preload("res://scenes/enemies/gum.tscn").instantiate()
-		add_child(scene)
-		scene.activate()
-	gum()
+		spawn_gum()
+	check_gum()
+
+func spawn_gum():
+	var scene = preload("res://scenes/enemies/gum.tscn").instantiate()
+	add_child(scene)
+	scene.activate()

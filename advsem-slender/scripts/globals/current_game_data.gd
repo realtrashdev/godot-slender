@@ -14,6 +14,10 @@ var current_extra_pages: int = 2
 var current_max_pages: int = -1
 #endregion
 
+#region Enemies
+var danger_level: int = 0
+#endregion
+
 #region Lives
 var default_lives: int
 var lives_remaining: int

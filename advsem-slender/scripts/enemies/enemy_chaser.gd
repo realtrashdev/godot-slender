@@ -5,14 +5,12 @@ extends Enemy3D
 ## Gets faster for each page collected.
 
 # movement constants
-const BASE_SPEED: float = 3.8
-const SPEED_INCREMENT: float = 0.2
+const BASE_SPEED: float = 4.5
 const LIGHT_SPEED_PENALTY: float = 2.0
 const RUN_SPEED_MULTIPLIER: float = 15.0
 
 # chase timing constants
 const BASE_CHASE_TIME: float = 3.0
-const CHASE_TIME_INCREMENT: float = 0.15
 
 # state management
 enum State { CHASING, FLEEING, DISABLED }
@@ -142,12 +140,12 @@ func on_flee_complete() -> void:
 
 ## calculations
 func calculate_speed() -> float:
-	var base = BASE_SPEED + (SPEED_INCREMENT * CurrentGameData.current_pages_collected)
+	var base = BASE_SPEED
 	var penalty = LIGHT_SPEED_PENALTY if is_lit else 0.0
 	return base - penalty
 
 func calculate_chase_time() -> float:
-	return BASE_CHASE_TIME + (CHASE_TIME_INCREMENT * CurrentGameData.current_pages_collected)
+	return BASE_CHASE_TIME
 
 
 ## public

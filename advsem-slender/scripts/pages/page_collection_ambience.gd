@@ -26,8 +26,11 @@ func on_page_collected():
 		2:
 			create_tween().tween_property($StompingNormal, "volume_db", -12, 1)
 		3:
-			await get_tree().create_timer(1).timeout
+			play_interval = false
+			await get_tree().create_timer(3).timeout
+			play_interval = true
 			$GameMusic1.play()
+			sound_interval_loop()
 		4:
 			create_tween().tween_property($StompingNormal, "volume_db", -10, 1)
 		5:
@@ -59,6 +62,8 @@ func on_game_started():
 	$StompingDistorted.volume_db = DISTOMPING_DEFAULT_VOLUME
 
 func on_game_finished():
+	for sound in active_interval_sounds:
+		sound.stop()
 	active_interval_sounds.clear()
 	$GameMusic1.stop()
 	play_interval = false

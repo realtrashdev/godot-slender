@@ -16,4 +16,6 @@ signal page_collected
 
 # Enemies
 @warning_ignore("unused_signal")
+signal enemy_spawned(type: EnemyProfile.EnemyType)
+@warning_ignore("unused_signal")
 signal killed_player(name: String)

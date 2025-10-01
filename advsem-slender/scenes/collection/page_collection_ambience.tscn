@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://x286lkut7nsk"]
+[gd_scene load_steps=5 format=3 uid="uid://x286lkut7nsk"]
 
 [ext_resource type="Script" uid="uid://pmqdndfj8d4t" path="res://scripts/pages/page_collection_ambience.gd" id="1_otsxu"]
 [ext_resource type="AudioStream" uid="uid://dhy2oiyhu6p67" path="res://audio/ambient/stomp_regular.mp3" id="2_evisa"]
 [ext_resource type="AudioStream" uid="uid://blvfhi5r316q7" path="res://audio/music/endless_slender1.mp3" id="3_2xf1w"]
+[ext_resource type="AudioStream" uid="uid://g1st3eumjgax" path="res://audio/ambient/stomp_distorted.mp3" id="3_lmy65"]
 
 [node name="PageCollectionAmbience" type="Node"]
 script = ExtResource("1_otsxu")
@@ -12,9 +13,9 @@ stream = ExtResource("2_evisa")
 volume_db = -15.0
 
 [node name="StompingDistorted" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_evisa")
-volume_db = -5.0
+stream = ExtResource("3_lmy65")
+volume_db = -8.0
 
 [node name="GameMusic1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_2xf1w")
-volume_db = -10.0
+volume_db = -5.0

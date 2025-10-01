@@ -14,6 +14,7 @@ metadata/_custom_type_script = "uid://d0hm3sts6wa7d"
 script = ExtResource("1_hrl1i")
 scene = ExtResource("2_puspk")
 name = "Chaser"
+type = 2
 description = "Appears from the woods and pursues you. Gets more aggressive as pages are collected. Use your flashlight to repel it."
 spawn_behavior = SubResource("Resource_nklym")
 min_spawn_time = 20.0

@@ -57,6 +57,9 @@ func spawn_enemy() -> Node:
 	else:
 		spawn_3d_enemy(enemy)
 	
+	Signals.enemy_spawned.emit(profile.type)
+	update_danger_level(profile.type)
+	
 	return enemy
 
 func spawn_2d_enemy(enemy: Enemy2D):
@@ -79,6 +82,7 @@ func spawn_3d_enemy(enemy: Enemy3D):
 	enemy.global_position = pos
 
 func on_enemy_died(enemy: Node):
+	update_danger_level(-profile.type)
 	active_enemies.erase(enemy)
 
 func reset_timer():
@@ -105,3 +109,6 @@ func clear_all_enemies():
 			print("killing %s" % [enemy.name])
 			enemy.queue_free()
 	active_enemies.clear()
+
+func update_danger_level(value: int):
+	CurrentGameData.danger_level += value
