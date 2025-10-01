@@ -35,6 +35,7 @@ gdscript/warnings/narrowing_conversion=0
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/size/mode=3
 window/stretch/mode="viewport"
 
 [editor_plugins]
@@ -103,6 +104,7 @@ shader_toggle={
 
 3d_physics/layer_1="Default"
 3d_physics/layer_2="Path"
+3d_physics/layer_3="NoRaycastBlock"
 3d_physics/layer_4="Enemy"
 3d_physics/layer_6="Flashlight Cast"
 3d_physics/layer_8="Interactible"

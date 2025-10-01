@@ -22,10 +22,10 @@ func _ready() -> void:
 	reset_timer()
 
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("ui_focus_next"):
-		if active_enemies.size() >= profile.max_instances:
-			return
-		spawn_enemy()
+	#if Input.is_action_just_pressed("ui_focus_next"):
+	#	if active_enemies.size() >= profile.max_instances:
+	#		return
+	#	spawn_enemy()
 	
 	if not enabled or not enemy_scene:
 		return

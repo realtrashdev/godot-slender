@@ -11,7 +11,7 @@ radius = 0.856761
 height = 4.0
 
 [node name="Chaser" type="CharacterBody3D"]
-collision_layer = 41
+collision_layer = 45
 script = ExtResource("1_3pbm7")
 
 [node name="Sprite3D" type="AnimatedSprite3D" parent="."]
