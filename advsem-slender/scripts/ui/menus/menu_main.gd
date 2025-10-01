@@ -1,6 +1,6 @@
 extends Menu
 
-const GAME_SCENE: String = "res://scenes/playground_scenes/playground_level.tscn"
+const GAME_SCENE: String = "res://scenes/levels/forest_level.tscn"
 
 @onready var manager: Node3D = get_parent()
 

@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=3 uid="uid://dgaqwu6ixvmr4"]
+
+[ext_resource type="Script" uid="uid://dkw83jr6dbkgd" path="res://scripts/playground_tree.gd" id="1_pdefv"]
+[ext_resource type="ArrayMesh" uid="uid://c1hm5yr66fejg" path="res://art/3d/tree1.obj" id="2_j2nuu"]
+[ext_resource type="Texture2D" uid="uid://drjgpr68dwehb" path="res://art/3d/barktexture.png" id="3_ptscp"]
+[ext_resource type="Texture2D" uid="uid://bhgtwu20elyhr" path="res://art/3d/leavestexture.png" id="4_e5t3m"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h2yge"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tev0r"]
+albedo_texture = ExtResource("3_ptscp")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k8dh7"]
+albedo_texture = ExtResource("4_e5t3m")
+texture_filter = 0
+
+[node name="PG_Tree" type="Node3D"]
+script = ExtResource("1_pdefv")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+visible = false
+use_collision = true
+height = 6.0
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0)
+visible = false
+collision_layer = 128
+collision_mask = 0
+radius = 3.0
+material = SubResource("StandardMaterial3D_h2yge")
+
+[node name="Model" type="MeshInstance3D" parent="."]
+transform = Transform3D(3.455, 0, 0, 0, 3.455, 0, 0, 0, 3.455, 0, 0, 0)
+mesh = ExtResource("2_j2nuu")
+surface_material_override/0 = SubResource("StandardMaterial3D_tev0r")
+surface_material_override/1 = SubResource("StandardMaterial3D_k8dh7")
+surface_material_override/2 = SubResource("StandardMaterial3D_k8dh7")
+surface_material_override/3 = SubResource("StandardMaterial3D_k8dh7")

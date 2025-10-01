@@ -1,0 +1,6 @@
+# Made in Blockbench 4.12.4
+newmtl m_e073d3bf-603f-b2e3-89f4-77281ee47220
+map_Kd barktexture.png
+newmtl m_ba3fa610-6ed4-1c99-68cd-8236811ffcc4
+map_Kd leavestexture.png
+newmtl none

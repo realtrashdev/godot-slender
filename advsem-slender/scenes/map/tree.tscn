@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://cxsorime4wuh2"]
+
+[ext_resource type="Script" uid="uid://dkw83jr6dbkgd" path="res://scripts/playground_tree.gd" id="1_j21aw"]
+[ext_resource type="ArrayMesh" uid="uid://qs3j3ixt5xtq" path="res://art/3d/tree1_smooth.obj" id="2_p8aw7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p8aw7"]
+albedo_color = Color(0.3779188, 0.37791887, 0.37791884, 1)
+backlight = Color(1, 1, 1, 1)
+distance_fade_mode = 3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2hh47"]
+albedo_color = Color(0.6255971, 0.6255971, 0.6255971, 1)
+
+[node name="Tree" type="Node3D"]
+script = ExtResource("1_j21aw")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+visible = false
+use_collision = true
+radius = 0.7
+height = 6.0
+
+[node name="Tree1" type="MeshInstance3D" parent="."]
+transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 0, 0, 0)
+mesh = ExtResource("2_p8aw7")
+surface_material_override/0 = SubResource("StandardMaterial3D_p8aw7")
+surface_material_override/1 = SubResource("StandardMaterial3D_2hh47")
+surface_material_override/2 = SubResource("StandardMaterial3D_2hh47")
+surface_material_override/3 = SubResource("StandardMaterial3D_2hh47")
