@@ -7,3 +7,9 @@ func _ready() -> void:
 	
 	rand = randf_range(0, 360)
 	rotation.y = rand
+	
+	rand = randi_range(1, 10)
+	if rand == 10:
+		$CPUParticles3D.emitting = true
+	else:
+		$CPUParticles3D.emitting = false

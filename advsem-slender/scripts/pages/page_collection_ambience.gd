@@ -15,6 +15,10 @@ func initialize(state: GameState):
 	game_state = state
 	Signals.page_collected.connect(on_page_collected)
 
+func _exit_tree():
+	if Signals.page_collected.is_connected(on_page_collected):
+		Signals.page_collected.disconnect(on_page_collected)
+
 func on_page_collected():
 	match game_state.current_pages_collected:
 		1:

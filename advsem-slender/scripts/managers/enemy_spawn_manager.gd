@@ -1,17 +1,17 @@
 class_name EnemySpawnManager extends Node
 
-# enemy_name, spawner
+var game_state: GameState
+var player: CharacterBody3D
 var spawners: Dictionary = {}
 
+func initialize(state: GameState, player_ref: CharacterBody3D):
+	game_state = state
+	player = player_ref
+
 func add_enemy_spawner(enemy_profile: EnemyProfile, required: int):
-	# Create new spawner for this enemy type
 	var spawner = EnemySpawner.new()
-	spawner.profile = enemy_profile
-	spawner.required_pages = required
+	spawner.initialize(game_state, enemy_profile, required, player)
 	
-	# brosdy wuz here
-	
-	# add to scene
 	add_child(spawner)
 	spawners[enemy_profile.name] = spawner
 	

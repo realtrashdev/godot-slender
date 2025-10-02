@@ -1,12 +1,6 @@
-@abstract class_name Menu extends CanvasLayer
+class_name Menu extends Control
 
-@warning_ignore("unused_signal")
-signal menu_selected(String)
+signal menu_changed(new_menu: MenuConfig.MenuType, direction: MenuConfig.TransitionDirection)
 
-enum MenuDirection { FORWARD, BACKWARD }
-
-func zoom_effect(zoom_amount: Vector2, time: float, trans_mode: Tween.TransitionType, ease_mode: Tween.EaseType):
-	create_tween().tween_property($Menu, "scale", zoom_amount, time).set_trans(trans_mode).set_ease(ease_mode)
-
-func change_scale(new_scale: Vector2):
-	$Menu.scale = new_scale
+func go_to_menu(type: MenuConfig.MenuType, direction: MenuConfig.TransitionDirection):
+	menu_changed.emit(type, direction)

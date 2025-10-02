@@ -6,9 +6,9 @@ static func play_one_shot(tree: SceneTree, audio: AudioStream, pitch_scale: floa
 	source.pitch_scale = pitch_scale
 	source.volume_db = volume_db
 	
-	tree.root.add_child(source)
+	tree.root.add_child.call_deferred(source)
 	
-	source.play()
+	source.call_deferred("play")
 	await source.finished
 	source.queue_free()
 

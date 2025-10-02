@@ -1,22 +1,7 @@
 extends Menu
 
-const GAME_SCENE: String = "res://scenes/levels/level_forest.tscn"
+func _on_play_pressed():
+	go_to_menu(MenuConfig.MenuType.PLAY, MenuConfig.TransitionDirection.FORWARD)
 
-@onready var manager: Node3D = get_parent()
-
-func _ready() -> void:
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	zoom_effect(Vector2(1, 1), 0.5, Tween.TRANS_QUART, Tween.EASE_OUT)
-
-func start_game():
-	menu_selected.emit("Play", MenuDirection.FORWARD)
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	zoom_effect(Vector2(10, 10), 0.5, Tween.TRANS_QUART, Tween.EASE_IN)
-
-func quit_game():
-	menu_selected.emit("Quit", MenuDirection.BACKWARD)
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	zoom_effect(Vector2.ZERO, 0.5, Tween.TRANS_QUART, Tween.EASE_IN)
-	
-	create_tween().tween_property($QuitAudio, "volume_db", -25, 0.6).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_IN)
-	$QuitAudio.play()
+func _on_quit_pressed():
+	go_to_menu(MenuConfig.MenuType.QUIT, MenuConfig.TransitionDirection.BACKWARD)

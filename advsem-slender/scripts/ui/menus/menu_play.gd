@@ -1,72 +1,53 @@
 extends Menu
 
-const GAME_SCENE: String = "res://scenes/levels/level_forest.tscn"
+@onready var description: RichTextLabel = $DescriptionText
+@onready var classic_btn: Button = $ModeButtons/ClassicButton
+@onready var endless_btn: Button = $ModeButtons/EndlessButton
 
-@onready var manager: Node3D = get_parent()
-@onready var description_text: RichTextLabel = $Menu/DescriptionText
-@onready var classic_button: Button = $Menu/HBoxContainer/ClassicButton
-@onready var endless_button: Button = $Menu/HBoxContainer/EndlessButton
-
-var tween: Tween
-
-## TODO holy refactor
-
-func _ready() -> void:
-	var group = ButtonGroup.new()
-	
-	classic_button.button_group = group
-	endless_button.button_group = group
-	
-	classic_button.toggled.connect(game_mode_classic)
-	endless_button.toggled.connect(game_mode_endless)
-	
-	update_mode_buttons()
-	
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	zoom_effect(Vector2(1, 1), 0.5, Tween.TRANS_QUART, Tween.EASE_OUT)
-	
+func _ready():
+	setup_mode_buttons()
 	await get_tree().create_timer(0.5).timeout
+	show_current_mode_description()
+
+func setup_mode_buttons():
+	var group = ButtonGroup.new()
+	classic_btn.button_group = group
+	endless_btn.button_group = group
 	
-	description_text.visible = true
-	update_description_text()
-
-func start_game():
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	zoom_effect(Vector2(10, 10), 0.6, Tween.TRANS_QUART, Tween.EASE_IN)
-	await get_tree().create_timer(1).timeout
-	get_tree().change_scene_to_file(GAME_SCENE)
-
-func back():
-	menu_selected.emit("Main", MenuDirection.BACKWARD)
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	zoom_effect(Vector2.ZERO, 0.5, Tween.TRANS_QUART, Tween.EASE_IN)
-
-func update_description_text():
-	if !description_text.visible:
-		return
+	classic_btn.toggled.connect(_on_classic_toggled)
+	endless_btn.toggled.connect(_on_endless_toggled)
 	
-	description_text.text = GameConfig.get_mode_description()
-	description_text.visible_characters = 0
-	if tween:
-		tween.kill()
-	tween = create_tween()
-	tween.tween_property(description_text, "visible_characters", description_text.get_total_character_count(), 0.5)
-
-func update_mode_buttons():
-	match CurrentGameData.game_mode:
+	match SaveManager.get_selected_game_mode():
 		GameConfig.GameMode.CLASSIC:
-			classic_button.button_pressed = true
+			classic_btn.button_pressed = true
 		GameConfig.GameMode.ENDLESS:
-			endless_button.button_pressed = true
+			endless_btn.button_pressed = true
+		_:
+			push_warning("SaveManager returned unselectable game mode?")
 
-func game_mode_classic(a):
-	if not a: return
-	CurrentGameData.update_game_mode(GameConfig.GameMode.CLASSIC)
-	print("updated game mode to classic")
-	update_description_text()
+func show_current_mode_description():
+	var mode = SaveManager.get_selected_game_mode()
+	animate_description(GameConfig.get_mode_description(mode))
 
-func game_mode_endless(a):
-	if not a: return
-	CurrentGameData.update_game_mode(GameConfig.GameMode.ENDLESS)
-	print("updated game mode to endless")
-	update_description_text()
+func animate_description(text: String):
+	description.visible = true
+	description.text = text
+	description.visible_characters = 0
+	create_tween().tween_property(description, "visible_characters", 
+		description.get_total_character_count(), 0.5)
+
+func _on_classic_toggled(pressed: bool):
+	if not pressed: return
+	SaveManager.set_selected_game_mode(GameConfig.GameMode.CLASSIC)
+	animate_description(GameConfig.get_mode_description(GameConfig.GameMode.CLASSIC))
+
+func _on_endless_toggled(pressed: bool):
+	if not pressed: return
+	SaveManager.set_selected_game_mode(GameConfig.GameMode.ENDLESS)
+	animate_description(GameConfig.get_mode_description(GameConfig.GameMode.ENDLESS))
+
+func _on_start_pressed():
+	go_to_menu(MenuConfig.MenuType.START_GAME, MenuConfig.TransitionDirection.FORWARD)
+
+func _on_back_pressed():
+	go_to_menu(MenuConfig.MenuType.MAIN, MenuConfig.TransitionDirection.BACKWARD)

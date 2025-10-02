@@ -19,5 +19,6 @@ description = "Appears from the woods and pursues you. Gets more aggressive as p
 spawn_behavior = SubResource("Resource_nklym")
 min_spawn_time = 20.0
 max_spawn_time = 30.0
+move_speed = 4.5
 death_tips = Array[String](["Running is not an option. It won't stop chasing you until you're dead.", "Prioritize getting rid of this one, or else more of them might appear before you can.", "Try to stay on the path while repelling it. The grass does not slow it down!"])
 metadata/_custom_type_script = "uid://c426kdmp0e6tf"

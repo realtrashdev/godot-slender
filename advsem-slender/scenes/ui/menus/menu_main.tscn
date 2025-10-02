@@ -2,15 +2,11 @@
 
 [ext_resource type="Script" uid="uid://qocwrt8r6cqj" path="res://scripts/ui/menus/menu_main.gd" id="1_jjl53"]
 [ext_resource type="Theme" uid="uid://bommyqwo15hbx" path="res://theme1.tres" id="1_l6cm7"]
-[ext_resource type="AudioStream" uid="uid://xjt0f2pu0a11" path="res://audio/menu/hopping_fence.mp3" id="2_cak61"]
-[ext_resource type="AudioStream" uid="uid://b3sk41yuadbx2" path="res://audio/enemies/placeholder/slendytubbies_scream_1.wav" id="3_newh7"]
+[ext_resource type="AudioStream" uid="uid://xjt0f2pu0a11" path="res://audio/ambient/hopping_fence.mp3" id="2_cak61"]
 [ext_resource type="PackedScene" uid="uid://6lvn3tolsp7r" path="res://scenes/ui/menu_button.tscn" id="4_dkf5t"]
+[ext_resource type="AudioStream" uid="uid://burmgn6fk7ymx" path="res://audio/menu/ui/button_press.mp3" id="4_y0yns"]
 
-[node name="MainMenuCanvas" type="CanvasLayer"]
-follow_viewport_enabled = true
-script = ExtResource("1_jjl53")
-
-[node name="Menu" type="Control" parent="."]
+[node name="MainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -23,8 +19,16 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_jjl53")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Menu"]
+[node name="PlayAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_cak61")
+
+[node name="ButtonPress" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_y0yns")
+volume_db = -5.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
 layout_mode = 0
 offset_left = -790.0
 offset_top = -320.0
@@ -37,7 +41,7 @@ text = "[tornado radius=2 freq=3 connected=0][wave]Collect Stuff Scary"
 fit_content = true
 horizontal_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Menu"]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.357
@@ -50,28 +54,20 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="PlayButton" parent="Menu/VBoxContainer" instance=ExtResource("4_dkf5t")]
+[node name="PlayButton" parent="VBoxContainer" instance=ExtResource("4_dkf5t")]
 layout_mode = 2
 default_text = "Play"
-focused_text_addition = "[wave freq=5 amp=20]"
 
-[node name="OptionsButton" parent="Menu/VBoxContainer" instance=ExtResource("4_dkf5t")]
+[node name="OptionsButton" parent="VBoxContainer" instance=ExtResource("4_dkf5t")]
 layout_mode = 2
 disabled = true
 enabled = false
 default_text = "Options"
-focused_text_addition = ""
 
-[node name="QuitButton" parent="Menu/VBoxContainer" instance=ExtResource("4_dkf5t")]
+[node name="QuitButton" parent="VBoxContainer" instance=ExtResource("4_dkf5t")]
 layout_mode = 2
 default_text = "Quit"
-focused_text_addition = "[shake]"
+focus_text_effect = "[shake]"
 
-[node name="PlayAudio" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_cak61")
-
-[node name="QuitAudio" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_newh7")
-
-[connection signal="pressed" from="Menu/VBoxContainer/PlayButton" to="." method="start_game"]
-[connection signal="pressed" from="Menu/VBoxContainer/QuitButton" to="." method="quit_game"]
+[connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_pressed"]

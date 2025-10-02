@@ -5,6 +5,13 @@ var game_state: GameState
 func initialize(state: GameState):
 	game_state = state
 
+func _exit_tree():
+	# prevent the memory leakage
+	for location in get_locations():
+		for child in location.get_children():
+			if child.has_signal("collected") and child.collected.is_connected(on_page_collected):
+				child.collected.disconnect(on_page_collected)
+
 func generate_pages():
 	var locations = get_locations()
 	
@@ -41,4 +48,6 @@ func clear_locations() -> void:
 		location.reset()
 
 func on_page_collected():
-	pass
+	game_state.current_pages_collected += 1
+	game_state.total_pages_collected += 1
+	Signals.page_collected.emit()

@@ -18,6 +18,10 @@ var default_font_size: float
 @export var toggle_font_size: float = 72
 @export var toggle_text_effect: String = "[wave]"
 
+@export_subgroup("Sounds", "sfx_")
+@export var sfx_press: AudioStream = load("res://audio/menu/ui/button_press.mp3")
+@export var sfx_release: AudioStream = load("res://audio/menu/ui/button_release.mp3")
+
 # interpolated font size, gets applied to text_label's theme override
 var interp_font_size: float
 
@@ -47,9 +51,12 @@ func _on_mouse_exited() -> void:
 	text_label.add_theme_color_override("default_color", Color.WHITE)
 
 func _on_button_down() -> void:
+	AudioTools.play_one_shot(get_tree(), sfx_press, randf_range(0.8, 1.2), -10)
 	text_label.add_theme_color_override("default_color", Color.WEB_GRAY)
 
 func _on_button_up() -> void:
+	if focus:
+		AudioTools.play_one_shot(get_tree(), sfx_release, randf_range(1.2, 1.4), -10)
 	text_label.add_theme_color_override("default_color", Color.WHITE)
 
 func _on_toggled(toggled_on: bool) -> void:

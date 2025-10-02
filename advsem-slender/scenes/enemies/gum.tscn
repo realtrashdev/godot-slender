@@ -70,6 +70,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_jlpo3")
 [node name="gum" parent="BounceArea/Control/Button" instance=ExtResource("2_w8oyp")]
 position = Vector2(125, 125)
 scale = Vector2(3.9, 3.9)
+animation = &"Run"
 autoplay = "Run"
 frame_progress = 0.85556746
 
@@ -85,6 +86,7 @@ offset_right = 200.0
 offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme = ExtResource("3_2pmne")
 bbcode_enabled = true
 text = "[shake]K I L L   H I M"

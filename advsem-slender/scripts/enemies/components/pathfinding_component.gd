@@ -13,6 +13,9 @@ func _ready():
 
 func _exit_tree():
 	active_pathfinders.erase(self)
+	
+	if active_pathfinders.is_empty():
+		global_tick = 0
 
 func _physics_process(_delta):
 	# first pathfinder increments tick

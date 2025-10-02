@@ -16,9 +16,15 @@ func initialize(state: GameState):
 	tip_manager = TipManager.new()
 	
 	# connect to signals and handle internally
-	Signals.page_collected.connect(_on_page_collected)
+	Signals.page_collected.connect(on_page_collected)
+	
+	show_game_start()
 
-func _on_page_collected():
+func _exit_tree():
+	if Signals.page_collected.is_connected(on_page_collected):
+		Signals.page_collected.disconnect(on_page_collected)
+
+func on_page_collected():
 	update_pages()
 
 # public interface

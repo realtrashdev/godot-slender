@@ -22,9 +22,9 @@ aseprite_executable_path="C:/Program Files (x86)/Steam/steamapps/common/Aseprite
 [autoload]
 
 Signals="*res://scripts/globals/signals.gd"
-CurrentGameData="*res://scripts/globals/current_game_data.gd"
 ScreenColorCanvas="*res://scenes/ui/screen_color_canvas.tscn"
 GameConfig="*res://scripts/globals/game_config.gd"
+SaveManager="*res://scripts/globals/save_manager.gd"
 
 [debug]
 

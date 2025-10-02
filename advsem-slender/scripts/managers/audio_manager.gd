@@ -8,6 +8,8 @@ var game_state: GameState
 func initialize(state: GameState):
 	game_state = state
 	collection_ambience.initialize(game_state)
+	await get_tree().create_timer(1).timeout
+	$FenceClimbAudio.play()
 
 func start_game_audio():
 	play_ambience()

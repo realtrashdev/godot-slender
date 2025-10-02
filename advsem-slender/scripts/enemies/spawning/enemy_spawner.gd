@@ -1,6 +1,8 @@
 class_name EnemySpawner extends Node
 
+var game_state: GameState
 var profile: EnemyProfile
+var player: CharacterBody3D
 var enabled: bool = false
 
 var enemy_scene: PackedScene
@@ -11,9 +13,12 @@ var spawn_timer: float = 0.0
 var required_pages: int = 1
 var active_enemies: Array[Node] = []
 
-@onready var player = get_tree().get_first_node_in_group("Player")
-
-func _ready() -> void:
+func initialize(state: GameState, enemy_profile: EnemyProfile, required: int, player_ref: CharacterBody3D):
+	game_state = state
+	profile = enemy_profile
+	required_pages = required
+	player = player_ref
+	
 	enemy_scene = profile.scene
 	min_spawn_time = profile.min_spawn_time
 	max_spawn_time = profile.max_spawn_time
@@ -21,12 +26,11 @@ func _ready() -> void:
 	connect_signals()
 	reset_timer()
 
+func _exit_tree():
+	if Signals.page_collected.is_connected(on_page_collected):
+		Signals.page_collected.disconnect(on_page_collected)
+
 func _process(delta: float) -> void:
-	#if Input.is_action_just_pressed("ui_focus_next"):
-	#	if active_enemies.size() >= profile.max_instances:
-	#		return
-	#	spawn_enemy()
-	
 	if not enabled or not enemy_scene:
 		return
 	
@@ -39,7 +43,7 @@ func _process(delta: float) -> void:
 		reset_timer()
 
 func connect_signals():
-	Signals.page_collected.connect(check_enable)
+	Signals.page_collected.connect(on_page_collected)
 
 func spawn_enemy() -> Node:
 	if not enemy_scene:
@@ -81,6 +85,9 @@ func spawn_3d_enemy(enemy: Enemy3D):
 	
 	enemy.global_position = pos
 
+func on_page_collected():
+	check_enable()
+
 func on_enemy_died(enemy: Node):
 	update_danger_level(-profile.type)
 	active_enemies.erase(enemy)
@@ -89,7 +96,7 @@ func reset_timer():
 	spawn_timer = randf_range(min_spawn_time, max_spawn_time)
 
 func check_enable():
-	if CurrentGameData.current_pages_collected == required_pages and not enabled:
+	if game_state.current_pages_collected == required_pages and not enabled:
 		enable_spawner()
 
 func enable_spawner():
@@ -111,4 +118,4 @@ func clear_all_enemies():
 	active_enemies.clear()
 
 func update_danger_level(value: int):
-	CurrentGameData.danger_level += value
+	game_state.danger_level += value
