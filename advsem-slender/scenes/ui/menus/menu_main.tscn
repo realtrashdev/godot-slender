@@ -72,6 +72,7 @@ layout_mode = 2
 disabled = true
 enabled = false
 default_text = "Options"
+default_color = Color(0.28301802, 0.28301802, 0.283018, 1)
 wait_time = 0.5
 
 [node name="QuitButton" parent="VBoxContainer" instance=ExtResource("4_dkf5t")]

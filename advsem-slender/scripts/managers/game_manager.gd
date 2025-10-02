@@ -80,7 +80,7 @@ func get_player_spawn_position() -> Vector3:
 	# load from level data in the future
 	return Vector3(-27.0, 1.0, 124.0)
 
-# High-level event handlers
+# high-level event handlers
 func _on_page_collected():
 	if game_state.current_pages_collected >= game_state.current_pages_required:
 		finish_game()

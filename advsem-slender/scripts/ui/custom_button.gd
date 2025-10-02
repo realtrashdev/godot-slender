@@ -1,14 +1,17 @@
-extends Button
+class_name CustomButton extends Button
 
 var default_size: Vector2
 var default_font_size: float
 
 @export var enabled: bool = true
 @export var default_text: String
+@export var default_color: Color = Color.WHITE
+@export var press_color: Color = Color.DARK_OLIVE_GREEN
 @export var justification: HorizontalAlignment
 @export var wait_time: float = 0.3
 
 @export_subgroup("Focusing", "focus_")
+@export var focus_enabled: bool = true
 @export var focus_size: Vector2 = Vector2(0, 130)
 @export var focus_font_size: float = 64
 @export var focus_text_effect: String = "[wave]"
@@ -20,8 +23,8 @@ var default_font_size: float
 @export var toggle_text_effect: String = "[wave]"
 
 @export_subgroup("Sounds", "sfx_")
-var sfx_press: AudioStream = load("res://audio/menu/ui/button_press.mp3")
-var sfx_release: AudioStream = load("res://audio/menu/ui/button_release.mp3")
+@export var sfx_press: AudioStream = load("res://audio/menu/ui/button_press.mp3")
+@export var sfx_release: AudioStream = load("res://audio/menu/ui/button_release.mp3")
 
 # interpolated font size, gets applied to text_label's theme override
 var interp_font_size: float
@@ -47,16 +50,16 @@ func _on_mouse_entered() -> void:
 func _on_mouse_exited() -> void:
 	focus = false
 	update_text_effect()
-	text_label.add_theme_color_override("default_color", Color.WHITE)
+	text_label.add_theme_color_override("default_color", default_color)
 
 func _on_button_down() -> void:
 	AudioTools.play_one_shot(get_tree(), sfx_press, randf_range(0.8, 1.2), -10)
-	text_label.add_theme_color_override("default_color", Color.WEB_GRAY)
+	text_label.add_theme_color_override("default_color", press_color)
 
 func _on_button_up() -> void:
 	if focus:
 		AudioTools.play_one_shot(get_tree(), sfx_release, randf_range(1.2, 1.4), -10)
-	text_label.add_theme_color_override("default_color", Color.WHITE)
+	text_label.add_theme_color_override("default_color", default_color)
 
 func _on_toggled(toggled_on: bool) -> void:
 	update_text_effect()
@@ -103,6 +106,7 @@ func instant_display_text():
 func setup():
 	default_size = custom_minimum_size
 	default_font_size = float(text_label.get_theme_default_font_size())
+	text_label.add_theme_color_override("default_color", default_color)
 	text_label.text = default_text
 	text_label.visible_characters = 0
 	text_label.horizontal_alignment = justification

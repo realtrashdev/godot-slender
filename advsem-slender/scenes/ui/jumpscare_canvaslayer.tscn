@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://b34b0y7wk1a2p" path="res://scripts/ui/jumpscare_canvas.gd" id="1_8ub55"]
 [ext_resource type="Script" uid="uid://6um422lsglit" path="res://scripts/resources/jumpscare.gd" id="2_0lgb3"]
 [ext_resource type="Resource" uid="uid://3vkwuf2sbniw" path="res://resources/jumpscares/chaser_jumpscare.tres" id="3_3nbv1"]
-[ext_resource type="Texture2D" uid="uid://cxuiukn8ax0oi" path="res://art/2d/enemies/chaser_1_jumpscare.aseprite" id="4_png18"]
+[ext_resource type="Texture2D" uid="uid://cxuiukn8ax0oi" path="res://art/2d/enemies/jumpscares/chaser_1_jumpscare.aseprite" id="4_png18"]
 
 [sub_resource type="Animation" id="Animation_cvdyi"]
 length = 0.001

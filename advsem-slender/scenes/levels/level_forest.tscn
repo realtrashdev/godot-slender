@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://dung7jxkr00xe" path="res://scripts/managers/audio_manager.gd" id="3_5ls40"]
 [ext_resource type="Script" uid="uid://d1anmy68tuwe6" path="res://scripts/managers/page_manager.gd" id="3_yqpob"]
 [ext_resource type="PackedScene" uid="uid://x286lkut7nsk" path="res://scenes/collection/page_collection_ambience.tscn" id="4_favx3"]
-[ext_resource type="PackedScene" uid="uid://d2ilqs2rsu4l1" path="res://scenes/enemies/spawn_marker.tscn" id="5_f0frg"]
+[ext_resource type="PackedScene" uid="uid://d2ilqs2rsu4l1" path="res://scenes/enemies/spawning/spawn_marker.tscn" id="5_f0frg"]
 [ext_resource type="Texture2D" uid="uid://b0oaoqusfayma" path="res://art/2d/textures/grass1.aseprite" id="6_84il1"]
 [ext_resource type="Texture2D" uid="uid://bhiinw8g1lsjp" path="res://art/2d/textures/water1.aseprite" id="7_uc5u0"]
 [ext_resource type="PackedScene" uid="uid://cxsorime4wuh2" path="res://scenes/playground_scenes/tree.tscn" id="8_u3044"]
@@ -96,11 +96,11 @@ script = ExtResource("3_5ls40")
 
 [node name="FenceClimbAudio" type="AudioStreamPlayer" parent="AudioManager"]
 stream = ExtResource("19_u5rgu")
-volume_db = -2.0
+volume_db = 2.0
 
 [node name="Ambient" type="AudioStreamPlayer" parent="AudioManager"]
 stream = ExtResource("20_20vw4")
-volume_db = -10.0
+volume_db = -5.0
 parameters/looping = true
 script = ExtResource("21_6h64i")
 
