@@ -13,7 +13,7 @@ func initialize(manager: Node3D):
 
 # open next menu
 func open(menu: Menu, direction: MenuConfig.TransitionDirection,  play_sound: bool = true):
-	menu_manager.fade_in_music(-12, 0.5, Tween.TRANS_CUBIC, Tween.EASE_OUT)
+	#menu_manager.fade_in_music(-12, 0.5, Tween.TRANS_CUBIC, Tween.EASE_OUT)
 	match direction:
 		MenuConfig.TransitionDirection.FORWARD:
 			menu.scale = Vector2.ZERO
@@ -27,11 +27,11 @@ func open(menu: Menu, direction: MenuConfig.TransitionDirection,  play_sound: bo
 		AudioTools.play_one_shot(menu.get_tree(), sfx_finish, 1.0, TRANSITION_VOLUME)
 	
 	await tween.finished
-	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 # close current menu
-func close(menu: Menu, direction: MenuConfig.TransitionDirection):
-	menu_manager.fade_out_music(-24, 0.5, Tween.TRANS_CUBIC, Tween.EASE_IN)
+func close(menu: Menu, direction: MenuConfig.TransitionDirection, play_sound: bool = true):
+	#menu_manager.fade_out_music(-24, 0.5, Tween.TRANS_CUBIC, Tween.EASE_IN)
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
 	var tween = menu.create_tween()
@@ -42,6 +42,7 @@ func close(menu: Menu, direction: MenuConfig.TransitionDirection):
 		MenuConfig.TransitionDirection.BACKWARD:
 			tween.tween_property(menu, "scale", Vector2.ZERO, TRANSITION_TIME).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_IN)
 	
-	AudioTools.play_one_shot(menu.get_tree(), sfx_start, 1.0, TRANSITION_VOLUME)
+	if play_sound:
+		AudioTools.play_one_shot(menu.get_tree(), sfx_start, 1.0, TRANSITION_VOLUME)
 	
 	await tween.finished

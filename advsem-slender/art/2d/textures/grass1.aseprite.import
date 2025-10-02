@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cm3mccsb71gu"
-path.s3tc="res://.godot/imported/bricks1.aseprite-3886606924e56b4f795ebb1e428748bf.s3tc.ctex"
+uid="uid://b0oaoqusfayma"
+path.s3tc="res://.godot/imported/grass1.aseprite-d7162a7b97a76e738770c173ea538c44.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://art/2d/bricks1.aseprite"
-dest_files=["res://.godot/imported/bricks1.aseprite-3886606924e56b4f795ebb1e428748bf.s3tc.ctex"]
+source_file="res://art/2d/textures/grass1.aseprite"
+dest_files=["res://.godot/imported/grass1.aseprite-d7162a7b97a76e738770c173ea538c44.s3tc.ctex"]
 
 [params]
 

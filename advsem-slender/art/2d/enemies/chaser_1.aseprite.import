@@ -3,12 +3,12 @@
 importer="Aseprite SpriteFrames Import"
 type="SpriteFrames"
 uid="uid://pyvqr1dpcew3"
-path="res://.godot/imported/chaser_1.aseprite-1f8a26c6e34ffca5ff68759a41250880.res"
+path="res://.godot/imported/chaser_1.aseprite-4b1d9ac6156445610f65ba5c4e1ceb0f.res"
 
 [deps]
 
-source_file="res://art/2d/chaser_1.aseprite"
-dest_files=["res://.godot/imported/chaser_1.aseprite-1f8a26c6e34ffca5ff68759a41250880.res"]
+source_file="res://art/2d/enemies/chaser_1.aseprite"
+dest_files=["res://.godot/imported/chaser_1.aseprite-4b1d9ac6156445610f65ba5c4e1ceb0f.res"]
 
 [params]
 

@@ -1,6 +1,10 @@
 extends CanvasLayer
 
 @export var shader_material: ShaderMaterial
+@export var default_color: ColorSet
+
+func _ready() -> void:
+	change_game_color(default_color)
 
 func _process(delta: float) -> void:
 	#if Input.is_action_just_pressed("shader_toggle"):

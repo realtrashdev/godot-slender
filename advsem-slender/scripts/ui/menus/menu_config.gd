@@ -1,9 +1,10 @@
 class_name MenuConfig
 
-enum MenuType { MAIN, PLAY, SETTINGS, QUIT, START_GAME }
+enum MenuType { INTRO, MAIN, PLAY, SETTINGS, QUIT, START_GAME }
 enum TransitionDirection { FORWARD, BACKWARD }
 
 const MENU_SCENES = {
+	MenuType.INTRO: "res://scenes/ui/menus/menu_intro.tscn",
 	MenuType.MAIN: "res://scenes/ui/menus/menu_main.tscn",
 	MenuType.PLAY: "res://scenes/ui/menus/menu_play.tscn",
 }

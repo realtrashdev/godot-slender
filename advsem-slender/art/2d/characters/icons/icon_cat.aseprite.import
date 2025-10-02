@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxuiukn8ax0oi"
-path="res://.godot/imported/chaser_1_jumpscare.aseprite-5dbe7329e2d84c7a0bc8b741978167a6.ctex"
+uid="uid://dmh2lhrq2tn85"
+path="res://.godot/imported/icon_cat.aseprite-ab43f29393497a54d3269b503f08ae97.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/2d/chaser_1_jumpscare.aseprite"
-dest_files=["res://.godot/imported/chaser_1_jumpscare.aseprite-5dbe7329e2d84c7a0bc8b741978167a6.ctex"]
+source_file="res://art/2d/characters/icons/icon_cat.aseprite"
+dest_files=["res://.godot/imported/icon_cat.aseprite-ab43f29393497a54d3269b503f08ae97.ctex"]
 
 [params]
 

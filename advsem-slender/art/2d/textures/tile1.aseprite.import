@@ -2,21 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bhiinw8g1lsjp"
-path="res://.godot/imported/water1.aseprite-6bfeeb621732cd2e7df9bbc99adb0247.ctex"
+uid="uid://dy7u3orydtoks"
+path="res://.godot/imported/tile1.aseprite-fbfd1c30e28093b7f8d65b91e908eed7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/2d/water1.aseprite"
-dest_files=["res://.godot/imported/water1.aseprite-6bfeeb621732cd2e7df9bbc99adb0247.ctex"]
+source_file="res://art/2d/textures/tile1.aseprite"
+dest_files=["res://.godot/imported/tile1.aseprite-fbfd1c30e28093b7f8d65b91e908eed7.ctex"]
 
 [params]
 
 compress/mode=0
-compress/high_quality=false
+compress/high_quality=true
 compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0

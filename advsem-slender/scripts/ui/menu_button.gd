@@ -6,6 +6,7 @@ var default_font_size: float
 @export var enabled: bool = true
 @export var default_text: String
 @export var justification: HorizontalAlignment
+@export var wait_time: float = 0.3
 
 @export_subgroup("Focusing", "focus_")
 @export var focus_size: Vector2 = Vector2(0, 130)
@@ -19,8 +20,8 @@ var default_font_size: float
 @export var toggle_text_effect: String = "[wave]"
 
 @export_subgroup("Sounds", "sfx_")
-@export var sfx_press: AudioStream = load("res://audio/menu/ui/button_press.mp3")
-@export var sfx_release: AudioStream = load("res://audio/menu/ui/button_release.mp3")
+var sfx_press: AudioStream = load("res://audio/menu/ui/button_press.mp3")
+var sfx_release: AudioStream = load("res://audio/menu/ui/button_release.mp3")
 
 # interpolated font size, gets applied to text_label's theme override
 var interp_font_size: float
@@ -32,9 +33,7 @@ var focus: bool = false
 #region Default Methods
 func _ready() -> void:
 	setup()
-	await get_tree().create_timer(0.5).timeout
-	update_text_effect()
-	display_text()
+	call_deferred("delay_display")
 
 func _process(delta: float) -> void:
 	if enabled:
@@ -64,6 +63,11 @@ func _on_toggled(toggled_on: bool) -> void:
 #endregion
 
 #region Display
+func delay_display():
+	await get_tree().create_timer(wait_time).timeout
+	update_text_effect()
+	display_text()
+
 func lerp_size(delta: float) -> void:
 	if button_pressed:
 		custom_minimum_size = lerp(custom_minimum_size, toggle_size, focus_speed * delta)
@@ -89,7 +93,11 @@ func update_text_effect():
 		text_label.text = default_text
 
 func display_text():
-	create_tween().parallel().tween_property(text_label, "visible_characters", text_label.get_total_character_count(), 0.05 * text_label.get_total_character_count())
+	if text_label.visible_characters != text_label.get_total_character_count():
+		create_tween().parallel().tween_property(text_label, "visible_characters", text_label.get_total_character_count(), 0.05 * text_label.get_total_character_count())
+
+func instant_display_text():
+	text_label.visible_characters = text_label.get_total_character_count()
 #endregion
 
 func setup():

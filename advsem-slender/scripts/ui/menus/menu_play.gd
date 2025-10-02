@@ -1,12 +1,14 @@
 extends Menu
 
+var tween: Tween
+
 @onready var description: RichTextLabel = $DescriptionText
 @onready var classic_btn: Button = $ModeButtons/ClassicButton
 @onready var endless_btn: Button = $ModeButtons/EndlessButton
 
 func _ready():
 	setup_mode_buttons()
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(0.3).timeout
 	show_current_mode_description()
 
 func setup_mode_buttons():
@@ -19,9 +21,9 @@ func setup_mode_buttons():
 	
 	match SaveManager.get_selected_game_mode():
 		GameConfig.GameMode.CLASSIC:
-			classic_btn.button_pressed = true
+			classic_btn.set_pressed_no_signal(true)
 		GameConfig.GameMode.ENDLESS:
-			endless_btn.button_pressed = true
+			endless_btn.set_pressed_no_signal(true)
 		_:
 			push_warning("SaveManager returned unselectable game mode?")
 
@@ -30,11 +32,12 @@ func show_current_mode_description():
 	animate_description(GameConfig.get_mode_description(mode))
 
 func animate_description(text: String):
-	description.visible = true
 	description.text = text
 	description.visible_characters = 0
-	create_tween().tween_property(description, "visible_characters", 
-		description.get_total_character_count(), 0.5)
+	if tween:
+		tween.kill()
+	tween = create_tween()
+	tween.tween_property(description, "visible_characters", description.get_total_character_count(), 0.5)
 
 func _on_classic_toggled(pressed: bool):
 	if not pressed: return
@@ -47,7 +50,7 @@ func _on_endless_toggled(pressed: bool):
 	animate_description(GameConfig.get_mode_description(GameConfig.GameMode.ENDLESS))
 
 func _on_start_pressed():
-	go_to_menu(MenuConfig.MenuType.START_GAME, MenuConfig.TransitionDirection.FORWARD)
+	go_to_menu(MenuConfig.MenuType.START_GAME, MenuConfig.TransitionDirection.FORWARD, false)
 
 func _on_back_pressed():
-	go_to_menu(MenuConfig.MenuType.MAIN, MenuConfig.TransitionDirection.BACKWARD)
+	go_to_menu(MenuConfig.MenuType.MAIN, MenuConfig.TransitionDirection.BACKWARD, true)

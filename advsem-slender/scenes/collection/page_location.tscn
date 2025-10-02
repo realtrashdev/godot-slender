@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cuouj5je2wv8g"]
 
 [ext_resource type="Script" uid="uid://dija50ys3btp2" path="res://scripts/pages/page_location.gd" id="1_uo8p0"]
-[ext_resource type="Texture2D" uid="uid://dydjldjs2c0wm" path="res://art/2d/ao.png" id="2_on7vo"]
+[ext_resource type="Texture2D" uid="uid://dydjldjs2c0wm" path="res://art/2d/enemies/ao.png" id="2_on7vo"]
 [ext_resource type="Script" uid="uid://calvuja8giwfo" path="res://scripts/ui/invisible_in_game.gd" id="3_ooge4"]
 
 [node name="PageLocation" type="Node3D" groups=["PageLocation"]]

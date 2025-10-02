@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://d2ilqs2rsu4l1"]
 
-[ext_resource type="Texture2D" uid="uid://dydjldjs2c0wm" path="res://art/2d/ao.png" id="1_jwvod"]
+[ext_resource type="Texture2D" uid="uid://dydjldjs2c0wm" path="res://art/2d/enemies/ao.png" id="1_jwvod"]
 [ext_resource type="Script" uid="uid://calvuja8giwfo" path="res://scripts/ui/invisible_in_game.gd" id="2_ks2em"]
 
 [node name="SpawnMarker" type="Marker3D"]

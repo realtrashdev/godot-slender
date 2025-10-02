@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c4he6fivjqx5e"
-path.s3tc="res://.godot/imported/chain_fence.aseprite-5b71632d62a1a04057c3b02edc97aeba.s3tc.ctex"
+uid="uid://giwyrie5csur"
+path.s3tc="res://.godot/imported/leaf_1.aseprite-f0860db669a63bc273164582e82959f6.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://art/2d/chain_fence.aseprite"
-dest_files=["res://.godot/imported/chain_fence.aseprite-5b71632d62a1a04057c3b02edc97aeba.s3tc.ctex"]
+source_file="res://art/2d/maps/leaf_1.aseprite"
+dest_files=["res://.godot/imported/leaf_1.aseprite-f0860db669a63bc273164582e82959f6.s3tc.ctex"]
 
 [params]
 

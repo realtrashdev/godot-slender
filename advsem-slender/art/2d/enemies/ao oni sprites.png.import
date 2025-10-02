@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://blvkr31gwee1i"
-path.s3tc="res://.godot/imported/rock1.aseprite-e2fe3694cc26b35375851e46278990cb.s3tc.ctex"
+uid="uid://id3wqgcl4sqd"
+path.s3tc="res://.godot/imported/ao oni sprites.png-6b0ffe4c8e651bfbedffd64cfd1872dc.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://art/2d/rock1.aseprite"
-dest_files=["res://.godot/imported/rock1.aseprite-e2fe3694cc26b35375851e46278990cb.s3tc.ctex"]
+source_file="res://art/2d/enemies/ao oni sprites.png"
+dest_files=["res://.godot/imported/ao oni sprites.png-6b0ffe4c8e651bfbedffd64cfd1872dc.s3tc.ctex"]
 
 [params]
 

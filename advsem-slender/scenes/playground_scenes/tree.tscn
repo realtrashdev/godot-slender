@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dkw83jr6dbkgd" path="res://scripts/tree.gd" id="1_j21aw"]
 [ext_resource type="ArrayMesh" uid="uid://bpc6beugbqay3" path="res://art/3d/tree1_smooth.obj" id="2_vehxk"]
-[ext_resource type="Texture2D" uid="uid://giwyrie5csur" path="res://art/2d/leaf_1.aseprite" id="3_vehxk"]
+[ext_resource type="Texture2D" uid="uid://giwyrie5csur" path="res://art/2d/maps/leaf_1.aseprite" id="3_vehxk"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_emeqc"]
 transparency = 1

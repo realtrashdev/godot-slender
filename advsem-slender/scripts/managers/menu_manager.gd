@@ -7,10 +7,11 @@ var menu_transition: MenuTransition
 @onready var quit_audio: AudioStreamPlayer = $QuitAudio
 
 func _ready() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	menu_transition = MenuTransition.new()
 	menu_transition.initialize(self)
 	fade_in_music(-12, 1.0)
-	open_menu(MenuConfig.MenuType.MAIN, MenuConfig.TransitionDirection.FORWARD, false)
+	open_menu_instant(MenuConfig.MenuType.MAIN, MenuConfig.TransitionDirection.FORWARD, false)
 
 func open_menu(type: MenuConfig.MenuType, direction: MenuConfig.TransitionDirection, play_sound: bool = true):
 	var scene_path = MenuConfig.MENU_SCENES.get(type)
@@ -19,22 +20,36 @@ func open_menu(type: MenuConfig.MenuType, direction: MenuConfig.TransitionDirect
 		return
 	
 	if current_menu:
-		await menu_transition.close(current_menu, direction)
+		await menu_transition.close(current_menu, direction, play_sound)
 		current_menu.queue_free()
 	
 	current_menu = load(scene_path).instantiate()
 	current_menu.menu_changed.connect(on_menu_changed)
 	add_child(current_menu)
 	menu_transition.open(current_menu, direction, play_sound)
+	
+func open_menu_instant(type: MenuConfig.MenuType, direction: MenuConfig.TransitionDirection, play_sound: bool = true):
+	var scene_path = MenuConfig.MENU_SCENES.get(type)
+	if not scene_path:
+		push_error("Menu type not found: " + str(type))
+		return
+	
+	if current_menu:
+		await menu_transition.close(current_menu, direction, play_sound)
+		current_menu.queue_free()
+	
+	current_menu = load(scene_path).instantiate()
+	current_menu.menu_changed.connect(on_menu_changed)
+	add_child(current_menu)
 
-func on_menu_changed(new_menu: MenuConfig.MenuType, direction: MenuConfig.TransitionDirection):
+func on_menu_changed(new_menu: MenuConfig.MenuType, direction: MenuConfig.TransitionDirection, play_sound: bool):
 	match new_menu:
 		MenuConfig.MenuType.QUIT:
 			await quit_game()
 		MenuConfig.MenuType.START_GAME:
 			await start_game()
 		_:
-			open_menu(new_menu, direction)
+			open_menu(new_menu, direction, play_sound)
 
 func start_game():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED

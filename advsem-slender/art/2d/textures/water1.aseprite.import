@@ -2,21 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cdqk7w5b7d0ru"
-path.s3tc="res://.godot/imported/chaser_1.png-3410427a62f8488d78b6d53862fe964d.s3tc.ctex"
+uid="uid://bhiinw8g1lsjp"
+path="res://.godot/imported/water1.aseprite-28a1e8d881bf2aba854f59be5f20a7d4.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/2d/chaser_1.png"
-dest_files=["res://.godot/imported/chaser_1.png-3410427a62f8488d78b6d53862fe964d.s3tc.ctex"]
+source_file="res://art/2d/textures/water1.aseprite"
+dest_files=["res://.godot/imported/water1.aseprite-28a1e8d881bf2aba854f59be5f20a7d4.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

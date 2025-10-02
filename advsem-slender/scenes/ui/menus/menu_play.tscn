@@ -42,7 +42,6 @@ sr_enabled = true
 sr_rotation = 3.0
 
 [node name="DescriptionText" type="RichTextLabel" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -57,6 +56,7 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(600, 75)
 theme = ExtResource("2_pbvuy")
+theme_override_colors/default_color = Color(0.47397572, 0.47397572, 0.47397572, 1)
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "descriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescription"
@@ -64,7 +64,10 @@ fit_content = true
 scroll_active = false
 shortcut_keys_enabled = false
 horizontal_alignment = 1
+visible_characters = 0
+visible_ratio = 0.0
 script = ExtResource("3_pbvuy")
+display_by_default = false
 sr_rotation = 3.0
 
 [node name="ModeButtons" type="HBoxContainer" parent="."]

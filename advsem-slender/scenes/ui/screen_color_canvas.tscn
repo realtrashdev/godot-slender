@@ -1,12 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://b44g52cw8jhlu"]
+[gd_scene load_steps=4 format=3 uid="uid://b44g52cw8jhlu"]
 
 [ext_resource type="Script" uid="uid://cjehxq1f2vicp" path="res://scripts/ui/screen_shader_manager.gd" id="1_cjvg8"]
 [ext_resource type="Material" uid="uid://dfno40i012odi" path="res://shaders/fourcolor_screen.tres" id="2_alglh"]
+[ext_resource type="Resource" uid="uid://c7l7t6to7xn5t" path="res://resources/color_sets/colorset_gameboy.tres" id="3_jwt3u"]
 
 [node name="ScreenColorCanvas" type="CanvasLayer"]
 layer = 10
 script = ExtResource("1_cjvg8")
 shader_material = ExtResource("2_alglh")
+default_color = ExtResource("3_jwt3u")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = ExtResource("2_alglh")

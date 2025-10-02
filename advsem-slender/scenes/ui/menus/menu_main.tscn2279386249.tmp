@@ -47,8 +47,6 @@ text = "[tornado radius=2 freq=3 connected=0][wave]Endless Pages"
 fit_content = true
 scroll_active = false
 shortcut_keys_enabled = false
-visible_characters = 0
-visible_ratio = 0.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -66,19 +64,19 @@ size_flags_vertical = 4
 [node name="PlayButton" parent="VBoxContainer" instance=ExtResource("4_dkf5t")]
 layout_mode = 2
 default_text = "Play"
-wait_time = 0.8
+wait_time = 2.0
 
 [node name="OptionsButton" parent="VBoxContainer" instance=ExtResource("4_dkf5t")]
 layout_mode = 2
 disabled = true
 enabled = false
 default_text = "Options"
-wait_time = 1.0
+wait_time = 2.5
 
 [node name="QuitButton" parent="VBoxContainer" instance=ExtResource("4_dkf5t")]
 layout_mode = 2
 default_text = "Quit"
-wait_time = 1.35
+wait_time = 3.0
 focus_text_effect = "[shake]"
 
 [connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_pressed"]

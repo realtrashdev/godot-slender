@@ -23,6 +23,9 @@ var direction: Vector2 = Vector2(1, 1)
 
 func _ready() -> void:
 	setup_screen_bounds()
+	
+	if not player:
+		$RichTextLabel.visible = false
 
 func _physics_process(delta: float) -> void:
 	update_position(delta)

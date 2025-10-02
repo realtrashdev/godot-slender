@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bqbf2ydcc8e4r" path="res://scripts/enemies/enemy_gum.gd" id="1_lql08"]
 [ext_resource type="AudioStream" uid="uid://dlrwt67trjq2x" path="res://audio/enemies/gum/gum_death1.mp3" id="2_uf3fo"]
-[ext_resource type="PackedScene" uid="uid://pufj0h6bsit6" path="res://art/2d/gum.aseprite" id="2_w8oyp"]
+[ext_resource type="PackedScene" uid="uid://pufj0h6bsit6" path="res://art/2d/enemies/gum.aseprite" id="2_w8oyp"]
 [ext_resource type="Theme" uid="uid://bommyqwo15hbx" path="res://theme1.tres" id="3_2pmne"]
 [ext_resource type="AudioStream" uid="uid://72tfvmcfwef" path="res://audio/enemies/gum/gum_running.mp3" id="4_uf3fo"]
 
@@ -70,7 +70,6 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_jlpo3")
 [node name="gum" parent="BounceArea/Control/Button" instance=ExtResource("2_w8oyp")]
 position = Vector2(125, 125)
 scale = Vector2(3.9, 3.9)
-animation = &"Run"
 autoplay = "Run"
 frame_progress = 0.85556746
 

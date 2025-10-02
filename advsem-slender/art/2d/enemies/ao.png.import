@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b0oaoqusfayma"
-path.s3tc="res://.godot/imported/grass1.aseprite-6289b48e0d0445f38ecbab977d158bb7.s3tc.ctex"
+uid="uid://dydjldjs2c0wm"
+path.s3tc="res://.godot/imported/ao.png-f67e18dfb54c8e8a48847b5301e02bda.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://art/2d/grass1.aseprite"
-dest_files=["res://.godot/imported/grass1.aseprite-6289b48e0d0445f38ecbab977d158bb7.s3tc.ctex"]
+source_file="res://art/2d/enemies/ao.png"
+dest_files=["res://.godot/imported/ao.png-f67e18dfb54c8e8a48847b5301e02bda.s3tc.ctex"]
 
 [params]
 
