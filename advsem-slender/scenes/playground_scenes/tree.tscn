@@ -1,20 +1,18 @@
 [gd_scene load_steps=3 format=3 uid="uid://cxsorime4wuh2"]
 
-[ext_resource type="Script" uid="uid://dkw83jr6dbkgd" path="res://scripts/playground_tree.gd" id="1_j21aw"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h2yge"]
+[ext_resource type="Script" uid="uid://dkw83jr6dbkgd" path="res://scripts/tree.gd" id="1_j21aw"]
+[ext_resource type="ArrayMesh" uid="uid://bpc6beugbqay3" path="res://art/3d/tree1_smooth.obj" id="2_vehxk"]
 
 [node name="PG_Tree" type="Node3D"]
 script = ExtResource("1_j21aw")
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
-use_collision = true
-height = 6.0
+[node name="Model" type="MeshInstance3D" parent="."]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+mesh = ExtResource("2_vehxk")
 
-[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0)
-collision_layer = 128
-collision_mask = 0
-radius = 3.0
-material = SubResource("StandardMaterial3D_h2yge")
+[node name="Hitbox" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+visible = false
+use_collision = true
+radius = 0.90000004
+height = 6.0

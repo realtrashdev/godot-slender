@@ -1,6 +1,6 @@
 extends Menu
 
-const GAME_SCENE: String = "res://scenes/playground_scenes/playground_level.tscn"
+const GAME_SCENE: String = "res://scenes/levels/level_forest.tscn"
 
 @onready var manager: Node3D = get_parent()
 @onready var description_text: RichTextLabel = $Menu/DescriptionText
