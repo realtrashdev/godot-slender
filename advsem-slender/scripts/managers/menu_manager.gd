@@ -8,7 +8,8 @@ var menu_transition: MenuTransition
 
 func _ready() -> void:
 	menu_transition = MenuTransition.new()
-	fade_in_music()
+	menu_transition.initialize(self)
+	fade_in_music(-12, 1.0)
 	open_menu(MenuConfig.MenuType.MAIN, MenuConfig.TransitionDirection.FORWARD, false)
 
 func open_menu(type: MenuConfig.MenuType, direction: MenuConfig.TransitionDirection, play_sound: bool = true):
@@ -37,19 +38,20 @@ func on_menu_changed(new_menu: MenuConfig.MenuType, direction: MenuConfig.Transi
 
 func start_game():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	fade_out_music(-60, 0.2)
 	await menu_transition.close(current_menu, MenuConfig.TransitionDirection.FORWARD)
 	get_tree().change_scene_to_file(MenuConfig.DEFAULT_GAME_SCENE)
 
 func quit_game():
 	quit_audio.play()
 	create_tween().tween_property(quit_audio, "volume_db", -40, 0.6).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUINT)
-	fade_out_music()
+	fade_out_music(-60, 0.6)
 	await menu_transition.close(current_menu, MenuConfig.TransitionDirection.BACKWARD)
 	await get_tree().create_timer(0.2).timeout
 	get_tree().quit()
 
-func fade_in_music():
-	create_tween().tween_property(music, "volume_db", -12.0, 1)
+func fade_in_music(vol: float, time: float, transition: Tween.TransitionType = Tween.TRANS_LINEAR, easing: Tween.EaseType = Tween.EASE_IN_OUT):
+	create_tween().tween_property(music, "volume_db", vol, time).set_trans(transition).set_ease(easing)
 
-func fade_out_music():
-	create_tween().tween_property(music, "volume_db", -60.0, 0.6)
+func fade_out_music(vol: float, time: float, transition: Tween.TransitionType = Tween.TRANS_LINEAR, easing: Tween.EaseType = Tween.EASE_IN_OUT):
+	create_tween().tween_property(music, "volume_db", vol, time).set_trans(transition).set_ease(easing)

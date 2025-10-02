@@ -1,10 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://bf05ntktimsst"]
+[gd_scene load_steps=8 format=3 uid="uid://bf05ntktimsst"]
 
 [ext_resource type="Script" uid="uid://qocwrt8r6cqj" path="res://scripts/ui/menus/menu_main.gd" id="1_jjl53"]
 [ext_resource type="Theme" uid="uid://bommyqwo15hbx" path="res://theme1.tres" id="1_l6cm7"]
 [ext_resource type="AudioStream" uid="uid://xjt0f2pu0a11" path="res://audio/ambient/hopping_fence.mp3" id="2_cak61"]
 [ext_resource type="PackedScene" uid="uid://6lvn3tolsp7r" path="res://scenes/ui/menu_button.tscn" id="4_dkf5t"]
 [ext_resource type="AudioStream" uid="uid://burmgn6fk7ymx" path="res://audio/menu/ui/button_press.mp3" id="4_y0yns"]
+[ext_resource type="FontFile" uid="uid://b78ski6kf8hw1" path="res://fonts/ari-w9500-display.ttf" id="5_y0yns"]
+
+[sub_resource type="FontVariation" id="FontVariation_2g2yl"]
+base_font = ExtResource("5_y0yns")
+spacing_glyph = 6
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -28,18 +33,20 @@ stream = ExtResource("2_cak61")
 stream = ExtResource("4_y0yns")
 volume_db = -5.0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="TitleText" type="RichTextLabel" parent="."]
 layout_mode = 0
 offset_left = -790.0
 offset_top = -320.0
-offset_right = -71.0
-offset_bottom = -238.0
+offset_right = -25.0
+offset_bottom = -189.0
 theme = ExtResource("1_l6cm7")
+theme_override_fonts/normal_font = SubResource("FontVariation_2g2yl")
 theme_override_font_sizes/normal_font_size = 64
 bbcode_enabled = true
-text = "[tornado radius=2 freq=3 connected=0][wave]Collect Stuff Scary"
+text = "[tornado radius=2 freq=3 connected=0][wave]Endless Pages"
 fit_content = true
-horizontal_alignment = 1
+scroll_active = false
+shortcut_keys_enabled = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1

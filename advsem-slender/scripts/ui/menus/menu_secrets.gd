@@ -72,6 +72,7 @@ func toggle_bgm_pitch():
 	
 	if tween:
 		tween.kill()
+	
 	tween = create_tween()
 	tween.tween_property(bgm, "pitch_scale", 0.01, 0.5)
 	await tween.finished
