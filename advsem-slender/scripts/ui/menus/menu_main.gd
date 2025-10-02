@@ -9,7 +9,8 @@ static var already_opened: bool =  false
 func _ready() -> void:
 	if not already_opened:
 		await get_tree().create_timer(0.5).timeout
-		TextTools.change_visible_characters($TitleText, $TitleText.get_total_character_count(), 1, 0)
+		TextTools.change_visible_characters($TitleText, $TitleText.get_total_character_count(), 0.5, 0)
+		await get_tree().create_timer(0.5).timeout
 		already_opened = true
 	else:
 		TextTools.change_visible_characters($TitleText, $TitleText.get_total_character_count(), 0, 0)

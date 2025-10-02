@@ -49,8 +49,8 @@ func check_key_array():
 ## Fun little easter egg, should decrease the odds probably
 func check_gum():
 	await get_tree().create_timer(1).timeout
-	var num = randi_range(1, 500)
-	if num == 500:
+	var num = randi_range(1, 1000)
+	if num == 1000:
 		spawn_gum()
 	check_gum()
 

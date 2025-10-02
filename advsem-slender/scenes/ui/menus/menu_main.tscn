@@ -66,19 +66,18 @@ size_flags_vertical = 4
 [node name="PlayButton" parent="VBoxContainer" instance=ExtResource("4_dkf5t")]
 layout_mode = 2
 default_text = "Play"
-wait_time = 0.8
 
 [node name="OptionsButton" parent="VBoxContainer" instance=ExtResource("4_dkf5t")]
 layout_mode = 2
 disabled = true
 enabled = false
 default_text = "Options"
-wait_time = 1.0
+wait_time = 0.5
 
 [node name="QuitButton" parent="VBoxContainer" instance=ExtResource("4_dkf5t")]
 layout_mode = 2
 default_text = "Quit"
-wait_time = 1.35
+wait_time = 0.85
 focus_text_effect = "[shake]"
 
 [connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_pressed"]
