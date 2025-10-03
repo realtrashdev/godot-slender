@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://qocwrt8r6cqj" path="res://scripts/ui/menus/menu_main.gd" id="1_jjl53"]
 [ext_resource type="Theme" uid="uid://bommyqwo15hbx" path="res://theme1.tres" id="1_l6cm7"]
 [ext_resource type="AudioStream" uid="uid://xjt0f2pu0a11" path="res://audio/ambient/hopping_fence.mp3" id="2_cak61"]
-[ext_resource type="PackedScene" uid="uid://6lvn3tolsp7r" path="res://scenes/ui/menu_button.tscn" id="4_dkf5t"]
+[ext_resource type="PackedScene" uid="uid://6lvn3tolsp7r" path="res://scenes/ui/buttons/menu_button.tscn" id="4_dkf5t"]
 [ext_resource type="AudioStream" uid="uid://burmgn6fk7ymx" path="res://audio/menu/ui/button_press.mp3" id="4_y0yns"]
 [ext_resource type="FontFile" uid="uid://b78ski6kf8hw1" path="res://fonts/ari-w9500-display.ttf" id="5_y0yns"]
 [ext_resource type="PackedScene" uid="uid://cwiritx4rencv" path="res://scenes/ui/enemy_icon.tscn" id="6_2g2yl"]
@@ -51,14 +51,6 @@ shortcut_keys_enabled = false
 visible_characters = 0
 visible_ratio = 0.0
 
-[node name="EnemyIcon" parent="." instance=ExtResource("6_2g2yl")]
-layout_mode = 1
-anchors_preset = 4
-anchor_left = 0.0
-anchor_right = 0.0
-offset_right = 320.0
-grow_horizontal = 1
-
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
@@ -89,6 +81,18 @@ layout_mode = 2
 default_text = "Quit"
 wait_time = 0.85
 focus_text_effect = "[shake]"
+
+[node name="EnemyIcon" parent="." instance=ExtResource("6_2g2yl")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -97.0
+offset_top = -204.0
+offset_right = 503.0
+offset_bottom = 196.0
 
 [connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_pressed"]

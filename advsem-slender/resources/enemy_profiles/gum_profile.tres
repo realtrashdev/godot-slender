@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="EnemyProfile" load_steps=3 format=3 uid="uid://ceka8pclkwv8e"]
+[gd_resource type="Resource" script_class="EnemyProfile" load_steps=4 format=3 uid="uid://ceka8pclkwv8e"]
 
 [ext_resource type="PackedScene" uid="uid://cpyvj4jwigbxg" path="res://scenes/enemies/gum.tscn" id="1_k3hal"]
+[ext_resource type="Texture2D" uid="uid://4e6bi674st" path="res://art/2d/enemies/icons/gum_icon.aseprite" id="1_wivop"]
 [ext_resource type="Script" uid="uid://c426kdmp0e6tf" path="res://scripts/resources/enemy_profile.gd" id="2_wivop"]
 
 [resource]
@@ -8,7 +9,10 @@ script = ExtResource("2_wivop")
 scene = ExtResource("1_k3hal")
 is_2d_enemy = true
 name = "Gum"
-description = "He'll show up on your screen and lock your camera in place. Click on him to send him away! He gets smaller and faster for each page collected."
+description = "He'll show up on your screen and lock your camera in place.
+
+Click on him to send him away!"
+icon = ExtResource("1_wivop")
 min_spawn_time = 15.0
 max_spawn_time = 25.0
 max_instances = 100
