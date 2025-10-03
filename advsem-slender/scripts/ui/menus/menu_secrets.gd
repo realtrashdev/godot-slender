@@ -16,7 +16,6 @@ func _input(event: InputEvent) -> void:
 	if event.is_released() or event.is_echo():
 		return
 	
-	print(event.as_text())
 	recent_keys.append(event.as_text())
 	
 	if recent_keys.size() > 10:
@@ -45,8 +44,7 @@ func check_key_array():
 			toggle_bgm_pitch()
 			return
 
-## 1 in 500 chance every second to spawn gum enemy on title screen
-## Fun little easter egg, should decrease the odds probably
+## 1 in 1000 chance every second to spawn gum enemy on title screen
 func check_gum():
 	await get_tree().create_timer(1).timeout
 	var num = randi_range(1, 1000)
@@ -59,8 +57,7 @@ func spawn_gum():
 	add_child(scene)
 	scene.activate()
 
-## Changes BGM pitch to a somewhat normal sounding pitch.
-## I kind of like the low pitched though, it feels dreamlike :]
+## Toggles BGM pitch to a somewhat normal sounding pitch.
 func toggle_bgm_pitch():
 	var bgm: AudioStreamPlayer = manager.get_node("Music")
 	var new_scale: float
