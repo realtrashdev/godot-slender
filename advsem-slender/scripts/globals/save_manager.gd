@@ -13,7 +13,6 @@ var settings: Dictionary = {
 var progression: Dictionary = {
 	"total_pages_collected": 0,
 	"total_deaths": 0,
-	"best_page_streak": 0,
 	"unlocked_modes": [GameConfig.GameMode.CLASSIC],
 	"enemy_encounters": {},  # enemy_name: count
 }
@@ -63,6 +62,12 @@ func load_game():
 		push_error("Failed to parse save file: " + json.get_error_message())
 
 # settings accessors
+func get_player_name() -> String:
+	return settings.get("player_name", "gubbo")
+
+func set_player_name(player_name: String):
+	settings["player_name"] = player_name
+
 func get_selected_game_mode() -> GameConfig.GameMode:
 	return settings.get("selected_game_mode", GameConfig.GameMode.CLASSIC)
 

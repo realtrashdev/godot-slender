@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="EnemyProfile" load_steps=6 format=3 uid="uid://5btde08a1exu"]
+[gd_resource type="Resource" script_class="EnemyProfile" load_steps=7 format=3 uid="uid://5btde08a1exu"]
 
 [ext_resource type="Script" uid="uid://c426kdmp0e6tf" path="res://scripts/resources/enemy_profile.gd" id="1_hrl1i"]
 [ext_resource type="Texture2D" uid="uid://dhpcoum0eycgh" path="res://art/2d/enemies/icons/chaser_icon.aseprite" id="1_vjasg"]
 [ext_resource type="PackedScene" uid="uid://0rnvcc30hitf" path="res://scenes/enemies/chaser.tscn" id="2_puspk"]
+[ext_resource type="Resource" uid="uid://3vkwuf2sbniw" path="res://resources/jumpscares/chaser_jumpscare.tres" id="2_vjasg"]
 [ext_resource type="Script" uid="uid://d0hm3sts6wa7d" path="res://scripts/enemies/spawning/spawn behaviors/enemy_behavior_markers.gd" id="4_puspk"]
 
 [sub_resource type="Resource" id="Resource_nklym"]
@@ -14,17 +15,18 @@ metadata/_custom_type_script = "uid://d0hm3sts6wa7d"
 [resource]
 script = ExtResource("1_hrl1i")
 scene = ExtResource("2_puspk")
-type = 2
-name = "Chaser"
-description = "Spawns at a random spot around you and pursues you.
-
-Your light will flicker when it spawns.
-
-Shine your flashlight on it to repel it."
-icon = ExtResource("1_vjasg")
 spawn_behavior = SubResource("Resource_nklym")
 min_spawn_time = 20.0
 max_spawn_time = 30.0
-move_speed = 4.5
+move_speed = 5.0
+jumpscare = ExtResource("2_vjasg")
 death_tips = Array[String](["Running is not an option. It won't stop chasing you until you're dead.", "Prioritize getting rid of this one, or else more of them might appear before you can.", "Try to stay on the path while repelling it. The grass does not slow it down!"])
+name = "Chaser"
+type = 2
+description = "It will spawn around you on a timer and begin pursuing.
+
+Your light will flicker when it spawns.
+
+Shine your light on it to send it away."
+icon = ExtResource("1_vjasg")
 metadata/_custom_type_script = "uid://c426kdmp0e6tf"

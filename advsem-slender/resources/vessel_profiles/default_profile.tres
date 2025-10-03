@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="VesselProfile" load_steps=3 format=3 uid="uid://cnr7vp5lbi17t"]
+
+[ext_resource type="Texture2D" uid="uid://b212agmo4rsuw" path="res://art/2d/characters/icons/icon_blank.aseprite" id="1_l54h2"]
+[ext_resource type="Script" uid="uid://pimfnspuor4w" path="res://scripts/resources/vessel_profile.gd" id="1_rkv35"]
+
+[resource]
+script = ExtResource("1_rkv35")
+name = null
+type = 3
+description = "
+
+A blank vessel we morphed into a representation of you.
+
+
+
+Default stats."
+icon = ExtResource("1_l54h2")
+metadata/_custom_type_script = "uid://pimfnspuor4w"

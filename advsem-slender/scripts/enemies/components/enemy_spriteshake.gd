@@ -1,4 +1,4 @@
-extends AnimatedSprite3D
+extends SpriteBase3D
 
 var original_position: Vector3
 var shake_intensity: float = 0.1

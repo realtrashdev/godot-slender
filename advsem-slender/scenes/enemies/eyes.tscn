@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://c57u8t3kc41fe"]
+
+[ext_resource type="Texture2D" uid="uid://dporlsh4nr431" path="res://art/2d/enemies/eyes.aseprite" id="1_p4rnr"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jkv2x"]
+radius = 2.6000001
+height = 5.2000003
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o1yd7"]
+transparency = 1
+no_depth_test = true
+shading_mode = 0
+albedo_texture = ExtResource("1_p4rnr")
+texture_filter = 0
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_yeuvj"]
+material = SubResource("StandardMaterial3D_o1yd7")
+size = Vector2(5, 5)
+
+[node name="Eyes" type="CharacterBody3D"]
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.51971, 0)
+shape = SubResource("CapsuleShape3D_jkv2x")
+debug_color = Color(0, 0.6, 0.69803923, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+mesh = SubResource("QuadMesh_yeuvj")

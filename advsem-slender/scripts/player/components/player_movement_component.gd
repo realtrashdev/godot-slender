@@ -10,16 +10,15 @@ const PATH_MODIFIER = 1.0
 var player: CharacterBody3D
 var restriction_component: PlayerRestrictionComponent
 var audio_component: PlayerAudioComponent
+var ground_cast: GroundCastComponent
 
 var active: bool = false
-
-@onready var ground_raycast: RayCast3D
 
 func _ready():
 	player = get_parent()
 	restriction_component = player.get_node("RestrictionComponent")
 	audio_component = player.get_node("AudioComponent")
-	ground_raycast = player.get_node("GroundRayCast")
+	ground_cast = player.get_node("GroundCastComponent")
 
 func handle_physics(delta: float):
 	if not active:
@@ -59,8 +58,8 @@ func is_sprinting() -> bool:
 	return Input.is_action_pressed("sprint") and player.velocity != Vector3.ZERO
 
 func get_path_boost() -> float:
-	if ground_raycast.is_colliding():
-		if not ground_raycast.get_collider().is_in_group("Grass"):
+	if ground_cast.is_colliding():
+		if not ground_cast.get_collider().is_in_group("Slows"):
 			return PATH_MODIFIER
 	return 0
 

@@ -1,7 +1,7 @@
 class_name PlayerAudioComponent extends Node
 
-@export var movement_gravel: Array[AudioStream]
 @export var movement_grass: Array[AudioStream]
+@export var movement_path: Array[AudioStream]
 @export var movement_tile: Array[AudioStream]
 
 var previous_sound_index: int
@@ -9,14 +9,14 @@ var move_sound_timer: float
 
 var player: CharacterBody3D
 var movement_component: PlayerMovementComponent
+var ground_cast: GroundCastComponent
 
 @onready var movement_audio: AudioStreamPlayer = $MovementAudio
-@onready var ground_raycast: RayCast3D
 
 func _ready():
 	player = get_parent()
 	movement_component = player.get_node("MovementComponent")
-	ground_raycast = player.get_node("GroundRayCast")
+	ground_cast = player.get_node("GroundCastComponent")
 
 func _process(delta: float):
 	move_sound_timer -= delta
@@ -39,7 +39,7 @@ func play_footstep_sound():
 	var sound_array = get_ground_sounds()
 	if sound_array.size() == 0:
 		push_warning("No ground sounds found. Defaulting.")
-		sound_array = movement_gravel
+		sound_array = movement_path
 	
 	# prevent repeat sounds
 	var rand_max = sound_array.size() - 1
@@ -53,13 +53,11 @@ func play_footstep_sound():
 	movement_audio.play()
 	move_sound_timer = 1.5 / movement_component.get_movement_speed()
 
-func get_ground_sounds() -> Array[AudioStream]:
-	if ground_raycast.is_colliding():
-		var collider = ground_raycast.get_collider()
-		if collider.is_in_group("Path"):
-			return movement_gravel
-		elif collider.is_in_group("Grass"):
+func get_ground_sounds():
+	match ground_cast.get_ground_type():
+		ground_cast.GroundType.GRASS:
 			return movement_grass
-		elif collider.is_in_group("Tile"):
+		ground_cast.GroundType.PATH:
+			return movement_path
+		ground_cast.GroundType.TILE:
 			return movement_tile
-	return movement_gravel

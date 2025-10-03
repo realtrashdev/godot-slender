@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://cejdlhxbn83ey"
-path="res://.godot/imported/walking_gravel3.wav-f034b285d89e087794896df93e671e5a.sample"
+path="res://.godot/imported/walking_gravel3.wav-9e4728d90f1242f7bab3e9a95a4d0521.sample"
 
 [deps]
 
-source_file="res://audio/player/walking/gravel/walking_gravel3.wav"
-dest_files=["res://.godot/imported/walking_gravel3.wav-f034b285d89e087794896df93e671e5a.sample"]
+source_file="res://audio/player/walking/path/walking_gravel3.wav"
+dest_files=["res://.godot/imported/walking_gravel3.wav-9e4728d90f1242f7bab3e9a95a4d0521.sample"]
 
 [params]
 

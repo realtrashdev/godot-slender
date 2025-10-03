@@ -159,11 +159,11 @@ func deactivate():
 	flashlight.visible = false
 	flashlight.set_process(false)
 
-func on_enemy_spawned(type: EnemyProfile.EnemyType):
+func on_enemy_spawned(type: EnemyProfile.Type):
 	match type:
-		EnemyProfile.EnemyType.LETHAL:
+		EnemyProfile.Type.LETHAL:
 			set_flicker_light(light.light_energy / 3)
-		EnemyProfile.EnemyType.DANGEROUS:
+		EnemyProfile.Type.DANGEROUS:
 			set_flicker_light(light.light_energy / 1.5)
-		EnemyProfile.EnemyType.NUISANCE:
+		EnemyProfile.Type.NUISANCE:
 			pass

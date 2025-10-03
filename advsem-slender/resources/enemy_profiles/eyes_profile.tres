@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="EnemyProfile" load_steps=3 format=3 uid="uid://bepy1x4bj1nga"]
+
+[ext_resource type="Texture2D" uid="uid://ci8oadtmki8uy" path="res://art/2d/enemies/icons/eyes_icon.aseprite" id="1_k4fsp"]
+[ext_resource type="Script" uid="uid://c426kdmp0e6tf" path="res://scripts/resources/enemy_profile.gd" id="1_q46dd"]
+
+[resource]
+script = ExtResource("1_q46dd")
+is_2d_enemy = true
+min_spawn_time = 30.0
+max_spawn_time = 40.0
+max_instances = 1
+death_tips = Array[String](["Look around! This one doesn't make any sound when it shows up."])
+name = "Eyes"
+type = 2
+description = "A pair of eyes spawn around you, glowing in the distance.
+
+They are silent.
+
+
+Turn your light off until they go away."
+icon = ExtResource("1_k4fsp")
+metadata/_custom_type_script = "uid://c426kdmp0e6tf"

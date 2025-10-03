@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="VesselProfile" load_steps=3 format=3 uid="uid://ocwen38ehm68"]
+
+[ext_resource type="Texture2D" uid="uid://bs3histpsayyg" path="res://art/2d/characters/icons/icon_dragon.aseprite" id="1_f4k8o"]
+[ext_resource type="Script" uid="uid://pimfnspuor4w" path="res://scripts/resources/vessel_profile.gd" id="1_x5eo4"]
+
+[resource]
+script = ExtResource("1_x5eo4")
+name = "Dragon"
+type = 4
+description = "A dragon from a world long forgotten.
+
+Used to act as a shopkeeper.
+
++ Shop Discount
+- Run Speed
+- Dimmer Light"
+icon = ExtResource("1_f4k8o")
+metadata/_custom_type_script = "uid://pimfnspuor4w"
