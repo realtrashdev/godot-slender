@@ -61,6 +61,7 @@ func finish_game():
 	player.deactivate()
 	page_manager.clear_locations()
 	enemy_manager.disable_all_spawners()
+	enemy_manager.clear_all_enemies()
 	audio_manager.stop_game_audio()
 	ui_manager.show_game_end()
 	

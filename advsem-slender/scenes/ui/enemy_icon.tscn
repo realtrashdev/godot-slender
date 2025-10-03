@@ -6,14 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://6lvn3tolsp7r" path="res://scenes/ui/buttons/menu_button.tscn" id="2_xlxpa"]
 [ext_resource type="FontFile" uid="uid://b78ski6kf8hw1" path="res://fonts/ari-w9500-display.ttf" id="3_xlxpa"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2gkvw"]
-bg_color = Color(1, 1, 1, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(1, 1, 1, 1)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ymfj"]
 bg_color = Color(0.3032328, 0.30323285, 0.30323276, 1)
 corner_radius_top_left = 32
@@ -25,6 +17,14 @@ corner_detail = 4
 [sub_resource type="FontVariation" id="FontVariation_xlxpa"]
 base_font = ExtResource("3_xlxpa")
 spacing_glyph = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2gkvw"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
 
 [node name="EnemyIcon" type="Control"]
 layout_mode = 3
@@ -45,23 +45,6 @@ enemy_profile = ExtResource("2_01gld")
 layout_mode = 0
 offset_right = 650.0
 offset_bottom = 400.0
-
-[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer"]
-custom_minimum_size = Vector2(200, 200)
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxFlat_2gkvw")
-
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/PanelContainer"]
-layout_mode = 2
-texture = ExtResource("1_2ymfj")
-
-[node name="Button" parent="HBoxContainer/PanelContainer" instance=ExtResource("2_xlxpa")]
-layout_mode = 2
-mouse_filter = 1
-toggle_mode = true
-focus_enabled = false
 
 [node name="DescriptionPanel" type="Panel" parent="HBoxContainer"]
 custom_minimum_size = Vector2(350, 400)
@@ -88,7 +71,7 @@ layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("3_xlxpa")
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
-text = "[wave freq=3]"
+text = "[tornado radius=3 freq=4]"
 horizontal_alignment = 1
 
 [node name="CategoryText" type="RichTextLabel" parent="HBoxContainer/DescriptionPanel/TextContainer"]
@@ -110,6 +93,23 @@ fit_content = true
 scroll_active = false
 shortcut_keys_enabled = false
 horizontal_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_2gkvw")
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/PanelContainer"]
+layout_mode = 2
+texture = ExtResource("1_2ymfj")
+
+[node name="Button" parent="HBoxContainer/PanelContainer" instance=ExtResource("2_xlxpa")]
+layout_mode = 2
+mouse_filter = 1
+toggle_mode = true
+focus_enabled = false
 
 [connection signal="mouse_entered" from="HBoxContainer/PanelContainer" to="." method="_on_hover"]
 [connection signal="mouse_exited" from="HBoxContainer/PanelContainer" to="." method="_on_unhover"]

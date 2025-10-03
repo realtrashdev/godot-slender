@@ -9,7 +9,9 @@ script = ExtResource("2_wivop")
 scene = ExtResource("1_k3hal")
 is_2d_enemy = true
 name = "Gum"
-description = "He'll show up on your screen and lock your camera in place.
+description = "He'll show up on your screen and bounce around.
+
+While active, he locks your camera in place.
 
 Click on him to send him away!"
 icon = ExtResource("1_wivop")

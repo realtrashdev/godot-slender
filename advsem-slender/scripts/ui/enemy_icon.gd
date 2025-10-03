@@ -75,6 +75,9 @@ func display_desc(do_show: bool, time: float):
 		text_tween.kill()
 	text_tween = create_tween()
 	
+	name_text.visible_ratio = 1
+	category_text.visible_ratio = 1
+	
 	for child in text_container.get_children():
 		if child is RichTextLabel:
 			match do_show:
@@ -85,7 +88,7 @@ func display_desc(do_show: bool, time: float):
 
 func setup():
 	texture.texture = enemy_profile.icon
-	name_text.text = name_text.text + enemy_profile.name
+	name_text.text = name_text.text + enemy_profile.name.to_upper()
 	category_text.text = category_text.text + EnemyProfile.EnemyType.keys()[enemy_profile.type]
 	description_text.text = description_text.text + enemy_profile.description
 

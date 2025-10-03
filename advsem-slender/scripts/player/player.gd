@@ -2,6 +2,8 @@ extends CharacterBody3D
 
 const MENU_SCENE = "res://scenes/ui/menus/menu_base.tscn"
 
+var active: bool
+
 @onready var movement_component: PlayerMovementComponent = $MovementComponent
 @onready var camera_component: PlayerCameraComponent = $CameraComponent
 @onready var flashlight_component: PlayerFlashlightComponent = $FlashlightComponent
