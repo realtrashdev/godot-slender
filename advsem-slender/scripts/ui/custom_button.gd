@@ -72,10 +72,10 @@ func delay_display():
 	display_text()
 
 func lerp_size(delta: float) -> void:
-	if button_pressed:
+	if toggle_mode and button_pressed:
 		custom_minimum_size = lerp(custom_minimum_size, toggle_size, focus_speed * delta)
 		interp_font_size = lerp(interp_font_size, toggle_font_size, focus_speed * delta)
-	elif focus:
+	elif focus and focus_enabled:
 		custom_minimum_size = lerp(custom_minimum_size, focus_size, focus_speed * delta)
 		interp_font_size = lerp(interp_font_size, focus_font_size, focus_speed * delta)
 	else:
