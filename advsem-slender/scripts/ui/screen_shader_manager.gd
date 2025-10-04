@@ -4,7 +4,7 @@ extends CanvasLayer
 @export var color_palettes: Dictionary[String, ColorSet] = {}
 
 func _ready() -> void:
-	change_game_color(color_palettes["purple"])
+	change_game_color(color_palettes["red"])
 	#change_game_color(color_palettes[SaveManager.get_selected_color_palette()])
 
 # if speed is 0 or not entered, instant change

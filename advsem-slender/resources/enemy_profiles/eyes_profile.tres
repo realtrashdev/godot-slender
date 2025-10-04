@@ -8,6 +8,7 @@
 
 [sub_resource type="Resource" id="Resource_3lxij"]
 script = ExtResource("5_wsijd")
+radius = 20.0
 metadata/_custom_type_script = "uid://bk23iyn5r0tgb"
 
 [resource]

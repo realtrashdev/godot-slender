@@ -74,6 +74,7 @@ autoplay = "Run"
 frame_progress = 0.70122755
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
+modulate = Color(0.5931336, 0.59313357, 0.59313357, 1)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
