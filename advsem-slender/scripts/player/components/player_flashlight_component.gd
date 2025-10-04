@@ -146,6 +146,9 @@ func play_audio():
 func get_sprint_angle() -> float:
 	return DEFAULT_SPRINT_ANGLE + sprint_angle_modifier
 
+func get_light_status() -> bool:
+	return light.visible
+
 func activate():
 	set_process(true)
 	flashlight.visible = true

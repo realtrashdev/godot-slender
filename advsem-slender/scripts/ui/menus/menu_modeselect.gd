@@ -50,7 +50,7 @@ func _on_endless_toggled(pressed: bool):
 	animate_description(GameConfig.get_mode_description(GameConfig.GameMode.ENDLESS))
 
 func _on_start_pressed():
-	go_to_menu(MenuConfig.MenuType.START_GAME, MenuConfig.TransitionDirection.FORWARD, false)
+	go_to_menu(MenuConfig.MenuType.CHARACTER_SELECT, MenuConfig.TransitionDirection.FORWARD, true)
 
 func _on_back_pressed():
 	go_to_menu(MenuConfig.MenuType.MAIN, MenuConfig.TransitionDirection.BACKWARD, true)

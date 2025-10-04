@@ -1,14 +1,27 @@
-[gd_scene load_steps=4 format=3 uid="uid://b44g52cw8jhlu"]
+[gd_scene load_steps=10 format=3 uid="uid://b44g52cw8jhlu"]
 
 [ext_resource type="Script" uid="uid://cjehxq1f2vicp" path="res://scripts/ui/screen_shader_manager.gd" id="1_cjvg8"]
 [ext_resource type="Material" uid="uid://dfno40i012odi" path="res://shaders/fourcolor_screen.tres" id="2_alglh"]
-[ext_resource type="Resource" uid="uid://w12qf506p7v2" path="res://resources/color_sets/colorset_blue.tres" id="3_jwt3u"]
+[ext_resource type="Resource" uid="uid://dxqerx2bro4kp" path="res://resources/color_sets/colorset_mono.tres" id="3_jwt3u"]
+[ext_resource type="Script" uid="uid://cr2cb0aew1jk5" path="res://scripts/resources/color_set.gd" id="3_mg847"]
+[ext_resource type="Resource" uid="uid://yqp2gio83wnu" path="res://resources/color_sets/colorset_red.tres" id="5_k1phj"]
+[ext_resource type="Resource" uid="uid://cv5fnmupvjqsc" path="res://resources/color_sets/colorset_green.tres" id="6_bu1jg"]
+[ext_resource type="Resource" uid="uid://w12qf506p7v2" path="res://resources/color_sets/colorset_blue.tres" id="7_fy2x6"]
+[ext_resource type="Resource" uid="uid://clb54htu6fqy4" path="res://resources/color_sets/colorset_purple.tres" id="8_u5c16"]
+[ext_resource type="Resource" uid="uid://c7l7t6to7xn5t" path="res://resources/color_sets/colorset_gameboy.tres" id="9_imeoj"]
 
 [node name="ScreenColorCanvas" type="CanvasLayer"]
 layer = 10
 script = ExtResource("1_cjvg8")
 shader_material = ExtResource("2_alglh")
-default_color = ExtResource("3_jwt3u")
+color_palettes = Dictionary[String, ExtResource("3_mg847")]({
+"blue": ExtResource("7_fy2x6"),
+"gameboy": ExtResource("9_imeoj"),
+"green": ExtResource("6_bu1jg"),
+"mono": ExtResource("3_jwt3u"),
+"purple": ExtResource("8_u5c16"),
+"red": ExtResource("5_k1phj")
+})
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = ExtResource("2_alglh")

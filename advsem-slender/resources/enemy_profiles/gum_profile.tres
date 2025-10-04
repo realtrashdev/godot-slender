@@ -15,7 +15,7 @@ death_tips = Array[String](["Click on him."])
 name = "Gum"
 description = "He will show up on a timer and bounce around on your screen.
 
-When active, your camera is locked in place.
+While he is active, your camera is locked in place.
 
 Click on him to kill him."
 icon = ExtResource("1_wivop")

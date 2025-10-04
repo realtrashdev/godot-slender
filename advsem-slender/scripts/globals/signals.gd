@@ -18,4 +18,4 @@ signal page_collected
 @warning_ignore("unused_signal")
 signal enemy_spawned(type: EnemyProfile.Type)
 @warning_ignore("unused_signal")
-signal killed_player(name: String)
+signal killed_player(jumpscare: Jumpscare)

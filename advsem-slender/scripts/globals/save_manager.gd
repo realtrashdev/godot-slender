@@ -5,6 +5,8 @@ const SAVE_PATH = "user://save_data.json"
 # settings
 var settings: Dictionary = {
 	"selected_game_mode": GameConfig.GameMode.CLASSIC,
+	"selected_character": "default",
+	"selected_palette": "mono",
 	"audio_volume": 1.0,
 	"mouse_sensitivity": 0.002,
 }
@@ -14,11 +16,15 @@ var progression: Dictionary = {
 	"total_pages_collected": 0,
 	"total_deaths": 0,
 	"unlocked_modes": [GameConfig.GameMode.CLASSIC],
+	"unlocked_characters": ["default"],
+	"unlocked_palettes": ["mono", "red", "blue", "green", "purple"],
 	"enemy_encounters": {},  # enemy_name: count
 }
 
 func _ready():
 	load_game()
+	reset_progression()
+	reset_settings()
 
 func save_game():
 	var save_dict = {
@@ -61,13 +67,7 @@ func load_game():
 	else:
 		push_error("Failed to parse save file: " + json.get_error_message())
 
-# settings accessors
-func get_player_name() -> String:
-	return settings.get("player_name", "gubbo")
-
-func set_player_name(player_name: String):
-	settings["player_name"] = player_name
-
+#region Settings Accessors
 func get_selected_game_mode() -> GameConfig.GameMode:
 	return settings.get("selected_game_mode", GameConfig.GameMode.CLASSIC)
 
@@ -75,7 +75,37 @@ func set_selected_game_mode(mode: GameConfig.GameMode):
 	settings["selected_game_mode"] = mode
 	save_game()
 
-# progression accessors
+func get_selected_character_name() -> String:
+	return settings.get("selected_character", "default")
+
+func set_selected_character_name(char_name: String):
+	settings["selected_character"] = char_name
+	save_game()
+
+func get_selected_color_palette() -> String:
+	return settings.get("selected_palette", "mono")
+
+func set_selected_color_palette(char_name: String):
+	settings["selected_palette"] = char_name
+	save_game()
+#endregion
+
+#region Progression Accessors
+func get_player_name() -> String:
+	return progression.get("player_name", "Unnamed")
+
+func set_player_name(player_name: String):
+	progression["player_name"] = player_name
+	save_game()
+
+func get_unlocked_characters() -> Array:
+	return progression.get("unlocked_characters", ["default"])
+
+func unlock_character(char_name: String):
+	if not progression["unlocked_characters"].has(char_name):
+		progression["unlocked_characters"] += char_name
+		save_game()
+
 func add_pages_collected(count: int):
 	progression["total_pages_collected"] += count
 	save_game()
@@ -97,22 +127,25 @@ func unlock_mode(mode: GameConfig.GameMode):
 
 func is_mode_unlocked(mode: GameConfig.GameMode) -> bool:
 	return progression["unlocked_modes"].has(mode)
+#endregion
 
-# reset functions
+#region Reset Functions
 func reset_progression():
 	progression = {
 		"total_pages_collected": 0,
 		"total_deaths": 0,
-		"best_page_streak": 0,
 		"unlocked_modes": [GameConfig.GameMode.CLASSIC],
-		"enemy_encounters": {},
+		"unlocked_characters": ["default"],
+		"enemy_encounters": {},  # enemy_name: count
 	}
 	save_game()
 
 func reset_settings():
 	settings = {
 		"selected_game_mode": GameConfig.GameMode.CLASSIC,
+		"selected_character": "default",
 		"audio_volume": 1.0,
 		"mouse_sensitivity": 0.002,
 	}
 	save_game()
+#endregion

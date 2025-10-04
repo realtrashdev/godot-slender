@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 const MENU_SCENE = "res://scenes/ui/menus/menu_base.tscn"
 
-var active: bool
+var active: bool = false
 
 @onready var movement_component: PlayerMovementComponent = $MovementComponent
 @onready var camera_component: PlayerCameraComponent = $CameraComponent
@@ -33,11 +33,13 @@ func die():
 	tree.change_scene_to_file(MENU_SCENE)
 
 func activate():
+	active = true
 	movement_component.activate()
 	camera_component.activate()
 	flashlight_component.activate()
 
 func deactivate():
+	active = false
 	movement_component.deactivate()
 	camera_component.deactivate()
 	flashlight_component.deactivate()

@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_x5eo4")
-name = "Dragon"
+name = "dragon"
 type = 4
 description = "A dragon from a world long forgotten.
 

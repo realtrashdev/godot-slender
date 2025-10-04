@@ -4,5 +4,6 @@
 
 [resource]
 script = ExtResource("1_t7wm5")
-colors = Array[Color]([Color(0.784314, 0.392157, 0.392157, 1), Color(0.588235, 0.294118, 0.294118, 1), Color(0.392157, 0.196078, 0.196078, 1), Color(0.196078, 0.0980392, 0.0980392, 1)])
+name = "red"
+colors = Array[Color]([Color(0.9490196, 0.5803922, 0.4745098, 1), Color(0.9490196, 0.41568628, 0.30980393, 1), Color(0.4, 0.02745098, 0.03137255, 1), Color(0.21568628, 0.023529412, 0.09019608, 1)])
 metadata/_custom_type_script = "uid://cr2cb0aew1jk5"

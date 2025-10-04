@@ -63,22 +63,10 @@ func debug_print_stats() -> void:
 
 
 ## main update logic
-
 # called every 6 ticks by PathfindingComponent
 func pathfind() -> void:
 	update_navigation()
 	update_movement()
-
-func check_player_collision() -> void:
-	for i in get_slide_collision_count():
-		var collision = get_slide_collision(i)
-		var collider = collision.get_collider()
-		
-		if collider and collider.is_in_group("Player"):
-			var enemy_name = profile.name if profile else "Chaser"
-			Signals.killed_player.emit(enemy_name)
-			collider.die()
-			return
 
 func update_light_state(delta: float) -> void:
 	if is_lit and current_state == State.CHASING:

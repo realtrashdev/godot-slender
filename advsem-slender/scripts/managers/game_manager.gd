@@ -26,10 +26,9 @@ func initialize_game():
 	enemy_manager.initialize(game_state, player)
 	add_child(enemy_manager)
 	
-	enemy_manager.add_enemy_spawner(
-		preload("res://resources/enemy_profiles/chaser_profile.tres"), 1)
-	enemy_manager.add_enemy_spawner(
-		preload("res://resources/enemy_profiles/gum_profile.tres"), 2)
+	enemy_manager.add_enemy_spawner(preload("res://resources/enemy_profiles/eyes_profile.tres"), 0)
+	enemy_manager.add_enemy_spawner(preload("res://resources/enemy_profiles/chaser_profile.tres"), 1)
+	enemy_manager.add_enemy_spawner(preload("res://resources/enemy_profiles/gum_profile.tres"), 2)
 	
 	ui_manager.initialize(game_state)
 	audio_manager.initialize(game_state)

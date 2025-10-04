@@ -51,7 +51,6 @@ transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 
 stream = ExtResource("2_2d7pv")
 volume_db = -12.0
 pitch_scale = 0.4
-autoplay = true
 parameters/looping = true
 
 [node name="TypingSounds" parent="." instance=ExtResource("4_0yjfb")]

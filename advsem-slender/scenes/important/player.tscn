@@ -32,6 +32,7 @@
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_i3pqv"]
 
 [node name="Player" type="CharacterBody3D" groups=["Player"]]
+collision_layer = 17
 collision_mask = 5
 script = ExtResource("1_4flbx")
 

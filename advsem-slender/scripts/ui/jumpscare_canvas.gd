@@ -1,23 +1,34 @@
-extends CanvasLayer
+class_name JumpscareManager extends CanvasLayer
 
-@export var jumpscares: Dictionary[String, Jumpscare]
+@export var default_jumpscare: Jumpscare  # fallback if enemy has none for some reason
 
-@onready var player: CharacterBody3D = get_tree().get_first_node_in_group("Player")
 @onready var audio: AudioStreamPlayer = $AudioStreamPlayer
 @onready var texture: TextureRect = $TextureRect
 @onready var animation: AnimationPlayer = $TextureRect/AnimationPlayer
 
 func _ready() -> void:
-	Signals.killed_player.connect(jumpscare)
+	visible = false
+	Signals.killed_player.connect(_on_player_killed)
 
-func jumpscare(ename: String):
-	var enemy_name = ename.to_upper()
+func _exit_tree():
+	if Signals.killed_player.is_connected(_on_player_killed):
+		Signals.killed_player.disconnect(_on_player_killed)
+
+func _on_player_killed(jumpscare: Jumpscare):
+	if jumpscare:
+		play_jumpscare(jumpscare)
+	elif default_jumpscare:
+		play_jumpscare(default_jumpscare)
+	else:
+		push_warning("No jumpscare available")
+
+func play_jumpscare(jumpscare: Jumpscare):
 	visible = true
-	
-	if enemy_name == "":
-		return
-	
-	texture.texture = jumpscares[enemy_name].sprite
-	audio.stream = jumpscares[enemy_name].sound
+	texture.texture = jumpscare.sprite
+	audio.stream = jumpscare.sound
 	audio.play()
-	animation.play("jumpscare")
+	animation.play("jumpscare_" + str(Jumpscare.Type.keys()[jumpscare.type]).to_lower())
+
+# testing in editor
+func test_jumpscare(jumpscare: Jumpscare):
+	_on_player_killed(jumpscare)

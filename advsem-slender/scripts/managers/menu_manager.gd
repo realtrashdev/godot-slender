@@ -4,6 +4,7 @@ var current_menu: Menu
 var menu_transition: MenuTransition
 
 @onready var music: AudioStreamPlayer = $Music
+@onready var secrets: Node = $Secrets
 @onready var quit_audio: AudioStreamPlayer = $QuitAudio
 
 func _ready() -> void:
@@ -11,7 +12,7 @@ func _ready() -> void:
 	menu_transition = MenuTransition.new()
 	menu_transition.initialize(self)
 	fade_in_music(-12, 1.0)
-	open_menu_instant(MenuConfig.MenuType.MAIN, MenuConfig.TransitionDirection.FORWARD, false)
+	open_menu_instant(MenuConfig.MenuType.INTRO, MenuConfig.TransitionDirection.FORWARD, false)
 
 func open_menu(type: MenuConfig.MenuType, direction: MenuConfig.TransitionDirection, play_sound: bool = true):
 	var scene_path = MenuConfig.MENU_SCENES.get(type)
@@ -22,6 +23,10 @@ func open_menu(type: MenuConfig.MenuType, direction: MenuConfig.TransitionDirect
 	if current_menu:
 		await menu_transition.close(current_menu, direction, play_sound)
 		current_menu.queue_free()
+	
+	if type == MenuConfig.MenuType.MAIN and not secrets.enabled:
+		music.play()
+		secrets.enabled = true
 	
 	current_menu = load(scene_path).instantiate()
 	current_menu.menu_changed.connect(on_menu_changed)

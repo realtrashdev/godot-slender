@@ -25,6 +25,7 @@ func initialize(state: GameState, enemy_profile: EnemyProfile, required: int, pl
 	
 	connect_signals()
 	reset_timer()
+	check_enable()
 
 func _exit_tree():
 	if Signals.page_collected.is_connected(on_page_collected):
@@ -96,7 +97,7 @@ func reset_timer():
 	spawn_timer = randf_range(min_spawn_time, max_spawn_time)
 
 func check_enable():
-	if game_state.current_pages_collected == required_pages and not enabled:
+	if game_state.current_pages_collected >= required_pages and not enabled:
 		enable_spawner()
 
 func enable_spawner():

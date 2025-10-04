@@ -1,5 +1,7 @@
 extends Node
 
+var enabled = false
+
 var recent_keys: Array[String] = []
 
 var manager: Node3D
@@ -10,6 +12,9 @@ func _ready() -> void:
 	check_gum()
 
 func _input(event: InputEvent) -> void:
+	if not enabled:
+		return
+	
 	if event is not InputEventKey:
 		return
 	
@@ -44,12 +49,13 @@ func check_key_array():
 			toggle_bgm_pitch()
 			return
 
-## 1 in 1000 chance every second to spawn gum enemy on title screen
+## 1 in 2000 chance every second to spawn gum enemy on title screen
 func check_gum():
 	await get_tree().create_timer(1).timeout
-	var num = randi_range(1, 1000)
-	if num == 1000:
-		spawn_gum()
+	var num = randi_range(1, 2000)
+	if num == 2000:
+		if enabled:
+			spawn_gum()
 	check_gum()
 
 func spawn_gum():

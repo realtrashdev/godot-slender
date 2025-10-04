@@ -1,12 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://c57u8t3kc41fe"]
+[gd_scene load_steps=7 format=3 uid="uid://c57u8t3kc41fe"]
 
+[ext_resource type="Script" uid="uid://b41qhrgbncwi0" path="res://scripts/enemies/enemy_eyes.gd" id="1_5drqm"]
 [ext_resource type="Texture2D" uid="uid://dporlsh4nr431" path="res://art/2d/enemies/eyes.aseprite" id="1_p4rnr"]
+[ext_resource type="AudioStream" uid="uid://buv8asoeu817u" path="res://audio/enemies/placeholder/slendytubbies_scream_full.wav" id="3_o1yd7"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jkv2x"]
 radius = 2.6000001
 height = 5.2000003
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o1yd7"]
+render_priority = 100
 transparency = 1
 no_depth_test = true
 shading_mode = 0
@@ -20,6 +23,9 @@ size = Vector2(5, 5)
 
 [node name="Eyes" type="CharacterBody3D"]
 collision_layer = 0
+collision_mask = 16
+motion_mode = 1
+script = ExtResource("1_5drqm")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.51971, 0)
@@ -29,3 +35,8 @@ debug_color = Color(0, 0.6, 0.69803923, 1)
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 mesh = SubResource("QuadMesh_yeuvj")
+
+[node name="AttackAudio" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_o1yd7")
+pitch_scale = 1.2
+max_distance = 80.0

@@ -1,11 +1,11 @@
 [gd_scene load_steps=5 format=3 uid="uid://dfyinwfqrduhg"]
 
-[ext_resource type="Script" uid="uid://v8rvsqsanr0r" path="res://scripts/ui/menus/menu_play.gd" id="1_5owl3"]
+[ext_resource type="Script" uid="uid://v8rvsqsanr0r" path="res://scripts/ui/menus/menu_modeselect.gd" id="1_5owl3"]
 [ext_resource type="Theme" uid="uid://bommyqwo15hbx" path="res://theme1.tres" id="2_pbvuy"]
 [ext_resource type="PackedScene" uid="uid://6lvn3tolsp7r" path="res://scenes/ui/buttons/menu_button.tscn" id="3_f83us"]
 [ext_resource type="Script" uid="uid://c3ysaqnmo1oo8" path="res://scripts/ui/ui_text.gd" id="3_pbvuy"]
 
-[node name="PlayMenu" type="Control"]
+[node name="ModeSelectMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -119,7 +119,7 @@ offset_bottom = 100.03998
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(1.5, 1.5)
-default_text = "Start"
+default_text = "Continue"
 justification = 1
 
 [node name="BackButton" parent="." instance=ExtResource("3_f83us")]
