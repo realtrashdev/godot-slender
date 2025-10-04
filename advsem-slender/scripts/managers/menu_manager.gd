@@ -6,6 +6,7 @@ var menu_transition: MenuTransition
 @onready var music: AudioStreamPlayer = $Music
 @onready var secrets: Node = $Secrets
 @onready var quit_audio: AudioStreamPlayer = $QuitAudio
+@onready var transition_fade: ColorRect = $TransitionLayer/TransitionFade
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE

@@ -5,21 +5,18 @@ signal toggled
 enum State { IDLE, FOCUS, PRESSED }
 
 @export var profile: CharacterProfile
-@export var desc_right_side: bool = true
 
 @export_group("Sizing")
 @export var default_size: Vector2 = Vector2(200, 200)
 @export var focus_size: Vector2 = Vector2(225, 225)
 @export var active_size: Vector2 = Vector2(250, 250)
 
-const LEFT_OFFSET:  Vector2 = Vector2(-300.0, -100)
-const RIGHT_OFFSET: Vector2 = Vector2(150, -100)
-
 var panel_tween: Tween
 var text_tween: Tween
 
 var toggle: bool = false
 var ignore_mouse: bool = false
+var desc_right_side: bool = false
 
 @onready var panel_container: PanelContainer = $PanelContainer
 @onready var texture: TextureRect = $PanelContainer/TextureRect
@@ -121,14 +118,15 @@ func setup():
 func update_description_position():
 	await get_tree().process_frame
 	
-	if desc_right_side:
-		description_panel.global_position = panel_container.global_position + get_desc_offset()
+	if global_position.x > 1400:
+		desc_right_side = false
 	else:
-		description_panel.global_position = panel_container.global_position + get_desc_offset()
-
-func get_desc_offset():
-	match desc_right_side:
-		true:
-			return RIGHT_OFFSET + Vector2(panel_container.custom_minimum_size.x / 2, 0)
-		false:
-			return LEFT_OFFSET - Vector2(panel_container.custom_minimum_size.x / 2, 0)
+		desc_right_side = true
+	
+	# Use CharacterIcon's global position as anchor
+	var anchor_point = global_position + (size / 2)
+	
+	if desc_right_side:
+		description_panel.global_position = anchor_point + Vector2(active_size.x / 2 + 25, -200)
+	else:
+		description_panel.global_position = anchor_point + Vector2(-active_size.x / 2 - 375, -200)

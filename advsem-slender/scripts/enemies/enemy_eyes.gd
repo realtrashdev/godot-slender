@@ -29,7 +29,7 @@ func _ready() -> void:
 		queue_free()
 	
 	light_on = player.flashlight_component.get_light_status()
-	timer.paused = light_on
+	timer.paused = !light_on
 	life_cycle()
 
 func _input(event: InputEvent) -> void:
@@ -59,8 +59,7 @@ func _physics_process(delta: float) -> void:
 	elif state == State.ATTACK:
 		var speed = 30.0
 		global_position = global_position.move_toward(player.global_position, speed * delta)
-	
-	move_and_slide()
+		move_and_slide()
 
 func life_cycle():
 	add_child(timer)
@@ -71,7 +70,7 @@ func life_cycle():
 
 func spawn():
 	$MeshInstance3D.mesh.size = Vector2(5, 0)
-	create_tween().tween_property($MeshInstance3D.mesh, "size", Vector2(5, 5), 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	create_tween().tween_property($MeshInstance3D.mesh, "size", Vector2(5, 5), 2).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 
 func die():
 	var tween = create_tween()

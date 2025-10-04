@@ -12,8 +12,10 @@ func get_spawn_position(ctx: SpawnContext) -> Vector3:
 	var x = radius * cos(angle)
 	var z = radius * sin(angle)
 	
-	print("Player pos: ", player.global_position)
-	print("Spawn pos: ", player.global_position + Vector3(x, 0, z))
-	print("Distance from player: ", (player.global_position + Vector3(x, 0, z)).distance_to(player.global_position))
+	var pos = player.global_position + Vector3(x, randf_range(-10, 10), z)
 	
-	return player.global_position + Vector3(x, 0, z)
+	print("Player pos: ", player.global_position)
+	print("Spawn pos: ", pos)
+	print("Distance from player: ", pos.distance_to(player.global_position))
+	
+	return pos
