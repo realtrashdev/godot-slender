@@ -24,7 +24,7 @@ texture_filter = 0
 sprite_frames = ExtResource("2_3pbm7")
 animation = &"walk"
 autoplay = "walk"
-frame_progress = 0.32609326
+frame_progress = 0.97765756
 script = ExtResource("3_hm5ih")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
