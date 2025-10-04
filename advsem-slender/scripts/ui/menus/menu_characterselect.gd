@@ -50,3 +50,6 @@ func _on_start_pressed():
 
 func _on_back_pressed():
 	go_to_menu(MenuConfig.MenuType.MODE_SELECT, MenuConfig.TransitionDirection.BACKWARD, true)
+
+func _on_menu_pressed():
+	go_to_menu(MenuConfig.MenuType.MAIN, MenuConfig.TransitionDirection.BACKWARD, true)

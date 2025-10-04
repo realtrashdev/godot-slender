@@ -84,9 +84,24 @@ offset_top = -150.0
 offset_right = 420.0
 offset_bottom = -50.0
 grow_vertical = 0
-default_text = "Back"
+default_text = "Modes"
+default_color = Color(0.54497427, 0.5449743, 0.5449741, 1)
+press_color = Color(0, 0, 0, 1)
+
+[node name="MenuButton" parent="." instance=ExtResource("4_0o7yx")]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 100.0
+offset_top = -275.0
+offset_right = 420.0
+offset_bottom = -174.9997
+grow_vertical = 0
+default_text = "Menu"
 default_color = Color(0.54497427, 0.5449743, 0.5449741, 1)
 press_color = Color(0, 0, 0, 1)
 
 [connection signal="pressed" from="StartButton" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="MenuButton" to="." method="_on_menu_pressed"]

@@ -119,8 +119,11 @@ func toggle_light(on: bool):
 	play_audio()
 
 func set_flicker_light(starting_energy: float):
+	if !get_light_status():
+		return
 	var energy = light.light_energy
 	
+	AudioTools.play_one_shot(get_tree(), preload("res://audio/player/light_flicker1.mp3"))
 	target_brightness = starting_energy
 	await target_brightness_reached
 	target_brightness = energy

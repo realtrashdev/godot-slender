@@ -82,7 +82,9 @@ offset_right = 300.0
 offset_bottom = -262.50098
 grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 2
 theme = ExtResource("2_a1ldx")
+theme_override_colors/caret_color = Color(0.9490196, 0.9490196, 0.9490196, 0)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_a1ldx")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_wmfhq")
 placeholder_text = "ENTER NAME"
@@ -91,6 +93,10 @@ max_length = 10
 context_menu_enabled = false
 emoji_menu_enabled = false
 shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
 caret_blink = true
 
 [node name="PanelContainer" type="PanelContainer" parent="CharacterNaming"]

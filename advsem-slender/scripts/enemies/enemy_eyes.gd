@@ -3,7 +3,7 @@ extends Enemy3D
 enum State { HOVERING, ATTACK }
 
 const ACTIVE_TIME: float = 10.0
-const LIGHT_TIME: float = 10.0
+const LIGHT_TIME: float = 8.0
 
 var alive: bool = true
 var state = State.HOVERING
@@ -35,8 +35,11 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("toggle_light") and player.active:
 		if not light_on: # this occurs first, so reversing is necessary
+			var new_time = timer.time_left - 2
+			timer.stop()
+			timer.start(new_time)
 			timer.paused = false
-			print("Light on, timer resumed")
+			print("Light on, subtracted 2 from time left and resumed")
 		else:
 			timer.paused = true
 			print("Light off, timer paused")

@@ -68,10 +68,10 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_uf3fo")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_jlpo3")
 
 [node name="gum" parent="BounceArea/Control/Button" instance=ExtResource("2_w8oyp")]
-position = Vector2(125, 125)
-scale = Vector2(3.9, 3.9)
+position = Vector2(160, 160)
+scale = Vector2(5, 5)
 autoplay = "Run"
-frame_progress = 0.85556746
+frame_progress = 0.70122755
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 anchors_preset = 8

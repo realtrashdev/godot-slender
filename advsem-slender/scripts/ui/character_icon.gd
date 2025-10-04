@@ -32,6 +32,10 @@ func _ready() -> void:
 	description_panel.modulate = Color(0, 0, 0, 0)
 	display_desc(false, 0)
 
+func _input(event: InputEvent) -> void:
+	if description_panel.modulate != Color(0, 0, 0, 0):
+		description_text.get_v_scroll_bar().value += Input.get_axis("ui_text_scroll_up", "ui_text_scroll_down") * 20
+
 func _on_hover():
 	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED or ignore_mouse:
 		return
@@ -53,6 +57,7 @@ func _on_unhover():
 	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED or ignore_mouse:
 		return
 	
+	description_text.get_v_scroll_bar().value = 0
 	description_panel.modulate = Color(0, 0, 0, 0)
 	display_desc(false, 0)
 	

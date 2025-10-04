@@ -1,6 +1,6 @@
 extends Menu
 
-static var seen: bool = true
+static var seen: bool = false
 
 var intro_text: Array[String] = [
 	"hello there.",
@@ -10,7 +10,7 @@ var intro_text: Array[String] = [
 	"if you wish to venture into the unknown,\nwe must first create you a [wave]Vessel.",
 ]
 
-var current_spiel: Array[String] = intro_text
+var current_spiel: Array[String] #= intro_text
 var progression: Array[Control]
 
 var progress: bool = false
@@ -24,7 +24,7 @@ func _ready() -> void:
 		go_to_menu(MenuConfig.MenuType.MAIN, MenuConfig.TransitionDirection.FORWARD, false)
 		return
 	
-	await get_tree().create_timer(5).timeout
+	await get_tree().create_timer(1).timeout
 	show_line()
 
 func _input(event: InputEvent) -> void:
@@ -51,17 +51,22 @@ func show_line():
 
 func next_stage():
 	if progression.is_empty():
+		seen = true
 		go_to_menu(MenuConfig.MenuType.MAIN, MenuConfig.TransitionDirection.FORWARD, false)
 		return
 	
 	progression[0].visible = true
 	progression[0].modulate = Color.BLACK
-	create_tween().tween_property(progression[0], "modulate", Color.WHITE, 3)
+	var tween = create_tween().tween_property(progression[0], "modulate", Color.WHITE, 3)
 	progression.remove_at(0)
+	await tween.finished
+	$CharacterNaming/LineEdit.grab_focus()
 
 func _on_line_edit_text_submitted(new_text: String) -> void:
 	if new_text.length() > 0:
 		SaveManager.set_player_name(new_text)
+		$CharacterNaming/LineEdit.release_focus()
 		$CharacterNaming.visible = false
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		await get_tree().create_timer(3).timeout
 		next_stage()

@@ -103,11 +103,13 @@ func reset_timer():
 	spawn_timer = randf_range(min_spawn_time, max_spawn_time)
 
 func check_enable():
+	# if the player has collected required pages, don't enable
 	if game_state.current_pages_collected == game_state.current_pages_required:
 		return
 	
 	if game_state.current_pages_collected >= required_pages and not enabled:
 		enable_spawner()
+		reset_timer()
 
 func enable_spawner():
 	print("Enabled " + profile.name + " Spawner")

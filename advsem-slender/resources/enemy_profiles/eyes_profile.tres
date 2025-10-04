@@ -21,10 +21,10 @@ jumpscare = ExtResource("2_tw487")
 death_tips = Array[String](["Look around! This one doesn't make any sound when it shows up."])
 name = "Eyes"
 type = 1
-description = "A pair of eyes spawn around you, glowing in the distance.
+description = "A pair of glowing eyes that spawn around you.
 
-They are silent, but your light will flicker.
+They are silent. Your light will flicker slightly when they appear.
 
-Turn your light off until they go away."
+Keep your light off until they go away."
 icon = ExtResource("1_k4fsp")
 metadata/_custom_type_script = "uid://c426kdmp0e6tf"
