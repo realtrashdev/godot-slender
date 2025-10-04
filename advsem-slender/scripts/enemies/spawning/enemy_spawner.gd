@@ -68,12 +68,18 @@ func spawn_enemy() -> Node:
 	return enemy
 
 func spawn_2d_enemy(enemy: Enemy2D):
+	if not enabled:
+		return
+	
 	print("Enemy2D Spawned")
 	get_tree().current_scene.add_child(enemy)
 	enemy.profile = profile
 	enemy.activate()
 
 func spawn_3d_enemy(enemy: Enemy3D):
+	if not enabled:
+		return
+	
 	print("Enemy3D Spawned")
 	add_child(enemy)
 	enemy.profile = profile
@@ -97,6 +103,9 @@ func reset_timer():
 	spawn_timer = randf_range(min_spawn_time, max_spawn_time)
 
 func check_enable():
+	if game_state.current_pages_collected == game_state.current_pages_required:
+		return
+	
 	if game_state.current_pages_collected >= required_pages and not enabled:
 		enable_spawner()
 

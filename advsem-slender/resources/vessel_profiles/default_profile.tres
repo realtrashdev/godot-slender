@@ -6,10 +6,13 @@
 [resource]
 script = ExtResource("1_rkv35")
 name = "default"
-type = 3
-description = "A blank slate we morphed into something special.
+type = 5
+description = "
 
-A representation of you in this world.
+
+It's you.
+
+
 
 
 Default stats."
