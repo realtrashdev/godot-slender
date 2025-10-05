@@ -1,6 +1,5 @@
 extends Menu
 
-var starting_button_name: String = SaveManager.get_selected_character_name()
 var button_to_press: Button
 
 @onready var characters: HBoxContainer = $Characters
@@ -16,11 +15,12 @@ func setup_mode_buttons():
 	var group = ButtonGroup.new()
 	for ch in characters.get_children():
 		if ch is CharacterIcon:
-			ch.ignore_mouse = true
+			ch.set_disabled(true)
 			ch.button.button_group = group
-			ch.toggled.connect(_character_icon_toggled)
+			ch.selected.connect(_character_icon_selected)
 			
-			if ch.profile.name.to_lower() == starting_button_name:
+			if ch.profile.name.to_lower() == SaveManager.get_selected_character_name():
+				print("found it!")
 				button_to_press = ch.button
 
 func get_vessel_icons():
@@ -40,10 +40,11 @@ func add_icons():
 	button_to_press.button_pressed = true
 	
 	for child in characters.get_children():
-		child.ignore_mouse = false
+		if child is CharacterIcon:
+			child.set_disabled(false)
 
-func _character_icon_toggled(char_name: String):
-	SaveManager.set_selected_character_name(char_name.to_lower())
+func _character_icon_selected(profile: CharacterProfile):
+	SaveManager.set_selected_character_name(profile.name.to_lower())
 
 func _on_start_pressed():
 	go_to_menu(MenuConfig.MenuType.START_GAME, MenuConfig.TransitionDirection.FORWARD, false)

@@ -1,5 +1,4 @@
-class_name CharacterDatabase
-extends Node
+class_name CharacterDatabase extends Node
 
 const CHARACTERS = {
 	"default": preload("res://resources/vessel_profiles/default_profile.tres"),
@@ -37,3 +36,17 @@ static func get_unlocked_enemies(unlocked_ids: Array) -> Array[EnemyProfile]:
 		if ENEMIES.has(id):
 			result.append(ENEMIES[id])
 	return result
+
+# debug
+static func test_preload():
+	var default_char = preload("res://resources/vessel_profiles/default_profile.tres")
+	print("Preloaded type: ", default_char.get_class())
+	print("Has script: ", default_char.get_script() != null)
+	print("Script path: ", default_char.get_script())
+	print("Has icon property: ", "icon" in default_char)
+	
+	# Try manually loading instead
+	var manual_load = load("res://resources/vessel_profiles/default_profile.tres")
+	print("\nManual load type: ", manual_load.get_class())
+	print("Manual has script: ", manual_load.get_script() != null)
+	print("Manual has icon: ", "icon" in manual_load)

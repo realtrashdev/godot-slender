@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bf05ntktimsst"]
+[gd_scene load_steps=8 format=3 uid="uid://bf05ntktimsst"]
 
 [ext_resource type="Script" uid="uid://qocwrt8r6cqj" path="res://scripts/ui/menus/menu_main.gd" id="1_jjl53"]
 [ext_resource type="Theme" uid="uid://bommyqwo15hbx" path="res://theme1.tres" id="1_l6cm7"]
@@ -6,10 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://6lvn3tolsp7r" path="res://scenes/ui/buttons/menu_button.tscn" id="4_dkf5t"]
 [ext_resource type="AudioStream" uid="uid://burmgn6fk7ymx" path="res://audio/menu/ui/button_press.mp3" id="4_y0yns"]
 [ext_resource type="FontFile" uid="uid://b78ski6kf8hw1" path="res://fonts/ari-w9500-display.ttf" id="5_y0yns"]
-[ext_resource type="PackedScene" uid="uid://cwiritx4rencv" path="res://scenes/ui/character_icon.tscn" id="6_2g2yl"]
-[ext_resource type="Resource" uid="uid://ceka8pclkwv8e" path="res://resources/enemy_profiles/gum_profile.tres" id="8_u0ou4"]
-[ext_resource type="Resource" uid="uid://5btde08a1exu" path="res://resources/enemy_profiles/chaser_profile.tres" id="9_7ki5o"]
-[ext_resource type="Resource" uid="uid://bepy1x4bj1nga" path="res://resources/enemy_profiles/eyes_profile.tres" id="12_u0477"]
 
 [sub_resource type="FontVariation" id="FontVariation_2g2yl"]
 base_font = ExtResource("5_y0yns")
@@ -108,30 +104,6 @@ justification = 1
 wait_time = 0.85
 focus_size = Vector2(300, 130)
 focus_text_effect = "[shake]"
-
-[node name="ChaserIcon" parent="." instance=ExtResource("6_2g2yl")]
-layout_mode = 1
-offset_left = 740.0
-offset_top = -500.0
-offset_right = 740.0
-offset_bottom = -100.0
-profile = ExtResource("9_7ki5o")
-
-[node name="GumIcon" parent="." instance=ExtResource("6_2g2yl")]
-layout_mode = 1
-offset_left = 740.0
-offset_top = 100.0
-offset_right = 740.0
-offset_bottom = 500.0
-profile = ExtResource("8_u0ou4")
-
-[node name="EyesIcon" parent="." instance=ExtResource("6_2g2yl")]
-layout_mode = 1
-offset_left = 740.0
-offset_top = -200.0
-offset_right = 740.0
-offset_bottom = 199.99939
-profile = ExtResource("12_u0477")
 
 [connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_pressed"]

@@ -7,12 +7,6 @@
 script = ExtResource("1_x5eo4")
 name = "dragon"
 type = 4
-description = "A dragon from a world long forgotten.
-
-Used to act as a shopkeeper.
-
-+ Shop Discount
-- Run Speed
-- Dimmer Light"
+description = "A shopkeeper from a world long forgotten."
 icon = ExtResource("1_f4k8o")
 metadata/_custom_type_script = "uid://pimfnspuor4w"

@@ -59,23 +59,24 @@ func show_description() -> void:
 	update_position()
 	
 	modulate = Color.WHITE
+	name_label.visible_ratio = 1
+	category_label.visible_ratio = 1
+	
 	if tween:
 		tween.kill()
 	tween = create_tween()
-	tween.tween_property(name_label, "visible_ratio", 1, 0)
-	tween.parallel().tween_property(category_label, "visible_ratio", 1, 0)
-	tween.parallel().tween_property(description_label, "visible_ratio", 1, DISPLAY_DURATION)
+	tween.tween_property(description_label, "visible_ratio", 1, DISPLAY_DURATION)
 
 func hide_description() -> void:
 	description_label.get_v_scroll_bar().value = 0
 	
 	modulate = Color.TRANSPARENT
+	name_label.visible_ratio = 0
+	category_label.visible_ratio = 0
+	
 	if tween:
 		tween.kill()
-	tween = create_tween()
-	tween.tween_property(name_label, "visible_ratio", 0, 0)
-	tween.parallel().tween_property(category_label, "visible_ratio", 0, 0)
-	tween.parallel().tween_property(description_label, "visible_ratio", 0, 0)
+	description_label.visible_ratio = 0
 
 func hide_immediate() -> void:
 	modulate = Color.TRANSPARENT
@@ -89,14 +90,17 @@ func update_position() -> void:
 	if not parent_icon:
 		return
 	
-	var viewport_width = get_viewport().get_visible_rect().size.x
+	var viewport_rect = get_viewport().get_visible_rect()
 	var icon_center = parent_icon.global_position + (parent_icon.size / 2)
 	var icon_half_width = parent_icon.active_size.x / 2
 	
-	# automatically positions to the right or left based on screen position
-	if icon_center.x < viewport_width / 2:
-		# icon is left side
-		global_position = icon_center + Vector2(icon_half_width + OFFSET_FROM_ICON, -size.y / 2)
-	else:
-		# icon is right side
+	# calculate where tooltip would be if placed to the right
+	var right_edge = icon_center.x + icon_half_width + OFFSET_FROM_ICON + size.x
+	
+	# if panel would go off screen, place it on left
+	if right_edge > viewport_rect.size.x:
+		# left
 		global_position = icon_center + Vector2(-icon_half_width - size.x - OFFSET_FROM_ICON, -size.y / 2)
+	else:
+		# right (default)
+		global_position = icon_center + Vector2(icon_half_width + OFFSET_FROM_ICON, -size.y / 2)

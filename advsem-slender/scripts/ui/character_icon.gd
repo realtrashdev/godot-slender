@@ -5,7 +5,6 @@ signal hovered(profile)
 signal unhovered(profile)
 
 @export var profile: CharacterProfile
-
 @export_group("Sizing")
 @export var default_size: Vector2 = Vector2(200, 200)
 @export var focus_size: Vector2 = Vector2(225, 225)
@@ -23,9 +22,7 @@ func _ready() -> void:
 	setup_display()
 	description_panel.hide_immediate()
 	
-	button.mouse_entered.connect(_on_hover)
-	button.mouse_exited.connect(_on_unhover)
-	button.pressed.connect(_on_pressed)
+	button.toggled.connect(_on_pressed)
 
 func setup_display() -> void:
 	if not profile:
@@ -56,15 +53,15 @@ func _on_unhover() -> void:
 	if not is_selected:
 		animate_to_size(default_size)
 
-func _on_pressed() -> void:
+func _on_pressed(select: bool) -> void:
 	if is_disabled:
 		return
 	
-	set_selected(!is_selected)
+	set_selected(select)
 	selected.emit(profile)
 
-func set_selected(selected: bool) -> void:
-	is_selected = selected
+func set_selected(_selected: bool) -> void:
+	is_selected = _selected
 	button.set_pressed_no_signal(is_selected)
 	
 	if is_selected:

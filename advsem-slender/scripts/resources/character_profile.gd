@@ -1,3 +1,4 @@
+@tool
 class_name CharacterProfile extends Resource
 
 enum Type {

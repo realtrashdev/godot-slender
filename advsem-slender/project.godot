@@ -25,6 +25,7 @@ Signals="*res://scripts/globals/signals.gd"
 ScreenColorCanvas="*res://scenes/ui/screen_color_canvas.tscn"
 GameConfig="*res://scripts/globals/game_config.gd"
 SaveManager="*res://scripts/globals/save_manager.gd"
+ClassInitializer="*res://scripts/globals/class_initializer.gd"
 
 [debug]
 
