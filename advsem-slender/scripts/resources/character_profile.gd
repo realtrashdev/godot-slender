@@ -1,4 +1,3 @@
-@tool
 class_name CharacterProfile extends Resource
 
 enum Type {
@@ -12,12 +11,6 @@ enum Type {
 @export_multiline var description: String
 @export var icon: Texture2D
 
-
-# Default character desc, removed for now since intro is unimplemented
-#
-#A blank slate we morphed into something special.
-#
-#A representation of you in this world.
-#
-#
-#Default stats.
+@export_group("Unlocking")
+@export_multiline var unlock_description: String
+@export var locked_icon: Texture2D

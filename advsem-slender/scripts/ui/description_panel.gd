@@ -30,12 +30,15 @@ func update_content() -> void:
 	if not current_profile:
 		return
 	
-	var display_name = get_display_name()
-	name_label.text = "[tornado radius=3 freq=4]%s[/tornado]" % display_name.to_upper()
-	
-	category_label.text = get_category_effect() % get_type_string()
-	
-	description_label.text = current_profile.description
+	var unlocked_ids = SaveManager.get_unlocked_characters()
+	if unlocked_ids.has(current_profile.name):
+		name_label.text = "[tornado radius=3 freq=4]%s[/tornado]" % get_display_name().to_upper()
+		category_label.text = get_category_effect() % get_type_string()
+		description_label.text = current_profile.description
+	else:
+		name_label.text = "[tornado radius=3 freq=4]%s[/tornado]" % "LOCKED"
+		category_label.text = get_category_effect() % "???"
+		description_label.text = current_profile.unlock_description
 
 func get_display_name() -> String:
 	if current_profile.name == "default":
@@ -50,7 +53,7 @@ func get_category_effect() -> String:
 			return "[shake rate=9 level=5]%s[/shake]"
 		CharacterProfile.Type.LETHAL:
 			return "[shake rate=12 level=6]%s[/shake]"
-	return "[wave amp=5]%s[/wave]"
+	return "[wave freq=4]%s[/wave]"
 
 func get_type_string() -> String:
 	return current_profile.Type.keys()[current_profile.type]

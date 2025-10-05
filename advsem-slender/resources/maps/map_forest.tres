@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Map" load_steps=6 format=3 uid="uid://b33fas27xip3m"]
+
+[ext_resource type="Script" uid="uid://cbb8lvjddytcc" path="res://scripts/resources/classic_scenario.gd" id="1_3fmgg"]
+[ext_resource type="Script" uid="uid://c5eutrojptljn" path="res://scripts/resources/map.gd" id="2_ewurx"]
+[ext_resource type="PackedScene" uid="uid://b2fcrx7ohgn2i" path="res://scenes/levels/map_forest.tscn" id="2_nws2a"]
+[ext_resource type="Resource" uid="uid://bp10suivim7bk" path="res://resources/scenarios/forest/scenario_basics1.tres" id="2_uaxxu"]
+[ext_resource type="Resource" uid="uid://l6y0fnfsx2b5" path="res://resources/scenarios/forest/scenario_basics2.tres" id="3_6aor4"]
+
+[resource]
+script = ExtResource("2_ewurx")
+description = "A fenced off area of woods lost in a lonely universe."
+scene = ExtResource("2_nws2a")
+scenarios = Array[ExtResource("1_3fmgg")]([ExtResource("2_uaxxu"), ExtResource("3_6aor4")])
+metadata/_custom_type_script = "uid://c5eutrojptljn"

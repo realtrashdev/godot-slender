@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://6um422lsglit" path="res://scripts/resources/jumpscare.gd" id="1_i3fk8"]
 [ext_resource type="AudioStream" uid="uid://qe8svc3ucsh1" path="res://audio/enemies/placeholder/fnaf_jumpscare.wav" id="2_1ychl"]
-[ext_resource type="Texture2D" uid="uid://cxuiukn8ax0oi" path="res://art/2d/enemies/jumpscares/chaser_1_jumpscare.aseprite" id="3_iyqfa"]
+[ext_resource type="SpriteFrames" uid="uid://cxuiukn8ax0oi" path="res://art/2d/enemies/jumpscares/chaser_1_jumpscare.aseprite" id="3_iyqfa"]
 
 [resource]
 script = ExtResource("1_i3fk8")
-sprite = ExtResource("3_iyqfa")
+animation = ExtResource("3_iyqfa")
 sound = ExtResource("2_1ychl")
 metadata/_custom_type_script = "uid://6um422lsglit"

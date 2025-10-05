@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://c426kdmp0e6tf" path="res://scripts/resources/enemy_profile.gd" id="1_hrl1i"]
 [ext_resource type="Texture2D" uid="uid://dhpcoum0eycgh" path="res://art/2d/enemies/icons/chaser_icon.aseprite" id="1_vjasg"]
 [ext_resource type="PackedScene" uid="uid://0rnvcc30hitf" path="res://scenes/enemies/chaser.tscn" id="2_puspk"]
-[ext_resource type="Resource" uid="uid://3vkwuf2sbniw" path="res://resources/jumpscares/chaser_jumpscare.tres" id="2_vjasg"]
+[ext_resource type="Resource" uid="uid://3vkwuf2sbniw" path="res://resources/scares/scare_chaser.tres" id="2_vjasg"]
 [ext_resource type="Script" uid="uid://d0hm3sts6wa7d" path="res://scripts/enemies/spawning/spawn behaviors/enemy_behavior_markers.gd" id="4_puspk"]
 
 [sub_resource type="Resource" id="Resource_nklym"]

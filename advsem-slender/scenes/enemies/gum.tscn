@@ -31,11 +31,10 @@ mouse_filter = 2
 
 [node name="Control" type="Control" parent="BounceArea"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -1670.0001
-offset_bottom = -830.0
+anchor_right = 1.0109375
+anchor_bottom = 1.0138888
+offset_right = -1650.9999
+offset_bottom = -805.0
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
@@ -68,12 +67,13 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_uf3fo")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_jlpo3")
 
 [node name="gum" parent="BounceArea/Control/Button" instance=ExtResource("2_w8oyp")]
-position = Vector2(160, 160)
-scale = Vector2(5, 5)
+position = Vector2(145, 145)
+scale = Vector2(4.5, 4.5)
 autoplay = "Run"
 frame_progress = 0.70122755
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
+visible = false
 modulate = Color(0.31431624, 0.31431606, 0.3143161, 1)
 anchors_preset = 8
 anchor_left = 0.5

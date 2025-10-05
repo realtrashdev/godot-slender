@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b44g52cw8jhlu"]
+[gd_scene load_steps=13 format=3 uid="uid://b44g52cw8jhlu"]
 
 [ext_resource type="Script" uid="uid://cjehxq1f2vicp" path="res://scripts/ui/screen_shader_manager.gd" id="1_cjvg8"]
 [ext_resource type="Material" uid="uid://dfno40i012odi" path="res://shaders/fourcolor_screen.tres" id="2_alglh"]
@@ -11,6 +11,7 @@
 [ext_resource type="Resource" uid="uid://c7l7t6to7xn5t" path="res://resources/color_sets/colorset_gameboy.tres" id="9_imeoj"]
 [ext_resource type="Resource" uid="uid://bi5bj0dkykgac" path="res://resources/color_sets/colorset_orange.tres" id="10_bu1jg"]
 [ext_resource type="Resource" uid="uid://cv6x21y41jgkb" path="res://resources/color_sets/colorset_yellow.tres" id="11_fy2x6"]
+[ext_resource type="Resource" uid="uid://d0kjifb1w43p8" path="res://resources/color_sets/colorset_cottoncandy.tres" id="12_fy2x6"]
 
 [node name="ScreenColorCanvas" type="CanvasLayer"]
 layer = 10
@@ -18,6 +19,7 @@ script = ExtResource("1_cjvg8")
 shader_material = ExtResource("2_alglh")
 color_palettes = Dictionary[String, ExtResource("3_mg847")]({
 "blue": ExtResource("7_fy2x6"),
+"cottoncandy": ExtResource("12_fy2x6"),
 "gameboy": ExtResource("9_imeoj"),
 "green": ExtResource("6_bu1jg"),
 "mono": ExtResource("3_jwt3u"),

@@ -1,12 +1,17 @@
-[gd_resource type="Resource" script_class="VesselProfile" load_steps=3 format=3 uid="uid://ocwen38ehm68"]
+[gd_resource type="Resource" script_class="VesselProfile" load_steps=4 format=3 uid="uid://cb3psxe2lcth7"]
 
 [ext_resource type="Texture2D" uid="uid://bs3histpsayyg" path="res://art/2d/characters/icons/icon_dragon.aseprite" id="1_f4k8o"]
 [ext_resource type="Script" uid="uid://pimfnspuor4w" path="res://scripts/resources/vessel_profile.gd" id="1_x5eo4"]
+[ext_resource type="Texture2D" uid="uid://criumfmi5goex" path="res://art/2d/characters/icons/icon_blank_locked.aseprite" id="2_yhtpo"]
 
 [resource]
 script = ExtResource("1_x5eo4")
 name = "dragon"
 type = 4
-description = "A shopkeeper from a world long forgotten."
 icon = ExtResource("1_f4k8o")
+unlock_description = "
+
+
+[wave]Can't unlock right now."
+locked_icon = ExtResource("2_yhtpo")
 metadata/_custom_type_script = "uid://pimfnspuor4w"

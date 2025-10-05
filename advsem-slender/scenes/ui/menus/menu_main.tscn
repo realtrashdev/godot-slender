@@ -77,6 +77,7 @@ icon_alignment = 1
 expand_icon = true
 default_text = "Play"
 justification = 1
+wait_time = 0.4
 focus_size = Vector2(300, 130)
 
 [node name="OptionsButton" parent="VBoxContainer" instance=ExtResource("4_dkf5t")]
@@ -90,7 +91,7 @@ enabled = false
 default_text = "Options"
 default_color = Color(0.28301802, 0.28301802, 0.283018, 1)
 justification = 1
-wait_time = 0.5
+wait_time = 0.6
 focus_size = Vector2(300, 130)
 
 [node name="QuitButton" parent="VBoxContainer" instance=ExtResource("4_dkf5t")]
@@ -101,7 +102,7 @@ icon_alignment = 1
 expand_icon = true
 default_text = "Quit"
 justification = 1
-wait_time = 0.85
+wait_time = 0.95
 focus_size = Vector2(300, 130)
 focus_text_effect = "[shake]"
 

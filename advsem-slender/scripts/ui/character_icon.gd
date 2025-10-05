@@ -5,6 +5,7 @@ signal hovered(profile)
 signal unhovered(profile)
 
 @export var profile: CharacterProfile
+
 @export_group("Sizing")
 @export var default_size: Vector2 = Vector2(200, 200)
 @export var focus_size: Vector2 = Vector2(225, 225)
@@ -12,6 +13,7 @@ signal unhovered(profile)
 
 var is_selected: bool = false
 var is_disabled: bool = false
+var is_locked: bool = false
 
 @onready var panel_container: PanelContainer = $PanelContainer
 @onready var texture: TextureRect = $PanelContainer/TextureRect
@@ -22,6 +24,7 @@ func _ready() -> void:
 	setup_display()
 	description_panel.hide_immediate()
 	
+	button.toggle_mode = true
 	button.toggled.connect(_on_pressed)
 
 func setup_display() -> void:
@@ -30,7 +33,13 @@ func setup_display() -> void:
 		queue_free()
 		return
 	
-	texture.texture = profile.icon
+	var unlocked_ids = SaveManager.get_unlocked_characters()
+	if unlocked_ids.has(profile.name):
+		texture.texture = profile.icon
+	else:
+		texture.texture = profile.locked_icon
+		is_locked = true
+	
 	description_panel.set_profile(profile)
 
 func _on_hover() -> void:
@@ -54,7 +63,7 @@ func _on_unhover() -> void:
 		animate_to_size(default_size)
 
 func _on_pressed(select: bool) -> void:
-	if is_disabled:
+	if is_disabled or is_locked:
 		return
 	
 	set_selected(select)

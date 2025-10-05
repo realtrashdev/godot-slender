@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://ci8oadtmki8uy" path="res://art/2d/enemies/icons/eyes_icon.aseprite" id="1_k4fsp"]
 [ext_resource type="Script" uid="uid://c426kdmp0e6tf" path="res://scripts/resources/enemy_profile.gd" id="1_q46dd"]
-[ext_resource type="Resource" uid="uid://cnuftm2tsdo2h" path="res://resources/jumpscares/eyes_jumpscare.tres" id="2_tw487"]
+[ext_resource type="Resource" uid="uid://cnuftm2tsdo2h" path="res://resources/scares/scare_eyes.tres" id="2_tw487"]
 [ext_resource type="PackedScene" uid="uid://c57u8t3kc41fe" path="res://scenes/enemies/eyes.tscn" id="3_wsijd"]
 [ext_resource type="Script" uid="uid://bk23iyn5r0tgb" path="res://scripts/enemies/spawning/spawn behaviors/enemy_behavior_ring.gd" id="5_wsijd"]
 
@@ -15,8 +15,8 @@ metadata/_custom_type_script = "uid://bk23iyn5r0tgb"
 script = ExtResource("1_q46dd")
 scene = ExtResource("3_wsijd")
 spawn_behavior = SubResource("Resource_3lxij")
-min_spawn_time = 40.0
-max_spawn_time = 50.0
+min_spawn_time = 10.0
+max_spawn_time = 10.0
 max_instances = 1
 jumpscare = ExtResource("2_tw487")
 death_tips = Array[String](["Look around! This one doesn't make any sound when it shows up."])

@@ -1,47 +1,49 @@
 extends Menu
 
-var button_to_press: Button
+var button_to_press: CharacterIcon
 
-@onready var characters: HBoxContainer = $Characters
+@onready var characters: HBoxContainer = $HScrollBar/Characters
 @onready var icon_scene = preload("uid://cwiritx4rencv")
 
 func _ready():
 	get_vessel_icons()
 	setup_mode_buttons()
 	await get_tree().create_timer(0.3).timeout
-	add_icons()
+	show_icons()
+
+func get_vessel_icons():
+	var all_profiles = ResourceDatabase.get_all_characters()
+	
+	for profile in all_profiles:
+		var icon = icon_scene.instantiate()
+		icon.profile = profile
+		characters.add_child(icon)
 
 func setup_mode_buttons():
 	var group = ButtonGroup.new()
 	for ch in characters.get_children():
 		if ch is CharacterIcon:
 			ch.set_disabled(true)
-			ch.button.button_group = group
-			ch.selected.connect(_character_icon_selected)
+			
+			var unlocked_ids = SaveManager.get_unlocked_characters()
+			if unlocked_ids.has(ch.profile.name):
+				ch.button.button_group = group
+				ch.selected.connect(_character_icon_selected)
 			
 			if ch.profile.name.to_lower() == SaveManager.get_selected_character_name():
 				print("found it!")
-				button_to_press = ch.button
+				button_to_press = ch
 
-func get_vessel_icons():
-	var unlocked_ids = SaveManager.get_unlocked_characters()
-	var unlocked_profiles = CharacterDatabase.get_unlocked_characters(unlocked_ids)
-	
-	for profile in unlocked_profiles:
-		var icon = icon_scene.instantiate()
-		icon.profile = profile
-		characters.add_child(icon)
-
-func add_icons():
+func show_icons():
 	var tween: Tween = create_tween()
 	tween.tween_property(characters, "theme_override_constants/separation", 300, 0.2).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 	await tween.finished
 	
-	button_to_press.button_pressed = true
-	
 	for child in characters.get_children():
 		if child is CharacterIcon:
 			child.set_disabled(false)
+	
+	button_to_press.set_selected(true)
 
 func _character_icon_selected(profile: CharacterProfile):
 	SaveManager.set_selected_character_name(profile.name.to_lower())

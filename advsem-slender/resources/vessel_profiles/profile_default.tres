@@ -6,11 +6,12 @@
 [resource]
 script = ExtResource("1_rkv35")
 name = "default"
-type = 3
+type = 5
 description = "
 
 
 It's you.
+
 
 
 

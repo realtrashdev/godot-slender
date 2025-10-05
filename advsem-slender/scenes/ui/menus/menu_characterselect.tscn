@@ -41,21 +41,26 @@ script = ExtResource("3_sssvk")
 sr_enabled = true
 sr_rotation = 3.0
 
-[node name="Characters" type="HBoxContainer" parent="."]
+[node name="HScrollBar" type="ScrollContainer" parent="."]
+custom_minimum_size = Vector2(1920, 0)
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.083000004
-anchor_top = 0.324
-anchor_right = 0.91700006
-anchor_bottom = 0.694
-offset_left = 0.63998413
-offset_top = 0.07998657
-offset_right = -0.6401367
-offset_bottom = 0.47998047
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -750.0
+offset_top = -200.0
+offset_right = 750.0
+offset_bottom = 200.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Characters" type="HBoxContainer" parent="HScrollBar"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
 theme_override_constants/separation = 0
-alignment = 1
 
 [node name="StartButton" parent="." instance=ExtResource("4_0o7yx")]
 layout_mode = 1

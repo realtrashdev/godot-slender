@@ -6,7 +6,6 @@ var current_pages_collected: int = 0
 var current_pages_required: int = 3
 var current_extra_pages: int = 2
 var current_max_pages: int = -1
-var danger_level: int = 0
 var default_lives: int = 1
 var lives_remaining: int = 1
 

@@ -3,8 +3,10 @@ class_name JumpscareManager extends CanvasLayer
 @export var default_jumpscare: Jumpscare  # fallback if enemy has none for some reason
 
 @onready var audio: AudioStreamPlayer = $AudioStreamPlayer
-@onready var texture: TextureRect = $TextureRect
-@onready var animation: AnimationPlayer = $TextureRect/AnimationPlayer
+@onready var holder: Control = $Control
+@onready var animation: AnimationPlayer = $Control/AnimationPlayer
+@onready var sprite: AnimatedSprite2D = $Control/AnimatedSprite2D
+
 
 func _ready() -> void:
 	visible = false
@@ -24,10 +26,15 @@ func _on_player_killed(jumpscare: Jumpscare):
 
 func play_jumpscare(jumpscare: Jumpscare):
 	visible = true
-	texture.texture = jumpscare.sprite
+	
+	sprite.sprite_frames = jumpscare.animation
+	var anim_names = sprite.sprite_frames.get_animation_names()
+	sprite.play(anim_names[0])
+	
 	audio.stream = jumpscare.sound
 	audio.play()
-	animation.play("jumpscare_" + str(Jumpscare.Type.keys()[jumpscare.type]).to_lower())
+	
+	animation.play("jumpscare_" + str(Jumpscare.ShakeType.keys()[jumpscare.type]).to_lower())
 
 # testing in editor
 func test_jumpscare(jumpscare: Jumpscare):

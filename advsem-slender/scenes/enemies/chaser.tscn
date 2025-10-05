@@ -34,7 +34,7 @@ shape = SubResource("CapsuleShape3D_jkv2x")
 [node name="Ambient Music" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("4_tkoxo")
 autoplay = true
-max_distance = 10.0
+max_distance = 20.0
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 

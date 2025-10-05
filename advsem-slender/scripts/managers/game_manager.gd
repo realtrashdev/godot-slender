@@ -5,6 +5,7 @@ var game_state: GameState
 # References to managers
 @onready var page_manager: PageSpawnManager = $"../PageManager"
 @onready var enemy_manager: EnemySpawnManager
+@onready var scenario_manager: ScenarioManager
 @onready var ui_manager: UIManager = $"../UIManager"
 @onready var audio_manager: AudioManager = $"../AudioManager"
 @onready var player: CharacterBody3D = $"../Player"
@@ -26,9 +27,13 @@ func initialize_game():
 	enemy_manager.initialize(game_state, player)
 	add_child(enemy_manager)
 	
-	enemy_manager.add_enemy_spawner(preload("res://resources/enemy_profiles/chaser_profile.tres"), 1)
-	enemy_manager.add_enemy_spawner(preload("res://resources/enemy_profiles/gum_profile.tres"), 2)
-	enemy_manager.add_enemy_spawner(preload("res://resources/enemy_profiles/eyes_profile.tres"), 3)
+	if game_state.game_mode == GameConfig.GameMode.CLASSIC:
+		scenario_manager = ScenarioManager.new()
+		scenario_manager.name = "ScenarioManager"
+		add_child(scenario_manager)
+		
+		var scenario = load_classic_scenario()
+		scenario_manager.initialize(enemy_manager, scenario)
 	
 	ui_manager.initialize(game_state)
 	audio_manager.initialize(game_state)
@@ -43,6 +48,9 @@ func connect_signals():
 	Signals.player_died.connect(_on_player_died)
 	Signals.game_started.connect(_on_game_started)
 
+func load_classic_scenario() -> ClassicModeScenario:
+	return ResourceDatabase.get_scenario(SaveManager.get_selected_scenario())
+
 func start_game():
 	game_state.reset_level_data()
 	
@@ -50,6 +58,7 @@ func start_game():
 	page_manager.generate_pages()
 	audio_manager.start_game_audio()
 	
+	# player
 	player.position = get_player_spawn_position()
 	player.activate()
 	

@@ -1,7 +1,7 @@
 class_name Jumpscare extends Resource
 
-enum Type { BASIC, STILL }
+enum ShakeType { BASIC, STILL }
 
-@export var sprite: Texture2D
+@export var animation: SpriteFrames
 @export var sound: AudioStream
-@export var type: Type
+@export var type: ShakeType

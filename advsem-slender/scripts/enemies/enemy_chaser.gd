@@ -17,6 +17,7 @@ enum State { CHASING, FLEEING, DISABLED }
 var current_state: State = State.CHASING
 var is_lit: bool = false
 var remaining_chase_time: float = 0.0
+var fleeing: bool = false
 
 # onready references
 @onready var player: CharacterBody3D = get_tree().get_first_node_in_group("Player")
@@ -90,7 +91,7 @@ func update_movement() -> void:
 		State.CHASING:
 			move_toward_player()
 		State.FLEEING:
-			move_away_from_player()
+			velocity = Vector3.ZERO
 
 func move_toward_player() -> void:
 	if nav_agent.is_navigation_finished():
@@ -114,11 +115,11 @@ func begin_fleeing() -> void:
 func play_flee_audio() -> void:
 	ambient_music.stream = preload("uid://b3sk41yuadbx2")
 	ambient_music.play(0.05)
-	ambient_music.max_distance = 60
+	create_tween().tween_property(ambient_music, "volume_db", -20, 0.5).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_SINE)
 
 func play_shrink_animation() -> void:
 	var tween = create_tween()
-	tween.tween_property(sprite, "scale", Vector3(0.01, 0.01, 1), 3.0)
+	tween.tween_property(sprite, "scale", Vector3(1, 0.01, 1), 0.5).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_BACK)
 	tween.finished.connect(on_flee_complete)
 
 func on_flee_complete() -> void:
@@ -139,6 +140,12 @@ func calculate_chase_time() -> float:
 ## public
 func set_targeted(active: bool) -> void:
 	is_lit = active
+	
+	match is_lit:
+		true:
+			$Sprite3D.animation = "blinded"
+		false:
+			$Sprite3D.animation = "walk"
 
 func die(_killer_name: String = "") -> void:
 	died.emit()
