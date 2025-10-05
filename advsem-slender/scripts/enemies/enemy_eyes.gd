@@ -33,7 +33,10 @@ func _ready() -> void:
 	life_cycle()
 
 func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("toggle_light") and player.active:
+	if not player or not player.active:
+		return
+	
+	if event.is_action_pressed("toggle_light"):
 		if not light_on: # this occurs first, so reversing is necessary
 			var new_time = timer.time_left - 2
 			timer.stop()

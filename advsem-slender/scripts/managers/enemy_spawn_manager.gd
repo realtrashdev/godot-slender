@@ -40,6 +40,9 @@ func set_enemy_spawn_rate(enemy_name: String, min_time: float, max_time: float):
 	if enemy_name in spawners:
 		spawners[enemy_name].set_spawn_rate(min_time, max_time)
 
+func get_spawner(enemy_name: String) -> EnemySpawner:
+	return spawners.get(enemy_name)
+
 func get_active_enemy_count(enemy_name: String) -> int:
 	if enemy_name in spawners:
 		return spawners[enemy_name].active_enemies.size()

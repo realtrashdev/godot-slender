@@ -4,7 +4,7 @@ var starting_button_name: String = SaveManager.get_selected_character_name()
 var button_to_press: Button
 
 @onready var characters: HBoxContainer = $Characters
-@onready var icon_scene = preload("res://scenes/ui/character_icon.tscn")
+@onready var icon_scene = preload("uid://cwiritx4rencv")
 
 func _ready():
 	get_vessel_icons()

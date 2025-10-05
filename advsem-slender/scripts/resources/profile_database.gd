@@ -2,14 +2,14 @@ class_name CharacterDatabase
 extends Node
 
 const CHARACTERS = {
-	"default": preload("uid://cnr7vp5lbi17t"),
-	"dragon": preload("uid://ocwen38ehm68"),
+	"default": preload("res://resources/vessel_profiles/default_profile.tres"),
+	"dragon": preload("res://resources/vessel_profiles/dragon_profile.tres"),
 }
 
 const ENEMIES = {
-	"chaser": preload("uid://5btde08a1exu"),
-	"gum": preload("uid://ceka8pclkwv8e"),
-	"eyes": preload("uid://bepy1x4bj1nga"),
+	"chaser": preload("res://resources/enemy_profiles/chaser_profile.tres"),
+	"gum": preload("res://resources/enemy_profiles/gum_profile.tres"),
+	"eyes": preload("res://resources/enemy_profiles/eyes_profile.tres"),
 }
 
 static func get_characters(id: String) -> VesselProfile:

@@ -6,7 +6,7 @@ enum Type {
 }
 
 @export_group("Basic Info")
-@export var name: String = SaveManager.get_player_name()
+@export var name: String
 @export var type: Type
 @export_multiline var description: String
 @export var icon: Texture2D
