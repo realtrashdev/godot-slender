@@ -3,11 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dhpcoum0eycgh"
-valid=false
+path="res://.godot/imported/chaser_icon.aseprite-88d48811bf94f8bc3dd4a7f5fc736443.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://art/2d/enemies/icons/chaser_icon.aseprite"
+dest_files=["res://.godot/imported/chaser_icon.aseprite-88d48811bf94f8bc3dd4a7f5fc736443.ctex"]
 
 [params]
 
