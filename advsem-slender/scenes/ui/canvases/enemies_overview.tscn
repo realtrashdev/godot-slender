@@ -1,0 +1,99 @@
+[gd_scene load_steps=8 format=3 uid="uid://bmxla2qlmloob"]
+
+[ext_resource type="Theme" uid="uid://bommyqwo15hbx" path="res://theme1.tres" id="1_4aa4k"]
+[ext_resource type="Script" uid="uid://bd7pox5rtp17u" path="res://scripts/ui/canvases/enemies_overview.gd" id="1_uquhx"]
+[ext_resource type="Script" uid="uid://bgqglerkcylxx" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="2_cuen5"]
+[ext_resource type="Script" uid="uid://b7h0k2h2qwlqv" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="3_uquhx"]
+[ext_resource type="PackedScene" uid="uid://6lvn3tolsp7r" path="res://scenes/ui/buttons/menu_button.tscn" id="5_uquhx"]
+
+[sub_resource type="Resource" id="Resource_cuen5"]
+script = ExtResource("3_uquhx")
+
+[sub_resource type="Resource" id="Resource_uquhx"]
+script = ExtResource("3_uquhx")
+
+[node name="EnemiesOverview" type="CanvasLayer"]
+layer = 5
+script = ExtResource("1_uquhx")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Title" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(0, 100)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -274.5
+offset_top = 40.0
+offset_right = 274.5
+offset_bottom = 140.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_4aa4k")
+bbcode_enabled = true
+text = "[shake rate=10 level=4]Enemy Overview"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Subtitle" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(0, 100)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -274.5
+offset_top = 100.0
+offset_right = 274.5
+offset_bottom = 200.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_4aa4k")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[wave]Scenario/Endless Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SmoothScrollContainer" type="ScrollContainer" parent="."]
+clip_contents = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 60.0
+offset_top = 200.0
+offset_right = -60.0
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_cuen5")
+wheel_scroll_damper = SubResource("Resource_cuen5")
+dragging_scroll_damper = SubResource("Resource_uquhx")
+allow_vertical_scroll = false
+allow_overdragging = false
+metadata/_custom_type_script = "uid://bgqglerkcylxx"
+
+[node name="Containers" type="HBoxContainer" parent="SmoothScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="CustomButton" parent="." instance=ExtResource("5_uquhx")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -339.0
+offset_top = 34.0
+offset_right = -39.0
+offset_bottom = 134.0
+grow_horizontal = 0
+default_text = "Close"
+default_color = Color(0.6542321, 0.6542321, 0.654232, 1)
+justification = 2
+
+[connection signal="pressed" from="CustomButton" to="." method="_on_close_button_pressed"]

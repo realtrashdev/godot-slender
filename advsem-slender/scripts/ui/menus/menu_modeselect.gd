@@ -19,16 +19,16 @@ func setup_mode_buttons():
 	classic_btn.toggled.connect(_on_classic_toggled)
 	endless_btn.toggled.connect(_on_endless_toggled)
 	
-	match SaveManager.get_selected_game_mode():
+	match Settings.get_selected_game_mode():
 		GameConfig.GameMode.CLASSIC:
 			classic_btn.set_pressed_no_signal(true)
 		GameConfig.GameMode.ENDLESS:
 			endless_btn.set_pressed_no_signal(true)
 		_:
-			push_warning("SaveManager returned unselectable game mode?")
+			push_warning("Settings.gd returned unselectable game mode?")
 
 func show_current_mode_description():
-	var mode = SaveManager.get_selected_game_mode()
+	var mode = Settings.get_selected_game_mode()
 	animate_description(GameConfig.get_mode_description(mode))
 
 func animate_description(text: String):
@@ -41,12 +41,12 @@ func animate_description(text: String):
 
 func _on_classic_toggled(pressed: bool):
 	if not pressed: return
-	SaveManager.set_selected_game_mode(GameConfig.GameMode.CLASSIC)
+	Settings.set_selected_game_mode(GameConfig.GameMode.CLASSIC)
 	animate_description(GameConfig.get_mode_description(GameConfig.GameMode.CLASSIC))
 
 func _on_endless_toggled(pressed: bool):
 	if not pressed: return
-	SaveManager.set_selected_game_mode(GameConfig.GameMode.ENDLESS)
+	Settings.set_selected_game_mode(GameConfig.GameMode.ENDLESS)
 	animate_description(GameConfig.get_mode_description(GameConfig.GameMode.ENDLESS))
 
 func _on_start_pressed():

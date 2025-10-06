@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://chqv6jhjp01f0"]
+
+[ext_resource type="Script" uid="uid://bpqmmjureaefw" path="res://scripts/ui/enemy_overview_icon_container.gd" id="1_au6ra"]
+[ext_resource type="Theme" uid="uid://bommyqwo15hbx" path="res://theme1.tres" id="2_kegup"]
+[ext_resource type="Script" uid="uid://bgqglerkcylxx" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="3_xc0at"]
+[ext_resource type="Script" uid="uid://b7h0k2h2qwlqv" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="4_hklh1"]
+
+[sub_resource type="Resource" id="Resource_1uqa8"]
+script = ExtResource("4_hklh1")
+
+[sub_resource type="Resource" id="Resource_op4vt"]
+script = ExtResource("4_hklh1")
+
+[node name="OverviewIconContainer" type="VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+size_flags_horizontal = 6
+size_flags_vertical = 3
+script = ExtResource("1_au6ra")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme = ExtResource("2_kegup")
+theme_override_font_sizes/normal_font_size = 36
+text = "Instant"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SmoothScrollContainer" type="ScrollContainer" parent="."]
+clip_contents = false
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("3_xc0at")
+wheel_scroll_damper = SubResource("Resource_1uqa8")
+dragging_scroll_damper = SubResource("Resource_op4vt")
+allow_horizontal_scroll = false
+allow_overdragging = false
+hide_scrollbar_over_time = true
+scrollbar_hide_time = 1.0
+scrollbar_fade_out_time = 0.2
+metadata/_custom_type_script = "uid://bgqglerkcylxx"
+
+[node name="EnemyIconContainer" type="VBoxContainer" parent="SmoothScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 25

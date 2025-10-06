@@ -17,7 +17,7 @@ func _ready() -> void:
 func initialize_game():
 	# create game state
 	game_state = GameState.new()
-	game_state.update_game_mode(SaveManager.get_selected_game_mode())
+	game_state.update_game_mode(Settings.get_selected_game_mode())
 	
 	# init managers
 	page_manager.initialize(game_state)
@@ -49,7 +49,7 @@ func connect_signals():
 	Signals.game_started.connect(_on_game_started)
 
 func load_classic_scenario() -> ClassicModeScenario:
-	return ResourceDatabase.get_scenario(SaveManager.get_selected_scenario())
+	return Settings.get_selected_scenario()
 
 func start_game():
 	game_state.reset_level_data()

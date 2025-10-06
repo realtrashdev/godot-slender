@@ -21,10 +21,13 @@ aseprite_executable_path="C:/Program Files (x86)/Steam/steamapps/common/Aseprite
 
 [autoload]
 
-Signals="*res://scripts/globals/signals.gd"
-ScreenColorCanvas="*res://scenes/ui/screen_color_canvas.tscn"
 GameConfig="*res://scripts/globals/game_config.gd"
 SaveManager="*res://scripts/globals/save_manager.gd"
+Settings="*res://scripts/globals/settings.gd"
+Progression="*res://scripts/globals/progression.gd"
+Signals="*res://scripts/globals/signals.gd"
+ScreenColorCanvas="*res://scenes/ui/canvases/screen_color_canvas.tscn"
+EnemyOverview="*res://scenes/ui/canvases/enemies_overview.tscn"
 
 [debug]
 
@@ -40,7 +43,7 @@ window/stretch/mode="canvas_items"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/nklbdev.aseprite_importers/plugin.cfg")
+enabled=PackedStringArray("res://addons/SmoothScroll/plugin.cfg", "res://addons/nklbdev.aseprite_importers/plugin.cfg")
 
 [global_group]
 

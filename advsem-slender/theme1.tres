@@ -1,8 +1,18 @@
-[gd_resource type="Theme" load_steps=3 format=3 uid="uid://bommyqwo15hbx"]
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://bommyqwo15hbx"]
 
 [ext_resource type="FontFile" uid="uid://b78ski6kf8hw1" path="res://fonts/ari-w9500-display.ttf" id="1_rgm6y"]
+[ext_resource type="Texture2D" uid="uid://by5q0addeb0pq" path="res://art/2d/ui/box_checked.aseprite" id="1_t0bju"]
+[ext_resource type="Texture2D" uid="uid://bgvykj8di4lsn" path="res://art/2d/ui/box_unchecked.aseprite" id="2_qkpn8"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rgm6y"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t0bju"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
 
 [resource]
 default_font = ExtResource("1_rgm6y")
@@ -14,3 +24,13 @@ Button/colors/font_outline_color = Color(0, 0, 0, 0)
 Button/colors/font_pressed_color = Color(0, 0, 0, 1)
 Button/font_sizes/font_size = 48
 Button/styles/focus = SubResource("StyleBoxEmpty_rgm6y")
+CheckBox/colors/font_color = Color(1, 1, 1, 1)
+CheckBox/colors/font_hover_color = Color(1, 1, 1, 1)
+CheckBox/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+CheckBox/colors/font_pressed_color = Color(1, 1, 1, 1)
+CheckBox/constants/h_separation = 16
+CheckBox/icons/checked = ExtResource("1_t0bju")
+CheckBox/icons/radio_checked = ExtResource("1_t0bju")
+CheckBox/icons/radio_unchecked = ExtResource("2_qkpn8")
+CheckBox/icons/unchecked = ExtResource("2_qkpn8")
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_t0bju")

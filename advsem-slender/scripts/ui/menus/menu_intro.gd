@@ -64,7 +64,7 @@ func next_stage():
 
 func _on_line_edit_text_submitted(new_text: String) -> void:
 	if new_text.length() > 0:
-		SaveManager.set_player_name(new_text)
+		Progression.set_player_name(new_text)
 		$CharacterNaming/LineEdit.release_focus()
 		$CharacterNaming.visible = false
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED

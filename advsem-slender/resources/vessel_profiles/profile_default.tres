@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://pimfnspuor4w" path="res://scripts/resources/vessel_profile.gd" id="1_rkv35"]
 
 [resource]
+resource_name = "default"
 script = ExtResource("1_rkv35")
 name = "default"
 type = 5

@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="ClassicModeScenario" load_steps=10 format=3 uid="uid://l6y0fnfsx2b5"]
+
+[ext_resource type="Script" uid="uid://bf5ts565hp5p4" path="res://scripts/resources/enemy_profile_list.gd" id="1_ahw1p"]
+[ext_resource type="Script" uid="uid://c426kdmp0e6tf" path="res://scripts/resources/enemy_profile.gd" id="2_ut2u2"]
+[ext_resource type="Resource" uid="uid://5btde08a1exu" path="res://resources/enemy_profiles/profile_chaser.tres" id="3_dnc88"]
+[ext_resource type="Resource" uid="uid://ceka8pclkwv8e" path="res://resources/enemy_profiles/profile_gum.tres" id="4_8erxu"]
+[ext_resource type="Resource" uid="uid://bepy1x4bj1nga" path="res://resources/enemy_profiles/profile_eyes.tres" id="5_o51g7"]
+[ext_resource type="Script" uid="uid://cbb8lvjddytcc" path="res://scripts/resources/scenario.gd" id="6_cusrp"]
+
+[sub_resource type="Resource" id="Resource_5cs33"]
+script = ExtResource("1_ahw1p")
+profiles = Array[ExtResource("2_ut2u2")]([ExtResource("3_dnc88")])
+metadata/_custom_type_script = "uid://bf5ts565hp5p4"
+
+[sub_resource type="Resource" id="Resource_op8sr"]
+script = ExtResource("1_ahw1p")
+profiles = Array[ExtResource("2_ut2u2")]([ExtResource("4_8erxu")])
+metadata/_custom_type_script = "uid://bf5ts565hp5p4"
+
+[sub_resource type="Resource" id="Resource_n8gpo"]
+script = ExtResource("1_ahw1p")
+profiles = Array[ExtResource("2_ut2u2")]([ExtResource("5_o51g7")])
+metadata/_custom_type_script = "uid://bf5ts565hp5p4"
+
+[resource]
+resource_name = "basics2"
+script = ExtResource("6_cusrp")
+name = "The Basics II"
+description = "Getting a little harder now."
+enemies_to_add = Dictionary[int, ExtResource("1_ahw1p")]({
+0: null,
+1: SubResource("Resource_5cs33"),
+2: SubResource("Resource_op8sr"),
+3: null,
+4: SubResource("Resource_n8gpo"),
+5: null,
+6: null,
+7: null
+})
+metadata/_custom_type_script = "uid://cbb8lvjddytcc"

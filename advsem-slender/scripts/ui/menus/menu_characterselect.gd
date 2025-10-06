@@ -25,13 +25,12 @@ func setup_mode_buttons():
 		if ch is CharacterIcon:
 			ch.set_disabled(true)
 			
-			var unlocked_ids = SaveManager.get_unlocked_characters()
-			if unlocked_ids.has(ch.profile.name):
+			var unlocked_ids = Progression.get_unlocked_characters()
+			if unlocked_ids.has(ch.profile):
 				ch.button.button_group = group
 				ch.selected.connect(_character_icon_selected)
 			
-			if ch.profile.name.to_lower() == SaveManager.get_selected_character_name():
-				print("found it!")
+			if ch.profile.name.to_lower() == Settings.get_selected_character().resource_name:
 				button_to_press = ch
 
 func show_icons():
@@ -46,10 +45,10 @@ func show_icons():
 	button_to_press.set_selected(true)
 
 func _character_icon_selected(profile: CharacterProfile):
-	SaveManager.set_selected_character_name(profile.name.to_lower())
+	Settings.set_selected_character_name(profile.name.to_lower())
 
 func _on_start_pressed():
-	go_to_menu(MenuConfig.MenuType.START_GAME, MenuConfig.TransitionDirection.FORWARD, false)
+	go_to_menu(MenuConfig.MenuType.MAP_SELECT, MenuConfig.TransitionDirection.FORWARD, false)
 
 func _on_back_pressed():
 	go_to_menu(MenuConfig.MenuType.MODE_SELECT, MenuConfig.TransitionDirection.BACKWARD, true)

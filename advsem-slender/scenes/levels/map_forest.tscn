@@ -18,7 +18,7 @@
 [ext_resource type="Script" uid="uid://d0geqahcgagfn" path="res://scripts/managers/ui_manager.gd" id="16_5ls40"]
 [ext_resource type="FontFile" uid="uid://b78ski6kf8hw1" path="res://fonts/ari-w9500-display.ttf" id="16_d0u3f"]
 [ext_resource type="Script" uid="uid://c3ysaqnmo1oo8" path="res://scripts/ui/ui_text.gd" id="17_omdk1"]
-[ext_resource type="PackedScene" uid="uid://c5j4dypjweuc2" path="res://scenes/ui/jumpscare_canvaslayer.tscn" id="18_typfu"]
+[ext_resource type="PackedScene" uid="uid://c5j4dypjweuc2" path="res://scenes/ui/canvases/jumpscare_canvaslayer.tscn" id="18_typfu"]
 [ext_resource type="AudioStream" uid="uid://xjt0f2pu0a11" path="res://audio/ambient/hopping_fence.mp3" id="19_u5rgu"]
 [ext_resource type="AudioStream" uid="uid://b5g34w47yw0di" path="res://audio/ambient/forest_bitcrushed_ambient1.mp3" id="20_20vw4"]
 [ext_resource type="Script" uid="uid://ny0s8850mmpr" path="res://scripts/audio_player.gd" id="21_6h64i"]

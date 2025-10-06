@@ -2,7 +2,6 @@ extends Node
 
 ## Classic is akin to the first slender, so there's no extra pages, lives, etc.
 enum GameMode { CLASSIC, ENDLESS, CUSTOM }
-enum Map { FOREST }
 
 const MODE_CONFIG = {
 	GameMode.CLASSIC: {
@@ -18,6 +17,9 @@ const MODE_CONFIG = {
 		"default_lives": 3,
 	}
 }
+
+const DEFAULT_CHARACTER = "default"
+const DEFAULT_PALETTE = "mono"
 
 func get_mode_description(mode: GameMode) -> String:
 	return MODE_CONFIG[mode]["description"]

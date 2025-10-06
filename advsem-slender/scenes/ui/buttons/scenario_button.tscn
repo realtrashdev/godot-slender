@@ -1,0 +1,66 @@
+[gd_scene load_steps=6 format=3 uid="uid://cg3da5yt6ei7s"]
+
+[ext_resource type="Theme" uid="uid://bommyqwo15hbx" path="res://theme1.tres" id="1_mtlq7"]
+[ext_resource type="Script" uid="uid://531hqierjen6" path="res://scripts/ui/buttons/scenario_checkbox.gd" id="1_th6yi"]
+[ext_resource type="PackedScene" uid="uid://6lvn3tolsp7r" path="res://scenes/ui/buttons/menu_button.tscn" id="3_2q0gp"]
+[ext_resource type="Texture2D" uid="uid://coxkbmbqwugjt" path="res://art/2d/ui/eye_icon.aseprite" id="3_fyu5p"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mtlq7"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.62967473, 0.62967485, 0.62967443, 1)
+anti_aliasing = false
+
+[node name="ScenarioCheckBox" type="PanelContainer"]
+custom_minimum_size = Vector2(600, 80)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -350.0
+offset_top = -40.0
+offset_right = 250.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_mtlq7")
+script = ExtResource("1_th6yi")
+
+[node name="CheckBox" type="CheckBox" parent="."]
+layout_mode = 2
+mouse_filter = 1
+theme = ExtResource("1_mtlq7")
+expand_icon = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CheckBox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 66.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("1_mtlq7")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "Scenario Checkbox"
+scroll_active = false
+vertical_alignment = 1
+
+[node name="CustomButton" parent="CheckBox" instance=ExtResource("3_2q0gp")]
+custom_minimum_size = Vector2(0, 0)
+layout_mode = 0
+offset_left = 518.0
+offset_right = 587.0
+offset_bottom = 71.0
+icon = ExtResource("3_fyu5p")
+expand_icon = true
+focus_enabled = false
