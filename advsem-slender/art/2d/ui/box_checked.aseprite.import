@@ -3,15 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://by5q0addeb0pq"
-path="res://.godot/imported/box_checked.aseprite-a056b6ae1813f5d1730291fd629ba4d8.ctex"
-metadata={
-"vram_texture": false
-}
+valid=false
 
 [deps]
 
 source_file="res://art/2d/ui/box_checked.aseprite"
-dest_files=["res://.godot/imported/box_checked.aseprite-a056b6ae1813f5d1730291fd629ba4d8.ctex"]
 
 [params]
 
