@@ -26,7 +26,8 @@ func _ready():
 	head = player.get_node("Head")
 	camera = player.get_node("Head/Camera3D")
 	
-	start_rotation = Vector3(0, player.rotation.y, 0)
+	player.rotation.y = 0
+	start_rotation = Vector3(0, 0, 0)
 	camera_rotation = start_rotation
 
 func handle_input(event):

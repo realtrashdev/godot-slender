@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+@export var starting_rotation: Vector3 = Vector3.ZERO
+
 const MENU_SCENE = "res://scenes/ui/menus/menu_base.tscn"
 
 var active: bool = false
@@ -18,8 +20,8 @@ func _process(delta: float) -> void:
 		get_tree().change_scene_to_file(MENU_SCENE)
 
 func _physics_process(delta: float) -> void:
-	movement_component.handle_physics(delta)
 	camera_component.handle_camera_physics(delta)
+	movement_component.handle_physics(delta)
 	flashlight_component.handle_flashlight_physics(delta)
 
 func _input(event):
