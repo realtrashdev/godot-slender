@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://cg3da5yt6ei7s"]
 
-[ext_resource type="Theme" uid="uid://bommyqwo15hbx" path="res://theme1.tres" id="1_mtlq7"]
-[ext_resource type="Script" uid="uid://531hqierjen6" path="res://scripts/ui/buttons/scenario_checkbox.gd" id="1_th6yi"]
-[ext_resource type="PackedScene" uid="uid://6lvn3tolsp7r" path="res://scenes/ui/buttons/menu_button.tscn" id="3_2q0gp"]
-[ext_resource type="Texture2D" uid="uid://coxkbmbqwugjt" path="res://art/2d/ui/eye_icon.aseprite" id="3_fyu5p"]
+[ext_resource type="Script" uid="uid://bqtcykdt2xr2a" path="res://scripts/ui/buttons/generic_checkbox.gd" id="1_chyie"]
+[ext_resource type="Theme" uid="uid://bommyqwo15hbx" path="res://theme1.tres" id="2_dlxoq"]
+[ext_resource type="PackedScene" uid="uid://6lvn3tolsp7r" path="res://scenes/ui/buttons/menu_button.tscn" id="3_bapwd"]
+[ext_resource type="Texture2D" uid="uid://coxkbmbqwugjt" path="res://art/2d/ui/eye_icon.aseprite" id="4_epnej"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mtlq7"]
 bg_color = Color(0, 0, 0, 1)
@@ -14,7 +14,7 @@ border_width_bottom = 4
 border_color = Color(0.62967473, 0.62967485, 0.62967443, 1)
 anti_aliasing = false
 
-[node name="ScenarioCheckBox" type="PanelContainer"]
+[node name="GenericCheckbox" type="PanelContainer"]
 custom_minimum_size = Vector2(600, 80)
 anchors_preset = 8
 anchor_left = 0.5
@@ -28,14 +28,14 @@ offset_bottom = 40.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_mtlq7")
-script = ExtResource("1_th6yi")
+script = ExtResource("1_chyie")
 
 [node name="CheckBox" type="CheckBox" parent="."]
 custom_minimum_size = Vector2(0, 72)
 layout_mode = 2
 size_flags_vertical = 0
 mouse_filter = 1
-theme = ExtResource("1_mtlq7")
+theme = ExtResource("2_dlxoq")
 expand_icon = true
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CheckBox"]
@@ -50,25 +50,29 @@ grow_vertical = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 mouse_filter = 2
-theme = ExtResource("1_mtlq7")
+theme = ExtResource("2_dlxoq")
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "Scenario Checkbox"
 scroll_active = false
 vertical_alignment = 1
 
-[node name="CustomButton" parent="CheckBox" instance=ExtResource("3_2q0gp")]
+[node name="CustomButton" parent="CheckBox" instance=ExtResource("3_bapwd")]
 custom_minimum_size = Vector2(0, 0)
 layout_mode = 0
 offset_left = 518.0
-offset_right = 587.0
-offset_bottom = 71.0
-icon = ExtResource("3_fyu5p")
+offset_top = -4.0
+offset_right = 596.0
+offset_bottom = 76.0
+theme_override_constants/icon_max_width = 64
+icon = ExtResource("4_epnej")
 expand_icon = true
 focus_enabled = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(572, 0)
 layout_mode = 2
+size_flags_horizontal = 4
 mouse_filter = 2
 
 [node name="Container" type="Container" parent="VBoxContainer"]
@@ -81,7 +85,7 @@ mouse_filter = 2
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
-theme = ExtResource("1_mtlq7")
+theme = ExtResource("2_dlxoq")
 theme_override_font_sizes/normal_font_size = 16
 bbcode_enabled = true
 text = "This is a scenario description."

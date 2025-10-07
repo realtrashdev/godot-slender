@@ -1,29 +1,20 @@
-class_name MapList extends Node
+class_name MapList extends GenericList
 
 signal map_selected(map: Map)
 
-const BUTTON_SCENE = preload("res://scenes/ui/buttons/map_button.tscn")
-
-var current_map: Map
-
-@onready var button_container: VBoxContainer = $PanelContainer/ScrollContainer/CheckBoxContainer
-
 func _ready() -> void:
-	current_map = Settings.get_selected_map()
-	_populate_list()
-
-func _populate_list():
-	var group = ButtonGroup.new()
+	# Set the button scene for this specific list
+	button_scene = preload("res://scenes/ui/buttons/generic_checkbox.tscn")
+	show_descriptions = false
 	
-	for map in Progression.get_unlocked_maps():
-		var mb: MapCheckbox = BUTTON_SCENE.instantiate()
-		mb.map = map
-		button_container.add_child(mb)
-		mb.check_box.button_group = group
-		mb.checked.connect(_map_selected)
-		
-		if map.resource_name == Settings.get_selected_map().resource_name:
-			mb.check_box.button_pressed = true
+	# Populate with maps
+	populate_list(
+		Progression.get_unlocked_maps(),
+		Settings.get_selected_map
+	)
+	
+	# Forward the generic signal to specific signal
+	item_selected.connect(_forward_signal)
 
-func _map_selected(map: Map):
-	map_selected.emit(map)
+func _forward_signal(item: Resource):
+	map_selected.emit(item)

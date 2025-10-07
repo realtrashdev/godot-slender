@@ -8,7 +8,7 @@ var profiles: Array[EnemyProfile]
 @onready var header: RichTextLabel = $RichTextLabel
 @onready var icon_container: VBoxContainer = $SmoothScrollContainer/EnemyIconContainer
 
-func initialize(num: int, prf: Array[EnemyProfile]):
+func initialize(num: int, prf: Array[EnemyProfile], index: float):
 	page_number = num
 	profiles = prf
 	header.text = _get_header_text()

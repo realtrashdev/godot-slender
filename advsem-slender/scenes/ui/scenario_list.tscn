@@ -1,9 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://4rmt8ldqf6st"]
+[gd_scene load_steps=12 format=3 uid="uid://4rmt8ldqf6st"]
 
 [ext_resource type="Script" uid="uid://dc68w0hx3bw7p" path="res://scripts/ui/misc/scenario_list.gd" id="1_dhvid"]
 [ext_resource type="Theme" uid="uid://bommyqwo15hbx" path="res://theme1.tres" id="1_kygs4"]
 [ext_resource type="Script" uid="uid://bgqglerkcylxx" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="2_dhvid"]
+[ext_resource type="FontFile" uid="uid://b78ski6kf8hw1" path="res://fonts/ari-w9500-display.ttf" id="3_b7cwc"]
 [ext_resource type="Script" uid="uid://b7h0k2h2qwlqv" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="3_suckd"]
+
+[sub_resource type="FontVariation" id="FontVariation_7ci7s"]
+base_font = ExtResource("3_b7cwc")
+spacing_glyph = 4
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kygs4"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -46,8 +51,9 @@ script = ExtResource("1_dhvid")
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 layout_mode = 2
 theme = ExtResource("1_kygs4")
+theme_override_fonts/normal_font = SubResource("FontVariation_7ci7s")
 bbcode_enabled = true
-text = "[wave]SCENARIOS"
+text = "[tornado radius=2 freq=3]SCENARIOS"
 fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1

@@ -1,9 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://rdg8wdd5e6lu"]
+[gd_scene load_steps=12 format=3 uid="uid://rdg8wdd5e6lu"]
 
 [ext_resource type="Script" uid="uid://coux81nl22lta" path="res://scripts/ui/misc/map_list.gd" id="1_cdqgv"]
 [ext_resource type="Theme" uid="uid://bommyqwo15hbx" path="res://theme1.tres" id="2_l22xs"]
 [ext_resource type="Script" uid="uid://bgqglerkcylxx" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="3_0dmwp"]
+[ext_resource type="FontFile" uid="uid://b78ski6kf8hw1" path="res://fonts/ari-w9500-display.ttf" id="3_l22xs"]
 [ext_resource type="Script" uid="uid://b7h0k2h2qwlqv" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="4_a4ils"]
+
+[sub_resource type="FontVariation" id="FontVariation_0dmwp"]
+base_font = ExtResource("3_l22xs")
+spacing_glyph = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kygs4"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -45,8 +50,9 @@ script = ExtResource("1_cdqgv")
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 layout_mode = 2
 theme = ExtResource("2_l22xs")
+theme_override_fonts/normal_font = SubResource("FontVariation_0dmwp")
 bbcode_enabled = true
-text = "[wave]MAPS"
+text = "[tornado radius=2 freq=3]MAPS"
 fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1

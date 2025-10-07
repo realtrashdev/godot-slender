@@ -1,0 +1,33 @@
+{
+	"characters": [
+		"res://resources/vessel_profiles/profile_default.tres",
+		"res://resources/vessel_profiles/profile_dragon.tres"
+	],
+	"colorsets": [
+		"res://resources/color_sets/colorset_blue.tres",
+		"res://resources/color_sets/colorset_cottoncandy.tres",
+		"res://resources/color_sets/colorset_gameboy.tres",
+		"res://resources/color_sets/colorset_green.tres",
+		"res://resources/color_sets/colorset_mono.tres",
+		"res://resources/color_sets/colorset_orange.tres",
+		"res://resources/color_sets/colorset_purple.tres",
+		"res://resources/color_sets/colorset_red.tres",
+		"res://resources/color_sets/colorset_yellow.tres"
+	],
+	"enemies": [
+		"res://resources/enemy_profiles/profile_chaser.tres",
+		"res://resources/enemy_profiles/profile_eyes.tres",
+		"res://resources/enemy_profiles/profile_gum.tres",
+		"res://resources/enemy_profiles/profile_tallgrass.tres"
+	],
+	"maps": [
+		"res://resources/maps/map_forest.tres"
+	],
+	"scenarios": [
+		"res://resources/scenarios/scenario_basics1.tres",
+		"res://resources/scenarios/scenario_basics2.tres",
+		"res://resources/scenarios/scenario_eyesattack.tres",
+		"res://resources/scenarios/scenario_gumpocalypse.tres",
+		"res://resources/scenarios/scenario_ultra_gumpocalypse.tres"
+	]
+}

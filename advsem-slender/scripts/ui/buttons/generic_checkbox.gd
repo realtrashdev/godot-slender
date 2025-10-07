@@ -1,6 +1,6 @@
-class_name ScenarioCheckbox extends PanelContainer
+class_name GenericCheckbox extends PanelContainer
 
-signal checked(ClassicModeScenario)
+signal checked(item: Resource)
 signal hovered()
 signal unhovered()
 
@@ -11,45 +11,69 @@ const CHECKED_SIZE: Vector2 = Vector2(600, 140)
 
 # text effect/prefixes
 const FOCUSED_EFFECT: String = "[wave amp=25]%s[/wave]"
-const CHECKED_EFFECT: String = "[wave amp=60]%s[/wave]"
-const DESCRIPTION_PREFIX: String = ""
+const CHECKED_EFFECT: String = "[pulse ease=2][wave amp=60]%s"
 
-var scenario: ClassicModeScenario
+var button_checked: bool = false
 
-# defaults
-var default_text: String
+var item: Resource
 var disabled: bool = false
+var default_text: String
 
 # tweens
 var size_tween: Tween
 var desc_text_tween: Tween
 
-# loads
+# audio
 var sfx_press: AudioStream = load("res://audio/menu/ui/button_press.mp3")
 var sfx_release: AudioStream = load("res://audio/menu/ui/button_release.mp3")
 
 @onready var check_box: CheckBox = $CheckBox
 @onready var text_label: RichTextLabel = $CheckBox/RichTextLabel
+@onready var description_container: VBoxContainer = $VBoxContainer
 @onready var description_label: RichTextLabel = $VBoxContainer/DescriptionLabel
 @onready var overview_button: Button = $CheckBox/CustomButton
 
 func _ready():
+	_setup_ui()
+	_connect_signals()
+
+func _setup_ui():
 	if not disabled:
-		default_text = scenario.name
+		default_text = _get_item_name()
 		text_label.text = default_text
-		description_label.text = DESCRIPTION_PREFIX + scenario.description
+		description_label.text = _get_item_description()
 	else:
 		check_box.disabled = true
 		default_text = "???"
 		text_label.text = default_text
-		description_label.text = DESCRIPTION_PREFIX + "Locked..."
+		description_label.text = "Locked..."
 	
+	if item is Map:
+		check_box.layout_direction = Control.LAYOUT_DIRECTION_RTL
+		text_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+		description_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+		overview_button.visible = false
+
+func _connect_signals():
 	mouse_entered.connect(_on_hover)
 	mouse_exited.connect(_on_unhover)
+	check_box.toggled.connect(_on_toggled)
 	check_box.button_down.connect(_on_mouse_down)
 	check_box.button_up.connect(_on_mouse_up)
-	check_box.toggled.connect(_on_toggled)
-	overview_button.pressed.connect(_show_overview)
+	if overview_button:
+		overview_button.pressed.connect(_show_overview)
+
+func _get_item_name() -> String:
+	if item is Map:
+		return item.map_name
+	elif item is ClassicModeScenario:
+		return item.name
+	return ""
+
+func _get_item_description() -> String:
+	if item is ClassicModeScenario or Map:
+		return item.description
+	return ""
 
 func _on_hover():
 	if disabled:
@@ -80,33 +104,41 @@ func _on_unhover():
 		desc_text_tween.tween_property(description_label, "visible_ratio", 0, 0.3)
 
 func _on_mouse_down():
-	AudioTools.play_one_shot(get_tree(), sfx_press, randf_range(0.8, 1.2), -10)
+	if not button_checked:
+		AudioTools.play_one_shot(get_tree(), sfx_press, randf_range(0.8, 1.2), -10)
 
 func _on_mouse_up():
-	AudioTools.play_one_shot(get_tree(), sfx_release, randf_range(1.2, 1.4), -10)
+	pass
 
 func _on_toggled(toggled: bool):
 	if disabled:
 		return
 	
-	if toggled:
+	if toggled and not button_checked:
 		text_label.text = CHECKED_EFFECT % default_text
 		_tween_size(CHECKED_SIZE)
-		Settings.set_selected_scenario(scenario)
+		_save_selection()
+		button_checked = true
+		checked.emit(item)
 		
 		if description_label.visible_ratio == 0:
 			desc_text_tween = create_tween()
 			desc_text_tween.tween_property(description_label, "visible_ratio", 1, 0.3)
-	else:
+	elif not toggled:
 		text_label.text = default_text
 		_tween_size(DEFAULT_SIZE)
+		button_checked = false
 		
 		if desc_text_tween:
 			desc_text_tween.kill()
 		desc_text_tween = create_tween()
 		desc_text_tween.tween_property(description_label, "visible_ratio", 0, 0.3)
-	
-	checked.emit(scenario)
+
+func _save_selection():
+	if item is Map:
+		Settings.set_selected_map(item.resource_name)
+	elif item is ClassicModeScenario:
+		Settings.set_selected_scenario(item)
 
 func _tween_size(new_size: Vector2, time: float = 0.2):
 	if size_tween:
@@ -115,4 +147,11 @@ func _tween_size(new_size: Vector2, time: float = 0.2):
 	size_tween.tween_property(self, "custom_minimum_size", new_size, time).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 
 func _show_overview():
-	EnemyOverview.populate_via_scenario(scenario)
+	if item is ClassicModeScenario:
+		EnemyOverview.populate_via_scenario(item)
+
+# For resetting the pulse effect to keep the map and scenario pulses in line
+func reset_text():
+	if check_box.button_pressed:
+		text_label.text = ""
+		text_label.text = CHECKED_EFFECT % default_text

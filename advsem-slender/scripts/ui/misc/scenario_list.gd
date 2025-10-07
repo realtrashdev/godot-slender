@@ -1,39 +1,29 @@
-class_name ScenarioList extends Node
+class_name ScenarioList extends GenericList
 
 signal scenario_selected(scenario: ClassicModeScenario)
 
-const BUTTON_SCENE = preload("res://scenes/ui/buttons/scenario_button.tscn")
-
 var current_map: Map
 
-@onready var button_container: VBoxContainer = $PanelContainer/ScrollContainer/CheckBoxContainer
-
 func _ready() -> void:
-	current_map = Settings.get_selected_map()
-	_add_buttons()
-
-##
-## TODO uncomment below lines once scenario unlocking is implemented
-##
-func _add_buttons():
-	var group = ButtonGroup.new()
+	# Set the button scene for this specific list
+	button_scene = preload("res://scenes/ui/buttons/generic_checkbox.tscn")
+	show_descriptions = true
+	focused_size = Vector2(600, 140)
+	checked_size = Vector2(600, 140)
 	
-	for scenario in current_map.scenarios:
-		#if scenario.resource_name in Progression.get_unlocked_scenarios():
-		var cb: ScenarioCheckbox = BUTTON_SCENE.instantiate()
-		cb.scenario = scenario
-		button_container.add_child(cb)
-		cb.check_box.button_group = group
-		cb.checked.connect(_scenario_selected)
-		
-		if scenario.resource_name == Settings.get_selected_scenario().resource_name:
-			cb.check_box.button_pressed = true
-		#else:
-			#var cb: ScenarioCheckbox = BUTTON_SCENE.instantiate()
-			#cb.scenario = scenario
-			#cb.disabled = true
-			#button_container.add_child(cb)
+	current_map = Settings.get_selected_map()
+	
+	# Populate with scenarios from the current map
+	populate_list(
+		current_map.scenarios,
+		Settings.get_selected_scenario,
+		# Uncomment below when scenario unlocking is implemented:
+		Callable()
+		# func(scenario): return scenario.resource_name in Progression.get_unlocked_scenarios()
+	)
+	
+	# Forward the generic signal to specific signal
+	item_selected.connect(_forward_signal)
 
-
-func _scenario_selected(scenario: ClassicModeScenario):
-	scenario_selected.emit(scenario)
+func _forward_signal(item: Resource):
+	scenario_selected.emit(item)

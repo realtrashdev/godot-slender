@@ -2,11 +2,15 @@ class_name TextTools
 
 ## Tweens the visible characters of the text_object to a specified amount.
 ## Typically this is either 0, or the text_object's get_total_character_count().
-static func change_visible_characters(text_object: RichTextLabel, char_display_amount: int, time: float, start_at: int = text_object.visible_characters):
+## Tween is returned if early cancellation is necessary.
+static func change_visible_characters(text_object: RichTextLabel, char_display_amount: int, time: float, start_at: int = text_object.visible_characters) -> Tween:
 	if not is_instance_valid(text_object):
 		return
+	
 	text_object.visible_characters = start_at
-	text_object.create_tween().tween_property(text_object, "visible_characters", char_display_amount, time)
+	var tween = text_object.create_tween()
+	tween.tween_property(text_object, "visible_characters", char_display_amount, time)
+	return tween
 
 ## Calls change_visible_characters to show text, waits a specified amount of time, and then automatically calls it again to go back to 0.
 static func change_visible_characters_timed(text_object: RichTextLabel, char_display_amount: int, show_time: float, wait_time: float, delete_time: float):

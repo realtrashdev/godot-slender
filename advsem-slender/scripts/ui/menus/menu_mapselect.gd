@@ -12,12 +12,15 @@ func _ready():
 
 func _on_map_selected(map: Map):
 	map_icon.update_map_text(map)
+	
+	map_list.text_effect_reset()
+	scenario_list.text_effect_reset()
 
 func _on_scenario_selected(scenario: ClassicModeScenario):
 	map_icon.update_scenario_text(scenario)
-
-func _character_icon_selected(profile: CharacterProfile):
-	Settings.set_selected_character_name(profile.name.to_lower())
+	
+	map_list.text_effect_reset()
+	scenario_list.text_effect_reset()
 
 func _on_start_pressed():
 	go_to_menu(MenuConfig.MenuType.START_GAME, MenuConfig.TransitionDirection.FORWARD, false)

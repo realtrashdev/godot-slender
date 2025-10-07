@@ -51,7 +51,7 @@ metadata/_custom_type_script = "uid://bf5ts565hp5p4"
 resource_name = "ultra_gumpocalypse"
 script = ExtResource("5_srg6n")
 name = "Ultra Gumpocalypse"
-description = "	Eventually, we will all fall under the rule of the Gumverment..."
+description = "Eventually, we will all fall under the rule of the Gumverment..."
 enemies_to_add = Dictionary[int, ExtResource("1_gxdtd")]({
 0: SubResource("Resource_xkopt"),
 1: SubResource("Resource_up773"),

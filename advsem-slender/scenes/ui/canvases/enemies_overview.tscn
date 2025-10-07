@@ -16,7 +16,7 @@ script = ExtResource("3_uquhx")
 layer = 5
 script = ExtResource("1_uquhx")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -70,6 +70,7 @@ offset_right = -60.0
 offset_bottom = -60.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(900, 0)
 script = ExtResource("2_cuen5")
 wheel_scroll_damper = SubResource("Resource_cuen5")
 dragging_scroll_damper = SubResource("Resource_uquhx")

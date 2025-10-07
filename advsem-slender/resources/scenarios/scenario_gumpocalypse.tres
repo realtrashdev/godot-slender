@@ -40,8 +40,8 @@ metadata/_custom_type_script = "uid://bf5ts565hp5p4"
 resource_name = "gumpocalypse"
 script = ExtResource("2_l8rxp")
 name = "Gumpocalypse"
-description = "	We don't have enough lollipops to keep them all occupied!
-	The floodgates have been opened!"
+description = "We don't have enough lollipops to keep them all occupied!
+The floodgates have been opened!"
 enemies_to_add = Dictionary[int, ExtResource("1_jasut")]({
 0: SubResource("Resource_xkopt"),
 1: SubResource("Resource_up773"),

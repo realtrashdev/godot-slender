@@ -30,7 +30,7 @@ metadata/_custom_type_script = "uid://bf5ts565hp5p4"
 resource_name = "eyesattack"
 script = ExtResource("2_3hcq7")
 name = "I always feel like..."
-description = "	There are multiple pairs of disembodied eyes watching me..."
+description = "There are multiple pairs of disembodied eyes watching me..."
 enemies_to_add = Dictionary[int, ExtResource("1_8fubv")]({
 0: SubResource("Resource_jquuf"),
 1: SubResource("Resource_fb7op"),

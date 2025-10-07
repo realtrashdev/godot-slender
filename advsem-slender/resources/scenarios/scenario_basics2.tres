@@ -26,7 +26,7 @@ metadata/_custom_type_script = "uid://bf5ts565hp5p4"
 resource_name = "basics2"
 script = ExtResource("6_cusrp")
 name = "The Basics II"
-description = "	Getting a little harder now."
+description = "Getting a little harder now."
 enemies_to_add = Dictionary[int, ExtResource("1_ahw1p")]({
 0: null,
 1: SubResource("Resource_5cs33"),
