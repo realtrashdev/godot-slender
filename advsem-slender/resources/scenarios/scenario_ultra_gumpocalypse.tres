@@ -1,0 +1,65 @@
+[gd_resource type="Resource" script_class="ClassicModeScenario" load_steps=15 format=3 uid="uid://bcp2t6o8su54u"]
+
+[ext_resource type="Script" uid="uid://bf5ts565hp5p4" path="res://scripts/resources/enemy_profile_list.gd" id="1_gxdtd"]
+[ext_resource type="Script" uid="uid://c426kdmp0e6tf" path="res://scripts/resources/enemy_profile.gd" id="2_jmyuv"]
+[ext_resource type="Resource" uid="uid://ceka8pclkwv8e" path="res://resources/enemy_profiles/profile_gum.tres" id="3_tcs3j"]
+[ext_resource type="Resource" uid="uid://5btde08a1exu" path="res://resources/enemy_profiles/profile_chaser.tres" id="4_r7vyg"]
+[ext_resource type="Resource" uid="uid://bepy1x4bj1nga" path="res://resources/enemy_profiles/profile_eyes.tres" id="5_jmyuv"]
+[ext_resource type="Script" uid="uid://cbb8lvjddytcc" path="res://scripts/resources/scenario.gd" id="5_srg6n"]
+
+[sub_resource type="Resource" id="Resource_xkopt"]
+script = ExtResource("1_gxdtd")
+profiles = Array[ExtResource("2_jmyuv")]([ExtResource("3_tcs3j"), ExtResource("3_tcs3j"), ExtResource("3_tcs3j")])
+metadata/_custom_type_script = "uid://bf5ts565hp5p4"
+
+[sub_resource type="Resource" id="Resource_up773"]
+script = ExtResource("1_gxdtd")
+profiles = Array[ExtResource("2_jmyuv")]([ExtResource("4_r7vyg"), ExtResource("3_tcs3j")])
+metadata/_custom_type_script = "uid://bf5ts565hp5p4"
+
+[sub_resource type="Resource" id="Resource_gxdtd"]
+script = ExtResource("1_gxdtd")
+profiles = Array[ExtResource("2_jmyuv")]([ExtResource("3_tcs3j")])
+metadata/_custom_type_script = "uid://bf5ts565hp5p4"
+
+[sub_resource type="Resource" id="Resource_uubew"]
+script = ExtResource("1_gxdtd")
+profiles = Array[ExtResource("2_jmyuv")]([ExtResource("3_tcs3j")])
+metadata/_custom_type_script = "uid://bf5ts565hp5p4"
+
+[sub_resource type="Resource" id="Resource_jmyuv"]
+script = ExtResource("1_gxdtd")
+profiles = Array[ExtResource("2_jmyuv")]([ExtResource("3_tcs3j")])
+metadata/_custom_type_script = "uid://bf5ts565hp5p4"
+
+[sub_resource type="Resource" id="Resource_l845u"]
+script = ExtResource("1_gxdtd")
+profiles = Array[ExtResource("2_jmyuv")]([ExtResource("4_r7vyg"), ExtResource("3_tcs3j")])
+metadata/_custom_type_script = "uid://bf5ts565hp5p4"
+
+[sub_resource type="Resource" id="Resource_6jseq"]
+script = ExtResource("1_gxdtd")
+profiles = Array[ExtResource("2_jmyuv")]([ExtResource("3_tcs3j")])
+metadata/_custom_type_script = "uid://bf5ts565hp5p4"
+
+[sub_resource type="Resource" id="Resource_x1uok"]
+script = ExtResource("1_gxdtd")
+profiles = Array[ExtResource("2_jmyuv")]([ExtResource("5_jmyuv"), ExtResource("3_tcs3j")])
+metadata/_custom_type_script = "uid://bf5ts565hp5p4"
+
+[resource]
+resource_name = "ultra_gumpocalypse"
+script = ExtResource("5_srg6n")
+name = "Ultra Gumpocalypse"
+description = "	Eventually, we will all fall under the rule of the Gumverment..."
+enemies_to_add = Dictionary[int, ExtResource("1_gxdtd")]({
+0: SubResource("Resource_xkopt"),
+1: SubResource("Resource_up773"),
+2: SubResource("Resource_gxdtd"),
+3: SubResource("Resource_uubew"),
+4: SubResource("Resource_jmyuv"),
+5: SubResource("Resource_l845u"),
+6: SubResource("Resource_6jseq"),
+7: SubResource("Resource_x1uok")
+})
+metadata/_custom_type_script = "uid://cbb8lvjddytcc"

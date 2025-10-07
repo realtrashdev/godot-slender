@@ -1,8 +1,10 @@
 class_name EnemyProfile extends CharacterProfile
 
+enum EnemyType { ENEMY_2D, ENEMY_3D, ENEMY_COMPONENT }
+
 @export_group("Enemy Info")
 @export var scene: PackedScene
-@export var is_2d_enemy: bool = false
+@export var enemy_type: EnemyType
 
 @export_group("Spawning")
 ## How this enemy spawns. Does it use a pre placed spawn marker, does it spawn on the player, etc?

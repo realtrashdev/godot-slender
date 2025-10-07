@@ -12,7 +12,7 @@ func get_spawn_position(ctx: SpawnContext) -> Vector3:
 	var x = radius * cos(angle)
 	var z = radius * sin(angle)
 	
-	var pos = player.global_position + Vector3(x, randf_range(-10, 10), z)
+	var pos = player.global_position + Vector3(x, 0, z)
 	
 	print("Player pos: ", player.global_position)
 	print("Spawn pos: ", pos)

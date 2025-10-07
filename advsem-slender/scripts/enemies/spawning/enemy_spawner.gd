@@ -57,10 +57,13 @@ func spawn_enemy() -> Node:
 	if enemy.has_signal("died"):
 		enemy.died.connect(on_enemy_died.bind(enemy))
 	
-	if profile.is_2d_enemy:
-		spawn_2d_enemy(enemy)
-	else:
-		spawn_3d_enemy(enemy)
+	match profile.enemy_type:
+		profile.EnemyType.ENEMY_2D:
+			spawn_2d_enemy(enemy)
+		profile.EnemyType.ENEMY_3D:
+			spawn_3d_enemy(enemy)
+		profile.EnemyType.ENEMY_COMPONENT:
+			spawn_component_enemy(enemy)
 	
 	Signals.enemy_spawned.emit(profile.type)
 	
@@ -90,6 +93,17 @@ func spawn_3d_enemy(enemy: Enemy3D):
 	var pos = profile.spawn_behavior.get_spawn_position(ctx)
 	
 	enemy.global_position = pos
+
+func spawn_component_enemy(enemy: ComponentEnemy):
+	if not enabled:
+		return
+	
+	print("ComponentEnemy Spawned")
+	add_child(enemy)
+	enemy.profile = profile
+	
+	# Only one component enemy gets spawned, as they are just a tool for attaching components to others
+	disable_spawner()
 
 func on_page_collected():
 	check_enable()

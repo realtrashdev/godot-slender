@@ -14,6 +14,7 @@ metadata/_custom_type_script = "uid://bk23iyn5r0tgb"
 [resource]
 script = ExtResource("1_q46dd")
 scene = ExtResource("3_wsijd")
+enemy_type = 1
 spawn_behavior = SubResource("Resource_3lxij")
 min_spawn_time = 45.0
 max_spawn_time = 55.0

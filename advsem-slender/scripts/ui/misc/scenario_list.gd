@@ -24,6 +24,7 @@ func _add_buttons():
 		cb.scenario = scenario
 		button_container.add_child(cb)
 		cb.check_box.button_group = group
+		cb.checked.connect(_scenario_selected)
 		
 		if scenario.resource_name == Settings.get_selected_scenario().resource_name:
 			cb.check_box.button_pressed = true
@@ -32,3 +33,7 @@ func _add_buttons():
 			#cb.scenario = scenario
 			#cb.disabled = true
 			#button_container.add_child(cb)
+
+
+func _scenario_selected(scenario: ClassicModeScenario):
+	scenario_selected.emit(scenario)

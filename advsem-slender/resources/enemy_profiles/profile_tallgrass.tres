@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="EnemyProfile" load_steps=2 format=3 uid="uid://edrhws6wgh14"]
+
+[ext_resource type="Script" uid="uid://c426kdmp0e6tf" path="res://scripts/resources/enemy_profile.gd" id="1_68ow7"]
+
+[resource]
+script = ExtResource("1_68ow7")
+enemy_type = 2
+max_instances = 1
+metadata/_custom_type_script = "uid://c426kdmp0e6tf"

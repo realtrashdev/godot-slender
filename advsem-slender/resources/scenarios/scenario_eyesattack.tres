@@ -27,10 +27,10 @@ profiles = Array[ExtResource("2_brhq3")]([ExtResource("3_17g22")])
 metadata/_custom_type_script = "uid://bf5ts565hp5p4"
 
 [resource]
-resource_name = "eyes_attack"
+resource_name = "eyesattack"
 script = ExtResource("2_3hcq7")
 name = "I always feel like..."
-description = "There are multiple pairs of disembodied eyes watching meeee!"
+description = "	There are multiple pairs of disembodied eyes watching me..."
 enemies_to_add = Dictionary[int, ExtResource("1_8fubv")]({
 0: SubResource("Resource_jquuf"),
 1: SubResource("Resource_fb7op"),

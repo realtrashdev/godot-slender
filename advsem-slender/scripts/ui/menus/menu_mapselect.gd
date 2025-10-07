@@ -7,13 +7,14 @@ var button_to_press: CharacterIcon
 @onready var map_icon: VBoxContainer = $MapIcon
 
 func _ready():
-	scenario_list.scenario_selected.connect(_scenario_selected)
+	map_list.map_selected.connect(_on_map_selected)
+	scenario_list.scenario_selected.connect(_on_scenario_selected)
 
-func _map_selected(map: Map):
-	pass
+func _on_map_selected(map: Map):
+	map_icon.update_map_text(map)
 
-func _scenario_selected(scenario: ClassicModeScenario):
-	pass
+func _on_scenario_selected(scenario: ClassicModeScenario):
+	map_icon.update_scenario_text(scenario)
 
 func _character_icon_selected(profile: CharacterProfile):
 	Settings.set_selected_character_name(profile.name.to_lower())

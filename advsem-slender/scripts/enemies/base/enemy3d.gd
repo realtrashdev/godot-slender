@@ -16,4 +16,4 @@ func check_player_collision() -> void:
 		if collider and collider.is_in_group("Player"):
 			Signals.killed_player.emit(profile.jumpscare)
 			collider.die()
-			return
+			queue_free()

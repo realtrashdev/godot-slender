@@ -11,6 +11,7 @@ var data: Dictionary = {
 	
 	"audio_volume": 1.0,
 	"mouse_sensitivity": 0.002,
+	"window_mode": DisplayServer.WINDOW_MODE_FULLSCREEN
 }
 
 #region Getters/Setters
@@ -75,6 +76,14 @@ func set_mouse_sensitivity(sensitivity: float):
 	data["mouse_sensitivity"] = sensitivity
 	setting_changed.emit("mouse_sensitivity", sensitivity)
 	SaveManager.save_game()
+
+func get_screen_mode() -> DisplayServer.WindowMode:
+	return data.get("window_mode")
+
+func set_screen_mode(mode: DisplayServer.WindowMode):
+	data["window_mode"] = mode
+	setting_changed.emit("window_mode", mode)
+	SaveManager.save_game()
 #endregion
 
 func reset_to_defaults():
@@ -87,5 +96,20 @@ func reset_to_defaults():
 		
 		"audio_volume": 1.0,
 		"mouse_sensitivity": 0.002,
+		"window_mode": DisplayServer.WINDOW_MODE_FULLSCREEN
 	}
 	SaveManager.save_game()
+
+# HACK temporary for testing
+func _ready() -> void:
+	DisplayServer.window_set_mode(get_screen_mode())
+
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("toggle_fullscreen"):
+		match DisplayServer.window_get_mode():
+			DisplayServer.WINDOW_MODE_FULLSCREEN:
+				set_screen_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+				DisplayServer.window_set_mode(get_screen_mode())
+			DisplayServer.WINDOW_MODE_WINDOWED:
+				set_screen_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+				DisplayServer.window_set_mode(get_screen_mode())

@@ -1,6 +1,6 @@
 class_name MapCheckbox extends PanelContainer
 
-signal checked(toggled: bool)
+signal checked(Map)
 signal hovered()
 signal unhovered()
 
@@ -64,7 +64,7 @@ func _on_toggled(toggled: bool):
 		text_label.text = default_text
 		_tween_size(DEFAULT_SIZE)
 	
-	checked.emit(toggled)
+	checked.emit(map)
 
 func _tween_size(new_size: Vector2, time: float = 0.2):
 	if size_tween:

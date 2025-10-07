@@ -8,17 +8,17 @@ const LIGHT_TIME: float = 8.0
 var alive: bool = true
 var state = State.HOVERING
 var initial_offset: Vector3
-var last_player_position: Vector3
+var last_player_position: Vector3 = Vector3.ZERO
 
 var timer: Timer = Timer.new()
 var light_on: bool = false
 var light_amount: float = 0.0
 
 @onready var player = get_tree().get_first_node_in_group("Player")
+@onready var mesh: MeshInstance3D = $MeshInstance3D
+@onready var attack_audio: AudioStreamPlayer3D = $AttackAudio
 
 func _ready() -> void:
-	# wait for spawner to set position
-	await get_tree().process_frame
 	spawn()
 	
 	if player:
@@ -37,15 +37,16 @@ func _input(event: InputEvent) -> void:
 		return
 	
 	if event.is_action_pressed("toggle_light"):
-		if not light_on: # this occurs first, so reversing is necessary
+		if not light_on:
 			var new_time = timer.time_left - 2
+			if new_time <= 0:
+				timer.timeout.emit()
+				return
 			timer.stop()
 			timer.start(new_time)
 			timer.paused = false
-			print("Light on, subtracted 2 from time left and resumed")
 		else:
 			timer.paused = true
-			print("Light off, timer paused")
 
 func _process(delta: float) -> void:
 	light_on = player.flashlight_component.get_light_status()
@@ -62,6 +63,7 @@ func _physics_process(delta: float) -> void:
 		var player_movement = player.global_position - last_player_position
 		global_position += player_movement
 		last_player_position = player.global_position
+		pass
 	elif state == State.ATTACK:
 		var speed = 30.0
 		global_position = global_position.move_toward(player.global_position, speed * delta)
@@ -71,16 +73,17 @@ func life_cycle():
 	add_child(timer)
 	timer.start(ACTIVE_TIME)
 	await timer.timeout
-	$AttackAudio.play()
+	attack_audio.play()
 	state = State.ATTACK
 
 func spawn():
-	$MeshInstance3D.mesh.size = Vector2(5, 0)
-	create_tween().tween_property($MeshInstance3D.mesh, "size", Vector2(5, 5), 2).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	mesh.mesh.size = Vector2(5, 0)
+	var tween = create_tween()
+	tween.tween_property(mesh.mesh, "size", Vector2(5, 5), 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
 
 func die():
 	var tween = create_tween()
-	tween.tween_property($MeshInstance3D.mesh, "size", Vector2(5, 0), 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(mesh.mesh, "size", Vector2(5, 0), 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	await tween.finished
 	died.emit()
 	queue_free()

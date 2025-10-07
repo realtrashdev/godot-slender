@@ -20,6 +20,10 @@ func _populate_list():
 		mb.map = map
 		button_container.add_child(mb)
 		mb.check_box.button_group = group
+		mb.checked.connect(_map_selected)
 		
 		if map.resource_name == Settings.get_selected_map().resource_name:
 			mb.check_box.button_pressed = true
+
+func _map_selected(map: Map):
+	map_selected.emit(map)
