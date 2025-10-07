@@ -98,9 +98,13 @@ func spawn_component_enemy(enemy: ComponentEnemy):
 	if not enabled:
 		return
 	
+	for component in get_tree().get_nodes_in_group("ComponentEnemy"):
+		if component == enemy:
+			push_warning("Tried spawning %s twice." % enemy.profile.name)
+			disable_spawner()
+	
 	print("ComponentEnemy Spawned")
-	add_child(enemy)
-	enemy.profile = profile
+	enemy.attach_component(player)
 	
 	# Only one component enemy gets spawned, as they are just a tool for attaching components to others
 	disable_spawner()
@@ -129,13 +133,16 @@ func enable_spawner():
 
 func disable_spawner():
 	enabled = false
+	reset_timer()
 
 func set_spawn_rate(min_time: float, max_time: float):
 	min_spawn_time = min_time
 	max_spawn_time = max_time
 
 func clear_all_enemies():
+	print("Clear all enemies")
 	for enemy in active_enemies.duplicate():
+		print("Try clearing enemies")
 		if is_instance_valid(enemy):
 			print("killing %s" % [enemy.name])
 			enemy.queue_free()

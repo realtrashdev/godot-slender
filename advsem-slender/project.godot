@@ -56,6 +56,7 @@ Path=""
 SpawnMarkers="Pre placed markers some 3D enemies use for spawning."
 Pathfinder="Enemies that pathfind to the player. Uses a tick system to prevent lag and stagger enemy pathfinding updates."
 Slows="Ground that slows the player down when walking on it."
+ComponentEnemy="All enemies that act as components rather than physical enemies in the scene."
 
 [input]
 

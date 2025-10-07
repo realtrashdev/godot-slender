@@ -1,6 +1,6 @@
 extends Menu
 
-static var seen: bool = true
+static var seen: bool = false
 
 var intro_text: Array[String] = [
 	"hello there.",
@@ -10,7 +10,7 @@ var intro_text: Array[String] = [
 	"if you wish to venture into the unknown,\nwe must first create you a [wave]Vessel.",
 ]
 
-var current_spiel: Array[String] #= intro_text
+var current_spiel: Array[String] = intro_text
 var progression: Array[Control]
 
 var progress: bool = false
@@ -18,6 +18,7 @@ var progress: bool = false
 @onready var voice: RichTextLabel = $Voice
 
 func _ready() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	progression.append($CharacterNaming)
 	
 	if seen:

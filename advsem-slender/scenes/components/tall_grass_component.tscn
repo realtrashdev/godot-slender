@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://nnk5kncxdbix"]
+
+[node name="TallGrassComponent" type="Node" groups=["ComponentEnemy"]]

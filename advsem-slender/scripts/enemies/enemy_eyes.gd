@@ -10,6 +10,7 @@ var state = State.HOVERING
 var initial_offset: Vector3
 var last_player_position: Vector3 = Vector3.ZERO
 
+var tween: Tween
 var timer: Timer = Timer.new()
 var light_on: bool = false
 var light_amount: float = 0.0
@@ -19,6 +20,7 @@ var light_amount: float = 0.0
 @onready var attack_audio: AudioStreamPlayer3D = $AttackAudio
 
 func _ready() -> void:
+	mesh.mesh = mesh.mesh.duplicate()
 	spawn()
 	
 	if player:
@@ -78,11 +80,15 @@ func life_cycle():
 
 func spawn():
 	mesh.mesh.size = Vector2(5, 0)
-	var tween = create_tween()
+	if tween:
+		tween.kill()
+	tween = create_tween()
 	tween.tween_property(mesh.mesh, "size", Vector2(5, 5), 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
 
 func die():
-	var tween = create_tween()
+	if tween:
+		tween.kill()
+	tween = create_tween()
 	tween.tween_property(mesh.mesh, "size", Vector2(5, 0), 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	await tween.finished
 	died.emit()

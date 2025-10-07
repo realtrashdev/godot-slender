@@ -7,9 +7,12 @@ const TL_DISPLAY_TIME: float = 4
 
 var game_state: GameState
 var tip_manager: TipManager
+var scenario: ClassicModeScenario
 
 @onready var pages_text: RichTextLabel = $PagesText
 @onready var too_long_text: RichTextLabel = $TooLongText
+@onready var mode_text: RichTextLabel = $ModeText
+@onready var scenario_text: RichTextLabel = $ModeText/ScenarioText
 
 func initialize(state: GameState):
 	game_state = state
@@ -31,11 +34,25 @@ func on_page_collected():
 func show_game_start():
 	await get_tree().create_timer(1).timeout
 	show_tip()
+	show_mode()
 	await get_tree().create_timer(5).timeout
 
 func show_tip():
 	var tip = tip_manager.get_random_tip()
 	display_text("[wave]Tip:\n" + tip, 1, 5, 0)
+
+func show_mode():
+	match game_state.game_mode:
+		GameConfig.GameMode.CLASSIC:
+			display_text("[wave]CLASSIC MODE", 1, 5, 0, mode_text)
+		GameConfig.GameMode.ENDLESS:
+			display_text("[wave]ENDLESS MODE", 1, 5, 0, mode_text)
+	
+	if scenario:
+		show_scenario(scenario)
+
+func show_scenario(sc: ClassicModeScenario):
+	display_text(sc.name, 1, 5, 0, scenario_text)
 
 func show_objective():
 	display_text("[wave]Collect %d pages" % game_state.current_pages_required, 1, 3, 1)

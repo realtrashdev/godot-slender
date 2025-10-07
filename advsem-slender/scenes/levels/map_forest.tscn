@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://b2fcrx7ohgn2i"]
+[gd_scene load_steps=30 format=3 uid="uid://b2fcrx7ohgn2i"]
 
 [ext_resource type="Script" uid="uid://wnd51kqayidl" path="res://scripts/managers/game_manager.gd" id="1_twysk"]
 [ext_resource type="PackedScene" uid="uid://dqhlmv6mga3ln" path="res://scenes/important/player.tscn" id="2_ejahd"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://d2ilqs2rsu4l1" path="res://scenes/enemies/spawning/spawn_marker.tscn" id="5_f0frg"]
 [ext_resource type="Texture2D" uid="uid://b0oaoqusfayma" path="res://art/2d/textures/grass1.aseprite" id="6_84il1"]
 [ext_resource type="Texture2D" uid="uid://bhiinw8g1lsjp" path="res://art/2d/textures/water1.aseprite" id="7_uc5u0"]
+[ext_resource type="PackedScene" uid="uid://dcy7ewx8f37mf" path="res://scenes/ui/canvases/in_game_ui.tscn" id="8_hag7o"]
 [ext_resource type="PackedScene" uid="uid://cxsorime4wuh2" path="res://scenes/playground_scenes/tree.tscn" id="8_u3044"]
 [ext_resource type="PackedScene" uid="uid://cuouj5je2wv8g" path="res://scenes/collection/page_location.tscn" id="9_yeg04"]
 [ext_resource type="PackedScene" uid="uid://c6pe2a6g7kie7" path="res://scenes/levels/landmarks/building.tscn" id="10_mn2h8"]
@@ -15,9 +16,6 @@
 [ext_resource type="PackedScene" uid="uid://dv7qx4tyi7gih" path="res://scenes/levels/landmarks/playground_rocks_1.tscn" id="12_sq1ny"]
 [ext_resource type="PackedScene" uid="uid://dq5omphnqtlkf" path="res://scenes/levels/landmarks/playground_bigtree_page.tscn" id="13_h37d0"]
 [ext_resource type="Texture2D" uid="uid://c4he6fivjqx5e" path="res://art/2d/textures/chain_fence.aseprite" id="14_3kiwc"]
-[ext_resource type="Script" uid="uid://d0geqahcgagfn" path="res://scripts/managers/ui_manager.gd" id="16_5ls40"]
-[ext_resource type="FontFile" uid="uid://b78ski6kf8hw1" path="res://fonts/ari-w9500-display.ttf" id="16_d0u3f"]
-[ext_resource type="Script" uid="uid://c3ysaqnmo1oo8" path="res://scripts/ui/ui_text.gd" id="17_omdk1"]
 [ext_resource type="PackedScene" uid="uid://c5j4dypjweuc2" path="res://scenes/ui/canvases/jumpscare_canvaslayer.tscn" id="18_typfu"]
 [ext_resource type="AudioStream" uid="uid://xjt0f2pu0a11" path="res://audio/ambient/hopping_fence.mp3" id="19_u5rgu"]
 [ext_resource type="AudioStream" uid="uid://b5g34w47yw0di" path="res://audio/ambient/forest_bitcrushed_ambient1.mp3" id="20_20vw4"]
@@ -106,51 +104,7 @@ script = ExtResource("21_6h64i")
 
 [node name="CollectionAmbient" parent="AudioManager" instance=ExtResource("4_favx3")]
 
-[node name="UIManager" type="CanvasLayer" parent="."]
-script = ExtResource("16_5ls40")
-
-[node name="PagesText" type="RichTextLabel" parent="UIManager"]
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-theme_override_fonts/normal_font = ExtResource("16_d0u3f")
-theme_override_font_sizes/normal_font_size = 32
-bbcode_enabled = true
-text = "[wave]Collect all 8 pages"
-fit_content = true
-scroll_active = false
-shortcut_keys_enabled = false
-horizontal_alignment = 1
-vertical_alignment = 1
-visible_characters = 0
-visible_ratio = 0.0
-script = ExtResource("17_omdk1")
-
-[node name="TooLongText" type="RichTextLabel" parent="UIManager"]
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = 390.0
-offset_bottom = 431.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-theme_override_fonts/normal_font = ExtResource("16_d0u3f")
-theme_override_font_sizes/normal_font_size = 32
-bbcode_enabled = true
-text = "[wave]The forest grows restless..."
-fit_content = true
-scroll_active = false
-shortcut_keys_enabled = false
-horizontal_alignment = 1
-vertical_alignment = 1
-visible_characters = 0
-visible_ratio = 0.0
+[node name="UIManager" parent="." instance=ExtResource("8_hag7o")]
 
 [node name="Player" parent="." instance=ExtResource("2_ejahd")]
 transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, -27, 1, 124)

@@ -32,5 +32,4 @@ func _physics_process(_delta):
 	
 	# check if it's this enemy's turn to pathfind
 	if (global_tick - my_offset) % update_frequency == 0:
-		print("Pathfinding. Tick: %s" % [global_tick])
 		get_parent().pathfind()

@@ -2,5 +2,6 @@
 
 var profile: EnemyProfile
 
-func _attach_component():
-	pass
+func attach_component(target: Node):
+	var enemy = profile.scene.instantiate()
+	target.add_child(enemy)

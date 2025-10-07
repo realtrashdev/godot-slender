@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://dcy7ewx8f37mf"]
 
-[ext_resource type="Script" uid="uid://ddr4dh2ckopug" path="res://scripts/ui/in_game_ui_manager.gd" id="1_eeonk"]
+[ext_resource type="Script" uid="uid://d0geqahcgagfn" path="res://scripts/managers/ui_manager.gd" id="1_eeonk"]
 [ext_resource type="FontFile" uid="uid://b78ski6kf8hw1" path="res://fonts/ari-w9500-display.ttf" id="2_qvqbd"]
 [ext_resource type="Script" uid="uid://c3ysaqnmo1oo8" path="res://scripts/ui/ui_text.gd" id="3_3nhwc"]
 
-[node name="InGameUI" type="CanvasLayer"]
+[node name="UIManager" type="CanvasLayer"]
 script = ExtResource("1_eeonk")
 
 [node name="PagesText" type="RichTextLabel" parent="."]
@@ -21,6 +21,50 @@ theme_override_fonts/normal_font = ExtResource("2_qvqbd")
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "[wave]Collect all 8 pages"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+vertical_alignment = 1
+visible_characters = 0
+visible_ratio = 0.0
+script = ExtResource("3_3nhwc")
+
+[node name="ModeText" type="RichTextLabel" parent="."]
+anchors_preset = -1
+anchor_top = 0.078
+anchor_right = 1.0
+anchor_bottom = 0.116000004
+offset_top = -0.2400055
+offset_bottom = 60.719994
+grow_horizontal = 2
+size_flags_horizontal = 3
+theme_override_fonts/normal_font = ExtResource("2_qvqbd")
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "CLASSIC MODE"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+visible_characters = 0
+visible_ratio = 0.0
+script = ExtResource("3_3nhwc")
+
+[node name="ScenarioText" type="RichTextLabel" parent="ModeText"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.078
+anchor_right = 1.0
+anchor_bottom = 0.116000004
+offset_top = 47.619
+offset_bottom = 85.50303
+grow_horizontal = 2
+size_flags_horizontal = 3
+theme_override_fonts/normal_font = ExtResource("2_qvqbd")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "The Basics I"
 fit_content = true
 scroll_active = false
 shortcut_keys_enabled = false

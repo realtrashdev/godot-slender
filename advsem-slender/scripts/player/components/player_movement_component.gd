@@ -52,13 +52,8 @@ func get_movement_direction() -> Vector3:
 		return Vector3.ZERO
 	
 	var input_dir := Input.get_vector("move_left", "move_right", "move_forward", "move_back")
-	
 	var target_basis = Basis(Vector3.UP, camera_component.camera_rotation.y)
 	var direction := (target_basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	
-	if input_dir != Vector2.ZERO:
-		print("Using rotation: ", camera_component.camera_rotation.y, " Direction: ", direction)
-	
 	return direction
 
 func get_movement_speed() -> float:

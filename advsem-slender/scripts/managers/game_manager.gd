@@ -34,6 +34,7 @@ func initialize_game():
 		
 		var scenario = load_classic_scenario()
 		scenario_manager.initialize(enemy_manager, scenario)
+		ui_manager.scenario = scenario
 	
 	ui_manager.initialize(game_state)
 	audio_manager.initialize(game_state)
@@ -66,10 +67,11 @@ func start_game():
 
 func finish_game():
 	# shut down
+	print("Game Finished")
 	player.deactivate()
 	page_manager.clear_locations()
-	enemy_manager.disable_all_spawners()
 	enemy_manager.clear_all_enemies()
+	enemy_manager.disable_all_spawners()
 	audio_manager.stop_game_audio()
 	ui_manager.show_game_end()
 	

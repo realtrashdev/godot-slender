@@ -36,7 +36,7 @@ func handle_input(event):
 
 func handle_mouse_movement(event):
 	if restriction_component.check_for_restriction(PlayerRestriction.RestrictionType.CAMERA):
-		Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		return
 	else:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
