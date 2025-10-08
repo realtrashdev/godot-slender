@@ -100,7 +100,7 @@ func spawn_component_enemy(enemy: ComponentEnemy):
 	
 	for component in get_tree().get_nodes_in_group("ComponentEnemy"):
 		if component == enemy:
-			push_warning("Tried spawning %s twice." % enemy.profile.name)
+			push_warning("Tried spawning %s twice. (Failed due to ComponentEnemy restriction)" % enemy.profile.name)
 			disable_spawner()
 	
 	print("ComponentEnemy Spawned")

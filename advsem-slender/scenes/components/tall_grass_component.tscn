@@ -1,3 +1,6 @@
-[gd_scene format=3 uid="uid://nnk5kncxdbix"]
+[gd_scene load_steps=2 format=3 uid="uid://nnk5kncxdbix"]
+
+[ext_resource type="Script" uid="uid://cfau4x6yvgbux" path="res://scripts/generic_components/tall_grass_component.gd" id="1_p3htj"]
 
 [node name="TallGrassComponent" type="Node" groups=["ComponentEnemy"]]
+script = ExtResource("1_p3htj")

@@ -6,12 +6,12 @@
 [ext_resource type="Resource" uid="uid://ceka8pclkwv8e" path="res://resources/enemy_profiles/profile_gum.tres" id="4_fm1rq"]
 [ext_resource type="Script" uid="uid://cbb8lvjddytcc" path="res://scripts/resources/scenario.gd" id="5_75tqm"]
 
-[sub_resource type="Resource" id="Resource_5cs33"]
+[sub_resource type="Resource" id="Resource_sdokn"]
 script = ExtResource("1_sdokn")
 profiles = Array[ExtResource("2_o8jy0")]([ExtResource("3_071nq")])
 metadata/_custom_type_script = "uid://bf5ts565hp5p4"
 
-[sub_resource type="Resource" id="Resource_np5hp"]
+[sub_resource type="Resource" id="Resource_o8jy0"]
 script = ExtResource("1_sdokn")
 profiles = Array[ExtResource("2_o8jy0")]([ExtResource("4_fm1rq")])
 metadata/_custom_type_script = "uid://bf5ts565hp5p4"
@@ -23,15 +23,14 @@ name = "The Basics I"
 description = "Even someone like you needs to learn the basics."
 enemies_to_add = Dictionary[int, ExtResource("1_sdokn")]({
 0: null,
-1: SubResource("Resource_5cs33"),
+1: SubResource("Resource_sdokn"),
 2: null,
-3: null,
-4: SubResource("Resource_np5hp"),
+3: SubResource("Resource_o8jy0"),
+4: null,
 5: null,
 6: null,
 7: null
 })
-unlocks = Dictionary[String, Array]({
-"scenarios": ["basics2"]
-})
+required_pages = 4
+total_pages = 7
 metadata/_custom_type_script = "uid://cbb8lvjddytcc"

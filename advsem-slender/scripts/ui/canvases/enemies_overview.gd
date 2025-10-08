@@ -20,7 +20,8 @@ func show_overview():
 func populate_via_scenario(scenario: ClassicModeScenario):
 	_clear()
 	show_overview()
-	subtitle.text = SUBTITLE_EFFECT % scenario.name
+	var combined_text: String = "%s\nCollect %s/%s Pages" % [SUBTITLE_EFFECT % scenario.name, scenario.required_pages, scenario.total_pages]
+	subtitle.text = combined_text
 	var index: int = 0
 	for i in scenario.enemies_to_add:
 		if scenario.enemies_to_add[i] != null:

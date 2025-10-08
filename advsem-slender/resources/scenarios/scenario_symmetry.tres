@@ -46,8 +46,7 @@ metadata/_custom_type_script = "uid://bf5ts565hp5p4"
 resource_name = "symmetry"
 script = ExtResource("2_4sqow")
 name = "Symmetry"
-description = "There may be a lot of them but hey,
-that overview sure is nice and symmetrical."
+description = "There may be a lot of them but hey, that overview sure is nice and symmetrical."
 enemies_to_add = Dictionary[int, ExtResource("1_lrgw3")]({
 0: null,
 1: SubResource("Resource_8v8fc"),
@@ -58,4 +57,5 @@ enemies_to_add = Dictionary[int, ExtResource("1_lrgw3")]({
 6: SubResource("Resource_7hvt5"),
 7: SubResource("Resource_sogf2")
 })
+total_pages = 9
 metadata/_custom_type_script = "uid://cbb8lvjddytcc"

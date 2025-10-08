@@ -1,5 +1,7 @@
 class_name UIManager extends CanvasLayer
 
+enum TextLevel { TOP, MIDDLE, BOTTOM }
+
 const PG_CHARACTER_TIME: float = 0.5
 const PG_DISPLAY_TIME: float = 2.5
 const TL_CHARACTER_TIME: float = 1
@@ -78,6 +80,15 @@ func get_shake_rate(page_amount: int) -> int:
 		return 0
 	else:
 		return rate * 3
+
+func get_text_from_level(level: TextLevel):
+	match level:
+		TextLevel.TOP:
+			return scenario_text
+		TextLevel.MIDDLE:
+			return pages_text
+		TextLevel.BOTTOM:
+			return too_long_text
 
 func display_text(new_text: String, open_time: float, display_time: float, close_time: float, text_object: RichTextLabel = pages_text):
 	text_object.text = new_text

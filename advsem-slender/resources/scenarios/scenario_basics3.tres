@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ClassicModeScenario" load_steps=12 format=3 uid="uid://cewinant3mi1v"]
+[gd_resource type="Resource" script_class="ClassicModeScenario" load_steps=11 format=3 uid="uid://cewinant3mi1v"]
 
 [ext_resource type="Script" uid="uid://bf5ts565hp5p4" path="res://scripts/resources/enemy_profile_list.gd" id="1_qwlcu"]
 [ext_resource type="Script" uid="uid://c426kdmp0e6tf" path="res://scripts/resources/enemy_profile.gd" id="2_sy0hw"]
@@ -27,11 +27,6 @@ script = ExtResource("1_qwlcu")
 profiles = Array[ExtResource("2_sy0hw")]([ExtResource("4_n30uk")])
 metadata/_custom_type_script = "uid://bf5ts565hp5p4"
 
-[sub_resource type="Resource" id="Resource_d8xjs"]
-script = ExtResource("1_qwlcu")
-profiles = Array[ExtResource("2_sy0hw")]([ExtResource("3_d8xjs")])
-metadata/_custom_type_script = "uid://bf5ts565hp5p4"
-
 [resource]
 resource_name = "basics3"
 script = ExtResource("6_wtyfx")
@@ -42,9 +37,10 @@ enemies_to_add = Dictionary[int, ExtResource("1_qwlcu")]({
 1: SubResource("Resource_5cs33"),
 2: SubResource("Resource_op8sr"),
 3: SubResource("Resource_qwlcu"),
-4: SubResource("Resource_sy0hw"),
-5: SubResource("Resource_d8xjs"),
+4: null,
+5: SubResource("Resource_sy0hw"),
 6: null,
 7: null
 })
+total_pages = 8
 metadata/_custom_type_script = "uid://cbb8lvjddytcc"

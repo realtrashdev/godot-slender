@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ClassicModeScenario" load_steps=12 format=3 uid="uid://cl3yw8vhoox2k"]
+[gd_resource type="Resource" script_class="ClassicModeScenario" load_steps=13 format=3 uid="uid://cl3yw8vhoox2k"]
 
 [ext_resource type="Script" uid="uid://bf5ts565hp5p4" path="res://scripts/resources/enemy_profile_list.gd" id="1_jasut"]
 [ext_resource type="Script" uid="uid://c426kdmp0e6tf" path="res://scripts/resources/enemy_profile.gd" id="2_6jseq"]
@@ -16,22 +16,27 @@ script = ExtResource("1_jasut")
 profiles = Array[ExtResource("2_6jseq")]([ExtResource("4_aiyfu")])
 metadata/_custom_type_script = "uid://bf5ts565hp5p4"
 
+[sub_resource type="Resource" id="Resource_ejypt"]
+script = ExtResource("1_jasut")
+profiles = Array[ExtResource("2_6jseq")]([ExtResource("3_ejypt")])
+metadata/_custom_type_script = "uid://bf5ts565hp5p4"
+
 [sub_resource type="Resource" id="Resource_uubew"]
 script = ExtResource("1_jasut")
 profiles = Array[ExtResource("2_6jseq")]([ExtResource("3_ejypt")])
 metadata/_custom_type_script = "uid://bf5ts565hp5p4"
 
-[sub_resource type="Resource" id="Resource_l845u"]
+[sub_resource type="Resource" id="Resource_aiyfu"]
 script = ExtResource("1_jasut")
 profiles = Array[ExtResource("2_6jseq")]([ExtResource("4_aiyfu")])
 metadata/_custom_type_script = "uid://bf5ts565hp5p4"
 
-[sub_resource type="Resource" id="Resource_6jseq"]
+[sub_resource type="Resource" id="Resource_l845u"]
 script = ExtResource("1_jasut")
 profiles = Array[ExtResource("2_6jseq")]([ExtResource("3_ejypt")])
 metadata/_custom_type_script = "uid://bf5ts565hp5p4"
 
-[sub_resource type="Resource" id="Resource_x1uok"]
+[sub_resource type="Resource" id="Resource_6jseq"]
 script = ExtResource("1_jasut")
 profiles = Array[ExtResource("2_6jseq")]([ExtResource("3_ejypt")])
 metadata/_custom_type_script = "uid://bf5ts565hp5p4"
@@ -45,11 +50,13 @@ The floodgates have been opened!"
 enemies_to_add = Dictionary[int, ExtResource("1_jasut")]({
 0: SubResource("Resource_xkopt"),
 1: SubResource("Resource_up773"),
-2: null,
+2: SubResource("Resource_ejypt"),
 3: SubResource("Resource_uubew"),
-4: null,
+4: SubResource("Resource_aiyfu"),
 5: SubResource("Resource_l845u"),
 6: SubResource("Resource_6jseq"),
-7: SubResource("Resource_x1uok")
+7: null
 })
+required_pages = 7
+total_pages = 8
 metadata/_custom_type_script = "uid://cbb8lvjddytcc"

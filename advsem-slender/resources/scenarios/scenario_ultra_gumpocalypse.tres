@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ClassicModeScenario" load_steps=15 format=3 uid="uid://bcp2t6o8su54u"]
+[gd_resource type="Resource" script_class="ClassicModeScenario" load_steps=17 format=3 uid="uid://bcp2t6o8su54u"]
 
 [ext_resource type="Script" uid="uid://bf5ts565hp5p4" path="res://scripts/resources/enemy_profile_list.gd" id="1_gxdtd"]
 [ext_resource type="Script" uid="uid://c426kdmp0e6tf" path="res://scripts/resources/enemy_profile.gd" id="2_jmyuv"]
@@ -44,7 +44,17 @@ metadata/_custom_type_script = "uid://bf5ts565hp5p4"
 
 [sub_resource type="Resource" id="Resource_x1uok"]
 script = ExtResource("1_gxdtd")
-profiles = Array[ExtResource("2_jmyuv")]([ExtResource("5_jmyuv"), ExtResource("3_tcs3j")])
+profiles = Array[ExtResource("2_jmyuv")]([ExtResource("3_tcs3j")])
+metadata/_custom_type_script = "uid://bf5ts565hp5p4"
+
+[sub_resource type="Resource" id="Resource_tcs3j"]
+script = ExtResource("1_gxdtd")
+profiles = Array[ExtResource("2_jmyuv")]([ExtResource("3_tcs3j"), ExtResource("3_tcs3j")])
+metadata/_custom_type_script = "uid://bf5ts565hp5p4"
+
+[sub_resource type="Resource" id="Resource_r7vyg"]
+script = ExtResource("1_gxdtd")
+profiles = Array[ExtResource("2_jmyuv")]([ExtResource("5_jmyuv"), ExtResource("5_jmyuv"), ExtResource("5_jmyuv")])
 metadata/_custom_type_script = "uid://bf5ts565hp5p4"
 
 [resource]
@@ -60,6 +70,10 @@ enemies_to_add = Dictionary[int, ExtResource("1_gxdtd")]({
 4: SubResource("Resource_jmyuv"),
 5: SubResource("Resource_l845u"),
 6: SubResource("Resource_6jseq"),
-7: SubResource("Resource_x1uok")
+7: SubResource("Resource_x1uok"),
+8: SubResource("Resource_tcs3j"),
+9: SubResource("Resource_r7vyg")
 })
+required_pages = 10
+total_pages = 10
 metadata/_custom_type_script = "uid://cbb8lvjddytcc"

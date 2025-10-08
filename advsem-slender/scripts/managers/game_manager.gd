@@ -27,6 +27,7 @@ func initialize_game():
 	enemy_manager.initialize(game_state, player)
 	add_child(enemy_manager)
 	
+	# check for classic mode, if so, get scenario and set up
 	if game_state.game_mode == GameConfig.GameMode.CLASSIC:
 		scenario_manager = ScenarioManager.new()
 		scenario_manager.name = "ScenarioManager"
@@ -35,6 +36,8 @@ func initialize_game():
 		var scenario = load_classic_scenario()
 		scenario_manager.initialize(enemy_manager, scenario)
 		ui_manager.scenario = scenario
+		game_state.current_pages_required = scenario.required_pages
+		game_state.current_extra_pages = scenario.total_pages - scenario.required_pages
 	
 	ui_manager.initialize(game_state)
 	audio_manager.initialize(game_state)
