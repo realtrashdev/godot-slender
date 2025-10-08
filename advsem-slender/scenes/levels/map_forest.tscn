@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://b2fcrx7ohgn2i"]
+[gd_scene load_steps=32 format=3 uid="uid://b2fcrx7ohgn2i"]
 
 [ext_resource type="Script" uid="uid://wnd51kqayidl" path="res://scripts/managers/game_manager.gd" id="1_twysk"]
 [ext_resource type="PackedScene" uid="uid://dqhlmv6mga3ln" path="res://scenes/important/player.tscn" id="2_ejahd"]
@@ -50,6 +50,17 @@ metallic_specular = 0.0
 uv1_scale = Vector3(0.5, 0.5, 0.5)
 uv1_triplanar = true
 uv1_world_triplanar = true
+texture_filter = 0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hag7o"]
+load_path = "res://.godot/imported/chain_fence.aseprite-30795635519d8381f13d167522b3ac63.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wwrpj"]
+transparency = 1
+albedo_texture = SubResource("CompressedTexture2D_hag7o")
+metallic_specular = 0.0
+uv1_scale = Vector3(7.745, 31.55, 1)
+uv1_triplanar_sharpness = 150.0
 texture_filter = 0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ajba2"]
@@ -107,7 +118,7 @@ script = ExtResource("21_6h64i")
 [node name="UIManager" parent="." instance=ExtResource("8_hag7o")]
 
 [node name="Player" parent="." instance=ExtResource("2_ejahd")]
-transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, -27, 1, 124)
+transform = Transform3D(0.96592593, 0, -0.25881907, 0, 1, 0, 0.25881907, 0, 0.96592593, -27, 1, 124)
 starting_rotation = Vector3(0, -15, 0)
 
 [node name="SpawnMarkers" type="Node3D" parent="." groups=["SpawnMarkers"]]
@@ -2510,14 +2521,16 @@ transform = Transform3D(0.96592605, 0, -0.2588191, 0, 1, 0, 0.2588191, 0, 0.9659
 transform = Transform3D(0.8660253, 0, -0.49999997, 0, 1, 0, 0.49999997, 0, 0.8660253, 44, 0, -38)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Map"]
-transform = Transform3D(0.9659258, 0, -0.25881904, 0, 1, 0, 0.25881904, 0, 0.9659258, -19.566713, 0.5, 112.80586)
+transform = Transform3D(0.9659258, 0, -0.25881904, 0, 1, 0, 0.25881904, 0, 0.9659258, -20.09581, 2.6933594, 112.85056)
 use_collision = true
-size = Vector3(1, 1, 29)
+size = Vector3(0.001, 5.3867188, 29.36023)
+material = SubResource("StandardMaterial3D_wwrpj")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="Map"]
-transform = Transform3D(0.9659258, 0, -0.25881904, 0, 1, 0, 0.25881904, 0, 0.9659258, -28.648275, 0.5, 111.925385)
+transform = Transform3D(0.9659258, 0, -0.25881904, 0, 1, 0, 0.25881904, 0, 0.9659258, -28.114346, 2.7353516, 111.86265)
 use_collision = true
-size = Vector3(1, 1, 32)
+size = Vector3(0.001, 5.470703, 31.602417)
+material = SubResource("StandardMaterial3D_wwrpj")
 
 [node name="OutsideMap" type="Node3D" parent="."]
 
