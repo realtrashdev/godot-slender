@@ -1,5 +1,7 @@
 class_name PageSpawnManager extends Node
 
+@export var mandatory_locations: Array[Node3D]
+
 var game_state: GameState
 
 func initialize(state: GameState):
@@ -28,15 +30,23 @@ func generate_pages():
 	var desired_count = game_state.get_page_gen_amount()
 	var spawn_count = mini(desired_count, locations.size())
 	
+	# spawn mandatory locations first
+	for location in get_locations():
+		if location.mandatory and spawn_count > 0:
+			var page = location.generate_page()
+			page.collected.connect(on_page_collected)
+			spawn_count -= 1
+	
 	# shuffle and spawn pages
 	locations.shuffle()
 	for i in range(spawn_count):
-		var page = locations[i].generate_page()
-		page.collected.connect(on_page_collected)
+		if not locations[i].mandatory:
+			var page = locations[i].generate_page()
+			page.collected.connect(on_page_collected)
 	
 	# warn if unable to spawn all requested pages
 	if spawn_count < desired_count:
-		push_warning("Only generated %d/%d pages (out of locations)." % [spawn_count, desired_count])
+		push_warning("Only generated %d/%d pages (out of PageLocations)." % [spawn_count, desired_count])
 	
 	print("Generated %d pages" % spawn_count)
 

@@ -14,8 +14,6 @@ func add_enemy_spawner(enemy_profile: EnemyProfile, required: int):
 	
 	add_child(spawner)
 	spawners.append(spawner)
-	
-	print("Added enemy: ", enemy_profile.name)
 
 func remove_enemy_type(enemy_name: String):
 	for spawner in spawners.duplicate():

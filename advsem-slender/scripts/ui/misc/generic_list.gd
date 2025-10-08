@@ -27,12 +27,11 @@ func populate_list(items: Array, get_current_func: Callable, is_unlocked_func: C
 		if is_unlocked_func.is_valid():
 			is_unlocked = is_unlocked_func.call(item)
 		
-		# Skip locked items if needed (or handle differently)
-		if not is_unlocked:
-			continue
-		
 		var checkbox: GenericCheckbox = button_scene.instantiate()
 		checkbox.item = item
+		
+		if not is_unlocked:
+			checkbox.disabled = true
 		
 		button_container.add_child(checkbox)
 		checkbox.check_box.button_group = group

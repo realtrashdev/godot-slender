@@ -18,8 +18,8 @@ func _ready() -> void:
 		current_map.scenarios,
 		Settings.get_selected_scenario,
 		# Uncomment below when scenario unlocking is implemented:
-		Callable()
-		# func(scenario): return scenario.resource_name in Progression.get_unlocked_scenarios()
+		#Callable()
+		func(scenario): return scenario in Progression.get_unlocked_scenarios()
 	)
 	
 	# Forward the generic signal to specific signal

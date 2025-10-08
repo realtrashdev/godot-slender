@@ -32,3 +32,6 @@ func get_all_enemy_profiles() -> Array[EnemyProfile]:
 			array += profile_cluster.profiles
 	
 	return array
+
+func scenario_beaten():
+	UnlockHelper.process_unlocks(unlocks)

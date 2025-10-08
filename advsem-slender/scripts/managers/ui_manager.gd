@@ -69,6 +69,9 @@ func show_game_end():
 # internal methods
 func update_pages():
 	display_text(get_pages_text(), PG_CHARACTER_TIME, PG_DISPLAY_TIME, PG_CHARACTER_TIME, pages_text)
+	
+	if scenario:
+		scenario_specific_events()
 
 func get_pages_text() -> String:
 	var shake_rate = str(get_shake_rate(game_state.current_pages_collected))
@@ -93,3 +96,12 @@ func get_text_from_level(level: TextLevel):
 func display_text(new_text: String, open_time: float, display_time: float, close_time: float, text_object: RichTextLabel = pages_text):
 	text_object.text = new_text
 	TextTools.change_visible_characters_timed(text_object, text_object.get_total_character_count(), open_time, display_time, close_time)
+
+func scenario_specific_events():
+	if scenario.resource_name == "basics1" and game_state.current_pages_collected == 1:
+		await get_tree().create_timer(3).timeout
+		display_text("[wave][LSHIFT] Sprint", 1, 4, 1, pages_text)
+	
+	if scenario.resource_name == "basics2" and game_state.current_pages_collected == 4:
+		await get_tree().create_timer(3).timeout
+		display_text("[wave][F] Toggle Flashlight", 1, 5, 1, pages_text)

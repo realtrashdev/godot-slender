@@ -44,9 +44,11 @@ func _setup_ui():
 		description_label.text = _get_item_description()
 	else:
 		check_box.disabled = true
+		check_box.self_modulate = Color.TRANSPARENT
 		default_text = "???"
 		text_label.text = default_text
 		description_label.text = "Locked..."
+		overview_button.visible = false
 	
 	if item is Map:
 		check_box.layout_direction = Control.LAYOUT_DIRECTION_RTL

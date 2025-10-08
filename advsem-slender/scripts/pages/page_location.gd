@@ -1,5 +1,7 @@
 extends Node3D
 
+@export var mandatory = false
+
 const PAGE_SCENE = "uid://bi81fe12i10ix"
 
 # Spawns a collectible page at this location. Called during page generation process.

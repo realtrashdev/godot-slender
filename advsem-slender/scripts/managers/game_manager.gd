@@ -78,6 +78,10 @@ func finish_game():
 	audio_manager.stop_game_audio()
 	ui_manager.show_game_end()
 	
+	if game_state.game_mode == GameConfig.GameMode.CLASSIC:
+		# unlocks stuff
+		load_classic_scenario().scenario_beaten()
+	
 	# handle next state
 	await get_tree().create_timer(5).timeout
 	transition_to_next_state()
