@@ -24,8 +24,8 @@ func populate_list(items: Array, get_current_func: Callable, is_unlocked_func: C
 	for item in items:
 		# Check if item is unlocked (if function provided)
 		var is_unlocked = true
-		if is_unlocked_func.is_valid():
-			is_unlocked = is_unlocked_func.call(item)
+		#if is_unlocked_func.is_valid():
+		#	is_unlocked = is_unlocked_func.call(item)
 		
 		var checkbox: GenericCheckbox = button_scene.instantiate()
 		checkbox.item = item

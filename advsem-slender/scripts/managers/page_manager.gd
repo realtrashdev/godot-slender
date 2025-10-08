@@ -44,10 +44,6 @@ func generate_pages():
 			var page = locations[i].generate_page()
 			page.collected.connect(on_page_collected)
 	
-	# warn if unable to spawn all requested pages
-	if spawn_count < desired_count:
-		push_warning("Only generated %d/%d pages (out of PageLocations)." % [spawn_count, desired_count])
-	
 	print("Generated %d pages" % spawn_count)
 
 func get_locations() -> Array:

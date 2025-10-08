@@ -47,6 +47,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	time_count += delta
+	$"../Head/Flashlight/RayCast3D".enabled = !movement_component.is_sprinting()
 	
 	if Input.is_action_just_pressed("toggle_light"):
 		toggle_light(!light.visible)

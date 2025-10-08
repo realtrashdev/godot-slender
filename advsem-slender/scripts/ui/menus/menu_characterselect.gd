@@ -3,7 +3,7 @@ extends Menu
 var button_to_press: CharacterIcon
 
 @onready var characters: HBoxContainer = $HScrollBar/Characters
-@onready var icon_scene = preload("res://scenes/ui/buttons/character_icon.tscn")
+@onready var icon_scene = preload("uid://cwiritx4rencv")
 
 func _ready():
 	get_vessel_icons()
@@ -12,11 +12,11 @@ func _ready():
 	show_icons()
 
 func get_vessel_icons():
-	var all_profiles: Array[CharacterProfile] = ResourceDatabase.get_all_characters()
+	var all_profiles = ResourceDatabase.get_all_characters()
 	
 	for profile in all_profiles:
-		var icon: CharacterIcon = icon_scene.instantiate()
-		icon.profile = profile as CharacterProfile
+		var icon = icon_scene.instantiate()
+		icon.profile = profile
 		characters.add_child(icon)
 
 func setup_mode_buttons():

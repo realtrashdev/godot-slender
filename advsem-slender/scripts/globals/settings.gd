@@ -34,7 +34,7 @@ func set_selected_scenario(scenario: ClassicModeScenario):
 	setting_changed.emit("selected_scenario", scenario.resource_name)
 	SaveManager.save_game()
 
-func get_selected_character() -> VesselProfile:
+func get_selected_character() -> CharacterProfile:
 	return ResourceDatabase.get_characters(data.get("selected_character", "default"))
 
 func set_selected_character_name(char_name: String):

@@ -21,7 +21,7 @@ var is_locked: bool = false
 @onready var description_panel: DescriptionPanel = $DescriptionPanel
 
 func _ready() -> void:
-	setup_display()
+	call_deferred("setup_display")
 	description_panel.hide_immediate()
 	
 	button.toggle_mode = true

@@ -42,5 +42,5 @@ enemies_to_add = Dictionary[int, ExtResource("1_qwlcu")]({
 6: null,
 7: null
 })
-total_pages = 8
+total_pages = 10
 metadata/_custom_type_script = "uid://cbb8lvjddytcc"
