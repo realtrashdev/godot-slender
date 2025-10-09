@@ -29,22 +29,30 @@ func generate_pages():
 	# determine how many pages to spawn
 	var desired_count = game_state.get_page_gen_amount()
 	var spawn_count = mini(desired_count, locations.size())
+	var pages_spawned := 0
 	
 	# spawn mandatory locations first
-	for location in get_locations():
-		if location.mandatory and spawn_count > 0:
+	var mandatory_spawned := 0
+	for location in locations:
+		if location.mandatory and pages_spawned < spawn_count:
+			print("generate +1 mandatory")
 			var page = location.generate_page()
 			page.collected.connect(on_page_collected)
-			spawn_count -= 1
+			pages_spawned += 1
+			mandatory_spawned += 1
+	
+	# filter out mandatory locations
+	var non_mandatory_locations = locations.filter(func(loc): return not loc.mandatory)
+	non_mandatory_locations.shuffle()
 	
 	# shuffle and spawn pages
-	locations.shuffle()
-	for i in range(spawn_count):
-		if not locations[i].mandatory:
-			var page = locations[i].generate_page()
-			page.collected.connect(on_page_collected)
+	var remaining_to_spawn = spawn_count - mandatory_spawned
+	for i in range(mini(remaining_to_spawn, non_mandatory_locations.size())):
+		var page = non_mandatory_locations[i].generate_page()
+		page.collected.connect(on_page_collected)
+		pages_spawned += 1
 	
-	print("Generated %d pages" % spawn_count)
+	print("Generated %d pages (%d mandatory, %d non-mandatory)" % [pages_spawned, mandatory_spawned, pages_spawned - mandatory_spawned])
 
 func get_locations() -> Array:
 	return get_tree().get_nodes_in_group("PageLocation")

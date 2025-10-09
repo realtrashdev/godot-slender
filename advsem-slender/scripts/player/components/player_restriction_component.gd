@@ -19,9 +19,8 @@ func remove_restrictions_from_source(source: String):
 		if restrictions[i].source == source:
 			print("Removed restriction: " + str(restrictions[i].restriction) + " from: " + source)
 			restrictions.remove_at(i)
+			check_mouse_visibility()
 			return
-	
-	check_mouse_visibility()
 
 func remove_all_restrictions_from_source(source: String):
 	var i = restrictions.size() - 1
@@ -29,7 +28,6 @@ func remove_all_restrictions_from_source(source: String):
 		if restrictions[i].source == source:
 			print("Removed restriction: " + str(restrictions[i].restriction) + " from: " + source)
 			restrictions.remove_at(i)
-			return
 		i -= 1
 	
 	check_mouse_visibility()
@@ -54,6 +52,8 @@ func get_restriction_sources(restriction_type: PlayerRestriction.RestrictionType
 
 func check_mouse_visibility():
 	if check_for_restriction(PlayerRestriction.RestrictionType.CAMERA_FULL) or check_for_restriction(PlayerRestriction.RestrictionType.RADAR):
+		print("okay")
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	else:
+		print("what")
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED

@@ -3,7 +3,7 @@ class_name PlayerRadar extends Node3D
 signal radar_toggled(bool)
 
 const OUT_POS: Vector3 = Vector3(0, 0, -0.5)
-const AWAY_POS: Vector3 = Vector3(-0.1, 0.25, 0.75)
+const AWAY_POS: Vector3 = Vector3(0, -0.25, 0.75)
 
 var active: bool = false
 var can_toggle: bool = true
@@ -14,7 +14,7 @@ var pos_tween: Tween
 var player: CharacterBody3D
 var restriction_component: PlayerRestrictionComponent
 
-@onready var audio: AudioStreamPlayer3D = $AudioStreamPlayer3D
+@onready var audio: AudioStreamPlayer = $RadarAudio
 
 func _ready() -> void:
 	player = get_parent()
@@ -32,12 +32,12 @@ func toggle_radar():
 			true:
 				focused = false
 				restriction_component.remove_restrictions_from_source("player_radar")
-				update_audio_bus()
+				update_audio()
 				update_position()
 			false:
 				focused = true
 				restriction_component.add_restriction(PlayerRestriction.RestrictionType.RADAR, "player_radar")
-				update_audio_bus()
+				update_audio()
 				update_position()
 	
 	radar_toggled.emit(focused)
@@ -51,6 +51,7 @@ func update_position():
 			final_rot_x = deg_to_rad(-45)
 		false:
 			final_pos = AWAY_POS
+			final_pos.x += randf_range(-0.5, 0.5)
 			final_rot_x = 0
 	
 	if pos_tween:
@@ -63,9 +64,15 @@ func update_position():
 	pos_tween.parallel().tween_property(self, "rotation", Vector3(final_rot_x, 0, 0), 0.3)\
 	.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
 
-func update_audio_bus():
+func update_audio():
 	var bus = AudioServer.get_bus_index("PlayerRadar")
-	AudioServer.set_bus_effect_enabled(bus, 0, focused)
+	AudioServer.set_bus_effect_enabled(bus, 0, !focused)
+	
+	match focused:
+		true:
+			audio.volume_db += 5
+		false:
+			audio.volume_db -= 5
 
 func activate():
 	active = true
