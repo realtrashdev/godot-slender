@@ -72,7 +72,7 @@ func get_flashlight_offset(delta: float) -> void:
 		return
 	
 	# sprinting
-	if movement_component.is_sprinting():
+	if movement_component.is_sprinting() or restriction_component.check_for_restriction(PlayerRestriction.RestrictionType.RADAR):
 		flashlight.global_rotation.x = lerp(flashlight.global_rotation.x, flashlight_offset.x + deg_to_rad(sprint_angle), 10 * delta)
 	# walking
 	elif player.velocity.length() != 0:
@@ -89,6 +89,10 @@ func add_camera_offset(offset: Vector3):
 ## Points flashlight at designated object and overrides the offset function
 # TODO optimization
 func point_flashlight() -> bool:
+	if restriction_component.check_for_restriction(PlayerRestriction.RestrictionType.RADAR) \
+	or restriction_component.check_for_restriction(PlayerRestriction.RestrictionType.FLASHLIGHT_ANGLE):
+		return false
+	
 	var pos = interaction_cast.get("interactible_position")
 	if pos and pos != Vector3.ZERO:
 		var target_transform = flashlight.global_transform.looking_at(pos)

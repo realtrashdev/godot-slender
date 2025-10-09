@@ -124,7 +124,7 @@ func play_death_sound() -> void:
 func apply_player_restriction() -> void:
 	if player and player.has_method("add_restriction"):
 		var enemy_name = profile.name if profile else "Gum"
-		player.add_restriction(PlayerRestriction.RestrictionType.CAMERA, enemy_name)
+		player.add_restriction(PlayerRestriction.RestrictionType.CAMERA_FULL, enemy_name)
 
 func remove_player_restriction() -> void:
 	if player and player.has_method("remove_restrictions_from_source"):

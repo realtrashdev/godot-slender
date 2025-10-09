@@ -48,7 +48,7 @@ func handle_physics(delta: float):
 	audio_component.handle_movement_audio()
 
 func get_movement_direction() -> Vector3:
-	if restriction_component.check_for_restriction(PlayerRestriction.RestrictionType.MOVEMENT):
+	if restriction_component.check_for_restriction(PlayerRestriction.RestrictionType.MOVEMENT_FULL):
 		return Vector3.ZERO
 	
 	var input_dir := Input.get_vector("move_left", "move_right", "move_forward", "move_back")
@@ -63,6 +63,8 @@ func get_movement_speed() -> float:
 		return SPEED + get_path_boost()
 
 func is_sprinting() -> bool:
+	if restriction_component.check_for_restriction(PlayerRestriction.RestrictionType.RADAR):
+		return false
 	return Input.is_action_pressed("sprint") and player.velocity != Vector3.ZERO
 
 func get_path_boost() -> float:

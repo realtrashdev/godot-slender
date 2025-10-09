@@ -17,7 +17,7 @@ func _process(delta: float) -> void:
 			interactible_position = obj.get("global_position")
 		
 		# collecting
-		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and obj.has_method("collect"):
+		if Input.is_action_just_pressed("interact") and obj.has_method("collect"):
 			obj.collect()
 			object_collected.emit()
 	else:

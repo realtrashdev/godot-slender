@@ -11,6 +11,11 @@ func add_restriction(type: PlayerRestriction.RestrictionType, source: String):
 	restrict.source = source
 	restrictions.append(restrict)
 	print("Added player restriction " + str(type) + " from source " + str(source))
+	
+	if check_for_restriction(PlayerRestriction.RestrictionType.CAMERA_FULL):
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	else:
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func remove_restrictions_from_source(source: String):
 	var i = restrictions.size() - 1
