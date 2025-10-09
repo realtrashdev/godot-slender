@@ -5,6 +5,7 @@ signal radar_toggled(bool)
 const OUT_POS: Vector3 = Vector3(0, 0, -0.5)
 const AWAY_POS: Vector3 = Vector3(-0.1, 0.25, 0.75)
 
+var active: bool = false
 var can_toggle: bool = true
 var focused: bool = false
 
@@ -20,7 +21,7 @@ func _ready() -> void:
 	restriction_component = player.get_node("RestrictionComponent")
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("toggle_radar") and can_toggle:
+	if event.is_action_pressed("toggle_radar") and can_toggle and active:
 		can_toggle = false
 		toggle_radar()
 		await get_tree().create_timer(0.5).timeout
@@ -65,3 +66,9 @@ func update_position():
 func update_audio_bus():
 	var bus = AudioServer.get_bus_index("PlayerRadar")
 	AudioServer.set_bus_effect_enabled(bus, 0, focused)
+
+func activate():
+	active = true
+
+func deactivate():
+	active = false

@@ -41,6 +41,7 @@ func activate():
 	movement_component.activate()
 	camera_component.activate()
 	flashlight_component.activate()
+	radar.activate()
 
 func deactivate():
 	active = false
@@ -48,6 +49,7 @@ func deactivate():
 	camera_component.deactivate()
 	flashlight_component.deactivate()
 	restriction_component.clear_restrictions()
+	radar.deactivate()
 
 func _on_radar_toggled(toggled):
 	camera_component.check_radar_restriction(toggled)
