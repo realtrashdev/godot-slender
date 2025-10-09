@@ -26,7 +26,7 @@
 [ext_resource type="Script" uid="uid://c05dbsrlk1jcc" path="res://scripts/player/components/player_audio_component.gd" id="19_31cv2"]
 [ext_resource type="Script" uid="uid://b6m4rxuada185" path="res://scripts/player/components/player_flashlight_component.gd" id="19_ke2ow"]
 [ext_resource type="AudioStream" uid="uid://chggo02dqakbk" path="res://audio/music/ringtone.mp3" id="23_al2k6"]
-[ext_resource type="Script" uid="uid://bsjqdiiamie47" path="res://scenes/important/player_radar.gd" id="23_kcfbe"]
+[ext_resource type="Script" uid="uid://bsjqdiiamie47" path="res://scripts/player/player_radar.gd" id="23_kcfbe"]
 [ext_resource type="Script" uid="uid://c5ynl7lgv6ngm" path="res://scripts/ground_cast_component.gd" id="26_gkgcs"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_onrkg"]
@@ -34,6 +34,7 @@
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_i3pqv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gkgcs"]
+no_depth_test = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_gkgcs"]
 material = SubResource("StandardMaterial3D_gkgcs")
@@ -75,10 +76,11 @@ shape = SubResource("CapsuleShape3D_onrkg")
 mesh = SubResource("CapsuleMesh_i3pqv")
 
 [node name="Radar" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0.25, 0.75)
 script = ExtResource("23_kcfbe")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Radar"]
-transform = Transform3D(0.4, 0, 0, 0, 0.35355338, 0.10606603, 0, -0.35355338, 0.10606603, 0, 0, -0.5)
+transform = Transform3D(0.4, 0, 0, 0, 0.49999997, 0, 0, 0, 0.15000002, 0, 0, 0)
 layers = 2
 mesh = SubResource("BoxMesh_gkgcs")
 

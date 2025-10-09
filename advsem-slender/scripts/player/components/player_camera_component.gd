@@ -34,9 +34,6 @@ func _ready():
 	camera_rotation = start_rotation
 
 func handle_input(event: InputEvent):
-	if event.is_action_pressed("toggle_radar"):
-		check_radar_restriction()
-	
 	if event is InputEventMouseMotion:
 		if buffer:
 			buffer = false
@@ -58,8 +55,8 @@ func handle_mouse_movement(event):
 	if flashlight_component:
 		flashlight_component.add_camera_offset(Vector3(-event.relative.y * 0.0005, -event.relative.x * 0.0005, 0))
 
-func check_radar_restriction():
-	if not restriction_component.check_for_restriction(PlayerRestriction.RestrictionType.RADAR):
+func check_radar_restriction(active):
+	if active:
 		camera_rotation.x = -deg_to_rad(45)
 		camera_sensitivity = MOUSE_SENSITIVITY / 2
 	else:

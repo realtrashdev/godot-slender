@@ -11,8 +11,10 @@ var active: bool = false
 @onready var flashlight_component: PlayerFlashlightComponent = $FlashlightComponent
 @onready var audio_component: PlayerAudioComponent = $AudioComponent
 @onready var restriction_component: PlayerRestrictionComponent = $RestrictionComponent
+@onready var radar: PlayerRadar = $Radar
 
 func _ready() -> void:
+	radar.radar_toggled.connect(_on_radar_toggled)
 	deactivate()
 
 func _process(delta: float) -> void:
@@ -46,6 +48,10 @@ func deactivate():
 	camera_component.deactivate()
 	flashlight_component.deactivate()
 	restriction_component.clear_restrictions()
+
+func _on_radar_toggled(toggled):
+	camera_component.check_radar_restriction(toggled)
+	camera_component.camera.radar_toggled(toggled)
 
 # Restriction convenience methods
 func add_restriction(type: PlayerRestriction.RestrictionType, source: String):

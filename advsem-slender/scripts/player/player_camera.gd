@@ -12,14 +12,13 @@ func _ready() -> void:
 	player = get_parent().get_parent()
 	restriction_component = player.get_node("RestrictionComponent")
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("toggle_radar"):
-		if not restriction_component.check_for_restriction(PlayerRestriction.RestrictionType.RADAR):
-			set_fov_smooth(RADAR_FOV, 0.3)
-			$RayCast3D.enabled = false
-		else:
-			set_fov_smooth(BASE_FOV, 0.3)
-			$RayCast3D.enabled = true
+func radar_toggled(active):
+	if active:
+		set_fov_smooth(RADAR_FOV, 0.3)
+		$RayCast3D.enabled = false
+	else:
+		set_fov_smooth(BASE_FOV, 0.3)
+		$RayCast3D.enabled = true
 
 func set_fov_smooth(new_fov: float = BASE_FOV, time: float = 1):
 	if tween:
