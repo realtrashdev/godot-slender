@@ -41,7 +41,8 @@ func handle_input(event: InputEvent):
 		handle_mouse_movement(event)
 
 func handle_mouse_movement(event):
-	if restriction_component.check_for_restriction(PlayerRestriction.RestrictionType.CAMERA_FULL):
+	if restriction_component.check_for_restriction(PlayerRestriction.RestrictionType.CAMERA_FULL)\
+	or restriction_component.check_for_restriction(PlayerRestriction.RestrictionType.RADAR):
 		return
 	
 	camera_rotation.y += -event.relative.x * camera_sensitivity

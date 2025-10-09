@@ -53,8 +53,7 @@ func get_restriction_sources(restriction_type: PlayerRestriction.RestrictionType
 	return sources
 
 func check_mouse_visibility():
-	if check_for_restriction(PlayerRestriction.RestrictionType.CAMERA_FULL)\
-	or check_for_restriction(PlayerRestriction.RestrictionType.RADAR):
+	if check_for_restriction(PlayerRestriction.RestrictionType.CAMERA_FULL) or check_for_restriction(PlayerRestriction.RestrictionType.RADAR):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	else:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
