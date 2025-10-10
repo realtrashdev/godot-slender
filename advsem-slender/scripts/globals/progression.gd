@@ -14,7 +14,7 @@ var data: Dictionary = {
 	# Unlocks
 	"unlocked_modes": [GameConfig.GameMode.CLASSIC],
 	"unlocked_scenarios": ["basics1"],
-	"unlocked_characters": ["default"],
+	"unlocked_characters": ["default", "dragon"],
 	"unlocked_palettes": ["mono"],
 	"unlocked_maps": ["forest"],
 }
@@ -132,7 +132,7 @@ func reset_to_defaults():
 		
 		"unlocked_modes": [GameConfig.GameMode.CLASSIC],
 		"unlocked_scenarios": ["basics1"],
-		"unlocked_characters": ["default"],
+		"unlocked_characters": ["default", "dragon"],
 		"unlocked_palettes": ["mono"],
 		"unlocked_maps": ["forest"]
 	}

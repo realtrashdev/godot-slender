@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bs3histpsayyg" path="res://art/2d/characters/icons/icon_dragon.aseprite" id="1_f4k8o"]
 [ext_resource type="Script" uid="uid://pimfnspuor4w" path="res://scripts/resources/vessel_profile.gd" id="1_x5eo4"]
-[ext_resource type="Texture2D" uid="uid://criumfmi5goex" path="res://art/2d/characters/icons/icon_blank_locked.aseprite" id="2_mi7md"]
+[ext_resource type="Texture2D" uid="uid://dju6al0bvhvp2" path="res://art/2d/characters/icons/icon_dragon_locked.aseprite" id="2_mi7md"]
 
 [resource]
 resource_name = "dragon"
@@ -11,8 +11,8 @@ name = "Dragon"
 type = 4
 description = "
 
-You should not be seeing this right now! 
-Oh no!!"
+
+WHATEVEEEER"
 icon = ExtResource("1_f4k8o")
 unlock_description = "
 

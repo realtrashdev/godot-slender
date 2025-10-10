@@ -1,14 +1,43 @@
-[gd_scene load_steps=5 format=3 uid="uid://bs3li0f18d3eo"]
+[gd_scene load_steps=12 format=3 uid="uid://bs3li0f18d3eo"]
 
 [ext_resource type="Texture2D" uid="uid://dcq13bpt00ild" path="res://art/2d/radar_screen_base.aseprite" id="1_mydgx"]
-[ext_resource type="Script" uid="uid://cv2r4yqm2jy82" path="res://scenes/important/radar_screen.gd" id="1_wowfs"]
+[ext_resource type="Script" uid="uid://cv2r4yqm2jy82" path="res://scripts/player/radar/radar_screen.gd" id="1_wowfs"]
 [ext_resource type="Texture2D" uid="uid://cair682vr2gyy" path="res://art/2d/radar_screen_pegglemockup.aseprite" id="2_tux1c"]
+[ext_resource type="AudioStream" uid="uid://dlbeufiwgkj8h" path="res://audio/music/endlessfever.mp3" id="2_wowfs"]
 [ext_resource type="FontFile" uid="uid://6lpo01dlrh4f" path="res://fonts/Pixeled.ttf" id="4_on3qy"]
+[ext_resource type="Texture2D" uid="uid://8uewbj2acg86" path="res://art/2d/icon_batterydead.aseprite" id="6_3wt7d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wowfs"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wowfs"]
+bg_color = Color(0, 0, 0, 0.5882353)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3wt7d"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3jnr6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hjd67"]
 
 [node name="RadarScreen" type="Node2D"]
 script = ExtResource("1_wowfs")
 
 [node name="BatteryComponent" type="Node" parent="."]
+
+[node name="AudioComponent" type="Node" parent="."]
+
+[node name="RadarAudio" type="AudioStreamPlayer" parent="AudioComponent"]
+stream = ExtResource("2_wowfs")
+volume_db = -15.0
+pitch_scale = 1.1
+autoplay = true
+bus = &"PlayerRadar"
+parameters/looping = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 limit_left = 0
@@ -21,11 +50,6 @@ editor_draw_limits = true
 [node name="BaseScreen" type="Sprite2D" parent="."]
 position = Vector2(80, 72)
 texture = ExtResource("1_mydgx")
-
-[node name="Sprite2D" type="Sprite2D" parent="BaseScreen"]
-visible = false
-position = Vector2(0, 7)
-texture = ExtResource("2_tux1c")
 
 [node name="BatteryContainer" type="HBoxContainer" parent="BaseScreen"]
 offset_left = 35.0
@@ -76,7 +100,45 @@ grow_vertical = 2
 size_flags_horizontal = 3
 color = Color(0.30980393, 0.30980393, 0.30980393, 1)
 
-[node name="Title" type="RichTextLabel" parent="."]
+[node name="HomeButton" type="Button" parent="BaseScreen"]
+offset_left = -80.0
+offset_top = -72.0
+offset_right = -48.0
+offset_bottom = -56.0
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxEmpty_wowfs")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_wowfs")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3wt7d")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_3jnr6")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hjd67")
+
+[node name="PageButton" type="Button" parent="BaseScreen"]
+offset_left = -48.0
+offset_top = -72.0
+offset_right = -16.0
+offset_bottom = -56.0
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxEmpty_wowfs")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_wowfs")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3wt7d")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_3jnr6")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hjd67")
+
+[node name="GameButton" type="Button" parent="BaseScreen"]
+offset_left = -16.0
+offset_top = -72.0
+offset_right = 16.0
+offset_bottom = -56.0
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxEmpty_wowfs")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_wowfs")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3wt7d")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_3jnr6")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hjd67")
+
+[node name="HomeScreen" type="Node2D" parent="."]
+
+[node name="HomeText" type="RichTextLabel" parent="HomeScreen"]
 clip_contents = false
 offset_left = 7.0
 offset_top = 17.0
@@ -89,7 +151,7 @@ text = "HOME MENU"
 scroll_active = false
 shortcut_keys_enabled = false
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="PagesText" type="RichTextLabel" parent="HomeScreen"]
 clip_contents = false
 offset_left = 7.0
 offset_top = 42.0
@@ -102,3 +164,19 @@ text = "[rainbow sat=0.999 val=10 speed=1]PAGES:
 0/8"
 scroll_active = false
 shortcut_keys_enabled = false
+
+[node name="GameScreen" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(80, 79)
+texture = ExtResource("2_tux1c")
+
+[node name="DeadBatteryScreen" type="Node2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="DeadBatteryScreen"]
+offset_right = 160.0
+offset_bottom = 144.0
+color = Color(0, 0, 0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="DeadBatteryScreen"]
+position = Vector2(80, 72)
+texture = ExtResource("6_3wt7d")

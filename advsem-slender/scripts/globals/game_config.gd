@@ -1,17 +1,16 @@
 extends Node
 
-## Classic is akin to the first slender, so there's no extra pages, lives, etc.
 enum GameMode { CLASSIC, ENDLESS, CUSTOM }
 
 const MODE_CONFIG = {
 	GameMode.CLASSIC: {
-		"description": "Collect all eight pages, and then the game ends.\nEnemies are determined by the scenario you choose.",
+		"description": "Collect the amount pages specified, and then the game ends.\nEnemies are determined by the scenario you choose.",
 		"pages_required": 8,
 		"extra_pages": 0,
 		"default_lives": 1,
 	},
 	GameMode.ENDLESS: {
-		"description": "Collect an increasing amount of required pages.\nVisit the shop to add more threats and buy things.\nKeep going until you lose all your lives!\n[shake](lives and shop not implemented)",
+		"description": "Collect an increasing amount of specified pages.\nVisit the shop to add more threats and buy things.\nKeep going until you lose all your lives!\n[shake](lives and shop not implemented)",
 		"pages_required": 3,
 		"extra_pages": 2,
 		"default_lives": 3,
