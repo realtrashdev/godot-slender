@@ -134,6 +134,7 @@ toggle_radar={
 3d_physics/layer_5="Player"
 3d_physics/layer_6="Flashlight Cast"
 3d_physics/layer_8="Interactible"
+3d_physics/layer_20="RadarScreen"
 
 [rendering]
 

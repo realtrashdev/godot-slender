@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bhujtfey4h24j"]
+[gd_scene load_steps=9 format=3 uid="uid://bhujtfey4h24j"]
 
-[ext_resource type="Script" uid="uid://bsjqdiiamie47" path="res://scripts/player/player_radar.gd" id="1_rt2r7"]
+[ext_resource type="Script" uid="uid://bsjqdiiamie47" path="res://scripts/player/radar/player_radar.gd" id="1_rt2r7"]
+[ext_resource type="Script" uid="uid://co6gx41xi520l" path="res://scripts/player/radar/radar_display_component.gd" id="2_m0qpr"]
 [ext_resource type="AudioStream" uid="uid://chggo02dqakbk" path="res://audio/music/ringtone.mp3" id="2_v1pv2"]
+[ext_resource type="Script" uid="uid://xhr53kwycs3p" path="res://scripts/player/radar/radar_input_component.gd" id="3_4eswb"]
 [ext_resource type="PackedScene" uid="uid://bs3li0f18d3eo" path="res://scenes/important/radar_screen.tscn" id="3_v1pv2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gkgcs"]
@@ -21,13 +23,23 @@ transform = Transform3D(0.4, 0, 0, 0, 0.49999997, 0, 0, 0, 0.15000002, 0, 0, 0)
 layers = 2
 mesh = SubResource("BoxMesh_gkgcs")
 
-[node name="RadarAudio" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_v1pv2")
-volume_db = -15.0
-pitch_scale = 1.1
-autoplay = true
-bus = &"PlayerRadar"
-parameters/looping = true
+[node name="RadarDisplayComponent" type="Node" parent="." node_paths=PackedStringArray("sub_viewport", "screen_sprite")]
+script = ExtResource("2_m0qpr")
+sub_viewport = NodePath("../SubViewport")
+screen_sprite = NodePath("../Sprite3D")
+
+[node name="RadarInputComponent" type="Node" parent="." node_paths=PackedStringArray("screen_sprite", "sub_viewport")]
+script = ExtResource("3_4eswb")
+screen_sprite = NodePath("../Sprite3D")
+sub_viewport = NodePath("../SubViewport")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.23, 0, 0, 0, 0.23, 0, 0, 0, 0.256, 0, 0.05, 0.075)
+modulate = Color(0.7121294, 0.7121294, 0.71212935, 1)
+double_sided = false
+no_depth_test = true
+texture_filter = 0
+texture = SubResource("ViewportTexture_v1pv2")
 
 [node name="SubViewport" type="SubViewport" parent="."]
 own_world_3d = true
@@ -38,9 +50,10 @@ size = Vector2i(160, 144)
 
 [node name="RadarScreen" parent="SubViewport" instance=ExtResource("3_v1pv2")]
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(0.23, 0, 0, 0, 0.23, 0, 0, 0, 0.256, 0, 0.05, 0.075)
-double_sided = false
-no_depth_test = true
-texture_filter = 0
-texture = SubResource("ViewportTexture_v1pv2")
+[node name="RadarAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_v1pv2")
+volume_db = -15.0
+pitch_scale = 1.1
+autoplay = true
+bus = &"PlayerRadar"
+parameters/looping = true

@@ -16,6 +16,7 @@ var time_count: float
 var target_brightness: float
 
 var player: CharacterBody3D
+var head: Node3D
 var restriction_component: PlayerRestrictionComponent
 var movement_component: PlayerMovementComponent
 var camera_component: PlayerCameraComponent
@@ -35,6 +36,7 @@ func _ready() -> void:
 	movement_component = player.get_node("MovementComponent")
 	camera_component = player.get_node("CameraComponent")
 	
+	head = player.get_node("Head")
 	flashlight = player.get_node("Head/Flashlight")
 	light = flashlight.get_node("SpotLight3D")
 	audio_source = flashlight.get_node("FlashlightAudio")
@@ -68,12 +70,15 @@ func get_flashlight_offset(delta: float) -> void:
 	
 	# occurs when a page is collected, holds light down briefly
 	if rotation_override != 0:
-		flashlight.global_rotation.x = lerp(flashlight.global_rotation.x, flashlight_offset.x + rotation_override, 8 * delta)
+		flashlight.global_rotation.x = lerp_angle(flashlight.global_rotation.x, rotation_override + flashlight_offset.x, 8 * delta)
 		return
 	
-	# sprinting
+	# sprinting - lock to world angle by canceling out head rotation
 	if movement_component.is_sprinting() or restriction_component.check_for_restriction(PlayerRestriction.RestrictionType.RADAR):
-		flashlight.global_rotation.x = lerp(flashlight.global_rotation.x, flashlight_offset.x + deg_to_rad(sprint_angle), 10 * delta)
+		# Set local rotation to achieve desired world angle
+		var desired_world_angle = deg_to_rad(sprint_angle) + flashlight_offset.x
+		var local_angle_needed = desired_world_angle - head.rotation.x
+		flashlight.rotation.x = lerp_angle(flashlight.rotation.x, local_angle_needed, 10 * delta)
 	# walking
 	elif player.velocity.length() != 0:
 		flashlight.rotation.x = lerp(flashlight.rotation.x, flashlight_offset.x + deg_to_rad(-5) + sin(time_count * 5) * 0.015, 6 * delta)

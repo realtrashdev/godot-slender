@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://bs3li0f18d3eo"]
+
+[ext_resource type="Texture2D" uid="uid://dcq13bpt00ild" path="res://art/2d/radar_screen_base.aseprite" id="1_mydgx"]
+[ext_resource type="PackedScene" uid="uid://6lvn3tolsp7r" path="res://scenes/ui/buttons/menu_button.tscn" id="2_mydgx"]
+[ext_resource type="Texture2D" uid="uid://cair682vr2gyy" path="res://art/2d/radar_screen_pegglemockup.aseprite" id="2_tux1c"]
+
+[node name="RadarScreen" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_left = 0
+limit_top = 0
+limit_right = 160
+limit_bottom = 144
+editor_draw_screen = false
+editor_draw_limits = true
+
+[node name="BaseScreen" type="Sprite2D" parent="."]
+position = Vector2(80, 72)
+texture = ExtResource("1_mydgx")
+
+[node name="GameScreen" type="Sprite2D" parent="BaseScreen"]
+position = Vector2(0, 7)
+texture = ExtResource("2_tux1c")
+
+[node name="CustomButton" parent="." instance=ExtResource("2_mydgx")]
+offset_left = 52.0
+offset_top = 84.0
+offset_right = 274.0
+offset_bottom = 184.0
+scale = Vector2(0.25, 0.25)
+theme_override_font_sizes/font_size = 11
+default_text = "HELLO!!!"
+justification = 1

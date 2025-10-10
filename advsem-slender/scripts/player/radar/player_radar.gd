@@ -3,7 +3,7 @@ class_name PlayerRadar extends Node3D
 signal radar_toggled(bool)
 
 const OUT_POS: Vector3 = Vector3(0, 0, -0.5)
-const AWAY_POS: Vector3 = Vector3(0, -0.25, 0.75)
+const AWAY_POS: Vector3 = Vector3(0, -0.25, 1.25)
 
 var active: bool = false
 var can_toggle: bool = true
@@ -15,10 +15,18 @@ var player: CharacterBody3D
 var restriction_component: PlayerRestrictionComponent
 
 @onready var audio: AudioStreamPlayer = $RadarAudio
+@onready var display_component: RadarDisplayComponent = $RadarDisplayComponent
+@onready var input_component: RadarInputComponent = $RadarInputComponent
 
 func _ready() -> void:
 	player = get_parent()
 	restriction_component = player.get_node("RestrictionComponent")
+	
+	# Optional: Connect to input component signals
+	input_component.screen_clicked.connect(_on_screen_clicked)
+	
+	# Start with input disabled
+	input_component.set_enabled(false)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("toggle_radar") and can_toggle and active:
@@ -28,17 +36,20 @@ func _input(event: InputEvent) -> void:
 		can_toggle = true
 
 func toggle_radar():
+	# Disable input IMMEDIATELY when toggling
+	input_component.set_enabled(false)
+	
 	match restriction_component.check_for_restriction(PlayerRestriction.RestrictionType.RADAR):
-			true:
-				focused = false
-				restriction_component.remove_restrictions_from_source("player_radar")
-				update_audio()
-				update_position()
-			false:
-				focused = true
-				restriction_component.add_restriction(PlayerRestriction.RestrictionType.RADAR, "player_radar")
-				update_audio()
-				update_position()
+		true:
+			focused = false
+			restriction_component.remove_restrictions_from_source("player_radar")
+			update_audio()
+			update_position()
+		false:
+			focused = true
+			restriction_component.add_restriction(PlayerRestriction.RestrictionType.RADAR, "player_radar")
+			update_audio()
+			update_position()
 	
 	radar_toggled.emit(focused)
 
@@ -58,11 +69,17 @@ func update_position():
 		pos_tween.kill()
 	pos_tween = create_tween()
 	
-	pos_tween.tween_property(self, "position", final_pos, 0.3)\
+	pos_tween.tween_property(self, "position", final_pos, 0.5)\
 	.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
 	
-	pos_tween.parallel().tween_property(self, "rotation", Vector3(final_rot_x, 0, 0), 0.3)\
+	pos_tween.parallel().tween_property(self, "rotation", Vector3(final_rot_x, 0, 0), 0.5)\
 	.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
+	
+	# re enable input AFTER animation completes, but ONLY if focused
+	pos_tween.finished.connect(func():
+		if focused:
+			input_component.set_enabled(true)
+	, CONNECT_ONE_SHOT)
 
 func update_audio():
 	var bus = AudioServer.get_bus_index("PlayerRadar")
@@ -76,6 +93,16 @@ func update_audio():
 
 func activate():
 	active = true
+	update_position()
 
 func deactivate():
 	active = false
+	update_position()
+
+# Content management methods
+func load_screen(scene_path: String):
+	display_component.load_content(scene_path)
+
+func _on_screen_clicked(pos: Vector2):
+	print("Screen clicked at: ", pos)
+	# Handle screen interactions here

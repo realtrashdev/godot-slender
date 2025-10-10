@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dnmgm8wm62lck"
-path="res://.godot/imported/radar.aseprite-4b7de6e027cd2579efc7f4dab3ee3d09.ctex"
+uid="uid://dcq13bpt00ild"
+path="res://.godot/imported/radar_screen_base.aseprite-d542ca52680efd5a9b13a00d1ecfe6cf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/2d/radar.aseprite"
-dest_files=["res://.godot/imported/radar.aseprite-4b7de6e027cd2579efc7f4dab3ee3d09.ctex"]
+source_file="res://art/2d/radar_screen_base.aseprite"
+dest_files=["res://.godot/imported/radar_screen_base.aseprite-d542ca52680efd5a9b13a00d1ecfe6cf.ctex"]
 
 [params]
 

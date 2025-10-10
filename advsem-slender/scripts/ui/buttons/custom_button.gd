@@ -63,6 +63,7 @@ func _on_button_up() -> void:
 		return
 	if focus:
 		AudioTools.play_one_shot(get_tree(), sfx_release, randf_range(1.2, 1.4), -10)
+		pass
 	text_label.add_theme_color_override("default_color", default_color)
 
 func _on_toggled(toggled_on: bool) -> void:

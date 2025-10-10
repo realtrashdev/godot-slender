@@ -11,10 +11,10 @@ var active: bool = false
 @onready var flashlight_component: PlayerFlashlightComponent = $FlashlightComponent
 @onready var audio_component: PlayerAudioComponent = $AudioComponent
 @onready var restriction_component: PlayerRestrictionComponent = $RestrictionComponent
-#@onready var radar: PlayerRadar = $Radar
+@onready var radar: PlayerRadar = $Radar
 
 func _ready() -> void:
-	#radar.radar_toggled.connect(_on_radar_toggled)
+	radar.radar_toggled.connect(_on_radar_toggled)
 	deactivate()
 
 func _process(delta: float) -> void:
@@ -41,7 +41,7 @@ func activate():
 	movement_component.activate()
 	camera_component.activate()
 	flashlight_component.activate()
-	#radar.activate()
+	radar.activate()
 
 func deactivate():
 	active = false
@@ -49,7 +49,7 @@ func deactivate():
 	camera_component.deactivate()
 	flashlight_component.deactivate()
 	restriction_component.clear_restrictions()
-	#radar.deactivate()
+	radar.deactivate()
 
 func _on_radar_toggled(toggled):
 	camera_component.check_radar_restriction(toggled)

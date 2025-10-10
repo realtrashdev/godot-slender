@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dqhlmv6mga3ln"]
+[gd_scene load_steps=30 format=3 uid="uid://dqhlmv6mga3ln"]
 
 [ext_resource type="Script" uid="uid://e6rwi0hmxjmt" path="res://scripts/player/player.gd" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://b1w1fm55k1ows" path="res://scripts/player/interaction_cast.gd" id="2_onrkg"]
@@ -25,6 +25,7 @@
 [ext_resource type="Script" uid="uid://bbeekljcyfied" path="res://scripts/player/components/player_camera_component.gd" id="18_ujl30"]
 [ext_resource type="Script" uid="uid://c05dbsrlk1jcc" path="res://scripts/player/components/player_audio_component.gd" id="19_31cv2"]
 [ext_resource type="Script" uid="uid://b6m4rxuada185" path="res://scripts/player/components/player_flashlight_component.gd" id="19_ke2ow"]
+[ext_resource type="PackedScene" uid="uid://bhujtfey4h24j" path="res://scenes/important/player_radar.tscn" id="23_al2k6"]
 [ext_resource type="Script" uid="uid://c5ynl7lgv6ngm" path="res://scripts/ground_cast_component.gd" id="26_gkgcs"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_onrkg"]
@@ -66,6 +67,8 @@ shape = SubResource("CapsuleShape3D_onrkg")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_i3pqv")
+
+[node name="Radar" parent="." instance=ExtResource("23_al2k6")]
 
 [node name="Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)

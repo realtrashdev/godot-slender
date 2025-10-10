@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://bs3li0f18d3eo"]
+[gd_scene load_steps=6 format=3 uid="uid://bs3li0f18d3eo"]
 
-[ext_resource type="Texture2D" uid="uid://dporlsh4nr431" path="res://art/2d/enemies/eyes.aseprite" id="1_mydgx"]
-[ext_resource type="PackedScene" uid="uid://6lvn3tolsp7r" path="res://scenes/ui/buttons/menu_button.tscn" id="2_mydgx"]
+[ext_resource type="Texture2D" uid="uid://dcq13bpt00ild" path="res://art/2d/radar_screen_base.aseprite" id="1_mydgx"]
+[ext_resource type="Texture2D" uid="uid://cair682vr2gyy" path="res://art/2d/radar_screen_pegglemockup.aseprite" id="2_tux1c"]
+[ext_resource type="Theme" uid="uid://bommyqwo15hbx" path="res://theme1.tres" id="3_tux1c"]
+[ext_resource type="FontFile" uid="uid://d1g754puf6nva" path="res://fonts/Early GameBoy.ttf" id="4_on3qy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_on3qy"]
 
 [node name="RadarScreen" type="Node2D"]
 
@@ -13,16 +17,27 @@ limit_bottom = 144
 editor_draw_screen = false
 editor_draw_limits = true
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="BaseScreen" type="Sprite2D" parent="."]
 position = Vector2(80, 72)
 texture = ExtResource("1_mydgx")
 
-[node name="CustomButton" parent="." instance=ExtResource("2_mydgx")]
-offset_left = 52.0
-offset_top = 84.0
-offset_right = 274.0
-offset_bottom = 184.0
-scale = Vector2(0.25, 0.25)
-theme_override_font_sizes/font_size = 11
-default_text = "HELLO!!!"
-justification = 1
+[node name="GameScreen" type="Sprite2D" parent="BaseScreen"]
+position = Vector2(0, 7)
+texture = ExtResource("2_tux1c")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 51.0
+offset_top = 102.0
+offset_right = 111.0
+offset_bottom = 112.0
+theme = ExtResource("3_tux1c")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.37036502, 0.37036428, 0.37036443, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("4_on3qy")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/hover = SubResource("StyleBoxEmpty_on3qy")
+text = "pRess me"

@@ -58,3 +58,9 @@ func reset_all_data():
 	Settings.reset_to_defaults()
 	Progression.reset_to_defaults()
 	save_game()
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		print("GAME CLOSING - WM_CLOSE_REQUEST received!")
+		print("Stack trace:")
+		print_stack()
