@@ -3,7 +3,12 @@ class_name PlayerRadar extends Node3D
 signal radar_toggled(bool)
 
 const OUT_POS: Vector3 = Vector3(0, 0, -0.5)
+const OUT_ROT: Vector3 = Vector3(deg_to_rad(-45), 0, 0)
+
 const AWAY_POS: Vector3 = Vector3(0, -0.25, 1.25)
+const AWAY_ROT: Vector3 = Vector3(0, 0, deg_to_rad(30))
+
+var game_state: GameState
 
 var active: bool = false
 var can_toggle: bool = true
@@ -17,6 +22,7 @@ var restriction_component: PlayerRestrictionComponent
 @onready var audio: AudioStreamPlayer = $RadarAudio
 @onready var display_component: RadarDisplayComponent = $RadarDisplayComponent
 @onready var input_component: RadarInputComponent = $RadarInputComponent
+@onready var radar_screen: RadarScreen = $SubViewport/RadarScreen
 
 func _ready() -> void:
 	player = get_parent()
@@ -27,6 +33,8 @@ func _ready() -> void:
 	
 	# Start with input disabled
 	input_component.set_enabled(false)
+	
+	radar_screen.initialize(game_state, player)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("toggle_radar") and can_toggle and active:
@@ -55,24 +63,24 @@ func toggle_radar():
 
 func update_position():
 	var final_pos: Vector3
-	var final_rot_x: float
+	var final_rot: Vector3
 	match focused:
 		true:
 			final_pos = OUT_POS
-			final_rot_x = deg_to_rad(-45)
+			final_rot = OUT_ROT
 		false:
 			final_pos = AWAY_POS
-			final_pos.x += randf_range(-0.5, 0.5)
-			final_rot_x = 0
+			final_rot = AWAY_ROT
+			final_pos.x += randf_range(-0.25, 0.25)
 	
 	if pos_tween:
 		pos_tween.kill()
 	pos_tween = create_tween()
 	
-	pos_tween.tween_property(self, "position", final_pos, 0.5)\
-	.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
+	pos_tween.tween_property(self, "position", final_pos, 0.25)\
+	.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	
-	pos_tween.parallel().tween_property(self, "rotation", Vector3(final_rot_x, 0, 0), 0.5)\
+	pos_tween.parallel().tween_property(self, "rotation", final_rot, 0.5)\
 	.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
 	
 	# re enable input AFTER animation completes, but ONLY if focused

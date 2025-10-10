@@ -1,13 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://bs3li0f18d3eo"]
+[gd_scene load_steps=5 format=3 uid="uid://bs3li0f18d3eo"]
 
 [ext_resource type="Texture2D" uid="uid://dcq13bpt00ild" path="res://art/2d/radar_screen_base.aseprite" id="1_mydgx"]
+[ext_resource type="Script" uid="uid://cv2r4yqm2jy82" path="res://scenes/important/radar_screen.gd" id="1_wowfs"]
 [ext_resource type="Texture2D" uid="uid://cair682vr2gyy" path="res://art/2d/radar_screen_pegglemockup.aseprite" id="2_tux1c"]
-[ext_resource type="Theme" uid="uid://bommyqwo15hbx" path="res://theme1.tres" id="3_tux1c"]
-[ext_resource type="FontFile" uid="uid://d1g754puf6nva" path="res://fonts/Early GameBoy.ttf" id="4_on3qy"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_on3qy"]
+[ext_resource type="FontFile" uid="uid://6lpo01dlrh4f" path="res://fonts/Pixeled.ttf" id="4_on3qy"]
 
 [node name="RadarScreen" type="Node2D"]
+script = ExtResource("1_wowfs")
+
+[node name="BatteryComponent" type="Node" parent="."]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 limit_left = 0
@@ -21,23 +22,83 @@ editor_draw_limits = true
 position = Vector2(80, 72)
 texture = ExtResource("1_mydgx")
 
-[node name="GameScreen" type="Sprite2D" parent="BaseScreen"]
+[node name="Sprite2D" type="Sprite2D" parent="BaseScreen"]
+visible = false
 position = Vector2(0, 7)
 texture = ExtResource("2_tux1c")
 
-[node name="Button" type="Button" parent="."]
-offset_left = 51.0
-offset_top = 102.0
-offset_right = 111.0
-offset_bottom = 112.0
-theme = ExtResource("3_tux1c")
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0.37036502, 0.37036428, 0.37036443, 1)
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 0
-theme_override_fonts/font = ExtResource("4_on3qy")
-theme_override_font_sizes/font_size = 8
-theme_override_styles/hover = SubResource("StyleBoxEmpty_on3qy")
-text = "pRess me"
+[node name="BatteryContainer" type="HBoxContainer" parent="BaseScreen"]
+offset_left = 35.0
+offset_top = -68.0
+offset_right = 74.0
+offset_bottom = -60.0
+theme_override_constants/separation = 1
+
+[node name="BatteryChunk" type="Control" parent="BaseScreen/BatteryContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorRect" type="ColorRect" parent="BaseScreen/BatteryContainer/BatteryChunk"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+color = Color(0.30980393, 0.30980393, 0.30980393, 1)
+
+[node name="BatteryChunk2" type="Control" parent="BaseScreen/BatteryContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorRect" type="ColorRect" parent="BaseScreen/BatteryContainer/BatteryChunk2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+color = Color(0.30980393, 0.30980393, 0.30980393, 1)
+
+[node name="BatteryChunk3" type="Control" parent="BaseScreen/BatteryContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorRect" type="ColorRect" parent="BaseScreen/BatteryContainer/BatteryChunk3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+color = Color(0.30980393, 0.30980393, 0.30980393, 1)
+
+[node name="Title" type="RichTextLabel" parent="."]
+clip_contents = false
+offset_left = 7.0
+offset_top = 17.0
+offset_right = 66.0
+offset_bottom = 31.0
+theme_override_fonts/normal_font = ExtResource("4_on3qy")
+theme_override_font_sizes/normal_font_size = 5
+bbcode_enabled = true
+text = "HOME MENU"
+scroll_active = false
+shortcut_keys_enabled = false
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+clip_contents = false
+offset_left = 7.0
+offset_top = 42.0
+offset_right = 50.0
+offset_bottom = 71.0
+theme_override_fonts/normal_font = ExtResource("4_on3qy")
+theme_override_font_sizes/normal_font_size = 5
+bbcode_enabled = true
+text = "[rainbow sat=0.999 val=10 speed=1]PAGES:
+0/8"
+scroll_active = false
+shortcut_keys_enabled = false
