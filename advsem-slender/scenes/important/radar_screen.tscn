@@ -2,8 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://dcq13bpt00ild" path="res://art/2d/radar_screen_base.aseprite" id="1_mydgx"]
 [ext_resource type="Script" uid="uid://cv2r4yqm2jy82" path="res://scripts/player/radar/radar_screen.gd" id="1_wowfs"]
+[ext_resource type="AudioStream" uid="uid://dlid2b84gmver" path="res://audio/music/default_ringtone.mp3" id="2_3wt7d"]
 [ext_resource type="Texture2D" uid="uid://cair682vr2gyy" path="res://art/2d/radar_screen_pegglemockup.aseprite" id="2_tux1c"]
-[ext_resource type="AudioStream" uid="uid://dlbeufiwgkj8h" path="res://audio/music/endlessfever.mp3" id="2_wowfs"]
 [ext_resource type="FontFile" uid="uid://6lpo01dlrh4f" path="res://fonts/Pixeled.ttf" id="4_on3qy"]
 [ext_resource type="Texture2D" uid="uid://8uewbj2acg86" path="res://art/2d/icon_batterydead.aseprite" id="6_3wt7d"]
 
@@ -32,9 +32,8 @@ script = ExtResource("1_wowfs")
 [node name="AudioComponent" type="Node" parent="."]
 
 [node name="RadarAudio" type="AudioStreamPlayer" parent="AudioComponent"]
-stream = ExtResource("2_wowfs")
+stream = ExtResource("2_3wt7d")
 volume_db = -15.0
-pitch_scale = 1.1
 autoplay = true
 bus = &"PlayerRadar"
 parameters/looping = true
