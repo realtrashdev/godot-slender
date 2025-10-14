@@ -3,6 +3,7 @@ extends Menu
 static var already_opened: bool =  false
 
 @onready var play_button: Button = $VBoxContainer/PlayButton
+@onready var customize_button: CustomButton = $VBoxContainer/CustomizeButton
 @onready var options_button: Button = $VBoxContainer/OptionsButton
 @onready var quit_button: Button = $VBoxContainer/QuitButton
 
@@ -20,6 +21,9 @@ func _ready() -> void:
 
 func _on_play_pressed():
 	go_to_menu(MenuConfig.MenuType.MODE_SELECT, MenuConfig.TransitionDirection.FORWARD, true)
+
+func _on_customize_pressed():
+	go_to_menu(MenuConfig.MenuType.CUSTOMIZE, MenuConfig.TransitionDirection.FORWARD, true)
 
 func _on_quit_pressed():
 	go_to_menu(MenuConfig.MenuType.QUIT, MenuConfig.TransitionDirection.BACKWARD, true)

@@ -3,7 +3,8 @@
 [ext_resource type="Script" uid="uid://cr2cb0aew1jk5" path="res://scripts/resources/color_set.gd" id="1_t7wm5"]
 
 [resource]
+resource_name = "red"
 script = ExtResource("1_t7wm5")
-name = "red"
+name = "Red"
 colors = Array[Color]([Color(0.9953651, 0.6293628, 0.58568233, 1), Color(0.98508126, 0.37749454, 0.33501485, 1), Color(0.45744443, 0.046129286, 0.06416414, 1), Color(0.21960784, 0.015686275, 0.05490196, 1)])
 metadata/_custom_type_script = "uid://cr2cb0aew1jk5"

@@ -7,9 +7,6 @@ var current_map: Map
 func _ready() -> void:
 	# Set the button scene for this specific list
 	button_scene = preload("res://scenes/ui/buttons/generic_checkbox.tscn")
-	show_descriptions = true
-	focused_size = Vector2(600, 140)
-	checked_size = Vector2(600, 140)
 	
 	current_map = Settings.get_selected_map()
 	

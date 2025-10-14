@@ -6,7 +6,7 @@ var data: Dictionary = {
 	"selected_game_mode": GameConfig.GameMode.CLASSIC,
 	"selected_scenario": "basics1",
 	"selected_character": "default",
-	"selected_palette": "mono",
+	"selected_palette": "grayscale",
 	"selected_map": "forest",
 	
 	"audio_volume": 1.0,
@@ -43,11 +43,11 @@ func set_selected_character_name(char_name: String):
 	SaveManager.save_game()
 
 func get_selected_color_palette() -> ColorSet:
-	return ResourceDatabase.get_color_set(data.get("selected_palette", "mono"))
+	return ResourceDatabase.get_color_set(data.get("selected_palette", "grayscale"))
 
-func set_selected_color_palette(palette_name: String):
-	data["selected_palette"] = palette_name
-	setting_changed.emit("selected_palette", palette_name)
+func set_selected_color_palette(palette: ColorSet):
+	data["selected_palette"] = palette.resource_name
+	setting_changed.emit("selected_palette", palette.resource_name)
 	SaveManager.save_game()
 
 func get_selected_map() -> Map:
@@ -91,7 +91,7 @@ func reset_to_defaults():
 		"selected_game_mode": GameConfig.GameMode.CLASSIC,
 		"selected_scenario": "basics1",
 		"selected_character": "default",
-		"selected_palette": "mono",
+		"selected_palette": "grayscale",
 		"selected_map": "forest",
 		
 		"audio_volume": 1.0,

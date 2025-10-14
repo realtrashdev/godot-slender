@@ -16,6 +16,7 @@ const CHECKED_EFFECT: String = "[pulse ease=2][wave amp=60]%s"
 var button_checked: bool = false
 
 var item: Resource
+var focus: bool = true
 var disabled: bool = false
 var default_text: String
 
@@ -55,6 +56,9 @@ func _setup_ui():
 		text_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 		description_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 		overview_button.visible = false
+	
+	if item is ColorSet:
+		overview_button.visible = false
 
 func _connect_signals():
 	mouse_entered.connect(_on_hover)
@@ -70,6 +74,8 @@ func _get_item_name() -> String:
 		return item.map_name
 	elif item is ClassicModeScenario:
 		return item.name
+	elif item is ColorSet:
+		return item.name
 	return ""
 
 func _get_item_description() -> String:
@@ -78,7 +84,7 @@ func _get_item_description() -> String:
 	return ""
 
 func _on_hover():
-	if disabled:
+	if disabled or not focus:
 		return
 	
 	if desc_text_tween:
@@ -92,7 +98,7 @@ func _on_hover():
 		hovered.emit()
 
 func _on_unhover():
-	if disabled:
+	if disabled or not focus:
 		return
 	
 	if not check_box.button_pressed:
@@ -126,6 +132,7 @@ func _on_toggled(toggled: bool):
 		if description_label.visible_ratio == 0:
 			desc_text_tween = create_tween()
 			desc_text_tween.tween_property(description_label, "visible_ratio", 1, 0.3)
+	
 	elif not toggled:
 		text_label.text = default_text
 		_tween_size(DEFAULT_SIZE)
@@ -141,8 +148,13 @@ func _save_selection():
 		Settings.set_selected_map(item.resource_name)
 	elif item is ClassicModeScenario:
 		Settings.set_selected_scenario(item)
+	elif item is ColorSet:
+		Settings.set_selected_color_palette(item)
 
 func _tween_size(new_size: Vector2, time: float = 0.2):
+	if not focus:
+		return
+	
 	if size_tween:
 		size_tween.kill()
 	size_tween = create_tween()
@@ -152,7 +164,7 @@ func _show_overview():
 	if item is ClassicModeScenario:
 		EnemyOverview.populate_via_scenario(item)
 
-# For resetting the pulse effect to keep the map and scenario pulses in line
+# for resetting the pulse effect to keep the map and scenario pulses in line
 func reset_text():
 	if check_box.button_pressed:
 		text_label.text = ""

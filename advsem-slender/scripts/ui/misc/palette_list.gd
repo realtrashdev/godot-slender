@@ -1,19 +1,19 @@
-class_name MapList extends GenericList
+class_name PaletteList extends GenericList
 
-signal map_selected(map: Map)
+signal palette_selected(palette: Resource)
 
 func _ready() -> void:
 	# Set the button scene for this specific list
 	button_scene = preload("res://scenes/ui/buttons/generic_checkbox.tscn")
 	
-	# Populate with maps
+	# Populate with palettes
 	populate_list(
-		Progression.get_unlocked_maps(),
-		Settings.get_selected_map
+		Progression.get_unlocked_palettes(),
+		Settings.get_selected_color_palette
 	)
 	
 	# Forward the generic signal to specific signal
 	item_selected.connect(_forward_signal)
 
 func _forward_signal(item: Resource):
-	map_selected.emit(item)
+	palette_selected.emit(item)

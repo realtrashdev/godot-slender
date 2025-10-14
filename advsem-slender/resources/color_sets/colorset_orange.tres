@@ -3,7 +3,8 @@
 [ext_resource type="Script" uid="uid://cr2cb0aew1jk5" path="res://scripts/resources/color_set.gd" id="1_owwmi"]
 
 [resource]
+resource_name = "orange"
 script = ExtResource("1_owwmi")
-name = "orange"
+name = "Orange"
 colors = Array[Color]([Color(0.9882353, 0.87058824, 0.6117647, 1), Color(1, 0.64705884, 0.32156864, 1), Color(0.51369977, 0.21035537, 0.050563127, 1), Color(0.3192531, 0.088534735, 0.0045504738, 1)])
 metadata/_custom_type_script = "uid://cr2cb0aew1jk5"

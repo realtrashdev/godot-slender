@@ -1,0 +1,64 @@
+[gd_scene load_steps=6 format=3 uid="uid://plixuhk70opg"]
+
+[ext_resource type="Script" uid="uid://nrgrsu0gc52k" path="res://scripts/ui/menus/menu_customize.gd" id="1_6dqwh"]
+[ext_resource type="Theme" uid="uid://bommyqwo15hbx" path="res://theme1.tres" id="2_eoi1v"]
+[ext_resource type="Script" uid="uid://c3ysaqnmo1oo8" path="res://scripts/ui/ui_text.gd" id="3_6dqwh"]
+[ext_resource type="PackedScene" uid="uid://6lvn3tolsp7r" path="res://scenes/ui/buttons/menu_button.tscn" id="5_11r0h"]
+[ext_resource type="PackedScene" uid="uid://btvk1eg63v62" path="res://scenes/ui/color_list.tscn" id="5_y702l"]
+
+[node name="CustomizeMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(960, 350)
+script = ExtResource("1_6dqwh")
+
+[node name="Title" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -359.5
+offset_top = -380.0
+offset_right = 360.5
+offset_bottom = -298.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(360, 41)
+theme = ExtResource("2_eoi1v")
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "[wave freq=3]Customize"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+script = ExtResource("3_6dqwh")
+sr_enabled = true
+sr_rotation = 3.0
+
+[node name="BackButton" parent="." instance=ExtResource("5_11r0h")]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 100.0
+offset_top = -150.0
+offset_right = 500.0
+offset_bottom = -50.0
+grow_vertical = 0
+default_text = "Go Back"
+default_color = Color(0.54497427, 0.5449743, 0.5449741, 1)
+press_color = Color(0, 0, 0, 1)
+
+[node name="PaletteList" parent="." instance=ExtResource("5_y702l")]
+layout_mode = 1
+offset_top = -265.0
+offset_bottom = 440.0
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_pressed"]

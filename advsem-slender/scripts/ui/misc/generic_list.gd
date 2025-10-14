@@ -3,9 +3,7 @@ class_name GenericList extends Node
 signal item_selected(item: Resource)
 
 @export var button_scene: PackedScene
-@export var show_descriptions: bool = false
-@export var focused_size: Vector2 = Vector2.ZERO
-@export var checked_size: Vector2 = Vector2.ZERO
+@export var show_description: bool = true
 
 var current_item: Resource
 
@@ -29,6 +27,7 @@ func populate_list(items: Array, get_current_func: Callable, is_unlocked_func: C
 		
 		var checkbox: GenericCheckbox = button_scene.instantiate()
 		checkbox.item = item
+		checkbox.focus = show_description
 		
 		if not is_unlocked:
 			checkbox.disabled = true

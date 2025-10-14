@@ -70,7 +70,7 @@ theme_override_constants/separation = 50
 alignment = 1
 
 [node name="PlayButton" parent="VBoxContainer" instance=ExtResource("4_dkf5t")]
-custom_minimum_size = Vector2(300, 100)
+custom_minimum_size = Vector2(350, 100)
 layout_mode = 2
 size_flags_horizontal = 1
 icon_alignment = 1
@@ -78,10 +78,21 @@ expand_icon = true
 default_text = "Play"
 justification = 1
 wait_time = 0.4
-focus_size = Vector2(300, 130)
+focus_size = Vector2(375, 130)
+
+[node name="CustomizeButton" parent="VBoxContainer" instance=ExtResource("4_dkf5t")]
+custom_minimum_size = Vector2(350, 100)
+layout_mode = 2
+size_flags_horizontal = 1
+icon_alignment = 1
+expand_icon = true
+default_text = "Customize"
+justification = 1
+wait_time = 0.4
+focus_size = Vector2(375, 130)
 
 [node name="OptionsButton" parent="VBoxContainer" instance=ExtResource("4_dkf5t")]
-custom_minimum_size = Vector2(300, 100)
+custom_minimum_size = Vector2(350, 100)
 layout_mode = 2
 size_flags_horizontal = 1
 disabled = true
@@ -92,10 +103,10 @@ default_text = "Options"
 default_color = Color(0.28301802, 0.28301802, 0.283018, 1)
 justification = 1
 wait_time = 0.6
-focus_size = Vector2(300, 130)
+focus_size = Vector2(375, 130)
 
 [node name="QuitButton" parent="VBoxContainer" instance=ExtResource("4_dkf5t")]
-custom_minimum_size = Vector2(300, 100)
+custom_minimum_size = Vector2(350, 100)
 layout_mode = 2
 size_flags_horizontal = 1
 icon_alignment = 1
@@ -103,8 +114,9 @@ expand_icon = true
 default_text = "Quit"
 justification = 1
 wait_time = 0.95
-focus_size = Vector2(300, 130)
+focus_size = Vector2(375, 130)
 focus_text_effect = "[shake]"
 
 [connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/CustomizeButton" to="." method="_on_customize_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_pressed"]

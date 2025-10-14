@@ -9,13 +9,13 @@ var data: Dictionary = {
 	"total_pages_collected": 0,
 	"total_deaths": 0,
 	"enemy_encounters": {},  # enemy_name: count (call from enemy when it spawns)
-	"enemy_deaths": {}, # enemy_name: count (call from enemy when it kills)
+	"enemy_deaths": {}, # enemy_name: count (call from enemy when it kills player)
 	
 	# Unlocks
 	"unlocked_modes": [GameConfig.GameMode.CLASSIC],
 	"unlocked_scenarios": ["basics1"],
 	"unlocked_characters": ["default", "dragon"],
-	"unlocked_palettes": ["mono"],
+	"unlocked_palettes": ["grayscale"],
 	"unlocked_maps": ["forest"],
 }
 
@@ -133,7 +133,7 @@ func reset_to_defaults():
 		"unlocked_modes": [GameConfig.GameMode.CLASSIC],
 		"unlocked_scenarios": ["basics1"],
 		"unlocked_characters": ["default", "dragon"],
-		"unlocked_palettes": ["mono"],
+		"unlocked_palettes": ["grayscale", "red", "orange", "yellow", "green", "blue", "purple", "gameboy", "cottoncandy"],
 		"unlocked_maps": ["forest"]
 	}
 	SaveManager.save_game()
