@@ -25,8 +25,9 @@ func _on_scenario_selected(scenario: ClassicModeScenario):
 func _on_start_pressed():
 	go_to_menu(MenuConfig.MenuType.START_GAME, MenuConfig.TransitionDirection.FORWARD, false)
 
+## TODO change back to CHARACTER_SELECT once implemented
 func _on_back_pressed():
-	go_to_menu(MenuConfig.MenuType.CHARACTER_SELECT, MenuConfig.TransitionDirection.BACKWARD, true)
+	go_to_menu(MenuConfig.MenuType.MODE_SELECT, MenuConfig.TransitionDirection.BACKWARD, true)
 
 func _on_menu_pressed():
 	go_to_menu(MenuConfig.MenuType.MAIN, MenuConfig.TransitionDirection.BACKWARD, true)

@@ -6,5 +6,5 @@
 resource_name = "orange"
 script = ExtResource("1_owwmi")
 name = "Orange"
-colors = Array[Color]([Color(0.9882353, 0.87058824, 0.6117647, 1), Color(1, 0.64705884, 0.32156864, 1), Color(0.51369977, 0.21035537, 0.050563127, 1), Color(0.3192531, 0.088534735, 0.0045504738, 1)])
+colors = Array[Color]([Color(0.9912631, 0.8975205, 0.7738565, 1), Color(0.99999994, 0.6763361, 0.38919446, 1), Color(0.51369977, 0.21035537, 0.050563127, 1), Color(0.3192531, 0.088534735, 0.0045504738, 1)])
 metadata/_custom_type_script = "uid://cr2cb0aew1jk5"

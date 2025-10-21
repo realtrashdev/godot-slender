@@ -49,8 +49,9 @@ func _on_endless_toggled(pressed: bool):
 	Settings.set_selected_game_mode(GameConfig.GameMode.ENDLESS)
 	animate_description(GameConfig.get_mode_description(GameConfig.GameMode.ENDLESS))
 
+## TODO change back to CHARACTER_SELECT once characters are implemented
 func _on_start_pressed():
-	go_to_menu(MenuConfig.MenuType.CHARACTER_SELECT, MenuConfig.TransitionDirection.FORWARD, true)
+	go_to_menu(MenuConfig.MenuType.MAP_SELECT, MenuConfig.TransitionDirection.FORWARD, true)
 
 func _on_back_pressed():
 	go_to_menu(MenuConfig.MenuType.MAIN, MenuConfig.TransitionDirection.BACKWARD, true)
