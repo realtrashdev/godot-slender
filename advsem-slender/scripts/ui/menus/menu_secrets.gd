@@ -8,7 +8,7 @@ var manager: Node3D
 var tween: Tween
 
 var music: AudioStream = preload("uid://cqkrow1uml48v")
-var meowsic: AudioStream = preload("uid://1efwx5xukaj1")
+var meowsic: AudioStream = preload("uid://cqaagyghacaij")
 
 func _ready() -> void:
 	manager = get_parent()
