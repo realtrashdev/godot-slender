@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ClassicModeScenario" load_steps=14 format=3 uid="uid://dfppi52cluswe"]
+[gd_resource type="Resource" script_class="ClassicModeScenario" load_steps=15 format=3 uid="uid://dfppi52cluswe"]
 
 [ext_resource type="Script" uid="uid://bf5ts565hp5p4" path="res://scripts/resources/enemy_profile_list.gd" id="1_lrgw3"]
 [ext_resource type="Script" uid="uid://cbb8lvjddytcc" path="res://scripts/resources/scenario.gd" id="2_4sqow"]
@@ -6,6 +6,7 @@
 [ext_resource type="Resource" uid="uid://bepy1x4bj1nga" path="res://resources/enemy_profiles/profile_eyes.tres" id="3_gfywi"]
 [ext_resource type="Resource" uid="uid://5btde08a1exu" path="res://resources/enemy_profiles/profile_chaser.tres" id="4_pj7na"]
 [ext_resource type="Resource" uid="uid://ceka8pclkwv8e" path="res://resources/enemy_profiles/profile_gum.tres" id="5_ag41v"]
+[ext_resource type="Resource" uid="uid://qmx2f7d1vom" path="res://resources/enemy_profiles/profile_scamlikely.tres" id="6_gfywi"]
 
 [sub_resource type="Resource" id="Resource_8v8fc"]
 script = ExtResource("1_lrgw3")
@@ -24,7 +25,7 @@ metadata/_custom_type_script = "uid://bf5ts565hp5p4"
 
 [sub_resource type="Resource" id="Resource_aqv20"]
 script = ExtResource("1_lrgw3")
-profiles = Array[ExtResource("2_rafth")]([ExtResource("5_ag41v")])
+profiles = Array[ExtResource("2_rafth")]([ExtResource("6_gfywi")])
 metadata/_custom_type_script = "uid://bf5ts565hp5p4"
 
 [sub_resource type="Resource" id="Resource_eg2jq"]

@@ -18,7 +18,7 @@ var progress: bool = false
 @onready var voice: RichTextLabel = $Voice
 
 func _ready() -> void:
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	progression.append($CharacterNaming)
 	
 	if seen:
@@ -68,6 +68,6 @@ func _on_line_edit_text_submitted(new_text: String) -> void:
 		Progression.set_player_name(new_text)
 		$CharacterNaming/LineEdit.release_focus()
 		$CharacterNaming.visible = false
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 		await get_tree().create_timer(3).timeout
 		next_stage()

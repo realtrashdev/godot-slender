@@ -62,8 +62,6 @@ func spawn_enemy() -> Node:
 			spawn_2d_enemy(enemy)
 		profile.EnemyType.ENEMY_3D:
 			spawn_3d_enemy(enemy)
-		profile.EnemyType.ENEMY_COMPONENT:
-			spawn_component_enemy(enemy)
 	
 	Signals.enemy_spawned.emit(profile.type)
 	
@@ -98,12 +96,14 @@ func spawn_component_enemy(enemy: ComponentEnemy):
 	if not enabled:
 		return
 	
-	for component in get_tree().get_nodes_in_group("ComponentEnemy"):
-		if component == enemy:
-			push_warning("Tried spawning %s twice. (Failed due to ComponentEnemy restriction)" % enemy.profile.name)
-			disable_spawner()
+	if get_tree():
+		for component in get_tree().get_nodes_in_group("ComponentEnemy"):
+			if component == enemy:
+				push_warning("Tried spawning %s twice. (Failed due to ComponentEnemy restriction)" % enemy.profile.name)
+				disable_spawner()
 	
 	print("ComponentEnemy Spawned")
+	enemy.profile = profile
 	enemy.attach_component(player)
 	
 	# Only one component enemy gets spawned, as they are just a tool for attaching components to others
@@ -130,6 +130,9 @@ func check_enable():
 func enable_spawner():
 	print("Enabled " + profile.name + " Spawner")
 	enabled = true
+	
+	if profile.enemy_type == profile.EnemyType.ENEMY_COMPONENT:
+		spawn_component_enemy(enemy_scene.instantiate())
 
 func disable_spawner():
 	enabled = false

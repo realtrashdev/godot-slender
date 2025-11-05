@@ -58,6 +58,9 @@ func show_scenario(sc: ClassicModeScenario):
 
 func show_objective():
 	display_text("[wave]Collect %d pages" % game_state.current_pages_required, 1, 3, 1)
+	
+	if scenario:
+		scenario_specific_events()
 
 func taking_too_long():
 	display_text(too_long_text.text, TL_CHARACTER_TIME, TL_DISPLAY_TIME, TL_CHARACTER_TIME, too_long_text)
@@ -105,3 +108,11 @@ func scenario_specific_events():
 	if scenario.resource_name == "basics2" and game_state.current_pages_collected == 4:
 		await get_tree().create_timer(3).timeout
 		display_text("[wave][F] Toggle Flashlight", 1, 5, 1, pages_text)
+	
+	if scenario.resource_name == "basics1" and game_state.current_pages_collected == 0:
+		await get_tree().create_timer(5).timeout
+		display_text("[wave][RIGHT CLICK] Toggle Radar", 1, 5, 1, pages_text)
+	
+	if scenario.resource_name == "basics3" and game_state.current_pages_collected == 1:
+		await get_tree().create_timer(3).timeout
+		display_text("[wave][RIGHT CLICK] Toggle Radar", 1, 5, 1, pages_text)

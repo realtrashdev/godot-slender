@@ -1,15 +1,16 @@
-[gd_resource type="Resource" script_class="ClassicModeScenario" load_steps=11 format=3 uid="uid://cewinant3mi1v"]
+[gd_resource type="Resource" script_class="ClassicModeScenario" load_steps=12 format=3 uid="uid://cewinant3mi1v"]
 
 [ext_resource type="Script" uid="uid://bf5ts565hp5p4" path="res://scripts/resources/enemy_profile_list.gd" id="1_qwlcu"]
 [ext_resource type="Script" uid="uid://c426kdmp0e6tf" path="res://scripts/resources/enemy_profile.gd" id="2_sy0hw"]
 [ext_resource type="Resource" uid="uid://5btde08a1exu" path="res://resources/enemy_profiles/profile_chaser.tres" id="3_d8xjs"]
 [ext_resource type="Resource" uid="uid://ceka8pclkwv8e" path="res://resources/enemy_profiles/profile_gum.tres" id="4_n30uk"]
+[ext_resource type="Resource" uid="uid://qmx2f7d1vom" path="res://resources/enemy_profiles/profile_scamlikely.tres" id="4_sy0hw"]
 [ext_resource type="Resource" uid="uid://bepy1x4bj1nga" path="res://resources/enemy_profiles/profile_eyes.tres" id="5_keo56"]
 [ext_resource type="Script" uid="uid://cbb8lvjddytcc" path="res://scripts/resources/scenario.gd" id="6_wtyfx"]
 
 [sub_resource type="Resource" id="Resource_5cs33"]
 script = ExtResource("1_qwlcu")
-profiles = Array[ExtResource("2_sy0hw")]([ExtResource("3_d8xjs")])
+profiles = Array[ExtResource("2_sy0hw")]([ExtResource("3_d8xjs"), ExtResource("4_sy0hw")])
 metadata/_custom_type_script = "uid://bf5ts565hp5p4"
 
 [sub_resource type="Resource" id="Resource_op8sr"]

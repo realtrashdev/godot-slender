@@ -1,0 +1,57 @@
+[gd_resource type="Resource" script_class="ClassicModeScenario" load_steps=13 format=3 uid="uid://csigmb8evkba0"]
+
+[ext_resource type="Script" uid="uid://bf5ts565hp5p4" path="res://scripts/resources/enemy_profile_list.gd" id="1_pteyw"]
+[ext_resource type="Script" uid="uid://c426kdmp0e6tf" path="res://scripts/resources/enemy_profile.gd" id="2_ccppb"]
+[ext_resource type="Script" uid="uid://cbb8lvjddytcc" path="res://scripts/resources/scenario.gd" id="2_icmfe"]
+[ext_resource type="Resource" uid="uid://ceka8pclkwv8e" path="res://resources/enemy_profiles/profile_gum.tres" id="3_uhm2t"]
+[ext_resource type="Resource" uid="uid://qmx2f7d1vom" path="res://resources/enemy_profiles/profile_scamlikely.tres" id="4_bnl2p"]
+[ext_resource type="Resource" uid="uid://bepy1x4bj1nga" path="res://resources/enemy_profiles/profile_eyes.tres" id="5_m7wl7"]
+
+[sub_resource type="Resource" id="Resource_x64rf"]
+script = ExtResource("1_pteyw")
+profiles = Array[ExtResource("2_ccppb")]([ExtResource("3_uhm2t"), ExtResource("4_bnl2p")])
+metadata/_custom_type_script = "uid://bf5ts565hp5p4"
+
+[sub_resource type="Resource" id="Resource_exexa"]
+script = ExtResource("1_pteyw")
+profiles = Array[ExtResource("2_ccppb")]([ExtResource("3_uhm2t")])
+metadata/_custom_type_script = "uid://bf5ts565hp5p4"
+
+[sub_resource type="Resource" id="Resource_oey7s"]
+script = ExtResource("1_pteyw")
+profiles = Array[ExtResource("2_ccppb")]([ExtResource("5_m7wl7"), ExtResource("4_bnl2p")])
+metadata/_custom_type_script = "uid://bf5ts565hp5p4"
+
+[sub_resource type="Resource" id="Resource_gq32t"]
+script = ExtResource("1_pteyw")
+profiles = Array[ExtResource("2_ccppb")]([ExtResource("3_uhm2t")])
+metadata/_custom_type_script = "uid://bf5ts565hp5p4"
+
+[sub_resource type="Resource" id="Resource_fam6g"]
+script = ExtResource("1_pteyw")
+profiles = Array[ExtResource("2_ccppb")]([ExtResource("5_m7wl7"), ExtResource("4_bnl2p")])
+metadata/_custom_type_script = "uid://bf5ts565hp5p4"
+
+[sub_resource type="Resource" id="Resource_3q3p4"]
+script = ExtResource("1_pteyw")
+profiles = Array[ExtResource("2_ccppb")]([ExtResource("3_uhm2t")])
+metadata/_custom_type_script = "uid://bf5ts565hp5p4"
+
+[resource]
+resource_name = "overstimulation"
+script = ExtResource("2_icmfe")
+name = "Overstimulation"
+description = "Yeah this one's just annoying..."
+enemies_to_add = Dictionary[int, ExtResource("1_pteyw")]({
+0: SubResource("Resource_x64rf"),
+1: SubResource("Resource_exexa"),
+2: SubResource("Resource_oey7s"),
+3: SubResource("Resource_gq32t"),
+4: SubResource("Resource_fam6g"),
+5: SubResource("Resource_3q3p4"),
+6: null,
+7: null
+})
+required_pages = 6
+total_pages = 8
+metadata/_custom_type_script = "uid://cbb8lvjddytcc"

@@ -1,11 +1,14 @@
-[gd_scene load_steps=12 format=3 uid="uid://bs3li0f18d3eo"]
+[gd_scene load_steps=15 format=3 uid="uid://bs3li0f18d3eo"]
 
 [ext_resource type="Texture2D" uid="uid://dcq13bpt00ild" path="res://art/2d/radar_screen_base.aseprite" id="1_mydgx"]
 [ext_resource type="Script" uid="uid://cv2r4yqm2jy82" path="res://scripts/player/radar/radar_screen.gd" id="1_wowfs"]
 [ext_resource type="AudioStream" uid="uid://dlid2b84gmver" path="res://audio/music/default_ringtone.mp3" id="2_3wt7d"]
-[ext_resource type="Texture2D" uid="uid://cair682vr2gyy" path="res://art/2d/radar_screen_pegglemockup.aseprite" id="2_tux1c"]
+[ext_resource type="Script" uid="uid://0xwcev5ljsb1" path="res://scripts/player/radar/radar_audio_component.gd" id="2_hjd67"]
+[ext_resource type="AudioStream" uid="uid://chggo02dqakbk" path="res://audio/music/dragon_ringtone.mp3" id="3_hjd67"]
 [ext_resource type="FontFile" uid="uid://6lpo01dlrh4f" path="res://fonts/Pixeled.ttf" id="4_on3qy"]
+[ext_resource type="Script" uid="uid://cb4xt1lkvy6t2" path="res://scripts/player/radar/screens/screen_home.gd" id="5_hjd67"]
 [ext_resource type="Texture2D" uid="uid://8uewbj2acg86" path="res://art/2d/icon_batterydead.aseprite" id="6_3wt7d"]
+[ext_resource type="Script" uid="uid://t72o3ua13abn" path="res://scripts/player/radar/screens/screen_incoming_call.gd" id="8_oqbb0"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wowfs"]
 
@@ -30,11 +33,12 @@ script = ExtResource("1_wowfs")
 [node name="BatteryComponent" type="Node" parent="."]
 
 [node name="AudioComponent" type="Node" parent="."]
+script = ExtResource("2_hjd67")
+ringtones = Array[AudioStream]([ExtResource("2_3wt7d"), ExtResource("3_hjd67")])
 
-[node name="RadarAudio" type="AudioStreamPlayer" parent="AudioComponent"]
-stream = ExtResource("2_3wt7d")
+[node name="RingtoneAudio" type="AudioStreamPlayer" parent="AudioComponent"]
+stream = ExtResource("3_hjd67")
 volume_db = -15.0
-autoplay = true
 bus = &"PlayerRadar"
 parameters/looping = true
 
@@ -123,7 +127,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_3wt7d")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_3jnr6")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_hjd67")
 
-[node name="GameButton" type="Button" parent="BaseScreen"]
+[node name="HelpButton" type="Button" parent="BaseScreen"]
 offset_left = -16.0
 offset_top = -72.0
 offset_right = 16.0
@@ -136,6 +140,8 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_3jnr6")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_hjd67")
 
 [node name="HomeScreen" type="Node2D" parent="."]
+visible = false
+script = ExtResource("5_hjd67")
 
 [node name="HomeText" type="RichTextLabel" parent="HomeScreen"]
 clip_contents = false
@@ -160,16 +166,85 @@ theme_override_fonts/normal_font = ExtResource("4_on3qy")
 theme_override_font_sizes/normal_font_size = 5
 bbcode_enabled = true
 text = "[rainbow sat=0.999 val=10 speed=1]PAGES:
-0/8"
+0 / 8"
 scroll_active = false
 shortcut_keys_enabled = false
 
-[node name="GameScreen" type="Sprite2D" parent="."]
+[node name="TrackerScreen" type="Node2D" parent="."]
 visible = false
-position = Vector2(80, 79)
-texture = ExtResource("2_tux1c")
+
+[node name="RadarText" type="RichTextLabel" parent="TrackerScreen"]
+clip_contents = false
+offset_left = 7.0
+offset_top = 17.0
+offset_right = 66.0
+offset_bottom = 31.0
+theme_override_fonts/normal_font = ExtResource("4_on3qy")
+theme_override_font_sizes/normal_font_size = 5
+bbcode_enabled = true
+text = "PAGE TRACKER"
+scroll_active = false
+shortcut_keys_enabled = false
+
+[node name="PagesText" type="RichTextLabel" parent="TrackerScreen"]
+clip_contents = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 10.0
+offset_top = 58.0
+offset_right = 151.0
+offset_bottom = 87.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("4_on3qy")
+theme_override_font_sizes/normal_font_size = 5
+bbcode_enabled = true
+text = "NOT FINISHED :[
+(WILL POINT YOU TO NEAREST PAGE)"
+scroll_active = false
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+
+[node name="HelpScreen" type="Node2D" parent="."]
+visible = false
+
+[node name="HelpText" type="RichTextLabel" parent="HelpScreen"]
+clip_contents = false
+offset_left = 7.0
+offset_top = 17.0
+offset_right = 66.0
+offset_bottom = 31.0
+theme_override_fonts/normal_font = ExtResource("4_on3qy")
+theme_override_font_sizes/normal_font_size = 5
+bbcode_enabled = true
+text = "HELP MENU"
+scroll_active = false
+shortcut_keys_enabled = false
+
+[node name="BodyText" type="RichTextLabel" parent="HelpScreen"]
+clip_contents = false
+offset_left = 7.0
+offset_top = 42.0
+offset_right = 153.0
+offset_bottom = 137.0
+theme_override_fonts/normal_font = ExtResource("4_on3qy")
+theme_override_font_sizes/normal_font_size = 5
+bbcode_enabled = true
+text = "TRY TO STAY ON THE PATH!
+PAGES WILL NOT SPAWN IN THE OUTER FOREST, AND THE GRASS SLOWS YOU DOWN.
+
+
+SO HELPFUL! :] YAY!
+
+"
+scroll_active = false
+shortcut_keys_enabled = false
 
 [node name="DeadBatteryScreen" type="Node2D" parent="."]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="DeadBatteryScreen"]
 offset_right = 160.0
@@ -179,3 +254,83 @@ color = Color(0, 0, 0, 1)
 [node name="Sprite2D" type="Sprite2D" parent="DeadBatteryScreen"]
 position = Vector2(80, 72)
 texture = ExtResource("6_3wt7d")
+
+[node name="IncomingCallScreen" type="Node2D" parent="."]
+visible = false
+z_index = 1
+script = ExtResource("8_oqbb0")
+
+[node name="ColorRect" type="ColorRect" parent="IncomingCallScreen"]
+offset_right = 160.0
+offset_bottom = 144.0
+color = Color(0, 0, 0, 1)
+
+[node name="HomeText" type="RichTextLabel" parent="IncomingCallScreen/ColorRect"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -57.0
+offset_top = -38.0
+offset_right = 57.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("4_on3qy")
+theme_override_font_sizes/normal_font_size = 10
+bbcode_enabled = true
+text = "[pulse freq=3]INCOMING CALL"
+scroll_active = false
+shortcut_keys_enabled = false
+
+[node name="DeclineButton" type="Button" parent="IncomingCallScreen/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.0
+offset_top = 14.0
+offset_right = 19.0
+offset_bottom = 31.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxEmpty_wowfs")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_wowfs")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3wt7d")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_3jnr6")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hjd67")
+
+[node name="DeclineText" type="RichTextLabel" parent="IncomingCallScreen/ColorRect/DeclineButton"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.25
+offset_top = -7.5
+offset_right = 16.25
+offset_bottom = 5.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("4_on3qy")
+theme_override_font_sizes/normal_font_size = 5
+bbcode_enabled = true
+text = "DECLINE"
+scroll_active = false
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+
+[connection signal="pressed" from="BaseScreen/HomeButton" to="." method="_on_home_button_pressed"]
+[connection signal="pressed" from="BaseScreen/PageButton" to="." method="_on_page_button_pressed"]
+[connection signal="pressed" from="BaseScreen/HelpButton" to="." method="_on_help_button_pressed"]
+[connection signal="call_ended" from="IncomingCallScreen" to="." method="call_ended"]
+[connection signal="button_down" from="IncomingCallScreen/ColorRect/DeclineButton" to="IncomingCallScreen" method="_on_decline_button_pressed"]

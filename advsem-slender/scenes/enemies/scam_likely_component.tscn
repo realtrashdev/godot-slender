@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0qyoptg5o7uf"]
+
+[ext_resource type="Script" uid="uid://b081pdyfr8xw4" path="res://scripts/enemies/enemy_scamlikely.gd" id="1_6gp1h"]
+
+[node name="ScamLikelyComponent" type="Node"]
+script = ExtResource("1_6gp1h")

@@ -27,7 +27,7 @@ func _on_start_pressed():
 
 ## TODO change back to CHARACTER_SELECT once implemented
 func _on_back_pressed():
-	go_to_menu(MenuConfig.MenuType.MODE_SELECT, MenuConfig.TransitionDirection.BACKWARD, true)
+	go_to_menu(MenuConfig.MenuType.MAIN, MenuConfig.TransitionDirection.BACKWARD, true)
 
 func _on_menu_pressed():
 	go_to_menu(MenuConfig.MenuType.MAIN, MenuConfig.TransitionDirection.BACKWARD, true)

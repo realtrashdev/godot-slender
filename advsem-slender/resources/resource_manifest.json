@@ -18,6 +18,7 @@
 		"res://resources/enemy_profiles/profile_chaser.tres",
 		"res://resources/enemy_profiles/profile_eyes.tres",
 		"res://resources/enemy_profiles/profile_gum.tres",
+		"res://resources/enemy_profiles/profile_scamlikely.tres",
 		"res://resources/enemy_profiles/profile_tallgrass.tres"
 	],
 	"maps": [
@@ -29,6 +30,7 @@
 		"res://resources/scenarios/scenario_basics3.tres",
 		"res://resources/scenarios/scenario_eyesattack.tres",
 		"res://resources/scenarios/scenario_gumpocalypse.tres",
+		"res://resources/scenarios/scenario_overstimulation.tres",
 		"res://resources/scenarios/scenario_symmetry.tres",
 		"res://resources/scenarios/scenario_ultra_gumpocalypse.tres"
 	]

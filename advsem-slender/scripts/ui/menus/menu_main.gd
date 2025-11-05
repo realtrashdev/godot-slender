@@ -20,7 +20,7 @@ func _ready() -> void:
 		quit_button.wait_time = 0.3
 
 func _on_play_pressed():
-	go_to_menu(MenuConfig.MenuType.MODE_SELECT, MenuConfig.TransitionDirection.FORWARD, true)
+	go_to_menu(MenuConfig.MenuType.MAP_SELECT, MenuConfig.TransitionDirection.FORWARD, true)
 
 func _on_customize_pressed():
 	go_to_menu(MenuConfig.MenuType.CUSTOMIZE, MenuConfig.TransitionDirection.FORWARD, true)

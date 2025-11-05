@@ -19,6 +19,9 @@ func initialize_game():
 	game_state = GameState.new()
 	game_state.update_game_mode(Settings.get_selected_game_mode())
 	
+	# init player
+	player.initialize(game_state)
+	
 	# init managers
 	page_manager.initialize(game_state)
 	

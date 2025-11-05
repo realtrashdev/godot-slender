@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Map" load_steps=12 format=3 uid="uid://b33fas27xip3m"]
+[gd_resource type="Resource" script_class="Map" load_steps=13 format=3 uid="uid://b33fas27xip3m"]
 
 [ext_resource type="Texture2D" uid="uid://evxxie4oh732" path="res://art/2d/maps/icon_forest.aseprite" id="1_6aor4"]
 [ext_resource type="Script" uid="uid://cbb8lvjddytcc" path="res://scripts/resources/scenario.gd" id="1_uaxxu"]
@@ -10,6 +10,7 @@
 [ext_resource type="Resource" uid="uid://bgdg1umse7sms" path="res://resources/scenarios/scenario_eyesattack.tres" id="5_n5j7t"]
 [ext_resource type="Resource" uid="uid://cl3yw8vhoox2k" path="res://resources/scenarios/scenario_gumpocalypse.tres" id="6_lanb1"]
 [ext_resource type="Resource" uid="uid://bcp2t6o8su54u" path="res://resources/scenarios/scenario_ultra_gumpocalypse.tres" id="7_0rdef"]
+[ext_resource type="Resource" uid="uid://csigmb8evkba0" path="res://resources/scenarios/scenario_overstimulation.tres" id="7_yu20k"]
 [ext_resource type="Resource" uid="uid://dfppi52cluswe" path="res://resources/scenarios/scenario_symmetry.tres" id="9_oowi3"]
 
 [resource]
@@ -19,5 +20,5 @@ map_name = "Silent Forest"
 description = "A small, fenced off area of woods that quietly endures an empty universe."
 icon = ExtResource("1_6aor4")
 scene = ExtResource("2_nws2a")
-scenarios = Array[ExtResource("1_uaxxu")]([ExtResource("2_6aor4"), ExtResource("3_n5j7t"), ExtResource("5_mmos2"), ExtResource("9_oowi3"), ExtResource("5_n5j7t"), ExtResource("6_lanb1"), ExtResource("7_0rdef")])
+scenarios = Array[ExtResource("1_uaxxu")]([ExtResource("2_6aor4"), ExtResource("3_n5j7t"), ExtResource("5_mmos2"), ExtResource("9_oowi3"), ExtResource("7_yu20k"), ExtResource("5_n5j7t"), ExtResource("6_lanb1"), ExtResource("7_0rdef")])
 metadata/_custom_type_script = "uid://c5eutrojptljn"

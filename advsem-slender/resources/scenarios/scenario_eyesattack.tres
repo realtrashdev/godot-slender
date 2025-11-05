@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="ClassicModeScenario" load_steps=9 format=3 uid="uid://bgdg1umse7sms"]
+[gd_resource type="Resource" script_class="ClassicModeScenario" load_steps=11 format=3 uid="uid://bgdg1umse7sms"]
 
 [ext_resource type="Script" uid="uid://bf5ts565hp5p4" path="res://scripts/resources/enemy_profile_list.gd" id="1_8fubv"]
 [ext_resource type="Script" uid="uid://cbb8lvjddytcc" path="res://scripts/resources/scenario.gd" id="2_3hcq7"]
 [ext_resource type="Script" uid="uid://c426kdmp0e6tf" path="res://scripts/resources/enemy_profile.gd" id="2_brhq3"]
 [ext_resource type="Resource" uid="uid://bepy1x4bj1nga" path="res://resources/enemy_profiles/profile_eyes.tres" id="3_17g22"]
 [ext_resource type="Resource" uid="uid://5btde08a1exu" path="res://resources/enemy_profiles/profile_chaser.tres" id="4_ipujc"]
+[ext_resource type="Resource" uid="uid://qmx2f7d1vom" path="res://resources/enemy_profiles/profile_scamlikely.tres" id="5_17g22"]
 
 [sub_resource type="Resource" id="Resource_jquuf"]
 script = ExtResource("1_8fubv")
@@ -21,6 +22,11 @@ script = ExtResource("1_8fubv")
 profiles = Array[ExtResource("2_brhq3")]([ExtResource("3_17g22")])
 metadata/_custom_type_script = "uid://bf5ts565hp5p4"
 
+[sub_resource type="Resource" id="Resource_ipujc"]
+script = ExtResource("1_8fubv")
+profiles = Array[ExtResource("2_brhq3")]([ExtResource("5_17g22")])
+metadata/_custom_type_script = "uid://bf5ts565hp5p4"
+
 [resource]
 resource_name = "eyesattack"
 script = ExtResource("2_3hcq7")
@@ -31,7 +37,7 @@ enemies_to_add = Dictionary[int, ExtResource("1_8fubv")]({
 1: SubResource("Resource_fb7op"),
 2: null,
 3: SubResource("Resource_brhq3"),
-4: null,
+4: SubResource("Resource_ipujc"),
 5: null,
 6: null,
 7: null

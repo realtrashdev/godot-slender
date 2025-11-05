@@ -29,13 +29,11 @@ func _ready() -> void:
 	restriction_component = player.get_node("RestrictionComponent")
 	audio = radar_screen.audio
 	
-	# Optional: Connect to input component signals
+	# connect to input component signals
 	input_component.screen_clicked.connect(_on_screen_clicked)
 	
-	# Start with input disabled
+	# start with input disabled
 	input_component.set_enabled(false)
-	
-	radar_screen.initialize(game_state, player)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("toggle_radar") and can_toggle and active:
@@ -44,35 +42,41 @@ func _input(event: InputEvent) -> void:
 		await get_tree().create_timer(0.5).timeout
 		can_toggle = true
 
+func initialize(state: GameState):
+	game_state = state
+	radar_screen.initialize(state, player)
+
 func toggle_radar():
+	# CRITICAL investigate bug where taking the radar out while gum is on screen and then clicking him crashes the game (not responding)
+	if restriction_component.check_for_restriction(PlayerRestriction.RestrictionType.CAMERA_FULL):
+		return
+	
 	# Disable input IMMEDIATELY when toggling
 	input_component.set_enabled(false)
 	
-	match restriction_component.check_for_restriction(PlayerRestriction.RestrictionType.RADAR):
-		true:
-			focused = false
-			restriction_component.remove_restrictions_from_source("player_radar")
-			update_audio()
-			update_position()
-		false:
-			focused = true
-			restriction_component.add_restriction(PlayerRestriction.RestrictionType.RADAR, "player_radar")
-			update_audio()
-			update_position()
+	if restriction_component.check_for_restriction(PlayerRestriction.RestrictionType.RADAR):
+		focused = false
+		restriction_component.remove_restrictions_from_source("player_radar")
+		update_audio()
+		update_position()
+	else:
+		focused = true
+		restriction_component.add_restriction(PlayerRestriction.RestrictionType.RADAR, "player_radar")
+		update_audio()
+		update_position()
 	
 	radar_toggled.emit(focused)
 
 func update_position():
 	var final_pos: Vector3
 	var final_rot: Vector3
-	match focused:
-		true:
-			final_pos = OUT_POS
-			final_rot = OUT_ROT
-		false:
-			final_pos = AWAY_POS
-			final_rot = AWAY_ROT
-			final_pos.x += randf_range(-0.25, 0.25)
+	if focused:
+		final_pos = OUT_POS
+		final_rot = OUT_ROT
+	else:
+		final_pos = AWAY_POS
+		final_rot = AWAY_ROT
+		final_pos.x += randf_range(-0.25, 0.25)
 	
 	if pos_tween:
 		pos_tween.kill()
@@ -90,6 +94,7 @@ func update_position():
 			input_component.set_enabled(true)
 	, CONNECT_ONE_SHOT)
 
+# TODO change to update audio component, move current stuff into a func in there
 func update_audio():
 	var bus = AudioServer.get_bus_index("PlayerRadar")
 	AudioServer.set_bus_effect_enabled(bus, 0, !focused)

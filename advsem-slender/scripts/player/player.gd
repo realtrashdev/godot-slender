@@ -4,7 +4,11 @@ extends CharacterBody3D
 
 const MENU_SCENE = "res://scenes/ui/menus/menu_base.tscn"
 
+var game_state: GameState
+
 var active: bool = false
+
+var quit_timer: float = 0.0
 
 @onready var movement_component: PlayerMovementComponent = $MovementComponent
 @onready var camera_component: PlayerCameraComponent = $CameraComponent
@@ -19,7 +23,11 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if Input.is_key_pressed(KEY_ESCAPE):
-		get_tree().change_scene_to_file(MENU_SCENE)
+		quit_timer += delta
+		if quit_timer >= 1.0:
+			get_tree().change_scene_to_file(MENU_SCENE)
+	elif quit_timer > 0:
+		quit_timer = 0.0
 
 func _physics_process(delta: float) -> void:
 	camera_component.handle_camera_physics(delta)
@@ -28,6 +36,10 @@ func _physics_process(delta: float) -> void:
 
 func _input(event):
 	camera_component.handle_input(event)
+
+func initialize(state: GameState):
+	game_state = state
+	radar.initialize(state)
 
 func die():
 	Signals.player_died.emit()
