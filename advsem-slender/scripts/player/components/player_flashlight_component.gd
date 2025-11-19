@@ -12,6 +12,7 @@ var rotation_override: float = 0
 var sprint_angle_modifier: float = 20
 var flashlight_offset := Vector3(0, 0, 0)
 var time_count: float
+var can_use_flashlight: bool = true
 
 var target_brightness: float
 
@@ -51,7 +52,7 @@ func _process(delta: float) -> void:
 	time_count += delta
 	$"../Head/Flashlight/RayCast3D".enabled = !movement_component.is_sprinting()
 	
-	if Input.is_action_just_pressed("toggle_light"):
+	if Input.is_action_just_pressed("toggle_light") and can_use_flashlight:
 		toggle_light(!light.visible)
 
 func handle_flashlight_physics(delta: float):
@@ -165,8 +166,14 @@ func get_light_status() -> bool:
 func activate():
 	set_process(true)
 	flashlight.visible = true
+	
+	if can_use_flashlight:
+		toggle_light(true)
+	else:
+		light.visible = false
+		omni_light.visible = true
+	
 	flashlight.set_process(true)
-	toggle_light(true)
 
 func deactivate():
 	set_process(false)

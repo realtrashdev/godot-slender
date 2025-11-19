@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dcq13bpt00ild"
-path="res://.godot/imported/radar_screen_base.aseprite-d542ca52680efd5a9b13a00d1ecfe6cf.ctex"
+path="res://.godot/imported/radar_screen_base.aseprite-14c2e42b1cc4104304a82a999e9badda.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/2d/radar_screen_base.aseprite"
-dest_files=["res://.godot/imported/radar_screen_base.aseprite-d542ca52680efd5a9b13a00d1ecfe6cf.ctex"]
+source_file="res://art/2d/characters/radar_screen_base.aseprite"
+dest_files=["res://.godot/imported/radar_screen_base.aseprite-14c2e42b1cc4104304a82a999e9badda.ctex"]
 
 [params]
 

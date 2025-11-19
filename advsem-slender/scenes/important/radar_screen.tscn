@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://bs3li0f18d3eo"]
 
-[ext_resource type="Texture2D" uid="uid://dcq13bpt00ild" path="res://art/2d/radar_screen_base.aseprite" id="1_mydgx"]
+[ext_resource type="Texture2D" uid="uid://dcq13bpt00ild" path="res://art/2d/characters/radar_screen_base.aseprite" id="1_mydgx"]
 [ext_resource type="Script" uid="uid://cv2r4yqm2jy82" path="res://scripts/player/radar/radar_screen.gd" id="1_wowfs"]
 [ext_resource type="AudioStream" uid="uid://dlid2b84gmver" path="res://audio/music/default_ringtone.mp3" id="2_3wt7d"]
 [ext_resource type="Script" uid="uid://0xwcev5ljsb1" path="res://scripts/player/radar/radar_audio_component.gd" id="2_hjd67"]
@@ -140,7 +140,6 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_3jnr6")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_hjd67")
 
 [node name="HomeScreen" type="Node2D" parent="."]
-visible = false
 script = ExtResource("5_hjd67")
 
 [node name="HomeText" type="RichTextLabel" parent="HomeScreen"]
