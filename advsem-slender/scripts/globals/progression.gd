@@ -14,9 +14,12 @@ var data: Dictionary = {
 	# Unlocks
 	"unlocked_modes": [GameConfig.GameMode.CLASSIC],
 	"unlocked_scenarios": ["basics1"],
-	"unlocked_characters": ["default", "dragon"],
+	"unlocked_characters": ["default"],
 	"unlocked_palettes": ["grayscale"],
 	"unlocked_maps": ["forest"],
+	
+	# Completion
+	"completed_scenarios": []
 }
 
 #region Stats
@@ -123,6 +126,25 @@ func get_unlocked_maps() -> Array[Map]:
 	return ResourceDatabase.get_unlocked_maps(data.get("unlocked_maps", ["forest"]))
 #endregion
 
+#region Completion
+func complete_scenario(scenario_id: String):
+	if not data["completed_scenarios"].has(scenario_id):
+		data["completed_scenarios"].append(scenario_id)
+		SaveManager.save_game()
+
+#
+# Check if singular id is complete
+#
+func is_scenario_completed(scenario_id: String) -> bool:
+	return data["completed_scenarios"].has(scenario_id)
+
+#
+# Get array of all completed
+#
+func get_completed_scenarios() -> Array[ClassicModeScenario]:
+	return ResourceDatabase.get_unlocked_scenarios(data.get("completed_scenarios", []))
+#endregion
+
 func reset_to_defaults():
 	data = {
 		"player_name": "Unnamed",
@@ -132,8 +154,10 @@ func reset_to_defaults():
 		
 		"unlocked_modes": [GameConfig.GameMode.CLASSIC],
 		"unlocked_scenarios": ["basics1"],
-		"unlocked_characters": ["default", "dragon"],
+		"unlocked_characters": ["default"],
 		"unlocked_palettes": ["grayscale", "red", "orange", "yellow", "green", "blue", "purple", "gameboy", "cottoncandy"],
-		"unlocked_maps": ["forest"]
+		"unlocked_maps": ["forest"],
+		
+		"completed_scenarios": [],
 	}
 	SaveManager.save_game()

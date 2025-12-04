@@ -21,7 +21,9 @@ enum Map { FOREST }
 @export var total_pages: int = 0
 
 @export_category("Unlocking")
-@export var unlocks: Dictionary[String, Array] = {}
+@export var unlock_requirements: Dictionary[String, Array] = {
+	"scenarios": [],
+}
 
 func get_all_enemy_profiles() -> Array[EnemyProfile]:
 	var array: Array[EnemyProfile] = []
@@ -33,5 +35,10 @@ func get_all_enemy_profiles() -> Array[EnemyProfile]:
 	
 	return array
 
-func scenario_beaten():
-	UnlockHelper.process_unlocks(unlocks)
+func check_for_unlock() -> bool:
+	for requirement in unlock_requirements["scenarios"]:
+		if requirement not in Progression.get_completed_scenarios():
+			print("scenario " + resource_name + " not unlocked")
+			return false
+	print("scenario " + resource_name + " unlocked")
+	return true

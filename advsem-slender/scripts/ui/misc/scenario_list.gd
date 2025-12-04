@@ -14,9 +14,7 @@ func _ready() -> void:
 	populate_list(
 		current_map.scenarios,
 		Settings.get_selected_scenario,
-		# Uncomment below when scenario unlocking is implemented:
-		#Callable()
-		func(scenario): return scenario in Progression.get_unlocked_scenarios()
+		func(scenario): return scenario.check_for_unlock()
 	)
 	
 	# Forward the generic signal to specific signal

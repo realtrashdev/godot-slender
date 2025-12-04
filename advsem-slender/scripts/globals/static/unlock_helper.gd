@@ -25,7 +25,7 @@ static func process_unlocks(unlock_data: Dictionary) -> void:
 			Progression.unlock_palette(palette_id)
 			print("Unlocking %s" % palette_id)
 
-## Since game mode unlocks tracks enum, this is necessary
+## Since game modes unlock by enum, this is necessary
 static func unlock_mode_by_name(mode_name: String) -> void:
 	var mode: GameConfig.GameMode
 	

@@ -3,7 +3,7 @@ class_name TipManager extends RefCounted
 const RARE_TIP_CHANCE: int = 50
 
 var game_tips: Array[String] = [
-	"Some enemies require you to fight back.",
+	"Some enemies require you to act to get rid of them.",
 	"You are slower in the grass.",
 	"The path will guide your way.",
 	"Pay attention to the brightness of your light.",

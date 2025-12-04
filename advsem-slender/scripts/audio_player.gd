@@ -13,6 +13,6 @@ func _ready() -> void:
 func set_volume(new_volume: float):
 	volume_db = new_volume
 
-func set_volume_smooth(new_volume: float, tween_duration: float, start_volume: float = new_volume, ease: Tween.EaseType = Tween.EASE_OUT, transition: Tween.TransitionType = Tween.TRANS_QUAD):
+func set_volume_smooth(new_volume: float, tween_duration: float, start_volume: float = new_volume, easing: Tween.EaseType = Tween.EASE_OUT, transition: Tween.TransitionType = Tween.TRANS_QUAD):
 	volume_db = start_volume
-	create_tween().tween_property(self, "volume_db", new_volume, tween_duration).set_ease(ease).set_trans(transition)
+	create_tween().tween_property(self, "volume_db", new_volume, tween_duration).set_ease(easing).set_trans(transition)

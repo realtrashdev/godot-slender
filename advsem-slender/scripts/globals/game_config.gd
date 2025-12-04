@@ -10,7 +10,7 @@ const MODE_CONFIG = {
 		"default_lives": 1,
 	},
 	GameMode.ENDLESS: {
-		"description": "Collect an increasing amount of specified pages.\nVisit the shop to add more threats and buy things.\nKeep going until you lose all your lives!\n[shake](lives and shop not implemented)",
+		"description": "Collect an increasing amount of specified pages.\nVisit the shop to add more threats and buy things.\nKeep going until you lose all your lives!",
 		"pages_required": 3,
 		"extra_pages": 2,
 		"default_lives": 3,

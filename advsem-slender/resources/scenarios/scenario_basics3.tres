@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ClassicModeScenario" load_steps=12 format=3 uid="uid://cewinant3mi1v"]
+[gd_resource type="Resource" script_class="ClassicModeScenario" load_steps=13 format=3 uid="uid://cewinant3mi1v"]
 
 [ext_resource type="Script" uid="uid://bf5ts565hp5p4" path="res://scripts/resources/enemy_profile_list.gd" id="1_qwlcu"]
 [ext_resource type="Script" uid="uid://c426kdmp0e6tf" path="res://scripts/resources/enemy_profile.gd" id="2_sy0hw"]
@@ -7,6 +7,7 @@
 [ext_resource type="Resource" uid="uid://qmx2f7d1vom" path="res://resources/enemy_profiles/profile_scamlikely.tres" id="4_sy0hw"]
 [ext_resource type="Resource" uid="uid://bepy1x4bj1nga" path="res://resources/enemy_profiles/profile_eyes.tres" id="5_keo56"]
 [ext_resource type="Script" uid="uid://cbb8lvjddytcc" path="res://scripts/resources/scenario.gd" id="6_wtyfx"]
+[ext_resource type="Resource" uid="uid://l6y0fnfsx2b5" path="res://resources/scenarios/scenario_basics2.tres" id="8_d8xjs"]
 
 [sub_resource type="Resource" id="Resource_5cs33"]
 script = ExtResource("1_qwlcu")
@@ -44,4 +45,7 @@ enemies_to_add = Dictionary[int, ExtResource("1_qwlcu")]({
 7: null
 })
 total_pages = 10
+unlock_requirements = Dictionary[String, Array]({
+"scenarios": [ExtResource("8_d8xjs")]
+})
 metadata/_custom_type_script = "uid://cbb8lvjddytcc"

@@ -81,9 +81,10 @@ func finish_game():
 	audio_manager.stop_game_audio()
 	ui_manager.show_game_end()
 	
-	if game_state.game_mode == GameConfig.GameMode.CLASSIC:
+	if game_state.game_mode == GameConfig.GameMode.CLASSIC and game_state.current_pages_collected >= game_state.current_pages_required:
 		# unlocks stuff
-		load_classic_scenario().scenario_beaten()
+		Progression.complete_scenario(load_classic_scenario().resource_name)
+		print(load_classic_scenario().resource_name + " completed")
 	
 	# handle next state
 	await get_tree().create_timer(5).timeout
