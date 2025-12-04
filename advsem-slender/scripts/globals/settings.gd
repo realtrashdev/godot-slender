@@ -75,7 +75,6 @@ func get_master_volume() -> float:
 func set_master_volume(volume: float):
 	data["master_volume"] = volume
 	setting_changed.emit("master_volume", volume)
-	SaveManager.save_game()
 
 func get_mouse_sensitivity() -> float:
 	return data.get("mouse_sensitivity", 0.002)
@@ -83,7 +82,6 @@ func get_mouse_sensitivity() -> float:
 func set_mouse_sensitivity(sensitivity: float):
 	data["mouse_sensitivity"] = sensitivity
 	setting_changed.emit("mouse_sensitivity", sensitivity)
-	SaveManager.save_game()
 
 func get_screen_mode() -> DisplayServer.WindowMode:
 	return data.get("window_mode")
@@ -91,7 +89,6 @@ func get_screen_mode() -> DisplayServer.WindowMode:
 func set_screen_mode(mode: DisplayServer.WindowMode):
 	data["window_mode"] = mode
 	setting_changed.emit("window_mode", mode)
-	SaveManager.save_game()
 
 func get_crt_opacity() -> float:
 	return data.get("crt_opacity", 0.05)
@@ -99,7 +96,6 @@ func get_crt_opacity() -> float:
 func set_crt_opacity(opacity: float):
 	data["crt_opacity"] = opacity
 	setting_changed.emit("crt_opacity", opacity)
-	SaveManager.save_game()
 
 func get_vignette_intensity() -> float:
 	return data.get("vignette_intensity", 1.0)
@@ -107,7 +103,6 @@ func get_vignette_intensity() -> float:
 func set_vignette_intensity(intensity: float):
 	data["vignette_intensity"] = intensity
 	setting_changed.emit("vignette_intensity", intensity)
-	SaveManager.save_game()
 #endregion
 
 func reset_to_defaults():

@@ -15,11 +15,11 @@ var data: Dictionary = {
 	"unlocked_modes": [GameConfig.GameMode.CLASSIC],
 	"unlocked_scenarios": ["basics1"],
 	"unlocked_characters": ["default"],
-	"unlocked_palettes": ["grayscale"],
+	"unlocked_palettes": ["grayscale", "red", "orange", "yellow", "green", "blue", "purple", "gameboy", "cottoncandy"],
 	"unlocked_maps": ["forest"],
 	
 	# Completion
-	"completed_scenarios": []
+	"completed_scenarios": ["basics1"]
 }
 
 #region Stats
@@ -158,6 +158,7 @@ func reset_to_defaults():
 		"unlocked_palettes": ["grayscale", "red", "orange", "yellow", "green", "blue", "purple", "gameboy", "cottoncandy"],
 		"unlocked_maps": ["forest"],
 		
-		"completed_scenarios": [],
+		"completed_scenarios": ["basics1"],
 	}
+	
 	SaveManager.save_game()

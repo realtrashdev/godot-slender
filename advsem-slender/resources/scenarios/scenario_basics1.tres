@@ -33,7 +33,4 @@ enemies_to_add = Dictionary[int, ExtResource("1_sdokn")]({
 })
 required_pages = 4
 total_pages = 7
-unlocks = Dictionary[String, Array]({
-"scenarios": ["basics2"]
-})
 metadata/_custom_type_script = "uid://cbb8lvjddytcc"

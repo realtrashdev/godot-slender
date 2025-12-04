@@ -5,7 +5,6 @@ const SAVE_VERSION = "0.0"
 
 func _ready():
 	load_game()
-	reset_progression()
 
 func save_game():
 	var save_dict = {

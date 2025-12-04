@@ -1,6 +1,6 @@
 extends Menu
 
-static var seen: bool = false
+static var seen: bool = true
 
 var intro_text: Array[String] = [
 	"hello there.",

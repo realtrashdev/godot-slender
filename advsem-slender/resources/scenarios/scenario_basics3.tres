@@ -48,4 +48,5 @@ total_pages = 10
 unlock_requirements = Dictionary[String, Array]({
 "scenarios": [ExtResource("8_d8xjs")]
 })
+unlock_description = "Complete \"The Basics II\" to unlock!"
 metadata/_custom_type_script = "uid://cbb8lvjddytcc"

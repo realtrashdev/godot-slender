@@ -45,11 +45,15 @@ func _setup_ui():
 		description_label.text = _get_item_description()
 	else:
 		check_box.disabled = true
-		check_box.self_modulate = Color.TRANSPARENT
+		#check_box.self_modulate = Color.DIM_GRAY
 		default_text = "???"
 		text_label.text = default_text
-		description_label.text = "Locked..."
+		description_label.text = item.unlock_description
 		overview_button.visible = false
+	
+	if item is ClassicModeScenario:
+		if item in Progression.get_completed_scenarios():
+			$CheckBox/CompletionStar.visible = true
 	
 	if item is Map:
 		check_box.layout_direction = Control.LAYOUT_DIRECTION_RTL
@@ -84,7 +88,7 @@ func _get_item_description() -> String:
 	return ""
 
 func _on_hover():
-	if disabled or not focus:
+	if not focus:
 		return
 	
 	if desc_text_tween:
@@ -98,7 +102,7 @@ func _on_hover():
 		hovered.emit()
 
 func _on_unhover():
-	if disabled or not focus:
+	if not focus:
 		return
 	
 	if not check_box.button_pressed:

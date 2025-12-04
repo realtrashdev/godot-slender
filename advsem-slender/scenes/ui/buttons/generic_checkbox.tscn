@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cg3da5yt6ei7s"]
+[gd_scene load_steps=7 format=3 uid="uid://cg3da5yt6ei7s"]
 
 [ext_resource type="Script" uid="uid://bqtcykdt2xr2a" path="res://scripts/ui/buttons/generic_checkbox.gd" id="1_chyie"]
 [ext_resource type="Theme" uid="uid://bommyqwo15hbx" path="res://theme1.tres" id="2_dlxoq"]
 [ext_resource type="PackedScene" uid="uid://6lvn3tolsp7r" path="res://scenes/ui/buttons/menu_button.tscn" id="3_bapwd"]
+[ext_resource type="Texture2D" uid="uid://c413iuvr1h48v" path="res://art/2d/peggle_ball.aseprite" id="3_dlxoq"]
 [ext_resource type="Texture2D" uid="uid://coxkbmbqwugjt" path="res://art/2d/ui/eye_icon.aseprite" id="4_epnej"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mtlq7"]
@@ -37,6 +38,24 @@ size_flags_vertical = 0
 mouse_filter = 1
 theme = ExtResource("2_dlxoq")
 expand_icon = true
+
+[node name="CompletionStar" type="TextureRect" parent="CheckBox"]
+visible = false
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -112.0
+offset_top = -12.0
+offset_right = -72.00006
+offset_bottom = 27.999962
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+mouse_filter = 2
+texture = ExtResource("3_dlxoq")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CheckBox"]
 layout_mode = 1

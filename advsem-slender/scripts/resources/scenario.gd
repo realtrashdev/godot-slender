@@ -24,6 +24,7 @@ enum Map { FOREST }
 @export var unlock_requirements: Dictionary[String, Array] = {
 	"scenarios": [],
 }
+@export_multiline var unlock_description = "Locked..."
 
 func get_all_enemy_profiles() -> Array[EnemyProfile]:
 	var array: Array[EnemyProfile] = []
