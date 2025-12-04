@@ -1,6 +1,6 @@
 extends Menu
 
-static var seen: bool = true
+static var seen: bool = false
 
 var intro_text: Array[String] = [
 	"hello there.",
@@ -12,14 +12,15 @@ var intro_text: Array[String] = [
 
 var current_spiel: Array[String] #= intro_text
 var progression: Array[Control]
+var current_screen: Control
 
 var progress: bool = false
 
 @onready var voice: RichTextLabel = $Voice
 
 func _ready() -> void:
-	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
-	progression.append($CharacterNaming)
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	progression.append($Settings)
 	
 	if seen:
 		go_to_menu(MenuConfig.MenuType.MAIN, MenuConfig.TransitionDirection.FORWARD, false)
@@ -51,23 +52,34 @@ func show_line():
 	progress = true
 
 func next_stage():
+	var tween
+	
 	if progression.is_empty():
 		seen = true
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		#HACK
+		$Settings/ConfirmButton.enabled = false
+		$CustomAudioPlayer.set_volume_smooth(-50, 5, -7, Tween.EASE_IN)
+		tween = create_tween().tween_property(current_screen, "modulate", Color.BLACK, 3)
+		await tween.finished
+		await get_tree().create_timer(2).timeout
 		go_to_menu(MenuConfig.MenuType.MAIN, MenuConfig.TransitionDirection.FORWARD, false)
 		return
 	
 	progression[0].visible = true
 	progression[0].modulate = Color.BLACK
-	var tween = create_tween().tween_property(progression[0], "modulate", Color.WHITE, 3)
+	tween = create_tween().tween_property(progression[0], "modulate", Color.WHITE, 3)
+	current_screen = progression[0]
 	progression.remove_at(0)
+	
 	await tween.finished
-	$CharacterNaming/LineEdit.grab_focus()
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func _on_line_edit_text_submitted(new_text: String) -> void:
 	if new_text.length() > 0:
 		Progression.set_player_name(new_text)
 		$CharacterNaming/LineEdit.release_focus()
 		$CharacterNaming.visible = false
-		Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		await get_tree().create_timer(3).timeout
 		next_stage()

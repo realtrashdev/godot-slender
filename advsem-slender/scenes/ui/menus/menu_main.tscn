@@ -88,21 +88,18 @@ icon_alignment = 1
 expand_icon = true
 default_text = "Customize"
 justification = 1
-wait_time = 0.4
+wait_time = 0.6
 focus_size = Vector2(375, 130)
 
-[node name="OptionsButton" parent="VBoxContainer" instance=ExtResource("4_dkf5t")]
+[node name="SettingsButton" parent="VBoxContainer" instance=ExtResource("4_dkf5t")]
 custom_minimum_size = Vector2(350, 100)
 layout_mode = 2
 size_flags_horizontal = 1
-disabled = true
 icon_alignment = 1
 expand_icon = true
-enabled = false
-default_text = "Options"
-default_color = Color(0.28301802, 0.28301802, 0.283018, 1)
+default_text = "Settings"
 justification = 1
-wait_time = 0.6
+wait_time = 1.0
 focus_size = Vector2(375, 130)
 
 [node name="QuitButton" parent="VBoxContainer" instance=ExtResource("4_dkf5t")]
@@ -113,10 +110,11 @@ icon_alignment = 1
 expand_icon = true
 default_text = "Quit"
 justification = 1
-wait_time = 0.95
+wait_time = 1.4
 focus_size = Vector2(375, 130)
 focus_text_effect = "[shake]"
 
 [connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="VBoxContainer/CustomizeButton" to="." method="_on_customize_pressed"]
+[connection signal="pressed" from="VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_pressed"]

@@ -4,7 +4,7 @@ const SAVE_PATH = "user://save_data.json"
 const SAVE_VERSION = "0.0"
 
 func _ready():
-	reset_all_data()
+	reset_progression()
 	load_game()
 
 func save_game():
@@ -54,9 +54,15 @@ func load_game():
 	else:
 		push_error("Failed to parse save file: " + json.get_error_message())
 
-func reset_all_data():
-	Settings.reset_to_defaults()
+func reset_progression():
 	Progression.reset_to_defaults()
+
+func reset_settings():
+	Settings.reset_to_defaults()
+
+func reset_all_data():
+	reset_progression()
+	reset_settings()
 	save_game()
 
 func _notification(what: int) -> void:

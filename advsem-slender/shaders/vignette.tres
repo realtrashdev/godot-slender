@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dw680upvpaw66"]
+
+[ext_resource type="Shader" uid="uid://bh72lvfhfcjul" path="res://shaders/vignette.gdshader" id="1_gbuoh"]
+
+[resource]
+shader = ExtResource("1_gbuoh")
+shader_parameter/vignette_intensity = 0.999999977648
+shader_parameter/vignette_radius = 0.70000001043084
+shader_parameter/vignette_softness = 0.41000000573696005
+shader_parameter/vignette_color = Color(0, 0, 0, 1)
+shader_parameter/screen_size = Vector2(4, 4)
+shader_parameter/dither_strength = 0.01999999955297

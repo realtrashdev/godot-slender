@@ -1,0 +1,93 @@
+[gd_scene load_steps=6 format=3 uid="uid://csit2swfr3027"]
+
+[ext_resource type="Script" uid="uid://v13xlngbccyv" path="res://scripts/ui/menus/menu_settings.gd" id="1_facpq"]
+[ext_resource type="Theme" uid="uid://bommyqwo15hbx" path="res://theme1.tres" id="2_xte0n"]
+[ext_resource type="Script" uid="uid://c3ysaqnmo1oo8" path="res://scripts/ui/ui_text.gd" id="3_q824c"]
+[ext_resource type="PackedScene" uid="uid://6lvn3tolsp7r" path="res://scenes/ui/buttons/menu_button.tscn" id="4_cfoln"]
+[ext_resource type="PackedScene" uid="uid://bkqf54hj5ec1s" path="res://scenes/ui/buttons/setting_slider.tscn" id="5_x66p6"]
+
+[node name="SettingsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(960, 350)
+script = ExtResource("1_facpq")
+
+[node name="Title" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -359.5
+offset_top = -380.0
+offset_right = 360.5
+offset_bottom = -298.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(360, 41)
+theme = ExtResource("2_xte0n")
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "[wave freq=3]Settings"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+script = ExtResource("3_q824c")
+sr_enabled = true
+sr_rotation = 3.0
+
+[node name="BackButton" parent="." instance=ExtResource("4_cfoln")]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 100.0
+offset_top = -150.0
+offset_right = 500.0
+offset_bottom = -50.0
+grow_vertical = 0
+default_text = "Go Back"
+default_color = Color(0.54497427, 0.5449743, 0.5449741, 1)
+press_color = Color(0, 0, 0, 1)
+
+[node name="DisplaySettings" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(600, 100)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -142.0
+offset_right = 300.0
+offset_bottom = 455.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 64
+
+[node name="CRT" type="MarginContainer" parent="DisplaySettings"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="CRTSlider" parent="DisplaySettings/CRT" instance=ExtResource("5_x66p6")]
+layout_mode = 2
+max_value = 0.5
+step = 0.025
+
+[node name="Vignette" type="MarginContainer" parent="DisplaySettings"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="VignetteSlider" parent="DisplaySettings/Vignette" instance=ExtResource("5_x66p6")]
+layout_mode = 2
+setting_name = "Vignette"
+variable_name = "vignette_intensity"
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_pressed"]

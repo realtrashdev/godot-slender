@@ -27,6 +27,7 @@ Settings="*res://scripts/globals/settings.gd"
 Progression="*res://scripts/globals/progression.gd"
 Signals="*res://scripts/globals/signals.gd"
 ScreenColorCanvas="*res://scenes/ui/canvases/screen_color_canvas.tscn"
+ScreenCrtCanvas="*res://scenes/ui/canvases/screen_crt_canvas.tscn"
 EnemyOverview="*res://scenes/ui/canvases/enemies_overview.tscn"
 
 [debug]

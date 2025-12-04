@@ -1,8 +1,10 @@
-[gd_resource type="Theme" load_steps=10 format=3 uid="uid://bommyqwo15hbx"]
+[gd_resource type="Theme" load_steps=15 format=3 uid="uid://bommyqwo15hbx"]
 
 [ext_resource type="FontFile" uid="uid://b78ski6kf8hw1" path="res://fonts/ari-w9500-display.ttf" id="1_rgm6y"]
 [ext_resource type="Texture2D" uid="uid://by5q0addeb0pq" path="res://art/2d/ui/box_checked.aseprite" id="1_t0bju"]
 [ext_resource type="Texture2D" uid="uid://bgvykj8di4lsn" path="res://art/2d/ui/box_unchecked.aseprite" id="2_qkpn8"]
+[ext_resource type="Texture2D" uid="uid://vbxe8dfy7ium" path="res://art/2d/ui/square.aseprite" id="3_gttji"]
+[ext_resource type="Texture2D" uid="uid://dax7bc0k88kt1" path="res://art/2d/ui/square_darkgray.aseprite" id="4_jhqhc"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t0bju"]
 
@@ -13,6 +15,15 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vk1wc"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gttji"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gttji"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jhqhc"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_l0tc6"]
+thickness = 16
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t0bju"]
 bg_color = Color(1, 1, 1, 1)
@@ -45,4 +56,11 @@ CheckBox/icons/checked = ExtResource("1_t0bju")
 CheckBox/icons/radio_checked = ExtResource("1_t0bju")
 CheckBox/icons/radio_unchecked = ExtResource("2_qkpn8")
 CheckBox/icons/unchecked = ExtResource("2_qkpn8")
+HSlider/constants/center_grabber = 0
+HSlider/icons/grabber = ExtResource("3_gttji")
+HSlider/icons/grabber_disabled = ExtResource("4_jhqhc")
+HSlider/icons/grabber_highlight = ExtResource("3_gttji")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_gttji")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_jhqhc")
+HSlider/styles/slider = SubResource("StyleBoxLine_l0tc6")
 VScrollBar/styles/grabber = SubResource("StyleBoxFlat_t0bju")

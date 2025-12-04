@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://c3e467eiuto0k"]
+
+[ext_resource type="Script" uid="uid://c1o1smv5wiun4" path="res://scripts/ui/canvases/screen_effects.gd" id="1_g76qk"]
+[ext_resource type="Material" uid="uid://bqpvvjjjit0p0" path="res://shaders/scanlines.tres" id="1_nkvau"]
+[ext_resource type="Material" uid="uid://dw680upvpaw66" path="res://shaders/vignette.tres" id="2_xcxo0"]
+
+[node name="ScreenEffectsCanvas" type="CanvasLayer"]
+layer = 11
+script = ExtResource("1_g76qk")
+
+[node name="Scanlines" type="ColorRect" parent="."]
+texture_filter = 1
+material = ExtResource("1_nkvau")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Vignette" type="ColorRect" parent="."]
+z_index = 1
+texture_filter = 1
+material = ExtResource("2_xcxo0")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)

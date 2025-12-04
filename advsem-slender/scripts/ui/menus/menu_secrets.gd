@@ -1,5 +1,8 @@
 extends Node
 
+## disables the options button (typing it again re enables it)
+signal brody_typed
+
 var enabled = false
 
 var recent_keys: Array[String] = []
@@ -58,6 +61,13 @@ func check_key_array():
 		   recent_keys[last_idx - 1] == "I" and \
 		   recent_keys[last_idx] == "C":
 			toggle_bgm_pitch()
+			return
+		if recent_keys[last_idx - 4] == "B" and \
+		   recent_keys[last_idx - 3] == "R" and \
+		   recent_keys[last_idx - 2] == "O" and \
+		   recent_keys[last_idx - 1] == "D" and \
+		   recent_keys[last_idx] == "Y":
+			brody_typed.emit()
 			return
 
 ## 1 in 2000 chance every second to spawn gum enemy on title screen
