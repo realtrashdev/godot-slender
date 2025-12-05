@@ -9,7 +9,8 @@ func _ready() -> void:
 	# Populate with maps
 	populate_list(
 		Progression.get_unlocked_maps(),
-		Settings.get_selected_map
+		Settings.get_selected_map,
+		func(map): return Progression.is_map_unlocked(map.resource_name)
 	)
 	
 	# Forward the generic signal to specific signal

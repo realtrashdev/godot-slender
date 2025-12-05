@@ -19,6 +19,11 @@ func _ready() -> void:
 		customize_button.wait_time = 0.15
 		settings_button.wait_time = 0.2
 		quit_button.wait_time = 0.3
+	call_deferred("defer")
+
+func defer():
+	var secret = get_parent().get_node("Secrets")
+	secret.brody_typed.connect(_on_brody_typed)
 
 func _on_play_pressed():
 	go_to_menu(MenuConfig.MenuType.MAP_SELECT, MenuConfig.TransitionDirection.FORWARD, true)
@@ -31,3 +36,6 @@ func _on_quit_pressed():
 
 func _on_settings_button_pressed() -> void:
 	go_to_menu(MenuConfig.MenuType.SETTINGS, MenuConfig.TransitionDirection.FORWARD, true)
+
+func _on_brody_typed() -> void:
+	settings_button.visible = !settings_button.visible

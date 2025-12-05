@@ -2,6 +2,13 @@ class_name ClassicModeScenario extends Resource
 
 enum Map { FOREST }
 
+var secret_unlock_descriptions = [
+	"You're not allowed to unlock this one. Stop trying.",
+	"Do [wave]50 push-ups[/wave] in real life to unlock!",
+	"This one's for cool people only. Sorry!",
+	"Sorry, I forgot to implement unlocking this one."
+]
+
 @export_category("Information")
 @export var name: String
 @export_multiline var description: String
@@ -43,3 +50,44 @@ func check_for_unlock() -> bool:
 			return false
 	print("scenario " + resource_name + " unlocked")
 	return true
+
+func get_unlock_description() -> String:
+	var requirements = unlock_requirements["scenarios"]
+	var desc = "Complete "
+	var do_secret = false
+	
+	for i in range(requirements.size()):
+		var requirement = requirements[i]
+		
+		if Progression.is_scenario_unlocked(requirement.resource_name):
+			desc += "[wave]%s[/wave]" % requirement.name
+		else:
+			desc += "[wave]???[/wave]"
+			do_secret = true
+		
+		if i < requirements.size() - 2:
+			desc += ", "
+		elif i < requirements.size() - 1:
+			desc += " and "
+	
+	desc += " to unlock!"
+	
+	if randi_range(0, 100) == 50 and do_secret:
+		desc = secret_unlock_descriptions.pick_random()
+	
+	return desc
+
+## Checks if the scenario's check box should be visible.
+## Scenarios that have none of their required scenarios unlocked will be hidden.
+func check_if_visible() -> bool:
+	var requirements = unlock_requirements["scenarios"]
+	
+	if requirements.is_empty():
+		return true
+	
+	for i in range(requirements.size()):
+		var requirement = requirements[i]
+		if Progression.is_scenario_unlocked(requirement.resource_name):
+			return true
+	
+	return false

@@ -33,4 +33,5 @@ enemies_to_add = Dictionary[int, ExtResource("1_sdokn")]({
 })
 required_pages = 4
 total_pages = 7
+unlock_description = "This shouldn't be locked! Make sure to leave an angry comment to the incompetent developer."
 metadata/_custom_type_script = "uid://cbb8lvjddytcc"

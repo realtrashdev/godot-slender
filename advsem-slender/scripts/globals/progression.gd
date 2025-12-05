@@ -16,10 +16,10 @@ var data: Dictionary = {
 	"unlocked_scenarios": ["basics1"],
 	"unlocked_characters": ["default"],
 	"unlocked_palettes": ["grayscale", "red", "orange", "yellow", "green", "blue", "purple", "gameboy", "cottoncandy"],
-	"unlocked_maps": ["forest"],
+	"unlocked_maps": ["abyss", "forest"],
 	
 	# Completion
-	"completed_scenarios": ["basics1"]
+	"completed_scenarios": []
 }
 
 #region Stats
@@ -123,7 +123,7 @@ func get_unlocked_palettes() -> Array[ColorSet]:
 	return ResourceDatabase.get_unlocked_color_sets(data.get("unlocked_palettes", ["mono"]))
 
 func get_unlocked_maps() -> Array[Map]:
-	return ResourceDatabase.get_unlocked_maps(data.get("unlocked_maps", ["forest"]))
+	return ResourceDatabase.get_unlocked_maps(data.get("unlocked_maps", ["abyss", "forest"]))
 #endregion
 
 #region Completion
@@ -156,9 +156,9 @@ func reset_to_defaults():
 		"unlocked_scenarios": ["basics1"],
 		"unlocked_characters": ["default"],
 		"unlocked_palettes": ["grayscale", "red", "orange", "yellow", "green", "blue", "purple", "gameboy", "cottoncandy"],
-		"unlocked_maps": ["forest"],
+		"unlocked_maps": ["abyss", "forest"],
 		
-		"completed_scenarios": ["basics1"],
+		"completed_scenarios": [],
 	}
 	
 	SaveManager.save_game()

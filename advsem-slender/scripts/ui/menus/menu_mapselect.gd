@@ -15,6 +15,8 @@ func _on_map_selected(map: Map):
 	
 	map_list.text_effect_reset()
 	scenario_list.text_effect_reset()
+	
+	scenario_list.populate()
 
 func _on_scenario_selected(scenario: ClassicModeScenario):
 	map_icon.update_scenario_text(scenario)

@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Map" load_steps=6 format=3 uid="uid://djqva7sjvvrfs"]
+
+[ext_resource type="Texture2D" uid="uid://evxxie4oh732" path="res://art/2d/maps/icon_forest.aseprite" id="1_7jisf"]
+[ext_resource type="Script" uid="uid://cbb8lvjddytcc" path="res://scripts/resources/scenario.gd" id="2_dw8ue"]
+[ext_resource type="Resource" uid="uid://dl5qafaoxjdn5" path="res://resources/scenarios/scenario_tutorial.tres" id="3_28cg1"]
+[ext_resource type="PackedScene" uid="uid://b2fcrx7ohgn2i" path="res://scenes/levels/map_forest.tscn" id="6_ji3fa"]
+[ext_resource type="Script" uid="uid://c5eutrojptljn" path="res://scripts/resources/map.gd" id="7_en1na"]
+
+[resource]
+resource_name = "abyss"
+script = ExtResource("7_en1na")
+map_name = "Infinite Abyss"
+description = "A never-ending nothing.
+The few people left wander here aimlessly. Except you."
+icon = ExtResource("1_7jisf")
+scene = ExtResource("6_ji3fa")
+scenarios = Array[ExtResource("2_dw8ue")]([ExtResource("3_28cg1")])
+metadata/_custom_type_script = "uid://c5eutrojptljn"

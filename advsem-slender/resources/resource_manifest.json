@@ -22,6 +22,7 @@
 		"res://resources/enemy_profiles/profile_tallgrass.tres"
 	],
 	"maps": [
+		"res://resources/maps/map_abyss.tres",
 		"res://resources/maps/map_forest.tres"
 	],
 	"scenarios": [

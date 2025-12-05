@@ -48,12 +48,16 @@ func _setup_ui():
 		#check_box.self_modulate = Color.DIM_GRAY
 		default_text = "???"
 		text_label.text = default_text
-		description_label.text = item.unlock_description
+		description_label.text = "Default Unlock Description"
+		if item.has_method("get_unlock_description"):
+			description_label.text = item.get_unlock_description()
 		overview_button.visible = false
 	
 	if item is ClassicModeScenario:
 		if item in Progression.get_completed_scenarios():
 			$CheckBox/CompletionStar.visible = true
+		if not item.check_if_visible():
+			visible = false
 	
 	if item is Map:
 		check_box.layout_direction = Control.LAYOUT_DIRECTION_RTL

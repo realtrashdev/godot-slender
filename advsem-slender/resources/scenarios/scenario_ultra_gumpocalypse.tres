@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ClassicModeScenario" load_steps=18 format=3 uid="uid://bcp2t6o8su54u"]
+[gd_resource type="Resource" script_class="ClassicModeScenario" load_steps=21 format=3 uid="uid://bcp2t6o8su54u"]
 
 [ext_resource type="Script" uid="uid://bf5ts565hp5p4" path="res://scripts/resources/enemy_profile_list.gd" id="1_gxdtd"]
 [ext_resource type="Script" uid="uid://c426kdmp0e6tf" path="res://scripts/resources/enemy_profile.gd" id="2_jmyuv"]
@@ -7,6 +7,9 @@
 [ext_resource type="Resource" uid="uid://qmx2f7d1vom" path="res://resources/enemy_profiles/profile_scamlikely.tres" id="4_tcs3j"]
 [ext_resource type="Resource" uid="uid://bepy1x4bj1nga" path="res://resources/enemy_profiles/profile_eyes.tres" id="5_jmyuv"]
 [ext_resource type="Script" uid="uid://cbb8lvjddytcc" path="res://scripts/resources/scenario.gd" id="5_srg6n"]
+[ext_resource type="Resource" uid="uid://cl3yw8vhoox2k" path="res://resources/scenarios/scenario_gumpocalypse.tres" id="8_srg6n"]
+[ext_resource type="Resource" uid="uid://dfppi52cluswe" path="res://resources/scenarios/scenario_symmetry.tres" id="9_7wy03"]
+[ext_resource type="Resource" uid="uid://l6y0fnfsx2b5" path="res://resources/scenarios/scenario_basics2.tres" id="10_7wy03"]
 
 [sub_resource type="Resource" id="Resource_xkopt"]
 script = ExtResource("1_gxdtd")
@@ -62,7 +65,7 @@ metadata/_custom_type_script = "uid://bf5ts565hp5p4"
 resource_name = "ultra_gumpocalypse"
 script = ExtResource("5_srg6n")
 name = "Ultra Gumpocalypse"
-description = "Eventually, we will all fall under the rule of the Gumverment..."
+description = "The ultimate challenge. It's all or gumthing."
 enemies_to_add = Dictionary[int, ExtResource("1_gxdtd")]({
 0: SubResource("Resource_xkopt"),
 1: SubResource("Resource_up773"),
@@ -77,4 +80,7 @@ enemies_to_add = Dictionary[int, ExtResource("1_gxdtd")]({
 })
 required_pages = 10
 total_pages = 10
+unlock_requirements = Dictionary[String, Array]({
+"scenarios": [ExtResource("8_srg6n"), ExtResource("9_7wy03"), ExtResource("10_7wy03")]
+})
 metadata/_custom_type_script = "uid://cbb8lvjddytcc"
