@@ -10,6 +10,7 @@ func _ready() -> void:
 	call_deferred("update_pages_text")
 
 func update_pages_text():
-	if Settings.get_selected_map().resource_name == "abyss":
+	if Settings.get_selected_scenario().resource_name == "tutorial":
 		pages_text.text = "NO SIGNAL"
+		return
 	pages_text.text = "PAGES:\n%s / %s" % [str(base.game_state.current_pages_collected), str(base.game_state.current_pages_required)]

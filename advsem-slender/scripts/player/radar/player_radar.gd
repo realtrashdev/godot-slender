@@ -19,7 +19,7 @@ var pos_tween: Tween
 var player: CharacterBody3D
 var restriction_component: PlayerRestrictionComponent
 
-@onready var audio: AudioStreamPlayer
+@onready var audio: Node
 @onready var display_component: RadarDisplayComponent = $RadarDisplayComponent
 @onready var input_component: RadarInputComponent = $RadarInputComponent
 @onready var radar_screen: RadarScreen = $SubViewport/RadarScreen
@@ -27,7 +27,7 @@ var restriction_component: PlayerRestrictionComponent
 func _ready() -> void:
 	player = get_parent()
 	restriction_component = player.get_node("RestrictionComponent")
-	audio = radar_screen.audio
+	audio = radar_screen.audio_component
 	
 	# connect to input component signals
 	input_component.screen_clicked.connect(_on_screen_clicked)
@@ -101,9 +101,9 @@ func update_audio():
 	
 	match focused:
 		true:
-			audio.volume_db += 5
+			audio.volume_modifier += 5
 		false:
-			audio.volume_db -= 5
+			audio.volume_modifier -= 5
 
 func activate():
 	active = true

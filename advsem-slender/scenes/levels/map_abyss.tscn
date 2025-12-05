@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c2u6mhumxcxjj"]
+[gd_scene load_steps=20 format=3 uid="uid://c2u6mhumxcxjj"]
 
 [ext_resource type="Script" uid="uid://wnd51kqayidl" path="res://scripts/managers/game_manager.gd" id="1_4qugp"]
 [ext_resource type="Script" uid="uid://cfs2m0nm1rudm" path="res://scripts/managers/tutorial_manager.gd" id="1_pa2ps"]
@@ -15,8 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://c5j4dypjweuc2" path="res://scenes/ui/canvases/jumpscare_canvaslayer.tscn" id="21_q2kvd"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_u1wns"]
-vertices = PackedVector3Array(-126, 0.5, 28.75, -127, 0.5, 28.75, -127, 0.5, 126.5, -125.75, 0.5, 27.5, 127, 0.5, 126.5, -127, 0.5, -127.5, -127, 0.5, 27.25, 127, 0.5, -127.5)
-polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(0, 3, 2), PackedInt32Array(2, 3, 4), PackedInt32Array(3, 6, 5), PackedInt32Array(5, 7, 3), PackedInt32Array(3, 7, 4)]
+vertices = PackedVector3Array(-499.5, 0.4000001, -500, -499.5, 0.4000001, 499, 499.5, 0.4000001, 499, 499.5, 0.4000001, -500)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 geometry_collision_mask = 4294967167
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h2yge"]
@@ -39,6 +39,15 @@ fog_light_color = Color(0, 0, 0, 1)
 fog_density = 1.0
 fog_depth_begin = 0.0
 fog_depth_end = 4000.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pa2ps"]
+metallic_specular = 0.0
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_pa2ps"]
+height = 5.0
+radius = 6.0
 
 [node name="Abyss Level" type="Node3D"]
 
@@ -74,8 +83,7 @@ script = ExtResource("6_6iroa")
 tutorial = true
 
 [node name="Player" parent="." instance=ExtResource("9_ejsno")]
-transform = Transform3D(0.96592593, 0, -0.25881907, 0, 1, 0, 0.25881907, 0, 0.96592593, 0, 1, 0)
-starting_rotation = Vector3(0, -15, 0)
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 1, 0)
 
 [node name="Map" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_u1wns")
@@ -83,7 +91,7 @@ navigation_mesh = SubResource("NavigationMesh_u1wns")
 [node name="Floor" type="CSGBox3D" parent="Map" groups=["Grass", "Slows"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -0.5)
 use_collision = true
-size = Vector3(255, 1, 255)
+size = Vector3(1000, 1, 1000)
 material = SubResource("StandardMaterial3D_h2yge")
 
 [node name="PageLocation" parent="Map" instance=ExtResource("15_nwf1m")]
@@ -95,10 +103,26 @@ layer = 9
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_h2yge")
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+[node name="TutorialEndAmbient" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("5_rvv70")
-volume_db = 3.137
+volume_db = 6.0
 max_db = 6.0
 pitch_scale = 0.2
-stream_paused = true
-max_distance = 35.0
+max_distance = 40.0
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
+radius = 3.0
+radial_segments = 36
+rings = 12
+material = SubResource("StandardMaterial3D_pa2ps")
+
+[node name="Area3D" type="Area3D" parent="CSGSphere3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CSGSphere3D/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("CylinderShape3D_pa2ps")
+disabled = true
+
+[connection signal="body_entered" from="CSGSphere3D/Area3D" to="TutorialManager" method="_on_end_sphere_hit"]

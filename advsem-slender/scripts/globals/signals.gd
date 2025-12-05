@@ -19,3 +19,7 @@ signal page_collected
 signal enemy_spawned(type: EnemyProfile.Type)
 @warning_ignore("unused_signal")
 signal killed_player(jumpscare: Jumpscare)
+
+# Tutorial-specific
+@warning_ignore("unused_signal")
+signal tutorial_distance_reached

@@ -1,9 +1,16 @@
 extends Node2D
 
 var player: CharacterBody3D
+var tutorial: bool = false
 
 @onready var distance_text: RichTextLabel = $DistanceText
 @onready var direction_arrow: Sprite2D = $DirectionArrow
+
+func _ready() -> void:
+	if Settings.get_selected_scenario().resource_name == "tutorial":
+		tutorial = true
+	if tutorial:
+		direction_arrow.visible = false
 
 func _process(delta: float) -> void:
 	if not visible: return
@@ -11,9 +18,16 @@ func _process(delta: float) -> void:
 	var result = get_nearest_page_data()
 	distance_text.text = str(result.distance) + "m"
 	
+	if tutorial and !direction_arrow.visible:
+		if player.active and result.distance > 50:
+			direction_arrow.visible = true
+			Signals.tutorial_distance_reached.emit()
+		else:
+			distance_text.text = "0m"
+	
 	if result.direction != Vector3.ZERO:
 		update_arrow_direction(result.direction)
-		direction_arrow.visible = true
+		#direction_arrow.visible = true
 	else:
 		direction_arrow.visible = false
 

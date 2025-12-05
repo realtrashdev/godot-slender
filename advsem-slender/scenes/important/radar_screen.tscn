@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bs3li0f18d3eo"]
+[gd_scene load_steps=20 format=3 uid="uid://bs3li0f18d3eo"]
 
 [ext_resource type="Texture2D" uid="uid://dcq13bpt00ild" path="res://art/2d/characters/radar_screen_base.aseprite" id="1_mydgx"]
 [ext_resource type="Script" uid="uid://cv2r4yqm2jy82" path="res://scripts/player/radar/radar_screen.gd" id="1_wowfs"]
@@ -9,6 +9,7 @@
 [ext_resource type="FontFile" uid="uid://6lpo01dlrh4f" path="res://fonts/Pixeled.ttf" id="4_on3qy"]
 [ext_resource type="Script" uid="uid://cb4xt1lkvy6t2" path="res://scripts/player/radar/screens/screen_home.gd" id="5_hjd67"]
 [ext_resource type="Texture2D" uid="uid://8uewbj2acg86" path="res://art/2d/icon_batterydead.aseprite" id="6_3wt7d"]
+[ext_resource type="AudioStream" uid="uid://dgkqspj5gfmx0" path="res://audio/phone_sound1.wav" id="6_hja66"]
 [ext_resource type="Script" uid="uid://cu2770wi4axlf" path="res://scripts/player/radar/screens/screen_tracker.gd" id="8_jgeqn"]
 [ext_resource type="Script" uid="uid://t72o3ua13abn" path="res://scripts/player/radar/screens/screen_incoming_call.gd" id="8_oqbb0"]
 [ext_resource type="Texture2D" uid="uid://cy0p13mbdia6r" path="res://art/2d/arrow_up.aseprite" id="9_1qj1u"]
@@ -46,6 +47,10 @@ stream = ExtResource("3_hjd67")
 volume_db = -15.0
 bus = &"PlayerRadar"
 parameters/looping = true
+
+[node name="NotificationAudio" type="AudioStreamPlayer" parent="AudioComponent"]
+stream = ExtResource("6_hja66")
+bus = &"PlayerRadar"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 limit_left = 0
@@ -212,10 +217,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 10.0
-offset_top = 51.0
-offset_right = 151.0
-offset_bottom = 80.0
+offset_top = 61.0
+offset_right = 141.0
+offset_bottom = 90.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/normal_font = ExtResource("4_on3qy")
@@ -228,7 +232,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DirectionArrow" type="Sprite2D" parent="TrackerScreen"]
-position = Vector2(80, 86)
+position = Vector2(101, 76)
 scale = Vector2(2, 2)
 texture = ExtResource("9_1qj1u")
 
@@ -260,10 +264,6 @@ theme_override_font_sizes/normal_font_size = 5
 bbcode_enabled = true
 text = "TRY TO STAY ON THE PATH!
 PAGES WILL NOT SPAWN IN THE OUTER FOREST, AND THE GRASS SLOWS YOU DOWN.
-
-
-SO HELPFUL! :] YAY!
-
 "
 scroll_active = false
 shortcut_keys_enabled = false
