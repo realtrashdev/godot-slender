@@ -1,4 +1,4 @@
-extends Interactible
+class_name Page extends Interactible
 
 signal collected
 

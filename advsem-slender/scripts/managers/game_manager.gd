@@ -2,6 +2,9 @@ extends Node
 
 var game_state: GameState
 
+# Tutorial
+@export var tutorial: bool = false
+
 # References to managers
 @onready var page_manager: PageSpawnManager = $"../PageManager"
 @onready var enemy_manager: EnemySpawnManager
@@ -47,6 +50,10 @@ func initialize_game():
 	
 	# first time start
 	audio_manager.start_game_audio()
+	if tutorial:
+		await get_tree().create_timer(3).timeout
+		start_game()
+		return
 	await get_tree().create_timer(6).timeout
 	start_game()
 
@@ -100,7 +107,7 @@ func transition_to_next_state():
 
 func get_player_spawn_position() -> Vector3:
 	# load from level data in the future
-	return Vector3(-27.0, 1.0, 124.0)
+	return Settings.get_selected_map().player_start_position
 
 # high-level event handlers
 func _on_page_collected():
@@ -111,4 +118,5 @@ func _on_player_died():
 	finish_game()
 
 func _on_game_started():
+	if tutorial: return
 	ui_manager.show_objective()

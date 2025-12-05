@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bsdi2res4r8iy"]
+[gd_scene load_steps=6 format=3 uid="uid://bsdi2res4r8iy"]
 
 [ext_resource type="Theme" uid="uid://bommyqwo15hbx" path="res://theme1.tres" id="1_htvf8"]
 [ext_resource type="Script" uid="uid://bdeb5gomokfpo" path="res://scripts/ui/misc/map_icon.gd" id="1_m0sqe"]
-[ext_resource type="Texture2D" uid="uid://evxxie4oh732" path="res://art/2d/maps/icon_forest.aseprite" id="2_m0sqe"]
+[ext_resource type="Material" uid="uid://vrjgyl45xkmg" path="res://shaders/texturerect_imagefade.tres" id="2_m0sqe"]
+[ext_resource type="Texture2D" uid="uid://btt4qmetunv46" path="res://art/2d/maps/icon_abyss.aseprite" id="3_jpkc4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jpkc4"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -34,8 +35,9 @@ size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_jpkc4")
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer"]
+material = ExtResource("2_m0sqe")
 layout_mode = 2
-texture = ExtResource("2_m0sqe")
+texture = ExtResource("3_jpkc4")
 
 [node name="MapText" type="RichTextLabel" parent="."]
 layout_mode = 2

@@ -2,6 +2,8 @@ class_name UIManager extends CanvasLayer
 
 enum TextLevel { TOP, MIDDLE, BOTTOM }
 
+@export var tutorial: bool = false
+
 const PG_CHARACTER_TIME: float = 0.5
 const PG_DISPLAY_TIME: float = 2.5
 const TL_CHARACTER_TIME: float = 1
@@ -34,6 +36,8 @@ func on_page_collected():
 
 # public interface
 func show_game_start():
+	if tutorial:
+		return
 	await get_tree().create_timer(1).timeout
 	show_tip()
 	show_mode()

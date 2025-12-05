@@ -1,0 +1,104 @@
+[gd_scene load_steps=18 format=3 uid="uid://c2u6mhumxcxjj"]
+
+[ext_resource type="Script" uid="uid://wnd51kqayidl" path="res://scripts/managers/game_manager.gd" id="1_4qugp"]
+[ext_resource type="Script" uid="uid://cfs2m0nm1rudm" path="res://scripts/managers/tutorial_manager.gd" id="1_pa2ps"]
+[ext_resource type="Script" uid="uid://d1anmy68tuwe6" path="res://scripts/managers/page_manager.gd" id="2_4m1xt"]
+[ext_resource type="AudioStream" uid="uid://doem1b4tccvqn" path="res://audio/branch_snap1.mp3" id="2_6klke"]
+[ext_resource type="Script" uid="uid://dung7jxkr00xe" path="res://scripts/managers/audio_manager.gd" id="3_ip3p4"]
+[ext_resource type="AudioStream" uid="uid://ga65x2ikqfdg" path="res://audio/ambient/wind_ambient.wav" id="5_rvv70"]
+[ext_resource type="Script" uid="uid://ny0s8850mmpr" path="res://scripts/audio_player.gd" id="6_6iroa"]
+[ext_resource type="PackedScene" uid="uid://x286lkut7nsk" path="res://scenes/collection/page_collection_ambience.tscn" id="7_evfjf"]
+[ext_resource type="PackedScene" uid="uid://dcy7ewx8f37mf" path="res://scenes/ui/canvases/in_game_ui.tscn" id="8_465k3"]
+[ext_resource type="PackedScene" uid="uid://dqhlmv6mga3ln" path="res://scenes/important/player.tscn" id="9_ejsno"]
+[ext_resource type="Texture2D" uid="uid://b0oaoqusfayma" path="res://art/2d/textures/grass1.aseprite" id="12_45jfg"]
+[ext_resource type="PackedScene" uid="uid://cuouj5je2wv8g" path="res://scenes/collection/page_location.tscn" id="15_nwf1m"]
+[ext_resource type="PackedScene" uid="uid://c5j4dypjweuc2" path="res://scenes/ui/canvases/jumpscare_canvaslayer.tscn" id="21_q2kvd"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_u1wns"]
+vertices = PackedVector3Array(-126, 0.5, 28.75, -127, 0.5, 28.75, -127, 0.5, 126.5, -125.75, 0.5, 27.5, 127, 0.5, 126.5, -127, 0.5, -127.5, -127, 0.5, 27.25, 127, 0.5, -127.5)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(0, 3, 2), PackedInt32Array(2, 3, 4), PackedInt32Array(3, 6, 5), PackedInt32Array(5, 7, 3), PackedInt32Array(3, 7, 4)]
+geometry_collision_mask = 4294967167
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h2yge"]
+albedo_color = Color(0.50140655, 0.5014065, 0.5014065, 1)
+albedo_texture = ExtResource("12_45jfg")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="Sky" id="Sky_kyvai"]
+
+[sub_resource type="Environment" id="Environment_h2yge"]
+background_mode = 1
+sky = SubResource("Sky_kyvai")
+ambient_light_source = 1
+ambient_light_color = Color(1, 1, 1, 1)
+tonemap_mode = 2
+fog_mode = 1
+fog_light_color = Color(0, 0, 0, 1)
+fog_density = 1.0
+fog_depth_begin = 0.0
+fog_depth_end = 4000.0
+
+[node name="Abyss Level" type="Node3D"]
+
+[node name="TutorialManager" type="Node" parent="."]
+script = ExtResource("1_pa2ps")
+
+[node name="Sounds" type="AudioStreamPlayer" parent="TutorialManager"]
+stream = ExtResource("2_6klke")
+volume_db = 0.2
+pitch_scale = 0.1
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("1_4qugp")
+tutorial = true
+
+[node name="PageManager" type="Node" parent="."]
+script = ExtResource("2_4m1xt")
+
+[node name="AudioManager" type="Node" parent="."]
+script = ExtResource("3_ip3p4")
+
+[node name="IntroAudio" type="AudioStreamPlayer" parent="AudioManager"]
+volume_db = 2.0
+
+[node name="Ambient" type="AudioStreamPlayer" parent="AudioManager"]
+stream = ExtResource("5_rvv70")
+volume_db = -80.0
+script = ExtResource("6_6iroa")
+
+[node name="CollectionAmbient" parent="AudioManager" instance=ExtResource("7_evfjf")]
+
+[node name="UIManager" parent="." instance=ExtResource("8_465k3")]
+tutorial = true
+
+[node name="Player" parent="." instance=ExtResource("9_ejsno")]
+transform = Transform3D(0.96592593, 0, -0.25881907, 0, 1, 0, 0.25881907, 0, 0.96592593, 0, 1, 0)
+starting_rotation = Vector3(0, -15, 0)
+
+[node name="Map" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_u1wns")
+
+[node name="Floor" type="CSGBox3D" parent="Map" groups=["Grass", "Slows"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -0.5)
+use_collision = true
+size = Vector3(255, 1, 255)
+material = SubResource("StandardMaterial3D_h2yge")
+
+[node name="PageLocation" parent="Map" instance=ExtResource("15_nwf1m")]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, -2, 0)
+
+[node name="Jumpscare" parent="." instance=ExtResource("21_q2kvd")]
+layer = 9
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_h2yge")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_rvv70")
+volume_db = 3.137
+max_db = 6.0
+pitch_scale = 0.2
+stream_paused = true
+max_distance = 35.0

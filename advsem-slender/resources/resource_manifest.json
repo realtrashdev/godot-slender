@@ -33,6 +33,7 @@
 		"res://resources/scenarios/scenario_gumpocalypse.tres",
 		"res://resources/scenarios/scenario_overstimulation.tres",
 		"res://resources/scenarios/scenario_symmetry.tres",
+		"res://resources/scenarios/scenario_tutorial.tres",
 		"res://resources/scenarios/scenario_ultra_gumpocalypse.tres"
 	]
 }

@@ -1,14 +1,18 @@
-[gd_scene load_steps=15 format=3 uid="uid://bs3li0f18d3eo"]
+[gd_scene load_steps=19 format=3 uid="uid://bs3li0f18d3eo"]
 
 [ext_resource type="Texture2D" uid="uid://dcq13bpt00ild" path="res://art/2d/characters/radar_screen_base.aseprite" id="1_mydgx"]
 [ext_resource type="Script" uid="uid://cv2r4yqm2jy82" path="res://scripts/player/radar/radar_screen.gd" id="1_wowfs"]
 [ext_resource type="AudioStream" uid="uid://dlid2b84gmver" path="res://audio/music/default_ringtone.mp3" id="2_3wt7d"]
 [ext_resource type="Script" uid="uid://0xwcev5ljsb1" path="res://scripts/player/radar/radar_audio_component.gd" id="2_hjd67"]
+[ext_resource type="Script" uid="uid://bl7j83h5ylc5h" path="res://scripts/player/radar/radar_battery_component.gd" id="2_kxb7t"]
 [ext_resource type="AudioStream" uid="uid://chggo02dqakbk" path="res://audio/music/dragon_ringtone.mp3" id="3_hjd67"]
 [ext_resource type="FontFile" uid="uid://6lpo01dlrh4f" path="res://fonts/Pixeled.ttf" id="4_on3qy"]
 [ext_resource type="Script" uid="uid://cb4xt1lkvy6t2" path="res://scripts/player/radar/screens/screen_home.gd" id="5_hjd67"]
 [ext_resource type="Texture2D" uid="uid://8uewbj2acg86" path="res://art/2d/icon_batterydead.aseprite" id="6_3wt7d"]
+[ext_resource type="Script" uid="uid://cu2770wi4axlf" path="res://scripts/player/radar/screens/screen_tracker.gd" id="8_jgeqn"]
 [ext_resource type="Script" uid="uid://t72o3ua13abn" path="res://scripts/player/radar/screens/screen_incoming_call.gd" id="8_oqbb0"]
+[ext_resource type="Texture2D" uid="uid://cy0p13mbdia6r" path="res://art/2d/arrow_up.aseprite" id="9_1qj1u"]
+[ext_resource type="Script" uid="uid://bqnosmeroaqtr" path="res://scripts/player/radar/screens/screen_help.gd" id="11_qqxeq"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wowfs"]
 
@@ -31,6 +35,7 @@ border_color = Color(1, 1, 1, 1)
 script = ExtResource("1_wowfs")
 
 [node name="BatteryComponent" type="Node" parent="."]
+script = ExtResource("2_kxb7t")
 
 [node name="AudioComponent" type="Node" parent="."]
 script = ExtResource("2_hjd67")
@@ -55,7 +60,7 @@ position = Vector2(80, 72)
 texture = ExtResource("1_mydgx")
 
 [node name="BatteryContainer" type="HBoxContainer" parent="BaseScreen"]
-offset_left = 35.0
+offset_left = 20.0
 offset_top = -68.0
 offset_right = 74.0
 offset_bottom = -60.0
@@ -103,6 +108,20 @@ grow_vertical = 2
 size_flags_horizontal = 3
 color = Color(0.30980393, 0.30980393, 0.30980393, 1)
 
+[node name="BatteryChunk4" type="Control" parent="BaseScreen/BatteryContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorRect" type="ColorRect" parent="BaseScreen/BatteryContainer/BatteryChunk4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+color = Color(0.30980393, 0.30980393, 0.30980393, 0)
+
 [node name="HomeButton" type="Button" parent="BaseScreen"]
 offset_left = -80.0
 offset_top = -72.0
@@ -140,6 +159,7 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_3jnr6")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_hjd67")
 
 [node name="HomeScreen" type="Node2D" parent="."]
+visible = false
 script = ExtResource("5_hjd67")
 
 [node name="HomeText" type="RichTextLabel" parent="HomeScreen"]
@@ -170,7 +190,7 @@ scroll_active = false
 shortcut_keys_enabled = false
 
 [node name="TrackerScreen" type="Node2D" parent="."]
-visible = false
+script = ExtResource("8_jgeqn")
 
 [node name="RadarText" type="RichTextLabel" parent="TrackerScreen"]
 clip_contents = false
@@ -181,11 +201,11 @@ offset_bottom = 31.0
 theme_override_fonts/normal_font = ExtResource("4_on3qy")
 theme_override_font_sizes/normal_font_size = 5
 bbcode_enabled = true
-text = "PAGE TRACKER"
+text = "TRACKER"
 scroll_active = false
 shortcut_keys_enabled = false
 
-[node name="PagesText" type="RichTextLabel" parent="TrackerScreen"]
+[node name="DistanceText" type="RichTextLabel" parent="TrackerScreen"]
 clip_contents = false
 anchors_preset = 8
 anchor_left = 0.5
@@ -193,22 +213,28 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 10.0
-offset_top = 58.0
+offset_top = 51.0
 offset_right = 151.0
-offset_bottom = 87.0
+offset_bottom = 80.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/normal_font = ExtResource("4_on3qy")
-theme_override_font_sizes/normal_font_size = 5
+theme_override_font_sizes/normal_font_size = 10
 bbcode_enabled = true
-text = "NOT FINISHED :[
-(WILL POINT YOU TO NEAREST PAGE)"
+text = "100m"
 scroll_active = false
 shortcut_keys_enabled = false
 horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DirectionArrow" type="Sprite2D" parent="TrackerScreen"]
+position = Vector2(80, 86)
+scale = Vector2(2, 2)
+texture = ExtResource("9_1qj1u")
 
 [node name="HelpScreen" type="Node2D" parent="."]
 visible = false
+script = ExtResource("11_qqxeq")
 
 [node name="HelpText" type="RichTextLabel" parent="HelpScreen"]
 clip_contents = false

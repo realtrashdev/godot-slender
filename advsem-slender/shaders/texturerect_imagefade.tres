@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://vrjgyl45xkmg"]
+
+[ext_resource type="Shader" uid="uid://bgssm4lb32q1t" path="res://shaders/texturerect_imagefade.gdshader" id="1_sdhf1"]
+[ext_resource type="Texture2D" uid="uid://btt4qmetunv46" path="res://art/2d/maps/icon_abyss.aseprite" id="3_7osd3"]
+
+[resource]
+shader = ExtResource("1_sdhf1")
+shader_parameter/texture1 = ExtResource("3_7osd3")
+shader_parameter/texture2 = ExtResource("3_7osd3")
+shader_parameter/progress = 0.0

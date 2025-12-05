@@ -21,4 +21,5 @@ description = "A small, fenced off area of woods."
 icon = ExtResource("1_6aor4")
 scene = ExtResource("2_nws2a")
 scenarios = Array[ExtResource("1_uaxxu")]([ExtResource("2_6aor4"), ExtResource("3_n5j7t"), ExtResource("5_mmos2"), ExtResource("5_n5j7t"), ExtResource("9_oowi3"), ExtResource("7_yu20k"), ExtResource("6_lanb1"), ExtResource("7_0rdef")])
+player_start_position = Vector3(-27, 1, 124)
 metadata/_custom_type_script = "uid://c5eutrojptljn"

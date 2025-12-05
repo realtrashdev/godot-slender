@@ -17,6 +17,8 @@ var player: CharacterBody3D
 func initialize(state: GameState, play: CharacterBody3D):
 	game_state = state
 	player = play
+	
+	tracker_screen.player = player
 
 func _connect_signals():
 	Signals.game_finished.connect(_on_game_finished)

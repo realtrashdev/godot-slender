@@ -46,9 +46,7 @@ func get_all_enemy_profiles() -> Array[EnemyProfile]:
 func check_for_unlock() -> bool:
 	for requirement in unlock_requirements["scenarios"]:
 		if requirement not in Progression.get_completed_scenarios():
-			print("scenario " + resource_name + " not unlocked")
 			return false
-	print("scenario " + resource_name + " unlocked")
 	return true
 
 func get_unlock_description() -> String:

@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://c3f6y28ur3tma"]
 
 [ext_resource type="Script" uid="uid://b5rrwodfv7prw" path="res://scripts/managers/menu_manager.gd" id="1_mbnms"]
-[ext_resource type="AudioStream" uid="uid://cqkrow1uml48v" path="res://audio/music/synthycrushed.mp3" id="2_2d7pv"]
+[ext_resource type="AudioStream" uid="uid://bw13p4ixmh3mk" path="res://audio/music/ep_menu.wav" id="2_qvyop"]
 [ext_resource type="PackedScene" uid="uid://d0ptdjkqr8637" path="res://scenes/ui/menus/typing_sounds.tscn" id="4_0yjfb"]
 [ext_resource type="AudioStream" uid="uid://b06alg60p7yto" path="res://audio/menu/keyboard_sound1.mp3" id="5_2d7pv"]
 [ext_resource type="AudioStream" uid="uid://drsfnougv00al" path="res://audio/menu/keyboard_sound2.mp3" id="6_qvyop"]
@@ -62,10 +62,9 @@ radius = 2.0
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 1, 2, 4)
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_2d7pv")
-volume_db = -12.0
+stream = ExtResource("2_qvyop")
+volume_db = -10.0
 pitch_scale = 0.4
-parameters/looping = true
 
 [node name="TypingSounds" parent="." instance=ExtResource("4_0yjfb")]
 volume_db = -10.0

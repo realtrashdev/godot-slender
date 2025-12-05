@@ -104,7 +104,7 @@ script = ExtResource("3_yqpob")
 [node name="AudioManager" type="Node" parent="."]
 script = ExtResource("3_5ls40")
 
-[node name="FenceClimbAudio" type="AudioStreamPlayer" parent="AudioManager"]
+[node name="IntroAudio" type="AudioStreamPlayer" parent="AudioManager"]
 stream = ExtResource("19_u5rgu")
 volume_db = 2.0
 

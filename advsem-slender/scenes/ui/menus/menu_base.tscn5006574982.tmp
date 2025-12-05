@@ -1,0 +1,77 @@
+[gd_scene load_steps=12 format=3 uid="uid://c3f6y28ur3tma"]
+
+[ext_resource type="Script" uid="uid://b5rrwodfv7prw" path="res://scripts/managers/menu_manager.gd" id="1_mbnms"]
+[ext_resource type="AudioStream" uid="uid://bw13p4ixmh3mk" path="res://audio/music/ep_menu.wav" id="2_qvyop"]
+[ext_resource type="PackedScene" uid="uid://d0ptdjkqr8637" path="res://scenes/ui/menus/typing_sounds.tscn" id="4_0yjfb"]
+[ext_resource type="AudioStream" uid="uid://b06alg60p7yto" path="res://audio/menu/keyboard_sound1.mp3" id="5_2d7pv"]
+[ext_resource type="AudioStream" uid="uid://drsfnougv00al" path="res://audio/menu/keyboard_sound2.mp3" id="6_qvyop"]
+[ext_resource type="AudioStream" uid="uid://b3sk41yuadbx2" path="res://audio/enemies/placeholder/slendytubbies_scream_1.wav" id="7_brimo"]
+[ext_resource type="AudioStream" uid="uid://dyadolkbv3goc" path="res://audio/menu/keyboard_sound3.mp3" id="7_eb1er"]
+[ext_resource type="AudioStream" uid="uid://dknupfsrnq16s" path="res://audio/menu/keyboard_sound4.mp3" id="8_y4m2o"]
+[ext_resource type="Script" uid="uid://1rp2y7xx8yax" path="res://scripts/ui/menus/menu_secrets.gd" id="9_qvyop"]
+
+[sub_resource type="Sky" id="Sky_0xm2m"]
+
+[sub_resource type="Environment" id="Environment_ekxnf"]
+background_mode = 1
+sky = SubResource("Sky_0xm2m")
+ambient_light_source = 1
+ambient_light_color = Color(1, 1, 1, 1)
+tonemap_mode = 2
+fog_mode = 1
+fog_light_color = Color(0, 0, 0, 1)
+fog_density = 1.0
+fog_depth_begin = 0.0
+fog_depth_end = 4000.0
+
+[node name="Menu" type="Node3D"]
+script = ExtResource("1_mbnms")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TransitionLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="TransitionFade" type="ColorRect" parent="TransitionLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ekxnf")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, -5, 0, -5)
+visible = false
+size = Vector3(2, 1, 2)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.75, -5)
+visible = false
+height = 5.5
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="CSGCylinder3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+radius = 2.0
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 1, 2, 4)
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_qvyop")
+volume_db = -12.0
+pitch_scale = 0.4
+
+[node name="TypingSounds" parent="." instance=ExtResource("4_0yjfb")]
+volume_db = -10.0
+sounds = Array[AudioStream]([ExtResource("5_2d7pv"), ExtResource("6_qvyop"), ExtResource("7_eb1er"), ExtResource("8_y4m2o")])
+
+[node name="QuitAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_brimo")
+
+[node name="Secrets" type="Node" parent="."]
+script = ExtResource("9_qvyop")

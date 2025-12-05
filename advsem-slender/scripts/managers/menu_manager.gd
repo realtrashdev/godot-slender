@@ -61,7 +61,7 @@ func start_game():
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	fade_out_music(-60, 0.2)
 	await menu_transition.close(current_menu, MenuConfig.TransitionDirection.FORWARD)
-	get_tree().change_scene_to_file(MenuConfig.DEFAULT_GAME_SCENE)
+	get_tree().change_scene_to_packed(Settings.get_selected_map().scene)
 
 func quit_game():
 	quit_audio.play()

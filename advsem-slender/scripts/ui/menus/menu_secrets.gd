@@ -10,7 +10,7 @@ var recent_keys: Array[String] = []
 var manager: Node3D
 var tween: Tween
 
-var music: AudioStream = preload("uid://cqkrow1uml48v")
+var music: AudioStream = preload("uid://bw13p4ixmh3mk")
 var meowsic: AudioStream = preload("uid://cqaagyghacaij")
 
 func _ready() -> void:
