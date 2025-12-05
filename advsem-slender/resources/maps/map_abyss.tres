@@ -10,7 +10,7 @@
 resource_name = "abyss"
 script = ExtResource("7_en1na")
 map_name = "Infinite Abyss"
-description = "A never-ending nothing.
+description = "A never-ending darkness.
 The few people left wander here aimlessly. Except you."
 icon = ExtResource("1_7jisf")
 scene = ExtResource("6_ji3fa")
