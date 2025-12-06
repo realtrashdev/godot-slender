@@ -54,10 +54,11 @@ func _setup_ui():
 		overview_button.visible = false
 	
 	if item is ClassicModeScenario:
-		if item in Progression.get_completed_scenarios():
-			$CheckBox/CompletionStar.visible = true
+		item.check_if_scenario_unlocked()
 		if not item.check_if_visible():
 			visible = false
+		if item in Progression.get_completed_scenarios():
+			$CheckBox/CompletionStar.visible = true
 		if item.resource_name == "tutorial":
 			overview_button.visible = false
 	

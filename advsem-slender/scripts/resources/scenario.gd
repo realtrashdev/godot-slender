@@ -20,6 +20,10 @@ enum Map { FOREST }
 @export var required_pages: int = 8
 @export var total_pages: int = 0
 
+func check_if_scenario_unlocked():
+	if check_for_unlock():
+		Progression.unlock_scenario(resource_name)
+
 func get_all_enemy_profiles() -> Array[EnemyProfile]:
 	var array: Array[EnemyProfile] = []
 	
@@ -40,7 +44,7 @@ func check_if_visible() -> bool:
 	
 	for i in range(requirements.size()):
 		var requirement = requirements[i]
-		if Progression.is_scenario_unlocked(requirement.resource_name):
+		if Progression.is_scenario_unlocked(requirement.resource_name) or Progression.is_scenario_completed(requirement.resource_name):
 			return true
 	
 	return false

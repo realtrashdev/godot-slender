@@ -54,8 +54,8 @@ func populate_list(items: Array, get_current_func: Callable, is_unlocked_func: C
 		if _is_current_item(item) and not opened:
 			checkbox.check_box.button_pressed = true
 			selected = true
-		# If switching to different map, auto select first scenario
-		if opened and not selected:
+		# If switching to different map, auto select first incomplete scenario
+		if opened and not selected and not Progression.is_scenario_completed(item.resource_name):
 			checkbox.check_box.button_pressed = true
 			selected = true
 		

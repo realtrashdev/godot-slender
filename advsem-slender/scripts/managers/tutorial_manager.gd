@@ -21,10 +21,10 @@ func _ready() -> void:
 	await get_tree().create_timer(2).timeout
 	ui_manager.display_text("[wave][F] Toggle Flashlight", 1, 3, 1)
 
-func _input(event: InputEvent) -> void:
-	#ATTENTION REMOVE, DEBUG
-	if Input.is_action_just_pressed("jump"):
-		return_to_menu()
+# debug
+#func _input(event: InputEvent) -> void:
+	#if Input.is_action_just_pressed("jump"):
+		#return_to_menu()
 
 func _on_tutorial_distance_reached():
 	ui_manager.display_text("[wave][RCLICK] Toggle Tracker", 1, 3, 1)

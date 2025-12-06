@@ -14,8 +14,6 @@ max_instances = 5
 name = "Scam Likely"
 description = "Calls your radar every so often, preventing usage.
 
-Accelerates the radar's battery drain.
-
 Decline the call as soon as possible."
 icon = ExtResource("1_imohw")
 metadata/_custom_type_script = "uid://c426kdmp0e6tf"

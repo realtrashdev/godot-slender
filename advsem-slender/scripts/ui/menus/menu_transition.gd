@@ -34,7 +34,7 @@ func open(menu: Menu, direction: MenuConfig.TransitionDirection,  play_sound: bo
 # close current menu
 func close(menu: Menu, direction: MenuConfig.TransitionDirection, play_sound: bool = true):
 	#menu_manager.fade_out_music(-24, 0.5, Tween.TRANS_CUBIC, Tween.EASE_IN)
-	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
 	var tween = menu.create_tween()
 	

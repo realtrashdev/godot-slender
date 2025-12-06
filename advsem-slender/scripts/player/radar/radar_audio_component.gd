@@ -9,7 +9,8 @@ var volume_modifier: float = 0
 @onready var ringtone_audio: AudioStreamPlayer = $RingtoneAudio
 
 func _ready() -> void:
-	pass
+	AudioServer.set_bus_volume_linear(1, 1)
+	Signals.game_finished.connect(mute_all)
 
 func play_notification():
 	notification_audio.volume_db = default_volume + volume_modifier
@@ -29,3 +30,6 @@ func play_provided_ringtone(ringtone: AudioStream):
 
 func stop_ringtone():
 	ringtone_audio.stop()
+
+func mute_all():
+	AudioServer.set_bus_volume_linear(1, 0)

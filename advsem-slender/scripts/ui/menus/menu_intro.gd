@@ -23,6 +23,9 @@ func _ready() -> void:
 	if Progression.is_tutorial_completed() or Progression.is_scenario_completed("tutorial"):
 		go_to_menu(MenuConfig.MenuType.MAIN, MenuConfig.TransitionDirection.FORWARD, false)
 		return
+	else:
+		SaveManager.reset_all_data()
+		SaveManager.save_game()
 	
 	await get_tree().create_timer(1).timeout
 	show_line()
