@@ -5,10 +5,10 @@ signal setting_changed(setting_name: String, new_value)
 var data: Dictionary = {
 	## Game
 	"selected_game_mode": GameConfig.GameMode.CLASSIC,
-	"selected_scenario": "basics1",
+	"selected_scenario": "tutorial",
 	"selected_character": "default",
 	"selected_palette": "grayscale",
-	"selected_map": "forest",
+	"selected_map": "abyss",
 	
 	## Audio
 	"master_volume": 1.0,
@@ -74,6 +74,7 @@ func get_master_volume() -> float:
 
 func set_master_volume(volume: float):
 	data["master_volume"] = volume
+	AudioServer.set_bus_volume_linear(0, volume)
 	setting_changed.emit("master_volume", volume)
 
 func get_mouse_sensitivity() -> float:
@@ -108,10 +109,10 @@ func set_vignette_intensity(intensity: float):
 func reset_to_defaults():
 	data = {
 		"selected_game_mode": GameConfig.GameMode.CLASSIC,
-		"selected_scenario": "basics1",
+		"selected_scenario": "tutorial",
 		"selected_character": "default",
 		"selected_palette": "grayscale",
-		"selected_map": "forest",
+		"selected_map": "abyss",
 		
 		"master_volume": 1.0,
 		
@@ -126,6 +127,7 @@ func reset_to_defaults():
 # HACK temporary for testing
 func _ready() -> void:
 	DisplayServer.window_set_mode(get_screen_mode())
+	AudioServer.set_bus_volume_linear(0, data["master_volume"])
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("toggle_fullscreen"):

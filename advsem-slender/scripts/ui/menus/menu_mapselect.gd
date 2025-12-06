@@ -10,6 +10,15 @@ func _ready():
 	map_list.map_selected.connect(_on_map_selected)
 	scenario_list.scenario_selected.connect(_on_scenario_selected)
 
+func _input(event: InputEvent) -> void:
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and $EnemyOverviewTutorial.visible:
+		$EnemyOverviewTutorial.visible = false
+		#HACK
+		Progression.complete_tutorial()
+
+func open_enemy_overview_tutorial():
+	$EnemyOverviewTutorial.visible = true
+
 func _on_map_selected(map: Map):
 	map_icon.update_map_text(map)
 	
@@ -17,6 +26,9 @@ func _on_map_selected(map: Map):
 	scenario_list.text_effect_reset()
 	
 	scenario_list.populate()
+	
+	if not Progression.is_tutorial_completed() and map.resource_name == "forest":
+		open_enemy_overview_tutorial()
 
 func _on_scenario_selected(scenario: ClassicModeScenario):
 	map_icon.update_scenario_text(scenario)

@@ -96,11 +96,11 @@ func spawn_component_enemy(enemy: ComponentEnemy):
 	if not enabled:
 		return
 	
-	if get_tree():
-		for component in get_tree().get_nodes_in_group("ComponentEnemy"):
-			if component == enemy:
-				push_warning("Tried spawning %s twice. (Failed due to ComponentEnemy restriction)" % enemy.profile.name)
-				disable_spawner()
+	#if get_tree():
+		#for component in get_tree().get_nodes_in_group("ComponentEnemy"):
+			#if component == enemy:
+				#push_warning("Tried spawning %s twice. (Failed due to ComponentEnemy restriction)" % enemy.profile.name)
+				#disable_spawner()
 	
 	print("ComponentEnemy Spawned")
 	enemy.profile = profile
@@ -119,7 +119,7 @@ func reset_timer():
 	spawn_timer = randf_range(min_spawn_time, max_spawn_time)
 
 func check_enable():
-	# if the player has collected required pages, don't enable
+	# if the player has collected all required pages, don't enable
 	if game_state.current_pages_collected == game_state.current_pages_required:
 		return
 	

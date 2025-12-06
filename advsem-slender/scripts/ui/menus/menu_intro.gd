@@ -1,7 +1,5 @@
 extends Menu
 
-static var seen: bool = true
-
 var intro_text: Array[String] = [
 	"hello there.",
 	"you seem to be lost.",
@@ -22,7 +20,7 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	progression.append($Settings)
 	
-	if seen:
+	if Progression.is_tutorial_completed() or Progression.is_scenario_completed("tutorial"):
 		go_to_menu(MenuConfig.MenuType.MAIN, MenuConfig.TransitionDirection.FORWARD, false)
 		return
 	
@@ -55,7 +53,6 @@ func next_stage():
 	var tween
 	
 	if progression.is_empty():
-		seen = true
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		#HACK
 		$Settings/ConfirmButton.enabled = false
@@ -63,7 +60,7 @@ func next_stage():
 		tween = create_tween().tween_property(current_screen, "modulate", Color.BLACK, 3)
 		await tween.finished
 		await get_tree().create_timer(2).timeout
-		go_to_menu(MenuConfig.MenuType.MAIN, MenuConfig.TransitionDirection.FORWARD, false)
+		get_tree().change_scene_to_file("res://scenes/levels/map_abyss.tscn")
 		return
 	
 	progression[0].visible = true

@@ -28,8 +28,8 @@ func _process(delta: float) -> void:
 	if result.direction != Vector3.ZERO:
 		update_arrow_direction(result.direction)
 		#direction_arrow.visible = true
-	else:
-		direction_arrow.visible = false
+	#else:
+		#direction_arrow.visible = false
 
 func get_nearest_page_data() -> Dictionary:
 	var locations = get_tree().get_nodes_in_group("PageLocation")

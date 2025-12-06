@@ -21,6 +21,11 @@ func _ready() -> void:
 	await get_tree().create_timer(2).timeout
 	ui_manager.display_text("[wave][F] Toggle Flashlight", 1, 3, 1)
 
+func _input(event: InputEvent) -> void:
+	#ATTENTION REMOVE, DEBUG
+	if Input.is_action_just_pressed("jump"):
+		return_to_menu()
+
 func _on_tutorial_distance_reached():
 	ui_manager.display_text("[wave][RCLICK] Toggle Tracker", 1, 3, 1)
 	print("Tutorial Distance Reached")
@@ -38,5 +43,6 @@ func return_to_menu():
 	$"../CSGSphere3D".visible = false
 	$"../CSGSphere3D/Area3D/CollisionShape3D".disabled = true
 	tutorial_end_ambient.stop()
+	Progression.complete_scenario("tutorial")
 	await get_tree().create_timer(3).timeout
 	get_tree().change_scene_to_file("res://scenes/ui/menus/menu_base.tscn")

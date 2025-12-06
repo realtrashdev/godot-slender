@@ -72,6 +72,17 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 64
 
+[node name="Volume" type="MarginContainer" parent="DisplaySettings"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="VolumeSlider" parent="DisplaySettings/Volume" instance=ExtResource("5_x66p6")]
+layout_mode = 2
+max_value = 2.0
+step = 0.1
+setting_name = "Volume"
+variable_name = "master_volume"
+
 [node name="CRT" type="MarginContainer" parent="DisplaySettings"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2

@@ -20,7 +20,7 @@ polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 geometry_collision_mask = 4294967167
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h2yge"]
-albedo_color = Color(0.50140655, 0.5014065, 0.5014065, 1)
+albedo_color = Color(0.7792914, 0.7792914, 0.7792913, 1)
 albedo_texture = ExtResource("12_45jfg")
 uv1_scale = Vector3(0.5, 0.5, 0.5)
 uv1_triplanar = true

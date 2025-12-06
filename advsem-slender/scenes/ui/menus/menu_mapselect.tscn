@@ -1,10 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://cmm57kdltrmfb"]
+[gd_scene load_steps=9 format=3 uid="uid://cmm57kdltrmfb"]
 
 [ext_resource type="PackedScene" uid="uid://4rmt8ldqf6st" path="res://scenes/ui/scenario_list.tscn" id="1_cbrkm"]
 [ext_resource type="Script" uid="uid://ciwmawsc74nvy" path="res://scripts/ui/menus/menu_mapselect.gd" id="1_vyrjl"]
 [ext_resource type="PackedScene" uid="uid://rdg8wdd5e6lu" path="res://scenes/ui/map_list.tscn" id="2_nw66n"]
 [ext_resource type="PackedScene" uid="uid://bsdi2res4r8iy" path="res://scenes/ui/map_icon.tscn" id="3_nw66n"]
 [ext_resource type="PackedScene" uid="uid://6lvn3tolsp7r" path="res://scenes/ui/buttons/menu_button.tscn" id="4_4xk28"]
+[ext_resource type="Theme" uid="uid://bommyqwo15hbx" path="res://theme1.tres" id="6_3g44h"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4sgyx"]
+bg_color = Color(0, 0, 0, 0.7529412)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uqeks"]
+bg_color = Color(0, 0, 0, 0.7529412)
 
 [node name="MapSelectionMenu" type="Control"]
 layout_mode = 3
@@ -91,6 +98,78 @@ grow_vertical = 0
 default_text = "Menu"
 default_color = Color(0.54497427, 0.5449743, 0.5449741, 1)
 press_color = Color(0, 0, 0, 1)
+
+[node name="EnemyOverviewTutorial" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel4" type="Panel" parent="EnemyOverviewTutorial"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1769.0
+offset_right = -77.0
+offset_bottom = -958.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4sgyx")
+
+[node name="Panel2" type="Panel" parent="EnemyOverviewTutorial"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1843.0
+offset_bottom = -886.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4sgyx")
+
+[node name="Panel3" type="Panel" parent="EnemyOverviewTutorial"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1769.0
+offset_top = 194.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4sgyx")
+
+[node name="Panel" type="Panel" parent="EnemyOverviewTutorial"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -151.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_uqeks")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="EnemyOverviewTutorial"]
+layout_mode = 0
+offset_left = 1255.0
+offset_top = 238.0
+offset_right = 1863.0
+offset_bottom = 734.0
+mouse_filter = 2
+theme = ExtResource("6_3g44h")
+bbcode_enabled = true
+text = "Click this icon to view the [wave]Enemy Overview[/wave].
+
+It will show you what monsters will be coming after you, and when!"
+horizontal_alignment = 1
 
 [connection signal="pressed" from="StartButton" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="TmpBackButton" to="." method="_on_back_pressed"]

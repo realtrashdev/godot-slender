@@ -58,6 +58,8 @@ func _setup_ui():
 			$CheckBox/CompletionStar.visible = true
 		if not item.check_if_visible():
 			visible = false
+		if item.resource_name == "tutorial":
+			overview_button.visible = false
 	
 	if item is Map:
 		check_box.layout_direction = Control.LAYOUT_DIRECTION_RTL

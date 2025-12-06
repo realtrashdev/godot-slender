@@ -5,7 +5,7 @@ signal stat_updated(stat_name: String, new_value)
 
 var data: Dictionary = {
 	# Player stats
-	"player_name": "Unnamed",
+	"player_name": "You",
 	"total_pages_collected": 0,
 	"total_deaths": 0,
 	"enemy_encounters": {},  # enemy_name: count (call from enemy when it spawns)
@@ -19,7 +19,8 @@ var data: Dictionary = {
 	"unlocked_maps": ["abyss", "forest"],
 	
 	# Completion
-	"completed_scenarios": []
+	"completed_tutorial": false,
+	"completed_scenarios": [],
 }
 
 #region Stats
@@ -127,6 +128,11 @@ func get_unlocked_maps() -> Array[Map]:
 #endregion
 
 #region Completion
+func complete_tutorial():
+	if not data["completed_tutorial"]:
+		data["completed_tutorial"] = true
+		print("Completed tutorial!")
+
 func complete_scenario(scenario_id: String):
 	if not data["completed_scenarios"].has(scenario_id):
 		data["completed_scenarios"].append(scenario_id)
@@ -135,6 +141,9 @@ func complete_scenario(scenario_id: String):
 #
 # Check if singular id is complete
 #
+func is_tutorial_completed() -> bool:
+	return data.get("completed_tutorial", false)
+
 func is_scenario_completed(scenario_id: String) -> bool:
 	return data["completed_scenarios"].has(scenario_id)
 
@@ -147,7 +156,7 @@ func get_completed_scenarios() -> Array[ClassicModeScenario]:
 
 func reset_to_defaults():
 	data = {
-		"player_name": "Unnamed",
+		"player_name": "You",
 		"total_pages_collected": 0,
 		"total_deaths": 0,
 		"enemy_encounters": {},
@@ -158,6 +167,7 @@ func reset_to_defaults():
 		"unlocked_palettes": ["grayscale", "red", "orange", "yellow", "green", "blue", "purple", "gameboy", "cottoncandy"],
 		"unlocked_maps": ["abyss", "forest"],
 		
+		"completed_tutorial": false,
 		"completed_scenarios": [],
 	}
 	

@@ -162,6 +162,17 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 64
 
+[node name="Volume" type="MarginContainer" parent="Settings/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="VolumeSlider" parent="Settings/VBoxContainer/Volume" instance=ExtResource("4_tqint")]
+layout_mode = 2
+max_value = 2.0
+step = 0.1
+setting_name = "Volume"
+variable_name = "master_volume"
+
 [node name="CRT" type="MarginContainer" parent="Settings/VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
@@ -182,17 +193,14 @@ variable_name = "vignette_intensity"
 
 [node name="ConfirmButton" parent="Settings" instance=ExtResource("5_fjx6c")]
 layout_mode = 1
-anchors_preset = 7
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 1.0
 offset_left = -200.0
-offset_top = -240.0
-offset_right = 200.0
-offset_bottom = -139.99982
+offset_top = 840.0
+offset_right = 200.00122
+offset_bottom = 940.0002
 grow_horizontal = 2
-grow_vertical = 0
 default_text = "Confirm"
 press_color = Color(0.24115604, 0.24115604, 0.24115604, 1)
 justification = 1
