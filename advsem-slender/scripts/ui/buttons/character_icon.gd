@@ -47,7 +47,7 @@ func setup_display() -> void:
 	description_panel.set_profile(profile)
 
 func _on_hover() -> void:
-	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED or is_disabled:
+	if Input.mouse_mode == Input.MOUSE_MODE_CONFINED_HIDDEN or is_disabled:
 		return
 	
 	description_panel.show_description()

@@ -14,7 +14,8 @@ metadata/_custom_type_script = "uid://bf5ts565hp5p4"
 resource_name = "tutorial"
 script = ExtResource("2_t6xww")
 name = "Awakening"
-description = "Everybody starts somewhere..."
+description = "Everybody starts somewhere...
+(Tutorial level)"
 enemies_to_add = Dictionary[int, ExtResource("1_v7gee")]({
 1000000: SubResource("Resource_mx8kg")
 })

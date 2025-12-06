@@ -6,7 +6,6 @@
 
 [node name="ScreenEffectsCanvas" type="CanvasLayer"]
 layer = 11
-visible = false
 script = ExtResource("1_g76qk")
 
 [node name="Scanlines" type="ColorRect" parent="."]

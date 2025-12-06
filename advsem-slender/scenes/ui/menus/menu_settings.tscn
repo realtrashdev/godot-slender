@@ -101,4 +101,13 @@ layout_mode = 2
 setting_name = "Vignette"
 variable_name = "vignette_intensity"
 
+[node name="SecretMusicButton" parent="." instance=ExtResource("4_cfoln")]
+custom_minimum_size = Vector2(0, 0)
+layout_mode = 0
+offset_left = 873.0
+offset_top = 409.0
+offset_right = 1050.0
+offset_bottom = 442.0
+
 [connection signal="pressed" from="BackButton" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="SecretMusicButton" to="." method="_on_secret_music_button_pressed"]

@@ -51,6 +51,28 @@ vertical_alignment = 1
 visible_characters = 0
 visible_ratio = 0.0
 
+[node name="TitleText2" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 141.0
+offset_top = 984.0
+offset_right = 941.0
+offset_bottom = 1084.0
+grow_horizontal = 2
+theme = ExtResource("1_l6cm7")
+theme_override_colors/default_color = Color(0.3328807, 0.33288068, 0.33288068, 1)
+theme_override_fonts/normal_font = SubResource("FontVariation_2g2yl")
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "v0"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+horizontal_alignment = 2
+vertical_alignment = 1
+
 [node name="VBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1

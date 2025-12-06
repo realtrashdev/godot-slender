@@ -105,3 +105,4 @@ sprite_frames = ExtResource("2_cf1aw")
 autoplay = "default"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+pitch_scale = 0.6
