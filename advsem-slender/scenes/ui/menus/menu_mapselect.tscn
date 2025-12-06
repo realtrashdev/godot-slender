@@ -119,7 +119,6 @@ offset_right = -77.0
 offset_bottom = -958.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_4sgyx")
 
 [node name="Panel2" type="Panel" parent="EnemyOverviewTutorial"]
@@ -131,7 +130,6 @@ offset_left = 1843.0
 offset_bottom = -886.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_4sgyx")
 
 [node name="Panel3" type="Panel" parent="EnemyOverviewTutorial"]
@@ -143,7 +141,6 @@ offset_left = 1769.0
 offset_top = 194.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_4sgyx")
 
 [node name="Panel" type="Panel" parent="EnemyOverviewTutorial"]
@@ -154,7 +151,6 @@ anchor_bottom = 1.0
 offset_right = -151.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_uqeks")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="EnemyOverviewTutorial"]

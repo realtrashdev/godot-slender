@@ -56,6 +56,25 @@ default_text = "Go Back"
 default_color = Color(0.54497427, 0.5449743, 0.5449741, 1)
 press_color = Color(0, 0, 0, 1)
 
+[node name="ProgressResetButton" parent="." instance=ExtResource("4_cfoln")]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -233.0
+offset_top = 1013.0
+offset_right = 167.0
+offset_bottom = 1113.0
+grow_horizontal = 0
+scale = Vector2(0.5, 0.5)
+default_text = "Reset Progress"
+default_color = Color(0.29586658, 0.29586646, 0.29586652, 1)
+press_color = Color(0, 0, 0, 1)
+justification = 2
+focus_font_size = 32.0
+focus_text_effect = "[shake]"
+
 [node name="DisplaySettings" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(600, 100)
 layout_mode = 1
@@ -110,4 +129,5 @@ offset_right = 1050.0
 offset_bottom = 442.0
 
 [connection signal="pressed" from="BackButton" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="ProgressResetButton" to="." method="_on_progress_reset_button_pressed"]
 [connection signal="pressed" from="SecretMusicButton" to="." method="_on_secret_music_button_pressed"]

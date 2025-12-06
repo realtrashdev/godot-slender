@@ -3,6 +3,12 @@ extends Node
 ## disables the options button (typing it again re enables it)
 signal brody_typed
 
+## enables the reset progress button (only in settings menu)
+signal reset_typed
+
+## displays the credits (only in main menu
+signal credits_typed
+
 var enabled = false
 
 var recent_keys: Array[String] = []
@@ -54,6 +60,12 @@ func check_key_array():
 		   recent_keys[last_idx] == "W":
 			meow_music()
 			return
+		if recent_keys[last_idx - 3] == "T" and \
+		   recent_keys[last_idx - 2] == "O" and \
+		   recent_keys[last_idx - 1] == "B" and \
+		   recent_keys[last_idx] == "Y":
+			meow_music()
+			return
 	
 	if last_idx >= 4:
 		if recent_keys[last_idx - 4] == "M" and \
@@ -70,6 +82,36 @@ func check_key_array():
 		   recent_keys[last_idx] == "Y":
 			brody_typed.emit()
 			return
+		if recent_keys[last_idx - 4] == "R" and \
+		   recent_keys[last_idx - 3] == "E" and \
+		   recent_keys[last_idx - 2] == "S" and \
+		   recent_keys[last_idx - 1] == "E" and \
+		   recent_keys[last_idx] == "T":
+			reset_typed.emit()
+			return
+	
+	if last_idx >= 6:
+		if recent_keys[last_idx - 6] == "C" and \
+		   recent_keys[last_idx - 5] == "R" and \
+		   recent_keys[last_idx - 4] == "E" and \
+		   recent_keys[last_idx - 3] == "D" and \
+		   recent_keys[last_idx - 2] == "I" and \
+		   recent_keys[last_idx - 1] == "T" and \
+		   recent_keys[last_idx] == "S":
+			credits_typed.emit()
+	
+	if last_idx >= 7:
+		if recent_keys[last_idx - 7] == "O" and \
+		   recent_keys[last_idx - 6] == "I" and \
+		   recent_keys[last_idx - 5] == "R" and \
+		   recent_keys[last_idx - 4] == "A" and \
+		   recent_keys[last_idx - 3] == "N" and \
+		   recent_keys[last_idx - 2] == "E" and \
+		   recent_keys[last_idx - 1] == "C" and \
+		   recent_keys[last_idx] == "S":
+			for scenario in ResourceDatabase.get_all_scenarios():
+				Progression.unlock_scenario(scenario.resource_name)
+			print("Unlocked all scenarios.")
 
 ## 1 in 2000 chance every second to spawn gum enemy on title screen
 func check_gum():

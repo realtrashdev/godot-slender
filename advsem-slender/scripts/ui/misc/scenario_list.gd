@@ -21,7 +21,7 @@ func populate():
 	populate_list(
 		current_map.scenarios,
 		Settings.get_selected_scenario,
-		func(scenario): return scenario.check_for_unlock()
+		func(scenario): return scenario.check_if_scenario_unlocked()
 	)
 
 func _forward_signal(item: Resource):

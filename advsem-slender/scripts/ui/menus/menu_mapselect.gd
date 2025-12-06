@@ -11,7 +11,7 @@ func _ready():
 	scenario_list.scenario_selected.connect(_on_scenario_selected)
 
 func _input(event: InputEvent) -> void:
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and $EnemyOverviewTutorial.visible:
+	if Input.is_action_just_released("interact") and $EnemyOverviewTutorial.visible and EnemyOverview.visible:
 		$EnemyOverviewTutorial.visible = false
 		#HACK
 		Progression.complete_tutorial()

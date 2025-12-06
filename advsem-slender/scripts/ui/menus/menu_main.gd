@@ -24,6 +24,7 @@ func _ready() -> void:
 func defer():
 	var secret = get_parent().get_node("Secrets")
 	secret.brody_typed.connect(_on_brody_typed)
+	secret.credits_typed.connect(_on_credits_typed)
 
 func _on_play_pressed():
 	go_to_menu(MenuConfig.MenuType.MAP_SELECT, MenuConfig.TransitionDirection.FORWARD, true)
@@ -39,3 +40,6 @@ func _on_settings_button_pressed() -> void:
 
 func _on_brody_typed() -> void:
 	settings_button.visible = !settings_button.visible
+
+func _on_credits_typed() -> void:
+	$CreditsText.visible = true
