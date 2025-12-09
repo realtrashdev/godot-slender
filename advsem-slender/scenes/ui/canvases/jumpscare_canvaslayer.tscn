@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://c5j4dypjweuc2"]
+[gd_scene load_steps=9 format=3 uid="uid://c5j4dypjweuc2"]
 
 [ext_resource type="Script" uid="uid://b34b0y7wk1a2p" path="res://scripts/ui/canvases/jumpscare_canvas.gd" id="1_ym5wt"]
+[ext_resource type="Resource" uid="uid://3vkwuf2sbniw" path="res://resources/scares/scare_chaser.tres" id="2_b2skw"]
 [ext_resource type="SpriteFrames" uid="uid://0q8o0kumm18j" path="res://art/2d/enemies/jumpscares/eyes_jumpscare.aseprite" id="2_cf1aw"]
+[ext_resource type="AudioStream" uid="uid://j72orqf0yqsb" path="res://audio/enemies/chaser/chaser_scare2.mp3" id="3_cf1aw"]
 
 [sub_resource type="Animation" id="Animation_cvdyi"]
 length = 0.001
@@ -72,6 +74,7 @@ layer = 100
 offset = Vector2(0, 1080)
 transform = Transform2D(1, 0, 0, 1, 0, 1080)
 script = ExtResource("1_ym5wt")
+default_jumpscare = ExtResource("2_b2skw")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -105,4 +108,12 @@ sprite_frames = ExtResource("2_cf1aw")
 autoplay = "default"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-pitch_scale = 0.6
+stream = ExtResource("3_cf1aw")
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)

@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://bnlknaj0g2m6d"]
+
+[ext_resource type="Shader" uid="uid://bbt5s0kufa58o" path="res://shaders/flowing_water.gdshader" id="1_juhst"]
+[ext_resource type="CompressedTexture2DArray" uid="uid://dfrqyp526b4ac" path="res://art/2d/textures/water2.png" id="2_xsci2"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_juhst")
+shader_parameter/textures = ExtResource("2_xsci2")
+shader_parameter/swap_interval = 0.75000003236512
+shader_parameter/triplanar_sharpness = 5.0
+shader_parameter/texture_scale = 0.50000002049012
+shader_parameter/scroll_speed = 0.0

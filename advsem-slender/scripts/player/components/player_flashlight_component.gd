@@ -50,7 +50,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	time_count += delta
-	$"../Head/Flashlight/RayCast3D".enabled = !movement_component.is_sprinting()
+	$"../Head/Flashlight/RayCast3D".enabled = light.visible and !movement_component.is_sprinting()
 	
 	if Input.is_action_just_pressed("toggle_light") and can_use_flashlight:
 		toggle_light(!light.visible)
@@ -126,7 +126,7 @@ func toggle_light(on: bool):
 	omni_light.visible = !light.visible
 	flashlight.rotation.x = deg_to_rad(TURN_ON_ANGLE.x)
 	flashlight.rotation.y = deg_to_rad(TURN_ON_ANGLE.y)
-	$"../Head/Flashlight/RayCast3D".enabled = on
+	$"../Head/Flashlight/RayCast3D".enabled = on and !movement_component.is_sprinting()
 	play_audio()
 
 func set_flicker_light(starting_energy: float):

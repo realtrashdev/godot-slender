@@ -35,6 +35,7 @@ func play_jumpscare(jumpscare: Jumpscare):
 	audio.play()
 	
 	animation.play("jumpscare_" + str(Jumpscare.ShakeType.keys()[jumpscare.type]).to_lower())
+	create_tween().tween_property($ColorRect2, "color", Color.BLACK, 1).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUART)
 
 # testing in editor
 func test_jumpscare(jumpscare: Jumpscare):

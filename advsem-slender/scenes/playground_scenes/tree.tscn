@@ -31,6 +31,7 @@ height = 6.0
 
 [node name="CPUParticles3D" type="CPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20000005, 9, 0)
+visible = false
 amount = 4
 lifetime = 4.0
 randomness = 0.5

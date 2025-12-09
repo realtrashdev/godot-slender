@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://bf05ntktimsst"]
+[gd_scene load_steps=7 format=3 uid="uid://bf05ntktimsst"]
 
 [ext_resource type="Script" uid="uid://qocwrt8r6cqj" path="res://scripts/ui/menus/menu_main.gd" id="1_jjl53"]
 [ext_resource type="Theme" uid="uid://bommyqwo15hbx" path="res://theme1.tres" id="1_l6cm7"]
-[ext_resource type="AudioStream" uid="uid://xjt0f2pu0a11" path="res://audio/ambient/hopping_fence.mp3" id="2_cak61"]
 [ext_resource type="PackedScene" uid="uid://6lvn3tolsp7r" path="res://scenes/ui/buttons/menu_button.tscn" id="4_dkf5t"]
 [ext_resource type="AudioStream" uid="uid://burmgn6fk7ymx" path="res://audio/menu/ui/button_press.mp3" id="4_y0yns"]
 [ext_resource type="FontFile" uid="uid://b78ski6kf8hw1" path="res://fonts/ari-w9500-display.ttf" id="5_y0yns"]
@@ -20,9 +19,6 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(960, 540)
 script = ExtResource("1_jjl53")
-
-[node name="PlayAudio" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_cak61")
 
 [node name="ButtonPress" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_y0yns")
