@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://csit2swfr3027"]
+[gd_scene load_steps=7 format=3 uid="uid://csit2swfr3027"]
 
 [ext_resource type="Script" uid="uid://v13xlngbccyv" path="res://scripts/ui/menus/menu_settings.gd" id="1_facpq"]
 [ext_resource type="Theme" uid="uid://bommyqwo15hbx" path="res://theme1.tres" id="2_xte0n"]
 [ext_resource type="Script" uid="uid://c3ysaqnmo1oo8" path="res://scripts/ui/ui_text.gd" id="3_q824c"]
 [ext_resource type="PackedScene" uid="uid://6lvn3tolsp7r" path="res://scenes/ui/buttons/menu_button.tscn" id="4_cfoln"]
 [ext_resource type="PackedScene" uid="uid://bkqf54hj5ec1s" path="res://scenes/ui/buttons/setting_slider.tscn" id="5_x66p6"]
+[ext_resource type="PackedScene" uid="uid://c2tm8p5c3mxlf" path="res://scenes/ui/buttons/setting_checkbox.tscn" id="6_xte0n"]
 
 [node name="SettingsMenu" type="Control"]
 layout_mode = 3
@@ -119,6 +120,16 @@ layout_mode = 2
 layout_mode = 2
 setting_name = "Vignette"
 variable_name = "vignette_intensity"
+
+[node name="MarginContainer" type="MarginContainer" parent="DisplaySettings"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="CheckBox" parent="DisplaySettings/MarginContainer" instance=ExtResource("6_xte0n")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
 
 [node name="SecretMusicButton" parent="." instance=ExtResource("4_cfoln")]
 custom_minimum_size = Vector2(0, 0)

@@ -26,6 +26,9 @@ func initialize(state: GameState):
 	# connect to signals and handle internally
 	Signals.page_collected.connect(on_page_collected)
 	
+	# enable/disable run timer depending on settings
+	timer_text.visible = Settings.get_run_timer()
+	
 	show_game_start()
 
 func _exit_tree():

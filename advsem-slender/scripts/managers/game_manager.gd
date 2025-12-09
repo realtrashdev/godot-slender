@@ -84,11 +84,13 @@ func start_game():
 	player.position = get_player_spawn_position()
 	player.activate()
 	
+	Signals.game_started.emit()
+	
 	# timer
+	# waits 1 second due to the start period where the player in not in control
+	await get_tree().create_timer(1).timeout
 	run_timer = 0.0
 	run_timer_active = true
-	
-	Signals.game_started.emit()
 
 func finish_game():
 	# shut down

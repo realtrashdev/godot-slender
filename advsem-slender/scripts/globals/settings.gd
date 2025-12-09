@@ -19,7 +19,10 @@ var data: Dictionary = {
 	## Display
 	"window_mode": DisplayServer.WINDOW_MODE_FULLSCREEN,
 	"crt_opacity": 0.1,         # 0.00 - 0.33
-	"vignette_intensity": 0.7   # 0.00 - 1.00
+	"vignette_intensity": 0.7,  # 0.00 - 1.00
+	
+	## Gameplay
+	"run_timer": false,
 }
 
 #region Getters/Setters
@@ -104,6 +107,13 @@ func get_vignette_intensity() -> float:
 func set_vignette_intensity(intensity: float):
 	data["vignette_intensity"] = intensity
 	setting_changed.emit("vignette_intensity", intensity)
+
+func get_run_timer() -> bool:
+	return data.get("run_timer", false)
+
+func set_run_timer(enabled: bool):
+	data["run_timer"] = enabled
+	setting_changed.emit("run_timer", enabled)
 #endregion
 
 func reset_to_defaults():
@@ -121,6 +131,8 @@ func reset_to_defaults():
 		"window_mode": DisplayServer.WINDOW_MODE_FULLSCREEN,
 		"crt_opacity": 0.1,
 		"vignette_intensity": 0.7,
+		
+		"run_timer": false,
 	}
 	SaveManager.save_game()
 
