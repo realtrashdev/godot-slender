@@ -5,6 +5,9 @@ var game_state: GameState
 # Tutorial
 @export var tutorial: bool = false
 
+var run_timer_active: bool = false
+var run_timer: float
+
 # References to managers
 @onready var page_manager: PageSpawnManager = $"../PageManager"
 @onready var enemy_manager: EnemySpawnManager
@@ -16,6 +19,11 @@ var game_state: GameState
 func _ready() -> void:
 	call_deferred("initialize_game")
 	connect_signals()
+
+func _process(delta: float) -> void:
+	if run_timer_active:
+		run_timer += delta
+		ui_manager.update_speedrun_timer(run_timer)
 
 func initialize_game():
 	# create game state
@@ -76,11 +84,16 @@ func start_game():
 	player.position = get_player_spawn_position()
 	player.activate()
 	
+	# timer
+	run_timer = 0.0
+	run_timer_active = true
+	
 	Signals.game_started.emit()
 
 func finish_game():
 	# shut down
 	print("Game Finished")
+	run_timer_active = false
 	player.deactivate()
 	page_manager.clear_locations()
 	enemy_manager.clear_all_enemies()

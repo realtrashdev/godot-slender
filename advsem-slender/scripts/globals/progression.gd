@@ -131,7 +131,6 @@ func get_unlocked_maps() -> Array[Map]:
 func complete_tutorial():
 	if not data["completed_tutorial"]:
 		data["completed_tutorial"] = true
-		print("Completed tutorial!")
 
 func complete_scenario(scenario_id: String):
 	if not data["completed_scenarios"].has(scenario_id):

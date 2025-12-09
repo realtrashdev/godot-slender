@@ -64,10 +64,9 @@ func populate_list(items: Array, get_current_func: Callable, is_unlocked_func: C
 			time.start(per_button_delay)
 			await time.timeout
 	
-	# Failsafe for auto select
+	# Failsafe for auto select, checks first box in list
 	if not selected:
 		button_container.get_child(0).check_box.button_pressed = true
-		print("Selection failsafe used.")
 	
 	opened = true
 

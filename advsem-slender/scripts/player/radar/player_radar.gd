@@ -118,5 +118,6 @@ func load_screen(scene_path: String):
 	display_component.load_content(scene_path)
 
 func _on_screen_clicked(pos: Vector2):
-	print("Screen clicked at: ", pos)
+	pass
+	#print("Screen clicked at: ", pos)
 	# Handle screen interactions here

@@ -140,7 +140,6 @@ static func get_unlocked_maps(unlocked_ids: Array) -> Array[Map]:
 ## SCENARIOS
 ##
 static func get_scenario(id: String) -> ClassicModeScenario:
-	print("Getting scenario: " + id)
 	return SCENARIOS.get(id)
 
 static func get_all_scenarios() -> Array[ClassicModeScenario]:

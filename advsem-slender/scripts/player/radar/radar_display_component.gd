@@ -28,7 +28,6 @@ func setup_collision() -> void:
 	
 	# Check if collision already exists
 	if screen_sprite.get_node_or_null("StaticBody3D"):
-		print("Collision already exists, skipping setup")
 		return
 	
 	# Create collision for raycasting
@@ -43,10 +42,6 @@ func setup_collision() -> void:
 		0.01
 	)
 	
-	print("Collision shape size: ", shape.size)
-	print("Viewport size: ", sub_viewport.size)
-	print("Pixel size: ", screen_sprite.pixel_size)
-	
 	collision.shape = shape
 	static_body.add_child(collision)
 	screen_sprite.add_child(static_body)
@@ -55,11 +50,6 @@ func setup_collision() -> void:
 	# Use layer 20 for radar screen
 	static_body.collision_layer = 1 << 19  # Only exists on layer 20
 	static_body.collision_mask = 0         # Doesn't collide with anything
-	
-	print("=== Radar Collision Setup ===")
-	print("Sprite global pos: ", screen_sprite.global_position)
-	print("StaticBody global pos: ", static_body.global_position)
-	print("Collision layer: ", static_body.collision_layer)
 
 func load_content(scene_path: String) -> void:
 	# load 2D scene into the viewport

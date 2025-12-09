@@ -9,7 +9,6 @@ func initialize(esm: EnemySpawnManager, scenario: ClassicModeScenario):
 	setup_all_enemies()
 
 func setup_all_enemies():
-	print(current_scenario.name)
 	for page_number in current_scenario.enemies_to_add:
 		var enemy_list = current_scenario.enemies_to_add[page_number]
 		

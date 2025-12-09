@@ -14,8 +14,4 @@ func get_spawn_position(ctx: SpawnContext) -> Vector3:
 	
 	var pos = player.global_position + Vector3(x, 0, z)
 	
-	print("Player pos: ", player.global_position)
-	print("Spawn pos: ", pos)
-	print("Distance from player: ", pos.distance_to(player.global_position))
-	
 	return pos

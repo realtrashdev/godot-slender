@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dcy7ewx8f37mf"]
+[gd_scene load_steps=5 format=3 uid="uid://dcy7ewx8f37mf"]
 
 [ext_resource type="Script" uid="uid://d0geqahcgagfn" path="res://scripts/managers/ui_manager.gd" id="1_eeonk"]
 [ext_resource type="FontFile" uid="uid://b78ski6kf8hw1" path="res://fonts/ari-w9500-display.ttf" id="2_qvqbd"]
 [ext_resource type="Script" uid="uid://c3ysaqnmo1oo8" path="res://scripts/ui/ui_text.gd" id="3_3nhwc"]
+[ext_resource type="Theme" uid="uid://bommyqwo15hbx" path="res://theme1.tres" id="4_r0q2l"]
 
 [node name="UIManager" type="CanvasLayer"]
 script = ExtResource("1_eeonk")
@@ -108,3 +109,23 @@ vertical_alignment = 1
 visible_characters = 0
 visible_ratio = 0.0
 script = ExtResource("3_3nhwc")
+
+[node name="TimerText" type="RichTextLabel" parent="."]
+clip_contents = false
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -331.0
+offset_top = 18.0
+offset_right = -31.0
+offset_bottom = 80.0
+grow_horizontal = 0
+theme = ExtResource("4_r0q2l")
+theme_override_colors/default_color = Color(0.32544088, 0.3254409, 0.32544088, 1)
+theme_override_constants/outline_size = 16
+text = "0:00.00"
+horizontal_alignment = 2
+vertical_alignment = 1
+visible_characters = 0
+visible_ratio = 0.0
+metadata/_edit_use_anchors_ = true

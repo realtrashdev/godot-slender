@@ -17,6 +17,7 @@ var scenario: ClassicModeScenario
 @onready var too_long_text: RichTextLabel = $TooLongText
 @onready var mode_text: RichTextLabel = $ModeText
 @onready var scenario_text: RichTextLabel = $ModeText/ScenarioText
+@onready var timer_text: RichTextLabel = $TimerText
 
 func initialize(state: GameState):
 	game_state = state
@@ -41,6 +42,7 @@ func show_game_start():
 	await get_tree().create_timer(1).timeout
 	show_tip()
 	show_mode()
+	TextTools.change_visible_characters(timer_text, 7, 0.5, 0)
 	await get_tree().create_timer(5).timeout
 
 func show_tip():
@@ -65,6 +67,9 @@ func show_objective():
 	
 	if scenario:
 		scenario_specific_events()
+
+func update_speedrun_timer(time: float):
+	timer_text.text = "%d:%02d.%02d" % [floor(time / 60), int(time) % 60, int((time - floor(time)) * 100)]
 
 func taking_too_long():
 	display_text(too_long_text.text, TL_CHARACTER_TIME, TL_DISPLAY_TIME, TL_CHARACTER_TIME, too_long_text)

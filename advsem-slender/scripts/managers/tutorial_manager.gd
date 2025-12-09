@@ -28,7 +28,6 @@ func _ready() -> void:
 
 func _on_tutorial_distance_reached():
 	ui_manager.display_text("[wave][RCLICK] Toggle Tracker", 1, 3, 1)
-	print("Tutorial Distance Reached")
 	tutorial_end_ambient.play()
 	can_end = true
 	$"../CSGSphere3D".visible = true

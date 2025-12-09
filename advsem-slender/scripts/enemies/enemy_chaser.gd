@@ -30,7 +30,6 @@ func _ready() -> void:
 	setup_signals()
 	play_spawn_animation()
 	initialize_chase_time()
-	debug_print_stats()
 
 func _process(delta: float) -> void:
 	update_light_state(delta)
@@ -57,10 +56,6 @@ func play_spawn_animation() -> void:
 
 func initialize_chase_time() -> void:
 	remaining_chase_time = calculate_chase_time()
-
-func debug_print_stats() -> void:
-	var enemy_name = profile.enemy_name if profile else "Chaser"
-	print("Spawned %s - Speed: %.2f, Chase Time: %.2f" % [enemy_name, calculate_speed(), calculate_chase_time()])
 
 
 ## main update logic
