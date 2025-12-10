@@ -28,6 +28,6 @@ description = "It will spawn around you on a timer and begin pursuing.
 
 Your light will flicker when it spawns.
 
-Shine your light on it to send it away."
+Shine your light on it until it leaves."
 icon = ExtResource("1_vjasg")
 metadata/_custom_type_script = "uid://c426kdmp0e6tf"

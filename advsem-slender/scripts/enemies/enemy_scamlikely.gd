@@ -1,5 +1,7 @@
 extends ComponentEnemy
 
+const BatteryComponent = preload("uid://bl7j83h5ylc5h")
+
 var base: RadarScreen
 
 var timer: float = 1000
@@ -14,9 +16,11 @@ func _ready() -> void:
 	restart_timer()
 
 func _process(delta: float) -> void:
+	if base.get_battery_state() == BatteryComponent.BatteryState.DEAD:
+		return
 	if not incoming_call_screen.call_active and timer <= 0:
 		start_call()
-	elif timer >= 0:
+	elif timer > 0:
 		timer -= delta
 	else:
 		restart_timer()

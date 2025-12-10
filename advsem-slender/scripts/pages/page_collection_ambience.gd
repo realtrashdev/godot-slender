@@ -32,11 +32,12 @@ func on_page_collected():
 		2:
 			create_tween().tween_property($StompingNormal, "volume_db", -12, 1)
 		3:
-			play_interval = false
-			await get_tree().create_timer(3).timeout
-			play_interval = true
-			$GameMusic1.play()
-			sound_interval_loop()
+			#play_interval = false
+			#await get_tree().create_timer(3).timeout
+			#play_interval = true
+			#$GameMusic1.play()
+			#sound_interval_loop()
+			pass
 		4:
 			create_tween().tween_property($StompingNormal, "volume_db", -10, 1)
 		5:

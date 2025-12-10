@@ -51,7 +51,7 @@ func toggle_radar():
 	if restriction_component.check_for_restriction(PlayerRestriction.RestrictionType.CAMERA_FULL):
 		return
 	
-	# Disable input IMMEDIATELY when toggling
+	# disable input immediately when toggling
 	input_component.set_enabled(false)
 	
 	if restriction_component.check_for_restriction(PlayerRestriction.RestrictionType.RADAR):
@@ -65,6 +65,7 @@ func toggle_radar():
 		update_audio()
 		update_position()
 	
+	radar_screen.focused = focused
 	radar_toggled.emit(focused)
 
 func update_position():
@@ -88,11 +89,10 @@ func update_position():
 	pos_tween.parallel().tween_property(self, "rotation", final_rot, 0.5)\
 	.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
 	
-	# re enable input AFTER animation completes, but ONLY if focused
+	# re enable input after animation completes, but only if focused
 	pos_tween.finished.connect(func():
 		if focused:
-			input_component.set_enabled(true)
-	, CONNECT_ONE_SHOT)
+			input_component.set_enabled(true), CONNECT_ONE_SHOT)
 
 # TODO change to update audio component, move current stuff into a func in there
 func update_audio():
@@ -107,17 +107,14 @@ func update_audio():
 
 func activate():
 	active = true
+	radar_screen.activate()
 	update_position()
 
 func deactivate():
 	active = false
+	radar_screen.deactivate()
 	update_position()
 
-# Content management methods
-func load_screen(scene_path: String):
-	display_component.load_content(scene_path)
-
 func _on_screen_clicked(pos: Vector2):
-	pass
 	#print("Screen clicked at: ", pos)
-	# Handle screen interactions here
+	pass

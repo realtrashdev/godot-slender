@@ -1,5 +1,7 @@
 class_name AudioManager extends Node
 
+@export var do_collection_ambience: bool = true
+
 var game_state: GameState
 
 @onready var ambience: CustomAudioPlayer = $Ambient
@@ -13,11 +15,15 @@ func initialize(state: GameState):
 
 func start_game_audio():
 	play_ambience()
-	collection_ambience.on_game_started()
+	
+	if do_collection_ambience:
+		collection_ambience.on_game_started()
 
 func stop_game_audio():
 	ambience.stop()
-	collection_ambience.on_game_finished()
+	
+	if do_collection_ambience:
+		collection_ambience.on_game_finished()
 
 func play_ambience():
 	if not ambience.playing:
@@ -25,8 +31,9 @@ func play_ambience():
 		ambience.set_volume_smooth(ambience.default_volume, 1, -30)
 
 func on_page_collected():
-	# Trigger audio cues based on page count
+	# audio cues based on page count?
 	pass
 
 func taking_too_long():
-	collection_ambience.taking_too_long()
+	if do_collection_ambience:
+		collection_ambience.taking_too_long()
