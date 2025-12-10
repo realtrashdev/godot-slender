@@ -1,7 +1,7 @@
 extends Node
 
 @export var ringtones: Array[AudioStream]
-@export var default_volume = -6
+@export var default_volume = -10
 
 var volume_modifier: float = 0
 

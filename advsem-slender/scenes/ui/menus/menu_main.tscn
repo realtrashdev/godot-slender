@@ -73,20 +73,20 @@ shortcut_keys_enabled = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TitleText2" type="RichTextLabel" parent="."]
+[node name="VersionText" type="RichTextLabel" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = 141.0
-offset_top = 984.0
+offset_top = 996.0
 offset_right = 941.0
-offset_bottom = 1084.0
+offset_bottom = 1096.0
 grow_horizontal = 2
 theme = ExtResource("1_l6cm7")
 theme_override_colors/default_color = Color(0.3328807, 0.33288068, 0.33288068, 1)
 theme_override_fonts/normal_font = SubResource("FontVariation_2g2yl")
-theme_override_font_sizes/normal_font_size = 48
+theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "v0"
 fit_content = true
@@ -94,6 +94,8 @@ scroll_active = false
 shortcut_keys_enabled = false
 horizontal_alignment = 2
 vertical_alignment = 1
+visible_characters = 0
+visible_ratio = 0.0
 
 [node name="VBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -121,7 +123,7 @@ icon_alignment = 1
 expand_icon = true
 default_text = "Play"
 justification = 1
-wait_time = 0.4
+wait_time = 1.0
 focus_size = Vector2(375, 130)
 
 [node name="CustomizeButton" parent="VBoxContainer" instance=ExtResource("4_dkf5t")]
@@ -132,7 +134,7 @@ icon_alignment = 1
 expand_icon = true
 default_text = "Customize"
 justification = 1
-wait_time = 0.6
+wait_time = 0.8
 focus_size = Vector2(375, 130)
 
 [node name="SettingsButton" parent="VBoxContainer" instance=ExtResource("4_dkf5t")]
@@ -143,7 +145,7 @@ icon_alignment = 1
 expand_icon = true
 default_text = "Settings"
 justification = 1
-wait_time = 1.0
+wait_time = 0.8
 focus_size = Vector2(375, 130)
 
 [node name="QuitButton" parent="VBoxContainer" instance=ExtResource("4_dkf5t")]
@@ -154,7 +156,7 @@ icon_alignment = 1
 expand_icon = true
 default_text = "Quit"
 justification = 1
-wait_time = 1.4
+wait_time = 1.0
 focus_size = Vector2(375, 130)
 focus_text_effect = "[shake]"
 

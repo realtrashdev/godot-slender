@@ -43,7 +43,7 @@ script = ExtResource("2_hjd67")
 ringtones = Array[AudioStream]([ExtResource("2_3wt7d"), ExtResource("3_hjd67")])
 
 [node name="RingtoneAudio" type="AudioStreamPlayer" parent="AudioComponent"]
-stream = ExtResource("3_hjd67")
+stream = ExtResource("2_3wt7d")
 volume_db = -15.0
 bus = &"PlayerRadar"
 parameters/looping = true

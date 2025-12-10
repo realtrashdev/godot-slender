@@ -22,7 +22,7 @@ var fleeing: bool = false
 # onready references
 @onready var player: CharacterBody3D = get_tree().get_first_node_in_group("Player")
 @onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
-@onready var ambient_music: AudioStreamPlayer3D = $"Ambient Music"
+@onready var ambient_music: AudioStreamPlayer3D = $"Ambient"
 @onready var sprite: AnimatedSprite3D = $Sprite3D
 @onready var pathfinding_component: PathfindingComponent = $PathfindingComponent
 

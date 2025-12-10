@@ -10,8 +10,7 @@
 resource_name = "abyss"
 script = ExtResource("7_en1na")
 map_name = "Infinite Abyss"
-description = "A never-ending darkness.
-The few people left wander here aimlessly. Except you."
+description = "A never-ending darkness."
 icon = ExtResource("1_28cg1")
 scene = ExtResource("4_28cg1")
 scenarios = Array[ExtResource("2_dw8ue")]([ExtResource("3_28cg1")])

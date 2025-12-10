@@ -48,7 +48,7 @@ metadata/_custom_type_script = "uid://bf5ts565hp5p4"
 resource_name = "symmetry"
 script = ExtResource("2_4sqow")
 name = "Symmetry"
-description = "There may be a lot of them but hey, that overview sure is nice and symmetrical."
+description = "It's like the enemy overview is looking in a mirror!"
 enemies_to_add = Dictionary[int, ExtResource("1_lrgw3")]({
 0: null,
 1: SubResource("Resource_8v8fc"),

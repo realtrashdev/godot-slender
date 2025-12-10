@@ -1,20 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cxsorime4wuh2"]
+[gd_scene load_steps=3 format=3 uid="uid://cxsorime4wuh2"]
 
 [ext_resource type="Script" uid="uid://dkw83jr6dbkgd" path="res://scripts/tree.gd" id="1_j21aw"]
 [ext_resource type="ArrayMesh" uid="uid://bpc6beugbqay3" path="res://art/3d/tree1_smooth.obj" id="2_vehxk"]
-[ext_resource type="Texture2D" uid="uid://giwyrie5csur" path="res://art/2d/maps/leaf_1.aseprite" id="3_vehxk"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_emeqc"]
-transparency = 1
-albedo_texture = ExtResource("3_vehxk")
-texture_filter = 0
-billboard_mode = 1
-distance_fade_mode = 2
-distance_fade_min_distance = 1.0
-distance_fade_max_distance = 5.0
-
-[sub_resource type="QuadMesh" id="QuadMesh_muqku"]
-material = SubResource("StandardMaterial3D_emeqc")
 
 [node name="PG_Tree" type="Node3D"]
 script = ExtResource("1_j21aw")
@@ -28,16 +15,3 @@ visible = false
 use_collision = true
 radius = 0.90000004
 height = 6.0
-
-[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20000005, 9, 0)
-visible = false
-amount = 4
-lifetime = 4.0
-randomness = 0.5
-mesh = SubResource("QuadMesh_muqku")
-emission_shape = 2
-emission_sphere_radius = 2.0
-damping_min = 7.0
-damping_max = 8.0
-scale_amount_max = 985.8

@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://c5j4dypjweuc2"]
+[gd_scene load_steps=8 format=3 uid="uid://c5j4dypjweuc2"]
 
 [ext_resource type="Script" uid="uid://b34b0y7wk1a2p" path="res://scripts/ui/canvases/jumpscare_canvas.gd" id="1_ym5wt"]
 [ext_resource type="Resource" uid="uid://3vkwuf2sbniw" path="res://resources/scares/scare_chaser.tres" id="2_b2skw"]
 [ext_resource type="SpriteFrames" uid="uid://0q8o0kumm18j" path="res://art/2d/enemies/jumpscares/eyes_jumpscare.aseprite" id="2_cf1aw"]
-[ext_resource type="AudioStream" uid="uid://j72orqf0yqsb" path="res://audio/enemies/chaser/chaser_scare2.mp3" id="3_cf1aw"]
 
 [sub_resource type="Animation" id="Animation_cvdyi"]
 length = 0.001
@@ -108,7 +107,6 @@ sprite_frames = ExtResource("2_cf1aw")
 autoplay = "default"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_cf1aw")
 
 [node name="ColorRect2" type="ColorRect" parent="."]
 anchors_preset = 15

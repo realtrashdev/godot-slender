@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bhnr1i6xo0hdc" path="res://scripts/enemies/enemy_chaser.gd" id="1_3pbm7"]
 [ext_resource type="SpriteFrames" uid="uid://pyvqr1dpcew3" path="res://art/2d/enemies/chaser_1.aseprite" id="2_3pbm7"]
 [ext_resource type="Script" uid="uid://dmj552fu1iv7a" path="res://scripts/enemies/components/enemy_spriteshake.gd" id="3_hm5ih"]
-[ext_resource type="AudioStream" uid="uid://c8oi7ibd26wfm" path="res://audio/enemies/placeholder/ao oni chase.wav" id="4_tkoxo"]
+[ext_resource type="AudioStream" uid="uid://yfj2cifrrldq" path="res://audio/enemies/chaser/chaser_ambient1.wav" id="4_krcqs"]
 [ext_resource type="Script" uid="uid://bbw27kynu47ii" path="res://scripts/enemies/components/pathfinding_component.gd" id="5_krcqs"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jkv2x"]
@@ -31,8 +31,9 @@ script = ExtResource("3_hm5ih")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.01971, 0)
 shape = SubResource("CapsuleShape3D_jkv2x")
 
-[node name="Ambient Music" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("4_tkoxo")
+[node name="Ambient" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_krcqs")
+volume_db = -2.0
 autoplay = true
 max_distance = 20.0
 

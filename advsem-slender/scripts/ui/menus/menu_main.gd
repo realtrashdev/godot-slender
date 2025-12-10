@@ -12,9 +12,11 @@ func _ready() -> void:
 		await get_tree().create_timer(0.5).timeout
 		TextTools.change_visible_characters($TitleText, $TitleText.get_total_character_count(), 0.5, 0)
 		await get_tree().create_timer(0.5).timeout
+		TextTools.change_visible_characters($VersionText, $VersionText.get_total_character_count(), 0.2, 0)
 		already_opened = true
 	else:
 		TextTools.change_visible_characters($TitleText, $TitleText.get_total_character_count(), 0, 0)
+		TextTools.change_visible_characters($VersionText, $VersionText.get_total_character_count(), 0, 0)
 		play_button.wait_time = 0.3
 		customize_button.wait_time = 0.15
 		settings_button.wait_time = 0.2

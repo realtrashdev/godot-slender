@@ -22,12 +22,14 @@ func _process(delta: float) -> void:
 		restart_timer()
 
 func start_call():
+	print("Start call")
 	timer = 0
 	incoming_call_screen.start_call()
 	base.call_started()
 
 func stop_call():
 	base.call_ended()
+	restart_timer()
 
 func restart_timer():
 	timer = randf_range(profile.min_spawn_time, profile.max_spawn_time)

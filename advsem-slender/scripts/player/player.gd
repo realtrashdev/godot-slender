@@ -67,7 +67,7 @@ func _on_radar_toggled(toggled):
 	camera_component.check_radar_restriction(toggled)
 	camera_component.camera.radar_toggled(toggled)
 
-# Restriction convenience methods
+# Restriction methods
 func add_restriction(type: PlayerRestriction.RestrictionType, source: String):
 	restriction_component.add_restriction(type, source)
 
