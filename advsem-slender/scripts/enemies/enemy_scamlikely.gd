@@ -17,6 +17,8 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if base.get_battery_state() == BatteryComponent.BatteryState.DEAD:
+		if incoming_call_screen.call_active:
+			stop_call()
 		return
 	if not incoming_call_screen.call_active and timer <= 0:
 		start_call()

@@ -7,11 +7,11 @@ signal out_of_battery
 
 const STARTING_CHUNKS: int = 4
 
-const BATTERY_PER_CHUNK: float = 15.0
-const PAGE_CHARGE_AMOUNT: float = 15.0
+const BATTERY_PER_CHUNK: float = 20.0
+const PAGE_CHARGE_AMOUNT: float = 20.0
 
-const IDLE_BATTERY_LOSS: float = 0.4
-const ACTIVE_BATTERY_LOSS: float = 1.0
+const IDLE_BATTERY_LOSS: float = 0.2
+const ACTIVE_BATTERY_LOSS: float = 0.8
 const RINGING_BATTERY_LOSS: float = 2.0
 
 var battery_container: HBoxContainer
@@ -82,7 +82,6 @@ func _add_charge(charge: float):
 		battery_remaining = _get_maximum_battery()
 	if battery_remaining > 0 and state == BatteryState.DEAD:
 		state = BatteryState.ALIVE
-		charged.emit()
 		print("Radar alive")
 	charged.emit()
 

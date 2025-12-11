@@ -94,9 +94,11 @@ func _on_help_button_pressed() -> void:
 
 # Global signals
 func _connect_signals():
-	battery_component.out_of_battery.connect(_on_out_of_battery)
-	#Signals.game_finished.connect(_on_game_finished)
+	Signals.game_finished.connect(_on_game_finished)
 	Signals.tutorial_distance_reached.connect(_on_tutorial_distance_reached)
+	
+	battery_component.out_of_battery.connect(_on_out_of_battery)
+	battery_component.charged.connect(_on_battery_charged)
 
 func _on_game_finished():
 	_reset_screens()
@@ -111,3 +113,5 @@ func _on_battery_charged():
 
 func _on_out_of_battery():
 	dead_battery_screen.visible = true
+	if incoming_call_screen.visible:
+		incoming_call_screen.visible = false
