@@ -42,6 +42,7 @@ texture = ExtResource("3_jpkc4")
 [node name="MapText" type="RichTextLabel" parent="."]
 layout_mode = 2
 theme = ExtResource("1_htvf8")
+theme_override_constants/outline_size = 16
 bbcode_enabled = true
 text = "[wave]Silent Forest"
 fit_content = true
@@ -51,6 +52,7 @@ vertical_alignment = 1
 [node name="ScenarioText" type="RichTextLabel" parent="."]
 layout_mode = 2
 theme = ExtResource("1_htvf8")
+theme_override_constants/outline_size = 8
 theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
 text = "The Basics I"

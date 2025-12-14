@@ -18,6 +18,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(960, 540)
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("1_jjl53")
 
 [node name="ButtonPress" type="AudioStreamPlayer" parent="."]
@@ -35,6 +37,7 @@ offset_right = 400.0
 offset_bottom = 251.0
 grow_horizontal = 2
 theme = ExtResource("1_l6cm7")
+theme_override_constants/outline_size = 24
 theme_override_fonts/normal_font = SubResource("FontVariation_2g2yl")
 theme_override_font_sizes/normal_font_size = 64
 bbcode_enabled = true
@@ -62,11 +65,12 @@ offset_bottom = 123.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_l6cm7")
+theme_override_constants/outline_size = 16
 theme_override_fonts/normal_font = SubResource("FontVariation_2g2yl")
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "[wave]made by trash :][/wave]
-thank you for playing, it means a lot!"
+thank you for playing!"
 fit_content = true
 scroll_active = false
 shortcut_keys_enabled = false
@@ -74,6 +78,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="VersionText" type="RichTextLabel" parent="."]
+clip_contents = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -85,6 +90,7 @@ offset_bottom = 1096.0
 grow_horizontal = 2
 theme = ExtResource("1_l6cm7")
 theme_override_colors/default_color = Color(0.3328807, 0.33288068, 0.33288068, 1)
+theme_override_constants/outline_size = 16
 theme_override_fonts/normal_font = SubResource("FontVariation_2g2yl")
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true

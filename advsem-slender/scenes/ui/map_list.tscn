@@ -50,6 +50,7 @@ script = ExtResource("1_cdqgv")
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 layout_mode = 2
 theme = ExtResource("2_l22xs")
+theme_override_constants/outline_size = 16
 theme_override_fonts/normal_font = SubResource("FontVariation_0dmwp")
 bbcode_enabled = true
 text = "[tornado radius=2 freq=3]MAPS"

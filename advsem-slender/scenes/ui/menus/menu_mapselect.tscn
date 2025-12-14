@@ -22,6 +22,7 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(960, 350)
 script = ExtResource("1_vyrjl")
+do_mouse_offset = false
 
 [node name="ScenarioList" parent="." instance=ExtResource("1_cbrkm")]
 layout_mode = 1

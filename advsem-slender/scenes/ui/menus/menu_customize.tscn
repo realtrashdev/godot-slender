@@ -31,6 +31,7 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(360, 41)
 theme = ExtResource("2_eoi1v")
+theme_override_constants/outline_size = 24
 theme_override_font_sizes/normal_font_size = 64
 bbcode_enabled = true
 text = "[wave freq=3]Customize"

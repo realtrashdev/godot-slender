@@ -27,6 +27,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("1_sd4kj")
+theme_override_constants/outline_size = 16
 bbcode_enabled = true
 fit_content = true
 scroll_active = false
