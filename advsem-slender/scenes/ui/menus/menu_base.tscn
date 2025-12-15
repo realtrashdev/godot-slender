@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c3f6y28ur3tma"]
+[gd_scene load_steps=21 format=3 uid="uid://c3f6y28ur3tma"]
 
 [ext_resource type="Script" uid="uid://b5rrwodfv7prw" path="res://scripts/managers/menu_manager.gd" id="1_mbnms"]
 [ext_resource type="Shader" uid="uid://b7h471hqua86k" path="res://shaders/menu_background_tron.gdshader" id="2_eb1er"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://dyadolkbv3goc" path="res://audio/menu/keyboard_sound3.mp3" id="7_eb1er"]
 [ext_resource type="AudioStream" uid="uid://dknupfsrnq16s" path="res://audio/menu/keyboard_sound4.mp3" id="8_y4m2o"]
 [ext_resource type="Script" uid="uid://1rp2y7xx8yax" path="res://scripts/ui/menus/menu_secrets.gd" id="9_qvyop"]
+[ext_resource type="Shader" uid="uid://3s1c5a71rde4" path="res://shaders/transition_pixels.gdshader" id="11_y4m2o"]
 
 [sub_resource type="Sky" id="Sky_0xm2m"]
 
@@ -25,12 +26,42 @@ fog_density = 1.0
 fog_depth_begin = 0.0
 fog_depth_end = 4000.0
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_eb1er"]
+noise_type = 3
+frequency = 0.005
+fractal_type = 0
+fractal_weighted_strength = 0.7
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_y4m2o"]
+noise = SubResource("FastNoiseLite_eb1er")
+seamless = true
+seamless_blend_skirt = 0.2
+bump_strength = 1.4
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_y4m2o"]
 shader = ExtResource("2_eb1er")
+shader_parameter/noise_img = SubResource("NoiseTexture2D_y4m2o")
 shader_parameter/color1 = Color(0, 0, 0, 1)
 shader_parameter/color2 = Color(0.3403393, 0.34033933, 0.3403393, 1)
+shader_parameter/band_width = 0.50000002375
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_eb1er"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_whi8p"]
+noise_type = 0
+seed = 1
+fractal_lacunarity = 2.375
+fractal_gain = 0.595
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_j6qfw"]
+width = 64
+height = 36
+noise = SubResource("FastNoiseLite_whi8p")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7ilda"]
+shader = ExtResource("11_y4m2o")
+shader_parameter/noise_img = SubResource("NoiseTexture2D_j6qfw")
+shader_parameter/transition_amount = 1.0
 
 [node name="Menu" type="Node3D"]
 script = ExtResource("1_mbnms")
@@ -89,3 +120,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0)
+
+[node name="TransitionPixels" type="TextureRect" parent="."]
+z_index = 2
+material = SubResource("ShaderMaterial_7ilda")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("NoiseTexture2D_j6qfw")

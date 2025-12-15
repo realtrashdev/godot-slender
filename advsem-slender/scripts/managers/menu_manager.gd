@@ -7,6 +7,7 @@ var menu_transition: MenuTransition
 @onready var secrets: Node = $Secrets
 @onready var quit_audio: AudioStreamPlayer = $QuitAudio
 @onready var transition_fade: ColorRect = $TransitionFade
+@onready var transition_pixels: TextureRect = $TransitionPixels
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -76,3 +77,8 @@ func fade_in_music(vol: float, time: float, transition: Tween.TransitionType = T
 
 func fade_out_music(vol: float, time: float, transition: Tween.TransitionType = Tween.TRANS_LINEAR, easing: Tween.EaseType = Tween.EASE_IN_OUT):
 	create_tween().tween_property(music, "volume_db", vol, time).set_trans(transition).set_ease(easing)
+
+func pixel_transition(end_value: float, time: float = 1.0, start_delay: float = 0.0):
+	await get_tree().create_timer(start_delay).timeout
+	var shader_material = transition_pixels.material
+	create_tween().tween_property(shader_material, "shader_parameter/transition_amount", end_value, time)

@@ -1,46 +1,33 @@
 shader_type canvas_item;
-
+uniform sampler2D noise_img: repeat_enable;
 uniform vec4 color1 : source_color = vec4(0.1, 0.0, 0.2, 1.0);
 uniform vec4 color2 : source_color = vec4(0.8, 0.2, 0.3, 1.0);
+uniform float band_width : hint_range(0.0, 1.0) = 0.5;
 
 void vertex() {
-	UV.x *= 4.0;
-	UV.y *= 2.25;
-	
-	UV.x += TIME * 0.05;
-	UV.y += TIME * 0.05;
+	//float scale_amount = 1.0 + sin(TIME * 0.3) * 0.1;
+	//UV.x *= scale_amount;
+	UV.x += sin(TIME * 0.1) * 0.2;
+	UV.y += TIME * 0.025;
 }
 
 void fragment() {
-	//back grid
-	if (mod(UV.x, 0.2) < 0.175 && mod(UV.y, 0.2) < 0.175) {
-		COLOR = color1;
-	}
+	float time = TIME * 0.02;
+	
+    vec4 tex_color = texture(noise_img, UV);
+    float luma = tex_color.r;
+    
+    float threshold = mod(time, 1.0);
+    
+    float dist = abs(luma - threshold);
+    dist = min(dist, 1.0 - dist);
+    
+    if (dist <= band_width * 0.5) {
+        COLOR = color1;
+    }
 	else {
-		COLOR = color2;
-	}
-	
-	//front grid outline
-	if (mod(UV.x / 2.5 + -TIME * 0.05, 0.25) < 0.04) {
-		COLOR = color1;
-	}
-	if (mod(UV.y / 2.5 + -TIME * 0.05, 0.25) < 0.04) {
-		COLOR = color1;
-	}
-	if (mod(UV.x / 2.5 + -TIME * 0.05, 0.25) > 0.24) {
-		COLOR = color1;
-	}
-	if (mod(UV.y / 2.5 + -TIME * 0.05, 0.25) > 0.24) {
-		COLOR = color1;
-	}
-	
-	//front grid
-	if (mod(UV.x / 2.5 + -TIME * 0.05, 0.25) < 0.03) {
-		COLOR = color2;
-	}
-	if (mod(UV.y / 2.5 + -TIME * 0.05, 0.25) < 0.03) {
-		COLOR = color2;
-	}
+        COLOR = color2;
+    }
 }
 
 //void light() {
