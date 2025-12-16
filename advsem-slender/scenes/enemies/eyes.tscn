@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://c57u8t3kc41fe"]
 
-[ext_resource type="Script" uid="uid://b41qhrgbncwi0" path="res://scripts/enemies/enemy_eyes.gd" id="1_5drqm"]
+[ext_resource type="Script" uid="uid://b41qhrgbncwi0" path="res://scripts/enemies/OLD/enemy_eyes.gd" id="1_5drqm"]
 [ext_resource type="Texture2D" uid="uid://dporlsh4nr431" path="res://art/2d/enemies/eyes.aseprite" id="1_p4rnr"]
 [ext_resource type="AudioStream" uid="uid://buv8asoeu817u" path="res://audio/enemies/placeholder/slendytubbies_scream_full.wav" id="3_o1yd7"]
 

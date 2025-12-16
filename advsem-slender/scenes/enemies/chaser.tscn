@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://0rnvcc30hitf"]
 
-[ext_resource type="Script" uid="uid://bhnr1i6xo0hdc" path="res://scripts/enemies/enemy_chaser.gd" id="1_3pbm7"]
+[ext_resource type="Script" uid="uid://bhnr1i6xo0hdc" path="res://scripts/enemies/OLD/enemy_chaser.gd" id="1_3pbm7"]
 [ext_resource type="SpriteFrames" uid="uid://pyvqr1dpcew3" path="res://art/2d/enemies/chaser_1.aseprite" id="2_3pbm7"]
-[ext_resource type="Script" uid="uid://dmj552fu1iv7a" path="res://scripts/enemies/components/enemy_spriteshake.gd" id="3_hm5ih"]
+[ext_resource type="Script" uid="uid://dmj552fu1iv7a" path="res://scripts/enemies/OLD/enemy_spriteshake.gd" id="3_hm5ih"]
 [ext_resource type="AudioStream" uid="uid://yfj2cifrrldq" path="res://audio/enemies/chaser/chaser_ambient1.wav" id="4_krcqs"]
-[ext_resource type="Script" uid="uid://bbw27kynu47ii" path="res://scripts/enemies/components/pathfinding_component.gd" id="5_krcqs"]
+[ext_resource type="Script" uid="uid://bbw27kynu47ii" path="res://scripts/enemies/OLD/pathfinding_component.gd" id="5_krcqs"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jkv2x"]
 radius = 0.856761

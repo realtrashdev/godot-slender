@@ -1,6 +1,6 @@
 extends Node
 
-# Game state
+# Game State
 @warning_ignore("unused_signal")
 signal game_started
 @warning_ignore("unused_signal")
