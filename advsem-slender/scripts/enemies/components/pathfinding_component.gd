@@ -5,7 +5,7 @@ static var active_pathfinders: Array[PathfindingComponent] = []
 
 var update_frequency: int = 6
 
-@onready var parent: Enemy3D = get_parent()
+@onready var parent: OldEnemy3D = get_parent()
 
 func _ready():
 	active_pathfinders.append(self)

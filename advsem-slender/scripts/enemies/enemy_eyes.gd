@@ -1,4 +1,4 @@
-extends Enemy3D
+extends OldEnemy3D
 
 enum State { HOVERING, ATTACK }
 

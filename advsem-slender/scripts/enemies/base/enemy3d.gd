@@ -1,4 +1,4 @@
-@abstract class_name Enemy3D extends CharacterBody3D
+@abstract class_name OldEnemy3D extends CharacterBody3D
 
 @warning_ignore("unused_signal")
 signal died

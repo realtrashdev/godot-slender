@@ -1,4 +1,4 @@
-extends Enemy3D
+extends OldEnemy3D
 
 ## Chaser
 ## Chases after player in a straight line. Disappears after the light shines on it for a period of time.

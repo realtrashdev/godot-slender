@@ -67,7 +67,7 @@ func spawn_enemy() -> Node:
 	
 	return enemy
 
-func spawn_2d_enemy(enemy: Enemy2D):
+func spawn_2d_enemy(enemy: OldEnemy2D):
 	if not enabled:
 		return
 	
@@ -76,7 +76,7 @@ func spawn_2d_enemy(enemy: Enemy2D):
 	enemy.profile = profile
 	enemy.activate()
 
-func spawn_3d_enemy(enemy: Enemy3D):
+func spawn_3d_enemy(enemy: OldEnemy3D):
 	if not enabled:
 		return
 	

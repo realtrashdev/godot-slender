@@ -1,4 +1,4 @@
-@abstract class_name Enemy2D extends CanvasLayer
+@abstract class_name OldEnemy2D extends CanvasLayer
 
 @warning_ignore("unused_signal")
 signal died

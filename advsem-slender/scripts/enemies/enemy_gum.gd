@@ -1,4 +1,4 @@
-extends Enemy2D
+extends OldEnemy2D
 
 ## Gum
 ## 2D bouncing enemy that appears as screen overlay
