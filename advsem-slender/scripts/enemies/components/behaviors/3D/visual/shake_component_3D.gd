@@ -18,9 +18,6 @@ func _ready():
 	shake_timer.timeout.connect(_shake_update)
 	add_child(shake_timer)
 
-func _process(delta: float) -> void:
-	pass
-
 func start_shake(intensity: float = 0.1):
 	if not is_shaking:
 		shake_intensity = intensity

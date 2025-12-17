@@ -16,9 +16,6 @@ enum EnemyType { ENEMY_2D, ENEMY_3D, ENEMY_COMPONENT }
 ## Maximum amount of this enemy that can be active at once.
 @export var max_instances: int = 3
 
-@export_group("Movement")
-@export var move_speed: float = 0.0
-
 @export_group("Death")
 ## AAAAAAHH!!
 @export var jumpscare: Jumpscare
