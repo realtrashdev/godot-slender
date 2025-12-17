@@ -23,9 +23,26 @@ func _setup() -> void:
 		push_warning("%s: ChaseComponent marked as using NavigationAgent3D but could not find it. Deleting component!" % name)
 		queue_free()
 
-func _physics_update(delta: float) -> void:
+func _tick_update() -> void:
+	if using_nav_agent:
+		_agent_navigation()
+	else:
+		_basic_navigation()
+
+## Navigation without the use of navmesh.
+func _basic_navigation():
+	if not target:
+		target = enemy.get_player()
+	var direction = (target.global_position - enemy.global_position).normalized()
+	enemy.velocity = direction * _get_speed()
+
+## Navigation with the use of navmesh.
+func _agent_navigation():
 	# Update nav agent target position
-	nav_agent.target_position = target.global_position
+	if target:
+		nav_agent.target_position = target.global_position
+	else:
+		target = enemy.get_player()
 	
 	# If touching the target, don't navigate
 	if nav_agent.is_navigation_finished():
@@ -36,6 +53,6 @@ func _physics_update(delta: float) -> void:
 	var direction = (next_position - enemy.global_position).normalized()
 	enemy.velocity = direction * _get_speed()
 
-## Gets the movement speed of the enemy via a dictionary of state based speeds
+## Gets the movement speed of the enemy via a dictionary of state based speeds.
 func _get_speed() -> float:
 	return move_speeds[enemy.get_current_state()]

@@ -45,6 +45,7 @@ func get_battery_remaining() -> float:
 
 # Private methods
 func _get_chunks() -> Array[Node]:
+	if not battery_container: return []
 	return battery_container.get_children()
 
 func _get_visible_chunks() -> int:

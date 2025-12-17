@@ -12,20 +12,23 @@ enum State {
 	DYING,            ## Feel like this one's pretty self explanatory.
 	}
 
+@export var starting_state: State = State.IDLE
+
 var components: Array[EnemyBehavior3D]
 var player: CharacterBody3D
 
-var current_state: State = State.IDLE
+var current_state: State
 var using_tick_system: bool = false
 
 # Set up components array and check for tick system
 func _ready() -> void:
-	_get_player()
+	current_state = starting_state
 	_get_components()
 	var tick_component = get_tick_system()
 	if tick_component:
 		using_tick_system = true
 		tick_component.tick.connect(_tick_process)
+	call_deferred("_get_player")
 
 # Call update function of child components.
 func _process(delta: float) -> void:
@@ -69,11 +72,8 @@ func _get_components():
 
 ## Cache player reference for components to use
 func _get_player():
-	var players = get_tree().get_nodes_in_group("player")
-	if players.size() > 0:
-		push_warning("%s: More than one player found in 'player' group!" % name)
-		player = players[0]
-	else:
+	player = get_tree().get_first_node_in_group("Player")
+	if not player:
 		push_warning("%s: No player found in 'player' group!" % name)
 		player = null
 
@@ -93,9 +93,6 @@ func get_player() -> CharacterBody3D:
 	return player
 
 func get_character_body_3d() -> CharacterBody3D:
-	for child in get_children():
-		if child is CharacterBody3D:
-			return child
 	return self
 
 func get_animated_sprite_3d() -> AnimatedSprite3D:
