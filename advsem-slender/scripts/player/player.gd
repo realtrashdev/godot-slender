@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
 @export var starting_rotation: Vector3 = Vector3.ZERO
+@export var instant_activate: bool = false
 
 const MENU_SCENE = "res://scenes/ui/menus/menu_base.tscn"
 
@@ -20,6 +21,8 @@ var quit_timer: float = 0.0
 func _ready() -> void:
 	radar.radar_toggled.connect(_on_radar_toggled)
 	deactivate()
+	if instant_activate:
+		activate()
 
 func _process(delta: float) -> void:
 	if Input.is_key_pressed(KEY_ESCAPE):

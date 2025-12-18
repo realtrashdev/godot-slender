@@ -16,6 +16,8 @@ enum State {
 
 var components: Array[EnemyBehavior3D]
 var player: CharacterBody3D
+## Automatically given by EnemySpawner.
+var profile: EnemyProfile
 
 var current_state: State
 var using_tick_system: bool = false
@@ -28,7 +30,7 @@ func _ready() -> void:
 	if tick_component:
 		using_tick_system = true
 		tick_component.tick.connect(_tick_process)
-	call_deferred("_get_player")
+	_get_player()
 
 # Call update function of child components.
 func _process(delta: float) -> void:
@@ -89,11 +91,24 @@ func has_component(component_type: GDScript) -> bool:
 	return get_component(component_type) != null
 
 # General
+func get_profile() -> EnemyProfile:
+	if profile:
+		return profile
+	else:
+		push_error("&s: Enemy has no EnemyProfile!" % name)
+		return null
+
 func get_player() -> CharacterBody3D:
 	return player
 
 func get_character_body_3d() -> CharacterBody3D:
 	return self
+
+func get_collision_shape_3d() -> CollisionShape3D:
+	for child in get_children():
+		if child is CollisionShape3D:
+			return child
+	return null
 
 func get_animated_sprite_3d() -> AnimatedSprite3D:
 	for child in get_children():

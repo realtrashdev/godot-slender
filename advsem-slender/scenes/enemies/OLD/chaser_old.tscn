@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://0rnvcc30hitf"]
+
+[ext_resource type="Script" uid="uid://bhnr1i6xo0hdc" path="res://scripts/enemies/OLD/enemy_chaser.gd" id="1_3pbm7"]
+[ext_resource type="SpriteFrames" uid="uid://pyvqr1dpcew3" path="res://art/2d/enemies/chaser_1.aseprite" id="2_3pbm7"]
+[ext_resource type="Script" uid="uid://dmj552fu1iv7a" path="res://scripts/enemies/OLD/enemy_spriteshake.gd" id="3_hm5ih"]
+[ext_resource type="AudioStream" uid="uid://yfj2cifrrldq" path="res://audio/enemies/chaser/chaser_ambient1.wav" id="4_krcqs"]
+[ext_resource type="Script" uid="uid://bbw27kynu47ii" path="res://scripts/enemies/OLD/pathfinding_component.gd" id="5_krcqs"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jkv2x"]
+radius = 0.856761
+height = 4.0
+
+[node name="Chaser" type="CharacterBody3D"]
+collision_layer = 41
+collision_mask = 5
+script = ExtResource("1_3pbm7")
+
+[node name="Sprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(4.72, 0, 0, 0, 4.72, 0, 0, 0, 1.18, -0.001, -0.07300001, -0.002)
+offset = Vector2(0, 63)
+billboard = 2
+shaded = true
+texture_filter = 0
+sprite_frames = ExtResource("2_3pbm7")
+animation = &"walk"
+autoplay = "walk"
+frame_progress = 0.97765756
+script = ExtResource("3_hm5ih")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.01971, 0)
+shape = SubResource("CapsuleShape3D_jkv2x")
+
+[node name="Ambient" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_krcqs")
+volume_db = -2.0
+autoplay = true
+max_distance = 20.0
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="PathfindingComponent" type="Node" parent="."]
+script = ExtResource("5_krcqs")
+metadata/_custom_type_script = "uid://bbw27kynu47ii"

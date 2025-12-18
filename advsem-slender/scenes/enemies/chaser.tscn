@@ -1,44 +1,75 @@
-[gd_scene load_steps=7 format=3 uid="uid://0rnvcc30hitf"]
+[gd_scene load_steps=10 format=3 uid="uid://csq5gcwn1bv26"]
 
-[ext_resource type="Script" uid="uid://bhnr1i6xo0hdc" path="res://scripts/enemies/OLD/enemy_chaser.gd" id="1_3pbm7"]
-[ext_resource type="SpriteFrames" uid="uid://pyvqr1dpcew3" path="res://art/2d/enemies/chaser_1.aseprite" id="2_3pbm7"]
-[ext_resource type="Script" uid="uid://dmj552fu1iv7a" path="res://scripts/enemies/OLD/enemy_spriteshake.gd" id="3_hm5ih"]
-[ext_resource type="AudioStream" uid="uid://yfj2cifrrldq" path="res://audio/enemies/chaser/chaser_ambient1.wav" id="4_krcqs"]
-[ext_resource type="Script" uid="uid://bbw27kynu47ii" path="res://scripts/enemies/OLD/pathfinding_component.gd" id="5_krcqs"]
+[ext_resource type="Script" uid="uid://dgmarm0y1eq66" path="res://scripts/enemies/base/enemy3D.gd" id="1_ontx3"]
+[ext_resource type="SpriteFrames" uid="uid://pyvqr1dpcew3" path="res://art/2d/enemies/chaser_1.aseprite" id="2_vobwd"]
+[ext_resource type="AudioStream" uid="uid://yfj2cifrrldq" path="res://audio/enemies/chaser/chaser_ambient1.wav" id="4_apvou"]
+[ext_resource type="Script" uid="uid://dihwj4ebwryto" path="res://scripts/enemies/components/behaviors/3D/movement/chase_component_3D.gd" id="4_o1gbp"]
+[ext_resource type="Script" uid="uid://effuujo1gd4r" path="res://scripts/enemies/components/behaviors/3D/visual/shake_component_3D.gd" id="4_s5r2m"]
+[ext_resource type="Script" uid="uid://brqfh8pmq54xe" path="res://scripts/enemies/components/tick_component.gd" id="5_vobwd"]
+[ext_resource type="Script" uid="uid://du80erw6qg145" path="res://scripts/enemies/components/behaviors/3D/movement/gravity_component_3D.gd" id="6_vobwd"]
+[ext_resource type="Script" uid="uid://dce3vw8udcaow" path="res://scripts/enemies/components/behaviors/3D/collision_kill_component_3D.gd" id="7_apvou"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jkv2x"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1xo2g"]
 radius = 0.856761
 height = 4.0
 
 [node name="Chaser" type="CharacterBody3D"]
 collision_layer = 41
 collision_mask = 5
-script = ExtResource("1_3pbm7")
+script = ExtResource("1_ontx3")
+starting_state = 1
 
-[node name="Sprite3D" type="AnimatedSprite3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.01971, 0)
+shape = SubResource("CapsuleShape3D_1xo2g")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(4.72, 0, 0, 0, 4.72, 0, 0, 0, 1.18, -0.001, -0.07300001, -0.002)
 offset = Vector2(0, 63)
 billboard = 2
 shaded = true
 texture_filter = 0
-sprite_frames = ExtResource("2_3pbm7")
+sprite_frames = ExtResource("2_vobwd")
 animation = &"walk"
 autoplay = "walk"
-frame_progress = 0.97765756
-script = ExtResource("3_hm5ih")
+frame_progress = 0.43407768
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.01971, 0)
-shape = SubResource("CapsuleShape3D_jkv2x")
-
-[node name="Ambient" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("4_krcqs")
+[node name="AmbientSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_apvou")
 volume_db = -2.0
 autoplay = true
 max_distance = 20.0
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
-[node name="PathfindingComponent" type="Node" parent="."]
-script = ExtResource("5_krcqs")
-metadata/_custom_type_script = "uid://bbw27kynu47ii"
+[node name="ChaseComponent3D" type="Node" parent="."]
+script = ExtResource("4_o1gbp")
+using_nav_agent = false
+move_speeds = Dictionary[int, float]({
+1: 4.75,
+2: 2.25,
+5: 0.5
+})
+using_distance_speed_multiplier = true
+distance_speed_multipliers = Array[Array]([[0, 0.75], [5, 1.0], [15, 1.5]])
+active_states = Array[int]([1, 2, 5])
+metadata/_custom_type_script = "uid://dihwj4ebwryto"
+
+[node name="GravityComponent3D" type="Node" parent="."]
+script = ExtResource("6_vobwd")
+active_states = Array[int]([0, 1, 2, 3, 4])
+metadata/_custom_type_script = "uid://du80erw6qg145"
+
+[node name="ShakeComponent3D" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("4_s5r2m")
+target = NodePath("../AnimatedSprite3D")
+metadata/_custom_type_script = "uid://effuujo1gd4r"
+
+[node name="CollisionKillComponent3D" type="Node" parent="."]
+script = ExtResource("7_apvou")
+active_states = Array[int]([1])
+metadata/_custom_type_script = "uid://dce3vw8udcaow"
+
+[node name="TickComponent" type="Node" parent="."]
+script = ExtResource("5_vobwd")
+metadata/_custom_type_script = "uid://brqfh8pmq54xe"

@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cyp4ok2insim3"]
+[gd_scene load_steps=7 format=3 uid="uid://cyp4ok2insim3"]
 
-[ext_resource type="PackedScene" uid="uid://csq5gcwn1bv26" path="res://scenes/enemies/chaser2.tscn" id="1_v6dk2"]
 [ext_resource type="PackedScene" uid="uid://dqhlmv6mga3ln" path="res://scenes/important/player.tscn" id="2_y23al"]
+[ext_resource type="PackedScene" uid="uid://c5j4dypjweuc2" path="res://scenes/ui/canvases/jumpscare_canvaslayer.tscn" id="3_douax"]
+[ext_resource type="PackedScene" uid="uid://bu0h3xliks8yo" path="res://scenes/enemies/chaser_bouncy.tscn" id="4_bsvtf"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_v6dk2"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -19,22 +20,26 @@ tonemap_mode = 2
 
 [node name="Player" parent="." instance=ExtResource("2_y23al")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0119553, -0.8932501, 26.470175)
+instant_activate = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_douax")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
 shadow_enabled = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.9659259, 0.25881907, 0, -0.25881907, 0.9659258, 0, 4.300186, 7.0112963)
 visible = false
 
-[node name="Chaser" parent="." instance=ExtResource("1_v6dk2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
+[node name="CSGBox3D" type="CSGBox3D" parent="." groups=["Tile"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -2, 11)
 use_collision = true
 size = Vector3(22, 0.1, 42)
+
+[node name="JumpscareCanvas" parent="." instance=ExtResource("3_douax")]
+visible = false
+
+[node name="ChaserBouncy" parent="." instance=ExtResource("4_bsvtf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)

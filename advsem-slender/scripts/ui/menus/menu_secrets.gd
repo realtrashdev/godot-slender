@@ -123,7 +123,7 @@ func check_gum():
 	check_gum()
 
 func spawn_gum():
-	var scene = preload("res://scenes/enemies/gum.tscn").instantiate()
+	var scene = preload("res://scenes/enemies/OLD/gum_old.tscn").instantiate()
 	add_child(scene)
 	scene.activate()
 

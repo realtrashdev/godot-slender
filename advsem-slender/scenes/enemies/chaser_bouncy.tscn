@@ -1,0 +1,88 @@
+[gd_scene load_steps=14 format=3 uid="uid://bu0h3xliks8yo"]
+
+[ext_resource type="Script" uid="uid://dgmarm0y1eq66" path="res://scripts/enemies/base/enemy3D.gd" id="1_7h7ie"]
+[ext_resource type="SpriteFrames" uid="uid://pyvqr1dpcew3" path="res://art/2d/enemies/chaser_1.aseprite" id="2_h7bou"]
+[ext_resource type="AudioStream" uid="uid://yfj2cifrrldq" path="res://audio/enemies/chaser/chaser_ambient1.wav" id="3_35a88"]
+[ext_resource type="Script" uid="uid://dihwj4ebwryto" path="res://scripts/enemies/components/behaviors/3D/movement/chase_component_3D.gd" id="4_bm8qc"]
+[ext_resource type="Script" uid="uid://du80erw6qg145" path="res://scripts/enemies/components/behaviors/3D/movement/gravity_component_3D.gd" id="5_2gpwn"]
+[ext_resource type="Script" uid="uid://effuujo1gd4r" path="res://scripts/enemies/components/behaviors/3D/visual/shake_component_3D.gd" id="6_ixqwe"]
+[ext_resource type="Script" uid="uid://dce3vw8udcaow" path="res://scripts/enemies/components/behaviors/3D/collision_kill_component_3D.gd" id="7_05t6n"]
+[ext_resource type="Script" uid="uid://brqfh8pmq54xe" path="res://scripts/enemies/components/tick_component.gd" id="8_rfilm"]
+[ext_resource type="Script" uid="uid://ba7jv6cmwy2q5" path="res://scripts/enemies/components/behaviors/3D/movement/bounce_component_3D.gd" id="9_h7bou"]
+[ext_resource type="AudioStream" uid="uid://c1yaax58yyegn" path="res://audio/funny/boing1.wav" id="10_2gpwn"]
+[ext_resource type="AudioStream" uid="uid://fd3kxqqf5f5l" path="res://audio/funny/boing2.wav" id="11_ixqwe"]
+[ext_resource type="AudioStream" uid="uid://djgfn8oqgr7pm" path="res://audio/funny/boing3.wav" id="12_05t6n"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1xo2g"]
+radius = 0.856761
+height = 4.0
+
+[node name="ChaserBouncy" type="CharacterBody3D"]
+collision_layer = 41
+collision_mask = 5
+script = ExtResource("1_7h7ie")
+starting_state = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.01971, 0)
+shape = SubResource("CapsuleShape3D_1xo2g")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(4.72, 0, 0, 0, 4.72, 0, 0, 0, 1.18, -0.001, -0.07300001, -0.002)
+offset = Vector2(0, 63)
+billboard = 2
+shaded = true
+texture_filter = 0
+sprite_frames = ExtResource("2_h7bou")
+animation = &"walk"
+autoplay = "walk"
+frame_progress = 0.43407768
+
+[node name="AmbientSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_35a88")
+volume_db = -2.0
+autoplay = true
+max_distance = 20.0
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="ChaseComponent3D" type="Node" parent="."]
+script = ExtResource("4_bm8qc")
+using_nav_agent = false
+move_speeds = Dictionary[int, float]({
+1: 4.75,
+2: 2.25,
+5: 0.5
+})
+using_distance_speed_multiplier = true
+distance_speed_multipliers = Array[Array]([[0, 0.75], [5, 1.0], [15, 1.5]])
+active_states = Array[int]([1, 2, 5])
+metadata/_custom_type_script = "uid://dihwj4ebwryto"
+
+[node name="GravityComponent3D" type="Node" parent="."]
+script = ExtResource("5_2gpwn")
+gravity_multiplier = 0.1
+active_states = Array[int]([0, 1, 2, 3, 4])
+metadata/_custom_type_script = "uid://du80erw6qg145"
+
+[node name="ShakeComponent3D" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("6_ixqwe")
+target = NodePath("../AnimatedSprite3D")
+metadata/_custom_type_script = "uid://effuujo1gd4r"
+
+[node name="CollisionKillComponent3D" type="Node" parent="."]
+script = ExtResource("7_05t6n")
+active_states = Array[int]([1])
+metadata/_custom_type_script = "uid://dce3vw8udcaow"
+
+[node name="TickComponent" type="Node" parent="."]
+script = ExtResource("8_rfilm")
+metadata/_custom_type_script = "uid://brqfh8pmq54xe"
+
+[node name="BounceComponent3D" type="Node" parent="."]
+script = ExtResource("9_h7bou")
+bounce_power_min = 15.0
+bounce_power_max = 25.0
+audio_clips = Array[AudioStream]([ExtResource("10_2gpwn"), ExtResource("11_ixqwe"), ExtResource("12_05t6n")])
+active_states = Array[int]([1])
+metadata/_custom_type_script = "uid://ba7jv6cmwy2q5"
