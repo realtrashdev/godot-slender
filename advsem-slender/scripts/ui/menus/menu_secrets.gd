@@ -9,6 +9,9 @@ signal reset_typed
 ## displays the credits (only in main menu
 signal credits_typed
 
+## randomizes the background image seed (~4.3 billion different combinations)
+signal bg_typed
+
 var enabled = false
 
 var recent_keys: Array[String] = []
@@ -46,6 +49,12 @@ func check_key_array():
 		return
 	
 	var last_idx = recent_keys.size() - 1
+	if last_idx >= 1:
+		if recent_keys[last_idx - 1] == "B" and \
+		   recent_keys[last_idx] == "G":
+			bg_typed.emit()
+			return
+	
 	if last_idx >= 2:
 		if recent_keys[last_idx - 2] == "G" and \
 		   recent_keys[last_idx - 1] == "U" and \

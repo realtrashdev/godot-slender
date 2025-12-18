@@ -6,10 +6,12 @@ var menu_transition: MenuTransition
 @onready var music: AudioStreamPlayer = $Music
 @onready var secrets: Node = $Secrets
 @onready var quit_audio: AudioStreamPlayer = $QuitAudio
+@onready var background: TextureRect = $Background
 @onready var transition_fade: ColorRect = $TransitionFade
 @onready var transition_pixels: TextureRect = $TransitionPixels
 
 func _ready() -> void:
+	secrets.bg_typed.connect(_on_bg_typed)
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	menu_transition = MenuTransition.new()
 	menu_transition.initialize(self)
@@ -35,6 +37,8 @@ func open_menu(type: MenuConfig.MenuType, direction: MenuConfig.TransitionDirect
 	add_child(current_menu)
 	menu_transition.open(current_menu, direction, play_sound)
 	
+	_update_background_noise_seed(type)
+
 func open_menu_instant(type: MenuConfig.MenuType, direction: MenuConfig.TransitionDirection, play_sound: bool = true):
 	var scene_path = MenuConfig.MENU_SCENES.get(type)
 	if not scene_path:
@@ -48,6 +52,8 @@ func open_menu_instant(type: MenuConfig.MenuType, direction: MenuConfig.Transiti
 	current_menu = load(scene_path).instantiate()
 	current_menu.menu_changed.connect(on_menu_changed)
 	add_child(current_menu)
+	
+	_update_background_noise_seed(type)
 
 func on_menu_changed(new_menu: MenuConfig.MenuType, direction: MenuConfig.TransitionDirection, play_sound: bool):
 	match new_menu:
@@ -77,6 +83,13 @@ func fade_in_music(vol: float, time: float, transition: Tween.TransitionType = T
 
 func fade_out_music(vol: float, time: float, transition: Tween.TransitionType = Tween.TRANS_LINEAR, easing: Tween.EaseType = Tween.EASE_IN_OUT):
 	create_tween().tween_property(music, "volume_db", vol, time).set_trans(transition).set_ease(easing)
+
+## MAIN = 0, PLAY = 1, etc. :]
+func _update_background_noise_seed(menu: MenuConfig.MenuType):
+	background.texture.noise.seed = menu - 1
+
+func _on_bg_typed():
+	background.texture.noise.seed = randi()
 
 func pixel_transition(end_value: float, time: float = 1.0, start_delay: float = 0.0):
 	await get_tree().create_timer(start_delay).timeout

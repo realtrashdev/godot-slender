@@ -45,7 +45,8 @@ shader_parameter/color1 = Color(0, 0, 0, 1)
 shader_parameter/color2 = Color(0.3403393, 0.34033933, 0.3403393, 1)
 shader_parameter/band_width = 0.50000002375
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_eb1er"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_whi8p"]
+noise = SubResource("FastNoiseLite_eb1er")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_whi8p"]
 noise_type = 0
@@ -101,7 +102,7 @@ stream = ExtResource("7_brimo")
 [node name="Secrets" type="Node" parent="."]
 script = ExtResource("9_qvyop")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="."]
 z_index = -1
 material = SubResource("ShaderMaterial_y4m2o")
 anchors_preset = 15
@@ -110,7 +111,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = SubResource("PlaceholderTexture2D_eb1er")
+texture = SubResource("NoiseTexture2D_whi8p")
 
 [node name="TransitionFade" type="ColorRect" parent="."]
 z_index = 2

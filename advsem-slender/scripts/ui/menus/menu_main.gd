@@ -44,4 +44,7 @@ func _on_brody_typed() -> void:
 	settings_button.visible = !settings_button.visible
 
 func _on_credits_typed() -> void:
-	$CreditsText.visible = true
+	if $CreditsText.visible:
+		$CreditsText.visible = false
+	else:
+		$CreditsText.visible = true

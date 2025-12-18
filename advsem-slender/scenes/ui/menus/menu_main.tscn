@@ -65,12 +65,20 @@ offset_bottom = 123.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_l6cm7")
+theme_override_constants/paragraph_separation = 4
 theme_override_constants/outline_size = 16
-theme_override_fonts/normal_font = SubResource("FontVariation_2g2yl")
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "[wave]made by trash :][/wave]
-thank you for playing!"
+(trash-real.itch.io)
+
+thank you for playing my game!!
+more content is hopefully on the way.
+maybe a steam release? i dunno!
+
+if you want to show support, a nice comment or rating would be awesome :]
+
+(type \"[wave amp=4]CREDITS[/wave]\" to hide)"
 fit_content = true
 scroll_active = false
 shortcut_keys_enabled = false
