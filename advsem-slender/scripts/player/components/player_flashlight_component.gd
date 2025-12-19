@@ -7,6 +7,9 @@ const DEFAULT_SPRINT_ANGLE: float = -60
 const TURN_ON_ANGLE: Vector2 = Vector2(-60, -30)
 const CAMERA_SMOOTHING = 10
 
+const ATTRACTION_MAX_ANGLE: float = 25.0
+const ATTRACTION_SMOOTHING: float = 12.0
+
 var sprint_angle: float = -60
 var rotation_override: float = 0
 var sprint_angle_modifier: float = 20
@@ -27,6 +30,7 @@ var camera_component: PlayerCameraComponent
 @onready var audio_source: AudioStreamPlayer
 @onready var omni_light: OmniLight3D
 @onready var interaction_cast: RayCast3D
+@onready var enemy_cast: RayCast3D
 
 func _ready() -> void:
 	Signals.page_collected.connect(on_page_collected)
@@ -43,14 +47,16 @@ func _ready() -> void:
 	audio_source = flashlight.get_node("FlashlightAudio")
 	omni_light = flashlight.get_node("OmniLight3D")
 	interaction_cast = player.get_node("Head/Camera3D/RayCast3D")
+	enemy_cast = player.get_node("Head/Flashlight/RayCast3D")
 	
 	target_brightness = light.light_energy
 	sprint_angle = get_sprint_angle()
-	call_deferred("deactivate")
+	if not player.instant_activate:
+		call_deferred("deactivate")
 
 func _process(delta: float) -> void:
 	time_count += delta
-	$"../Head/Flashlight/RayCast3D".enabled = light.visible and !movement_component.is_sprinting()
+	enemy_cast.enabled = light.visible and !movement_component.is_sprinting()
 	
 	if Input.is_action_just_pressed("toggle_light") and can_use_flashlight:
 		toggle_light(!light.visible)
@@ -63,7 +69,7 @@ func handle_flashlight_physics(delta: float):
 		get_flashlight_offset(delta)
 
 ## Offsets flashlight rotation slightly when moving camera
-## Juice effect to make camera movement feel more realistic/smooth
+## [br]Juice effect to make camera movement feel more realistic/smooth
 func get_flashlight_offset(delta: float) -> void:
 	# flashlight offset smoothing
 	flashlight_offset = flashlight_offset.lerp(Vector3.ZERO, CAMERA_SMOOTHING / 1.5 * delta)
@@ -99,18 +105,24 @@ func point_flashlight() -> bool:
 	or restriction_component.check_for_restriction(PlayerRestriction.RestrictionType.FLASHLIGHT_ANGLE):
 		return false
 	
-	var pos = interaction_cast.get("interactible_position")
+	var pos = enemy_cast.get("enemy_position")
+	if pos == Vector3.ZERO:
+		pos = interaction_cast.get("interactible_position")
+	
 	if pos and pos != Vector3.ZERO:
+		var camera = camera_component.camera
+		var to_target = (pos - camera.global_position).normalized()
+		var camera_forward = -camera.global_transform.basis.z
+		var angle = rad_to_deg(acos(clamp(to_target.dot(camera_forward), -1.0, 1.0)))
+		
+		if angle > ATTRACTION_MAX_ANGLE:
+			return false
+		
 		var target_transform = flashlight.global_transform.looking_at(pos)
-
-		# orthonormalize bases before converting
 		var current_quat: Quaternion = Quaternion(flashlight.global_transform.basis.orthonormalized())
 		var target_quat: Quaternion = Quaternion(target_transform.basis.orthonormalized())
-
-		# smooth interpolation
+		
 		var smoothed_quat = current_quat.slerp(target_quat, CAMERA_SMOOTHING * get_physics_process_delta_time())
-
-		# apply back to flashlight
 		flashlight.global_transform.basis = Basis(smoothed_quat)
 		
 		return true
@@ -126,7 +138,7 @@ func toggle_light(on: bool):
 	omni_light.visible = !light.visible
 	flashlight.rotation.x = deg_to_rad(TURN_ON_ANGLE.x)
 	flashlight.rotation.y = deg_to_rad(TURN_ON_ANGLE.y)
-	$"../Head/Flashlight/RayCast3D".enabled = on and !movement_component.is_sprinting()
+	enemy_cast.enabled = on and !movement_component.is_sprinting()
 	play_audio()
 
 func set_flicker_light(starting_energy: float):

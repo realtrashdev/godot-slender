@@ -20,12 +20,7 @@ var current_item: Resource
 ## get_current_func: Callable that returns the currently selected item
 ## is_unlocked_func: Optional callable to check if an item is unlocked (returns bool)
 func populate_list(items: Array, get_current_func: Callable, is_unlocked_func: Callable = Callable()):
-	time = Timer.new()
-	add_child(time)
-	if populate_delay > 0 and not delayed:
-		time.start(populate_delay)
-		await time.timeout
-	
+	await get_tree().create_timer(0.01).timeout
 	current_item = get_current_func.call()
 	_clear_list()
 	
@@ -50,7 +45,7 @@ func populate_list(items: Array, get_current_func: Callable, is_unlocked_func: C
 		checkbox.check_box.button_group = group
 		checkbox.checked.connect(_on_item_selected)
 		
-		# Check if this is the currently selected item
+		# Check if currently selected item
 		if _is_current_item(item) and not opened:
 			checkbox.check_box.button_pressed = true
 			selected = true
@@ -58,12 +53,7 @@ func populate_list(items: Array, get_current_func: Callable, is_unlocked_func: C
 		if opened and not selected and not Progression.is_scenario_completed(item.resource_name):
 			checkbox.check_box.button_pressed = true
 			selected = true
-		
-		# Delay add
-		if per_button_delay > 0:
-			time.start(per_button_delay)
-			await time.timeout
-	
+
 	# Failsafe for auto select, checks first box in list
 	if not selected:
 		button_container.get_child(0).check_box.button_pressed = true

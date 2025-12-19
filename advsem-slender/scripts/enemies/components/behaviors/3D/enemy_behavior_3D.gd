@@ -18,16 +18,12 @@ var enemy: Enemy3D
 
 func _ready() -> void:
 	var parent = get_parent()
+	assert(parent != null, "%s: No parent node!" % name)
 	
-	if parent == null:
-		push_error("%s: No parent node!" % name)
-		queue_free()
-		return
-	
-	# Wait for parent Enemy3D to finish setup
+	# Wait for Enemy3D to finish setup
 	await parent.ready
-	
 	enemy = parent as Enemy3D
+	assert(enemy != null, "%s: Must be child of Enemy3D!" % name)
 	
 	if enemy == null:
 		push_error("%s: Must be child of Enemy3D!" % name)
@@ -40,6 +36,9 @@ func _ready() -> void:
 ## Checks [Enemy3D] parent's active_state and compares it with the behavior's active_states.
 ## If the [Enemy3D]'s active_state matches any of the behavior's, the behavior is considered active and will update.
 func is_active() -> bool:
+	if not enemy:
+		return false
+	
 	if active_states.is_empty():
 		return true
 	

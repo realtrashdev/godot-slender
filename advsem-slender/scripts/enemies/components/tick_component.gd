@@ -1,3 +1,10 @@
+## Component that marks an enemy as using and handles their place in the tick system.
+## [br]To execute component code on the tick system, override [method EnemyBehavior3D._tick_update].
+##
+## The tick system allows for certain components (navigation, etc.) to update less often,
+## and staggers the updates automatically to improve performance.
+## [br]
+## [br]Highly recommended on enemies that utilize navmesh navigation.
 class_name TickComponent extends Node
 
 signal tick

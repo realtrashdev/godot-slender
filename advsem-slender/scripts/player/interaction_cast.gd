@@ -13,7 +13,7 @@ func _process(delta: float) -> void:
 		
 		var obj = col.get_parent()
 		
-		if obj is Interactible and obj.attract_flashlight:
+		if obj is Interactible and obj.is_in_group("AttractsFlashlight"):
 			interactible_position = obj.get("global_position")
 		
 		# collecting

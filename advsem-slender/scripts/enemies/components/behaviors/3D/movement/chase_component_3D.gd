@@ -1,4 +1,4 @@
-## Basic navigation component for enemies.
+## Component that provides basic target-based navigation.
 ##
 ## [color=yellow]Recommended Component(s):[/color] [GravityComponent3D]
 ## [br]
@@ -27,9 +27,12 @@ func _setup() -> void:
 	
 	# Get NavigationAgent3D from parent
 	nav_agent = enemy.get_navigation_agent_3d()
-	if not nav_agent and using_nav_agent:
-		push_warning("%s: ChaseComponent marked as using NavigationAgent3D but could not find it. Deleting component!" % name)
-		queue_free()
+	assert(not using_nav_agent or nav_agent != null, 
+		   "%s: using_nav_agent is true but no NavigationAgent3D found!" % name)
+	
+	# Check for gravity component
+	if not enemy.has_component(GravityComponent3D):
+		push_warning("%s: ChaseComponent strongly recommends GravityComponent3D!" % name)
 
 
 func _tick_update() -> void:
@@ -37,7 +40,6 @@ func _tick_update() -> void:
 		_agent_navigation()
 	else:
 		_basic_navigation()
-	print(_get_distance_from_target())
 
 
 ## Navigation without the use of navmesh.
@@ -70,10 +72,10 @@ func _agent_navigation() -> void:
 
 
 func _apply_velocity(dir: Vector3):
-	# Only apply horizontal movement, preserve Y velocity
+	# Only apply horizontal movement
 	var horizontal_velocity = Vector3(dir.x, 0, dir.z).normalized() * _get_speed()
-	enemy.velocity.x = horizontal_velocity.x
-	enemy.velocity.z = horizontal_velocity.z
+	enemy.velocity.x += horizontal_velocity.x
+	enemy.velocity.z += horizontal_velocity.z
 
 
 ## Gets the movement speed of the enemy via a dictionary of state based speeds.
@@ -83,7 +85,6 @@ func _get_speed() -> float:
 	if using_distance_speed_multiplier and not distance_speed_multipliers.is_empty():
 		speed *= _get_distance_speed_multiplier()
 	
-	print(speed)
 	return speed
 
 

@@ -22,7 +22,7 @@ func open(menu: Menu, direction: MenuConfig.TransitionDirection,  play_sound: bo
 			menu.scale = Vector2(20, 20)
 			tween.tween_property(menu, "scale", Vector2.ONE, TRANSITION_TIME).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 	
-	menu_manager.transition_pixels.texture.noise.seed = randi() % 1000
+	menu_manager.transition_pixels.texture.noise.seed = randi()
 	menu_manager.pixel_transition(0, 0.25, 0.05)
 	
 	await tween.finished
@@ -30,7 +30,7 @@ func open(menu: Menu, direction: MenuConfig.TransitionDirection,  play_sound: bo
 
 # close current menu
 func close(menu: Menu, direction: MenuConfig.TransitionDirection, play_sound: bool = true):
-	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
 	var tween = menu.create_tween()
 	match direction:
@@ -39,7 +39,7 @@ func close(menu: Menu, direction: MenuConfig.TransitionDirection, play_sound: bo
 		MenuConfig.TransitionDirection.BACKWARD:
 			tween.tween_property(menu, "scale", Vector2.ZERO, TRANSITION_TIME).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
 	
-	menu_manager.transition_pixels.texture.noise.seed = randi() % 1000
+	menu_manager.transition_pixels.texture.noise.seed = randi()
 	menu_manager.pixel_transition(1, 0.25, 0.15)
 	
 	await tween.finished

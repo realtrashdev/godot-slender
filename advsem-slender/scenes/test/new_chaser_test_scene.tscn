@@ -1,45 +1,42 @@
-[gd_scene load_steps=7 format=3 uid="uid://cyp4ok2insim3"]
+[gd_scene load_steps=6 format=3 uid="uid://cyp4ok2insim3"]
 
 [ext_resource type="PackedScene" uid="uid://dqhlmv6mga3ln" path="res://scenes/important/player.tscn" id="2_y23al"]
+[ext_resource type="PackedScene" uid="uid://csq5gcwn1bv26" path="res://scenes/enemies/chaser.tscn" id="3_bsvtf"]
 [ext_resource type="PackedScene" uid="uid://c5j4dypjweuc2" path="res://scenes/ui/canvases/jumpscare_canvaslayer.tscn" id="3_douax"]
-[ext_resource type="PackedScene" uid="uid://bu0h3xliks8yo" path="res://scenes/enemies/chaser_bouncy.tscn" id="4_bsvtf"]
+[ext_resource type="AudioStream" uid="uid://s71mlkmeekwd" path="res://audio/player/paper_collect.wav" id="4_npidp"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_v6dk2"]
-sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-
-[sub_resource type="Sky" id="Sky_y23al"]
-sky_material = SubResource("ProceduralSkyMaterial_v6dk2")
-
-[sub_resource type="Environment" id="Environment_douax"]
-background_mode = 2
-sky = SubResource("Sky_y23al")
-tonemap_mode = 2
+[sub_resource type="NavigationMesh" id="NavigationMesh_bsvtf"]
+vertices = PackedVector3Array(2.75, -1.5, 10.5, 3, -1.5, 12, 9, -1.5, 12, 1.5, -1.5, 9.25, 9, -1.5, -9, -11, -1.5, 12, -3, -1.5, 12, -2.75, -1.5, 10.5, -1, -1.5, 9, -11, -1.5, -9, -1, 5.5, 11.5, -0.5, 5.5, 13, 1, 5.5, 12.5, 0.5, 5.5, 11, -0.75, -1.5, 11.75, -0.25, -1.5, 12.75, 0.75, -1.5, 12.25, 0.25, -1.5, 11.25, -2.75, -1.5, 13.5, -0.75, -1.5, 15, -11, -1.5, 31, -0.75, -1.5, 31, 2.75, -1.5, 13.5, 1.5, -1.5, 14.75, 9, -1.5, 31)
+polygons = [PackedInt32Array(0, 2, 1), PackedInt32Array(0, 3, 2), PackedInt32Array(2, 3, 4), PackedInt32Array(7, 6, 5), PackedInt32Array(7, 5, 8), PackedInt32Array(8, 5, 9), PackedInt32Array(3, 8, 4), PackedInt32Array(4, 8, 9), PackedInt32Array(13, 12, 10), PackedInt32Array(10, 12, 11), PackedInt32Array(17, 16, 14), PackedInt32Array(14, 16, 15), PackedInt32Array(5, 6, 18), PackedInt32Array(18, 19, 5), PackedInt32Array(5, 19, 21), PackedInt32Array(5, 21, 20), PackedInt32Array(22, 1, 2), PackedInt32Array(22, 2, 23), PackedInt32Array(23, 2, 24), PackedInt32Array(23, 24, 21), PackedInt32Array(21, 19, 23)]
+agent_radius = 1.0
 
 [node name="NewChaserTestScene" type="Node3D"]
 
 [node name="Player" parent="." instance=ExtResource("2_y23al")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0119553, -0.8932501, 26.470175)
+transform = Transform3D(0.9659258, 0, -0.25881904, 0, 1, 0, 0.25881904, 0, 0.9659258, -8.011955, -0.8932501, 26.470175)
 instant_activate = true
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_douax")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
-shadow_enabled = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.9659259, 0.25881907, 0, -0.25881907, 0.9659258, 0, 4.300186, 7.0112963)
 visible = false
 
-[node name="CSGBox3D" type="CSGBox3D" parent="." groups=["Tile"]]
+[node name="JumpscareCanvas" parent="." instance=ExtResource("3_douax")]
+visible = false
+
+[node name="Chaser" parent="." instance=ExtResource("3_bsvtf")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_npidp")
+
+[node name="Map" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_bsvtf")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Map"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -2, 11)
 use_collision = true
 size = Vector3(22, 0.1, 42)
 
-[node name="JumpscareCanvas" parent="." instance=ExtResource("3_douax")]
-visible = false
-
-[node name="ChaserBouncy" parent="." instance=ExtResource("4_bsvtf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 12)
+radius = 2.0
+height = 8.0

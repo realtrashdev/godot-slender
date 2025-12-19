@@ -65,7 +65,7 @@ func on_menu_changed(new_menu: MenuConfig.MenuType, direction: MenuConfig.Transi
 			open_menu(new_menu, direction, play_sound)
 
 func start_game():
-	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	fade_out_music(-60, 0.2)
 	await menu_transition.close(current_menu, MenuConfig.TransitionDirection.FORWARD)
 	get_tree().change_scene_to_packed(Settings.get_selected_map().scene)

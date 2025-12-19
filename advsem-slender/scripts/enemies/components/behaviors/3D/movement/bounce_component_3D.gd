@@ -1,10 +1,6 @@
-## Makes enemies bounce!
-## [br][color=red]Required Component(s):[/color]
-## [br]- [GravityComponent3D]
+## Component that makes enemies bounce!
 ##
-## Has adjustable:
-## [br]- Minimum/Maximum bounce power
-## [br]- Minimum/Maximum cooldown between bounces
+## [color=yellow]Recommended Component(s):[/color] [GravityComponent3D]
 ## [br]
 ## [br]Recommended on enemies with very low gravity multiplier (0.1).
 ## [br]This creates a sort of space jumping effect.
@@ -47,7 +43,7 @@ func _setup() -> void:
 		available_audio_clips = audio_clips.duplicate()
 
 
-func _physics_process(delta: float) -> void:
+func _physics_update(delta: float) -> void:
 	if not character_body.is_on_floor():
 		return
 	

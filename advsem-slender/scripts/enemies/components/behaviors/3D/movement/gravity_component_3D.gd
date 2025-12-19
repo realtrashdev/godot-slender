@@ -1,3 +1,4 @@
+## Component that applies gravity to an [Enemy3D].
 class_name GravityComponent3D extends EnemyBehavior3D
 
 ## Allows for heavier/lighter enemies
@@ -5,11 +6,11 @@ class_name GravityComponent3D extends EnemyBehavior3D
 
 var character_body: CharacterBody3D
 
+
 func _setup() -> void:
 	character_body = enemy.get_character_body_3d()
-	if character_body == null:
-		push_warning("%s: Enemy3D has no CharacterBody3D child. Deleting GravityComponent!" % name)
-		queue_free()
+	assert(character_body != null, "%s: Enemy3D must be a CharacterBody3D!" % name)
+
 
 func _physics_update(delta: float) -> void:
 	if not character_body.is_on_floor():

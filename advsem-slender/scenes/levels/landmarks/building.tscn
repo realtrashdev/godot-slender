@@ -62,7 +62,7 @@ operation = 2
 size = Vector3(10, 6, 2)
 material = SubResource("StandardMaterial3D_8hkop")
 
-[node name="CSGBox3D5" type="CSGBox3D" parent="." groups=["Tile"]]
+[node name="CSGBox3D5" type="CSGBox3D" parent="." groups=["TileSounds"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
 use_collision = true
 collision_layer = 3

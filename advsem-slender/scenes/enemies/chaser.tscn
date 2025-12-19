@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://csq5gcwn1bv26"]
+[gd_scene load_steps=17 format=3 uid="uid://csq5gcwn1bv26"]
 
 [ext_resource type="Script" uid="uid://dgmarm0y1eq66" path="res://scripts/enemies/base/enemy3D.gd" id="1_ontx3"]
 [ext_resource type="SpriteFrames" uid="uid://pyvqr1dpcew3" path="res://art/2d/enemies/chaser_1.aseprite" id="2_vobwd"]
@@ -8,16 +8,37 @@
 [ext_resource type="Script" uid="uid://brqfh8pmq54xe" path="res://scripts/enemies/components/tick_component.gd" id="5_vobwd"]
 [ext_resource type="Script" uid="uid://du80erw6qg145" path="res://scripts/enemies/components/behaviors/3D/movement/gravity_component_3D.gd" id="6_vobwd"]
 [ext_resource type="Script" uid="uid://dce3vw8udcaow" path="res://scripts/enemies/components/behaviors/3D/collision_kill_component_3D.gd" id="7_apvou"]
+[ext_resource type="Script" uid="uid://obwf6ltnv5wh" path="res://scripts/enemies/components/behaviors/3D/light_sensitive_component_3D.gd" id="9_f8w1j"]
+[ext_resource type="Script" uid="uid://dl1snf5gqvaqv" path="res://scripts/enemies/components/behaviors/3D/visual/sprite_animation_component_3D.gd" id="9_hy5w0"]
+[ext_resource type="Script" uid="uid://cm47alcqeepgp" path="res://scripts/enemies/components/behaviors/3D/state_timer_component_3D.gd" id="11_1mp87"]
+[ext_resource type="Script" uid="uid://bsyl03flb2uux" path="res://scripts/resources/tween_settings.gd" id="11_dsoqv"]
+[ext_resource type="Script" uid="uid://c1o1rbtdkxxke" path="res://scripts/enemies/components/behaviors/3D/visual/scale_animation_component_3D.gd" id="12_hot0s"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1xo2g"]
 radius = 0.856761
 height = 4.0
 
-[node name="Chaser" type="CharacterBody3D"]
+[sub_resource type="Resource" id="Resource_pmg11"]
+script = ExtResource("11_dsoqv")
+duration = 0.5
+easing = 1
+transition = 11
+do_starting_scale = true
+starting_scale = Vector3(1, 0.01, 1)
+metadata/_custom_type_script = "uid://bsyl03flb2uux"
+
+[sub_resource type="Resource" id="Resource_dsoqv"]
+script = ExtResource("11_dsoqv")
+final_value = Vector3(1, 0, 1)
+duration = 0.5
+easing = 0
+metadata/_custom_type_script = "uid://bsyl03flb2uux"
+
+[node name="Chaser" type="CharacterBody3D" node_paths=PackedStringArray("flashlight_attract_position") groups=["AttractsFlashlight"]]
 collision_layer = 41
 collision_mask = 5
 script = ExtResource("1_ontx3")
-starting_state = 1
+flashlight_attract_position = NodePath("FlashlightAttractPosition")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.01971, 0)
@@ -32,7 +53,6 @@ texture_filter = 0
 sprite_frames = ExtResource("2_vobwd")
 animation = &"walk"
 autoplay = "walk"
-frame_progress = 0.43407768
 
 [node name="AmbientSound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("4_apvou")
@@ -42,9 +62,11 @@ max_distance = 20.0
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
+[node name="FlashlightAttractPosition" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
 [node name="ChaseComponent3D" type="Node" parent="."]
 script = ExtResource("4_o1gbp")
-using_nav_agent = false
 move_speeds = Dictionary[int, float]({
 1: 4.75,
 2: 2.25,
@@ -60,15 +82,52 @@ script = ExtResource("6_vobwd")
 active_states = Array[int]([0, 1, 2, 3, 4])
 metadata/_custom_type_script = "uid://du80erw6qg145"
 
-[node name="ShakeComponent3D" type="Node" parent="." node_paths=PackedStringArray("target")]
-script = ExtResource("4_s5r2m")
-target = NodePath("../AnimatedSprite3D")
-metadata/_custom_type_script = "uid://effuujo1gd4r"
+[node name="LightSensitiveComponent3D" type="Node" parent="."]
+script = ExtResource("9_f8w1j")
+do_shine_time = true
+shine_state_transition = 5
+active_states = Array[int]([1, 2])
+metadata/_custom_type_script = "uid://obwf6ltnv5wh"
 
 [node name="CollisionKillComponent3D" type="Node" parent="."]
 script = ExtResource("7_apvou")
-active_states = Array[int]([1])
+active_states = Array[int]([1, 2])
 metadata/_custom_type_script = "uid://dce3vw8udcaow"
+
+[node name="ShakeComponent3D" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("4_s5r2m")
+target = NodePath("../AnimatedSprite3D")
+active_states = Array[int]([2])
+metadata/_custom_type_script = "uid://effuujo1gd4r"
+
+[node name="SpriteAnimationComponent3D" type="Node" parent="."]
+script = ExtResource("9_hy5w0")
+animation_name_dict = Dictionary[int, String]({
+1: "walk",
+2: "blinded",
+5: "dead"
+})
+metadata/_custom_type_script = "uid://dl1snf5gqvaqv"
+
+[node name="ScaleAnimationComponent3D" type="Node" parent="."]
+script = ExtResource("12_hot0s")
+tween_setting_dict = Dictionary[int, ExtResource("11_dsoqv")]({
+0: SubResource("Resource_pmg11"),
+5: SubResource("Resource_dsoqv")
+})
+metadata/_custom_type_script = "uid://c1o1rbtdkxxke"
+
+[node name="StateTimerComponent3D" type="Node" parent="."]
+script = ExtResource("11_1mp87")
+state_times = Dictionary[int, float]({
+0: 0.5,
+5: 0.5
+})
+state_transitions = Dictionary[int, int]({
+0: 1,
+5: 6
+})
+metadata/_custom_type_script = "uid://cm47alcqeepgp"
 
 [node name="TickComponent" type="Node" parent="."]
 script = ExtResource("5_vobwd")

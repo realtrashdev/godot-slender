@@ -5,14 +5,20 @@ class_name Enemy3D extends CharacterBody3D
 
 enum State {
 	IDLE,             ## For enemies that only get set to active when the player is within proximity, etc.
-	ACTIVE,           ## Basic "I am doing stuff" state. Chaser is ACTIVE while pursuing the player.
+	ACTIVE,           ## Basic "I am doing stuff" state. Chaser is [enum State.ACTIVE] while pursuing the player.
 	ACTIVE_REPELLING, ## Necessary for things like shining the light at an enemy for a duration to repel them, causing sprite shake/other effects.
 	ATTACKING,        ## Not all enemies use this. Use case example would be an enemy that needs to be flashed ONLY while it is charging at the player.
 	FLEEING,          ## Could be for enemies that run before dying, or for enemies that steal something and run from the player.
-	DYING,            ## Feel like this one's pretty self explanatory.
+	DYING,            ## Enemy is currently in the process of dying. Typically just used for death animations before entering [enum State.DEAD].
+	DEAD,             ## Only used for calling queue_free() on the [Enemy3D]. Use [State.DYING] for animation purposes, etc.
 	}
 
+signal state_changed(State)
+
 @export var starting_state: State = State.IDLE
+
+@export_group("Position Nodes")
+@export var flashlight_attract_position: Node3D
 
 var components: Array[EnemyBehavior3D]
 var player: CharacterBody3D
@@ -40,14 +46,16 @@ func _process(delta: float) -> void:
 
 # Call physics update function of child components.
 func _physics_process(delta: float) -> void:
+	# Reset horizontal velocity
+	velocity.x = 0
+	velocity.z = 0
+	
 	for component in components:
 		if component.has_method("physics_update"):
 			component.physics_update(delta)
-	if not using_tick_system: _tick_process()
 	
-	var body = get_character_body_3d()
-	if body:
-		body.move_and_slide()
+	if not using_tick_system: _tick_process()
+	move_and_slide()
 
 ## Call [method EnemyBehavior3D.tick_update] function of child components.
 func _tick_process() -> void:
@@ -60,11 +68,13 @@ func get_current_state() -> State:
 	return current_state
 
 func change_state(new_state: State):
+	if new_state == State.DEAD: die()
 	current_state = new_state
+	state_changed.emit(new_state)
 #endregion
 
 func die():
-	pass
+	queue_free()
 
 ## Gets all [EnemyBehavior3D] components and places them into the components array.
 func _get_components():
@@ -92,11 +102,8 @@ func has_component(component_type: GDScript) -> bool:
 
 # General
 func get_profile() -> EnemyProfile:
-	if profile:
-		return profile
-	else:
-		push_error("&s: Enemy has no EnemyProfile!" % name)
-		return null
+	assert(profile != null, "%s: Enemy has no EnemyProfile!" % name)
+	return profile
 
 func get_player() -> CharacterBody3D:
 	return player
@@ -127,4 +134,10 @@ func get_tick_system() -> TickComponent:
 		if child is TickComponent:
 			return child
 	return null
+
+# Outside of Enemy3D Helpers
+func get_flashlight_attract_position() -> Vector3:
+	if flashlight_attract_position:
+		return flashlight_attract_position.global_position
+	return Vector3.ZERO
 #endregion

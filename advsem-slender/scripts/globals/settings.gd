@@ -35,7 +35,6 @@ func get_selected_game_mode() -> GameConfig.GameMode:
 func set_selected_game_mode(mode: GameConfig.GameMode):
 	data["selected_game_mode"] = mode
 	setting_changed.emit("selected_game_mode", mode)
-	SaveManager.save_game()
 
 func get_selected_scenario() -> ClassicModeScenario:
 	return ResourceDatabase.get_scenario(data.get("selected_scenario", "basics1"))
@@ -43,7 +42,6 @@ func get_selected_scenario() -> ClassicModeScenario:
 func set_selected_scenario(scenario: ClassicModeScenario):
 	data["selected_scenario"] = scenario.resource_name
 	setting_changed.emit("selected_scenario", scenario.resource_name)
-	SaveManager.save_game()
 
 func get_selected_character() -> CharacterProfile:
 	return ResourceDatabase.get_characters(data.get("selected_character", "default"))
@@ -51,7 +49,6 @@ func get_selected_character() -> CharacterProfile:
 func set_selected_character_name(char_name: String):
 	data["selected_character"] = char_name
 	setting_changed.emit("selected_character", char_name)
-	SaveManager.save_game()
 
 func get_selected_color_palette() -> ColorSet:
 	return ResourceDatabase.get_color_set(data.get("selected_palette", "grayscale"))
@@ -59,7 +56,6 @@ func get_selected_color_palette() -> ColorSet:
 func set_selected_color_palette(palette: ColorSet):
 	data["selected_palette"] = palette.resource_name
 	setting_changed.emit("selected_palette", palette.resource_name)
-	SaveManager.save_game()
 
 func get_selected_map() -> Map:
 	return ResourceDatabase.get_map(data.get("selected_map", "forest"))
@@ -67,7 +63,6 @@ func get_selected_map() -> Map:
 func set_selected_map(map_name: String):
 	data["selected_map"] = map_name
 	setting_changed.emit("selected_map", map_name)
-	SaveManager.save_game()
 
 ##
 ## Settings Menu

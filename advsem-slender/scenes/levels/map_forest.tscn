@@ -362,7 +362,7 @@ layers = 0
 use_collision = true
 size = Vector3(257, 6, 1)
 
-[node name="Floor" type="CSGBox3D" parent="Map" groups=["Grass", "Slows"]]
+[node name="Floor" type="CSGBox3D" parent="Map" groups=["GrassSounds", "Slows"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -0.5)
 use_collision = true
 size = Vector3(255, 1, 255)
@@ -2510,161 +2510,161 @@ material = SubResource("StandardMaterial3D_ajba2")
 
 [node name="Paths" type="Node3D" parent="."]
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Paths" groups=["Path"]]
+[node name="CSGBox3D" type="CSGBox3D" parent="Paths" groups=["PathSounds"]]
 transform = Transform3D(0.9659258, 0, -0.25881904, 0, 1, 0, 0.25881904, 0, 0.9659258, -27.675524, -0.48, 125.92196)
 use_collision = true
 collision_layer = 3
 size = Vector3(6, 1, 142)
 material = SubResource("StandardMaterial3D_u1wns")
 
-[node name="CSGBox3D22" type="CSGBox3D" parent="Paths" groups=["Path"]]
+[node name="CSGBox3D22" type="CSGBox3D" parent="Paths" groups=["PathSounds"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.819168, -0.48, -29.110695)
 use_collision = true
 collision_layer = 3
 size = Vector3(3.6661377, 1, 13.022217)
 material = SubResource("StandardMaterial3D_u1wns")
 
-[node name="CSGBox3D21" type="CSGBox3D" parent="Paths" groups=["Path"]]
+[node name="CSGBox3D21" type="CSGBox3D" parent="Paths" groups=["PathSounds"]]
 transform = Transform3D(-0.27125573, 0, -0.96250737, 0, 1, 0, 0.96250737, 0, -0.27125573, -52.79024, -0.48, 92.88327)
 use_collision = true
 collision_layer = 3
 size = Vector3(4.5649414, 1, 64.90515)
 material = SubResource("StandardMaterial3D_u1wns")
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="Paths" groups=["Path"]]
+[node name="CSGBox3D2" type="CSGBox3D" parent="Paths" groups=["PathSounds"]]
 transform = Transform3D(0.7071068, 0, 0.70710695, 0, 1, 0, -0.70710695, 0, 0.7071068, -23.367, -0.48, 45.384)
 use_collision = true
 collision_layer = 3
 size = Vector3(6, 1, 42)
 material = SubResource("StandardMaterial3D_u1wns")
 
-[node name="CSGBox3D9" type="CSGBox3D" parent="Paths" groups=["Path"]]
+[node name="CSGBox3D9" type="CSGBox3D" parent="Paths" groups=["PathSounds"]]
 transform = Transform3D(0.86602557, 0, -0.49999994, 0, 1, 0, 0.49999994, 0, 0.86602557, -99.067, -0.48, -0.5576687)
 use_collision = true
 collision_layer = 3
 size = Vector3(6, 1, 68)
 material = SubResource("StandardMaterial3D_u1wns")
 
-[node name="CSGBox3D13" type="CSGBox3D" parent="Paths" groups=["Path"]]
+[node name="CSGBox3D13" type="CSGBox3D" parent="Paths" groups=["PathSounds"]]
 transform = Transform3D(0.86602557, 0, -0.49999994, 0, 1, 0, 0.49999994, 0, 0.86602557, -99.067, -0.48, -0.5576687)
 use_collision = true
 collision_layer = 3
 size = Vector3(6, 1, 68)
 material = SubResource("StandardMaterial3D_u1wns")
 
-[node name="CSGBox3D14" type="CSGBox3D" parent="Paths" groups=["Path"]]
+[node name="CSGBox3D14" type="CSGBox3D" parent="Paths" groups=["PathSounds"]]
 transform = Transform3D(0.86602557, 0, -0.49999994, 0, 1, 0, 0.49999994, 0, 0.86602557, -99.067, -0.48, -0.5576687)
 use_collision = true
 collision_layer = 3
 size = Vector3(6, 1, 68)
 material = SubResource("StandardMaterial3D_u1wns")
 
-[node name="CSGBox3D15" type="CSGBox3D" parent="Paths" groups=["Path"]]
+[node name="CSGBox3D15" type="CSGBox3D" parent="Paths" groups=["PathSounds"]]
 transform = Transform3D(0.96592593, 0, -0.25881892, 0, 1, 0, 0.25881892, 0, 0.96592593, 89.4118, -0.47999904, 36.999844)
 use_collision = true
 collision_layer = 3
 size = Vector3(6, 1, 42.90492)
 material = SubResource("StandardMaterial3D_u1wns")
 
-[node name="CSGBox3D10" type="CSGBox3D" parent="Paths" groups=["Path"]]
+[node name="CSGBox3D10" type="CSGBox3D" parent="Paths" groups=["PathSounds"]]
 transform = Transform3D(0.86602545, 0, 0.50000024, 0, 1, 0, -0.50000024, 0, 0.86602545, -99.067, -0.48, 55.34233)
 use_collision = true
 collision_layer = 3
 size = Vector3(6, 1, 68)
 material = SubResource("StandardMaterial3D_u1wns")
 
-[node name="CSGBox3D7" type="CSGBox3D" parent="Paths" groups=["Path"]]
+[node name="CSGBox3D7" type="CSGBox3D" parent="Paths" groups=["PathSounds"]]
 transform = Transform3D(-1.1920929e-07, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -1.1920929e-07, 36.533, -0.48, -20.216002)
 use_collision = true
 collision_layer = 3
 size = Vector3(6, 1, 42)
 material = SubResource("StandardMaterial3D_u1wns")
 
-[node name="CSGBox3D11" type="CSGBox3D" parent="Paths" groups=["Path"]]
+[node name="CSGBox3D11" type="CSGBox3D" parent="Paths" groups=["PathSounds"]]
 transform = Transform3D(0.2536228, 0, 0.96730334, 0, 1, 0, -0.96730334, 0, 0.2536228, 121.98414, -0.47999236, 64.73213)
 use_collision = true
 collision_layer = 3
 size = Vector3(6, 1, 82)
 material = SubResource("StandardMaterial3D_u1wns")
 
-[node name="CSGBox3D5" type="CSGBox3D" parent="Paths" groups=["Path"]]
+[node name="CSGBox3D5" type="CSGBox3D" parent="Paths" groups=["PathSounds"]]
 transform = Transform3D(0.7071068, 0, 0.70710695, 0, 1, 0, -0.70710695, 0, 0.7071068, -31.367, -0.48, -3.6160011)
 use_collision = true
 collision_layer = 3
 size = Vector3(6, 1, 42)
 material = SubResource("StandardMaterial3D_u1wns")
 
-[node name="CSGBox3D8" type="CSGBox3D" parent="Paths" groups=["Path"]]
+[node name="CSGBox3D8" type="CSGBox3D" parent="Paths" groups=["PathSounds"]]
 transform = Transform3D(0.25881898, 0, 0.96592593, 0, 1, 0, -0.96592593, 0, 0.25881898, -65.16701, -0.48, -23.116001)
 use_collision = true
 collision_layer = 3
 size = Vector3(6, 1, 42)
 material = SubResource("StandardMaterial3D_u1wns")
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="Paths" groups=["Path"]]
+[node name="CSGBox3D3" type="CSGBox3D" parent="Paths" groups=["PathSounds"]]
 transform = Transform3D(0.7071068, 0, 0.70710695, 0, 1, 0, -0.70710695, 0, 0.7071068, -10.285525, -0.48, 6.846671)
 use_collision = true
 collision_layer = 3
 size = Vector3(79, 1, 6)
 material = SubResource("StandardMaterial3D_u1wns")
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="Paths" groups=["Path"]]
+[node name="CSGBox3D4" type="CSGBox3D" parent="Paths" groups=["PathSounds"]]
 transform = Transform3D(0.7028238, 0, -0.71136403, 0, 1, 0, 0.71136403, 0, 0.7028238, 9.548969, -0.48, 18.918419)
 use_collision = true
 collision_layer = 3
 size = Vector3(46.29847, 1, 4.9438477)
 material = SubResource("StandardMaterial3D_u1wns")
 
-[node name="CSGBox3D12" type="CSGBox3D" parent="Paths" groups=["Path"]]
+[node name="CSGBox3D12" type="CSGBox3D" parent="Paths" groups=["PathSounds"]]
 transform = Transform3D(0.70710677, 0, -0.7071068, 0, 1, 0, 0.7071068, 0, 0.70710677, 75.55475, -0.48, -0.9390564)
 use_collision = true
 collision_layer = 3
 size = Vector3(57, 1, 6)
 material = SubResource("StandardMaterial3D_u1wns")
 
-[node name="CSGBox3D19" type="CSGBox3D" parent="Paths" groups=["Path"]]
+[node name="CSGBox3D19" type="CSGBox3D" parent="Paths" groups=["PathSounds"]]
 transform = Transform3D(-1.1920929e-07, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -1.1920929e-07, 36.533, -0.48, -20.216002)
 use_collision = true
 collision_layer = 3
 size = Vector3(6, 1, 42)
 material = SubResource("StandardMaterial3D_u1wns")
 
-[node name="CSGBox3D20" type="CSGBox3D" parent="Paths" groups=["Path"]]
+[node name="CSGBox3D20" type="CSGBox3D" parent="Paths" groups=["PathSounds"]]
 transform = Transform3D(0.70710677, 0, -0.7071068, 0, 1, 0, 0.7071068, 0, 0.70710677, 75.55475, -0.48, -0.9390564)
 use_collision = true
 collision_layer = 3
 size = Vector3(57, 1, 6)
 material = SubResource("StandardMaterial3D_u1wns")
 
-[node name="CSGBox3D18" type="CSGBox3D" parent="Paths" groups=["Path"]]
+[node name="CSGBox3D18" type="CSGBox3D" parent="Paths" groups=["PathSounds"]]
 transform = Transform3D(0.70710677, 0, -0.7071068, 0, 1, 0, 0.7071068, 0, 0.70710677, -84.7056, -0.48, 8.87621)
 use_collision = true
 collision_layer = 3
 size = Vector3(39.4, 1, 6.102051)
 material = SubResource("StandardMaterial3D_u1wns")
 
-[node name="CSGBox3D16" type="CSGBox3D" parent="Paths" groups=["Path"]]
+[node name="CSGBox3D16" type="CSGBox3D" parent="Paths" groups=["PathSounds"]]
 transform = Transform3D(0.8660253, 0, -0.5, 0, 1, 0, 0.5, 0, 0.8660253, 3.51404, -0.48, -27.189056)
 use_collision = true
 collision_layer = 3
 size = Vector3(34, 1, 6)
 material = SubResource("StandardMaterial3D_u1wns")
 
-[node name="CSGBox3D17" type="CSGBox3D" parent="Paths" groups=["Path"]]
+[node name="CSGBox3D17" type="CSGBox3D" parent="Paths" groups=["PathSounds"]]
 transform = Transform3D(0.9063077, 0, 0.42261827, 0, 1, 0, -0.42261827, 0, 0.9063077, -27.03719, -0.48, -26.877747)
 use_collision = true
 collision_layer = 3
 size = Vector3(41, 1, 6)
 material = SubResource("StandardMaterial3D_u1wns")
 
-[node name="CSGBox3D6" type="CSGBox3D" parent="Paths" groups=["Path"]]
+[node name="CSGBox3D6" type="CSGBox3D" parent="Paths" groups=["PathSounds"]]
 transform = Transform3D(0.9659258, 0, 0.25881907, 0, 1, 0, -0.25881907, 0, 0.9659258, 35.292885, -0.48, 69.179085)
 use_collision = true
 collision_layer = 3
 size = Vector3(104.959045, 1, 6)
 material = SubResource("StandardMaterial3D_u1wns")
 
-[node name="CSGBox3D23" type="CSGBox3D" parent="Paths" groups=["Path"]]
+[node name="CSGBox3D23" type="CSGBox3D" parent="Paths" groups=["PathSounds"]]
 transform = Transform3D(-0.25881904, 0, 0.9659258, 0, 1, 0, -0.9659258, 0, -0.25881904, 29.541822, -0.48, 50.763252)
 use_collision = true
 collision_layer = 3

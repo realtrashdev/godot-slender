@@ -25,7 +25,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		handle_mouse_event(event)
 
 func handle_mouse_event(event: InputEvent) -> bool:
-	"""Returns true if the event was handled (hit the screen)"""
+	# Returns true if the event was handled (hit the screen)
 	if not camera:
 		camera = get_viewport().get_camera_3d()
 		if not camera:
@@ -35,7 +35,6 @@ func handle_mouse_event(event: InputEvent) -> bool:
 		return false
 	
 	# Don't process if the sprite is currently being moved by a tween
-	# (Check if parent radar has an active tween)
 	var radar = screen_sprite.get_parent()
 	if radar and radar.has_method("get") and radar.get("pos_tween"):
 		var tween = radar.get("pos_tween")
@@ -78,17 +77,17 @@ func handle_mouse_event(event: InputEvent) -> bool:
 	return false
 
 func is_screen_hit(raycast_result: Dictionary) -> bool:
-	# check if the raycast hit our screen sprite
+	# Check if the raycast hit the screen sprite
 	if not raycast_result.has("collider"):
 		return false
 	
 	var collider = raycast_result.collider
 	
-	# check if it's the StaticBody3D child of the sprite
+	# Check if it's the StaticBody3D child of the sprite
 	return collider.get_parent() == screen_sprite
 
 func get_sprite_uv(hit_position: Vector3) -> Vector2:
-	"""Convert 3D hit position to UV coordinates (0..1)"""
+	# Convert 3D hit position to UV coords
 	if not screen_sprite or not is_instance_valid(screen_sprite):
 		return Vector2(-1, -1)
 	
@@ -98,7 +97,7 @@ func get_sprite_uv(hit_position: Vector3) -> Vector2:
 	# Convert world position to local sprite space
 	var local_pos = screen_sprite.global_transform.affine_inverse() * hit_position
 	
-	# Sprite3D is centered, so convert from -0.5..0.5 to 0..1
+	# Sprite3D is centered so convert from -0.5, 0.5 to 0.0, 1.0
 	var texture_width = screen_sprite.texture.get_width()
 	var texture_height = screen_sprite.texture.get_height()
 	
@@ -118,11 +117,11 @@ func get_sprite_uv(hit_position: Vector3) -> Vector2:
 	return uv
 
 func handle_screen_hit(event: InputEvent, uv: Vector2) -> void:
-	# forward input to the SubViewport
+	# Forward input to the subviewport
 	if not sub_viewport or not is_instance_valid(sub_viewport):
 		return
 	
-	# Check if SubViewport is ready to receive input
+	# Check if subviewport is ready to receive input
 	if sub_viewport.get_child_count() == 0:
 		return
 	

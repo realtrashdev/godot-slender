@@ -38,10 +38,13 @@ func _on_scenario_selected(scenario: ClassicModeScenario):
 
 func _on_start_pressed():
 	go_to_menu(MenuConfig.MenuType.START_GAME, MenuConfig.TransitionDirection.FORWARD, false)
+	SaveManager.save_game()
 
 ## TODO change back to CHARACTER_SELECT once implemented
 func _on_back_pressed():
 	go_to_menu(MenuConfig.MenuType.MAIN, MenuConfig.TransitionDirection.BACKWARD, true)
+	SaveManager.save_game()
 
 func _on_menu_pressed():
 	go_to_menu(MenuConfig.MenuType.MAIN, MenuConfig.TransitionDirection.BACKWARD, true)
+	SaveManager.save_game()

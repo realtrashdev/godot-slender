@@ -43,9 +43,10 @@ func _process(delta: float) -> void:
 		lerp_size(delta)
 
 func _on_mouse_entered() -> void:
-	if enabled:
-		focus = true
-		update_text_effect()
+	if disabled:
+		return
+	focus = true
+	update_text_effect()
 
 func _on_mouse_exited() -> void:
 	focus = false

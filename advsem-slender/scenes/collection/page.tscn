@@ -17,7 +17,7 @@ texture_filter = 0
 material = SubResource("StandardMaterial3D_7cggy")
 size = Vector2(0.4, 0.55)
 
-[node name="CollectiblePage" type="Node3D"]
+[node name="CollectiblePage" type="Node3D" groups=["AttractsFlashlight"]]
 script = ExtResource("1_nl5ea")
 
 [node name="InteractionArea" type="Area3D" parent="."]
