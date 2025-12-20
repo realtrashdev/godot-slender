@@ -315,7 +315,6 @@ editor_description = "Markers for enemies to use when trying to spawn."
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -74, 0, -15)
 
 [node name="Map" type="NavigationRegion3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09214783, -3.8146973e-06, -0.015937805)
 navigation_mesh = SubResource("NavigationMesh_u1wns")
 
 [node name="Fence" type="MeshInstance3D" parent="Map"]

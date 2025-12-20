@@ -1,15 +1,14 @@
-[gd_resource type="Resource" script_class="ClassicModeScenario" load_steps=10 format=3 uid="uid://bp10suivim7bk"]
+[gd_resource type="Resource" script_class="ClassicModeScenario" load_steps=9 format=3 uid="uid://bp10suivim7bk"]
 
 [ext_resource type="Script" uid="uid://bf5ts565hp5p4" path="res://scripts/resources/enemy_profile_list.gd" id="1_sdokn"]
 [ext_resource type="Script" uid="uid://c426kdmp0e6tf" path="res://scripts/resources/enemy_profile.gd" id="2_o8jy0"]
 [ext_resource type="Resource" uid="uid://5btde08a1exu" path="res://resources/enemy_profiles/profile_chaser.tres" id="3_071nq"]
-[ext_resource type="Resource" uid="uid://qmx2f7d1vom" path="res://resources/enemy_profiles/profile_scamlikely.tres" id="3_o8jy0"]
 [ext_resource type="Resource" uid="uid://ceka8pclkwv8e" path="res://resources/enemy_profiles/profile_gum.tres" id="4_fm1rq"]
 [ext_resource type="Script" uid="uid://cbb8lvjddytcc" path="res://scripts/resources/scenario.gd" id="5_75tqm"]
 
 [sub_resource type="Resource" id="Resource_071nq"]
 script = ExtResource("1_sdokn")
-profiles = Array[ExtResource("2_o8jy0")]([ExtResource("3_o8jy0")])
+profiles = Array[ExtResource("2_o8jy0")]([ExtResource("3_071nq")])
 metadata/_custom_type_script = "uid://bf5ts565hp5p4"
 
 [sub_resource type="Resource" id="Resource_sdokn"]

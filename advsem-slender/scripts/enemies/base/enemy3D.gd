@@ -14,6 +14,7 @@ enum State {
 	}
 
 signal state_changed(State)
+signal died
 
 @export var starting_state: State = State.IDLE
 
@@ -28,15 +29,18 @@ var profile: EnemyProfile
 var current_state: State
 var using_tick_system: bool = false
 
-# Set up components array and check for tick system
+# Set up components array and check for tick system.
 func _ready() -> void:
-	current_state = starting_state
 	_get_components()
 	var tick_component = get_tick_system()
 	if tick_component:
 		using_tick_system = true
 		tick_component.tick.connect(_tick_process)
 	_get_player()
+	
+	# Wait for components to be ready to set starting state
+	await get_tree().process_frame
+	change_state(starting_state)
 
 # Call update function of child components.
 func _process(delta: float) -> void:
@@ -46,10 +50,6 @@ func _process(delta: float) -> void:
 
 # Call physics update function of child components.
 func _physics_process(delta: float) -> void:
-	# Reset horizontal velocity
-	velocity.x = 0
-	velocity.z = 0
-	
 	for component in components:
 		if component.has_method("physics_update"):
 			component.physics_update(delta)
@@ -59,6 +59,10 @@ func _physics_process(delta: float) -> void:
 
 ## Call [method EnemyBehavior3D.tick_update] function of child components.
 func _tick_process() -> void:
+	# Reset horizontal velocity
+	velocity.x = 0
+	velocity.z = 0
+	
 	for component in components:
 		if component.has_method("tick_update"):
 			component.tick_update()
@@ -68,12 +72,14 @@ func get_current_state() -> State:
 	return current_state
 
 func change_state(new_state: State):
-	if new_state == State.DEAD: die()
+	if new_state == State.DEAD:
+		die()
 	current_state = new_state
 	state_changed.emit(new_state)
 #endregion
 
 func die():
+	died.emit()
 	queue_free()
 
 ## Gets all [EnemyBehavior3D] components and places them into the components array.

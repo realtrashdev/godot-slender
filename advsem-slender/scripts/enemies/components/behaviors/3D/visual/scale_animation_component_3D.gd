@@ -9,7 +9,6 @@ var tween: Tween
 
 func _setup() -> void:
 	enemy.state_changed.connect(_on_state_changed)
-	_on_state_changed(enemy.get_current_state())
 
 
 func _on_state_changed(new_state: Enemy3D.State):
