@@ -46,7 +46,7 @@ func _clear_last_target() -> void:
 	enemy_position = Vector3.ZERO
 
 func _update_attraction_position(collider: Node) -> void:
-	if collider and collider.has_method("get_flashlight_attract_position"):
+	if collider and collider.has_method("get_flashlight_attract_position") and collider.is_in_group("AttractsFlashlight"):
 		enemy_position = collider.get_flashlight_attract_position()
 	else:
 		enemy_position = Vector3.ZERO

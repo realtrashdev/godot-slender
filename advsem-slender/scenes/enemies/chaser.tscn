@@ -29,7 +29,7 @@ metadata/_custom_type_script = "uid://bsyl03flb2uux"
 
 [sub_resource type="Resource" id="Resource_dsoqv"]
 script = ExtResource("11_dsoqv")
-final_value = Vector3(1, 0, 1)
+final_value = Vector3(1, 0.01, 1)
 duration = 0.5
 easing = 0
 metadata/_custom_type_script = "uid://bsyl03flb2uux"

@@ -75,15 +75,6 @@ func _spawn_enemy():
 	Signals.enemy_spawned.emit(profile.type)
 
 
-func spawn_3D_enemy(enemy: Enemy3D):
-	if not enabled:
-		return
-	
-	add_child(enemy)
-	enemy.profile = profile
-	print("Enemy spawned: %s" % enemy.name)
-
-
 func spawn_old_2d_enemy(enemy: OldEnemy2D):
 	if not enabled:
 		return

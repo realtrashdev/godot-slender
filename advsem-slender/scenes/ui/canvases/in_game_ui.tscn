@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dcy7ewx8f37mf"]
+[gd_scene load_steps=6 format=3 uid="uid://dcy7ewx8f37mf"]
 
 [ext_resource type="Script" uid="uid://d0geqahcgagfn" path="res://scripts/managers/ui_manager.gd" id="1_eeonk"]
+[ext_resource type="Script" uid="uid://wx5bk5mordkg" path="res://scripts/ui/in game ui/components/ui_pages_component.gd" id="2_8nvlw"]
 [ext_resource type="FontFile" uid="uid://b78ski6kf8hw1" path="res://fonts/ari-w9500-display.ttf" id="2_qvqbd"]
 [ext_resource type="Script" uid="uid://c3ysaqnmo1oo8" path="res://scripts/ui/ui_text.gd" id="3_3nhwc"]
 [ext_resource type="Theme" uid="uid://bommyqwo15hbx" path="res://theme1.tres" id="4_r0q2l"]
@@ -8,7 +9,121 @@
 [node name="UIManager" type="CanvasLayer"]
 script = ExtResource("1_eeonk")
 
-[node name="PagesText" type="RichTextLabel" parent="."]
+[node name="UIPagesComponent" type="Control" parent="."]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -148.5
+offset_top = -22.0
+offset_right = 148.5
+offset_bottom = 26.000244
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_8nvlw")
+display_time = 1.0
+start_position = Vector2(811.5, 558)
+finish_position = Vector2(811.5, 518)
+container_start_position = Vector2(184, -45)
+container_finish_position = Vector2(184, 0)
+
+[node name="PagesText" type="RichTextLabel" parent="UIPagesComponent"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_r0q2l")
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/normal_font_size = 32
+text = "Pages:    /0"
+horizontal_alignment = 1
+
+[node name="PageNumbersContainer" type="VBoxContainer" parent="UIPagesComponent"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 35.5
+offset_top = -69.0
+offset_right = 63.5
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NewNumber" type="RichTextLabel" parent="UIPagesComponent/PageNumbersContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("4_r0q2l")
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/normal_font_size = 32
+text = "0"
+
+[node name="OldNumber" type="RichTextLabel" parent="UIPagesComponent/PageNumbersContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("4_r0q2l")
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/normal_font_size = 32
+text = "0"
+
+[node name="TopText" type="RichTextLabel" parent="."]
+clip_contents = false
+anchors_preset = -1
+anchor_top = 0.078
+anchor_right = 1.0
+anchor_bottom = 0.116000004
+offset_top = 41.759995
+offset_bottom = 79.64402
+grow_horizontal = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_constants/outline_size = 16
+theme_override_fonts/normal_font = ExtResource("2_qvqbd")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "The Basics I"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+vertical_alignment = 1
+visible_characters = 0
+visible_ratio = 0.0
+script = ExtResource("3_3nhwc")
+
+[node name="TopTextBig" type="RichTextLabel" parent="."]
+clip_contents = false
+anchors_preset = -1
+anchor_top = 0.078
+anchor_right = 1.0
+anchor_bottom = 0.116000004
+offset_top = -0.2400055
+offset_bottom = 60.719994
+grow_horizontal = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_constants/outline_size = 16
+theme_override_fonts/normal_font = ExtResource("2_qvqbd")
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "CLASSIC MODE"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+visible_characters = 0
+visible_ratio = 0.0
+script = ExtResource("3_3nhwc")
+
+[node name="CenterText" type="RichTextLabel" parent="."]
 clip_contents = false
 anchors_preset = -1
 anchor_top = 0.48100004
@@ -34,57 +149,7 @@ visible_characters = 0
 visible_ratio = 0.0
 script = ExtResource("3_3nhwc")
 
-[node name="ModeText" type="RichTextLabel" parent="."]
-clip_contents = false
-anchors_preset = -1
-anchor_top = 0.078
-anchor_right = 1.0
-anchor_bottom = 0.116000004
-offset_top = -0.2400055
-offset_bottom = 60.719994
-grow_horizontal = 2
-size_flags_horizontal = 3
-mouse_filter = 2
-theme_override_constants/outline_size = 16
-theme_override_fonts/normal_font = ExtResource("2_qvqbd")
-theme_override_font_sizes/normal_font_size = 48
-bbcode_enabled = true
-text = "CLASSIC MODE"
-fit_content = true
-scroll_active = false
-shortcut_keys_enabled = false
-horizontal_alignment = 1
-visible_characters = 0
-visible_ratio = 0.0
-script = ExtResource("3_3nhwc")
-
-[node name="ScenarioText" type="RichTextLabel" parent="ModeText"]
-clip_contents = false
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.078
-anchor_right = 1.0
-anchor_bottom = 0.116000004
-offset_top = 47.619
-offset_bottom = 85.50303
-grow_horizontal = 2
-size_flags_horizontal = 3
-mouse_filter = 2
-theme_override_constants/outline_size = 16
-theme_override_fonts/normal_font = ExtResource("2_qvqbd")
-theme_override_font_sizes/normal_font_size = 32
-bbcode_enabled = true
-text = "The Basics I"
-fit_content = true
-scroll_active = false
-shortcut_keys_enabled = false
-horizontal_alignment = 1
-vertical_alignment = 1
-visible_characters = 0
-visible_ratio = 0.0
-script = ExtResource("3_3nhwc")
-
-[node name="TooLongText" type="RichTextLabel" parent="."]
+[node name="BottomText" type="RichTextLabel" parent="."]
 clip_contents = false
 anchors_preset = -1
 anchor_top = 0.86100006
@@ -110,7 +175,7 @@ visible_characters = 0
 visible_ratio = 0.0
 script = ExtResource("3_3nhwc")
 
-[node name="TimerText" type="RichTextLabel" parent="."]
+[node name="InGameTimerText" type="RichTextLabel" parent="."]
 clip_contents = false
 anchors_preset = 1
 anchor_left = 1.0

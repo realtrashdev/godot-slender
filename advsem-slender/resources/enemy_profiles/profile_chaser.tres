@@ -23,7 +23,7 @@ jumpscare = ExtResource("2_vjasg")
 death_tips = Array[String](["Running is not an option. It won't stop chasing you until you're dead.", "Try to stay on the path while repelling it. The grass does not slow it down!"])
 name = "Chaser"
 type = 2
-description = "It will spawn around you on a timer and begin pursuing.
+description = "It will spawn around you and begin pursuing.
 
 Your light will flicker when it spawns.
 

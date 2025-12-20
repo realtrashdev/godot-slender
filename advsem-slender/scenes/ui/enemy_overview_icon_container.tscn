@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://chqv6jhjp01f0"]
 
-[ext_resource type="Script" uid="uid://bpqmmjureaefw" path="res://scripts/ui/enemy_overview_icon_container.gd" id="1_au6ra"]
+[ext_resource type="Script" uid="uid://bpqmmjureaefw" path="res://scripts/ui/misc/enemy_overview_icon_container.gd" id="1_au6ra"]
 [ext_resource type="Theme" uid="uid://bommyqwo15hbx" path="res://theme1.tres" id="2_kegup"]
 [ext_resource type="Script" uid="uid://bgqglerkcylxx" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="3_xc0at"]
 [ext_resource type="Script" uid="uid://b7h0k2h2qwlqv" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="4_hklh1"]

@@ -16,6 +16,7 @@ class_name LightSensitiveComponent3D extends EnemyBehavior3D
 @export var do_shine_time: bool = false
 @export var shine_time: float = 2.0
 @export var shine_state_transition: Enemy3D.State
+@export var disable_light_attract_on_transition: bool = true
 var time: float
 
 var is_lit: bool = false
@@ -31,6 +32,8 @@ func _update(delta: float) -> void:
 		time -= delta
 		if time <= 0:
 			enemy.change_state(shine_state_transition)
+			if disable_light_attract_on_transition and enemy.is_in_group("AttractsFlashlight"):
+				enemy.remove_from_group("AttractsFlashlight")
 
 
 ## Ensures that if this component is deleted while the enemy is in the lit state, it transitions back to unlit.
