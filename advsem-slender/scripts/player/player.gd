@@ -19,6 +19,7 @@ var quit_timer: float = 0.0
 @onready var radar: PlayerRadar = $Radar
 
 func _ready() -> void:
+	Signals.killed_player.connect(die)
 	radar.radar_toggled.connect(_on_radar_toggled)
 	deactivate()
 	if instant_activate:
@@ -44,7 +45,7 @@ func initialize(state: GameState):
 	game_state = state
 	radar.initialize(state)
 
-func die():
+func die(_dead = null):
 	Signals.player_died.emit()
 	deactivate()
 	var tree: SceneTree = get_tree()

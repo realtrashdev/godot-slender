@@ -1,0 +1,143 @@
+[gd_scene load_steps=8 format=3 uid="uid://bx75d3lts0fe5"]
+
+[ext_resource type="Script" uid="uid://cfs4vyghlmo3c" path="res://scripts/ui/canvases/game_over_screen.gd" id="1_p7edr"]
+[ext_resource type="Theme" uid="uid://bommyqwo15hbx" path="res://theme1.tres" id="2_3rom5"]
+[ext_resource type="PackedScene" uid="uid://cwiritx4rencv" path="res://scenes/ui/buttons/character_icon.tscn" id="3_prcok"]
+[ext_resource type="Resource" uid="uid://5btde08a1exu" path="res://resources/enemy_profiles/profile_chaser.tres" id="4_23n55"]
+[ext_resource type="PackedScene" uid="uid://6lvn3tolsp7r" path="res://scenes/ui/buttons/menu_button.tscn" id="5_5uohx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_leknr"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.2520276, 0.25202766, 0.25202754, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_bottom = 4
+border_color = Color(0.63784313, 0.6378432, 0.63784295, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8vr0x"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.2520276, 0.25202766, 0.25202754, 1)
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.63784313, 0.6378432, 0.63784295, 1)
+
+[node name="GameOverScreen" type="CanvasLayer"]
+script = ExtResource("1_p7edr")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -325.0
+offset_top = -378.0
+offset_right = 325.0
+offset_bottom = 378.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 0
+
+[node name="LeftSide" type="Panel" parent="HBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_leknr")
+
+[node name="RightSide" type="Panel" parent="HBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_8vr0x")
+
+[node name="TitleText" type="RichTextLabel" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -466.25
+offset_top = 186.39
+offset_right = 466.25
+offset_bottom = 314.39044
+grow_horizontal = 2
+theme = ExtResource("2_3rom5")
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "[shake rate=10 level=1]YOU DIED."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="KilledByEnemyIcon" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 540.0
+offset_top = -25.0
+offset_right = 540.0
+offset_bottom = -25.0
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="KilledByEnemyIcon"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -139.5
+offset_right = 200.0
+offset_bottom = 139.5
+grow_vertical = 2
+
+[node name="KilledByText" type="RichTextLabel" parent="KilledByEnemyIcon/VBoxContainer"]
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_3rom5")
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/normal_font_size = 28
+text = "KILLED BY"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EnemyIcon" parent="KilledByEnemyIcon/VBoxContainer" instance=ExtResource("3_prcok")]
+layout_mode = 2
+profile = ExtResource("4_23n55")
+autofocus = true
+
+[node name="PlayAgainButton" parent="." instance=ExtResource("5_5uohx")]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -423.0
+offset_top = -290.0
+offset_right = -4.0
+offset_bottom = -190.0
+grow_horizontal = 2
+grow_vertical = 0
+default_text = "Play Again"
+
+[node name="MenuButton" parent="." instance=ExtResource("5_5uohx")]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = -290.0
+offset_right = 429.0
+offset_bottom = -190.0
+grow_horizontal = 2
+grow_vertical = 0
+default_text = "Go to Menu"
+justification = 2

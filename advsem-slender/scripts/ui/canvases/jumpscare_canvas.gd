@@ -16,7 +16,8 @@ func _exit_tree():
 	if Signals.killed_player.is_connected(_on_player_killed):
 		Signals.killed_player.disconnect(_on_player_killed)
 
-func _on_player_killed(jumpscare: Jumpscare):
+func _on_player_killed(profile: EnemyProfile):
+	var jumpscare = profile.jumpscare
 	if jumpscare:
 		play_jumpscare(jumpscare)
 	elif default_jumpscare:
@@ -36,7 +37,3 @@ func play_jumpscare(jumpscare: Jumpscare):
 	
 	animation.play("jumpscare_" + str(Jumpscare.ShakeType.keys()[jumpscare.type]).to_lower())
 	create_tween().tween_property(fade_out, "color", Color.BLACK, 1).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUART)
-
-# testing in editor
-func test_jumpscare(jumpscare: Jumpscare):
-	_on_player_killed(jumpscare)

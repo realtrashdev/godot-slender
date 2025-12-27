@@ -29,3 +29,10 @@ func get_page_gen_amount() -> int:
 	if amount > current_max_pages:
 		return current_max_pages
 	return amount
+
+# getters
+func get_pages_collected() -> int:
+	return current_pages_collected
+
+func get_pages_required() -> int:
+	return current_pages_required

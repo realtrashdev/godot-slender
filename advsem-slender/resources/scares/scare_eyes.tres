@@ -1,10 +1,12 @@
-[gd_resource type="Resource" script_class="Jumpscare" load_steps=3 format=3 uid="uid://cnuftm2tsdo2h"]
+[gd_resource type="Resource" script_class="Jumpscare" load_steps=4 format=3 uid="uid://cnuftm2tsdo2h"]
 
 [ext_resource type="Script" uid="uid://6um422lsglit" path="res://scripts/resources/jumpscare.gd" id="1_yq180"]
 [ext_resource type="SpriteFrames" uid="uid://0q8o0kumm18j" path="res://art/2d/enemies/jumpscares/eyes_jumpscare.aseprite" id="2_3p40n"]
+[ext_resource type="AudioStream" uid="uid://x8g11k1minbw" path="res://audio/enemies/eyes/weirdjumpscare.wav" id="3_jxxkn"]
 
 [resource]
 script = ExtResource("1_yq180")
 animation = ExtResource("2_3p40n")
+sound = ExtResource("3_jxxkn")
 type = 1
 metadata/_custom_type_script = "uid://6um422lsglit"

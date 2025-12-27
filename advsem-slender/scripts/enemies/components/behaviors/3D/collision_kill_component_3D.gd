@@ -13,6 +13,6 @@ func _physics_update(delta: float) -> void:
 			continue
 		
 		if collision.get_collider().is_in_group("Player"):
-			Signals.killed_player.emit(null)
+			Signals.killed_player.emit(enemy.profile)
 			if delete_on_player_killed: enemy.queue_free()
 			return

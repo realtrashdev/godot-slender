@@ -103,7 +103,7 @@ func finish_game():
 	audio_manager.stop_game_audio()
 	ui_manager.show_game_end()
 	
-	if game_state.game_mode == GameConfig.GameMode.CLASSIC and game_state.current_pages_collected >= game_state.current_pages_required:
+	if game_state.game_mode == GameConfig.GameMode.CLASSIC and game_state.current_pages_collected == game_state.current_pages_required:
 		# unlocks stuff
 		Progression.complete_scenario(load_classic_scenario().resource_name)
 		print(load_classic_scenario().resource_name + " completed")
@@ -117,7 +117,7 @@ func transition_to_next_state():
 		GameConfig.GameMode.ENDLESS:
 			game_state.current_pages_required += 1
 			start_game()
-		_:
+		GameConfig.GameMode.CLASSIC:
 			get_tree().change_scene_to_file("res://scenes/ui/menus/menu_base.tscn")
 
 func get_player_spawn_position() -> Vector3:

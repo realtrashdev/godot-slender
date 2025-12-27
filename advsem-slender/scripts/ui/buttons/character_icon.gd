@@ -6,6 +6,9 @@ signal unhovered(profile)
 
 @export var profile: CharacterProfile
 
+@export_group("Settings")
+@export var autofocus: bool = false
+
 @export_group("Sizing")
 @export var default_size: Vector2 = Vector2(200, 200)
 @export var focus_size: Vector2 = Vector2(225, 225)
@@ -45,6 +48,11 @@ func setup_display() -> void:
 		texture.texture = profile.icon
 	
 	description_panel.set_profile(profile)
+	
+	if autofocus:
+		description_panel.show_description()
+		animate_to_size(focus_size)
+		set_disabled(true)
 
 func _on_hover() -> void:
 	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED or is_disabled:

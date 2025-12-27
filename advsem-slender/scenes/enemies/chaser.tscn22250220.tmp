@@ -73,7 +73,7 @@ move_speeds = Dictionary[int, float]({
 5: 0.5
 })
 using_distance_speed_multiplier = true
-distance_speed_multipliers = Array[Array]([[0, 0.75], [5, 1.0], [10, 1.5], [15, 2.0]])
+distance_speed_multipliers = Array[Array]([[0, 0.75], [5, 1.0], [15, 1.5]])
 active_states = Array[int]([1, 2, 5])
 metadata/_custom_type_script = "uid://dihwj4ebwryto"
 
