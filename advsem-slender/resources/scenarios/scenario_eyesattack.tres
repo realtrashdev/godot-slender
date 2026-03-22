@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ClassicModeScenario" load_steps=12 format=3 uid="uid://bgdg1umse7sms"]
+[gd_resource type="Resource" script_class="ClassicModeScenario" format=3 uid="uid://bgdg1umse7sms"]
 
 [ext_resource type="Script" uid="uid://bf5ts565hp5p4" path="res://scripts/resources/enemy_profile_list.gd" id="1_8fubv"]
 [ext_resource type="Script" uid="uid://cbb8lvjddytcc" path="res://scripts/resources/scenario.gd" id="2_3hcq7"]

@@ -18,13 +18,13 @@ signal died
 
 @export var starting_state: State = State.IDLE
 
-@export_group("Position Nodes")
-@export var flashlight_attract_position: Node3D
-
 var components: Array[EnemyBehavior3D]
 var player: CharacterBody3D
-## Automatically given by EnemySpawner.
-var profile: EnemyProfile
+## Automatically given by EnemySpawner, exported for debugging purposes
+@export var profile: EnemyProfile
+
+@export_group("Position Nodes")
+@export var flashlight_attract_position: Node3D
 
 var current_state: State
 var using_tick_system: bool = false

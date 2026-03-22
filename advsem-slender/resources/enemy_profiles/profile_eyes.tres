@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="EnemyProfile" load_steps=7 format=3 uid="uid://bepy1x4bj1nga"]
+[gd_resource type="Resource" script_class="EnemyProfile" format=3 uid="uid://bepy1x4bj1nga"]
 
 [ext_resource type="Texture2D" uid="uid://ci8oadtmki8uy" path="res://art/2d/enemies/icons/eyes_icon.aseprite" id="1_k4fsp"]
 [ext_resource type="Script" uid="uid://c426kdmp0e6tf" path="res://scripts/resources/enemy_profile.gd" id="1_q46dd"]

@@ -1,9 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bx75d3lts0fe5"]
+[gd_scene format=3 uid="uid://bx75d3lts0fe5"]
 
 [ext_resource type="Script" uid="uid://cfs4vyghlmo3c" path="res://scripts/ui/canvases/game_over_screen.gd" id="1_p7edr"]
 [ext_resource type="Theme" uid="uid://bommyqwo15hbx" path="res://theme1.tres" id="2_3rom5"]
 [ext_resource type="PackedScene" uid="uid://cwiritx4rencv" path="res://scenes/ui/buttons/character_icon.tscn" id="3_prcok"]
-[ext_resource type="Resource" uid="uid://5btde08a1exu" path="res://resources/enemy_profiles/profile_chaser.tres" id="4_23n55"]
+[ext_resource type="Resource" uid="uid://ceka8pclkwv8e" path="res://resources/enemy_profiles/profile_gum.tres" id="4_p7edr"]
 [ext_resource type="PackedScene" uid="uid://6lvn3tolsp7r" path="res://scenes/ui/buttons/menu_button.tscn" id="5_5uohx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_leknr"]
@@ -28,10 +28,11 @@ border_width_right = 4
 border_width_bottom = 4
 border_color = Color(0.63784313, 0.6378432, 0.63784295, 1)
 
-[node name="GameOverScreen" type="CanvasLayer"]
+[node name="GameOverScreen" type="CanvasLayer" unique_id=1680221568 node_paths=PackedStringArray("after_anim_objects")]
 script = ExtResource("1_p7edr")
+after_anim_objects = [NodePath("TitleText"), NodePath("KilledByEnemyIcon"), NodePath("PlayAgainButton"), NodePath("MenuButton")]
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1047892836]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -47,19 +48,19 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 0
 
-[node name="LeftSide" type="Panel" parent="HBoxContainer"]
+[node name="LeftSide" type="Panel" parent="HBoxContainer" unique_id=982435117]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_leknr")
 
-[node name="RightSide" type="Panel" parent="HBoxContainer"]
+[node name="RightSide" type="Panel" parent="HBoxContainer" unique_id=1779458113]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 theme_override_styles/panel = SubResource("StyleBoxFlat_8vr0x")
 
-[node name="TitleText" type="RichTextLabel" parent="."]
+[node name="TitleText" type="RichTextLabel" parent="." unique_id=800865325]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -76,7 +77,7 @@ text = "[shake rate=10 level=1]YOU DIED."
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="KilledByEnemyIcon" type="Control" parent="."]
+[node name="KilledByEnemyIcon" type="Control" parent="." unique_id=53675322]
 layout_mode = 3
 anchors_preset = 4
 anchor_top = 0.5
@@ -87,17 +88,18 @@ offset_right = 540.0
 offset_bottom = -25.0
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="KilledByEnemyIcon"]
+[node name="VBoxContainer" type="VBoxContainer" parent="KilledByEnemyIcon" unique_id=1098167031]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
+offset_left = 100.0
 offset_top = -139.5
-offset_right = 200.0
+offset_right = 300.0
 offset_bottom = 139.5
 grow_vertical = 2
 
-[node name="KilledByText" type="RichTextLabel" parent="KilledByEnemyIcon/VBoxContainer"]
+[node name="KilledByText" type="RichTextLabel" parent="KilledByEnemyIcon/VBoxContainer" unique_id=907499079]
 custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
 size_flags_vertical = 3
@@ -108,12 +110,12 @@ text = "KILLED BY"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="EnemyIcon" parent="KilledByEnemyIcon/VBoxContainer" instance=ExtResource("3_prcok")]
+[node name="EnemyIcon" parent="KilledByEnemyIcon/VBoxContainer" unique_id=935281140 instance=ExtResource("3_prcok")]
 layout_mode = 2
-profile = ExtResource("4_23n55")
+profile = ExtResource("4_p7edr")
 autofocus = true
 
-[node name="PlayAgainButton" parent="." instance=ExtResource("5_5uohx")]
+[node name="PlayAgainButton" parent="." unique_id=556654345 instance=ExtResource("5_5uohx")]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -127,7 +129,7 @@ grow_horizontal = 2
 grow_vertical = 0
 default_text = "Play Again"
 
-[node name="MenuButton" parent="." instance=ExtResource("5_5uohx")]
+[node name="MenuButton" parent="." unique_id=1645489660 instance=ExtResource("5_5uohx")]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -141,3 +143,6 @@ grow_horizontal = 2
 grow_vertical = 0
 default_text = "Go to Menu"
 justification = 2
+
+[connection signal="pressed" from="PlayAgainButton" to="." method="restart_level"]
+[connection signal="pressed" from="MenuButton" to="." method="return_to_menu"]
