@@ -6,15 +6,19 @@ signal brody_typed
 ## enables the reset progress button (only in settings menu)
 signal reset_typed
 
-## displays the credits (only in main menu
+## displays the credits (only in main menu)
 signal credits_typed
 
 ## randomizes the background image seed (~4.3 billion different combinations)
 signal bg_typed
 
+@export var secret_string: RichTextLabel
+
 var enabled = false
 
-var recent_keys: Array[String] = []
+@export var recent_keys: Array[String] = []
+
+var fade_out_tween: Tween
 
 var manager: Node3D
 var tween: Tween
@@ -24,7 +28,9 @@ var meowsic: AudioStream = preload("uid://cqaagyghacaij")
 
 func _ready() -> void:
 	manager = get_parent()
-	check_gum()
+	tween = create_tween()
+	if (Progression.is_scenario_completed("basics1")):
+		check_gum()
 	Signals.change_menu_music_pitch.connect(toggle_bgm_pitch)
 
 func _input(event: InputEvent) -> void:
@@ -37,12 +43,32 @@ func _input(event: InputEvent) -> void:
 	if event.is_released() or event.is_echo():
 		return
 	
+	if (not is_letter(event.unicode)):
+		return
+	
 	recent_keys.append(event.as_text())
 	
 	if recent_keys.size() > 10:
 		recent_keys.remove_at(0)
 	
+	update_secret_text(event.as_text())
 	check_key_array()
+
+func is_letter(unicode_val: int) -> bool:
+	return (unicode_val >= 97 and unicode_val <= 122) or (unicode_val >= 65 and unicode_val <= 90)
+
+func update_secret_text(string: String):
+	secret_string.text += string
+	secret_string.modulate = Color.WHITE
+	tween_secret_text()
+
+func tween_secret_text():
+	if (tween):
+		tween.kill()
+	tween = create_tween()
+	tween.tween_property(secret_string, "modulate", Color.TRANSPARENT, 1.0).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
+	await tween.finished
+	secret_string.text = ""
 
 func check_key_array():
 	if recent_keys.size() < 3:

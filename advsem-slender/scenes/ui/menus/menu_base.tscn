@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://c3f6y28ur3tma"]
+[gd_scene format=3 uid="uid://c3f6y28ur3tma"]
 
 [ext_resource type="Script" uid="uid://b5rrwodfv7prw" path="res://scripts/managers/menu_manager.gd" id="1_mbnms"]
 [ext_resource type="Shader" uid="uid://b7h471hqua86k" path="res://shaders/menu_background_tron.gdshader" id="2_eb1er"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://dyadolkbv3goc" path="res://audio/menu/keyboard_sound3.mp3" id="7_eb1er"]
 [ext_resource type="AudioStream" uid="uid://dknupfsrnq16s" path="res://audio/menu/keyboard_sound4.mp3" id="8_y4m2o"]
 [ext_resource type="Script" uid="uid://1rp2y7xx8yax" path="res://scripts/ui/menus/menu_secrets.gd" id="9_qvyop"]
+[ext_resource type="Theme" uid="uid://bommyqwo15hbx" path="res://theme1.tres" id="10_whi8p"]
 [ext_resource type="Shader" uid="uid://3s1c5a71rde4" path="res://shaders/transition_pixels.gdshader" id="11_y4m2o"]
 
 [sub_resource type="Sky" id="Sky_0xm2m"]
@@ -64,45 +65,54 @@ shader = ExtResource("11_y4m2o")
 shader_parameter/noise_img = SubResource("NoiseTexture2D_j6qfw")
 shader_parameter/transition_amount = 1.0
 
-[node name="Menu" type="Node3D"]
+[node name="Menu" type="Node3D" unique_id=925873646]
 script = ExtResource("1_mbnms")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=211897558]
 environment = SubResource("Environment_ekxnf")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=2144113242]
 transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, -5, 0, -5)
 visible = false
 size = Vector3(2, 1, 2)
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="." unique_id=949678446]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.75, -5)
 visible = false
 height = 5.5
 
-[node name="CSGSphere3D" type="CSGSphere3D" parent="CSGCylinder3D"]
+[node name="CSGSphere3D" type="CSGSphere3D" parent="CSGCylinder3D" unique_id=1436501816]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 radius = 2.0
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1054383991]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 1, 2, 4)
 
-[node name="Music" type="AudioStreamPlayer" parent="."]
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=679329039]
 stream = ExtResource("2_qvyop")
 volume_db = -10.0
 pitch_scale = 0.4
 
-[node name="TypingSounds" parent="." instance=ExtResource("4_0yjfb")]
+[node name="TypingSounds" parent="." unique_id=1805306581 instance=ExtResource("4_0yjfb")]
 volume_db = -10.0
 sounds = Array[AudioStream]([ExtResource("5_2d7pv"), ExtResource("6_qvyop"), ExtResource("7_eb1er"), ExtResource("8_y4m2o")])
 
-[node name="QuitAudio" type="AudioStreamPlayer" parent="."]
+[node name="QuitAudio" type="AudioStreamPlayer" parent="." unique_id=657736067]
 stream = ExtResource("7_brimo")
 
-[node name="Secrets" type="Node" parent="."]
+[node name="Secrets" type="Node" parent="." unique_id=1454303199 node_paths=PackedStringArray("secret_string")]
 script = ExtResource("9_qvyop")
+secret_string = NodePath("RichTextLabel")
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="RichTextLabel" type="RichTextLabel" parent="Secrets" unique_id=1680714854]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 240.0
+offset_bottom = 39.0
+theme = ExtResource("10_whi8p")
+theme_override_font_sizes/normal_font_size = 22
+
+[node name="Background" type="TextureRect" parent="." unique_id=657096726]
 z_index = -1
 material = SubResource("ShaderMaterial_y4m2o")
 anchors_preset = 15
@@ -113,7 +123,7 @@ grow_vertical = 2
 mouse_filter = 2
 texture = SubResource("NoiseTexture2D_whi8p")
 
-[node name="TransitionFade" type="ColorRect" parent="."]
+[node name="TransitionFade" type="ColorRect" parent="." unique_id=968721059]
 z_index = 2
 anchors_preset = 15
 anchor_right = 1.0
@@ -122,7 +132,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0)
 
-[node name="TransitionPixels" type="TextureRect" parent="."]
+[node name="TransitionPixels" type="TextureRect" parent="." unique_id=1300980777]
 z_index = 2
 material = SubResource("ShaderMaterial_7ilda")
 anchors_preset = 15
