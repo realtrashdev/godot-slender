@@ -2,8 +2,8 @@ extends OldEnemy3D
 
 enum State { HOVERING, ATTACK }
 
-const ACTIVE_TIME: float = 10.0
-const LIGHT_TIME: float = 8.0
+@export var ACTIVE_TIME: float = 8.0
+@export var LIGHT_TIME: float = 2.0
 
 var alive: bool = true
 var state = State.HOVERING

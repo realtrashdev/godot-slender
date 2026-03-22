@@ -15,20 +15,23 @@ signal bg_typed
 @export var secret_string: RichTextLabel
 
 var enabled = false
+var just_hit = false
 
-@export var recent_keys: Array[String] = []
+var recent_keys: Array[String] = []
+var visible_keys: Array[String] = []
 
 var fade_out_tween: Tween
 
 var manager: Node3D
-var tween: Tween
+var music_tween: Tween
+var string_tween: Tween
+var scale_tween: Tween
 
 var music: AudioStream = preload("uid://bw13p4ixmh3mk")
 var meowsic: AudioStream = preload("uid://cqaagyghacaij")
 
 func _ready() -> void:
 	manager = get_parent()
-	tween = create_tween()
 	if (Progression.is_scenario_completed("basics1")):
 		check_gum()
 	Signals.change_menu_music_pitch.connect(toggle_bgm_pitch)
@@ -46,6 +49,11 @@ func _input(event: InputEvent) -> void:
 	if (not is_letter(event.unicode)):
 		return
 	
+	if (just_hit):
+		recent_keys.clear()
+		visible_keys.clear()
+		just_hit = false
+	
 	recent_keys.append(event.as_text())
 	
 	if recent_keys.size() > 10:
@@ -58,27 +66,44 @@ func is_letter(unicode_val: int) -> bool:
 	return (unicode_val >= 97 and unicode_val <= 122) or (unicode_val >= 65 and unicode_val <= 90)
 
 func update_secret_text(string: String):
-	secret_string.text += string
+	visible_keys.append(string)
+	
+	if (visible_keys.size() > 10):
+		visible_keys.remove_at(0)
+	
+	secret_string.text = "[wave]"
+	for key in visible_keys:
+		secret_string.text += key
+	
 	secret_string.modulate = Color.WHITE
 	tween_secret_text()
 
 func tween_secret_text():
-	if (tween):
-		tween.kill()
-	tween = create_tween()
-	tween.tween_property(secret_string, "modulate", Color.TRANSPARENT, 1.0).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
-	await tween.finished
+	if (string_tween):
+		string_tween.kill()
+	string_tween = create_tween()
+	string_tween.tween_property(secret_string, "modulate", Color.TRANSPARENT, 2.0).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
+	await string_tween.finished
+	recent_keys.clear()
+	visible_keys.clear()
 	secret_string.text = ""
 
+func hit(word: String):
+	just_hit = true
+	secret_string.text = "[wave]" + word.to_upper()
+	secret_string.scale = Vector2(1.33, 1.33)
+	if (scale_tween):
+		scale_tween.kill()
+	scale_tween = create_tween()
+	scale_tween.tween_property(secret_string, "scale", Vector2.ONE, 0.5)
+
 func check_key_array():
-	if recent_keys.size() < 3:
-		return
-	
 	var last_idx = recent_keys.size() - 1
 	if last_idx >= 1:
 		if recent_keys[last_idx - 1] == "B" and \
 		   recent_keys[last_idx] == "G":
 			bg_typed.emit()
+			hit("bg")
 			return
 	
 	if last_idx >= 2:
@@ -86,6 +111,7 @@ func check_key_array():
 		   recent_keys[last_idx - 1] == "U" and \
 		   recent_keys[last_idx] == "M":
 			spawn_gum()
+			hit("gum")
 			return
 	
 	if last_idx >= 3:
@@ -94,12 +120,14 @@ func check_key_array():
 		   recent_keys[last_idx - 1] == "O" and \
 		   recent_keys[last_idx] == "W":
 			meow_music()
+			hit("meow")
 			return
 		if recent_keys[last_idx - 3] == "T" and \
 		   recent_keys[last_idx - 2] == "O" and \
 		   recent_keys[last_idx - 1] == "B" and \
 		   recent_keys[last_idx] == "Y":
 			meow_music()
+			hit("toby")
 			return
 	
 	if last_idx >= 4:
@@ -109,6 +137,7 @@ func check_key_array():
 		   recent_keys[last_idx - 1] == "I" and \
 		   recent_keys[last_idx] == "C":
 			toggle_bgm_pitch()
+			hit("music")
 			return
 		if recent_keys[last_idx - 4] == "B" and \
 		   recent_keys[last_idx - 3] == "R" and \
@@ -116,6 +145,7 @@ func check_key_array():
 		   recent_keys[last_idx - 1] == "D" and \
 		   recent_keys[last_idx] == "Y":
 			brody_typed.emit()
+			hit("brody")
 			return
 		if recent_keys[last_idx - 4] == "R" and \
 		   recent_keys[last_idx - 3] == "E" and \
@@ -123,6 +153,7 @@ func check_key_array():
 		   recent_keys[last_idx - 1] == "E" and \
 		   recent_keys[last_idx] == "T":
 			reset_typed.emit()
+			hit("reset")
 			return
 	
 	if last_idx >= 6:
@@ -134,6 +165,7 @@ func check_key_array():
 		   recent_keys[last_idx - 1] == "T" and \
 		   recent_keys[last_idx] == "S":
 			credits_typed.emit()
+			hit("credits")
 	
 	if last_idx >= 7:
 		if recent_keys[last_idx - 7] == "O" and \
@@ -147,6 +179,7 @@ func check_key_array():
 			for scenario in ResourceDatabase.get_all_scenarios():
 				Progression.unlock_scenario(scenario.resource_name)
 			print("Unlocked all scenarios.")
+			hit("oiranecs")
 
 ## 1 in 2000 chance every second to spawn gum enemy on title screen
 func check_gum():
@@ -174,26 +207,26 @@ func toggle_bgm_pitch():
 	else:
 		new_scale = 0.4
 	
-	if tween:
-		tween.kill()
+	if music_tween:
+		music_tween.kill()
 	
-	tween = create_tween()
-	tween.tween_property(bgm, "pitch_scale", 0.01, 0.5)
-	await tween.finished
-	tween = create_tween()
-	tween.tween_property(bgm, "pitch_scale", new_scale, 0.5)
+	music_tween = create_tween()
+	music_tween.tween_property(bgm, "pitch_scale", 0.01, 0.5)
+	await music_tween.finished
+	music_tween = create_tween()
+	music_tween.tween_property(bgm, "pitch_scale", new_scale, 0.5)
 
 ## Switches BGM to a version with a cat piano, and switches the music to be normal pitched
 func meow_music():
 	var bgm: AudioStreamPlayer = manager.get_node("Music")
 	var pitch_scale: float
 	
-	if tween:
-		tween.kill()
+	if music_tween:
+		music_tween.kill()
 	
-	tween = create_tween()
-	tween.tween_property(bgm, "pitch_scale", 0.01, 0.5)
-	await tween.finished
+	music_tween = create_tween()
+	music_tween.tween_property(bgm, "pitch_scale", 0.01, 0.5)
+	await music_tween.finished
 	
 	# replace stream
 	var pos = bgm.get_playback_position()
@@ -207,5 +240,5 @@ func meow_music():
 			pitch_scale = 0.4
 	bgm.play(pos)
 	
-	tween = create_tween()
-	tween.tween_property(bgm, "pitch_scale", pitch_scale, 0.5)
+	music_tween = create_tween()
+	music_tween.tween_property(bgm, "pitch_scale", pitch_scale, 0.5)

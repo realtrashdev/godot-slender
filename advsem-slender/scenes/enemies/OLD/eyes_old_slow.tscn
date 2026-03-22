@@ -1,8 +1,8 @@
-[gd_scene format=3 uid="uid://c57u8t3kc41fe"]
+[gd_scene format=3 uid="uid://cilhvncgyvbg5"]
 
-[ext_resource type="Script" uid="uid://b41qhrgbncwi0" path="res://scripts/enemies/OLD/enemy_eyes.gd" id="1_5drqm"]
-[ext_resource type="Texture2D" uid="uid://dporlsh4nr431" path="res://art/2d/enemies/eyes.aseprite" id="1_p4rnr"]
-[ext_resource type="AudioStream" uid="uid://buv8asoeu817u" path="res://audio/enemies/placeholder/slendytubbies_scream_full.wav" id="3_o1yd7"]
+[ext_resource type="Script" uid="uid://b41qhrgbncwi0" path="res://scripts/enemies/OLD/enemy_eyes.gd" id="1_pd8hu"]
+[ext_resource type="Texture2D" uid="uid://dporlsh4nr431" path="res://art/2d/enemies/eyes.aseprite" id="2_6fil5"]
+[ext_resource type="AudioStream" uid="uid://buv8asoeu817u" path="res://audio/enemies/placeholder/slendytubbies_scream_full.wav" id="3_4fykq"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jkv2x"]
 radius = 2.6000001
@@ -13,7 +13,7 @@ render_priority = 100
 transparency = 1
 no_depth_test = true
 shading_mode = 0
-albedo_texture = ExtResource("1_p4rnr")
+albedo_texture = ExtResource("2_6fil5")
 texture_filter = 0
 billboard_mode = 1
 
@@ -25,7 +25,9 @@ size = Vector2(5, 5)
 collision_layer = 0
 collision_mask = 16
 motion_mode = 1
-script = ExtResource("1_5drqm")
+script = ExtResource("1_pd8hu")
+ACTIVE_TIME = 12.0
+LIGHT_TIME = 6.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2087157217]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.51971, 0)
@@ -37,6 +39,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 mesh = SubResource("QuadMesh_yeuvj")
 
 [node name="AttackAudio" type="AudioStreamPlayer3D" parent="." unique_id=1676551183]
-stream = ExtResource("3_o1yd7")
+stream = ExtResource("3_4fykq")
 pitch_scale = 1.2
 max_distance = 80.0

@@ -107,10 +107,13 @@ secret_string = NodePath("RichTextLabel")
 [node name="RichTextLabel" type="RichTextLabel" parent="Secrets" unique_id=1680714854]
 offset_left = 8.0
 offset_top = 8.0
-offset_right = 240.0
+offset_right = 260.0
 offset_bottom = 39.0
 theme = ExtResource("10_whi8p")
+theme_override_constants/outline_size = 8
 theme_override_font_sizes/normal_font_size = 22
+bbcode_enabled = true
+scroll_active = false
 
 [node name="Background" type="TextureRect" parent="." unique_id=657096726]
 z_index = -1

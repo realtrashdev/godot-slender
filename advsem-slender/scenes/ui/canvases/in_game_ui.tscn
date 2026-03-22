@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dcy7ewx8f37mf"]
+[gd_scene format=3 uid="uid://dcy7ewx8f37mf"]
 
 [ext_resource type="Script" uid="uid://d0geqahcgagfn" path="res://scripts/managers/ui_manager.gd" id="1_eeonk"]
 [ext_resource type="Script" uid="uid://wx5bk5mordkg" path="res://scripts/ui/in game ui/components/ui_pages_component.gd" id="2_8nvlw"]
@@ -6,11 +6,10 @@
 [ext_resource type="Script" uid="uid://c3ysaqnmo1oo8" path="res://scripts/ui/ui_text.gd" id="3_3nhwc"]
 [ext_resource type="Theme" uid="uid://bommyqwo15hbx" path="res://theme1.tres" id="4_r0q2l"]
 
-[node name="UIManager" type="CanvasLayer"]
+[node name="UIManager" type="CanvasLayer" unique_id=920567044]
 script = ExtResource("1_eeonk")
 
-[node name="UIPagesComponent" type="Control" parent="."]
-modulate = Color(1, 1, 1, 0)
+[node name="UIPagesComponent" type="Control" parent="." unique_id=493848287]
 clip_contents = true
 layout_mode = 3
 anchors_preset = 8
@@ -20,7 +19,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -148.5
 offset_top = -22.0
-offset_right = 148.5
+offset_right = 202.0
 offset_bottom = 26.000244
 grow_horizontal = 2
 grow_vertical = 2
@@ -31,35 +30,38 @@ finish_position = Vector2(811.5, 518)
 container_start_position = Vector2(184, -45)
 container_finish_position = Vector2(184, 0)
 
-[node name="PagesText" type="RichTextLabel" parent="UIPagesComponent"]
+[node name="PagesText" type="RichTextLabel" parent="UIPagesComponent" unique_id=1879124709]
+clip_contents = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 42.5
+offset_right = 62.5
 offset_bottom = -3.0002441
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("4_r0q2l")
 theme_override_constants/outline_size = 16
 theme_override_font_sizes/normal_font_size = 32
-text = "Pages:    /0"
-horizontal_alignment = 1
+text = "Pages:     /000"
 
-[node name="PageNumbersContainer" type="VBoxContainer" parent="UIPagesComponent"]
+[node name="PageNumbersContainer" type="VBoxContainer" parent="UIPagesComponent" unique_id=1285803938]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 35.5
-offset_top = -69.0
-offset_right = 63.5
-offset_bottom = 18.0
+anchors_preset = -1
+anchor_left = 0.66700006
+anchor_top = 0.87500006
+anchor_right = 0.66700006
+anchor_bottom = 0.87500006
+offset_left = -48.783524
+offset_top = -87.00021
+offset_right = -20.783524
+offset_bottom = -1.0002289
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="NewNumber" type="RichTextLabel" parent="UIPagesComponent/PageNumbersContainer"]
+[node name="NewNumber" type="RichTextLabel" parent="UIPagesComponent/PageNumbersContainer" unique_id=829622712]
+clip_contents = false
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("4_r0q2l")
@@ -67,7 +69,8 @@ theme_override_constants/outline_size = 16
 theme_override_font_sizes/normal_font_size = 32
 text = "0"
 
-[node name="OldNumber" type="RichTextLabel" parent="UIPagesComponent/PageNumbersContainer"]
+[node name="OldNumber" type="RichTextLabel" parent="UIPagesComponent/PageNumbersContainer" unique_id=1572963191]
+clip_contents = false
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("4_r0q2l")
@@ -75,7 +78,7 @@ theme_override_constants/outline_size = 16
 theme_override_font_sizes/normal_font_size = 32
 text = "0"
 
-[node name="TopText" type="RichTextLabel" parent="."]
+[node name="TopText" type="RichTextLabel" parent="." unique_id=53537604]
 clip_contents = false
 anchors_preset = -1
 anchor_top = 0.078
@@ -100,7 +103,7 @@ visible_characters = 0
 visible_ratio = 0.0
 script = ExtResource("3_3nhwc")
 
-[node name="TopTextBig" type="RichTextLabel" parent="."]
+[node name="TopTextBig" type="RichTextLabel" parent="." unique_id=1201971834]
 clip_contents = false
 anchors_preset = -1
 anchor_top = 0.078
@@ -124,7 +127,7 @@ visible_characters = 0
 visible_ratio = 0.0
 script = ExtResource("3_3nhwc")
 
-[node name="CenterText" type="RichTextLabel" parent="."]
+[node name="CenterText" type="RichTextLabel" parent="." unique_id=2070857416]
 clip_contents = false
 anchors_preset = -1
 anchor_top = 0.48100004
@@ -150,7 +153,7 @@ visible_characters = 0
 visible_ratio = 0.0
 script = ExtResource("3_3nhwc")
 
-[node name="BottomText" type="RichTextLabel" parent="."]
+[node name="BottomText" type="RichTextLabel" parent="." unique_id=1977520563]
 clip_contents = false
 anchors_preset = -1
 anchor_top = 0.86100006
@@ -176,7 +179,7 @@ visible_characters = 0
 visible_ratio = 0.0
 script = ExtResource("3_3nhwc")
 
-[node name="InGameTimerText" type="RichTextLabel" parent="."]
+[node name="InGameTimerText" type="RichTextLabel" parent="." unique_id=1797092964]
 clip_contents = false
 anchors_preset = 1
 anchor_left = 1.0

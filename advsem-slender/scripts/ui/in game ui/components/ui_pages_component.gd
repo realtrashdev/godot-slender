@@ -76,7 +76,7 @@ func _display_text():
 
 func _setup_ui():
 	# Text
-	pages_text.text = "Pages:    /%s" % [game_state.current_pages_required]
+	pages_text.text = "Pages:     /%s" % [game_state.current_pages_required]
 	pages_old_number.text = str(game_state.current_pages_collected - 1)
 	pages_new_number.text = str(game_state.current_pages_collected)
 	

@@ -2,7 +2,7 @@ class_name SpawnRing extends SpawnBehavior
 
 ## Gets a ring around the player and spawns at a random point along it.
 
-@export var radius: float = 40.0
+@export var radius: float = 25.0
 
 func get_spawn_position(ctx: SpawnContext) -> Vector3:
 	var player = ctx.player
