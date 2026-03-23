@@ -10,6 +10,7 @@
 script = ExtResource("1_eeonk")
 
 [node name="UIPagesComponent" type="Control" parent="." unique_id=493848287]
+modulate = Color(1, 1, 1, 0)
 clip_contents = true
 layout_mode = 3
 anchors_preset = 8
@@ -54,9 +55,9 @@ anchor_top = 0.87500006
 anchor_right = 0.66700006
 anchor_bottom = 0.87500006
 offset_left = -48.783524
-offset_top = -87.00021
+offset_top = -86.00021
 offset_right = -20.783524
-offset_bottom = -1.0002289
+offset_bottom = -0.00023269653
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -68,6 +69,7 @@ theme = ExtResource("4_r0q2l")
 theme_override_constants/outline_size = 16
 theme_override_font_sizes/normal_font_size = 32
 text = "0"
+scroll_active = false
 
 [node name="OldNumber" type="RichTextLabel" parent="UIPagesComponent/PageNumbersContainer" unique_id=1572963191]
 clip_contents = false
@@ -77,6 +79,7 @@ theme = ExtResource("4_r0q2l")
 theme_override_constants/outline_size = 16
 theme_override_font_sizes/normal_font_size = 32
 text = "0"
+scroll_active = false
 
 [node name="TopText" type="RichTextLabel" parent="." unique_id=53537604]
 clip_contents = false
