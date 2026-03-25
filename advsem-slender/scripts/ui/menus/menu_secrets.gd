@@ -71,7 +71,7 @@ func update_secret_text(string: String):
 	if (visible_keys.size() > 10):
 		visible_keys.remove_at(0)
 	
-	secret_string.text = "[wave]"
+	secret_string.text = ""
 	for key in visible_keys:
 		secret_string.text += key
 	
@@ -95,7 +95,7 @@ func hit(word: String):
 	if (scale_tween):
 		scale_tween.kill()
 	scale_tween = create_tween()
-	scale_tween.tween_property(secret_string, "scale", Vector2.ONE, 0.5)
+	scale_tween.tween_property(secret_string, "scale", Vector2.ONE, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 
 func check_key_array():
 	var last_idx = recent_keys.size() - 1

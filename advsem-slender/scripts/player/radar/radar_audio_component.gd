@@ -22,7 +22,8 @@ func update(battery_remaining: float):
 
 # Public methods
 func play_notification():
-	notification_audio.pitch_scale = randf_range(pitch_scale - 0.05, pitch_scale + 0.05)
+	var rand_pitch = randf_range(pitch_scale - 0.05, pitch_scale + 0.05)
+	notification_audio.pitch_scale = rand_pitch if rand_pitch >= 0 else 0.0
 	notification_audio.volume_db = _get_volume()
 	notification_audio.play()
 

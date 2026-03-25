@@ -84,9 +84,9 @@ func fade_in_music(vol: float, time: float, transition: Tween.TransitionType = T
 func fade_out_music(vol: float, time: float, transition: Tween.TransitionType = Tween.TRANS_LINEAR, easing: Tween.EaseType = Tween.EASE_IN_OUT):
 	create_tween().tween_property(music, "volume_db", vol, time).set_trans(transition).set_ease(easing)
 
-## MAIN = 0, PLAY = 1, etc. :]
+## 2^32 different bg possibilities
 func _update_background_noise_seed(menu: MenuConfig.MenuType):
-	background.texture.noise.seed = menu - 1
+	background.texture.noise.seed = randi()
 
 func _on_bg_typed():
 	background.texture.noise.seed = randi()
