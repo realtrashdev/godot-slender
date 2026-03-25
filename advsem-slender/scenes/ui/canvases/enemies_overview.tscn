@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bmxla2qlmloob"]
+[gd_scene format=3 uid="uid://bmxla2qlmloob"]
 
 [ext_resource type="Theme" uid="uid://bommyqwo15hbx" path="res://theme1.tres" id="1_4aa4k"]
 [ext_resource type="Script" uid="uid://bd7pox5rtp17u" path="res://scripts/ui/canvases/enemies_overview.gd" id="1_uquhx"]
@@ -12,11 +12,10 @@ script = ExtResource("3_uquhx")
 [sub_resource type="Resource" id="Resource_uquhx"]
 script = ExtResource("3_uquhx")
 
-[node name="EnemiesOverview" type="CanvasLayer"]
-layer = 5
+[node name="EnemiesOverview" type="CanvasLayer" unique_id=904835076]
 script = ExtResource("1_uquhx")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="." unique_id=165085170]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -24,7 +23,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Title" type="RichTextLabel" parent="."]
+[node name="Title" type="RichTextLabel" parent="." unique_id=1630353174]
 custom_minimum_size = Vector2(0, 100)
 anchors_preset = 5
 anchor_left = 0.5
@@ -41,7 +40,7 @@ text = "[shake rate=10 level=4]Enemy Overview"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Subtitle" type="RichTextLabel" parent="."]
+[node name="Subtitle" type="RichTextLabel" parent="." unique_id=1329129833]
 custom_minimum_size = Vector2(0, 100)
 anchors_preset = 5
 anchor_left = 0.5
@@ -59,7 +58,7 @@ text = "[wave]Scenario/Endless Name"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SmoothScrollContainer" type="ScrollContainer" parent="."]
+[node name="SmoothScrollContainer" type="ScrollContainer" parent="." unique_id=1363360200]
 clip_contents = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -78,13 +77,13 @@ allow_vertical_scroll = false
 allow_overdragging = false
 metadata/_custom_type_script = "uid://bgqglerkcylxx"
 
-[node name="Containers" type="HBoxContainer" parent="SmoothScrollContainer"]
+[node name="Containers" type="HBoxContainer" parent="SmoothScrollContainer" unique_id=761765185]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
 
-[node name="CustomButton" parent="." instance=ExtResource("5_uquhx")]
+[node name="CustomButton" parent="." unique_id=2085338485 instance=ExtResource("5_uquhx")]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0

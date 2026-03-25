@@ -14,7 +14,7 @@ func _ready() -> void:
 
 func show_overview():
 	scroll_container.scale.x = 0
-	create_tween().tween_property(scroll_container, "scale", Vector2.ONE, 0.4).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
+	create_tween().tween_property(scroll_container, "scale", Vector2.ONE, 0.33).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
 	visible = true
 
 func populate_via_scenario(scenario: ClassicModeScenario):

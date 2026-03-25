@@ -192,6 +192,7 @@ func check_gum():
 
 func spawn_gum():
 	var scene = preload("res://scenes/enemies/OLD/gum_old.tscn").instantiate()
+	scene.layer = 2
 	add_child(scene)
 	scene.activate()
 

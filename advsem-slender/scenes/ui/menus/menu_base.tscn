@@ -100,7 +100,8 @@ sounds = Array[AudioStream]([ExtResource("5_2d7pv"), ExtResource("6_qvyop"), Ext
 [node name="QuitAudio" type="AudioStreamPlayer" parent="." unique_id=657736067]
 stream = ExtResource("7_brimo")
 
-[node name="Secrets" type="Node" parent="." unique_id=1454303199 node_paths=PackedStringArray("secret_string")]
+[node name="Secrets" type="CanvasLayer" parent="." unique_id=2023843739 node_paths=PackedStringArray("secret_string")]
+layer = 5
 script = ExtResource("9_qvyop")
 secret_string = NodePath("RichTextLabel")
 
