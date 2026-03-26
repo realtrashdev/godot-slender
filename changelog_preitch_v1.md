@@ -1,8 +1,8 @@
-# Endless Pages Pre-Itch Testing v1 Changelog
+# Endless Pages Changelog: Pre-Itch Playtest v1
 
 
 
-###### This text file details most changes to the game since Milestone 3 of Advanced Seminar (December 2025).
+###### This text file details changes to the game since Milestone 3 of Advanced Seminar (December 2025).
 
 
 
@@ -29,7 +29,7 @@ The radar now has a limited battery.
 Added ???, an enemy that will attack and kill the player shortly after their radar dies.
 
 * This enemy is currently always active.
-* Think of it as Freddy killing you when the power goes out in FNAF 1.
+* If the player collects a page before ??? kills them, the battery will recharge and it will disappear.
 
 
 
@@ -105,6 +105,12 @@ Added text to the top left corner of the menu that allows you to see a string of
 
 
 Added the ability to reset progress by typing "RESET" when in the settings menu.
+
+
+
+Added an animated background to the enemy overview.
+
+Fixed a layering issue with the enemy overview.
 
 
 
