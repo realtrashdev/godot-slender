@@ -5,6 +5,16 @@
 [ext_resource type="Script" uid="uid://bgqglerkcylxx" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="2_cuen5"]
 [ext_resource type="Script" uid="uid://b7h0k2h2qwlqv" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="3_uquhx"]
 [ext_resource type="PackedScene" uid="uid://6lvn3tolsp7r" path="res://scenes/ui/buttons/menu_button.tscn" id="5_uquhx"]
+[ext_resource type="Shader" uid="uid://caquou8kela8x" path="res://shaders/scroll_uv.gdshader" id="6_op4vt"]
+[ext_resource type="Texture2D" uid="uid://j7tlf6113ftt" path="res://art/2d/ui/skull_icon_spaced.aseprite" id="7_31k03"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tdw8b"]
+shader = ExtResource("6_op4vt")
+shader_parameter/scroll_x = 0.125
+shader_parameter/scroll_y = 0.25
+shader_parameter/sin_x = true
+shader_parameter/sin_mult_x = 1.0
+shader_parameter/time_mult_x = 2.0
 
 [sub_resource type="Resource" id="Resource_cuen5"]
 script = ExtResource("3_uquhx")
@@ -23,6 +33,17 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
+[node name="SkullLeft" type="TextureRect" parent="." unique_id=483843620]
+modulate = Color(0.22710815, 0.22710815, 0.22710815, 1)
+material = SubResource("ShaderMaterial_tdw8b")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_31k03")
+stretch_mode = 1
+
 [node name="Title" type="RichTextLabel" parent="." unique_id=1630353174]
 custom_minimum_size = Vector2(0, 100)
 anchors_preset = 5
@@ -35,6 +56,7 @@ offset_bottom = 140.0
 grow_horizontal = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_4aa4k")
+theme_override_constants/outline_size = 16
 bbcode_enabled = true
 text = "[shake rate=10 level=4]Enemy Overview"
 horizontal_alignment = 1
@@ -52,6 +74,7 @@ offset_bottom = 210.00003
 grow_horizontal = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_4aa4k")
+theme_override_constants/outline_size = 16
 theme_override_font_sizes/normal_font_size = 28
 bbcode_enabled = true
 text = "[wave]Scenario/Endless Name"

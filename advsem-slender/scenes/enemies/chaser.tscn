@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://csq5gcwn1bv26"]
+[gd_scene format=3 uid="uid://csq5gcwn1bv26"]
 
 [ext_resource type="Script" uid="uid://dgmarm0y1eq66" path="res://scripts/enemies/base/enemy3D.gd" id="1_ontx3"]
 [ext_resource type="SpriteFrames" uid="uid://pyvqr1dpcew3" path="res://art/2d/enemies/chaser_1.aseprite" id="2_vobwd"]
@@ -29,22 +29,22 @@ metadata/_custom_type_script = "uid://bsyl03flb2uux"
 
 [sub_resource type="Resource" id="Resource_dsoqv"]
 script = ExtResource("11_dsoqv")
-final_value = Vector3(1, 0.01, 1)
+final_value = Vector3(0.01, 0.01, 1)
 duration = 0.5
 easing = 0
 metadata/_custom_type_script = "uid://bsyl03flb2uux"
 
-[node name="Chaser" type="CharacterBody3D" node_paths=PackedStringArray("flashlight_attract_position") groups=["AttractsFlashlight"]]
+[node name="Chaser" type="CharacterBody3D" unique_id=1312795095 node_paths=PackedStringArray("flashlight_attract_position") groups=["AttractsFlashlight"]]
 collision_layer = 41
 collision_mask = 5
 script = ExtResource("1_ontx3")
 flashlight_attract_position = NodePath("FlashlightAttractPosition")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=71918557]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.01971, 0)
 shape = SubResource("CapsuleShape3D_1xo2g")
 
-[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=1329868150]
 transform = Transform3D(4.72, 0, 0, 0, 4.72, 0, 0, 0, 1.18, -0.001, -0.07300001, -0.002)
 offset = Vector2(0, 63)
 billboard = 2
@@ -54,18 +54,18 @@ sprite_frames = ExtResource("2_vobwd")
 animation = &"walk"
 autoplay = "walk"
 
-[node name="AmbientSound" type="AudioStreamPlayer3D" parent="."]
+[node name="AmbientSound" type="AudioStreamPlayer3D" parent="." unique_id=751482045]
 stream = ExtResource("4_apvou")
 volume_db = -2.0
 autoplay = true
 max_distance = 20.0
 
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1569124791]
 
-[node name="FlashlightAttractPosition" type="Node3D" parent="."]
+[node name="FlashlightAttractPosition" type="Node3D" parent="." unique_id=599209710]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
-[node name="ChaseComponent3D" type="Node" parent="."]
+[node name="ChaseComponent3D" type="Node" parent="." unique_id=268188121]
 script = ExtResource("4_o1gbp")
 move_speeds = Dictionary[int, float]({
 1: 4.75,
@@ -77,30 +77,30 @@ distance_speed_multipliers = Array[Array]([[0, 0.75], [5, 1.0], [10, 1.5], [15, 
 active_states = Array[int]([1, 2, 5])
 metadata/_custom_type_script = "uid://dihwj4ebwryto"
 
-[node name="GravityComponent3D" type="Node" parent="."]
+[node name="GravityComponent3D" type="Node" parent="." unique_id=826486566]
 script = ExtResource("6_vobwd")
 active_states = Array[int]([0, 1, 2, 3, 4])
 metadata/_custom_type_script = "uid://du80erw6qg145"
 
-[node name="LightSensitiveComponent3D" type="Node" parent="."]
+[node name="LightSensitiveComponent3D" type="Node" parent="." unique_id=1834683827]
 script = ExtResource("9_f8w1j")
 do_shine_time = true
 shine_state_transition = 5
 active_states = Array[int]([1, 2])
 metadata/_custom_type_script = "uid://obwf6ltnv5wh"
 
-[node name="CollisionKillComponent3D" type="Node" parent="."]
+[node name="CollisionKillComponent3D" type="Node" parent="." unique_id=1512788887]
 script = ExtResource("7_apvou")
 active_states = Array[int]([1, 2])
 metadata/_custom_type_script = "uid://dce3vw8udcaow"
 
-[node name="ShakeComponent3D" type="Node" parent="." node_paths=PackedStringArray("target")]
+[node name="ShakeComponent3D" type="Node" parent="." unique_id=919812531 node_paths=PackedStringArray("target")]
 script = ExtResource("4_s5r2m")
 target = NodePath("../AnimatedSprite3D")
 active_states = Array[int]([2])
 metadata/_custom_type_script = "uid://effuujo1gd4r"
 
-[node name="SpriteAnimationComponent3D" type="Node" parent="."]
+[node name="SpriteAnimationComponent3D" type="Node" parent="." unique_id=1723117703]
 script = ExtResource("9_hy5w0")
 animation_name_dict = Dictionary[int, String]({
 1: "walk",
@@ -109,7 +109,7 @@ animation_name_dict = Dictionary[int, String]({
 })
 metadata/_custom_type_script = "uid://dl1snf5gqvaqv"
 
-[node name="ScaleAnimationComponent3D" type="Node" parent="."]
+[node name="ScaleAnimationComponent3D" type="Node" parent="." unique_id=1781923375]
 script = ExtResource("12_hot0s")
 tween_setting_dict = Dictionary[int, ExtResource("11_dsoqv")]({
 0: SubResource("Resource_pmg11"),
@@ -117,7 +117,7 @@ tween_setting_dict = Dictionary[int, ExtResource("11_dsoqv")]({
 })
 metadata/_custom_type_script = "uid://c1o1rbtdkxxke"
 
-[node name="StateTimerComponent3D" type="Node" parent="."]
+[node name="StateTimerComponent3D" type="Node" parent="." unique_id=136272600]
 script = ExtResource("11_1mp87")
 state_times = Dictionary[int, float]({
 0: 0.5,
@@ -129,6 +129,6 @@ state_transitions = Dictionary[int, int]({
 })
 metadata/_custom_type_script = "uid://cm47alcqeepgp"
 
-[node name="TickComponent" type="Node" parent="."]
+[node name="TickComponent" type="Node" parent="." unique_id=938265660]
 script = ExtResource("5_vobwd")
 metadata/_custom_type_script = "uid://brqfh8pmq54xe"
