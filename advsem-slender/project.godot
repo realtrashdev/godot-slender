@@ -25,6 +25,10 @@ config/windows_native_icon="res://art/2d/game_icon.ico"
 
 aseprite_executable_path="C:/Program Files (x86)/Steam/steamapps/common/Aseprite/Aseprite.exe"
 
+[audio]
+
+buses/default_bus_layout="uid://df6rxycxmdwid"
+
 [autoload]
 
 GameConfig="*res://scripts/globals/game_config.gd"

@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="EnemyProfile" load_steps=4 format=3 uid="uid://qmx2f7d1vom"]
+[gd_resource type="Resource" script_class="EnemyProfile" format=3 uid="uid://qmx2f7d1vom"]
 
-[ext_resource type="Script" uid="uid://c426kdmp0e6tf" path="res://scripts/resources/enemy_profile.gd" id="1_7300h"]
+[ext_resource type="Script" uid="uid://c426kdmp0e6tf" path="res://scripts/resources/enemies/enemy_profile.gd" id="1_7300h"]
 [ext_resource type="PackedScene" uid="uid://b0qyoptg5o7uf" path="res://scenes/enemies/scam_likely_component.tscn" id="1_hba1t"]
 [ext_resource type="Texture2D" uid="uid://dchhldcuxe5gf" path="res://art/2d/enemies/icons/scamlikely_icon.aseprite" id="1_imohw"]
 

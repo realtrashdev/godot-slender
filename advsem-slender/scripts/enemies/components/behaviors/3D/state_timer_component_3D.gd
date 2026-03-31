@@ -41,5 +41,4 @@ func _on_state_changed(new_state: Enemy3D.State):
 		time = state_times[new_state]
 		
 		# Get state to transition to on timeout
-		if new_state in state_transitions:
-			next_state = state_transitions[new_state]
+		next_state = state_transitions.get(new_state, new_state)

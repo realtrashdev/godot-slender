@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="ClassicModeScenario" format=3 uid="uid://cewinant3mi1v"]
 
-[ext_resource type="Script" uid="uid://bf5ts565hp5p4" path="res://scripts/resources/enemy_profile_list.gd" id="1_qwlcu"]
-[ext_resource type="Script" uid="uid://c426kdmp0e6tf" path="res://scripts/resources/enemy_profile.gd" id="2_sy0hw"]
+[ext_resource type="Script" uid="uid://bf5ts565hp5p4" path="res://scripts/resources/enemies/enemy_profile_list.gd" id="1_d8xjs"]
+[ext_resource type="Script" uid="uid://c426kdmp0e6tf" path="res://scripts/resources/enemies/enemy_profile.gd" id="2_n30uk"]
 [ext_resource type="Resource" uid="uid://5btde08a1exu" path="res://resources/enemy_profiles/profile_chaser.tres" id="3_d8xjs"]
 [ext_resource type="Resource" uid="uid://ceka8pclkwv8e" path="res://resources/enemy_profiles/profile_gum.tres" id="4_n30uk"]
 [ext_resource type="Resource" uid="uid://qmx2f7d1vom" path="res://resources/enemy_profiles/profile_scamlikely.tres" id="4_sy0hw"]
@@ -10,23 +10,23 @@
 [ext_resource type="Resource" uid="uid://l6y0fnfsx2b5" path="res://resources/scenarios/scenario_basics2.tres" id="8_d8xjs"]
 
 [sub_resource type="Resource" id="Resource_5cs33"]
-script = ExtResource("1_qwlcu")
-profiles = Array[ExtResource("2_sy0hw")]([ExtResource("3_d8xjs"), ExtResource("4_sy0hw")])
+script = ExtResource("1_d8xjs")
+profiles = Array[ExtResource("2_n30uk")]([ExtResource("3_d8xjs"), ExtResource("4_sy0hw")])
 metadata/_custom_type_script = "uid://bf5ts565hp5p4"
 
 [sub_resource type="Resource" id="Resource_op8sr"]
-script = ExtResource("1_qwlcu")
-profiles = Array[ExtResource("2_sy0hw")]([ExtResource("4_n30uk")])
+script = ExtResource("1_d8xjs")
+profiles = Array[ExtResource("2_n30uk")]([ExtResource("4_n30uk")])
 metadata/_custom_type_script = "uid://bf5ts565hp5p4"
 
 [sub_resource type="Resource" id="Resource_qwlcu"]
-script = ExtResource("1_qwlcu")
-profiles = Array[ExtResource("2_sy0hw")]([ExtResource("5_keo56")])
+script = ExtResource("1_d8xjs")
+profiles = Array[ExtResource("2_n30uk")]([ExtResource("5_keo56")])
 metadata/_custom_type_script = "uid://bf5ts565hp5p4"
 
 [sub_resource type="Resource" id="Resource_sy0hw"]
-script = ExtResource("1_qwlcu")
-profiles = Array[ExtResource("2_sy0hw")]([ExtResource("4_n30uk")])
+script = ExtResource("1_d8xjs")
+profiles = Array[ExtResource("2_n30uk")]([ExtResource("4_n30uk")])
 metadata/_custom_type_script = "uid://bf5ts565hp5p4"
 
 [resource]
@@ -35,7 +35,7 @@ script = ExtResource("6_wtyfx")
 name = "The Basics III"
 description = "Beat this, and we can call you fully tutorialized.
 Don't forget to look at the enemy overview!"
-enemies_to_add = Dictionary[int, ExtResource("1_qwlcu")]({
+enemies_to_add = Dictionary[int, ExtResource("1_d8xjs")]({
 0: null,
 1: SubResource("Resource_5cs33"),
 2: SubResource("Resource_op8sr"),

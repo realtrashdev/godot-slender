@@ -45,14 +45,12 @@ func _ready() -> void:
 # Call update function of child components.
 func _process(delta: float) -> void:
 	for component in components:
-		if component.has_method("update"):
-			component.update(delta)
+		component.update(delta)
 
 # Call physics update function of child components.
 func _physics_process(delta: float) -> void:
 	for component in components:
-		if component.has_method("physics_update"):
-			component.physics_update(delta)
+		component.physics_update(delta)
 	
 	if not using_tick_system: _tick_process()
 	move_and_slide()
@@ -64,8 +62,7 @@ func _tick_process() -> void:
 	velocity.z = 0
 	
 	for component in components:
-		if component.has_method("tick_update"):
-			component.tick_update()
+		component.tick_update()
 
 #region State Management
 func get_current_state() -> State:

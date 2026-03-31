@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="ClassicModeScenario" format=3 uid="uid://bcp2t6o8su54u"]
 
-[ext_resource type="Script" uid="uid://bf5ts565hp5p4" path="res://scripts/resources/enemy_profile_list.gd" id="1_gxdtd"]
-[ext_resource type="Script" uid="uid://c426kdmp0e6tf" path="res://scripts/resources/enemy_profile.gd" id="2_jmyuv"]
+[ext_resource type="Script" uid="uid://bf5ts565hp5p4" path="res://scripts/resources/enemies/enemy_profile_list.gd" id="1_srg6n"]
+[ext_resource type="Script" uid="uid://c426kdmp0e6tf" path="res://scripts/resources/enemies/enemy_profile.gd" id="2_7wy03"]
 [ext_resource type="Resource" uid="uid://ceka8pclkwv8e" path="res://resources/enemy_profiles/profile_gum.tres" id="3_tcs3j"]
 [ext_resource type="Resource" uid="uid://5btde08a1exu" path="res://resources/enemy_profiles/profile_chaser.tres" id="4_r7vyg"]
 [ext_resource type="Resource" uid="uid://qmx2f7d1vom" path="res://resources/enemy_profiles/profile_scamlikely.tres" id="4_tcs3j"]
@@ -11,53 +11,53 @@
 [ext_resource type="Resource" uid="uid://dfppi52cluswe" path="res://resources/scenarios/scenario_symmetry.tres" id="9_7wy03"]
 
 [sub_resource type="Resource" id="Resource_xkopt"]
-script = ExtResource("1_gxdtd")
-profiles = Array[ExtResource("2_jmyuv")]([ExtResource("3_tcs3j"), ExtResource("3_tcs3j"), ExtResource("3_tcs3j")])
+script = ExtResource("1_srg6n")
+profiles = Array[ExtResource("2_7wy03")]([ExtResource("3_tcs3j"), ExtResource("3_tcs3j"), ExtResource("3_tcs3j")])
 metadata/_custom_type_script = "uid://bf5ts565hp5p4"
 
 [sub_resource type="Resource" id="Resource_up773"]
-script = ExtResource("1_gxdtd")
-profiles = Array[ExtResource("2_jmyuv")]([ExtResource("4_r7vyg"), ExtResource("3_tcs3j"), ExtResource("4_tcs3j")])
+script = ExtResource("1_srg6n")
+profiles = Array[ExtResource("2_7wy03")]([ExtResource("4_r7vyg"), ExtResource("3_tcs3j"), ExtResource("4_tcs3j")])
 metadata/_custom_type_script = "uid://bf5ts565hp5p4"
 
 [sub_resource type="Resource" id="Resource_gxdtd"]
-script = ExtResource("1_gxdtd")
-profiles = Array[ExtResource("2_jmyuv")]([ExtResource("3_tcs3j")])
+script = ExtResource("1_srg6n")
+profiles = Array[ExtResource("2_7wy03")]([ExtResource("3_tcs3j")])
 metadata/_custom_type_script = "uid://bf5ts565hp5p4"
 
 [sub_resource type="Resource" id="Resource_uubew"]
-script = ExtResource("1_gxdtd")
-profiles = Array[ExtResource("2_jmyuv")]([ExtResource("3_tcs3j"), ExtResource("4_tcs3j")])
+script = ExtResource("1_srg6n")
+profiles = Array[ExtResource("2_7wy03")]([ExtResource("3_tcs3j"), ExtResource("4_tcs3j")])
 metadata/_custom_type_script = "uid://bf5ts565hp5p4"
 
 [sub_resource type="Resource" id="Resource_jmyuv"]
-script = ExtResource("1_gxdtd")
-profiles = Array[ExtResource("2_jmyuv")]([ExtResource("3_tcs3j")])
+script = ExtResource("1_srg6n")
+profiles = Array[ExtResource("2_7wy03")]([ExtResource("3_tcs3j")])
 metadata/_custom_type_script = "uid://bf5ts565hp5p4"
 
 [sub_resource type="Resource" id="Resource_l845u"]
-script = ExtResource("1_gxdtd")
-profiles = Array[ExtResource("2_jmyuv")]([ExtResource("4_r7vyg"), ExtResource("3_tcs3j")])
+script = ExtResource("1_srg6n")
+profiles = Array[ExtResource("2_7wy03")]([ExtResource("4_r7vyg"), ExtResource("3_tcs3j")])
 metadata/_custom_type_script = "uid://bf5ts565hp5p4"
 
 [sub_resource type="Resource" id="Resource_6jseq"]
-script = ExtResource("1_gxdtd")
-profiles = Array[ExtResource("2_jmyuv")]([ExtResource("3_tcs3j")])
+script = ExtResource("1_srg6n")
+profiles = Array[ExtResource("2_7wy03")]([ExtResource("3_tcs3j")])
 metadata/_custom_type_script = "uid://bf5ts565hp5p4"
 
 [sub_resource type="Resource" id="Resource_x1uok"]
-script = ExtResource("1_gxdtd")
-profiles = Array[ExtResource("2_jmyuv")]([ExtResource("3_tcs3j"), ExtResource("4_tcs3j")])
+script = ExtResource("1_srg6n")
+profiles = Array[ExtResource("2_7wy03")]([ExtResource("3_tcs3j"), ExtResource("4_tcs3j")])
 metadata/_custom_type_script = "uid://bf5ts565hp5p4"
 
 [sub_resource type="Resource" id="Resource_tcs3j"]
-script = ExtResource("1_gxdtd")
-profiles = Array[ExtResource("2_jmyuv")]([ExtResource("3_tcs3j"), ExtResource("3_tcs3j")])
+script = ExtResource("1_srg6n")
+profiles = Array[ExtResource("2_7wy03")]([ExtResource("3_tcs3j"), ExtResource("3_tcs3j")])
 metadata/_custom_type_script = "uid://bf5ts565hp5p4"
 
 [sub_resource type="Resource" id="Resource_r7vyg"]
-script = ExtResource("1_gxdtd")
-profiles = Array[ExtResource("2_jmyuv")]([ExtResource("5_jmyuv"), ExtResource("5_jmyuv"), ExtResource("5_jmyuv")])
+script = ExtResource("1_srg6n")
+profiles = Array[ExtResource("2_7wy03")]([ExtResource("5_jmyuv"), ExtResource("5_jmyuv"), ExtResource("5_jmyuv")])
 metadata/_custom_type_script = "uid://bf5ts565hp5p4"
 
 [resource]
@@ -65,7 +65,7 @@ resource_name = "ultra_gumpocalypse"
 script = ExtResource("5_srg6n")
 name = "Ultra Gumpocalypse"
 description = "The ultimate challenge. It's all or gumthing."
-enemies_to_add = Dictionary[int, ExtResource("1_gxdtd")]({
+enemies_to_add = Dictionary[int, ExtResource("1_srg6n")]({
 0: SubResource("Resource_xkopt"),
 1: SubResource("Resource_up773"),
 2: SubResource("Resource_gxdtd"),

@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="ClassicModeScenario" format=3 uid="uid://dl5qafaoxjdn5"]
 
-[ext_resource type="Script" uid="uid://bf5ts565hp5p4" path="res://scripts/resources/enemy_profile_list.gd" id="1_v7gee"]
-[ext_resource type="Script" uid="uid://c426kdmp0e6tf" path="res://scripts/resources/enemy_profile.gd" id="2_hsbv5"]
+[ext_resource type="Script" uid="uid://bf5ts565hp5p4" path="res://scripts/resources/enemies/enemy_profile_list.gd" id="1_hsbv5"]
+[ext_resource type="Script" uid="uid://c426kdmp0e6tf" path="res://scripts/resources/enemies/enemy_profile.gd" id="2_7wssg"]
 [ext_resource type="Script" uid="uid://cbb8lvjddytcc" path="res://scripts/resources/scenario.gd" id="2_t6xww"]
 [ext_resource type="Resource" uid="uid://ceka8pclkwv8e" path="res://resources/enemy_profiles/profile_gum.tres" id="3_7wssg"]
 
 [sub_resource type="Resource" id="Resource_mx8kg"]
-script = ExtResource("1_v7gee")
-profiles = Array[ExtResource("2_hsbv5")]([ExtResource("3_7wssg")])
+script = ExtResource("1_hsbv5")
+profiles = Array[ExtResource("2_7wssg")]([ExtResource("3_7wssg")])
 metadata/_custom_type_script = "uid://bf5ts565hp5p4"
 
 [resource]
@@ -16,7 +16,7 @@ script = ExtResource("2_t6xww")
 name = "Awakening"
 description = "Everybody starts somewhere...
 (Tutorial level)"
-enemies_to_add = Dictionary[int, ExtResource("1_v7gee")]({
+enemies_to_add = Dictionary[int, ExtResource("1_hsbv5")]({
 1000000: SubResource("Resource_mx8kg")
 })
 required_pages = 1

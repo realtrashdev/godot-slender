@@ -1,46 +1,46 @@
 [gd_resource type="Resource" script_class="ClassicModeScenario" format=3 uid="uid://cl3yw8vhoox2k"]
 
-[ext_resource type="Script" uid="uid://bf5ts565hp5p4" path="res://scripts/resources/enemy_profile_list.gd" id="1_jasut"]
-[ext_resource type="Script" uid="uid://c426kdmp0e6tf" path="res://scripts/resources/enemy_profile.gd" id="2_6jseq"]
+[ext_resource type="Script" uid="uid://bf5ts565hp5p4" path="res://scripts/resources/enemies/enemy_profile_list.gd" id="1_aiyfu"]
 [ext_resource type="Script" uid="uid://cbb8lvjddytcc" path="res://scripts/resources/scenario.gd" id="2_l8rxp"]
+[ext_resource type="Script" uid="uid://c426kdmp0e6tf" path="res://scripts/resources/enemies/enemy_profile.gd" id="2_xkopt"]
 [ext_resource type="Resource" uid="uid://ceka8pclkwv8e" path="res://resources/enemy_profiles/profile_gum.tres" id="3_ejypt"]
 [ext_resource type="Resource" uid="uid://5btde08a1exu" path="res://resources/enemy_profiles/profile_chaser.tres" id="4_aiyfu"]
 [ext_resource type="Resource" uid="uid://qmx2f7d1vom" path="res://resources/enemy_profiles/profile_scamlikely.tres" id="5_ejypt"]
 [ext_resource type="Resource" uid="uid://csigmb8evkba0" path="res://resources/scenarios/scenario_overstimulation.tres" id="7_aiyfu"]
 
 [sub_resource type="Resource" id="Resource_xkopt"]
-script = ExtResource("1_jasut")
-profiles = Array[ExtResource("2_6jseq")]([ExtResource("3_ejypt"), ExtResource("3_ejypt")])
+script = ExtResource("1_aiyfu")
+profiles = Array[ExtResource("2_xkopt")]([ExtResource("3_ejypt"), ExtResource("3_ejypt")])
 metadata/_custom_type_script = "uid://bf5ts565hp5p4"
 
 [sub_resource type="Resource" id="Resource_up773"]
-script = ExtResource("1_jasut")
-profiles = Array[ExtResource("2_6jseq")]([ExtResource("4_aiyfu")])
+script = ExtResource("1_aiyfu")
+profiles = Array[ExtResource("2_xkopt")]([ExtResource("4_aiyfu")])
 metadata/_custom_type_script = "uid://bf5ts565hp5p4"
 
 [sub_resource type="Resource" id="Resource_ejypt"]
-script = ExtResource("1_jasut")
-profiles = Array[ExtResource("2_6jseq")]([ExtResource("3_ejypt"), ExtResource("5_ejypt")])
+script = ExtResource("1_aiyfu")
+profiles = Array[ExtResource("2_xkopt")]([ExtResource("3_ejypt"), ExtResource("5_ejypt")])
 metadata/_custom_type_script = "uid://bf5ts565hp5p4"
 
 [sub_resource type="Resource" id="Resource_uubew"]
-script = ExtResource("1_jasut")
-profiles = Array[ExtResource("2_6jseq")]([ExtResource("3_ejypt")])
+script = ExtResource("1_aiyfu")
+profiles = Array[ExtResource("2_xkopt")]([ExtResource("3_ejypt")])
 metadata/_custom_type_script = "uid://bf5ts565hp5p4"
 
 [sub_resource type="Resource" id="Resource_aiyfu"]
-script = ExtResource("1_jasut")
-profiles = Array[ExtResource("2_6jseq")]([ExtResource("4_aiyfu")])
+script = ExtResource("1_aiyfu")
+profiles = Array[ExtResource("2_xkopt")]([ExtResource("4_aiyfu")])
 metadata/_custom_type_script = "uid://bf5ts565hp5p4"
 
 [sub_resource type="Resource" id="Resource_l845u"]
-script = ExtResource("1_jasut")
-profiles = Array[ExtResource("2_6jseq")]([ExtResource("3_ejypt")])
+script = ExtResource("1_aiyfu")
+profiles = Array[ExtResource("2_xkopt")]([ExtResource("3_ejypt")])
 metadata/_custom_type_script = "uid://bf5ts565hp5p4"
 
 [sub_resource type="Resource" id="Resource_6jseq"]
-script = ExtResource("1_jasut")
-profiles = Array[ExtResource("2_6jseq")]([ExtResource("3_ejypt")])
+script = ExtResource("1_aiyfu")
+profiles = Array[ExtResource("2_xkopt")]([ExtResource("3_ejypt")])
 metadata/_custom_type_script = "uid://bf5ts565hp5p4"
 
 [resource]
@@ -49,7 +49,7 @@ script = ExtResource("2_l8rxp")
 name = "Gumpocalypse"
 description = "We don't have enough lollipops to keep them all occupied!
 The floodgates have been opened!"
-enemies_to_add = Dictionary[int, ExtResource("1_jasut")]({
+enemies_to_add = Dictionary[int, ExtResource("1_aiyfu")]({
 0: SubResource("Resource_xkopt"),
 1: SubResource("Resource_up773"),
 2: SubResource("Resource_ejypt"),
