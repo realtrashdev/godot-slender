@@ -14,7 +14,7 @@ var rare_game_tips: Array[String] = [
 	"Toby is a really awesome cat and he is cool.",
 	"Swag Swag Swag Swag Swag",
 	"Actually, never mind. You don't care anyway.",
-	"Maybe try typing oUt thingS on the maIn menu, you might find some seCrets!"
+	"Try typing something out in the main menu, you might find a secret!"
 ]
 
 func get_random_tip() -> String:

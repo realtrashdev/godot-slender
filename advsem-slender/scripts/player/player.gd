@@ -48,9 +48,6 @@ func initialize(state: GameState):
 func die(_dead = null):
 	Signals.player_died.emit()
 	deactivate()
-	var tree: SceneTree = get_tree()
-	await get_tree().create_timer(1).timeout
-	tree.change_scene_to_file(MENU_SCENE)
 
 func activate():
 	active = true

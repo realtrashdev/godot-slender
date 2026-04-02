@@ -19,6 +19,8 @@ enum EnemyType { ENEMY_2D, ENEMY_3D, ENEMY_COMPONENT }
 @export_group("Death")
 ## AAAAAAHH!!
 @export var jumpscare: Jumpscare
+## Game over screen background
+@export var death_screen: Texture2D
 ## What the game can tell the player when they die to this enemy.
 @export_multiline var death_tips: Array[String]
 

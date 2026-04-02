@@ -18,8 +18,8 @@ config/name="endless-pages"
 config/version="0.0"
 run/main_scene="uid://c3f6y28ur3tma"
 config/features=PackedStringArray("4.6", "GL Compatibility")
-config/icon="uid://d1lk8evjwh3c5"
-config/windows_native_icon="res://art/2d/game_icon.ico"
+config/icon="uid://bmrcsg6aibqvj"
+config/windows_native_icon="res://art/2d/game_icon_chaser.ico"
 
 [aseprite_importers]
 

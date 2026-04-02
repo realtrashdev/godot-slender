@@ -92,7 +92,7 @@ func start_game():
 	run_timer = 0.0
 	run_timer_active = true
 
-func finish_game():
+func finish_game(won: bool = true):
 	# shut down
 	print("Game Finished")
 	run_timer_active = false
@@ -108,9 +108,10 @@ func finish_game():
 		Progression.complete_scenario(load_classic_scenario().resource_name)
 		print(load_classic_scenario().resource_name + " completed")
 	
-	# handle next state
-	await get_tree().create_timer(5).timeout
-	transition_to_next_state()
+	if won:
+		# handle next state
+		await get_tree().create_timer(5).timeout
+		transition_to_next_state()
 
 func transition_to_next_state():
 	match game_state.game_mode:
@@ -127,10 +128,10 @@ func get_player_spawn_position() -> Vector3:
 # high-level event handlers
 func _on_page_collected():
 	if game_state.current_pages_collected >= game_state.current_pages_required:
-		finish_game()
+		finish_game(true)
 
 func _on_player_died():
-	finish_game()
+	finish_game(false)
 
 func _on_game_started():
 	if tutorial: return

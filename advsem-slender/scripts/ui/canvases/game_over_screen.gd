@@ -1,38 +1,68 @@
-extends CanvasLayer
+class_name GameOverScreen extends CanvasLayer
 
-@export var after_anim_objects: Array[Control]
+@export var text_fade_delay: float = 1.0
 
-const CONTAINER_SEPARATION: int = 2000
+@export_group("Death Screen", "ds_")
+@export var ds_rotation_bounds: float = 10.0
+@export var ds_start_scale: Vector2 = Vector2(1.25, 1.25)
+@export var tween_settings: TweenSettings
+
+const TIP_TEXT_START: String = "[wave]TIP:[/wave]\n\n"
+
+var tween: Tween
+
+@onready var death_screen: TextureRect = $DeathScreen
+@onready var tip_text: RichTextLabel = $TipText
+@onready var black_bg: ColorRect = $BlackBG
 
 
-@onready var panel_container: HBoxContainer = $HBoxContainer
-
-
-func _ready() -> void:
-	_setup()
-
-
-func _setup() -> void:
-	opening_animation()
-
-
-func opening_animation():
-	for item in after_anim_objects:
-		item.visible = false
+func initialize(profile: EnemyProfile):
+	visible = false
+	await self.ready
 	
-	panel_container.add_theme_constant_override("separation", CONTAINER_SEPARATION)
-	var tween = create_tween().tween_property(panel_container, "theme_override_constants/separation", 0, 0.75)
-	await tween.finished
+	if profile == null:
+		push_error("GameOverScreen given no EnemyProfile.")
+		return
 	
-	for item in after_anim_objects:
-		item.visible = true
+	if not profile.death_tips.is_empty():
+		tip_text.text = TIP_TEXT_START + profile.death_tips.pick_random()
+	else:
+		push_warning("GameOverScreen not provided with a tip to show. EnemyProfile name: " + profile.name)
+		tip_text.text = ""
+	
+	if profile.death_screen != null:
+		death_screen.texture = profile.death_screen
+	else:
+		push_warning("GameOverScreen not provided with a death screen to show. EnemyProfile name: " + profile.name)
 
 
-func restart_level():
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	get_tree().change_scene_to_packed(Settings.get_selected_map().scene)
+func show_game_over_screen():
+	visible = true
+	_show_deathscreen()
+	await get_tree().create_timer(text_fade_delay).timeout
+	var bg_tween = create_tween().tween_property(black_bg, "color", Color(0.0, 0.0, 0.0, 0.0), 0.5)
+	await bg_tween.finished
+	black_bg.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 
-func return_to_menu():
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	get_tree().change_scene_to_file("res://scenes/ui/menus/menu_base.tscn")
+func _show_deathscreen():
+	# Set randomized rotation
+	death_screen.rotation_degrees = randf_range(-ds_rotation_bounds, ds_rotation_bounds)
+	# At least a little variance
+	if abs(death_screen.rotation_degrees) < 3.0:
+		death_screen.rotation_degrees = 3 if randf() < 0.5 else -3
+	
+	# Set scale
+	death_screen.scale = ds_start_scale
+	
+	if (tween):
+		tween.kill()
+	tween = create_tween()
+	tween.set_parallel(true)
+	
+	tween.tween_property(death_screen, "rotation", 0.0, tween_settings.duration)\
+		.set_ease(tween_settings.easing).set_trans(tween_settings.transition)
+	tween.tween_property(death_screen, "scale", Vector2.ONE, tween_settings.duration)\
+		.set_ease(tween_settings.easing).set_trans(tween_settings.transition)
+	
+	$BoomSound.play()

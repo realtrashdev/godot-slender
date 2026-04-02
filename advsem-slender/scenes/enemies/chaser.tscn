@@ -14,7 +14,7 @@
 [ext_resource type="Script" uid="uid://obwf6ltnv5wh" path="res://scripts/enemies/components/behaviors/3D/light_sensitive_component_3D.gd" id="9_f8w1j"]
 [ext_resource type="Script" uid="uid://dl1snf5gqvaqv" path="res://scripts/enemies/components/behaviors/3D/visual/sprite_animation_component_3D.gd" id="9_hy5w0"]
 [ext_resource type="Script" uid="uid://cm47alcqeepgp" path="res://scripts/enemies/components/behaviors/3D/state_timer_component_3D.gd" id="11_1mp87"]
-[ext_resource type="Script" uid="uid://bsyl03flb2uux" path="res://scripts/resources/tween_settings.gd" id="11_dsoqv"]
+[ext_resource type="Script" uid="uid://bsyl03flb2uux" path="res://scripts/resources/scale_tween_settings.gd" id="11_dsoqv"]
 [ext_resource type="Script" uid="uid://c1o1rbtdkxxke" path="res://scripts/enemies/components/behaviors/3D/visual/scale_animation_component_3D.gd" id="12_hot0s"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1xo2g"]
@@ -23,16 +23,15 @@ height = 4.0
 
 [sub_resource type="Resource" id="Resource_pmg11"]
 script = ExtResource("11_dsoqv")
+do_starting_scale = true
+starting_scale = Vector3(1, 0.01, 1)
 duration = 0.5
 easing = 1
 transition = 11
-do_starting_scale = true
-starting_scale = Vector3(1, 0.01, 1)
 metadata/_custom_type_script = "uid://bsyl03flb2uux"
 
 [sub_resource type="Resource" id="Resource_dsoqv"]
 script = ExtResource("11_dsoqv")
-final_value = Vector3(0.01, 0.01, 1)
 duration = 0.5
 easing = 0
 metadata/_custom_type_script = "uid://bsyl03flb2uux"

@@ -24,6 +24,7 @@ var scenario: ClassicModeScenario
 @onready var center_text: RichTextLabel = $CenterText
 @onready var bottom_text: RichTextLabel = $BottomText
 @onready var in_game_timer_text: RichTextLabel = $InGameTimerText
+@onready var game_over_screen: PackedScene = preload("res://scenes/ui/canvases/game_over_screen.tscn")
 
 func initialize(state: GameState):
 	game_state = state
@@ -31,6 +32,7 @@ func initialize(state: GameState):
 	
 	# connect to signals and handle internally
 	Signals.page_collected.connect(_on_page_collected)
+	Signals.killed_player.connect(_on_enemy_killed_player)
 	
 	# enable/disable run timer depending on settings
 	in_game_timer_text.visible = Settings.get_run_timer()
@@ -58,12 +60,12 @@ func show_game_start():
 
 func show_tip():
 	var tip = tip_manager.get_random_tip()
-	_display_text("[wave]Tip:\n" + tip, 1, 5, 0)
+	_display_text("[wave]TIP:\n" + tip, 1, 5, 0)
 
 func show_mode():
 	match game_state.game_mode:
 		GameConfig.GameMode.CLASSIC:
-			_display_text("[wave]CLASSIC MODE", 1, 5, 0, TextLevel.TOP_BIG)
+			_display_text("[wave]CHALLENGE MODE", 1, 5, 0, TextLevel.TOP_BIG)
 		GameConfig.GameMode.ENDLESS:
 			_display_text("[wave]ENDLESS MODE", 1, 5, 0, TextLevel.TOP_BIG)
 	
@@ -88,6 +90,18 @@ func taking_too_long():
 func show_game_end():
 	# results screen
 	pass
+
+func _on_enemy_killed_player(profile: EnemyProfile):
+	print("Enemy %s killed player. Preparing GameOverScreen." % profile.name)
+	var game_over = game_over_screen.instantiate()
+	game_over.initialize(profile)
+	
+	# Wait for jumpscare to end, then show
+	await get_tree().create_timer(1.0).timeout
+	
+	add_child(game_over)
+	game_over.show_game_over_screen()
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func _get_shake_rate(page_amount: int) -> int:
 	var rate = page_amount - 2

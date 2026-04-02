@@ -36,4 +36,6 @@ func play_jumpscare(jumpscare: Jumpscare):
 	audio.play()
 	
 	animation.play("jumpscare_" + str(Jumpscare.ShakeType.keys()[jumpscare.type]).to_lower())
-	create_tween().tween_property(fade_out, "color", Color.BLACK, 1).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUART)
+	var tween = create_tween().tween_property(fade_out, "color", Color.BLACK, 1).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUART)
+	await tween.finished
+	visible = false

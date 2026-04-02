@@ -1,148 +1,96 @@
-[gd_scene format=3 uid="uid://bx75d3lts0fe5"]
+[gd_scene format=3 uid="uid://bn0ss8dxy7yyv"]
 
-[ext_resource type="Script" uid="uid://cfs4vyghlmo3c" path="res://scripts/ui/canvases/game_over_screen.gd" id="1_p7edr"]
+[ext_resource type="Script" uid="uid://ct0k74lqpiwdb" path="res://scripts/ui/canvases/game_over_screen.gd" id="1_p7edr"]
 [ext_resource type="Theme" uid="uid://bommyqwo15hbx" path="res://theme1.tres" id="2_3rom5"]
-[ext_resource type="PackedScene" uid="uid://cwiritx4rencv" path="res://scenes/ui/buttons/character_icon.tscn" id="3_prcok"]
-[ext_resource type="Resource" uid="uid://ceka8pclkwv8e" path="res://resources/enemy_profiles/profile_gum.tres" id="4_p7edr"]
+[ext_resource type="Script" uid="uid://b0r504x6n44d1" path="res://scripts/resources/tween_settings.gd" id="2_p7edr"]
+[ext_resource type="Texture2D" uid="uid://mnf2rh566anm" path="res://art/2d/enemies/deathscreens/deathscreen_chaser.aseprite" id="3_vqwwj"]
 [ext_resource type="PackedScene" uid="uid://6lvn3tolsp7r" path="res://scenes/ui/buttons/menu_button.tscn" id="5_5uohx"]
+[ext_resource type="AudioStream" uid="uid://dhy2oiyhu6p67" path="res://audio/ambient/stomp_regular.mp3" id="6_3rom5"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_leknr"]
-content_margin_left = 8.0
-content_margin_top = 8.0
-content_margin_right = 8.0
-content_margin_bottom = 8.0
-bg_color = Color(0.2520276, 0.25202766, 0.25202754, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_bottom = 4
-border_color = Color(0.63784313, 0.6378432, 0.63784295, 1)
+[sub_resource type="Resource" id="Resource_p7edr"]
+script = ExtResource("2_p7edr")
+easing = 1
+transition = 5
+metadata/_custom_type_script = "uid://b0r504x6n44d1"
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8vr0x"]
-content_margin_left = 8.0
-content_margin_top = 8.0
-content_margin_right = 8.0
-content_margin_bottom = 8.0
-bg_color = Color(0.2520276, 0.25202766, 0.25202754, 1)
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0.63784313, 0.6378432, 0.63784295, 1)
-
-[node name="GameOverScreen" type="CanvasLayer" unique_id=1680221568 node_paths=PackedStringArray("after_anim_objects")]
+[node name="GameOverScreen" type="CanvasLayer" unique_id=1680221568]
 script = ExtResource("1_p7edr")
-after_anim_objects = [NodePath("TitleText"), NodePath("KilledByEnemyIcon"), NodePath("PlayAgainButton"), NodePath("MenuButton")]
+tween_settings = SubResource("Resource_p7edr")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1047892836]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -325.0
-offset_top = -378.0
-offset_right = 325.0
-offset_bottom = 378.0
+[node name="BG" type="ColorRect" parent="." unique_id=1784730118]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_constants/separation = 0
+color = Color(0, 0, 0, 1)
 
-[node name="LeftSide" type="Panel" parent="HBoxContainer" unique_id=982435117]
-custom_minimum_size = Vector2(500, 0)
-layout_mode = 2
-size_flags_horizontal = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_leknr")
-
-[node name="RightSide" type="Panel" parent="HBoxContainer" unique_id=1779458113]
-custom_minimum_size = Vector2(500, 0)
-layout_mode = 2
-size_flags_horizontal = 8
-theme_override_styles/panel = SubResource("StyleBoxFlat_8vr0x")
-
-[node name="TitleText" type="RichTextLabel" parent="." unique_id=800865325]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -466.25
-offset_top = 186.39
-offset_right = 466.25
-offset_bottom = 314.39044
-grow_horizontal = 2
+[node name="YouDiedText" type="RichTextLabel" parent="." unique_id=815444770]
+offset_left = 60.0
+offset_top = 60.0
+offset_right = 651.0
+offset_bottom = 194.0
 theme = ExtResource("2_3rom5")
 theme_override_constants/outline_size = 16
-theme_override_font_sizes/normal_font_size = 64
+theme_override_font_sizes/normal_font_size = 96
 bbcode_enabled = true
-text = "[shake rate=10 level=1]YOU DIED."
-horizontal_alignment = 1
-vertical_alignment = 1
+text = "[shake rate=5 level=4]YOU DIED."
 
-[node name="KilledByEnemyIcon" type="Control" parent="." unique_id=53675322]
-layout_mode = 3
+[node name="TipText" type="RichTextLabel" parent="." unique_id=155486618]
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 540.0
-offset_top = -25.0
-offset_right = 540.0
-offset_bottom = -25.0
+offset_left = 60.0
+offset_top = -240.0
+offset_right = 910.0
+offset_bottom = 159.99976
 grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="KilledByEnemyIcon" unique_id=1098167031]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 100.0
-offset_top = -139.5
-offset_right = 300.0
-offset_bottom = 139.5
-grow_vertical = 2
-
-[node name="KilledByText" type="RichTextLabel" parent="KilledByEnemyIcon/VBoxContainer" unique_id=907499079]
-custom_minimum_size = Vector2(0, 75)
-layout_mode = 2
-size_flags_vertical = 3
 theme = ExtResource("2_3rom5")
-theme_override_constants/outline_size = 12
-theme_override_font_sizes/normal_font_size = 28
-text = "KILLED BY"
-horizontal_alignment = 1
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "[wave]TIP:[/wave]
+
+don't fucking die you dumbass moron bitch. I HATE you. stop playing now. Alt+F4."
 vertical_alignment = 1
 
-[node name="EnemyIcon" parent="KilledByEnemyIcon/VBoxContainer" unique_id=935281140 instance=ExtResource("3_prcok")]
+[node name="ButtonContainer" type="VBoxContainer" parent="." unique_id=1535845728]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 60.0
+offset_top = -244.0
+offset_right = 631.0
+offset_bottom = -40.0
+grow_vertical = 0
+
+[node name="PlayAgainButton" parent="ButtonContainer" unique_id=556654345 instance=ExtResource("5_5uohx")]
 layout_mode = 2
-profile = ExtResource("4_p7edr")
-autofocus = true
+default_text = "Try Again"
 
-[node name="PlayAgainButton" parent="." unique_id=556654345 instance=ExtResource("5_5uohx")]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
+[node name="MenuButton" parent="ButtonContainer" unique_id=1645489660 instance=ExtResource("5_5uohx")]
+layout_mode = 2
+default_text = "Return to Menu"
+
+[node name="BlackBG" type="ColorRect" parent="." unique_id=545032213]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -423.0
-offset_top = -290.0
-offset_right = -4.0
-offset_bottom = -190.0
 grow_horizontal = 2
-grow_vertical = 0
-default_text = "Play Again"
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
-[node name="MenuButton" parent="." unique_id=1645489660 instance=ExtResource("5_5uohx")]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
+[node name="DeathScreen" type="TextureRect" parent="." unique_id=1910052319]
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 5.0
-offset_top = -290.0
-offset_right = 429.0
-offset_bottom = -190.0
 grow_horizontal = 2
-grow_vertical = 0
-default_text = "Go to Menu"
-justification = 2
+grow_vertical = 2
+pivot_offset = Vector2(960, 540)
+mouse_filter = 2
+texture = ExtResource("3_vqwwj")
 
-[connection signal="pressed" from="PlayAgainButton" to="." method="restart_level"]
-[connection signal="pressed" from="MenuButton" to="." method="return_to_menu"]
+[node name="BoomSound" type="AudioStreamPlayer" parent="." unique_id=1030397123]
+stream = ExtResource("6_3rom5")
+volume_db = -6.0
