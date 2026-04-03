@@ -8,12 +8,13 @@ class_name GameOverScreen extends CanvasLayer
 @export var ds_end_scale: Vector2 = Vector2(1.05, 1.05)
 @export var tween_settings: TweenSettings
 
-const TIP_TEXT_START: String = "[wave]TIP:[/wave]\n\n"
+const TIP_TEXT_START: String = "[wave]KILLED BY: [/wave]"
+const TIP_TEXT_SPACER: String = "\n\n"
 
 var tween: Tween
 
-@onready var death_screen: TextureRect = $WeakMouseOffset/DeathScreen
-@onready var tip_text: RichTextLabel = $StrongMouseOffset/TipText
+@onready var death_screen: TextureRect = $WeakMouseParallax/DeathScreen
+@onready var tip_text: RichTextLabel = $StrongMouseParallax/TipText
 @onready var black_bg: ColorRect = $BlackBG
 
 
@@ -26,7 +27,7 @@ func initialize(profile: EnemyProfile):
 		return
 	
 	if not profile.death_tips.is_empty():
-		tip_text.text = TIP_TEXT_START + profile.death_tips.pick_random()
+		tip_text.text = TIP_TEXT_START + profile.name.to_upper() + TIP_TEXT_SPACER + profile.death_tips.pick_random()
 	else:
 		push_warning("GameOverScreen not provided with a tip to show. EnemyProfile name: " + profile.name)
 		tip_text.text = ""
