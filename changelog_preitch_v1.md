@@ -2,7 +2,7 @@
 
 
 
-###### This text file details changes to the game since Milestone 3 of Advanced Seminar (December 2025).
+###### This text file details changes to the game since December 2025.
 
 
 
@@ -43,16 +43,22 @@ Chaser:
 
 * Now attracts the flashlight, making it easier to get rid of it.
 * Now moves faster the further it is from the player.
+* Now moves slower when close to the player.
 * Now has a unique sprite for when it is successfully repelled.
+* Now shifts the pitch of it's ambient sound the more the light is shined on it.
+
+
+
+Gum:
+
+* Is still here!
 
 
 
 Eyes:
 
-* Is now a 2D enemy, appearing in the corners of your screen.
-* Now close (leave) much faster.
-* Now attack much faster.
-* No longer causes the flashlight to flicker when appearing.
+* Now close (leave) much faster (8sec -> 2sec).
+* Now attack faster (12sec -> 8sec).
 
 
 
@@ -124,5 +130,13 @@ Added credits.
 
 \---
 
-Changed the pages collected text's animation.
+Added a game over screen.
+
+* Displays a photo of the enemy that killed you.
+* Displays a tip on how to deal with the enemy that killed you.
+* Gives the option to either retry or return to the menu.
+
+
+
+Changed the animation of the "Pages: x/x" text.
 

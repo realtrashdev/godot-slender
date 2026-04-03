@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://ct0k74lqpiwdb" path="res://scripts/ui/canvases/game_over_screen.gd" id="1_p7edr"]
 [ext_resource type="Theme" uid="uid://bommyqwo15hbx" path="res://theme1.tres" id="2_3rom5"]
 [ext_resource type="Script" uid="uid://b0r504x6n44d1" path="res://scripts/resources/tween_settings.gd" id="2_p7edr"]
+[ext_resource type="Script" uid="uid://dyso3m4w2mya7" path="res://scripts/ui/menus/menu.gd" id="3_prcok"]
 [ext_resource type="Texture2D" uid="uid://mnf2rh566anm" path="res://art/2d/enemies/deathscreens/deathscreen_chaser.aseprite" id="3_vqwwj"]
 [ext_resource type="PackedScene" uid="uid://6lvn3tolsp7r" path="res://scenes/ui/buttons/menu_button.tscn" id="5_5uohx"]
 [ext_resource type="AudioStream" uid="uid://dhy2oiyhu6p67" path="res://audio/ambient/stomp_regular.mp3" id="6_3rom5"]
@@ -25,7 +26,17 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="YouDiedText" type="RichTextLabel" parent="." unique_id=815444770]
+[node name="StrongMouseOffset" type="Control" parent="." unique_id=1855102214]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_prcok")
+
+[node name="YouDiedText" type="RichTextLabel" parent="StrongMouseOffset" unique_id=815444770]
+layout_mode = 0
 offset_left = 60.0
 offset_top = 60.0
 offset_right = 651.0
@@ -36,7 +47,8 @@ theme_override_font_sizes/normal_font_size = 96
 bbcode_enabled = true
 text = "[shake rate=5 level=4]YOU DIED."
 
-[node name="TipText" type="RichTextLabel" parent="." unique_id=155486618]
+[node name="TipText" type="RichTextLabel" parent="StrongMouseOffset" unique_id=155486618]
+layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
@@ -51,10 +63,11 @@ theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
 text = "[wave]TIP:[/wave]
 
-don't fucking die you dumbass moron bitch. I HATE you. stop playing now. Alt+F4."
+this is a bug. do not read this. it's bugged. the text is supposed to update with a helpful tip but it has not."
 vertical_alignment = 1
 
-[node name="ButtonContainer" type="VBoxContainer" parent="." unique_id=1535845728]
+[node name="ButtonContainer" type="VBoxContainer" parent="StrongMouseOffset" unique_id=1535845728]
+layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -64,11 +77,11 @@ offset_right = 631.0
 offset_bottom = -40.0
 grow_vertical = 0
 
-[node name="PlayAgainButton" parent="ButtonContainer" unique_id=556654345 instance=ExtResource("5_5uohx")]
+[node name="PlayAgainButton" parent="StrongMouseOffset/ButtonContainer" unique_id=556654345 instance=ExtResource("5_5uohx")]
 layout_mode = 2
 default_text = "Try Again"
 
-[node name="MenuButton" parent="ButtonContainer" unique_id=1645489660 instance=ExtResource("5_5uohx")]
+[node name="MenuButton" parent="StrongMouseOffset/ButtonContainer" unique_id=1645489660 instance=ExtResource("5_5uohx")]
 layout_mode = 2
 default_text = "Return to Menu"
 
@@ -81,12 +94,25 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="DeathScreen" type="TextureRect" parent="." unique_id=1910052319]
+[node name="WeakMouseOffset" type="Control" parent="." unique_id=1011549803]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("3_prcok")
+parallax_strength = 3.0
+
+[node name="DeathScreen" type="TextureRect" parent="WeakMouseOffset" unique_id=1910052319]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.05, 1.05)
 pivot_offset = Vector2(960, 540)
 mouse_filter = 2
 texture = ExtResource("3_vqwwj")

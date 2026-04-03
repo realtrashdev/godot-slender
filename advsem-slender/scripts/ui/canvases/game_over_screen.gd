@@ -5,14 +5,15 @@ class_name GameOverScreen extends CanvasLayer
 @export_group("Death Screen", "ds_")
 @export var ds_rotation_bounds: float = 10.0
 @export var ds_start_scale: Vector2 = Vector2(1.25, 1.25)
+@export var ds_end_scale: Vector2 = Vector2(1.05, 1.05)
 @export var tween_settings: TweenSettings
 
 const TIP_TEXT_START: String = "[wave]TIP:[/wave]\n\n"
 
 var tween: Tween
 
-@onready var death_screen: TextureRect = $DeathScreen
-@onready var tip_text: RichTextLabel = $TipText
+@onready var death_screen: TextureRect = $WeakMouseOffset/DeathScreen
+@onready var tip_text: RichTextLabel = $StrongMouseOffset/TipText
 @onready var black_bg: ColorRect = $BlackBG
 
 
@@ -62,7 +63,7 @@ func _show_deathscreen():
 	
 	tween.tween_property(death_screen, "rotation", 0.0, tween_settings.duration)\
 		.set_ease(tween_settings.easing).set_trans(tween_settings.transition)
-	tween.tween_property(death_screen, "scale", Vector2.ONE, tween_settings.duration)\
+	tween.tween_property(death_screen, "scale", ds_end_scale, tween_settings.duration)\
 		.set_ease(tween_settings.easing).set_trans(tween_settings.transition)
 	
 	$BoomSound.play()
