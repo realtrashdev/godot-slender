@@ -2,21 +2,25 @@ extends Menu
 
 static var already_opened: bool =  false
 
-@onready var play_button: Button = $VBoxContainer/PlayButton
-@onready var customize_button: CustomButton = $VBoxContainer/CustomizeButton
-@onready var settings_button: Button = $VBoxContainer/SettingsButton
-@onready var quit_button: Button = $VBoxContainer/QuitButton
+@onready var title_text: RichTextLabel = $StrongParallax/TitleText
+@onready var credits_text: RichTextLabel = $StrongParallax/CreditsText
+@onready var version_text: RichTextLabel = $StrongParallax/VersionText
+
+@onready var play_button: CustomButton = $StrongParallax/VBoxContainer/PlayButton
+@onready var customize_button: CustomButton = $StrongParallax/VBoxContainer/CustomizeButton
+@onready var settings_button: CustomButton = $StrongParallax/VBoxContainer/SettingsButton
+@onready var quit_button: CustomButton = $StrongParallax/VBoxContainer/QuitButton
 
 func _ready() -> void:
 	if not already_opened:
 		await get_tree().create_timer(0.5).timeout
-		TextTools.change_visible_characters($TitleText, $TitleText.get_total_character_count(), 0.5, 0)
+		TextTools.change_visible_characters(title_text, title_text.get_total_character_count(), 0.5, 0)
 		await get_tree().create_timer(0.5).timeout
-		TextTools.change_visible_characters($VersionText, $VersionText.get_total_character_count(), 0.2, 0)
+		TextTools.change_visible_characters(version_text, version_text.get_total_character_count(), 0.2, 0)
 		already_opened = true
 	else:
-		TextTools.change_visible_characters($TitleText, $TitleText.get_total_character_count(), 0, 0)
-		TextTools.change_visible_characters($VersionText, $VersionText.get_total_character_count(), 0, 0)
+		TextTools.change_visible_characters(title_text, title_text.get_total_character_count(), 0, 0)
+		TextTools.change_visible_characters(version_text, version_text.get_total_character_count(), 0, 0)
 		play_button.wait_time = 0.3
 		customize_button.wait_time = 0.15
 		settings_button.wait_time = 0.2
@@ -44,7 +48,7 @@ func _on_brody_typed() -> void:
 	settings_button.visible = !settings_button.visible
 
 func _on_credits_typed() -> void:
-	if $CreditsText.visible:
-		$CreditsText.visible = false
+	if credits_text.visible:
+		credits_text.visible = false
 	else:
-		$CreditsText.visible = true
+		credits_text.visible = true

@@ -29,6 +29,7 @@ var scale_tween: Tween
 
 var music: AudioStream = preload("uid://bw13p4ixmh3mk")
 var meowsic: AudioStream = preload("uid://cqaagyghacaij")
+var wizard_music: AudioStream = preload("uid://danr8v7ohy0sa")
 
 func _ready() -> void:
 	manager = get_parent()
@@ -156,6 +157,16 @@ func check_key_array():
 			hit("reset")
 			return
 	
+	if last_idx >= 5:
+		if recent_keys[last_idx - 5] == "W" and \
+		   recent_keys[last_idx - 4] == "I" and \
+		   recent_keys[last_idx - 3] == "Z" and \
+		   recent_keys[last_idx - 2] == "A" and \
+		   recent_keys[last_idx - 1] == "R" and \
+		   recent_keys[last_idx] == "D":
+			wizard_bgm()
+			hit("wizard")
+	
 	if last_idx >= 6:
 		if recent_keys[last_idx - 6] == "C" and \
 		   recent_keys[last_idx - 5] == "R" and \
@@ -199,7 +210,7 @@ func spawn_gum():
 ## Toggles BGM pitch to a somewhat normal sounding pitch.
 func toggle_bgm_pitch():
 	var bgm: AudioStreamPlayer = manager.get_node("Music")
-	if bgm.stream == meowsic:
+	if bgm.stream != music:
 		return
 	
 	var new_scale: float
@@ -232,14 +243,38 @@ func meow_music():
 	# replace stream
 	var pos = bgm.get_playback_position()
 	bgm.stop()
-	match bgm.stream:
-		music:
-			bgm.stream = meowsic
-			pitch_scale = 0.9
-		meowsic:
-			bgm.stream = music
-			pitch_scale = 0.4
+	if bgm.stream != meowsic:
+		bgm.stream = meowsic
+		pitch_scale = 0.9
+	else:
+		bgm.stream = music
+		pitch_scale = 0.4
 	bgm.play(pos)
+	
+	music_tween = create_tween()
+	music_tween.tween_property(bgm, "pitch_scale", pitch_scale, 0.5)
+	
+## Switches BGM to the running wizard theme
+func wizard_bgm():
+	var bgm: AudioStreamPlayer = manager.get_node("Music")
+	var pitch_scale: float
+	
+	if music_tween:
+		music_tween.kill()
+	
+	music_tween = create_tween()
+	music_tween.tween_property(bgm, "pitch_scale", 0.01, 0.5)
+	await music_tween.finished
+	
+	# replace stream
+	bgm.stop()
+	if bgm.stream != wizard_music:
+		bgm.stream = wizard_music
+		pitch_scale = 1.0
+	else:
+		bgm.stream = music
+		pitch_scale = 0.4
+	bgm.play(0.0)
 	
 	music_tween = create_tween()
 	music_tween.tween_property(bgm, "pitch_scale", pitch_scale, 0.5)

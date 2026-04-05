@@ -1,12 +1,12 @@
-[gd_scene load_steps=21 format=3 uid="uid://bs3li0f18d3eo"]
+[gd_scene format=3 uid="uid://bs3li0f18d3eo"]
 
 [ext_resource type="Texture2D" uid="uid://dcq13bpt00ild" path="res://art/2d/characters/radar_screen_base.aseprite" id="1_mydgx"]
 [ext_resource type="Script" uid="uid://cv2r4yqm2jy82" path="res://scripts/player/radar/radar_screen.gd" id="1_wowfs"]
-[ext_resource type="AudioStream" uid="uid://dlid2b84gmver" path="res://audio/music/default_ringtone.mp3" id="2_3wt7d"]
+[ext_resource type="AudioStream" uid="uid://dlid2b84gmver" path="res://audio/music/not ogg/default_ringtone.mp3" id="2_3wt7d"]
 [ext_resource type="Script" uid="uid://0xwcev5ljsb1" path="res://scripts/player/radar/radar_audio_component.gd" id="2_hjd67"]
 [ext_resource type="Script" uid="uid://bl7j83h5ylc5h" path="res://scripts/player/radar/radar_battery_component.gd" id="2_kxb7t"]
-[ext_resource type="AudioStream" uid="uid://chggo02dqakbk" path="res://audio/music/dragon_ringtone.mp3" id="3_hjd67"]
-[ext_resource type="AudioStream" uid="uid://bccy7gjw3xxbx" path="res://audio/music/default_ringtone_loop.wav" id="4_ngbpa"]
+[ext_resource type="AudioStream" uid="uid://chggo02dqakbk" path="res://audio/music/not ogg/dragon_ringtone.mp3" id="3_hjd67"]
+[ext_resource type="AudioStream" uid="uid://bccy7gjw3xxbx" path="res://audio/music/not ogg/default_ringtone_loop.wav" id="4_ngbpa"]
 [ext_resource type="FontFile" uid="uid://6lpo01dlrh4f" path="res://fonts/Pixeled.ttf" id="4_on3qy"]
 [ext_resource type="Script" uid="uid://cb4xt1lkvy6t2" path="res://scripts/player/radar/screens/screen_home.gd" id="5_hjd67"]
 [ext_resource type="Texture2D" uid="uid://8uewbj2acg86" path="res://art/2d/icon_batterydead.aseprite" id="6_3wt7d"]
@@ -33,11 +33,11 @@ border_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hjd67"]
 
-[node name="RadarScreen" type="Node2D" node_paths=PackedStringArray("all_screens")]
+[node name="RadarScreen" type="Node2D" unique_id=211227911 node_paths=PackedStringArray("all_screens")]
 script = ExtResource("1_wowfs")
 all_screens = [NodePath("HomeScreen"), NodePath("TrackerScreen"), NodePath("HelpScreen"), NodePath("DeadBatteryScreen"), NodePath("IncomingCallScreen")]
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=908767844]
 limit_left = 0
 limit_top = 0
 limit_right = 160
@@ -45,39 +45,39 @@ limit_bottom = 144
 editor_draw_screen = false
 editor_draw_limits = true
 
-[node name="BatteryComponent" type="Node" parent="."]
+[node name="BatteryComponent" type="Node" parent="." unique_id=873508663]
 script = ExtResource("2_kxb7t")
 
-[node name="AudioComponent" type="Node" parent="."]
+[node name="AudioComponent" type="Node" parent="." unique_id=1749494738]
 script = ExtResource("2_hjd67")
 ringtones = Array[AudioStream]([ExtResource("4_ngbpa"), ExtResource("3_hjd67")])
 
-[node name="RingtoneAudio" type="AudioStreamPlayer" parent="AudioComponent"]
+[node name="RingtoneAudio" type="AudioStreamPlayer" parent="AudioComponent" unique_id=2026706530]
 stream = ExtResource("2_3wt7d")
 volume_db = -15.0
 bus = &"PlayerRadar"
 parameters/looping = true
 
-[node name="NotificationAudio" type="AudioStreamPlayer" parent="AudioComponent"]
+[node name="NotificationAudio" type="AudioStreamPlayer" parent="AudioComponent" unique_id=1693151742]
 stream = ExtResource("7_ngbpa")
 bus = &"PlayerRadar"
 
-[node name="BaseScreen" type="Sprite2D" parent="."]
+[node name="BaseScreen" type="Sprite2D" parent="." unique_id=676594184]
 position = Vector2(80, 72)
 texture = ExtResource("1_mydgx")
 
-[node name="BatteryContainer" type="HBoxContainer" parent="BaseScreen"]
+[node name="BatteryContainer" type="HBoxContainer" parent="BaseScreen" unique_id=1738296029]
 offset_left = 20.0
 offset_top = -68.0
 offset_right = 74.0
 offset_bottom = -60.0
 theme_override_constants/separation = 1
 
-[node name="BatteryChunk" type="Control" parent="BaseScreen/BatteryContainer"]
+[node name="BatteryChunk" type="Control" parent="BaseScreen/BatteryContainer" unique_id=955224164]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ColorRect" type="ColorRect" parent="BaseScreen/BatteryContainer/BatteryChunk"]
+[node name="ColorRect" type="ColorRect" parent="BaseScreen/BatteryContainer/BatteryChunk" unique_id=1638950905]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -87,11 +87,11 @@ grow_vertical = 2
 size_flags_horizontal = 3
 color = Color(0.30980393, 0.30980393, 0.30980393, 1)
 
-[node name="BatteryChunk2" type="Control" parent="BaseScreen/BatteryContainer"]
+[node name="BatteryChunk2" type="Control" parent="BaseScreen/BatteryContainer" unique_id=160487959]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ColorRect" type="ColorRect" parent="BaseScreen/BatteryContainer/BatteryChunk2"]
+[node name="ColorRect" type="ColorRect" parent="BaseScreen/BatteryContainer/BatteryChunk2" unique_id=1580410504]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -101,11 +101,11 @@ grow_vertical = 2
 size_flags_horizontal = 3
 color = Color(0.30980393, 0.30980393, 0.30980393, 1)
 
-[node name="BatteryChunk3" type="Control" parent="BaseScreen/BatteryContainer"]
+[node name="BatteryChunk3" type="Control" parent="BaseScreen/BatteryContainer" unique_id=277076284]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ColorRect" type="ColorRect" parent="BaseScreen/BatteryContainer/BatteryChunk3"]
+[node name="ColorRect" type="ColorRect" parent="BaseScreen/BatteryContainer/BatteryChunk3" unique_id=1391844626]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -115,11 +115,11 @@ grow_vertical = 2
 size_flags_horizontal = 3
 color = Color(0.30980393, 0.30980393, 0.30980393, 1)
 
-[node name="BatteryChunk4" type="Control" parent="BaseScreen/BatteryContainer"]
+[node name="BatteryChunk4" type="Control" parent="BaseScreen/BatteryContainer" unique_id=1406490420]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ColorRect" type="ColorRect" parent="BaseScreen/BatteryContainer/BatteryChunk4"]
+[node name="ColorRect" type="ColorRect" parent="BaseScreen/BatteryContainer/BatteryChunk4" unique_id=833141911]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -129,7 +129,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 color = Color(0.30980393, 0.30980393, 0.30980393, 1)
 
-[node name="HomeButton" type="Button" parent="BaseScreen"]
+[node name="HomeButton" type="Button" parent="BaseScreen" unique_id=2023297311]
 offset_left = -80.0
 offset_top = -72.0
 offset_right = -48.0
@@ -141,7 +141,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_3wt7d")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_3jnr6")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_hjd67")
 
-[node name="PageButton" type="Button" parent="BaseScreen"]
+[node name="PageButton" type="Button" parent="BaseScreen" unique_id=1303388333]
 offset_left = -48.0
 offset_top = -72.0
 offset_right = -16.0
@@ -153,7 +153,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_3wt7d")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_3jnr6")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_hjd67")
 
-[node name="HelpButton" type="Button" parent="BaseScreen"]
+[node name="HelpButton" type="Button" parent="BaseScreen" unique_id=600214246]
 offset_left = -16.0
 offset_top = -72.0
 offset_right = 16.0
@@ -165,11 +165,11 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_3wt7d")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_3jnr6")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_hjd67")
 
-[node name="HomeScreen" type="Node2D" parent="."]
+[node name="HomeScreen" type="Node2D" parent="." unique_id=941434842]
 visible = false
 script = ExtResource("5_hjd67")
 
-[node name="HomeText" type="RichTextLabel" parent="HomeScreen"]
+[node name="HomeText" type="RichTextLabel" parent="HomeScreen" unique_id=906207482]
 clip_contents = false
 offset_left = 7.0
 offset_top = 17.0
@@ -182,7 +182,7 @@ text = "HOME"
 scroll_active = false
 shortcut_keys_enabled = false
 
-[node name="PagesText" type="RichTextLabel" parent="HomeScreen"]
+[node name="PagesText" type="RichTextLabel" parent="HomeScreen" unique_id=2079803805]
 clip_contents = false
 offset_left = 7.0
 offset_top = 42.0
@@ -196,10 +196,10 @@ text = "[rainbow sat=0.999 val=10 speed=1]PAGES:
 scroll_active = false
 shortcut_keys_enabled = false
 
-[node name="TrackerScreen" type="Node2D" parent="."]
+[node name="TrackerScreen" type="Node2D" parent="." unique_id=21859576]
 script = ExtResource("8_jgeqn")
 
-[node name="RadarText" type="RichTextLabel" parent="TrackerScreen"]
+[node name="RadarText" type="RichTextLabel" parent="TrackerScreen" unique_id=684540705]
 clip_contents = false
 offset_left = 7.0
 offset_top = 17.0
@@ -212,7 +212,7 @@ text = "TRACKER"
 scroll_active = false
 shortcut_keys_enabled = false
 
-[node name="DistanceText" type="RichTextLabel" parent="TrackerScreen"]
+[node name="DistanceText" type="RichTextLabel" parent="TrackerScreen" unique_id=1923545483]
 clip_contents = false
 anchors_preset = 8
 anchor_left = 0.5
@@ -233,16 +233,16 @@ shortcut_keys_enabled = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DirectionArrow" type="Sprite2D" parent="TrackerScreen"]
+[node name="DirectionArrow" type="Sprite2D" parent="TrackerScreen" unique_id=1962657964]
 position = Vector2(101, 76)
 scale = Vector2(2, 2)
 texture = ExtResource("9_1qj1u")
 
-[node name="HelpScreen" type="Node2D" parent="."]
+[node name="HelpScreen" type="Node2D" parent="." unique_id=1624675691]
 visible = false
 script = ExtResource("11_qqxeq")
 
-[node name="HelpText" type="RichTextLabel" parent="HelpScreen"]
+[node name="HelpText" type="RichTextLabel" parent="HelpScreen" unique_id=1690324185]
 clip_contents = false
 offset_left = 7.0
 offset_top = 17.0
@@ -255,7 +255,7 @@ text = "HELP"
 scroll_active = false
 shortcut_keys_enabled = false
 
-[node name="BodyText" type="RichTextLabel" parent="HelpScreen"]
+[node name="BodyText" type="RichTextLabel" parent="HelpScreen" unique_id=1146212165]
 clip_contents = false
 offset_left = 7.0
 offset_top = 42.0
@@ -270,30 +270,30 @@ PAGES WILL NOT SPAWN IN THE OUTER FOREST, AND THE GRASS SLOWS YOU DOWN.
 scroll_active = false
 shortcut_keys_enabled = false
 
-[node name="DeadBatteryScreen" type="Node2D" parent="."]
+[node name="DeadBatteryScreen" type="Node2D" parent="." unique_id=1869148036]
 visible = false
 z_index = 2
 
-[node name="ColorRect" type="ColorRect" parent="DeadBatteryScreen"]
+[node name="ColorRect" type="ColorRect" parent="DeadBatteryScreen" unique_id=787836724]
 offset_right = 160.0
 offset_bottom = 144.0
 color = Color(0, 0, 0, 1)
 
-[node name="Sprite2D" type="Sprite2D" parent="DeadBatteryScreen"]
+[node name="Sprite2D" type="Sprite2D" parent="DeadBatteryScreen" unique_id=355163959]
 position = Vector2(80, 72)
 texture = ExtResource("6_3wt7d")
 
-[node name="IncomingCallScreen" type="Node2D" parent="."]
+[node name="IncomingCallScreen" type="Node2D" parent="." unique_id=1502990345]
 visible = false
 z_index = 1
 script = ExtResource("8_oqbb0")
 
-[node name="ColorRect" type="ColorRect" parent="IncomingCallScreen"]
+[node name="ColorRect" type="ColorRect" parent="IncomingCallScreen" unique_id=364580785]
 offset_right = 160.0
 offset_bottom = 144.0
 color = Color(0, 0, 0, 1)
 
-[node name="HomeText" type="RichTextLabel" parent="IncomingCallScreen/ColorRect"]
+[node name="HomeText" type="RichTextLabel" parent="IncomingCallScreen/ColorRect" unique_id=1397880104]
 clip_contents = false
 layout_mode = 1
 anchors_preset = 8
@@ -314,7 +314,7 @@ text = "[pulse freq=3]INCOMING CALL"
 scroll_active = false
 shortcut_keys_enabled = false
 
-[node name="DeclineButton" type="Button" parent="IncomingCallScreen/ColorRect"]
+[node name="DeclineButton" type="Button" parent="IncomingCallScreen/ColorRect" unique_id=693651691]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -334,7 +334,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_3wt7d")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_3jnr6")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_hjd67")
 
-[node name="DeclineText" type="RichTextLabel" parent="IncomingCallScreen/ColorRect/DeclineButton"]
+[node name="DeclineText" type="RichTextLabel" parent="IncomingCallScreen/ColorRect/DeclineButton" unique_id=1038261921]
 clip_contents = false
 layout_mode = 1
 anchors_preset = 8

@@ -3,6 +3,7 @@ class_name MouseParallax extends Control
 
 @export var do_mouse_offset: bool = true
 @export var parallax_strength: float = 10.0
+@export var lerp_strength: float = 10.0
 
 @export_group("Tool")
 @export var do_offset_in_editor: bool = false
@@ -21,7 +22,7 @@ func _process(delta: float) -> void:
 	
 	start_pos = position
 	if do_mouse_offset:
-		position = _get_menu_offset()
+		position = position.lerp(_get_menu_offset(), lerp_strength * delta)
 	else:
 		position = start_pos
 
@@ -37,7 +38,7 @@ func _get_menu_offset() -> Vector2:
 
 
 func _set_weak_offset():
-	parallax_strength = 3.0
+	parallax_strength = 5.0
 
 
 func _set_strong_offset():

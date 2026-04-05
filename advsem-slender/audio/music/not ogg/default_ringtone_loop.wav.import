@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://bccy7gjw3xxbx"
-path="res://.godot/imported/default_ringtone_loop.wav-9142cd4b9a82b8ae812b4e27e044aa64.sample"
+path="res://.godot/imported/default_ringtone_loop.wav-b87644f61a22e09dbafe543db68970b8.sample"
 
 [deps]
 
-source_file="res://audio/music/default_ringtone_loop.wav"
-dest_files=["res://.godot/imported/default_ringtone_loop.wav-9142cd4b9a82b8ae812b4e27e044aa64.sample"]
+source_file="res://audio/music/not ogg/default_ringtone_loop.wav"
+dest_files=["res://.godot/imported/default_ringtone_loop.wav-b87644f61a22e09dbafe543db68970b8.sample"]
 
 [params]
 

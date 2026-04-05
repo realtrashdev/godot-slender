@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cqaagyghacaij"
+path="res://.godot/imported/meowsynthcrushed2.mp3-8ed37e65f5f9dea594e977d9d0c3e2cf.mp3str"
+
+[deps]
+
+source_file="res://audio/music/not ogg/meowsynthcrushed2.mp3"
+dest_files=["res://.godot/imported/meowsynthcrushed2.mp3-8ed37e65f5f9dea594e977d9d0c3e2cf.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

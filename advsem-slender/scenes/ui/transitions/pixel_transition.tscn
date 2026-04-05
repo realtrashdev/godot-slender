@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://c4spvtkxggnw"]
+
+[ext_resource type="Shader" uid="uid://3s1c5a71rde4" path="res://shaders/transition_pixels.gdshader" id="1_3aq3e"]
+[ext_resource type="Script" uid="uid://dalg6tlvsu8nu" path="res://scripts/shaders/pixel_transition.gd" id="2_wa3ym"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_whi8p"]
+noise_type = 0
+seed = 1
+fractal_lacunarity = 2.375
+fractal_gain = 0.595
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_j6qfw"]
+width = 64
+height = 36
+noise = SubResource("FastNoiseLite_whi8p")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7ilda"]
+shader = ExtResource("1_3aq3e")
+shader_parameter/noise_img = SubResource("NoiseTexture2D_j6qfw")
+shader_parameter/transition_amount = 1.0
+
+[node name="PixelTransition" type="TextureRect" unique_id=1568466511]
+z_index = 2
+material = SubResource("ShaderMaterial_7ilda")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("NoiseTexture2D_j6qfw")
+script = ExtResource("2_wa3ym")

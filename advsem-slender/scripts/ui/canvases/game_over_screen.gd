@@ -11,11 +11,20 @@ class_name GameOverScreen extends CanvasLayer
 const TIP_TEXT_START: String = "[wave]KILLED BY: [/wave]"
 const TIP_TEXT_SPACER: String = "\n\n"
 
+const TRANSITION_IN_TIME: float = 0.2
+const TRANSITION_OUT_TIME: float = 0.3
+
 var tween: Tween
 
 @onready var death_screen: TextureRect = $WeakMouseParallax/DeathScreen
 @onready var tip_text: RichTextLabel = $StrongMouseParallax/TipText
 @onready var black_bg: ColorRect = $BlackBG
+@onready var pixel_transition: PixelTransition = $PixelTransition
+
+## debug
+#func _ready():
+#	initialize(load("res://resources/enemy_profiles/profile_chaser.tres"))
+#	show_game_over_screen()
 
 
 func initialize(profile: EnemyProfile):
@@ -40,14 +49,17 @@ func initialize(profile: EnemyProfile):
 
 func show_game_over_screen():
 	visible = true
-	_show_deathscreen()
+	_open_deathscreen()
 	await get_tree().create_timer(text_fade_delay).timeout
 	var bg_tween = create_tween().tween_property(black_bg, "color", Color(0.0, 0.0, 0.0, 0.0), 0.5)
 	await bg_tween.finished
 	black_bg.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 
-func _show_deathscreen():
+func _open_deathscreen():
+	pixel_transition.new_seed()
+	pixel_transition.transition(0.0, TRANSITION_IN_TIME)
+	
 	# Set randomized rotation
 	death_screen.rotation_degrees = randf_range(-ds_rotation_bounds, ds_rotation_bounds)
 	# At least a little variance
@@ -68,3 +80,26 @@ func _show_deathscreen():
 		.set_ease(tween_settings.easing).set_trans(tween_settings.transition)
 	
 	$BoomSound.play()
+
+
+func _scale_transition():
+	var transition_tween: Tween
+	transition_tween = create_tween()
+	transition_tween.tween_property(self, "scale", Vector2(20, 20), TRANSITION_OUT_TIME)\
+		.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
+
+
+func _on_retry_button_pressed():
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	#_scale_transition()
+	pixel_transition.transition(1.0, TRANSITION_OUT_TIME)
+	await get_tree().create_timer(TRANSITION_OUT_TIME + 0.01).timeout
+	get_tree().change_scene_to_packed(Settings.get_selected_map().scene)
+
+
+func _on_menu_button_pressed():
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	#_scale_transition()
+	pixel_transition.transition(1.0, TRANSITION_OUT_TIME)
+	await get_tree().create_timer(TRANSITION_OUT_TIME + 0.01).timeout
+	get_tree().change_scene_to_file("res://scenes/ui/menus/menu_base.tscn")

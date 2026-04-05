@@ -7,15 +7,14 @@ var menu_transition: MenuTransition
 @onready var secrets: Node = $Secrets
 @onready var quit_audio: AudioStreamPlayer = $QuitAudio
 @onready var background: TextureRect = $Background
-@onready var transition_fade: ColorRect = $TransitionFade
-@onready var transition_pixels: TextureRect = $TransitionPixels
+@onready var pixel_transition: PixelTransition = $PixelTransition
 
 func _ready() -> void:
 	secrets.bg_typed.connect(_on_bg_typed)
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	menu_transition = MenuTransition.new()
 	menu_transition.initialize(self)
-	fade_in_music(-12, 1.0)
+	fade_in_music(-8, 1.0)
 	open_menu_instant(MenuConfig.MenuType.INTRO, MenuConfig.TransitionDirection.FORWARD, false)
 
 func open_menu(type: MenuConfig.MenuType, direction: MenuConfig.TransitionDirection, play_sound: bool = true):
@@ -90,8 +89,3 @@ func _update_background_noise_seed(menu: MenuConfig.MenuType):
 
 func _on_bg_typed():
 	background.texture.noise.seed = randi()
-
-func pixel_transition(end_value: float, time: float = 1.0, start_delay: float = 0.0):
-	await get_tree().create_timer(start_delay).timeout
-	var shader_material = transition_pixels.material
-	create_tween().tween_property(shader_material, "shader_parameter/transition_amount", end_value, time)

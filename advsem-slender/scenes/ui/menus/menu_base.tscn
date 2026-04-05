@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b5rrwodfv7prw" path="res://scripts/managers/menu_manager.gd" id="1_mbnms"]
 [ext_resource type="Shader" uid="uid://b7h471hqua86k" path="res://shaders/menu_background_tron.gdshader" id="2_eb1er"]
-[ext_resource type="AudioStream" uid="uid://bw13p4ixmh3mk" path="res://audio/music/ep_menu.wav" id="2_qvyop"]
+[ext_resource type="AudioStream" uid="uid://bw13p4ixmh3mk" path="res://audio/music/not ogg/ep_menu.wav" id="2_qvyop"]
 [ext_resource type="PackedScene" uid="uid://d0ptdjkqr8637" path="res://scenes/ui/menus/typing_sounds.tscn" id="4_0yjfb"]
 [ext_resource type="AudioStream" uid="uid://b06alg60p7yto" path="res://audio/menu/keyboard_sound1.mp3" id="5_2d7pv"]
 [ext_resource type="AudioStream" uid="uid://drsfnougv00al" path="res://audio/menu/keyboard_sound2.mp3" id="6_qvyop"]
@@ -11,7 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://dknupfsrnq16s" path="res://audio/menu/keyboard_sound4.mp3" id="8_y4m2o"]
 [ext_resource type="Script" uid="uid://1rp2y7xx8yax" path="res://scripts/ui/menus/menu_secrets.gd" id="9_qvyop"]
 [ext_resource type="Theme" uid="uid://bommyqwo15hbx" path="res://theme1.tres" id="10_whi8p"]
-[ext_resource type="Shader" uid="uid://3s1c5a71rde4" path="res://shaders/transition_pixels.gdshader" id="11_y4m2o"]
+[ext_resource type="PackedScene" uid="uid://c4spvtkxggnw" path="res://scenes/ui/transitions/pixel_transition.tscn" id="12_whi8p"]
 
 [sub_resource type="Sky" id="Sky_0xm2m"]
 
@@ -49,22 +49,6 @@ shader_parameter/band_width = 0.50000002375
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_whi8p"]
 noise = SubResource("FastNoiseLite_eb1er")
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_whi8p"]
-noise_type = 0
-seed = 1
-fractal_lacunarity = 2.375
-fractal_gain = 0.595
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_j6qfw"]
-width = 64
-height = 36
-noise = SubResource("FastNoiseLite_whi8p")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7ilda"]
-shader = ExtResource("11_y4m2o")
-shader_parameter/noise_img = SubResource("NoiseTexture2D_j6qfw")
-shader_parameter/transition_amount = 1.0
-
 [node name="Menu" type="Node3D" unique_id=925873646]
 script = ExtResource("1_mbnms")
 
@@ -90,7 +74,7 @@ transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 
 
 [node name="Music" type="AudioStreamPlayer" parent="." unique_id=679329039]
 stream = ExtResource("2_qvyop")
-volume_db = -10.0
+volume_db = -4.0
 pitch_scale = 0.4
 
 [node name="TypingSounds" parent="." unique_id=1805306581 instance=ExtResource("4_0yjfb")]
@@ -127,7 +111,7 @@ grow_vertical = 2
 mouse_filter = 2
 texture = SubResource("NoiseTexture2D_whi8p")
 
-[node name="TransitionFade" type="ColorRect" parent="." unique_id=968721059]
+[node name="FadeTransition" type="ColorRect" parent="." unique_id=968721059]
 z_index = 2
 anchors_preset = 15
 anchor_right = 1.0
@@ -136,12 +120,4 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0)
 
-[node name="TransitionPixels" type="TextureRect" parent="." unique_id=1300980777]
-z_index = 2
-material = SubResource("ShaderMaterial_7ilda")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("NoiseTexture2D_j6qfw")
+[node name="PixelTransition" parent="." unique_id=1568466511 instance=ExtResource("12_whi8p")]

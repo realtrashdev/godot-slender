@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://mnf2rh566anm" path="res://art/2d/enemies/deathscreens/deathscreen_chaser.aseprite" id="3_vqwwj"]
 [ext_resource type="PackedScene" uid="uid://6lvn3tolsp7r" path="res://scenes/ui/buttons/menu_button.tscn" id="5_5uohx"]
 [ext_resource type="AudioStream" uid="uid://dhy2oiyhu6p67" path="res://audio/ambient/stomp_regular.mp3" id="6_3rom5"]
+[ext_resource type="PackedScene" uid="uid://c4spvtkxggnw" path="res://scenes/ui/transitions/pixel_transition.tscn" id="7_23n55"]
 
 [sub_resource type="Resource" id="Resource_p7edr"]
 script = ExtResource("2_p7edr")
@@ -111,8 +112,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("3_prcok")
-parallax_strength = 3.0
-do_offset_in_editor = null
+parallax_strength = 5.0
 
 [node name="DeathScreen" type="TextureRect" parent="WeakMouseParallax" unique_id=1910052319]
 layout_mode = 1
@@ -126,6 +126,12 @@ pivot_offset = Vector2(960, 540)
 mouse_filter = 2
 texture = ExtResource("3_vqwwj")
 
+[node name="PixelTransition" parent="." unique_id=1568466511 instance=ExtResource("7_23n55")]
+mouse_filter = 2
+
 [node name="BoomSound" type="AudioStreamPlayer" parent="." unique_id=1030397123]
 stream = ExtResource("6_3rom5")
 volume_db = -6.0
+
+[connection signal="pressed" from="StrongMouseParallax/ButtonContainer/PlayAgainButton" to="." method="_on_retry_button_pressed"]
+[connection signal="pressed" from="StrongMouseParallax/ButtonContainer/MenuButton" to="." method="_on_menu_button_pressed"]

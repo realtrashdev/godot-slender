@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bf05ntktimsst"]
+[gd_scene format=3 uid="uid://bf05ntktimsst"]
 
 [ext_resource type="Script" uid="uid://qocwrt8r6cqj" path="res://scripts/ui/menus/menu_main.gd" id="1_jjl53"]
 [ext_resource type="Theme" uid="uid://bommyqwo15hbx" path="res://theme1.tres" id="1_l6cm7"]
+[ext_resource type="Script" uid="uid://6gu3dcl8rsxn" path="res://scripts/ui/mouse_parallax.gd" id="2_y0yns"]
 [ext_resource type="PackedScene" uid="uid://6lvn3tolsp7r" path="res://scenes/ui/buttons/menu_button.tscn" id="4_dkf5t"]
 [ext_resource type="AudioStream" uid="uid://burmgn6fk7ymx" path="res://audio/menu/ui/button_press.mp3" id="4_y0yns"]
 [ext_resource type="FontFile" uid="uid://b78ski6kf8hw1" path="res://fonts/ari-w9500-display.ttf" id="5_y0yns"]
@@ -10,7 +11,7 @@
 base_font = ExtResource("5_y0yns")
 spacing_glyph = 6
 
-[node name="MainMenu" type="Control"]
+[node name="MainMenu" type="Control" unique_id=2127176498]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,18 +23,20 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_jjl53")
 
-[node name="ButtonPress" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_y0yns")
-volume_db = -5.0
+[node name="StrongParallax" type="Control" parent="." unique_id=1540017442]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_y0yns")
 
-[node name="TitleText" type="RichTextLabel" parent="."]
+[node name="TitleText" type="RichTextLabel" parent="StrongParallax" unique_id=1094368058]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -400.0
+offset_left = 540.0
 offset_top = 151.0
-offset_right = 400.0
+offset_right = 1340.0
 offset_bottom = 251.0
 grow_horizontal = 2
 theme = ExtResource("1_l6cm7")
@@ -50,7 +53,7 @@ vertical_alignment = 1
 visible_characters = 0
 visible_ratio = 0.0
 
-[node name="CreditsText" type="RichTextLabel" parent="."]
+[node name="CreditsText" type="RichTextLabel" parent="StrongParallax" unique_id=1298709030]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -58,10 +61,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -891.5
-offset_top = -123.0
-offset_right = 891.5
-offset_bottom = 123.0
+offset_left = 48.5
+offset_top = 295.0
+offset_right = 1831.5
+offset_bottom = 745.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_l6cm7")
@@ -85,15 +88,15 @@ shortcut_keys_enabled = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VersionText" type="RichTextLabel" parent="."]
+[node name="VersionText" type="RichTextLabel" parent="StrongParallax" unique_id=692373371]
 clip_contents = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 141.0
+offset_left = 1081.0
 offset_top = 996.0
-offset_right = 941.0
+offset_right = 1881.0
 offset_bottom = 1096.0
 grow_horizontal = 2
 theme = ExtResource("1_l6cm7")
@@ -111,17 +114,17 @@ vertical_alignment = 1
 visible_characters = 0
 visible_ratio = 0.0
 
-[node name="VBoxContainer" type="HBoxContainer" parent="."]
+[node name="VBoxContainer" type="HBoxContainer" parent="StrongParallax" unique_id=233146513]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.78700006
 anchor_right = 0.5
 anchor_bottom = 0.78700006
-offset_left = -800.0
-offset_top = -49.960083
-offset_right = 800.0
-offset_bottom = 150.03992
+offset_left = 140.0
+offset_top = 768.52
+offset_right = 1740.0
+offset_bottom = 968.52
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 4
@@ -129,7 +132,7 @@ size_flags_vertical = 4
 theme_override_constants/separation = 50
 alignment = 1
 
-[node name="PlayButton" parent="VBoxContainer" instance=ExtResource("4_dkf5t")]
+[node name="PlayButton" parent="StrongParallax/VBoxContainer" unique_id=2079890261 instance=ExtResource("4_dkf5t")]
 custom_minimum_size = Vector2(350, 100)
 layout_mode = 2
 size_flags_horizontal = 1
@@ -140,7 +143,7 @@ justification = 1
 wait_time = 1.0
 focus_size = Vector2(375, 130)
 
-[node name="CustomizeButton" parent="VBoxContainer" instance=ExtResource("4_dkf5t")]
+[node name="CustomizeButton" parent="StrongParallax/VBoxContainer" unique_id=1745528405 instance=ExtResource("4_dkf5t")]
 custom_minimum_size = Vector2(350, 100)
 layout_mode = 2
 size_flags_horizontal = 1
@@ -151,7 +154,7 @@ justification = 1
 wait_time = 0.8
 focus_size = Vector2(375, 130)
 
-[node name="SettingsButton" parent="VBoxContainer" instance=ExtResource("4_dkf5t")]
+[node name="SettingsButton" parent="StrongParallax/VBoxContainer" unique_id=1877693982 instance=ExtResource("4_dkf5t")]
 custom_minimum_size = Vector2(350, 100)
 layout_mode = 2
 size_flags_horizontal = 1
@@ -162,7 +165,7 @@ justification = 1
 wait_time = 0.8
 focus_size = Vector2(375, 130)
 
-[node name="QuitButton" parent="VBoxContainer" instance=ExtResource("4_dkf5t")]
+[node name="QuitButton" parent="StrongParallax/VBoxContainer" unique_id=748218649 instance=ExtResource("4_dkf5t")]
 custom_minimum_size = Vector2(350, 100)
 layout_mode = 2
 size_flags_horizontal = 1
@@ -174,7 +177,11 @@ wait_time = 1.0
 focus_size = Vector2(375, 130)
 focus_text_effect = "[shake]"
 
-[connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="VBoxContainer/CustomizeButton" to="." method="_on_customize_pressed"]
-[connection signal="pressed" from="VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_pressed"]
+[node name="ButtonPress" type="AudioStreamPlayer" parent="." unique_id=642759264]
+stream = ExtResource("4_y0yns")
+volume_db = -5.0
+
+[connection signal="pressed" from="StrongParallax/VBoxContainer/PlayButton" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="StrongParallax/VBoxContainer/CustomizeButton" to="." method="_on_customize_pressed"]
+[connection signal="pressed" from="StrongParallax/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="StrongParallax/VBoxContainer/QuitButton" to="." method="_on_quit_pressed"]
