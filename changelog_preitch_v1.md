@@ -45,7 +45,7 @@ Chaser:
 * Now moves faster the further it is from the player.
 * Now moves slower when close to the player.
 * Now has a unique sprite for when it is successfully repelled.
-* Now shifts the pitch of it's ambient sound the more the light is shined on it.
+* Now shifts the pitch of its ambient sound the more the light is shined on it.
 
 
 
@@ -98,11 +98,15 @@ is in development...
 
 \---
 
-Added an animated background to the menu.
+Added a mouse parallax effect to most menus.
+
+* &#x20;
+
+Added an animated background to the main menu.
 
 
 
-Added a pixelated transition effect to the menu.
+Added a pixelated transition effect to the main menu.
 
 
 
@@ -110,7 +114,9 @@ Added text to the top left corner of the menu that allows you to see a string of
 
 
 
-Added the ability to reset progress by typing "RESET" when in the settings menu.
+Added the ability to reset progress.
+
+* Type "reset" when in the settings menu, a button will show up in the bottom right.
 
 
 
@@ -120,7 +126,9 @@ Fixed a layering issue with the enemy overview.
 
 
 
-Added credits.
+Added basic credits.
+
+* Type "credits" on the title screen to view.
 
 
 
@@ -133,10 +141,15 @@ Added credits.
 Added a game over screen.
 
 * Displays a photo of the enemy that killed you.
+* Displays the name of the enemy that killed you.
 * Displays a tip on how to deal with the enemy that killed you.
-* Gives the option to either retry or return to the menu.
+* Gives the option to either retry or return to the main menu.
 
 
 
 Changed the animation of the "Pages: x/x" text.
+
+
+
+
 
