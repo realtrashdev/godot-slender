@@ -1,7 +1,7 @@
 extends Menu
 
-@onready var palette_list: PaletteList = $PaletteList
-@onready var back_button: CustomButton = $BackButton
+@onready var palette_list: PaletteList = $StrongParallax/PaletteList
+@onready var back_button: CustomButton = $StrongParallax/BackButton
 
 func _ready() -> void:
 	palette_list.palette_selected.connect(_on_palette_selected)
