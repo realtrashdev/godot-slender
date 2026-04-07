@@ -32,6 +32,7 @@ metadata/_custom_type_script = "uid://bsyl03flb2uux"
 
 [sub_resource type="Resource" id="Resource_dsoqv"]
 script = ExtResource("11_dsoqv")
+final_value = Vector3(0.01, 0.01, 0.01)
 duration = 0.5
 easing = 0
 metadata/_custom_type_script = "uid://bsyl03flb2uux"
@@ -79,7 +80,7 @@ volume_db = -2.0
 autoplay = true
 max_distance = 20.0
 
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1569124791]
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1475648775]
 
 [node name="FlashlightAttractPosition" parent="." unique_id=1629215445 instance=ExtResource("4_pmg11")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
@@ -110,6 +111,7 @@ metadata/_custom_type_script = "uid://du80erw6qg145"
 script = ExtResource("9_f8w1j")
 do_shine_time = true
 shine_state_transition = 5
+disable_light_attract_on_transition = false
 active_states = Array[int]([1, 2])
 metadata/_custom_type_script = "uid://obwf6ltnv5wh"
 
