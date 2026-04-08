@@ -106,7 +106,7 @@ script = ExtResource("21_6h64i")
 [node name="BGM" type="AudioStreamPlayer" parent="." unique_id=889242687]
 stream = ExtResource("8_3twdr")
 volume_db = -12.0
-autoplay = true
+pitch_scale = 0.5
 parameters/looping = true
 
 [node name="UIManager" parent="." unique_id=75622884 instance=ExtResource("8_hag7o")]

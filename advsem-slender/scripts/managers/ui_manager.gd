@@ -60,7 +60,7 @@ func show_game_start():
 
 func show_tip():
 	var tip = tip_manager.get_random_tip()
-	_display_text("[wave]TIP:\n" + tip, 1, 5, 0)
+	_display_text("TIP:\n" + tip, 1, 5, 0)
 
 func show_mode():
 	match game_state.game_mode:

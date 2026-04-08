@@ -26,7 +26,7 @@ The radar now has a limited battery.
 
 \---
 
-Added ???, an enemy that will attack and kill the player shortly after their radar dies.
+Added ???, an enemy that will chase down and kill the player shortly after their radar dies.
 
 * This enemy is currently always active.
 * If the player collects a page before ??? kills them, the battery will recharge and it will disappear.
@@ -46,6 +46,9 @@ Chaser:
 * Now moves slower when close to the player.
 * Now has a unique sprite for when it is successfully repelled.
 * Now shifts the pitch of its ambient sound the more the light is shined on it.
+* Adjusted max instances from 3 to 1.
+
+  * Only one Chaser can be active at once per spawner.
 
 
 
@@ -148,8 +151,4 @@ Added a game over screen.
 
 
 Changed the animation of the "Pages: x/x" text.
-
-
-
-
 
