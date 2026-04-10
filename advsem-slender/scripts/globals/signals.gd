@@ -9,6 +9,10 @@ signal game_finished
 # Player
 @warning_ignore("unused_signal")
 signal player_died
+@warning_ignore("unused_signal")
+signal radar_charged
+@warning_ignore("unused_signal")
+signal radar_died
 
 # Pages
 @warning_ignore("unused_signal")

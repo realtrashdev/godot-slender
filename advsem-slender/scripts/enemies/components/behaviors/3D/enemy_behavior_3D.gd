@@ -16,6 +16,7 @@ class_name EnemyBehavior3D extends Node
 var enemy: Enemy3D
 @export var active_states: Array[Enemy3D.State] = []
 
+
 func _ready() -> void:
 	var parent = get_parent()
 	assert(parent != null, "%s: No parent node!" % name)
@@ -33,6 +34,7 @@ func _ready() -> void:
 	# Call derived class' setup
 	_setup()
 
+
 ## Checks [Enemy3D] parent's active_state and compares it with the behavior's active_states.
 ## If the [Enemy3D]'s active_state matches any of the behavior's, the behavior is considered active and will update.
 func is_active() -> bool:
@@ -44,12 +46,14 @@ func is_active() -> bool:
 	
 	return enemy.get_current_state() in active_states
 
+
 ## [color=red]Do NOT override![/color]
 ## Use [method _update] instead!
 func update(delta: float) -> void:
 	if not is_active():
 		return
 	_update(delta)
+
 
 ## [color=red]Do NOT override![/color]
 ## Use [method _physics_update] instead!
@@ -58,6 +62,7 @@ func physics_update(delta: float) -> void:
 		return
 	_physics_update(delta)
 
+
 ## [color=red]Do NOT override![/color]
 ## Use [method _tick_update] instead!
 func tick_update() -> void:
@@ -65,17 +70,21 @@ func tick_update() -> void:
 		return
 	_tick_update()
 
+
 ## Override in subclasses, acts as [method Node._ready].
 func _setup() -> void:
 	pass
+
 
 ## Override in subclasses, acts as [method Node._process].
 func _update(delta: float) -> void:
 	pass
 
+
 ## Override in subclasses, acts as [method Node._physics_process].
 func _physics_update(delta: float) -> void:
 	pass
+
 
 ## Override in subclasses, acts as [method Enemy3D._tick_process].
 ## If there is no tick system, this acts as [method Node._physics_process].

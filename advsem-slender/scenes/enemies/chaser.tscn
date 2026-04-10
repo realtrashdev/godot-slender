@@ -4,7 +4,7 @@
 [ext_resource type="SpriteFrames" uid="uid://pyvqr1dpcew3" path="res://art/2d/enemies/chaser_1.aseprite" id="2_vobwd"]
 [ext_resource type="AudioStream" uid="uid://yfj2cifrrldq" path="res://audio/enemies/chaser/chaser_ambient1.wav" id="4_apvou"]
 [ext_resource type="Script" uid="uid://dihwj4ebwryto" path="res://scripts/enemies/components/behaviors/3D/movement/chase_component_3D.gd" id="4_o1gbp"]
-[ext_resource type="PackedScene" uid="uid://c5jviqgxt300" path="res://scenes/enemies/flashlight_attract_position.tscn" id="4_pmg11"]
+[ext_resource type="PackedScene" uid="uid://c5jviqgxt300" path="res://scenes/enemies/flashlight_attract_component_3d.tscn" id="4_pmg11"]
 [ext_resource type="Script" uid="uid://effuujo1gd4r" path="res://scripts/enemies/components/behaviors/3D/visual/shake_component_3D.gd" id="4_s5r2m"]
 [ext_resource type="Script" uid="uid://4vg0pgi4edk1" path="res://scripts/enemies/components/behaviors/3D/sfx_component_3d.gd" id="5_b4445"]
 [ext_resource type="Script" uid="uid://brqfh8pmq54xe" path="res://scripts/enemies/components/tick_component.gd" id="5_vobwd"]
@@ -64,7 +64,7 @@ metadata/_custom_type_script = "uid://d0hm3sts6wa7d"
 collision_layer = 41
 collision_mask = 5
 script = ExtResource("1_ontx3")
-flashlight_attract_position = NodePath("FlashlightAttractPosition")
+flashlight_attract_position = NodePath("FlashlightAttractComponent3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=71918557]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.01971, 0)
@@ -88,7 +88,7 @@ max_distance = 20.0
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1475648775]
 
-[node name="FlashlightAttractPosition" parent="." unique_id=1629215445 instance=ExtResource("4_pmg11")]
+[node name="FlashlightAttractComponent3D" parent="." unique_id=1629215445 instance=ExtResource("4_pmg11")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
 [node name="ChaseComponent3D" type="Node" parent="." unique_id=268188121]

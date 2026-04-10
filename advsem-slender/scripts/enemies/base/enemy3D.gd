@@ -11,7 +11,7 @@ enum State {
 	FLEEING,          ## Could be for enemies that run before dying, or for enemies that steal something and run from the player.
 	DYING,            ## Enemy is currently in the process of dying. Typically just used for death animations before entering [enum State.DEAD].
 	DEAD,             ## Only used for calling queue_free() on the [Enemy3D]. Use [State.DYING] for animation purposes, etc.
-	}
+}
 
 signal state_changed(State)
 signal died
@@ -29,6 +29,7 @@ var player: CharacterBody3D
 var current_state: State
 var using_tick_system: bool = false
 
+
 # Set up components array and check for tick system.
 func _ready() -> void:
 	_get_components()
@@ -42,10 +43,12 @@ func _ready() -> void:
 	await get_tree().process_frame
 	change_state(starting_state)
 
+
 # Call update function of child components.
 func _process(delta: float) -> void:
 	for component in components:
 		component.update(delta)
+
 
 # Call physics update function of child components.
 func _physics_process(delta: float) -> void:
@@ -54,6 +57,7 @@ func _physics_process(delta: float) -> void:
 	
 	if not using_tick_system: _tick_process()
 	move_and_slide()
+
 
 ## Call [method EnemyBehavior3D.tick_update] function of child components.
 func _tick_process() -> void:
@@ -64,9 +68,11 @@ func _tick_process() -> void:
 	for component in components:
 		component.tick_update()
 
+
 #region State Management
 func get_current_state() -> State:
 	return current_state
+
 
 func change_state(new_state: State):
 	if new_state == State.DEAD:
@@ -75,9 +81,11 @@ func change_state(new_state: State):
 	state_changed.emit(new_state)
 #endregion
 
+
 func die():
 	died.emit()
 	queue_free()
+
 
 ## Gets all [EnemyBehavior3D] components and places them into the components array.
 func _get_components():
@@ -85,12 +93,14 @@ func _get_components():
 		if child is EnemyBehavior3D:
 			components.push_back(child)
 
+
 ## Cache player reference for components to use
 func _get_player():
 	player = get_tree().get_first_node_in_group("Player")
 	if not player:
 		push_warning("%s: No player found in 'player' group!" % name)
 		player = null
+
 
 #region Helpers
 # Components
@@ -100,19 +110,24 @@ func get_component(component_type: GDScript) -> EnemyBehavior3D:
 			return component
 	return null
 
+
 func has_component(component_type: GDScript) -> bool:
 	return get_component(component_type) != null
+
 
 # General
 func get_profile() -> EnemyProfile:
 	assert(profile != null, "%s: Enemy has no EnemyProfile!" % name)
 	return profile
 
+
 func get_player() -> CharacterBody3D:
 	return player
 
+
 func get_character_body_3d() -> CharacterBody3D:
 	return self
+
 
 func get_collision_shape_3d() -> CollisionShape3D:
 	for child in get_children():
@@ -120,11 +135,13 @@ func get_collision_shape_3d() -> CollisionShape3D:
 			return child
 	return null
 
+
 func get_animated_sprite_3d() -> AnimatedSprite3D:
 	for child in get_children():
 		if child is AnimatedSprite3D:
 			return child
 	return null
+
 
 func get_navigation_agent_3d() -> NavigationAgent3D:
 	for child in get_children():
@@ -132,11 +149,13 @@ func get_navigation_agent_3d() -> NavigationAgent3D:
 			return child
 	return null
 
+
 func get_tick_system() -> TickComponent:
 	for child in get_children():
 		if child is TickComponent:
 			return child
 	return null
+
 
 # Outside of Enemy3D Helpers
 func get_flashlight_attract_position() -> Vector3:

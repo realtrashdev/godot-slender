@@ -7,14 +7,12 @@ enum EnemyType { ENEMY_2D, ENEMY_3D, ENEMY_COMPONENT }
 @export var enemy_type: EnemyType
 
 @export_group("Spawning")
-## How this enemy spawns. Does it use a pre placed spawn marker, does it spawn on the player, etc?
-@export var spawn_behavior: SpawnBehavior
 ## Minimum amount of time this enemy has to wait before spawning.
 @export var min_spawn_time: float
 ## Maximum amount of time this enemy can wait before spawning.
 @export var max_spawn_time: float
 ## Maximum amount of this enemy that can be active at once.
-@export var max_instances: int = 3
+@export var max_instances: int = 1
 
 @export_group("Death")
 ## AAAAAAHH!!

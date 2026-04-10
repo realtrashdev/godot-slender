@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="EnemyProfile" format=3 uid="uid://b2akbubrke2u1"]
+
+[ext_resource type="Script" uid="uid://c426kdmp0e6tf" path="res://scripts/resources/enemies/enemy_profile.gd" id="1_1ty2m"]
+[ext_resource type="PackedScene" uid="uid://bjyodse0o5ptm" path="res://scenes/enemies/shade.tscn" id="1_6nr72"]
+[ext_resource type="Texture2D" uid="uid://btt4qmetunv46" path="res://art/2d/maps/icon_abyss.aseprite" id="1_sechj"]
+
+[resource]
+script = ExtResource("1_1ty2m")
+scene = ExtResource("1_6nr72")
+enemy_type = 1
+min_spawn_time = 5.0
+max_spawn_time = 5.0
+death_tips = Array[String](["It only comes out when your tracker dies. Keep it charged by collecting pages!"])
+name = "Shade"
+type = 2
+description = "Spawns shortly after your tracker dies.
+
+It is impossible to outrun.
+
+Keep that tracker charged by collecting pages!"
+icon = ExtResource("1_sechj")
+metadata/_custom_type_script = "uid://c426kdmp0e6tf"

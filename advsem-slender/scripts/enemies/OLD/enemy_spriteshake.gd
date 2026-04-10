@@ -5,6 +5,7 @@ var shake_intensity: float = 0.1
 var shake_timer: Timer
 var is_shaking: bool = false
 
+
 func _ready():
 	original_position = position
 	
@@ -13,11 +14,13 @@ func _ready():
 	shake_timer.timeout.connect(_shake_update)
 	add_child(shake_timer)
 
+
 func start_shake(intensity: float = 0.1):
 	if not is_shaking:
 		shake_intensity = intensity
 		is_shaking = true
 		shake_timer.start()
+
 
 func _shake_update():
 	if is_shaking:
@@ -27,6 +30,7 @@ func _shake_update():
 			0
 		)
 		position = original_position + random_offset
+
 
 func stop_shake():
 	if is_shaking:

@@ -97,8 +97,8 @@ func _connect_signals():
 	Signals.game_finished.connect(_on_game_finished)
 	Signals.tutorial_distance_reached.connect(_on_tutorial_distance_reached)
 	
-	battery_component.out_of_battery.connect(_on_out_of_battery)
-	battery_component.charged.connect(_on_battery_charged)
+	Signals.radar_died.connect(_on_radar_charged)
+	Signals.radar_charged.connect(_on_radar_died)
 
 func _on_game_finished():
 	_reset_screens()
@@ -106,12 +106,12 @@ func _on_game_finished():
 func _on_tutorial_distance_reached() -> void:
 	audio_component.play_notification()
 
-func _on_battery_charged():
+func _on_radar_charged():
 	if dead_battery_screen.visible:
 		dead_battery_screen.visible = false
 		audio_component.play_notification()
 
-func _on_out_of_battery():
+func _on_radar_died():
 	dead_battery_screen.visible = true
 	if incoming_call_screen.visible:
 		incoming_call_screen.visible = false
