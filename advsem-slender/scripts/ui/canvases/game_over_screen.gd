@@ -101,5 +101,5 @@ func _on_menu_button_pressed():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	#_scale_transition()
 	pixel_transition.transition(1.0, TRANSITION_OUT_TIME)
-	await get_tree().create_timer(TRANSITION_OUT_TIME + 0.01).timeout
+	await get_tree().create_timer(TRANSITION_OUT_TIME + 0.1).timeout
 	get_tree().change_scene_to_file("res://scenes/ui/menus/menu_base.tscn")

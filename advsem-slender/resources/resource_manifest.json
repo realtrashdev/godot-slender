@@ -19,6 +19,7 @@
 		"res://resources/enemy_profiles/profile_eyes.tres",
 		"res://resources/enemy_profiles/profile_gum.tres",
 		"res://resources/enemy_profiles/profile_scamlikely.tres",
+		"res://resources/enemy_profiles/profile_shade.tres",
 		"res://resources/enemy_profiles/profile_tallgrass.tres"
 	],
 	"maps": [

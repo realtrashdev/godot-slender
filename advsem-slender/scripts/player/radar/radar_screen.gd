@@ -9,9 +9,9 @@ var player: CharacterBody3D
 
 var focused: bool = false
 
-@onready var battery_component: Node = $BatteryComponent
+@onready var battery_component: BatteryComponent = $BatteryComponent
 const BatteryComponent = preload("uid://bl7j83h5ylc5h")
-@onready var audio_component: Node = $AudioComponent
+@onready var audio_component: AudioComponent = $AudioComponent
 const AudioComponent = preload("uid://0xwcev5ljsb1")
 
 @onready var base_screen: Sprite2D = $BaseScreen
@@ -97,8 +97,8 @@ func _connect_signals():
 	Signals.game_finished.connect(_on_game_finished)
 	Signals.tutorial_distance_reached.connect(_on_tutorial_distance_reached)
 	
-	Signals.radar_died.connect(_on_radar_charged)
-	Signals.radar_charged.connect(_on_radar_died)
+	Signals.radar_charged.connect(_on_radar_charged)
+	Signals.radar_died.connect(_on_radar_died)
 
 func _on_game_finished():
 	_reset_screens()

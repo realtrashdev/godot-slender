@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://bjyodse0o5ptm"]
 
 [ext_resource type="SpriteFrames" uid="uid://pyvqr1dpcew3" path="res://art/2d/enemies/chaser_1.aseprite" id="1_k1amp"]
+[ext_resource type="Script" uid="uid://dgmarm0y1eq66" path="res://scripts/enemies/base/enemy3D.gd" id="1_sm1i8"]
 [ext_resource type="Script" uid="uid://dihwj4ebwryto" path="res://scripts/enemies/components/behaviors/3D/movement/chase_component_3D.gd" id="2_kipuk"]
 [ext_resource type="Script" uid="uid://dce3vw8udcaow" path="res://scripts/enemies/components/behaviors/3D/collision_kill_component_3D.gd" id="3_8yib0"]
 [ext_resource type="Script" uid="uid://cm47alcqeepgp" path="res://scripts/enemies/components/behaviors/3D/state_timer_component_3D.gd" id="3_ilcb7"]
+[ext_resource type="AudioStream" uid="uid://ga65x2ikqfdg" path="res://audio/ambient/wind_ambient.wav" id="3_rp8r4"]
 [ext_resource type="Script" uid="uid://cqi40i24udhhe" path="res://scripts/enemies/components/behaviors/3D/spawn_component_3d.gd" id="5_sm1i8"]
 [ext_resource type="Script" uid="uid://d0hm3sts6wa7d" path="res://scripts/enemies/OLD/spawn behaviors/spawn_behavior_markers.gd" id="6_rp8r4"]
 
@@ -18,6 +20,7 @@ metadata/_custom_type_script = "uid://d0hm3sts6wa7d"
 [node name="Shade" type="CharacterBody3D" unique_id=864263040]
 collision_layer = 0
 collision_mask = 16
+script = ExtResource("1_sm1i8")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=578435626]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.01971, 0)
@@ -34,14 +37,17 @@ animation = &"walk"
 autoplay = "walk"
 
 [node name="AmbientSound" type="AudioStreamPlayer3D" parent="." unique_id=1890045420]
-volume_db = -2.0
+stream = ExtResource("3_rp8r4")
+pitch_scale = 8.0
 autoplay = true
-max_distance = 40.0
+max_distance = 20.0
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1931908055]
 
 [node name="ChaseComponent3D" type="Node" parent="." unique_id=1746446838]
 script = ExtResource("2_kipuk")
 move_speeds = Dictionary[int, float]({
-1: 6.0
+1: 15.0
 })
 active_states = Array[int]([1])
 metadata/_custom_type_script = "uid://dihwj4ebwryto"

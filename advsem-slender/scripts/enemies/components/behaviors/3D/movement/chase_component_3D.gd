@@ -31,8 +31,8 @@ func _setup() -> void:
 		   "%s: using_nav_agent is true but no NavigationAgent3D found!" % name)
 	
 	# Check for gravity component
-	if not enemy.has_component(GravityComponent3D):
-		push_warning("%s: ChaseComponent strongly recommends GravityComponent3D!" % name)
+	#if not enemy.has_component(GravityComponent3D):
+	#	push_warning("%s: ChaseComponent strongly recommends GravityComponent3D!" % name)
 
 
 func _tick_update() -> void:
