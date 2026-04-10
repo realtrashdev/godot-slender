@@ -89,17 +89,18 @@ func spawn_old_3d_enemy(enemy: OldEnemy3D):
 	if not enabled:
 		return
 	
-	push_warning("OldEnemy3D Spawned")
-	add_child(enemy)
-	enemy.profile = profile
-	
-	var ctx = SpawnContext.new()
-	ctx.player = player
-	ctx.spawn_markers = get_tree().get_first_node_in_group("SpawnMarkers")
-	
-	var pos = profile.spawn_behavior.get_spawn_position(ctx)
-	
-	enemy.global_position = pos
+	push_warning("OldEnemy3D spawning no longer supported.")
+	return
+	#add_child(enemy)
+	#enemy.profile = profile
+	#
+	#var ctx = SpawnContext.new()
+	#ctx.player = player
+	#ctx.spawn_markers = get_tree().get_first_node_in_group("SpawnMarkers")
+	#
+	#var pos = profile.spawn_behavior.get_spawn_position(ctx)
+	#
+	#enemy.global_position = pos
 
 
 func spawn_component_enemy(enemy: ComponentEnemy):

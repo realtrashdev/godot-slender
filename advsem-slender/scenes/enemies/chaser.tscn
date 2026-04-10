@@ -16,6 +16,8 @@
 [ext_resource type="Script" uid="uid://cm47alcqeepgp" path="res://scripts/enemies/components/behaviors/3D/state_timer_component_3D.gd" id="11_1mp87"]
 [ext_resource type="Script" uid="uid://bsyl03flb2uux" path="res://scripts/resources/scale_tween_settings.gd" id="11_dsoqv"]
 [ext_resource type="Script" uid="uid://c1o1rbtdkxxke" path="res://scripts/enemies/components/behaviors/3D/visual/scale_animation_component_3D.gd" id="12_hot0s"]
+[ext_resource type="Script" uid="uid://cqi40i24udhhe" path="res://scripts/enemies/components/behaviors/3D/spawn_component_3d.gd" id="17_b4445"]
+[ext_resource type="Script" uid="uid://d0hm3sts6wa7d" path="res://scripts/enemies/OLD/spawn behaviors/spawn_behavior_markers.gd" id="18_mo2ph"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1xo2g"]
 radius = 0.856761
@@ -53,6 +55,10 @@ fade_out_enabled = true
 fade_out_ending_volume_db = -30.0
 max_distance = 20.0
 metadata/_custom_type_script = "uid://cu87bx3xby546"
+
+[sub_resource type="Resource" id="Resource_hbogg"]
+script = ExtResource("18_mo2ph")
+metadata/_custom_type_script = "uid://d0hm3sts6wa7d"
 
 [node name="Chaser" type="CharacterBody3D" unique_id=1312795095 node_paths=PackedStringArray("flashlight_attract_position") groups=["AttractsFlashlight"]]
 collision_layer = 41
@@ -160,3 +166,8 @@ metadata/_custom_type_script = "uid://cm47alcqeepgp"
 [node name="TickComponent" type="Node" parent="." unique_id=938265660]
 script = ExtResource("5_vobwd")
 metadata/_custom_type_script = "uid://brqfh8pmq54xe"
+
+[node name="SpawnComponent3D" type="Node" parent="." unique_id=499833170]
+script = ExtResource("17_b4445")
+behavior = SubResource("Resource_hbogg")
+metadata/_custom_type_script = "uid://cqi40i24udhhe"

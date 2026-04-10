@@ -4,9 +4,7 @@ class_name SpawnRing extends SpawnBehavior
 
 @export var radius: float = 25.0
 
-func get_spawn_position(ctx: SpawnContext) -> Vector3:
-	var player = ctx.player
-	
+func get_spawn_position(player: CharacterBody3D) -> Vector3:
 	var angle = randf_range(0, TAU)
 	
 	var x = radius * cos(angle)
