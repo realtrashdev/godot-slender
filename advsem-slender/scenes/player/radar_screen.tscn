@@ -295,6 +295,7 @@ position = Vector2(80, 72.5)
 texture = ExtResource("6_3wt7d")
 
 [node name="IncomingCallScreen" type="Node2D" parent="." unique_id=1502990345]
+visible = false
 z_index = 1
 script = ExtResource("8_oqbb0")
 
@@ -322,6 +323,29 @@ bbcode_enabled = true
 text = "[pulse freq=3]INCOMING CALL"
 scroll_active = false
 shortcut_keys_enabled = false
+
+[node name="HintText" type="RichTextLabel" parent="IncomingCallScreen" unique_id=583660621]
+visible = false
+clip_contents = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 43.0
+offset_top = 73.0
+offset_right = 119.25
+offset_bottom = 87.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("4_on3qy")
+theme_override_font_sizes/normal_font_size = 5
+bbcode_enabled = true
+text = "[wave amp=8 freq=7]! HOLD [LCLICK] !"
+scroll_active = false
+shortcut_keys_enabled = false
+horizontal_alignment = 1
 
 [node name="DeclineProgress" type="ProgressBar" parent="IncomingCallScreen" unique_id=477130739]
 offset_left = 64.0
@@ -381,3 +405,4 @@ horizontal_alignment = 1
 [connection signal="call_ended" from="IncomingCallScreen" to="." method="call_ended"]
 [connection signal="button_down" from="IncomingCallScreen/DeclineButton" to="IncomingCallScreen" method="_on_decline_button_down"]
 [connection signal="button_up" from="IncomingCallScreen/DeclineButton" to="IncomingCallScreen" method="_on_decline_button_up"]
+[connection signal="pressed" from="IncomingCallScreen/DeclineButton" to="IncomingCallScreen" method="_on_decline_button_pressed"]

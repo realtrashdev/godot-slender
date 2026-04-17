@@ -48,6 +48,7 @@ func stop_call():
 	button_down = false
 	decline_progress = 0.0
 	decline_progress_bar.value = decline_progress
+	$HintText.visible = false
 
 
 func update_progress_bar():
@@ -63,3 +64,7 @@ func _on_decline_button_down() -> void:
 
 func _on_decline_button_up() -> void:
 	button_down = false
+
+
+func _on_decline_button_pressed() -> void:
+	$HintText.visible = true
