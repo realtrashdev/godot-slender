@@ -26,10 +26,10 @@ The radar now has a limited battery.
 
 \---
 
-Added ???, an enemy that will chase down and kill the player shortly after their radar dies.
+Added Shade, an enemy that will chase down and kill you shortly after your radar dies.
 
 * This enemy is currently always active.
-* If the player collects a page before ??? kills them, the battery will recharge and it will disappear.
+* If you collect a page before Shade kills you, the battery will recharge and it will disappear.
 
 
 
@@ -42,8 +42,8 @@ Added ???, an enemy that will chase down and kill the player shortly after their
 Chaser:
 
 * Now attracts the flashlight, making it easier to get rid of it.
-* Now moves faster the further it is from the player.
-* Now moves slower when close to the player.
+* Now moves faster the further it is you.
+* Now moves slower when close to you.
 * Now has a unique sprite for when it is successfully repelled.
 * Now shifts the pitch of its ambient sound the more the light is shined on it.
 * Adjusted max instances from 3 to 1.
@@ -68,6 +68,8 @@ Eyes:
 Scam Likely:
 
 * Will now cause the radar battery to rapidly drain.
+* The decline call button no longer bounces around the screen.
+* Instead, you must now hold it down for 2 seconds to decline the call.
 
 
 
@@ -103,7 +105,7 @@ is in development...
 
 Added a mouse parallax effect to most menus.
 
-* &#x20;
+
 
 Added an animated background to the main menu.
 
@@ -151,4 +153,14 @@ Added a game over screen.
 
 
 Changed the animation of the "Pages: x/x" text.
+
+
+
+
+
+
+
+
+
+
 
