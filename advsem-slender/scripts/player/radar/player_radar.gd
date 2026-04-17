@@ -77,17 +77,17 @@ func update_position():
 	else:
 		final_pos = AWAY_POS
 		final_rot = AWAY_ROT
-		final_pos.x += randf_range(-0.25, 0.25)
+		#final_pos.x += randf_range(-0.25, 0.25)
 	
 	if pos_tween:
 		pos_tween.kill()
 	pos_tween = create_tween()
 	
-	pos_tween.tween_property(self, "position", final_pos, 0.25)\
-	.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	pos_tween.tween_property(self, "position", final_pos, 0.2)\
+	.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC)
 	
-	pos_tween.parallel().tween_property(self, "rotation", final_rot, 0.5)\
-	.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
+	pos_tween.parallel().tween_property(self, "rotation", final_rot, 0.33)\
+	.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	
 	# re enable input after animation completes, but only if focused
 	pos_tween.finished.connect(func():

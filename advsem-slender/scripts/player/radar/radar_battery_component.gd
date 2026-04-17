@@ -94,7 +94,7 @@ func _add_charge(charge: float):
 	if battery_remaining > 0 and state == BatteryState.DEAD:
 		state = BatteryState.ALIVE
 		print("Radar alive")
-	Signals.radar_charged.emit()
+		Signals.radar_charged.emit()
 
 
 func _check_if_dead() -> bool:

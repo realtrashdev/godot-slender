@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bjyodse0o5ptm"]
 
-[ext_resource type="SpriteFrames" uid="uid://pyvqr1dpcew3" path="res://art/2d/enemies/chaser_1.aseprite" id="1_k1amp"]
 [ext_resource type="Script" uid="uid://dgmarm0y1eq66" path="res://scripts/enemies/base/enemy3D.gd" id="1_sm1i8"]
+[ext_resource type="Texture2D" uid="uid://b2bbst10gqbau" path="res://art/2d/enemies/shade1.aseprite" id="2_b47la"]
 [ext_resource type="Script" uid="uid://dihwj4ebwryto" path="res://scripts/enemies/components/behaviors/3D/movement/chase_component_3D.gd" id="2_kipuk"]
 [ext_resource type="Script" uid="uid://dce3vw8udcaow" path="res://scripts/enemies/components/behaviors/3D/collision_kill_component_3D.gd" id="3_8yib0"]
 [ext_resource type="Script" uid="uid://cm47alcqeepgp" path="res://scripts/enemies/components/behaviors/3D/state_timer_component_3D.gd" id="3_ilcb7"]
@@ -12,6 +12,19 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8yib0"]
 radius = 0.856761
 height = 4.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_se1lu"]
+shading_mode = 0
+albedo_color = Color(0.14117648, 0.13725491, 0.14117648, 1)
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+billboard_mode = 2
+billboard_keep_scale = true
+stencil_flags = 2
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_j3ie1"]
+material = SubResource("StandardMaterial3D_se1lu")
+size = Vector2(1, 1)
+orientation = 2
 
 [sub_resource type="Resource" id="Resource_b47la"]
 script = ExtResource("6_rp8r4")
@@ -26,15 +39,23 @@ script = ExtResource("1_sm1i8")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.01971, 0)
 shape = SubResource("CapsuleShape3D_8yib0")
 
-[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=26068714]
-transform = Transform3D(4.72, 0, 0, 0, 4.72, 0, 0, 0, 1.18, -0.001, -0.07300001, -0.002)
-offset = Vector2(0, 63)
+[node name="CPUParticles3D" type="CPUParticles3D" parent="." unique_id=2126422618]
+transform = Transform3D(1, 0, 0, 0, -4.3711392e-08, -1, 0, 1, -4.3711392e-08, 0, 2, 0)
+visible = false
+amount = 32
+mesh = SubResource("PlaneMesh_j3ie1")
+direction = Vector3(1, 1, 1)
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 3.0
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=2081879612]
+transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 0, 2.1381721, 0)
 billboard = 2
-shaded = true
+double_sided = false
 texture_filter = 0
-sprite_frames = ExtResource("1_k1amp")
-animation = &"walk"
-autoplay = "walk"
+texture = ExtResource("2_b47la")
 
 [node name="AmbientSound" type="AudioStreamPlayer3D" parent="." unique_id=1890045420]
 stream = ExtResource("3_rp8r4")
@@ -64,3 +85,6 @@ metadata/_custom_type_script = "uid://cm47alcqeepgp"
 script = ExtResource("5_sm1i8")
 behavior = SubResource("Resource_b47la")
 metadata/_custom_type_script = "uid://cqi40i24udhhe"
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1481910739]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2755673, 5.2291384)

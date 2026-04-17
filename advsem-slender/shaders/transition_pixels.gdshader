@@ -1,5 +1,5 @@
 shader_type canvas_item;
-uniform sampler2D noise_img: repeat_enable;
+uniform sampler2D noise_img : repeat_enable, filter_nearest;
 uniform float transition_amount: hint_range(0.0, 1.0);
 
 void vertex() {

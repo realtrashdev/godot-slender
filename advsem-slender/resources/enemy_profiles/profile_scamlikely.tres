@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dchhldcuxe5gf" path="res://art/2d/enemies/icons/scamlikely_icon.aseprite" id="1_imohw"]
 
 [resource]
+resource_name = "scam_likely"
 script = ExtResource("1_7300h")
 scene = ExtResource("1_hba1t")
 enemy_type = 2

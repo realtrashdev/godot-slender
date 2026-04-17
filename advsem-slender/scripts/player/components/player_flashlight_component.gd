@@ -15,7 +15,7 @@ var rotation_override: float = 0
 var sprint_angle_modifier: float = 20
 var flashlight_offset := Vector3(0, 0, 0)
 var time_count: float
-var can_use_flashlight: bool = true
+var battery_alive: bool = true
 
 var target_brightness: float
 
@@ -32,9 +32,13 @@ var camera_component: PlayerCameraComponent
 @onready var interaction_cast: RayCast3D
 @onready var enemy_cast: RayCast3D
 
+
 func _ready() -> void:
 	Signals.page_collected.connect(on_page_collected)
 	Signals.enemy_spawned.connect(on_enemy_spawned)
+	
+	Signals.radar_charged.connect(_on_radar_charged)
+	Signals.radar_died.connect(_on_radar_died)
 	
 	player = get_parent()
 	restriction_component = player.get_node("RestrictionComponent")
@@ -54,11 +58,12 @@ func _ready() -> void:
 	if not player.instant_activate:
 		call_deferred("deactivate")
 
+
 func _process(delta: float) -> void:
 	time_count += delta
 	enemy_cast.enabled = light.visible and !movement_component.is_sprinting()
 	
-	if Input.is_action_just_pressed("toggle_light") and can_use_flashlight:
+	if Input.is_action_just_pressed("toggle_light") and battery_alive:
 		toggle_light(!light.visible)
 
 func handle_flashlight_physics(delta: float):
@@ -67,6 +72,7 @@ func handle_flashlight_physics(delta: float):
 	
 	if not point_flashlight():
 		get_flashlight_offset(delta)
+
 
 ## Offsets flashlight rotation slightly when moving camera
 ## [br]Juice effect to make camera movement feel more realistic/smooth
@@ -94,9 +100,11 @@ func get_flashlight_offset(delta: float) -> void:
 	else:
 		flashlight.rotation.x = lerp(flashlight.rotation.x, flashlight_offset.x + cos(time_count) * 0.01, 6 * delta)
 
+
 func add_camera_offset(offset: Vector3):
 	flashlight_offset.x = clamp(flashlight_offset.x + offset.x, -0.5, 0.5)
 	flashlight_offset.y = clamp(flashlight_offset.y + offset.y, -0.5, 0.5)
+
 
 ## Points flashlight at designated object and overrides the offset function
 # TODO optimization
@@ -128,10 +136,12 @@ func point_flashlight() -> bool:
 		return true
 	return false
 
+
 func on_page_collected() -> void:
 	rotation_override = deg_to_rad(sprint_angle)
 	await get_tree().create_timer(3).timeout
 	rotation_override = 0
+
 
 func toggle_light(on: bool):
 	light.visible = on
@@ -140,6 +150,7 @@ func toggle_light(on: bool):
 	flashlight.rotation.y = deg_to_rad(TURN_ON_ANGLE.y)
 	enemy_cast.enabled = on and !movement_component.is_sprinting()
 	play_audio()
+
 
 func set_flicker_light(starting_energy: float):
 	if !get_light_status():
@@ -150,6 +161,7 @@ func set_flicker_light(starting_energy: float):
 	target_brightness = starting_energy
 	await target_brightness_reached
 	target_brightness = energy
+
 
 func flicker_light():
 	if light.light_energy > target_brightness:
@@ -165,21 +177,25 @@ func flicker_light():
 			light.light_energy = target_brightness
 			target_brightness_reached.emit()
 
+
 func play_audio():
 	audio_source.pitch_scale = randf_range(0.9, 1.1)
 	audio_source.play()
 
+
 func get_sprint_angle() -> float:
 	return DEFAULT_SPRINT_ANGLE + sprint_angle_modifier
 
+
 func get_light_status() -> bool:
 	return light.visible
+
 
 func activate():
 	set_process(true)
 	flashlight.visible = true
 	
-	if can_use_flashlight:
+	if battery_alive:
 		toggle_light(true)
 	else:
 		light.visible = false
@@ -187,12 +203,25 @@ func activate():
 	
 	flashlight.set_process(true)
 
+
 func deactivate():
 	set_process(false)
 	light.visible = false
 	omni_light.visible = false
 	flashlight.visible = false
 	flashlight.set_process(false)
+
+
+func _on_radar_charged():
+	battery_alive = true
+
+
+func _on_radar_died():
+	battery_alive = false
+	light.visible = false
+	omni_light.visible = !light.visible
+	enemy_cast.enabled = false
+
 
 func on_enemy_spawned(type: EnemyProfile.Type):
 	match type:

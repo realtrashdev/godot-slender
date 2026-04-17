@@ -2,14 +2,17 @@
 
 [ext_resource type="Script" uid="uid://c426kdmp0e6tf" path="res://scripts/resources/enemies/enemy_profile.gd" id="1_1ty2m"]
 [ext_resource type="PackedScene" uid="uid://bjyodse0o5ptm" path="res://scenes/enemies/shade.tscn" id="1_6nr72"]
+[ext_resource type="Texture2D" uid="uid://bhjfpfyhsnggo" path="res://art/2d/enemies/deathscreens/deathscreen_shade.aseprite" id="1_076s1"]
 [ext_resource type="Texture2D" uid="uid://btt4qmetunv46" path="res://art/2d/maps/icon_abyss.aseprite" id="1_sechj"]
 
 [resource]
+resource_name = "shade"
 script = ExtResource("1_1ty2m")
 scene = ExtResource("1_6nr72")
 enemy_type = 1
 min_spawn_time = 5.0
 max_spawn_time = 5.0
+death_screen = ExtResource("1_076s1")
 death_tips = Array[String](["It only comes out when your tracker dies. Keep it charged by collecting pages!"])
 name = "Shade"
 type = 2

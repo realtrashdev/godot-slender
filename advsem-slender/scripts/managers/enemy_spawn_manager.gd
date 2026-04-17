@@ -9,15 +9,22 @@ func initialize(state: GameState, player_ref: CharacterBody3D):
 	game_state = state
 	player = player_ref
 	
+	Signals.radar_charged.connect(_on_radar_charged)
 	Signals.radar_died.connect(_on_radar_died)
+	
+	## Add disabled shade spawner for use when radar dies
+	var shade: EnemySpawner = add_enemy_spawner(preload("uid://b2akbubrke2u1"), 0)
+	shade.needs_manual_enable = true
+	shade.disable_spawner()
 
 
-func add_enemy_spawner(enemy_profile: EnemyProfile, required: int):
+func add_enemy_spawner(enemy_profile: EnemyProfile, required: int) -> EnemySpawner:
 	var spawner = EnemySpawner.new()
 	spawner.initialize(game_state, enemy_profile, required, player)
 	
 	add_child(spawner)
 	spawners.append(spawner)
+	return spawner
 
 
 func remove_enemy_type(enemy_name: String):
@@ -61,7 +68,7 @@ func set_enemy_spawn_rate(enemy_name: String, min_time: float, max_time: float):
 
 func get_spawner(enemy_name: String) -> EnemySpawner:
 	for spawner in spawners:
-		if spawner.profile.name == enemy_name:
+		if spawner.profile.name.to_lower() == enemy_name.to_lower():
 			return spawner
 	return null
 
@@ -130,7 +137,15 @@ func taking_too_long():
 		if spawner.required_pages == 1:
 			spawner.enable_spawner()
 
+## Remove Shade enemy if active, and disable the spawner
+func _on_radar_charged():
+	var spawner: EnemySpawner = get_spawner("Shade")
+	if spawner:
+		spawner.clear_all_enemies()
+		spawner.disable_spawner()
 
 ## Add Shade enemy to kill player after radar death
 func _on_radar_died():
-	add_enemy_spawner(preload("uid://b2akbubrke2u1"), 0)
+	var spawner: EnemySpawner = get_spawner("Shade")
+	if spawner:
+		spawner.enable_spawner()

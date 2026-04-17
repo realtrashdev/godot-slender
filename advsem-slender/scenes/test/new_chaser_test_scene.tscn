@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cyp4ok2insim3"]
 
-[ext_resource type="PackedScene" uid="uid://dqhlmv6mga3ln" path="res://scenes/important/player.tscn" id="2_y23al"]
+[ext_resource type="PackedScene" uid="uid://dqhlmv6mga3ln" path="res://scenes/player/player.tscn" id="2_y23al"]
 [ext_resource type="PackedScene" uid="uid://bu0h3xliks8yo" path="res://scenes/enemies/chaser_bouncy.tscn" id="3_bsvtf"]
 [ext_resource type="PackedScene" uid="uid://c5j4dypjweuc2" path="res://scenes/ui/canvases/jumpscare_canvaslayer.tscn" id="3_douax"]
 [ext_resource type="Resource" uid="uid://5btde08a1exu" path="res://resources/enemy_profiles/profile_chaser.tres" id="4_aa4re"]

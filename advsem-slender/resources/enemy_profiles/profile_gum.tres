@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://c426kdmp0e6tf" path="res://scripts/resources/enemies/enemy_profile.gd" id="2_wivop"]
 
 [resource]
+resource_name = "gum"
 script = ExtResource("2_wivop")
 scene = ExtResource("1_k3hal")
 min_spawn_time = 15.0

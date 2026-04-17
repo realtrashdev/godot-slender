@@ -1,7 +1,7 @@
 shader_type canvas_item;
 
-uniform sampler2D texture1;
-uniform sampler2D texture2;
+uniform sampler2D texture1 : filter_nearest;
+uniform sampler2D texture2 : filter_nearest;
 uniform float progress : hint_range(0.0, 1.0) = 0.0;
 
 void fragment() {

@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://t72o3ua13abn" path="res://scripts/player/radar/screens/screen_incoming_call.gd" id="8_oqbb0"]
 [ext_resource type="Texture2D" uid="uid://cy0p13mbdia6r" path="res://art/2d/arrow_up.aseprite" id="9_1qj1u"]
 [ext_resource type="Script" uid="uid://bqnosmeroaqtr" path="res://scripts/player/radar/screens/screen_help.gd" id="11_qqxeq"]
+[ext_resource type="Texture2D" uid="uid://cujhbmh8mvf7b" path="res://art/2d/radar_deadreaction_default.aseprite" id="14_lsy0a"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wowfs"]
 
@@ -32,6 +33,11 @@ border_color = Color(1, 1, 1, 1)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3jnr6"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hjd67"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lsy0a"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q86wp"]
+bg_color = Color(1, 1, 1, 1)
 
 [node name="RadarScreen" type="Node2D" unique_id=211227911 node_paths=PackedStringArray("all_screens")]
 script = ExtResource("1_wowfs")
@@ -279,12 +285,16 @@ offset_right = 160.0
 offset_bottom = 144.0
 color = Color(0, 0, 0, 1)
 
-[node name="Sprite2D" type="Sprite2D" parent="DeadBatteryScreen" unique_id=355163959]
+[node name="CharacterReflection" type="Sprite2D" parent="DeadBatteryScreen" unique_id=1391275549]
+visible = false
 position = Vector2(80, 72)
+texture = ExtResource("14_lsy0a")
+
+[node name="DeadBatteryIcon" type="Sprite2D" parent="DeadBatteryScreen" unique_id=355163959]
+position = Vector2(80, 72.5)
 texture = ExtResource("6_3wt7d")
 
 [node name="IncomingCallScreen" type="Node2D" parent="." unique_id=1502990345]
-visible = false
 z_index = 1
 script = ExtResource("8_oqbb0")
 
@@ -293,18 +303,17 @@ offset_right = 160.0
 offset_bottom = 144.0
 color = Color(0, 0, 0, 1)
 
-[node name="HomeText" type="RichTextLabel" parent="IncomingCallScreen/ColorRect" unique_id=1397880104]
+[node name="HomeText" type="RichTextLabel" parent="IncomingCallScreen" unique_id=1397880104]
 clip_contents = false
-layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -57.0
-offset_top = -38.0
-offset_right = 57.0
-offset_bottom = -16.0
+offset_left = 23.0
+offset_top = 34.0
+offset_right = 137.0
+offset_bottom = 56.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/normal_font = ExtResource("4_on3qy")
@@ -314,17 +323,26 @@ text = "[pulse freq=3]INCOMING CALL"
 scroll_active = false
 shortcut_keys_enabled = false
 
-[node name="DeclineButton" type="Button" parent="IncomingCallScreen/ColorRect" unique_id=693651691]
-layout_mode = 1
+[node name="DeclineProgress" type="ProgressBar" parent="IncomingCallScreen" unique_id=477130739]
+offset_left = 64.0
+offset_top = 103.0
+offset_right = 95.0
+offset_bottom = 108.0
+theme_override_styles/background = SubResource("StyleBoxEmpty_lsy0a")
+theme_override_styles/fill = SubResource("StyleBoxFlat_q86wp")
+max_value = 2.0
+show_percentage = false
+
+[node name="DeclineButton" type="Button" parent="IncomingCallScreen" unique_id=693651691]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -19.0
-offset_top = 14.0
-offset_right = 19.0
-offset_bottom = 31.0
+offset_left = 61.0
+offset_top = 86.0
+offset_right = 99.0
+offset_bottom = 103.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 4
@@ -334,7 +352,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_3wt7d")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_3jnr6")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_hjd67")
 
-[node name="DeclineText" type="RichTextLabel" parent="IncomingCallScreen/ColorRect/DeclineButton" unique_id=1038261921]
+[node name="DeclineText" type="RichTextLabel" parent="IncomingCallScreen/DeclineButton" unique_id=1038261921]
 clip_contents = false
 layout_mode = 1
 anchors_preset = 8
@@ -361,4 +379,5 @@ horizontal_alignment = 1
 [connection signal="pressed" from="BaseScreen/PageButton" to="." method="_on_page_button_pressed"]
 [connection signal="pressed" from="BaseScreen/HelpButton" to="." method="_on_help_button_pressed"]
 [connection signal="call_ended" from="IncomingCallScreen" to="." method="call_ended"]
-[connection signal="button_down" from="IncomingCallScreen/ColorRect/DeclineButton" to="IncomingCallScreen" method="_on_decline_button_pressed"]
+[connection signal="button_down" from="IncomingCallScreen/DeclineButton" to="IncomingCallScreen" method="_on_decline_button_down"]
+[connection signal="button_up" from="IncomingCallScreen/DeclineButton" to="IncomingCallScreen" method="_on_decline_button_up"]

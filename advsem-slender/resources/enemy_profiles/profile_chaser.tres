@@ -7,12 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://csq5gcwn1bv26" path="res://scenes/enemies/chaser.tscn" id="3_bqeux"]
 
 [resource]
+resource_name = "chaser"
 script = ExtResource("1_hrl1i")
 scene = ExtResource("3_bqeux")
 enemy_type = 1
 min_spawn_time = 15.0
 max_spawn_time = 30.0
-max_instances = 1
 jumpscare = ExtResource("2_vjasg")
 death_screen = ExtResource("1_bqeux")
 death_tips = Array[String](["Running is not an option. It won't stop chasing you until you're dead.", "Try to stay on the path while repelling it with your light. The grass does not slow it down!"])

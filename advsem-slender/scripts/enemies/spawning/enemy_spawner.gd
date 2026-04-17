@@ -4,6 +4,7 @@ var game_state: GameState
 var profile: EnemyProfile
 var player: CharacterBody3D
 var enabled: bool = false
+var needs_manual_enable: bool = false
 
 var enemy_scene: PackedScene
 var min_spawn_time: float
@@ -134,6 +135,9 @@ func _reset_timer():
 
 
 func check_enable():
+	if needs_manual_enable:
+		return
+	
 	# if the player has collected all required pages, don't enable
 	if game_state.current_pages_collected == game_state.current_pages_required:
 		return
@@ -162,7 +166,7 @@ func set_spawn_rate(min_time: float, max_time: float):
 
 
 func clear_all_enemies():
-	print("Clear all enemies")
+	print("%s: Clear all enemies" % profile.name)
 	for enemy in active_enemies.duplicate():
 		print("Try clearing enemies")
 		if is_instance_valid(enemy):
