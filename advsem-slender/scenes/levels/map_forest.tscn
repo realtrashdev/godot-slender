@@ -6,7 +6,6 @@
 [ext_resource type="Script" uid="uid://d1anmy68tuwe6" path="res://scripts/managers/page_manager.gd" id="3_yqpob"]
 [ext_resource type="PackedScene" uid="uid://d2ilqs2rsu4l1" path="res://scenes/enemies/spawning/spawn_marker.tscn" id="5_f0frg"]
 [ext_resource type="Texture2D" uid="uid://b0oaoqusfayma" path="res://art/2d/textures/grass1.aseprite" id="6_84il1"]
-[ext_resource type="AudioStream" uid="uid://c56uyv7l25ppd" path="res://audio/music/chiptune_bgm_test1.ogg" id="8_3twdr"]
 [ext_resource type="Script" uid="uid://dywtaffuxx4ei" path="res://scripts/pages/dynamic_collection_music.gd" id="8_cvgem"]
 [ext_resource type="PackedScene" uid="uid://dcy7ewx8f37mf" path="res://scenes/ui/canvases/in_game_ui.tscn" id="8_hag7o"]
 [ext_resource type="PackedScene" uid="uid://cxsorime4wuh2" path="res://scenes/playground_scenes/tree.tscn" id="8_u3044"]
@@ -121,11 +120,6 @@ music_updates = Dictionary[int, AudioStream]({
 stream = ExtResource("13_rqdef")
 volume_db = -12.0
 bus = &"GameMusic"
-parameters/looping = true
-
-[node name="BGM" type="AudioStreamPlayer" parent="." unique_id=889242687]
-stream = ExtResource("8_3twdr")
-volume_db = -12.0
 parameters/looping = true
 
 [node name="UIManager" parent="." unique_id=75622884 instance=ExtResource("8_hag7o")]
