@@ -100,6 +100,7 @@ func finish_game(won: bool = true):
 	page_manager.clear_locations()
 	enemy_manager.clear_all_enemies()
 	enemy_manager.disable_all_spawners()
+	enemy_manager.remove_enemy_type("shade")
 	audio_manager.stop_game_audio()
 	ui_manager.show_game_end()
 	

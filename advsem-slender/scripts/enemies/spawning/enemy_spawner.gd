@@ -166,10 +166,10 @@ func set_spawn_rate(min_time: float, max_time: float):
 
 
 func clear_all_enemies():
-	print("%s: Clear all enemies" % profile.name)
+	#print("%s: Clear all enemies" % profile.name)
 	for enemy in active_enemies.duplicate():
-		print("Try clearing enemies")
+		#print("Try clearing enemies")
 		if is_instance_valid(enemy):
-			print("killing %s" % [enemy.name])
+			#print("killing %s" % [enemy.name])
 			enemy.queue_free()
 	active_enemies.clear()
