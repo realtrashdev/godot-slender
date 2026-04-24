@@ -4,18 +4,23 @@
 [ext_resource type="PackedScene" uid="uid://dqhlmv6mga3ln" path="res://scenes/player/player.tscn" id="2_ejahd"]
 [ext_resource type="Script" uid="uid://dung7jxkr00xe" path="res://scripts/managers/audio_manager.gd" id="3_5ls40"]
 [ext_resource type="Script" uid="uid://d1anmy68tuwe6" path="res://scripts/managers/page_manager.gd" id="3_yqpob"]
-[ext_resource type="PackedScene" uid="uid://x286lkut7nsk" path="res://scenes/collection/page_collection_ambience.tscn" id="4_favx3"]
 [ext_resource type="PackedScene" uid="uid://d2ilqs2rsu4l1" path="res://scenes/enemies/spawning/spawn_marker.tscn" id="5_f0frg"]
 [ext_resource type="Texture2D" uid="uid://b0oaoqusfayma" path="res://art/2d/textures/grass1.aseprite" id="6_84il1"]
 [ext_resource type="AudioStream" uid="uid://c56uyv7l25ppd" path="res://audio/music/chiptune_bgm_test1.ogg" id="8_3twdr"]
+[ext_resource type="Script" uid="uid://dywtaffuxx4ei" path="res://scripts/pages/dynamic_collection_music.gd" id="8_cvgem"]
 [ext_resource type="PackedScene" uid="uid://dcy7ewx8f37mf" path="res://scenes/ui/canvases/in_game_ui.tscn" id="8_hag7o"]
 [ext_resource type="PackedScene" uid="uid://cxsorime4wuh2" path="res://scenes/playground_scenes/tree.tscn" id="8_u3044"]
+[ext_resource type="AudioStream" uid="uid://8wdifbs76k6" path="res://audio/music/dynamic music/chiptune1/chiptune1_1.ogg" id="9_r45ri"]
 [ext_resource type="PackedScene" uid="uid://cuouj5je2wv8g" path="res://scenes/collection/page_location.tscn" id="9_yeg04"]
+[ext_resource type="AudioStream" uid="uid://cok8bcedxmxgh" path="res://audio/music/dynamic music/chiptune1/chiptune1_2.ogg" id="10_3u3of"]
 [ext_resource type="PackedScene" uid="uid://c6pe2a6g7kie7" path="res://scenes/levels/landmarks/building.tscn" id="10_mn2h8"]
+[ext_resource type="AudioStream" uid="uid://3mw2rufd0pkp" path="res://audio/music/dynamic music/chiptune1/chiptune1_3.ogg" id="11_b0hnt"]
 [ext_resource type="PackedScene" uid="uid://dq6178lkha864" path="res://scenes/playground_scenes/tree_page.tscn" id="11_g13vg"]
 [ext_resource type="NavigationMesh" uid="uid://dsmij2wanukbg" path="res://forest_navmesh.tres" id="11_tlwqg"]
 [ext_resource type="PackedScene" uid="uid://dv7qx4tyi7gih" path="res://scenes/levels/landmarks/playground_rocks_1.tscn" id="12_sq1ny"]
+[ext_resource type="AudioStream" uid="uid://chbd0f3bmpc52" path="res://audio/music/dynamic music/chiptune1/chiptune1_4.ogg" id="12_vijbt"]
 [ext_resource type="PackedScene" uid="uid://dq5omphnqtlkf" path="res://scenes/levels/landmarks/playground_bigtree_page.tscn" id="13_h37d0"]
+[ext_resource type="AudioStream" uid="uid://bdmj3il650fy0" path="res://audio/music/dynamic music/chiptune1/chiptune1_5.ogg" id="13_rqdef"]
 [ext_resource type="Material" uid="uid://bnlknaj0g2m6d" path="res://shaders/flowing_water.tres" id="13_wwrpj"]
 [ext_resource type="Texture2D" uid="uid://c4he6fivjqx5e" path="res://art/2d/textures/chain_fence.aseprite" id="14_3kiwc"]
 [ext_resource type="PackedScene" uid="uid://c5j4dypjweuc2" path="res://scenes/ui/canvases/jumpscare_canvaslayer.tscn" id="18_typfu"]
@@ -90,6 +95,7 @@ script = ExtResource("3_yqpob")
 
 [node name="AudioManager" type="Node" parent="." unique_id=1467519633]
 script = ExtResource("3_5ls40")
+do_collection_ambience = false
 
 [node name="IntroAudio" type="AudioStreamPlayer" parent="AudioManager" unique_id=1448761450]
 stream = ExtResource("19_u5rgu")
@@ -101,7 +107,21 @@ volume_db = -5.0
 parameters/looping = true
 script = ExtResource("21_6h64i")
 
-[node name="CollectionAmbient" parent="AudioManager" unique_id=675231617 instance=ExtResource("4_favx3")]
+[node name="DynamicCollectionMusic" type="Node" parent="AudioManager" unique_id=1319471487]
+script = ExtResource("8_cvgem")
+music_updates = Dictionary[int, AudioStream]({
+1: ExtResource("9_r45ri"),
+2: ExtResource("10_3u3of"),
+3: ExtResource("11_b0hnt"),
+4: ExtResource("12_vijbt"),
+6: ExtResource("13_rqdef")
+})
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="AudioManager/DynamicCollectionMusic" unique_id=1820546839]
+stream = ExtResource("13_rqdef")
+volume_db = -12.0
+bus = &"GameMusic"
+parameters/looping = true
 
 [node name="BGM" type="AudioStreamPlayer" parent="." unique_id=889242687]
 stream = ExtResource("8_3twdr")

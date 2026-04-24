@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bdmj3il650fy0"
+path="res://.godot/imported/chiptune1_5.ogg-23cd43b41a70a02091e77bc937861a78.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/music/dynamic music/chiptune1/chiptune1_5.ogg"
+dest_files=["res://.godot/imported/chiptune1_5.ogg-23cd43b41a70a02091e77bc937861a78.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

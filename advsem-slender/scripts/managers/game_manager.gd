@@ -103,6 +103,8 @@ func finish_game(won: bool = true):
 	audio_manager.stop_game_audio()
 	ui_manager.show_game_end()
 	
+	Signals.game_finished.emit()
+	
 	if game_state.game_mode == GameConfig.GameMode.CLASSIC and game_state.current_pages_collected == game_state.current_pages_required:
 		# unlocks stuff
 		Progression.complete_scenario(load_classic_scenario().resource_name)
