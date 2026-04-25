@@ -7,9 +7,13 @@ class_name SpawnRing extends SpawnBehavior
 func get_spawn_position(player: CharacterBody3D) -> Vector3:
 	var angle = randf_range(0, TAU)
 	
+	print(player.global_position)
+	print(angle)
+	
 	var x = radius * cos(angle)
 	var z = radius * sin(angle)
 	
 	var pos = player.global_position + Vector3(x, 0, z)
 	
+	print(pos)
 	return pos

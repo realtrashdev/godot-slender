@@ -1,4 +1,4 @@
-extends CharacterBody3D
+class_name Player extends CharacterBody3D
 
 @export var starting_rotation: Vector3 = Vector3.ZERO
 @export var instant_activate: bool = false
@@ -18,12 +18,14 @@ var quit_timer: float = 0.0
 @onready var restriction_component: PlayerRestrictionComponent = $RestrictionComponent
 @onready var radar: PlayerRadar = $Radar
 
+
 func _ready() -> void:
 	Signals.killed_player.connect(die)
 	radar.radar_toggled.connect(_on_radar_toggled)
 	deactivate()
 	if instant_activate:
 		activate()
+
 
 func _process(delta: float) -> void:
 	if Input.is_key_pressed(KEY_ESCAPE):
@@ -33,21 +35,26 @@ func _process(delta: float) -> void:
 	elif quit_timer > 0:
 		quit_timer = 0.0
 
+
 func _physics_process(delta: float) -> void:
 	camera_component.handle_camera_physics(delta)
 	movement_component.handle_physics(delta)
 	flashlight_component.handle_flashlight_physics(delta)
 
+
 func _input(event):
 	camera_component.handle_input(event)
+
 
 func initialize(state: GameState):
 	game_state = state
 	radar.initialize(state)
 
+
 func die(_dead = null):
 	Signals.player_died.emit()
 	deactivate()
+
 
 func activate():
 	active = true
@@ -55,6 +62,7 @@ func activate():
 	camera_component.activate()
 	flashlight_component.activate()
 	radar.activate()
+
 
 func deactivate():
 	active = false
@@ -64,19 +72,34 @@ func deactivate():
 	restriction_component.clear_restrictions()
 	radar.deactivate()
 
+
 func _on_radar_toggled(toggled):
 	camera_component.check_radar_restriction(toggled)
 	camera_component.camera.radar_toggled(toggled)
 
+#
+# Helper functions
+#
+
+func is_flashlight_on() -> bool:
+	return flashlight_component.get_light_status()
+
+
+#
 # Restriction methods
+#
+
 func add_restriction(type: PlayerRestriction.RestrictionType, source: String):
 	restriction_component.add_restriction(type, source)
+
 
 func remove_restrictions_from_source(source: String):
 	restriction_component.remove_restrictions_from_source(source)
 
+
 func check_for_restriction(type: PlayerRestriction.RestrictionType) -> bool:
 	return restriction_component.check_for_restriction(type)
+
 
 func debug_tools():
 	pass

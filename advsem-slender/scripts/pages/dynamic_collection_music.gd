@@ -1,6 +1,5 @@
 extends Node
 
-
 @export var enabled: bool = true
 @export var music_updates: Dictionary[int, AudioStream]
 @export var start_pause_time: float = 1.5
@@ -39,6 +38,7 @@ func _on_page_collected():
 func _on_game_finished():
 	audio.stop()
 	enabled = false
+
 
 func _on_player_died():
 	var pos: float = audio.get_playback_position()

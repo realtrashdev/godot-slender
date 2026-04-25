@@ -29,7 +29,7 @@ func add_enemy_spawner(enemy_profile: EnemyProfile, required: int) -> EnemySpawn
 
 func remove_enemy_type(enemy_name: String):
 	for spawner in spawners.duplicate():
-		if spawner.profile.name == enemy_name:
+		if spawner.profile.name.to_lower() == enemy_name.to_lower():
 			spawner.clear_all_enemies()
 			spawner.queue_free()
 			spawners.erase(spawner)
@@ -45,13 +45,13 @@ func remove_enemy_type_page_specific(enemy_name: String, pages: int):
 
 func enable_enemy_type(enemy_name: String):
 	for spawner in spawners:
-		if spawner.profile.name == enemy_name:
+		if spawner.profile.name.to_lower() == enemy_name.to_lower():
 			spawner.enable_spawner()
 
 
 func disable_enemy_type(enemy_name: String):
 	for spawner in spawners:
-		if spawner.profile.name == enemy_name:
+		if spawner.profile.name.to_lower() == enemy_name.to_lower():
 			spawner.disable_spawner()
 
 
@@ -62,7 +62,7 @@ func disable_all_spawners():
 
 func set_enemy_spawn_rate(enemy_name: String, min_time: float, max_time: float):
 	for spawner in spawners:
-		if spawner.profile.name == enemy_name:
+		if spawner.profile.name.to_lower() == enemy_name.to_lower():
 			spawner.set_spawn_rate(min_time, max_time)
 
 
@@ -99,7 +99,7 @@ func get_all_spawners_organized() -> Dictionary:
 func get_active_enemy_count(enemy_name: String) -> int:
 	var count = 0
 	for spawner in spawners:
-		if spawner.profile.name == enemy_name:
+		if spawner.profile.name.to_lower() == enemy_name.to_lower():
 			count += spawner.active_enemies.size()
 	return count
 
@@ -107,14 +107,14 @@ func get_active_enemy_count(enemy_name: String) -> int:
 func get_spawners_by_name(enemy_name: String) -> Array[EnemySpawner]:
 	var result: Array[EnemySpawner] = []
 	for spawner in spawners:
-		if spawner.profile.name == enemy_name:
+		if spawner.profile.name.to_lower() == enemy_name.to_lower():
 			result.append(spawner)
 	return result
 
 
 func get_spawner_by_name_and_pages(enemy_name: String, required: int) -> EnemySpawner:
 	for spawner in spawners:
-		if spawner.profile.name == enemy_name and spawner.required_pages == required:
+		if spawner.profile.name.to_lower() == enemy_name.to_lower() and spawner.required_pages == required:
 			return spawner
 	return null
 

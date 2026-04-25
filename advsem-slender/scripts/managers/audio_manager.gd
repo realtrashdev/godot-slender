@@ -8,6 +8,7 @@ var game_state: GameState
 @onready var collection_music = $DynamicCollectionMusic
 
 func initialize(state: GameState):
+	Signals.page_collected.connect(_on_page_collected)
 	game_state = state
 	collection_music.initialize(game_state)
 	await get_tree().create_timer(1).timeout
@@ -15,19 +16,18 @@ func initialize(state: GameState):
 
 
 func start_game_audio():
-	play_ambience()
+	_play_ambience()
 
 
 func stop_game_audio():
 	ambience.stop()
 
 
-func play_ambience():
+func _play_ambience():
 	if not ambience.playing:
 		ambience.play()
 		ambience.set_volume_smooth(ambience.default_volume, 1, -30)
 
 
-func on_page_collected():
-	# audio cues based on page count?
-	pass
+func _on_page_collected():
+	ambience.set_volume_smooth(ambience.default_volume - abs(ambience.default_volume), 1.5, ambience.volume_db, Tween.EASE_IN, Tween.TRANS_SINE)

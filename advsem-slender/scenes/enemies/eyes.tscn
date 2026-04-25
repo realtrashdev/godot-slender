@@ -1,0 +1,114 @@
+[gd_scene format=3 uid="uid://crk8pe0fbwxmu"]
+
+[ext_resource type="Script" uid="uid://dgmarm0y1eq66" path="res://scripts/enemies/base/enemy3D.gd" id="1_lyu0h"]
+[ext_resource type="Texture2D" uid="uid://dporlsh4nr431" path="res://art/2d/enemies/eyes.aseprite" id="2_lyu0h"]
+[ext_resource type="PackedScene" uid="uid://c5jviqgxt300" path="res://scenes/enemies/flashlight_attract_component_3d.tscn" id="4_0prq2"]
+[ext_resource type="Script" uid="uid://dihwj4ebwryto" path="res://scripts/enemies/components/behaviors/3D/movement/chase_component_3D.gd" id="5_7dbnu"]
+[ext_resource type="Script" uid="uid://dce3vw8udcaow" path="res://scripts/enemies/components/behaviors/3D/collision_action_component_3D.gd" id="6_3p5or"]
+[ext_resource type="Script" uid="uid://fc0srrsdlvkn" path="res://scripts/enemies/actions/action_drain_battery.gd" id="7_ogip6"]
+[ext_resource type="Script" uid="uid://dvel3oprjrqhy" path="res://scripts/enemies/components/behaviors/3D/movement/move_with_player_component_3D.gd" id="7_raggi"]
+[ext_resource type="Script" uid="uid://c1o1rbtdkxxke" path="res://scripts/enemies/components/behaviors/3D/visual/scale_animation_component_3D.gd" id="9_i1kru"]
+[ext_resource type="Script" uid="uid://bsyl03flb2uux" path="res://scripts/resources/scale_tween_settings.gd" id="10_xo6ke"]
+[ext_resource type="Script" uid="uid://effuujo1gd4r" path="res://scripts/enemies/components/behaviors/3D/visual/shake_component_3D.gd" id="11_7ijvw"]
+[ext_resource type="Script" uid="uid://cm47alcqeepgp" path="res://scripts/enemies/components/behaviors/3D/state_timer_component_3D.gd" id="15_1x33w"]
+[ext_resource type="Script" uid="uid://bk23iyn5r0tgb" path="res://scripts/enemies/OLD/spawn behaviors/spawn_behavior_ring.gd" id="15_ag8xw"]
+[ext_resource type="Script" uid="uid://cqi40i24udhhe" path="res://scripts/enemies/components/behaviors/3D/spawn_component_3d.gd" id="17_ciav6"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1xo2g"]
+radius = 0.856761
+height = 4.0
+
+[sub_resource type="Resource" id="Resource_u7np2"]
+script = ExtResource("7_ogip6")
+metadata/_custom_type_script = "uid://fc0srrsdlvkn"
+
+[sub_resource type="Resource" id="Resource_pmg11"]
+script = ExtResource("10_xo6ke")
+do_starting_scale = true
+starting_scale = Vector3(1, 0.01, 1)
+easing = 1
+transition = 10
+metadata/_custom_type_script = "uid://bsyl03flb2uux"
+
+[sub_resource type="Resource" id="Resource_dsoqv"]
+script = ExtResource("10_xo6ke")
+final_value = Vector3(1, 0.01, 1)
+duration = 0.5
+easing = 0
+metadata/_custom_type_script = "uid://bsyl03flb2uux"
+
+[sub_resource type="Resource" id="Resource_ogip6"]
+script = ExtResource("15_ag8xw")
+metadata/_custom_type_script = "uid://bk23iyn5r0tgb"
+
+[node name="Eyes" type="CharacterBody3D" unique_id=1312795095 node_paths=PackedStringArray("flashlight_attract_position") groups=["AttractsFlashlight"]]
+collision_layer = 0
+collision_mask = 16
+script = ExtResource("1_lyu0h")
+flashlight_attract_position = NodePath("FlashlightAttractComponent3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=71918557]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.01971, 0)
+shape = SubResource("CapsuleShape3D_1xo2g")
+
+[node name="AnimatedSprite3D" type="Sprite3D" parent="." unique_id=483074127]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -0.002)
+pixel_size = 0.005
+billboard = 2
+double_sided = false
+no_depth_test = true
+fixed_size = true
+texture_filter = 0
+render_priority = 5
+texture = ExtResource("2_lyu0h")
+
+[node name="FlashlightAttractComponent3D" parent="." unique_id=1629215445 instance=ExtResource("4_0prq2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="ChaseComponent3D" type="Node" parent="." unique_id=268188121]
+script = ExtResource("5_7dbnu")
+using_nav_agent = false
+distance_speed_multipliers = Array[Array]([])
+active_states = Array[int]([3])
+metadata/_custom_type_script = "uid://dihwj4ebwryto"
+
+[node name="CollisionActionComponent3D" type="Node" parent="." unique_id=1535321348]
+script = ExtResource("6_3p5or")
+action_to_perform = SubResource("Resource_u7np2")
+metadata/_custom_type_script = "uid://dce3vw8udcaow"
+
+[node name="MoveWithPlayerComponent3D" type="Node" parent="." unique_id=232207502]
+script = ExtResource("7_raggi")
+active_states = Array[int]([0, 1])
+metadata/_custom_type_script = "uid://dvel3oprjrqhy"
+
+[node name="ScaleAnimationComponent3D" type="Node" parent="." unique_id=1781923375]
+script = ExtResource("9_i1kru")
+tween_setting_dict = Dictionary[int, ExtResource("10_xo6ke")]({
+0: SubResource("Resource_pmg11"),
+5: SubResource("Resource_dsoqv")
+})
+metadata/_custom_type_script = "uid://c1o1rbtdkxxke"
+
+[node name="ShakeComponent3D" type="Node" parent="." unique_id=919812531 node_paths=PackedStringArray("target")]
+script = ExtResource("11_7ijvw")
+target = NodePath("../AnimatedSprite3D")
+active_states = Array[int]([2])
+metadata/_custom_type_script = "uid://effuujo1gd4r"
+
+[node name="StateTimerComponent3D" type="Node" parent="." unique_id=136272600]
+script = ExtResource("15_1x33w")
+state_times = Dictionary[int, float]({
+0: 1.0,
+5: 0.5
+})
+state_transitions = Dictionary[int, int]({
+0: 1,
+5: 6
+})
+metadata/_custom_type_script = "uid://cm47alcqeepgp"
+
+[node name="SpawnComponent3D" type="Node" parent="." unique_id=499833170]
+script = ExtResource("17_ciav6")
+behavior = SubResource("Resource_ogip6")
+metadata/_custom_type_script = "uid://cqi40i24udhhe"

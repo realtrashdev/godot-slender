@@ -10,6 +10,7 @@ const CAMERA_SMOOTHING = 10
 const ATTRACTION_MAX_ANGLE: float = 25.0
 const ATTRACTION_SMOOTHING: float = 12.0
 
+var light_on: bool = false
 var sprint_angle: float = -60
 var rotation_override: float = 0
 var sprint_angle_modifier: float = 20
@@ -61,10 +62,10 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	time_count += delta
-	enemy_cast.enabled = light.visible and !movement_component.is_sprinting()
+	enemy_cast.enabled = light_on and !movement_component.is_sprinting()
 	
 	if Input.is_action_just_pressed("toggle_light") and battery_alive:
-		toggle_light(!light.visible)
+		toggle_light(!light_on)
 
 func handle_flashlight_physics(delta: float):
 	if light.light_energy != target_brightness:
@@ -145,6 +146,7 @@ func on_page_collected() -> void:
 
 func toggle_light(on: bool):
 	light.visible = on
+	light_on = on
 	omni_light.visible = !light.visible
 	flashlight.rotation.x = deg_to_rad(TURN_ON_ANGLE.x)
 	flashlight.rotation.y = deg_to_rad(TURN_ON_ANGLE.y)
@@ -188,7 +190,7 @@ func get_sprint_angle() -> float:
 
 
 func get_light_status() -> bool:
-	return light.visible
+	return light_on
 
 
 func activate():
@@ -199,6 +201,7 @@ func activate():
 		toggle_light(true)
 	else:
 		light.visible = false
+		light_on = false
 		omni_light.visible = true
 	
 	flashlight.set_process(true)
@@ -207,6 +210,7 @@ func activate():
 func deactivate():
 	set_process(false)
 	light.visible = false
+	light_on = false
 	omni_light.visible = false
 	flashlight.visible = false
 	flashlight.set_process(false)
@@ -219,6 +223,7 @@ func _on_radar_charged():
 func _on_radar_died():
 	battery_alive = false
 	light.visible = false
+	light_on = false
 	omni_light.visible = !light.visible
 	enemy_cast.enabled = false
 

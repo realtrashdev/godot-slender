@@ -6,9 +6,6 @@ signal brody_typed
 ## enables the reset progress button (only in settings menu)
 signal reset_typed
 
-## displays the credits (only in main menu)
-signal credits_typed
-
 ## randomizes the background image seed (~4.3 billion different combinations)
 signal bg_typed
 
@@ -167,17 +164,6 @@ func check_key_array():
 			wizard_bgm()
 			hit("wizard")
 	
-	if last_idx >= 6:
-		if recent_keys[last_idx - 6] == "C" and \
-		   recent_keys[last_idx - 5] == "R" and \
-		   recent_keys[last_idx - 4] == "E" and \
-		   recent_keys[last_idx - 3] == "D" and \
-		   recent_keys[last_idx - 2] == "I" and \
-		   recent_keys[last_idx - 1] == "T" and \
-		   recent_keys[last_idx] == "S":
-			credits_typed.emit()
-			hit("credits")
-	
 	if last_idx >= 7:
 		if recent_keys[last_idx - 7] == "O" and \
 		   recent_keys[last_idx - 6] == "I" and \
@@ -192,6 +178,7 @@ func check_key_array():
 			print("Unlocked all scenarios.")
 			hit("oiranecs")
 
+
 ## 1 in 2000 chance every second to spawn gum enemy on title screen
 func check_gum():
 	await get_tree().create_timer(1).timeout
@@ -201,14 +188,19 @@ func check_gum():
 			spawn_gum()
 	check_gum()
 
+
 func spawn_gum():
 	var scene = preload("res://scenes/enemies/OLD/gum_old.tscn").instantiate()
 	scene.layer = 2
 	add_child(scene)
 	scene.activate()
 
+
 ## Toggles BGM pitch to a somewhat normal sounding pitch.
 func toggle_bgm_pitch():
+	if not manager.can_switch_music:
+		return
+	
 	var bgm: AudioStreamPlayer = manager.get_node("Music")
 	if bgm.stream != music:
 		return
@@ -228,8 +220,12 @@ func toggle_bgm_pitch():
 	music_tween = create_tween()
 	music_tween.tween_property(bgm, "pitch_scale", new_scale, 0.5)
 
+
 ## Switches BGM to a version with a cat piano, and switches the music to be normal pitched
 func meow_music():
+	if not manager.can_switch_music:
+		return
+	
 	var bgm: AudioStreamPlayer = manager.get_node("Music")
 	var pitch_scale: float
 	
@@ -253,9 +249,13 @@ func meow_music():
 	
 	music_tween = create_tween()
 	music_tween.tween_property(bgm, "pitch_scale", pitch_scale, 0.5)
-	
+
+
 ## Switches BGM to the running wizard theme
 func wizard_bgm():
+	if not manager.can_switch_music:
+		return
+	
 	var bgm: AudioStreamPlayer = manager.get_node("Music")
 	var pitch_scale: float
 	

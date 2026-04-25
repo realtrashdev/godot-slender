@@ -19,7 +19,7 @@ signal died
 @export var starting_state: State = State.IDLE
 
 var components: Array[EnemyBehavior3D]
-var player: CharacterBody3D
+var player: Player
 ## Automatically given by EnemySpawner, exported for debugging purposes
 @export var profile: EnemyProfile
 

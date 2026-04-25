@@ -13,6 +13,8 @@ signal player_died
 signal radar_charged
 @warning_ignore("unused_signal")
 signal radar_died
+@warning_ignore("unused_signal")
+signal radar_battery_drained(chunks: int, perma: bool)
 
 # Pages
 @warning_ignore("unused_signal")

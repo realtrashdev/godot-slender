@@ -47,6 +47,13 @@ func get_battery_remaining() -> float:
 	return battery_remaining
 
 
+func remove_charge_chunks(amount: int, perma: bool):
+	if perma and not _get_chunks().is_empty():
+		_get_chunks()[0].queue_free()
+	else:
+		_add_charge(!BATTERY_PER_CHUNK * amount)
+
+
 # Private methods
 func _get_chunks() -> Array[Node]:
 	if not battery_container: return []
@@ -91,6 +98,8 @@ func _add_charge(charge: float):
 	battery_remaining += charge
 	if battery_remaining > _get_maximum_battery():
 		battery_remaining = _get_maximum_battery()
+	elif battery_remaining < 0.0:
+		battery_remaining = 0.0
 	if battery_remaining > 0 and state == BatteryState.DEAD:
 		state = BatteryState.ALIVE
 		print("Radar alive")
