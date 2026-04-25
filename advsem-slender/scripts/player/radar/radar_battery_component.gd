@@ -21,6 +21,7 @@ var dead: bool = false
 func initialize(container):
 	battery_container = container
 	Signals.page_collected.connect(_on_page_collected)
+	Signals.radar_battery_drained.connect(remove_charge_chunks)
 
 
 func activate():
@@ -49,7 +50,7 @@ func get_battery_remaining() -> float:
 
 func remove_charge_chunks(amount: int, perma: bool):
 	if perma and not _get_chunks().is_empty():
-		_get_chunks()[0].queue_free()
+		_get_chunks()[_get_chunks().size() - 1].queue_free()
 	else:
 		_add_charge(!BATTERY_PER_CHUNK * amount)
 
@@ -66,7 +67,9 @@ func _get_visible_chunks() -> int:
 
 func _update_visible_chunks() -> void:
 	var remaining = _get_visible_chunks()
-	for child in _get_chunks():
+	for child: ProgressBar in _get_chunks():
+		if remaining == 1:
+			child.value = fmod(battery_remaining, BATTERY_PER_CHUNK)
 		if remaining == 0:
 			child.modulate = Color.TRANSPARENT
 			continue

@@ -1,3 +1,4 @@
+class_name EnemyBehavior3D extends Node
 ## Base class for all 3D enemy behaviors.
 ## 
 ## Components that extend from this class get automatic:
@@ -10,7 +11,6 @@
 ## [br][method _update] for every-frame logic.
 ## [br][method _physics_update] for every-frame logic.
 ## [br][method _tick_update] for low-frequency AI logic.
-class_name EnemyBehavior3D extends Node
 
 ## Parent of all [EnemyBehavior3D] nodes. Used to check state 
 var enemy: Enemy3D

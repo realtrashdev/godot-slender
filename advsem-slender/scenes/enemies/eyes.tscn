@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://dgmarm0y1eq66" path="res://scripts/enemies/base/enemy3D.gd" id="1_lyu0h"]
 [ext_resource type="Texture2D" uid="uid://dporlsh4nr431" path="res://art/2d/enemies/eyes.aseprite" id="2_lyu0h"]
-[ext_resource type="PackedScene" uid="uid://c5jviqgxt300" path="res://scenes/enemies/flashlight_attract_component_3d.tscn" id="4_0prq2"]
 [ext_resource type="Script" uid="uid://dihwj4ebwryto" path="res://scripts/enemies/components/behaviors/3D/movement/chase_component_3D.gd" id="5_7dbnu"]
 [ext_resource type="Script" uid="uid://dce3vw8udcaow" path="res://scripts/enemies/components/behaviors/3D/collision_action_component_3D.gd" id="6_3p5or"]
+[ext_resource type="Script" uid="uid://cnqvaqk6uufwl" path="res://scripts/enemies/components/behaviors/3D/light_activity_component_3D.gd" id="6_raggi"]
 [ext_resource type="Script" uid="uid://fc0srrsdlvkn" path="res://scripts/enemies/actions/action_drain_battery.gd" id="7_ogip6"]
 [ext_resource type="Script" uid="uid://dvel3oprjrqhy" path="res://scripts/enemies/components/behaviors/3D/movement/move_with_player_component_3D.gd" id="7_raggi"]
 [ext_resource type="Script" uid="uid://c1o1rbtdkxxke" path="res://scripts/enemies/components/behaviors/3D/visual/scale_animation_component_3D.gd" id="9_i1kru"]
@@ -41,33 +41,31 @@ metadata/_custom_type_script = "uid://bsyl03flb2uux"
 script = ExtResource("15_ag8xw")
 metadata/_custom_type_script = "uid://bk23iyn5r0tgb"
 
-[node name="Eyes" type="CharacterBody3D" unique_id=1312795095 node_paths=PackedStringArray("flashlight_attract_position") groups=["AttractsFlashlight"]]
+[node name="Eyes" type="CharacterBody3D" unique_id=1312795095 groups=["AttractsFlashlight"]]
 collision_layer = 0
 collision_mask = 16
 script = ExtResource("1_lyu0h")
-flashlight_attract_position = NodePath("FlashlightAttractComponent3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=71918557]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.01971, 0)
 shape = SubResource("CapsuleShape3D_1xo2g")
 
 [node name="AnimatedSprite3D" type="Sprite3D" parent="." unique_id=483074127]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -0.002)
-pixel_size = 0.005
-billboard = 2
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+pixel_size = 0.1
+billboard = 1
 double_sided = false
 no_depth_test = true
-fixed_size = true
 texture_filter = 0
 render_priority = 5
 texture = ExtResource("2_lyu0h")
 
-[node name="FlashlightAttractComponent3D" parent="." unique_id=1629215445 instance=ExtResource("4_0prq2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-
 [node name="ChaseComponent3D" type="Node" parent="." unique_id=268188121]
 script = ExtResource("5_7dbnu")
 using_nav_agent = false
+move_speeds = Dictionary[int, float]({
+3: 30.0
+})
 distance_speed_multipliers = Array[Array]([])
 active_states = Array[int]([3])
 metadata/_custom_type_script = "uid://dihwj4ebwryto"
@@ -77,17 +75,23 @@ script = ExtResource("6_3p5or")
 action_to_perform = SubResource("Resource_u7np2")
 metadata/_custom_type_script = "uid://dce3vw8udcaow"
 
+[node name="LightActivityComponent3D" type="Node" parent="." unique_id=1208398408]
+script = ExtResource("6_raggi")
+active_states = Array[int]([1, 2])
+metadata/_custom_type_script = "uid://cnqvaqk6uufwl"
+
 [node name="MoveWithPlayerComponent3D" type="Node" parent="." unique_id=232207502]
 script = ExtResource("7_raggi")
-active_states = Array[int]([0, 1])
+active_states = Array[int]([0, 1, 2, 5])
 metadata/_custom_type_script = "uid://dvel3oprjrqhy"
 
-[node name="ScaleAnimationComponent3D" type="Node" parent="." unique_id=1781923375]
+[node name="ScaleAnimationComponent3D" type="Node" parent="." unique_id=1781923375 node_paths=PackedStringArray("scale_target")]
 script = ExtResource("9_i1kru")
 tween_setting_dict = Dictionary[int, ExtResource("10_xo6ke")]({
 0: SubResource("Resource_pmg11"),
 5: SubResource("Resource_dsoqv")
 })
+scale_target = NodePath("../AnimatedSprite3D")
 metadata/_custom_type_script = "uid://c1o1rbtdkxxke"
 
 [node name="ShakeComponent3D" type="Node" parent="." unique_id=919812531 node_paths=PackedStringArray("target")]
@@ -100,10 +104,14 @@ metadata/_custom_type_script = "uid://effuujo1gd4r"
 script = ExtResource("15_1x33w")
 state_times = Dictionary[int, float]({
 0: 1.0,
+1: 5.0,
+2: 2.0,
 5: 0.5
 })
 state_transitions = Dictionary[int, int]({
 0: 1,
+1: 3,
+2: 5,
 5: 6
 })
 metadata/_custom_type_script = "uid://cm47alcqeepgp"

@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://cm47alcqeepgp" path="res://scripts/enemies/components/behaviors/3D/state_timer_component_3D.gd" id="3_ilcb7"]
 [ext_resource type="AudioStream" uid="uid://ga65x2ikqfdg" path="res://audio/ambient/wind_ambient.wav" id="3_rp8r4"]
 [ext_resource type="Script" uid="uid://cqi40i24udhhe" path="res://scripts/enemies/components/behaviors/3D/spawn_component_3d.gd" id="5_sm1i8"]
+[ext_resource type="Script" uid="uid://c0ixgub30et4t" path="res://scripts/enemies/actions/action_kill.gd" id="6_b47la"]
 [ext_resource type="Script" uid="uid://d0hm3sts6wa7d" path="res://scripts/enemies/OLD/spawn behaviors/spawn_behavior_markers.gd" id="6_rp8r4"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8yib0"]
@@ -25,6 +26,10 @@ stencil_flags = 2
 material = SubResource("StandardMaterial3D_se1lu")
 size = Vector2(1, 1)
 orientation = 2
+
+[sub_resource type="Resource" id="Resource_se1lu"]
+script = ExtResource("6_b47la")
+metadata/_custom_type_script = "uid://c0ixgub30et4t"
 
 [sub_resource type="Resource" id="Resource_b47la"]
 script = ExtResource("6_rp8r4")
@@ -61,7 +66,6 @@ texture = ExtResource("2_b47la")
 stream = ExtResource("3_rp8r4")
 pitch_scale = 8.0
 autoplay = true
-stream_paused = true
 max_distance = 20.0
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1931908055]
@@ -76,6 +80,7 @@ metadata/_custom_type_script = "uid://dihwj4ebwryto"
 
 [node name="CollisionKillComponent3D" type="Node" parent="." unique_id=1994734095]
 script = ExtResource("3_8yib0")
+action_to_perform = SubResource("Resource_se1lu")
 metadata/_custom_type_script = "uid://dce3vw8udcaow"
 
 [node name="StateTimerComponent3D" type="Node" parent="." unique_id=1193628601]

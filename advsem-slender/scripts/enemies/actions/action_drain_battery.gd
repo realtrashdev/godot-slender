@@ -5,4 +5,4 @@ class_name EnemyActionDrainBattery extends EnemyAction
 
 
 func perform_action():
-	Signals.radar_battery_drained.emit(chunks_to_drain)
+	Signals.radar_battery_drained.emit(chunks_to_drain, permanent)

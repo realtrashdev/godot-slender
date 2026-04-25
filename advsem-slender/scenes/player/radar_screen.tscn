@@ -17,6 +17,11 @@
 [ext_resource type="Script" uid="uid://bqnosmeroaqtr" path="res://scripts/player/radar/screens/screen_help.gd" id="11_qqxeq"]
 [ext_resource type="Texture2D" uid="uid://cujhbmh8mvf7b" path="res://art/2d/radar_deadreaction_default.aseprite" id="14_lsy0a"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q86wp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ix3js"]
+bg_color = Color(0.30980393, 0.30980393, 0.30980393, 1)
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wowfs"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wowfs"]
@@ -79,61 +84,49 @@ offset_right = 74.0
 offset_bottom = -60.0
 theme_override_constants/separation = 1
 
-[node name="BatteryChunk" type="Control" parent="BaseScreen/BatteryContainer" unique_id=955224164]
+[node name="BatteryChunk" type="ProgressBar" parent="BaseScreen/BatteryContainer" unique_id=490273710]
+custom_minimum_size = Vector2(0, 8)
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/background = SubResource("StyleBoxEmpty_q86wp")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ix3js")
+max_value = 20.0
+step = 0.0
+value = 20.0
+show_percentage = false
 
-[node name="ColorRect" type="ColorRect" parent="BaseScreen/BatteryContainer/BatteryChunk" unique_id=1638950905]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-color = Color(0.30980393, 0.30980393, 0.30980393, 1)
-
-[node name="BatteryChunk2" type="Control" parent="BaseScreen/BatteryContainer" unique_id=160487959]
+[node name="BatteryChunk1" type="ProgressBar" parent="BaseScreen/BatteryContainer" unique_id=1916570230]
+custom_minimum_size = Vector2(0, 8)
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/background = SubResource("StyleBoxEmpty_q86wp")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ix3js")
+max_value = 20.0
+step = 0.0
+value = 20.0
+show_percentage = false
 
-[node name="ColorRect" type="ColorRect" parent="BaseScreen/BatteryContainer/BatteryChunk2" unique_id=1580410504]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-color = Color(0.30980393, 0.30980393, 0.30980393, 1)
-
-[node name="BatteryChunk3" type="Control" parent="BaseScreen/BatteryContainer" unique_id=277076284]
+[node name="BatteryChunk2" type="ProgressBar" parent="BaseScreen/BatteryContainer" unique_id=687540680]
+custom_minimum_size = Vector2(0, 8)
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/background = SubResource("StyleBoxEmpty_q86wp")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ix3js")
+max_value = 20.0
+step = 0.0
+value = 20.0
+show_percentage = false
 
-[node name="ColorRect" type="ColorRect" parent="BaseScreen/BatteryContainer/BatteryChunk3" unique_id=1391844626]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-color = Color(0.30980393, 0.30980393, 0.30980393, 1)
-
-[node name="BatteryChunk4" type="Control" parent="BaseScreen/BatteryContainer" unique_id=1406490420]
+[node name="BatteryChunk3" type="ProgressBar" parent="BaseScreen/BatteryContainer" unique_id=1457340446]
+custom_minimum_size = Vector2(0, 8)
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="ColorRect" type="ColorRect" parent="BaseScreen/BatteryContainer/BatteryChunk4" unique_id=833141911]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-color = Color(0.30980393, 0.30980393, 0.30980393, 1)
+theme_override_styles/background = SubResource("StyleBoxEmpty_q86wp")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ix3js")
+max_value = 20.0
+step = 0.0
+value = 20.0
+show_percentage = false
 
 [node name="HomeButton" type="Button" parent="BaseScreen" unique_id=2023297311]
 offset_left = -80.0

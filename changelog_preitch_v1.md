@@ -16,6 +16,8 @@ The radar now has a limited battery.
 
 * Collect pages to replenish it.
 * The flashlight is now powered by the radar.
+* Battery is measured in chunks, with each chunk lasting 20 seconds by default.
+* Battery chunks can be added or lost.
 * Do not run out of battery...
 
 
@@ -61,7 +63,8 @@ Gum:
 Eyes:
 
 * Now close (leave) much faster (8sec -> 2sec).
-* Now attack faster (12sec -> 8sec).
+* Now attack faster (12sec -> 5sec).
+* No longer kill you. Instead, they will take a chunk of your radar battery away for the rest of the run.
 
 
 
@@ -153,14 +156,4 @@ Added a game over screen.
 
 
 Changed the animation of the "Pages: x/x" text.
-
-
-
-
-
-
-
-
-
-
 
