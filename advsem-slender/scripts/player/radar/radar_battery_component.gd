@@ -7,7 +7,7 @@ const STARTING_CHUNKS: int = 4
 const BATTERY_PER_CHUNK: float = 20.0
 const PAGE_CHARGE_AMOUNT: float = 20.0
 
-const IDLE_BATTERY_LOSS: float = 0.2
+const IDLE_BATTERY_LOSS: float = 0.4
 const ACTIVE_BATTERY_LOSS: float = 0.8
 const RINGING_BATTERY_LOSS: float = 2.0
 
@@ -68,12 +68,16 @@ func _get_visible_chunks() -> int:
 func _update_visible_chunks() -> void:
 	var remaining = _get_visible_chunks()
 	for child: ProgressBar in _get_chunks():
-		if remaining == 1:
-			child.value = fmod(battery_remaining, BATTERY_PER_CHUNK)
 		if remaining == 0:
 			child.modulate = Color.TRANSPARENT
 			continue
+		if remaining == 1:
+			child.modulate = Color.WHITE
+			child.value = fmod(battery_remaining, BATTERY_PER_CHUNK)
+			remaining -= 1
+			continue
 		child.modulate = Color.WHITE
+		child.value = BATTERY_PER_CHUNK
 		remaining -= 1
 
 

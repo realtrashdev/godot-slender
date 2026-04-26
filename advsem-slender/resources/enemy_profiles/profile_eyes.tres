@@ -1,7 +1,6 @@
 [gd_resource type="Resource" script_class="EnemyProfile" format=3 uid="uid://bepy1x4bj1nga"]
 
 [ext_resource type="Texture2D" uid="uid://ci8oadtmki8uy" path="res://art/2d/enemies/icons/eyes_icon.aseprite" id="1_k4fsp"]
-[ext_resource type="Resource" uid="uid://cnuftm2tsdo2h" path="res://resources/scares/scare_eyes.tres" id="2_tw487"]
 [ext_resource type="PackedScene" uid="uid://crk8pe0fbwxmu" path="res://scenes/enemies/eyes.tscn" id="3_3m8w7"]
 [ext_resource type="Script" uid="uid://c426kdmp0e6tf" path="res://scripts/resources/enemies/enemy_profile.gd" id="4_jd4w5"]
 
@@ -10,16 +9,13 @@ resource_name = "eyes"
 script = ExtResource("4_jd4w5")
 scene = ExtResource("3_3m8w7")
 enemy_type = 1
-min_spawn_time = 5.0
-max_spawn_time = 5.0
-max_instances = 5
-jumpscare = ExtResource("2_tw487")
-death_tips = Array[String](["Look around! This one doesn't make any sound when it shows up."])
+min_spawn_time = 20.0
+max_spawn_time = 30.0
 name = "Eyes"
 type = 1
-description = "A pair of glowing eyes that spawn around you.
+description = "A pair of glowing eyes that spawn silently.
 
-They are silent. Your light will flicker slightly when they appear.
+They will permanently drain your radar's battery when angered.
 
 Keep your light off until they go away."
 icon = ExtResource("1_k4fsp")

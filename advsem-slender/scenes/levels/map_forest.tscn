@@ -117,10 +117,8 @@ music_updates = Dictionary[int, AudioStream]({
 })
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="AudioManager/DynamicCollectionMusic" unique_id=1820546839]
-stream = ExtResource("13_rqdef")
 volume_db = -12.0
 bus = &"GameMusic"
-parameters/looping = true
 
 [node name="UIManager" parent="." unique_id=75622884 instance=ExtResource("8_hag7o")]
 

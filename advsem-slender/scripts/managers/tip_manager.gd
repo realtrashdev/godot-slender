@@ -7,7 +7,8 @@ var game_tips: Array[String] = [
 	"You are slower in the grass.",
 	"The path will guide your way.",
 	"Pay attention to the brightness of your light.",
-    "Consider checking your surroundings before taking a page."
+	"Consider checking your surroundings before taking a page.",
+	"Watch the battery of your tracker carefully.",
 ]
 
 var rare_game_tips: Array[String] = [

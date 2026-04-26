@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://e6rwi0hmxjmt" path="res://scripts/player/player.gd" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://b1w1fm55k1ows" path="res://scripts/player/interaction_cast.gd" id="2_onrkg"]
+[ext_resource type="AudioStream" uid="uid://cxk1hngsiusx5" path="res://audio/player/flashlight_flicker.ogg" id="5_28m0y"]
 [ext_resource type="AudioStream" uid="uid://c3ts0ctil5x0o" path="res://audio/player/walking/grass/walking_grass1.mp3" id="7_a8ls1"]
 [ext_resource type="Script" uid="uid://c6jkupiqfdi62" path="res://scripts/player/player_camera.gd" id="7_d2wvv"]
 [ext_resource type="AudioStream" uid="uid://cheqymfi8vtl8" path="res://audio/player/walking/grass/walking_grass2.mp3" id="8_qfm1y"]
@@ -32,62 +33,63 @@
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_i3pqv"]
 
-[node name="Player" type="CharacterBody3D" groups=["Player"]]
+[node name="Player" type="CharacterBody3D" unique_id=204248521 groups=["Player"]]
 collision_layer = 17
 collision_mask = 5
 script = ExtResource("1_4flbx")
 
-[node name="MovementComponent" type="Node" parent="."]
+[node name="MovementComponent" type="Node" parent="." unique_id=955710569]
 script = ExtResource("17_ke2ow")
 
-[node name="CameraComponent" type="Node" parent="."]
+[node name="CameraComponent" type="Node" parent="." unique_id=695133042]
 script = ExtResource("18_ujl30")
 
-[node name="FlashlightComponent" type="Node" parent="."]
+[node name="FlashlightComponent" type="Node" parent="." unique_id=592515350]
 script = ExtResource("19_ke2ow")
+flicker_sound = ExtResource("5_28m0y")
 
-[node name="AudioComponent" type="Node" parent="."]
+[node name="AudioComponent" type="Node" parent="." unique_id=1335382542]
 script = ExtResource("19_31cv2")
 movement_grass = Array[AudioStream]([ExtResource("7_a8ls1"), ExtResource("8_qfm1y"), ExtResource("9_fulsm"), ExtResource("10_4r5pv"), ExtResource("11_60mlk")])
 movement_path = Array[AudioStream]([ExtResource("11_gkgcs"), ExtResource("12_al2k6"), ExtResource("13_kcfbe"), ExtResource("14_4pmpp"), ExtResource("15_tbe3u")])
 movement_tile = Array[AudioStream]([ExtResource("12_i4ail"), ExtResource("13_a38lo"), ExtResource("14_4ni07"), ExtResource("15_l71n6"), ExtResource("16_ke2ow")])
 
-[node name="MovementAudio" type="AudioStreamPlayer" parent="AudioComponent"]
+[node name="MovementAudio" type="AudioStreamPlayer" parent="AudioComponent" unique_id=1959510025]
 
-[node name="RestrictionComponent" type="Node" parent="."]
+[node name="RestrictionComponent" type="Node" parent="." unique_id=354481320]
 script = ExtResource("17_a38lo")
 
-[node name="GroundCastComponent" type="RayCast3D" parent="."]
+[node name="GroundCastComponent" type="RayCast3D" parent="." unique_id=597832161]
 target_position = Vector3(0, -1.2, 0)
 collision_mask = 3
 script = ExtResource("26_gkgcs")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1263223114]
 shape = SubResource("CapsuleShape3D_onrkg")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=825403710]
 mesh = SubResource("CapsuleMesh_i3pqv")
 
-[node name="Radar" parent="." instance=ExtResource("23_al2k6")]
+[node name="Radar" parent="." unique_id=1909476544 instance=ExtResource("23_al2k6")]
 
-[node name="Head" type="Node3D" parent="."]
+[node name="Head" type="Node3D" parent="." unique_id=2143091579]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
-[node name="Camera3D" type="Camera3D" parent="Head"]
+[node name="Camera3D" type="Camera3D" parent="Head" unique_id=512186000]
 current = true
 fov = 150.0
 script = ExtResource("7_d2wvv")
 
-[node name="RayCast3D" type="RayCast3D" parent="Head/Camera3D"]
+[node name="RayCast3D" type="RayCast3D" parent="Head/Camera3D" unique_id=1385056255]
 target_position = Vector3(0, 0, -1.5)
 collision_mask = 160
 hit_from_inside = true
 collide_with_areas = true
 script = ExtResource("2_onrkg")
 
-[node name="Flashlight" type="Node3D" parent="Head"]
+[node name="Flashlight" type="Node3D" parent="Head" unique_id=1049669775]
 
-[node name="SpotLight3D" type="SpotLight3D" parent="Head/Flashlight"]
+[node name="SpotLight3D" type="SpotLight3D" parent="Head/Flashlight" unique_id=1311995014]
 transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0, 0)
 light_energy = 2.0
 light_indirect_energy = 0.0
@@ -98,10 +100,10 @@ spot_attenuation = 0.75
 spot_angle = 35.0
 spot_angle_attenuation = 0.5
 
-[node name="FlashlightAudio" type="AudioStreamPlayer" parent="Head/Flashlight"]
+[node name="FlashlightAudio" type="AudioStreamPlayer" parent="Head/Flashlight" unique_id=1049604451]
 stream = ExtResource("10_d2wvv")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Head/Flashlight"]
+[node name="OmniLight3D" type="OmniLight3D" parent="Head/Flashlight" unique_id=42622425]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 light_energy = 0.5
 light_indirect_energy = 0.0
@@ -109,7 +111,7 @@ light_specular = 0.0
 omni_range = 4.0
 omni_attenuation = 0.0
 
-[node name="RayCast3D" type="RayCast3D" parent="Head/Flashlight"]
+[node name="RayCast3D" type="RayCast3D" parent="Head/Flashlight" unique_id=241751905]
 target_position = Vector3(0, 0, -10)
 collision_mask = 3
 script = ExtResource("10_y4r1p")

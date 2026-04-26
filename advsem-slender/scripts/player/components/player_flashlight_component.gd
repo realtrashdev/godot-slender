@@ -10,6 +10,8 @@ const CAMERA_SMOOTHING = 10
 const ATTRACTION_MAX_ANGLE: float = 25.0
 const ATTRACTION_SMOOTHING: float = 12.0
 
+@export var flicker_sound: AudioStream
+
 var light_on: bool = false
 var sprint_angle: float = -60
 var rotation_override: float = 0
@@ -159,7 +161,7 @@ func set_flicker_light(starting_energy: float):
 		return
 	var energy = light.light_energy
 	
-	AudioTools.play_one_shot(get_tree(), preload("res://audio/player/light_flicker1.mp3"))
+	AudioTools.play_one_shot(get_tree(), flicker_sound, randf_range(0.9, 1.1), -4.0)
 	target_brightness = starting_energy
 	await target_brightness_reached
 	target_brightness = energy

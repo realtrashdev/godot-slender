@@ -18,6 +18,7 @@ func initialize(state: GameState):
 	Signals.game_finished.connect(_on_game_finished)
 	Signals.player_died.connect(_on_player_died)
 
+
 func _on_page_collected():
 	var pages: int = _game_state.current_pages_collected
 	
@@ -41,6 +42,8 @@ func _on_game_finished():
 
 
 func _on_player_died():
+	if audio.stream == null:
+		return
 	var pos: float = audio.get_playback_position()
 	audio.stop()
 	audio.pitch_scale = 0.5
