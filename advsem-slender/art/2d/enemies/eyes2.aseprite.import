@@ -1,0 +1,25 @@
+[remap]
+
+importer="Aseprite SpriteFrames Import"
+type="SpriteFrames"
+uid="uid://bybjb2tsgabby"
+path="res://.godot/imported/eyes2.aseprite-a6ee70b1b0bccabfd2a4bfb1abe760b2.res"
+
+[deps]
+
+source_file="res://art/2d/enemies/eyes2.aseprite"
+dest_files=["res://.godot/imported/eyes2.aseprite-a6ee70b1b0bccabfd2a4bfb1abe760b2.res"]
+
+[params]
+
+spritesheet/layout=1
+spritesheet/fixed_rows_count=1
+spritesheet/fixed_columns_count=1
+spritesheet/border_type=0
+spritesheet/trim=false
+spritesheet/ignore_empty=false
+spritesheet/merge_duplicates=false
+animation/default/name="default"
+animation/default/direction=0
+animation/default/repeat_count=0
+animation/autoplay=""

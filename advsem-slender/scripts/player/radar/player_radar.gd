@@ -118,3 +118,6 @@ func deactivate():
 func _on_screen_clicked(pos: Vector2):
 	#print("Screen clicked at: ", pos)
 	pass
+
+func is_battery_low() -> bool:
+	return radar_screen.is_battery_low()

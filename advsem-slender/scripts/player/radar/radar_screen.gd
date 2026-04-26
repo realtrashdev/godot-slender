@@ -67,6 +67,9 @@ func get_screen_state() -> ScreenState:
 	else:
 		return ScreenState.IDLE
 
+func is_battery_low() -> bool:
+	return battery_component.low
+
 # Private methods
 func _reset_screens():
 	for screen in all_screens:

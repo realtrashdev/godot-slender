@@ -33,6 +33,7 @@ func initialize(state: GameState):
 	# connect to signals and handle internally
 	Signals.page_collected.connect(_on_page_collected)
 	Signals.killed_player.connect(_on_enemy_killed_player)
+	Signals.show_message.connect(_on_show_message)
 	
 	# enable/disable run timer depending on settings
 	in_game_timer_text.visible = Settings.get_run_timer()
@@ -120,6 +121,9 @@ func _get_text_from_level(level: TextLevel):
 			return center_text
 		TextLevel.BOTTOM:
 			return bottom_text
+
+func _on_show_message(text: String):
+	_display_text(text, 1, 4, 1, TextLevel.BOTTOM)
 
 func _display_text(new_text: String, open_time: float, display_time: float, close_time: float, text_level: TextLevel = TextLevel.CENTER):
 	var text_node = _get_text_from_level(text_level)

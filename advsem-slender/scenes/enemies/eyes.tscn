@@ -1,15 +1,18 @@
 [gd_scene format=3 uid="uid://crk8pe0fbwxmu"]
 
 [ext_resource type="Script" uid="uid://dgmarm0y1eq66" path="res://scripts/enemies/base/enemy3D.gd" id="1_lyu0h"]
-[ext_resource type="Texture2D" uid="uid://dporlsh4nr431" path="res://art/2d/enemies/eyes.aseprite" id="2_lyu0h"]
+[ext_resource type="SpriteFrames" uid="uid://bybjb2tsgabby" path="res://art/2d/enemies/eyes2.aseprite" id="2_tcmdf"]
 [ext_resource type="Script" uid="uid://dihwj4ebwryto" path="res://scripts/enemies/components/behaviors/3D/movement/chase_component_3D.gd" id="5_7dbnu"]
+[ext_resource type="Script" uid="uid://nf0behfivwj" path="res://scripts/enemies/actions/enemy_action.gd" id="5_ogip6"]
 [ext_resource type="Script" uid="uid://dce3vw8udcaow" path="res://scripts/enemies/components/behaviors/3D/collision_action_component_3D.gd" id="6_3p5or"]
 [ext_resource type="Script" uid="uid://cnqvaqk6uufwl" path="res://scripts/enemies/components/behaviors/3D/light_activity_component_3D.gd" id="6_raggi"]
 [ext_resource type="Script" uid="uid://fc0srrsdlvkn" path="res://scripts/enemies/actions/action_drain_battery.gd" id="7_ogip6"]
 [ext_resource type="Script" uid="uid://dvel3oprjrqhy" path="res://scripts/enemies/components/behaviors/3D/movement/move_with_player_component_3D.gd" id="7_raggi"]
+[ext_resource type="Script" uid="uid://cph8rufdhfxfo" path="res://scripts/enemies/actions/action_show_message.gd" id="7_u7np2"]
 [ext_resource type="Script" uid="uid://c1o1rbtdkxxke" path="res://scripts/enemies/components/behaviors/3D/visual/scale_animation_component_3D.gd" id="9_i1kru"]
 [ext_resource type="Script" uid="uid://bsyl03flb2uux" path="res://scripts/resources/scale_tween_settings.gd" id="10_xo6ke"]
 [ext_resource type="Script" uid="uid://effuujo1gd4r" path="res://scripts/enemies/components/behaviors/3D/visual/shake_component_3D.gd" id="11_7ijvw"]
+[ext_resource type="Script" uid="uid://dl1snf5gqvaqv" path="res://scripts/enemies/components/behaviors/3D/visual/sprite_animation_component_3D.gd" id="14_ag8xw"]
 [ext_resource type="Script" uid="uid://cm47alcqeepgp" path="res://scripts/enemies/components/behaviors/3D/state_timer_component_3D.gd" id="15_1x33w"]
 [ext_resource type="Script" uid="uid://bk23iyn5r0tgb" path="res://scripts/enemies/OLD/spawn behaviors/spawn_behavior_ring.gd" id="15_ag8xw"]
 [ext_resource type="Script" uid="uid://cqi40i24udhhe" path="res://scripts/enemies/components/behaviors/3D/spawn_component_3d.gd" id="17_ciav6"]
@@ -18,9 +21,14 @@
 radius = 0.856761
 height = 4.0
 
-[sub_resource type="Resource" id="Resource_u7np2"]
+[sub_resource type="Resource" id="Resource_lyu0h"]
 script = ExtResource("7_ogip6")
 metadata/_custom_type_script = "uid://fc0srrsdlvkn"
+
+[sub_resource type="Resource" id="Resource_g7ljx"]
+script = ExtResource("7_u7np2")
+message = "-1 Battery Chunk"
+metadata/_custom_type_script = "uid://cph8rufdhfxfo"
 
 [sub_resource type="Resource" id="Resource_pmg11"]
 script = ExtResource("10_xo6ke")
@@ -50,15 +58,17 @@ script = ExtResource("1_lyu0h")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.01971, 0)
 shape = SubResource("CapsuleShape3D_1xo2g")
 
-[node name="AnimatedSprite3D" type="Sprite3D" parent="." unique_id=483074127]
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=1904834652]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-pixel_size = 0.1
+pixel_size = 0.08
 billboard = 1
 double_sided = false
 no_depth_test = true
 texture_filter = 0
 render_priority = 5
-texture = ExtResource("2_lyu0h")
+sprite_frames = ExtResource("2_tcmdf")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1977690114]
 
 [node name="ChaseComponent3D" type="Node" parent="." unique_id=268188121]
 script = ExtResource("5_7dbnu")
@@ -72,7 +82,8 @@ metadata/_custom_type_script = "uid://dihwj4ebwryto"
 
 [node name="CollisionActionComponent3D" type="Node" parent="." unique_id=1535321348]
 script = ExtResource("6_3p5or")
-action_to_perform = SubResource("Resource_u7np2")
+actions_to_perform = Array[ExtResource("5_ogip6")]([SubResource("Resource_lyu0h"), SubResource("Resource_g7ljx")])
+active_states = Array[int]([3])
 metadata/_custom_type_script = "uid://dce3vw8udcaow"
 
 [node name="LightActivityComponent3D" type="Node" parent="." unique_id=1208398408]
@@ -97,7 +108,7 @@ metadata/_custom_type_script = "uid://c1o1rbtdkxxke"
 [node name="ShakeComponent3D" type="Node" parent="." unique_id=919812531 node_paths=PackedStringArray("target")]
 script = ExtResource("11_7ijvw")
 target = NodePath("../AnimatedSprite3D")
-active_states = Array[int]([2])
+active_states = Array[int]([1])
 metadata/_custom_type_script = "uid://effuujo1gd4r"
 
 [node name="StateTimerComponent3D" type="Node" parent="." unique_id=136272600]
@@ -120,3 +131,13 @@ metadata/_custom_type_script = "uid://cm47alcqeepgp"
 script = ExtResource("17_ciav6")
 behavior = SubResource("Resource_ogip6")
 metadata/_custom_type_script = "uid://cqi40i24udhhe"
+
+[node name="SpriteAnimationComponent3D" type="Node" parent="." unique_id=963077589]
+script = ExtResource("14_ag8xw")
+animation_name_dict = Dictionary[int, String]({
+0: "default",
+1: "lit",
+2: "default",
+3: "lit"
+})
+metadata/_custom_type_script = "uid://dl1snf5gqvaqv"

@@ -23,7 +23,7 @@ func update(battery_remaining: float):
 # Public methods
 func play_notification():
 	var rand_pitch = randf_range(pitch_scale - 0.05, pitch_scale + 0.05)
-	notification_audio.pitch_scale = rand_pitch if rand_pitch >= 0 else 0.0
+	notification_audio.pitch_scale = rand_pitch if rand_pitch >= 0.5 else 0.5
 	notification_audio.volume_db = _get_volume()
 	notification_audio.play()
 
@@ -67,7 +67,7 @@ func _unmute():
 
 func _battery_pitch_shifting(battery_remaining: float):
 	if battery_remaining <= 20:
-		pitch_scale = clamp(battery_remaining / 20, 0.01, 1.0)
+		pitch_scale = clamp(battery_remaining / 20, 0.5, 1.0)
 	elif pitch_scale < 1.0:
 		pitch_scale = 1.0
 	for child in _get_all_audio_sources():

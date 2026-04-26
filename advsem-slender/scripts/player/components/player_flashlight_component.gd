@@ -2,7 +2,10 @@ class_name PlayerFlashlightComponent extends Node
 
 signal target_brightness_reached
 
-const LIGHT_BRIGHTNESS: float = 5.0
+const LIGHT_BRIGHTNESS: float = 2.0
+const LOW_BATTERY_BRIGHTNESS: float = 1.0
+const PASSIVE_FLICKER_AMOUNT: float = 0.2
+
 const DEFAULT_SPRINT_ANGLE: float = -60
 const TURN_ON_ANGLE: Vector2 = Vector2(-60, -30)
 const CAMERA_SMOOTHING = 10
@@ -11,8 +14,10 @@ const ATTRACTION_MAX_ANGLE: float = 25.0
 const ATTRACTION_SMOOTHING: float = 12.0
 
 @export var flicker_sound: AudioStream
+var flickering: bool = false
 
 var light_on: bool = false
+var passive_flicker: bool = false
 var sprint_angle: float = -60
 var rotation_override: float = 0
 var sprint_angle_modifier: float = 20
@@ -22,7 +27,7 @@ var battery_alive: bool = true
 
 var target_brightness: float
 
-var player: CharacterBody3D
+var player: Player
 var head: Node3D
 var restriction_component: PlayerRestrictionComponent
 var movement_component: PlayerMovementComponent
@@ -68,6 +73,16 @@ func _process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("toggle_light") and battery_alive:
 		toggle_light(!light_on)
+
+
+func _physics_process(delta: float) -> void:
+	if player.radar.is_battery_low() and not flickering:
+		target_brightness += randf_range(-PASSIVE_FLICKER_AMOUNT / 10, PASSIVE_FLICKER_AMOUNT / 5)
+		if target_brightness > LIGHT_BRIGHTNESS:
+			target_brightness = LIGHT_BRIGHTNESS
+	elif not flickering:
+		target_brightness = LIGHT_BRIGHTNESS
+
 
 func handle_flashlight_physics(delta: float):
 	if light.light_energy != target_brightness:
@@ -159,12 +174,12 @@ func toggle_light(on: bool):
 func set_flicker_light(starting_energy: float):
 	if !get_light_status():
 		return
-	var energy = light.light_energy
 	
+	flickering = true
 	AudioTools.play_one_shot(get_tree(), flicker_sound, randf_range(0.9, 1.1), -4.0)
 	target_brightness = starting_energy
 	await target_brightness_reached
-	target_brightness = energy
+	flickering = false
 
 
 func flicker_light():

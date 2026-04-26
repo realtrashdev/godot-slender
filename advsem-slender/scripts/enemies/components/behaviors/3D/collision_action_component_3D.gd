@@ -1,7 +1,7 @@
 class_name CollisionActionComponent3D extends EnemyBehavior3D
 
 @export var delete_on_action: bool = true
-@export var action_to_perform: EnemyAction
+@export var actions_to_perform: Array[EnemyAction]
 
 func _physics_update(delta: float) -> void:
 	var body = enemy.get_character_body_3d()
@@ -15,12 +15,13 @@ func _physics_update(delta: float) -> void:
 		
 		if collision.get_collider().is_in_group("Player"):
 			_action()
-			if delete_on_action: enemy.queue_free()
+			if delete_on_action: enemy.die()
 			return
 
 
 func _action():
-	if action_to_perform is EnemyActionKill:
-		action_to_perform.perform_action(enemy.profile)
-		return
-	action_to_perform.perform_action()
+	for action in actions_to_perform:
+		if action is EnemyActionKill:
+			action.perform_action(enemy.profile)
+			return
+		action.perform_action()

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="EnemyProfile" format=3 uid="uid://bepy1x4bj1nga"]
 
-[ext_resource type="Texture2D" uid="uid://ci8oadtmki8uy" path="res://art/2d/enemies/icons/eyes_icon.aseprite" id="1_k4fsp"]
+[ext_resource type="Texture2D" uid="uid://drhjen7mvq0ch" path="res://art/2d/enemies/icons/eyes_icon2.aseprite" id="1_prhvd"]
 [ext_resource type="PackedScene" uid="uid://crk8pe0fbwxmu" path="res://scenes/enemies/eyes.tscn" id="3_3m8w7"]
 [ext_resource type="Script" uid="uid://c426kdmp0e6tf" path="res://scripts/resources/enemies/enemy_profile.gd" id="4_jd4w5"]
 
@@ -18,5 +18,5 @@ description = "A pair of glowing eyes that spawn silently.
 They will permanently drain your radar's battery when angered.
 
 Keep your light off until they go away."
-icon = ExtResource("1_k4fsp")
+icon = ExtResource("1_prhvd")
 metadata/_custom_type_script = "uid://c426kdmp0e6tf"

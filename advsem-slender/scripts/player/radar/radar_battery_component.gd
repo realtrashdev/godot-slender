@@ -15,6 +15,8 @@ var battery_container: HBoxContainer
 
 var state: BatteryState = BatteryState.ALIVE
 var battery_remaining: float = 45.0
+
+var low: bool = false
 var dead: bool = false
 
 
@@ -36,6 +38,7 @@ func update(delta: float, screen_state: RadarScreen.ScreenState):
 	if battery_remaining > 0.0:
 		_add_charge(_get_battery_loss(screen_state) * -delta)
 		_check_if_dead()
+		_check_if_low()
 	_update_visible_chunks()
 
 
@@ -103,14 +106,30 @@ func _get_battery_loss(screen_state: RadarScreen.ScreenState):
 
 func _add_charge(charge: float):
 	battery_remaining += charge
+	
+	# check for overflow
 	if battery_remaining > _get_maximum_battery():
 		battery_remaining = _get_maximum_battery()
 	elif battery_remaining < 0.0:
 		battery_remaining = 0.0
+	
+	if battery_remaining > BATTERY_PER_CHUNK and low:
+		low = false
 	if battery_remaining > 0 and state == BatteryState.DEAD:
 		state = BatteryState.ALIVE
+		dead = false
 		print("Radar alive")
 		Signals.radar_charged.emit()
+
+
+func _check_if_low() -> bool:
+	if low: return true
+	if battery_remaining > 0 and battery_remaining <= BATTERY_PER_CHUNK:
+		low = true
+		Signals.radar_battery_low.emit()
+		print("Radar low on battery")
+		return true
+	return false
 
 
 func _check_if_dead() -> bool:
@@ -118,6 +137,8 @@ func _check_if_dead() -> bool:
 	if battery_remaining <= 0 and not state == BatteryState.DEAD:
 		state = BatteryState.DEAD
 		Signals.radar_died.emit()
+		dead = true
+		low = false
 		print("Radar died")
 		return true
 	return false

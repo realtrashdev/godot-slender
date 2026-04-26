@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://cu87bx3xby546" path="res://scripts/resources/sound_effect_settings.gd" id="6_mo2ph"]
 [ext_resource type="Script" uid="uid://du80erw6qg145" path="res://scripts/enemies/components/behaviors/3D/movement/gravity_component_3D.gd" id="6_vobwd"]
 [ext_resource type="Script" uid="uid://dce3vw8udcaow" path="res://scripts/enemies/components/behaviors/3D/collision_action_component_3D.gd" id="7_apvou"]
+[ext_resource type="Script" uid="uid://nf0behfivwj" path="res://scripts/enemies/actions/enemy_action.gd" id="7_evh4l"]
 [ext_resource type="Script" uid="uid://c0ixgub30et4t" path="res://scripts/enemies/actions/action_kill.gd" id="8_xb6xn"]
 [ext_resource type="Script" uid="uid://obwf6ltnv5wh" path="res://scripts/enemies/components/behaviors/3D/light_sensitive_component_3D.gd" id="9_f8w1j"]
 [ext_resource type="Script" uid="uid://dl1snf5gqvaqv" path="res://scripts/enemies/components/behaviors/3D/visual/sprite_animation_component_3D.gd" id="9_hy5w0"]
@@ -24,7 +25,7 @@
 radius = 0.856761
 height = 4.0
 
-[sub_resource type="Resource" id="Resource_q7t8x"]
+[sub_resource type="Resource" id="Resource_xb6xn"]
 script = ExtResource("8_xb6xn")
 metadata/_custom_type_script = "uid://c0ixgub30et4t"
 
@@ -110,7 +111,7 @@ metadata/_custom_type_script = "uid://dihwj4ebwryto"
 
 [node name="CollisionActionComponent3D" type="Node" parent="." unique_id=1512788887]
 script = ExtResource("7_apvou")
-action_to_perform = SubResource("Resource_q7t8x")
+actions_to_perform = Array[ExtResource("7_evh4l")]([SubResource("Resource_xb6xn")])
 active_states = Array[int]([1, 2])
 metadata/_custom_type_script = "uid://dce3vw8udcaow"
 
