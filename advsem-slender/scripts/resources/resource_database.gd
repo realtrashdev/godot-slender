@@ -155,7 +155,7 @@ static func get_unlocked_scenarios(unlocked_ids: Array) -> Array[ClassicModeScen
 	return result
 
 ##
-## MAPS
+## COLOR SETS
 ##
 static func get_color_set(id: String) -> ColorSet:
 	return COLORSETS.get(id)
