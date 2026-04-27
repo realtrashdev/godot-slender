@@ -32,12 +32,14 @@ var tween: Tween
 
 func _setup():
 	game_state = manager.get_game_state()
-	Signals.page_collected.connect(_display_text)
+	if Settings.get_selected_scenario().resource_name != "tutorial":
+		Signals.page_collected.connect(_display_text)
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("jump"):
-		_display_text()
+	pass
+	#if Input.is_action_just_pressed("jump"):
+	#	_display_text()
 
 
 func _display_text():

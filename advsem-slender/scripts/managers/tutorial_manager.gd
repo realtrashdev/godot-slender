@@ -11,14 +11,14 @@ var can_end: bool = false
 @onready var tutorial_end_ambient: AudioStreamPlayer3D = $"../TutorialEndAmbient"
 
 func _ready() -> void:
-	Signals.tutorial_distance_reached.connect(_on_tutorial_distance_reached)
+	Signals.page_collected.connect(_on_tutorial_distance_reached)
 	call_deferred("_disable_radar_battery")
 	
 	await get_tree().create_timer(5, false).timeout
 	ui_manager.display_text("[wave][W][A][S][D] Move", 1, 3, 1)
-	await get_tree().create_timer(10, false).timeout
+	await get_tree().create_timer(6, false).timeout
 	ui_manager.display_text("[wave][LSHIFT] Sprint", 1, 3, 1)
-	await get_tree().create_timer(13, false).timeout
+	await get_tree().create_timer(8, false).timeout
 	sounds.play()
 	await get_tree().create_timer(2, false).timeout
 	ui_manager.display_text("[wave][F] Toggle Flashlight", 1, 3, 1)
@@ -39,6 +39,8 @@ func _on_tutorial_distance_reached():
 	$"../CSGSphere3D/Area3D/CollisionShape3D".disabled = false
 
 func _on_end_sphere_hit(body):
+	if body is not Player:
+		return
 	if can_end:
 		call_deferred("return_to_menu")
 

@@ -14,6 +14,8 @@ var _game_state: GameState
 
 func initialize(state: GameState):
 	_game_state = state
+	if Settings.get_selected_scenario().resource_name == "tutorial":
+		return
 	Signals.page_collected.connect(_on_page_collected)
 	Signals.game_finished.connect(_on_game_finished)
 	Signals.player_died.connect(_on_player_died)

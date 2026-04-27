@@ -137,6 +137,8 @@ func get_player_spawn_position() -> Vector3:
 
 # high-level event handlers
 func _on_page_collected():
+	if tutorial:
+		return
 	if game_state.current_pages_collected >= game_state.current_pages_required:
 		finish_game(true)
 
@@ -144,5 +146,6 @@ func _on_player_died():
 	finish_game(false)
 
 func _on_game_started():
-	if tutorial: return
+	if tutorial:
+		return
 	ui_manager.show_objective()

@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dqhlmv6mga3ln" path="res://scenes/player/player.tscn" id="9_ejsno"]
 [ext_resource type="PackedScene" uid="uid://butj0f02n1mh0" path="res://scenes/ui/canvases/pause_menu.tscn" id="10_6klke"]
 [ext_resource type="Texture2D" uid="uid://b0oaoqusfayma" path="res://art/2d/textures/grass1.aseprite" id="12_45jfg"]
+[ext_resource type="Texture2D" uid="uid://c4he6fivjqx5e" path="res://art/2d/textures/chain_fence.aseprite" id="15_ehkdl"]
 [ext_resource type="PackedScene" uid="uid://cuouj5je2wv8g" path="res://scenes/collection/page_location.tscn" id="15_nwf1m"]
 [ext_resource type="PackedScene" uid="uid://c5j4dypjweuc2" path="res://scenes/ui/canvases/jumpscare_canvaslayer.tscn" id="21_q2kvd"]
 
@@ -49,6 +50,46 @@ emission = Color(1, 1, 1, 1)
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_pa2ps"]
 height = 5.0
 radius = 6.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ehkdl"]
+transparency = 1
+albedo_texture = ExtResource("15_ehkdl")
+metallic_specular = 0.0
+uv1_scale = Vector3(60, 6.06, 1)
+uv1_triplanar_sharpness = 150.0
+texture_filter = 0
+
+[sub_resource type="QuadMesh" id="QuadMesh_4vax3"]
+material = SubResource("StandardMaterial3D_ehkdl")
+size = Vector2(60, 5.98)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gpldo"]
+transparency = 1
+albedo_texture = ExtResource("15_ehkdl")
+metallic_specular = 0.0
+uv1_scale = Vector3(120, 6.06, 1)
+uv1_triplanar_sharpness = 150.0
+texture_filter = 0
+
+[sub_resource type="QuadMesh" id="QuadMesh_fvh0q"]
+material = SubResource("StandardMaterial3D_gpldo")
+size = Vector2(120, 5.98)
+
+[sub_resource type="QuadMesh" id="QuadMesh_7gnkv"]
+material = SubResource("StandardMaterial3D_gpldo")
+size = Vector2(120, 5.98)
+
+[sub_resource type="QuadMesh" id="QuadMesh_rvv70"]
+material = SubResource("StandardMaterial3D_ehkdl")
+size = Vector2(60, 5.98)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6klke"]
+albedo_color = Color(0.5019608, 0.5019608, 0.5019608, 1)
+metallic_specular = 0.0
+uv1_scale = Vector3(0.2, 1, 0.3)
+uv1_offset = Vector3(0.52, 0, 0)
+uv1_triplanar = true
+texture_filter = 0
 
 [node name="Abyss Level" type="Node3D" unique_id=2100063983]
 
@@ -127,5 +168,62 @@ material = SubResource("StandardMaterial3D_pa2ps")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 shape = SubResource("CylinderShape3D_pa2ps")
 disabled = true
+
+[node name="Fence" type="MeshInstance3D" parent="." unique_id=1391560228]
+transform = Transform3D(0.99999976, 0, 0, 0, 1, 0, 0, 0, 0.99999976, 1.0051937, 2.0199924, -60.493244)
+mesh = SubResource("QuadMesh_4vax3")
+skeleton = NodePath("../../OutsideMap")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Fence" unique_id=1488541386]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.49999976, 0)
+layers = 0
+use_collision = true
+size = Vector3(254, 6, 1)
+
+[node name="Fence3" type="MeshInstance3D" parent="." unique_id=1206373562]
+transform = Transform3D(-4.3711378e-08, 0, 0.99999976, 0, 1, 0, -0.99999976, 0, -4.3711378e-08, -28.994804, 2.0199924, -0.493248)
+mesh = SubResource("QuadMesh_fvh0q")
+skeleton = NodePath("../../OutsideMap")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Fence3" unique_id=161096917]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.49999976, 0)
+layers = 0
+use_collision = true
+size = Vector3(254, 6, 1)
+
+[node name="Fence4" type="MeshInstance3D" parent="." unique_id=912092686]
+transform = Transform3D(-4.3711378e-08, 0, -0.99999976, 0, 1, 0, 0.99999976, 0, -4.3711378e-08, 31.005192, 2.0199924, -0.493248)
+mesh = SubResource("QuadMesh_7gnkv")
+skeleton = NodePath("../../OutsideMap")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Fence4" unique_id=1076778291]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.49999976, 0)
+layers = 0
+use_collision = true
+size = Vector3(254, 6, 1)
+
+[node name="Fence2" type="MeshInstance3D" parent="." unique_id=966538309]
+transform = Transform3D(0.99999976, 0, 0, 0, -1, 8.742276e-08, 0, -8.742277e-08, -0.99999976, 1.0051937, 2.0199924, 59.50675)
+mesh = SubResource("QuadMesh_rvv70")
+skeleton = NodePath("../../OutsideMap")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Fence2" unique_id=853614990]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.49999976, 0)
+layers = 0
+use_collision = true
+size = Vector3(254, 6, 1)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1955335386 groups=["PathSounds"]]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, -0.48, 0)
+use_collision = true
+collision_layer = 3
+size = Vector3(6, 1, 200)
+material = SubResource("StandardMaterial3D_6klke")
+
+[node name="PageLocation" parent="." unique_id=481585682 instance=ExtResource("15_nwf1m")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.5, 59.45)
+
+[node name="PageLocation2" parent="." unique_id=1717665091 instance=ExtResource("15_nwf1m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -60.45)
 
 [connection signal="body_entered" from="CSGSphere3D/Area3D" to="TutorialManager" method="_on_end_sphere_hit"]

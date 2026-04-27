@@ -19,7 +19,7 @@ description = "Everybody starts somewhere...
 enemies_to_add = Dictionary[int, ExtResource("1_hsbv5")]({
 1000000: SubResource("Resource_mx8kg")
 })
-required_pages = 1
-total_pages = 1
+required_pages = 3
+total_pages = 3
 unlock_description = "Kill the developer now. This should not be locked."
 metadata/_custom_type_script = "uid://cbb8lvjddytcc"
