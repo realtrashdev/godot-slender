@@ -39,7 +39,7 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("toggle_radar") and can_toggle and active:
 		can_toggle = false
 		toggle_radar()
-		await get_tree().create_timer(0.5).timeout
+		await get_tree().create_timer(0.5, false).timeout
 		can_toggle = true
 
 func initialize(state: GameState):

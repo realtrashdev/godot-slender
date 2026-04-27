@@ -25,6 +25,10 @@ bg_color = Color(1, 1, 1, 1)
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_l0tc6"]
 thickness = 16
 
+[sub_resource type="DPITexture" id="DPITexture_vk1wc"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"12\" height=\"12\"><path fill=\"none\" stroke=\"#b2b2b2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-opacity=\".85\" stroke-width=\"2\" d=\"m2 4 4 4 4-4\"/></svg>
+"
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t0bju"]
 bg_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 4
@@ -63,4 +67,5 @@ HSlider/icons/grabber_highlight = ExtResource("3_gttji")
 HSlider/styles/grabber_area = SubResource("StyleBoxFlat_gttji")
 HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_jhqhc")
 HSlider/styles/slider = SubResource("StyleBoxLine_l0tc6")
+OptionButton/icons/arrow = SubResource("DPITexture_vk1wc")
 VScrollBar/styles/grabber = SubResource("StyleBoxFlat_t0bju")

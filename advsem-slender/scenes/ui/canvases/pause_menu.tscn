@@ -1,0 +1,152 @@
+[gd_scene format=3 uid="uid://butj0f02n1mh0"]
+
+[ext_resource type="Script" uid="uid://derh0xwf6lc6q" path="res://scripts/ui/canvases/pause_menu.gd" id="1_mg0oj"]
+[ext_resource type="Theme" uid="uid://bommyqwo15hbx" path="res://theme1.tres" id="2_5qxoi"]
+[ext_resource type="Script" uid="uid://c3ysaqnmo1oo8" path="res://scripts/ui/ui_text.gd" id="3_r360a"]
+[ext_resource type="PackedScene" uid="uid://6lvn3tolsp7r" path="res://scenes/ui/buttons/menu_button.tscn" id="4_qr8y1"]
+[ext_resource type="Script" uid="uid://6gu3dcl8rsxn" path="res://scripts/ui/mouse_parallax.gd" id="5_qr8y1"]
+[ext_resource type="PackedScene" uid="uid://bf56ninpioec6" path="res://scenes/ui/settings.tscn" id="5_r360a"]
+
+[node name="PauseMenu" type="CanvasLayer" unique_id=947043538]
+process_mode = 2
+visible = false
+script = ExtResource("1_mg0oj")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=78568012]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5019608)
+metadata/_edit_use_anchors_ = true
+
+[node name="Title" type="RichTextLabel" parent="." unique_id=1288008122]
+clip_contents = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -856.0
+offset_top = -436.0
+offset_right = -290.0
+offset_bottom = -354.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(147, 43)
+theme = ExtResource("2_5qxoi")
+theme_override_constants/outline_size = 24
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "[wave freq=3]PAUSED"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+script = ExtResource("3_r360a")
+sr_enabled = true
+sr_rotation = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=269404953]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -850.5
+offset_top = -300.0
+offset_right = -50.0
+offset_bottom = 450.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ResumeButton" parent="VBoxContainer" unique_id=1211343220 instance=ExtResource("4_qr8y1")]
+layout_mode = 2
+default_text = "Resume"
+default_color = Color(0.80049086, 0.80049074, 0.80049074, 1)
+press_color = Color(0, 0, 0, 1)
+wait_time = 0.0
+
+[node name="SettingsButton" parent="VBoxContainer" unique_id=32452271 instance=ExtResource("4_qr8y1")]
+layout_mode = 2
+default_text = "Settings"
+default_color = Color(0.80049086, 0.80049074, 0.80049074, 1)
+press_color = Color(0, 0, 0, 1)
+wait_time = 0.0
+
+[node name="OverviewButton" parent="VBoxContainer" unique_id=2026837079 instance=ExtResource("4_qr8y1")]
+layout_mode = 2
+default_text = "Enemy Overview"
+default_color = Color(0.80049086, 0.80049074, 0.80049074, 1)
+press_color = Color(0, 0, 0, 1)
+wait_time = 0.0
+
+[node name="RestartButton" parent="VBoxContainer" unique_id=22272161 instance=ExtResource("4_qr8y1")]
+layout_mode = 2
+default_text = "Restart Game"
+default_color = Color(0.80049086, 0.80049074, 0.80049074, 1)
+press_color = Color(0, 0, 0, 1)
+wait_time = 0.0
+
+[node name="QuitButton" parent="VBoxContainer" unique_id=206011233 instance=ExtResource("4_qr8y1")]
+layout_mode = 2
+default_text = "Quit to Menu"
+default_color = Color(0.80049086, 0.80049074, 0.80049074, 1)
+press_color = Color(0, 0, 0, 1)
+wait_time = 0.0
+
+[node name="Settings" type="Control" parent="." unique_id=800745621]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StrongMouseParallax" type="Control" parent="Settings" unique_id=1741064618]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_qr8y1")
+metadata/_custom_type_script = "uid://6gu3dcl8rsxn"
+
+[node name="ColorRect" type="ColorRect" parent="Settings/StrongMouseParallax" unique_id=1031997583]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Settings" parent="Settings/StrongMouseParallax" unique_id=72089477 instance=ExtResource("5_r360a")]
+layout_mode = 1
+offset_left = -502.0
+offset_top = -332.0
+offset_right = 502.0
+offset_bottom = 332.0
+
+[node name="CloseSettingsButton" parent="Settings/StrongMouseParallax" unique_id=1307791032 instance=ExtResource("4_qr8y1")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -339.0
+offset_top = 34.0
+offset_right = -39.0
+offset_bottom = 134.0
+grow_horizontal = 0
+default_text = "Close"
+default_color = Color(0.6542321, 0.6542321, 0.654232, 1)
+justification = 2
+
+[connection signal="pressed" from="VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/OverviewButton" to="." method="_on_overview_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="Settings/StrongMouseParallax/CloseSettingsButton" to="." method="_on_close_settings_button_pressed"]

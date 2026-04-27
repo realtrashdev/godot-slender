@@ -52,6 +52,8 @@ func open_menu(type: MenuConfig.MenuType, direction: MenuConfig.TransitionDirect
 
 
 func open_menu_instant(type: MenuConfig.MenuType, direction: MenuConfig.TransitionDirection, play_sound: bool = true):
+	pixel_transition.transition(0.0, 0.0)
+	
 	var scene_path = MenuConfig.MENU_SCENES.get(type)
 	if not scene_path:
 		push_error("Menu type not found: " + str(type))

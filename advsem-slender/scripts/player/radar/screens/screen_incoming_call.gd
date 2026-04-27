@@ -36,7 +36,7 @@ func _process(delta: float) -> void:
 
 func start_call():
 	call_active = true
-	await get_tree().create_timer(1.77).timeout
+	await get_tree().create_timer(1.77, false).timeout
 	if not visible:
 		visible = true
 

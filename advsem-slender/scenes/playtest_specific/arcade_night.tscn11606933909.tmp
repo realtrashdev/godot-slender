@@ -1,0 +1,126 @@
+[gd_scene format=3 uid="uid://dhpob44ins3ed"]
+
+[ext_resource type="Script" uid="uid://but57u6bdov1m" path="res://scripts/playtest_specific/arcade_night.gd" id="1_4cdf8"]
+[ext_resource type="Theme" uid="uid://bommyqwo15hbx" path="res://theme1.tres" id="1_8qntc"]
+[ext_resource type="Script" uid="uid://c3ysaqnmo1oo8" path="res://scripts/ui/ui_text.gd" id="2_avpa2"]
+[ext_resource type="PackedScene" uid="uid://6lvn3tolsp7r" path="res://scenes/ui/buttons/menu_button.tscn" id="3_avpa2"]
+[ext_resource type="AudioStream" uid="uid://3mw2rufd0pkp" path="res://audio/music/dynamic music/chiptune1/chiptune1_3.ogg" id="4_ekasq"]
+[ext_resource type="Script" uid="uid://ny0s8850mmpr" path="res://scripts/audio_player.gd" id="5_cxhiv"]
+
+[node name="ArcadeNight" type="Control" unique_id=267016483]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4cdf8")
+
+[node name="Title" type="RichTextLabel" parent="." unique_id=118172940]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -359.5
+offset_top = -410.0
+offset_right = 360.5
+offset_bottom = -328.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(360, 41)
+theme = ExtResource("1_8qntc")
+theme_override_constants/outline_size = 24
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "[wave freq=3]Hello!"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+script = ExtResource("2_avpa2")
+sr_rotation = 3.0
+
+[node name="Desc" type="RichTextLabel" parent="." unique_id=1320337554]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -891.5
+offset_top = -329.5
+offset_right = 891.5
+offset_bottom = 329.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_8qntc")
+theme_override_constants/paragraph_separation = 4
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "If you're reading this, it must be Arcade Night!
+
+Endless Pages is a horror game, but it's not too scary.
+Be warned!
+
+If you've played the game before and want to skip the tutorial, go ahead!
+But be warned, there have been some mechanical changes.
+
+Play tutorial?"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CustomAudioPlayer" type="AudioStreamPlayer" parent="." unique_id=1794192897]
+stream = ExtResource("4_ekasq")
+pitch_scale = 0.7
+script = ExtResource("5_cxhiv")
+fade_in_enabled = true
+fade_in_volume = -6.0
+fade_in_time = 4.0
+metadata/_custom_type_script = "uid://ny0s8850mmpr"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1074958023]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -268.0
+offset_top = -270.0
+offset_right = 268.0
+offset_bottom = -140.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 50
+
+[node name="PlayButton" parent="HBoxContainer" unique_id=78423774 instance=ExtResource("3_avpa2")]
+layout_mode = 2
+default_text = "Play"
+default_color = Color(0.54497427, 0.5449743, 0.5449741, 1)
+press_color = Color(0, 0, 0, 1)
+
+[node name="SkipButton" parent="HBoxContainer" unique_id=1435026821 instance=ExtResource("3_avpa2")]
+layout_mode = 2
+default_text = "Skip"
+default_color = Color(0.54497427, 0.5449743, 0.5449741, 1)
+press_color = Color(0, 0, 0, 1)
+justification = 2
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=11186669]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[connection signal="pressed" from="HBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/SkipButton" to="." method="_on_skip_button_pressed"]

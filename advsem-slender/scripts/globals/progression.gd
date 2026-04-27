@@ -16,7 +16,7 @@ var data: Dictionary = {
 	"unlocked_scenarios": ["basics1"],
 	"unlocked_characters": ["default"],
 	"unlocked_palettes": ["grayscale", "red", "orange", "yellow", "green", "blue", "purple", "gameboy", "cottoncandy"],
-	"unlocked_maps": ["abyss", "forest"],
+	"unlocked_maps": ["forest"],
 	
 	# Completion
 	"completed_tutorial": false,
@@ -124,7 +124,7 @@ func get_unlocked_palettes() -> Array[ColorSet]:
 	return ResourceDatabase.get_unlocked_color_sets(data.get("unlocked_palettes", ["mono"]))
 
 func get_unlocked_maps() -> Array[Map]:
-	return ResourceDatabase.get_unlocked_maps(data.get("unlocked_maps", ["abyss", "forest"]))
+	return ResourceDatabase.get_unlocked_maps(data.get("unlocked_maps", ["forest"]))
 #endregion
 
 #region Completion
@@ -164,7 +164,7 @@ func reset_to_defaults():
 		"unlocked_scenarios": ["basics1"],
 		"unlocked_characters": ["default"],
 		"unlocked_palettes": ["grayscale", "red", "orange", "yellow", "green", "blue", "purple", "gameboy", "cottoncandy"],
-		"unlocked_maps": ["abyss", "forest"],
+		"unlocked_maps": ["forest"],
 		
 		"completed_tutorial": false,
 		"completed_scenarios": [],

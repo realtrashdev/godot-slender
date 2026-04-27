@@ -1,0 +1,172 @@
+[gd_scene format=3 uid="uid://bf56ninpioec6"]
+
+[ext_resource type="PackedScene" uid="uid://6lvn3tolsp7r" path="res://scenes/ui/buttons/menu_button.tscn" id="1_h175o"]
+[ext_resource type="Script" uid="uid://br2ge107x4qrj" path="res://scripts/ui/settings_panel.gd" id="1_ptynm"]
+[ext_resource type="PackedScene" uid="uid://bkqf54hj5ec1s" path="res://scenes/ui/buttons/setting_slider.tscn" id="2_ptynm"]
+[ext_resource type="PackedScene" uid="uid://c2tm8p5c3mxlf" path="res://scenes/ui/buttons/setting_checkbox.tscn" id="3_ncfhn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xte0n"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.6255971, 0.6255971, 0.6255971, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q824c"]
+bg_color = Color(0.3779188, 0.3779189, 0.37791875, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cfoln"]
+bg_color = Color(0.20511743, 0.20511743, 0.20511743, 1)
+
+[node name="Settings" type="PanelContainer" unique_id=72089477]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -336.0
+offset_top = -250.0
+offset_right = 336.0
+offset_bottom = 414.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_xte0n")
+script = ExtResource("1_ptynm")
+
+[node name="Panel" type="Panel" parent="." unique_id=352089424]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_q824c")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=896975043]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Panel2" type="Panel" parent="HBoxContainer" unique_id=1192450848]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_cfoln")
+
+[node name="Categories" type="MarginContainer" parent="HBoxContainer" unique_id=1583296388]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="Panel" type="Panel" parent="HBoxContainer/Categories" unique_id=1454144620]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_cfoln")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Categories" unique_id=898499716]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+theme_override_constants/separation = 64
+
+[node name="GameSettings" parent="HBoxContainer/Categories/VBoxContainer" unique_id=67662745 instance=ExtResource("1_h175o")]
+layout_mode = 2
+default_text = "Game"
+
+[node name="DisplaySettings" parent="HBoxContainer/Categories/VBoxContainer" unique_id=368746347 instance=ExtResource("1_h175o")]
+layout_mode = 2
+default_text = "Display"
+
+[node name="AudioSettings" parent="HBoxContainer/Categories/VBoxContainer" unique_id=1524732205 instance=ExtResource("1_h175o")]
+layout_mode = 2
+default_text = "Audio"
+
+[node name="OtherSettings" parent="HBoxContainer/Categories/VBoxContainer" unique_id=1716546165 instance=ExtResource("1_h175o")]
+visible = false
+layout_mode = 2
+
+[node name="Settings" type="MarginContainer" parent="HBoxContainer" unique_id=1069465209]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="GameSettings" type="VBoxContainer" parent="HBoxContainer/Settings" unique_id=379902127]
+custom_minimum_size = Vector2(600, 100)
+layout_mode = 2
+theme_override_constants/separation = 64
+
+[node name="Sensitivity" type="MarginContainer" parent="HBoxContainer/Settings/GameSettings" unique_id=641687384]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="SensitivitySlider" parent="HBoxContainer/Settings/GameSettings/Sensitivity" unique_id=1861900441 instance=ExtResource("2_ptynm")]
+layout_mode = 2
+max_value = 2.0
+step = 0.1
+value = 1.0
+setting_name = "Mouse Sensitivity"
+variable_name = "mouse_sensitivity"
+
+[node name="IGT" type="MarginContainer" parent="HBoxContainer/Settings/GameSettings" unique_id=951391070]
+custom_minimum_size = Vector2(0, 55)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="CheckBox" parent="HBoxContainer/Settings/GameSettings/IGT" unique_id=428183609 instance=ExtResource("3_ncfhn")]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="DisplaySettings" type="VBoxContainer" parent="HBoxContainer/Settings" unique_id=422798731]
+visible = false
+custom_minimum_size = Vector2(600, 100)
+layout_mode = 2
+theme_override_constants/separation = 64
+
+[node name="CRT" type="MarginContainer" parent="HBoxContainer/Settings/DisplaySettings" unique_id=1578177931]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="CRTSlider" parent="HBoxContainer/Settings/DisplaySettings/CRT" unique_id=2005465931 instance=ExtResource("2_ptynm")]
+layout_mode = 2
+max_value = 0.5
+step = 0.025
+
+[node name="Vignette" type="MarginContainer" parent="HBoxContainer/Settings/DisplaySettings" unique_id=572007376]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="VignetteSlider" parent="HBoxContainer/Settings/DisplaySettings/Vignette" unique_id=560303173 instance=ExtResource("2_ptynm")]
+layout_mode = 2
+setting_name = "Vignette"
+variable_name = "vignette_intensity"
+
+[node name="Fullscreen" type="MarginContainer" parent="HBoxContainer/Settings/DisplaySettings" unique_id=311382912]
+custom_minimum_size = Vector2(0, 55)
+layout_mode = 2
+
+[node name="CheckBox" parent="HBoxContainer/Settings/DisplaySettings/Fullscreen" unique_id=1741983219 instance=ExtResource("3_ncfhn")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+display_name = "Fullscreen"
+variable_name = "fullscreen"
+
+[node name="AudioSettings" type="VBoxContainer" parent="HBoxContainer/Settings" unique_id=692738351]
+visible = false
+custom_minimum_size = Vector2(600, 100)
+layout_mode = 2
+theme_override_constants/separation = 64
+
+[node name="Volume" type="MarginContainer" parent="HBoxContainer/Settings/AudioSettings" unique_id=1630358444]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="VolumeSlider" parent="HBoxContainer/Settings/AudioSettings/Volume" unique_id=711108786 instance=ExtResource("2_ptynm")]
+layout_mode = 2
+max_value = 2.0
+step = 0.1
+setting_name = "Volume"
+variable_name = "master_volume"
+
+[connection signal="pressed" from="HBoxContainer/Categories/VBoxContainer/GameSettings" to="." method="_on_game_settings_pressed"]
+[connection signal="pressed" from="HBoxContainer/Categories/VBoxContainer/DisplaySettings" to="." method="_on_display_settings_pressed"]
+[connection signal="pressed" from="HBoxContainer/Categories/VBoxContainer/AudioSettings" to="." method="_on_audio_settings_pressed"]
+[connection signal="pressed" from="HBoxContainer/Categories/VBoxContainer/OtherSettings" to="." method="_on_other_settings_pressed"]

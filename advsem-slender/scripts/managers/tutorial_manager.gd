@@ -2,6 +2,7 @@ extends Node
 
 var can_end: bool = false
 
+@onready var player: Player = $"../Player"
 @onready var game_manager: Node = $"../GameManager"
 @onready var page_manager: PageSpawnManager = $"../PageManager"
 @onready var audio_manager: AudioManager = $"../AudioManager"
@@ -11,20 +12,24 @@ var can_end: bool = false
 
 func _ready() -> void:
 	Signals.tutorial_distance_reached.connect(_on_tutorial_distance_reached)
+	call_deferred("_disable_radar_battery")
 	
-	await get_tree().create_timer(5).timeout
+	await get_tree().create_timer(5, false).timeout
 	ui_manager.display_text("[wave][W][A][S][D] Move", 1, 3, 1)
-	await get_tree().create_timer(10).timeout
+	await get_tree().create_timer(10, false).timeout
 	ui_manager.display_text("[wave][LSHIFT] Sprint", 1, 3, 1)
-	await get_tree().create_timer(13).timeout
+	await get_tree().create_timer(13, false).timeout
 	sounds.play()
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(2, false).timeout
 	ui_manager.display_text("[wave][F] Toggle Flashlight", 1, 3, 1)
 
 # debug
 #func _input(event: InputEvent) -> void:
 	#if Input.is_action_just_pressed("jump"):
 		#return_to_menu()
+
+func _disable_radar_battery():
+	player.radar.radar_screen.do_battery_drain = false
 
 func _on_tutorial_distance_reached():
 	ui_manager.display_text("[wave][RCLICK] Toggle Tracker", 1, 3, 1)

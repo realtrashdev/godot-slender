@@ -7,8 +7,8 @@
 [ext_resource type="Script" uid="uid://dung7jxkr00xe" path="res://scripts/managers/audio_manager.gd" id="3_ip3p4"]
 [ext_resource type="AudioStream" uid="uid://ga65x2ikqfdg" path="res://audio/ambient/wind_ambient.wav" id="5_rvv70"]
 [ext_resource type="Script" uid="uid://ny0s8850mmpr" path="res://scripts/audio_player.gd" id="6_6iroa"]
-[ext_resource type="PackedScene" uid="uid://x286lkut7nsk" path="res://scenes/collection/page_collection_ambience.tscn" id="7_evfjf"]
 [ext_resource type="PackedScene" uid="uid://dcy7ewx8f37mf" path="res://scenes/ui/canvases/in_game_ui.tscn" id="8_465k3"]
+[ext_resource type="PackedScene" uid="uid://c1q5yjqc6li4f" path="res://scenes/collection/dynamic_collection_music.tscn" id="8_pa2ps"]
 [ext_resource type="PackedScene" uid="uid://dqhlmv6mga3ln" path="res://scenes/player/player.tscn" id="9_ejsno"]
 [ext_resource type="Texture2D" uid="uid://b0oaoqusfayma" path="res://art/2d/textures/grass1.aseprite" id="12_45jfg"]
 [ext_resource type="PackedScene" uid="uid://cuouj5je2wv8g" path="res://scenes/collection/page_location.tscn" id="15_nwf1m"]
@@ -49,68 +49,68 @@ emission = Color(1, 1, 1, 1)
 height = 5.0
 radius = 6.0
 
-[node name="Abyss Level" type="Node3D"]
+[node name="Abyss Level" type="Node3D" unique_id=2100063983]
 
-[node name="TutorialManager" type="Node" parent="."]
+[node name="TutorialManager" type="Node" parent="." unique_id=222758447]
 script = ExtResource("1_pa2ps")
 
-[node name="Sounds" type="AudioStreamPlayer" parent="TutorialManager"]
+[node name="Sounds" type="AudioStreamPlayer" parent="TutorialManager" unique_id=1959320429]
 stream = ExtResource("2_6klke")
 volume_db = 0.2
 pitch_scale = 0.1
 
-[node name="GameManager" type="Node" parent="."]
+[node name="GameManager" type="Node" parent="." unique_id=178745808]
 script = ExtResource("1_4qugp")
 tutorial = true
 
-[node name="PageManager" type="Node" parent="."]
+[node name="PageManager" type="Node" parent="." unique_id=478320831]
 script = ExtResource("2_4m1xt")
 
-[node name="AudioManager" type="Node" parent="."]
+[node name="AudioManager" type="Node" parent="." unique_id=810986419]
 script = ExtResource("3_ip3p4")
 
-[node name="IntroAudio" type="AudioStreamPlayer" parent="AudioManager"]
+[node name="IntroAudio" type="AudioStreamPlayer" parent="AudioManager" unique_id=785688492]
 volume_db = 2.0
 
-[node name="Ambient" type="AudioStreamPlayer" parent="AudioManager"]
+[node name="Ambient" type="AudioStreamPlayer" parent="AudioManager" unique_id=1240802513]
 stream = ExtResource("5_rvv70")
 volume_db = -80.0
 script = ExtResource("6_6iroa")
 
-[node name="CollectionAmbient" parent="AudioManager" instance=ExtResource("7_evfjf")]
+[node name="DynamicCollectionMusic" parent="AudioManager" unique_id=1948757671 instance=ExtResource("8_pa2ps")]
 
-[node name="UIManager" parent="." instance=ExtResource("8_465k3")]
+[node name="UIManager" parent="." unique_id=47194936 instance=ExtResource("8_465k3")]
 tutorial = true
 
-[node name="Player" parent="." instance=ExtResource("9_ejsno")]
+[node name="Player" parent="." unique_id=523781810 instance=ExtResource("9_ejsno")]
 transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 1, 0)
 
-[node name="Map" type="NavigationRegion3D" parent="."]
+[node name="Map" type="NavigationRegion3D" parent="." unique_id=1632622685]
 navigation_mesh = SubResource("NavigationMesh_u1wns")
 
-[node name="Floor" type="CSGBox3D" parent="Map" groups=["GrassSounds", "Slows"]]
+[node name="Floor" type="CSGBox3D" parent="Map" unique_id=1268553490 groups=["GrassSounds", "Slows"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -0.5)
 use_collision = true
 size = Vector3(1000, 1, 1000)
 material = SubResource("StandardMaterial3D_h2yge")
 
-[node name="PageLocation" parent="Map" instance=ExtResource("15_nwf1m")]
+[node name="PageLocation" parent="Map" unique_id=220757339 instance=ExtResource("15_nwf1m")]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, -2, 0)
 
-[node name="Jumpscare" parent="." instance=ExtResource("21_q2kvd")]
+[node name="Jumpscare" parent="." unique_id=602044966 instance=ExtResource("21_q2kvd")]
 layer = 9
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=535543078]
 environment = SubResource("Environment_h2yge")
 
-[node name="TutorialEndAmbient" type="AudioStreamPlayer3D" parent="."]
+[node name="TutorialEndAmbient" type="AudioStreamPlayer3D" parent="." unique_id=1558728527]
 stream = ExtResource("5_rvv70")
 volume_db = 6.0
 max_db = 6.0
 pitch_scale = 0.2
 max_distance = 40.0
 
-[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+[node name="CSGSphere3D" type="CSGSphere3D" parent="." unique_id=1773356491]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 visible = false
 radius = 3.0
@@ -118,9 +118,9 @@ radial_segments = 36
 rings = 12
 material = SubResource("StandardMaterial3D_pa2ps")
 
-[node name="Area3D" type="Area3D" parent="CSGSphere3D"]
+[node name="Area3D" type="Area3D" parent="CSGSphere3D" unique_id=432182026]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CSGSphere3D/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CSGSphere3D/Area3D" unique_id=1583791350]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 shape = SubResource("CylinderShape3D_pa2ps")
 disabled = true

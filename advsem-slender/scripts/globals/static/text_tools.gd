@@ -18,7 +18,7 @@ static func change_visible_characters_timed(text_object: RichTextLabel, char_dis
 		return
 	
 	change_visible_characters(text_object, char_display_amount, show_time)
-	await Engine.get_main_loop().create_timer(wait_time).timeout
+	await Engine.get_main_loop().create_timer(wait_time, false).timeout
 	
 	if not is_instance_valid(text_object):
 		return

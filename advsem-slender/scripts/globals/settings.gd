@@ -14,10 +14,10 @@ var data: Dictionary = {
 	"master_volume": 1.0,
 	
 	## Control
-	"mouse_sensitivity": 0.002,
+	"mouse_sensitivity": 1.0,   # 0.00 - 2.00
 	
 	## Display
-	"window_mode": DisplayServer.WINDOW_MODE_FULLSCREEN,
+	"fullscreen": true,
 	"crt_opacity": 0.1,         # 0.00 - 0.33
 	"vignette_intensity": 0.7,  # 0.00 - 1.00
 	
@@ -65,7 +65,11 @@ func set_selected_map(map_name: String):
 	setting_changed.emit("selected_map", map_name)
 
 ##
-## Settings Menu
+## Settings
+##
+
+##
+## Audio
 ##
 func get_master_volume() -> float:
 	return data.get("master_volume", 1.0)
@@ -75,19 +79,20 @@ func set_master_volume(volume: float):
 	AudioServer.set_bus_volume_linear(0, volume)
 	setting_changed.emit("master_volume", volume)
 
-func get_mouse_sensitivity() -> float:
-	return data.get("mouse_sensitivity", 0.002)
 
-func set_mouse_sensitivity(sensitivity: float):
-	data["mouse_sensitivity"] = sensitivity
-	setting_changed.emit("mouse_sensitivity", sensitivity)
+##
+## Display
+##
+func get_fullscreen() -> bool:
+	return data.get("fullscreen", false)
 
-func get_screen_mode() -> DisplayServer.WindowMode:
-	return data.get("window_mode")
-
-func set_screen_mode(mode: DisplayServer.WindowMode):
-	data["window_mode"] = mode
-	setting_changed.emit("window_mode", mode)
+func set_fullscreen(enabled: bool):
+	data["fullscreen"] = enabled
+	setting_changed.emit("fullscreen", enabled)
+	if enabled:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 
 func get_crt_opacity() -> float:
 	return data.get("crt_opacity", 0.05)
@@ -102,6 +107,20 @@ func get_vignette_intensity() -> float:
 func set_vignette_intensity(intensity: float):
 	data["vignette_intensity"] = intensity
 	setting_changed.emit("vignette_intensity", intensity)
+
+##
+## Gameplay
+##
+func get_actual_mouse_sensitivity() -> float: # 0.001 - 0.003
+	return (data.get("mouse_sensitivity", 1.0) + 1) / 1000
+
+func get_mouse_sensitivity() -> float: # 0.0 - 2.0
+	return data.get("mouse_sensitivity", 2.0)
+
+func set_mouse_sensitivity(sensitivity: float):
+	data["mouse_sensitivity"] = sensitivity
+	setting_changed.emit("mouse_sensitivity", sensitivity)
+	print("new sens: %s" % sensitivity)
 
 func get_run_timer() -> bool:
 	return data.get("run_timer", false)
@@ -121,9 +140,9 @@ func reset_to_defaults():
 		
 		"master_volume": 1.0,
 		
-		"mouse_sensitivity": 0.002,
+		"mouse_sensitivity": 1.0,
 		
-		"window_mode": DisplayServer.WINDOW_MODE_FULLSCREEN,
+		"fullscreen": true,
 		"crt_opacity": 0.1,
 		"vignette_intensity": 0.7,
 		
@@ -133,15 +152,9 @@ func reset_to_defaults():
 
 # HACK temporary for testing
 func _ready() -> void:
-	DisplayServer.window_set_mode(get_screen_mode())
+	set_fullscreen(get_fullscreen())
 	AudioServer.set_bus_volume_linear(0, data["master_volume"])
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("toggle_fullscreen"):
-		match DisplayServer.window_get_mode():
-			DisplayServer.WINDOW_MODE_FULLSCREEN:
-				set_screen_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-				DisplayServer.window_set_mode(get_screen_mode())
-			DisplayServer.WINDOW_MODE_WINDOWED:
-				set_screen_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-				DisplayServer.window_set_mode(get_screen_mode())
+		set_fullscreen(!get_fullscreen())

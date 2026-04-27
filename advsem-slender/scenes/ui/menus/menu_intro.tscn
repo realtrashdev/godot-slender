@@ -1,10 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://b4cg80xg72t2g"]
+[gd_scene format=3 uid="uid://b4cg80xg72t2g"]
 
 [ext_resource type="Script" uid="uid://cbgr13umki0ec" path="res://scripts/ui/menus/menu_intro.gd" id="1_nk3u4"]
 [ext_resource type="Theme" uid="uid://bommyqwo15hbx" path="res://theme1.tres" id="2_a1ldx"]
 [ext_resource type="Texture2D" uid="uid://b212agmo4rsuw" path="res://art/2d/characters/icons/icon_blank.aseprite" id="3_wmfhq"]
 [ext_resource type="Script" uid="uid://ny0s8850mmpr" path="res://scripts/audio_player.gd" id="4_aurvb"]
+[ext_resource type="Script" uid="uid://c3ysaqnmo1oo8" path="res://scripts/ui/ui_text.gd" id="4_ie3g4"]
 [ext_resource type="PackedScene" uid="uid://bkqf54hj5ec1s" path="res://scenes/ui/buttons/setting_slider.tscn" id="4_tqint"]
+[ext_resource type="PackedScene" uid="uid://bf56ninpioec6" path="res://scenes/ui/settings.tscn" id="4_yf4wt"]
 [ext_resource type="PackedScene" uid="uid://6lvn3tolsp7r" path="res://scenes/ui/buttons/menu_button.tscn" id="5_fjx6c"]
 [ext_resource type="AudioStream" uid="uid://ga65x2ikqfdg" path="res://audio/ambient/wind_ambient.wav" id="5_tqint"]
 
@@ -20,7 +22,7 @@ border_width_right = 4
 border_width_bottom = 4
 border_color = Color(1, 1, 1, 1)
 
-[node name="IntroMenu" type="Control"]
+[node name="IntroMenu" type="Control" unique_id=1177548985]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -29,7 +31,16 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_nk3u4")
 
-[node name="Voice" type="RichTextLabel" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1039099879]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Voice" type="RichTextLabel" parent="." unique_id=38451177]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -47,7 +58,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 visible_characters = 0
 
-[node name="CharacterNaming" type="Control" parent="."]
+[node name="CharacterNaming" type="Control" parent="." unique_id=171996422]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -56,7 +67,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Voice2" type="RichTextLabel" parent="CharacterNaming"]
+[node name="Voice2" type="RichTextLabel" parent="CharacterNaming" unique_id=1672240017]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -73,7 +84,7 @@ fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="LineEdit" type="LineEdit" parent="CharacterNaming"]
+[node name="LineEdit" type="LineEdit" parent="CharacterNaming" unique_id=1468946656]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -103,7 +114,7 @@ deselect_on_focus_loss_enabled = false
 drag_and_drop_selection_enabled = false
 caret_blink = true
 
-[node name="PanelContainer" type="PanelContainer" parent="CharacterNaming"]
+[node name="PanelContainer" type="PanelContainer" parent="CharacterNaming" unique_id=1754023873]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -118,11 +129,11 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_wmfhq")
 
-[node name="TextureRect" type="TextureRect" parent="CharacterNaming/PanelContainer"]
+[node name="TextureRect" type="TextureRect" parent="CharacterNaming/PanelContainer" unique_id=855692530]
 layout_mode = 2
 texture = ExtResource("3_wmfhq")
 
-[node name="Settings" type="Control" parent="."]
+[node name="Settings" type="Control" parent="." unique_id=863788678]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -131,23 +142,42 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Settings"]
+[node name="Title" type="RichTextLabel" parent="Settings" unique_id=804399774]
+clip_contents = false
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = 8
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-offset_left = -175.25
-offset_top = 125.0
-offset_right = 175.25
-offset_bottom = 252.99997
+anchor_bottom = 0.5
+offset_left = -359.5
+offset_top = -460.0
+offset_right = 360.5
+offset_bottom = -378.0
 grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(360, 41)
 theme = ExtResource("2_a1ldx")
+theme_override_constants/outline_size = 24
+theme_override_font_sizes/normal_font_size = 64
 bbcode_enabled = true
-text = "[wave amp=4 freq=5]Adjust."
+text = "[wave freq=3]Adjust."
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
 horizontal_alignment = 1
-vertical_alignment = 1
+script = ExtResource("4_ie3g4")
+sr_rotation = 3.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Settings"]
+[node name="Settings" parent="Settings" unique_id=72089477 instance=ExtResource("4_yf4wt")]
+layout_mode = 1
+offset_left = -506.0
+offset_top = -332.0
+offset_right = 506.0
+offset_bottom = 332.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Settings" unique_id=1564626007]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -162,51 +192,51 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 64
 
-[node name="Volume" type="MarginContainer" parent="Settings/VBoxContainer"]
+[node name="Volume" type="MarginContainer" parent="Settings/VBoxContainer" unique_id=1362987410]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
-[node name="VolumeSlider" parent="Settings/VBoxContainer/Volume" instance=ExtResource("4_tqint")]
+[node name="VolumeSlider" parent="Settings/VBoxContainer/Volume" unique_id=963110239 instance=ExtResource("4_tqint")]
 layout_mode = 2
 max_value = 2.0
 step = 0.1
 setting_name = "Volume"
 variable_name = "master_volume"
 
-[node name="CRT" type="MarginContainer" parent="Settings/VBoxContainer"]
+[node name="CRT" type="MarginContainer" parent="Settings/VBoxContainer" unique_id=1475139484]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
-[node name="CRTSlider" parent="Settings/VBoxContainer/CRT" instance=ExtResource("4_tqint")]
+[node name="CRTSlider" parent="Settings/VBoxContainer/CRT" unique_id=362763528 instance=ExtResource("4_tqint")]
 layout_mode = 2
 max_value = 0.5
 step = 0.025
 
-[node name="Vignette" type="MarginContainer" parent="Settings/VBoxContainer"]
+[node name="Vignette" type="MarginContainer" parent="Settings/VBoxContainer" unique_id=951796265]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
-[node name="VignetteSlider" parent="Settings/VBoxContainer/Vignette" instance=ExtResource("4_tqint")]
+[node name="VignetteSlider" parent="Settings/VBoxContainer/Vignette" unique_id=726377619 instance=ExtResource("4_tqint")]
 layout_mode = 2
 setting_name = "Vignette"
 variable_name = "vignette_intensity"
 
-[node name="ConfirmButton" parent="Settings" instance=ExtResource("5_fjx6c")]
+[node name="ConfirmButton" parent="Settings" unique_id=673474425 instance=ExtResource("5_fjx6c")]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -200.0
-offset_top = 840.0
+offset_top = 900.0
 offset_right = 200.00122
-offset_bottom = 940.0002
+offset_bottom = 1000.00055
 grow_horizontal = 2
 default_text = "Confirm"
 press_color = Color(0.24115604, 0.24115604, 0.24115604, 1)
 justification = 1
 wait_time = 0.0
 
-[node name="CustomAudioPlayer" type="AudioStreamPlayer" parent="."]
+[node name="CustomAudioPlayer" type="AudioStreamPlayer" parent="." unique_id=578553431]
 stream = ExtResource("5_tqint")
 volume_db = -80.0
 pitch_scale = 0.85

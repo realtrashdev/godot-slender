@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://c1q5yjqc6li4f"]
+
+[ext_resource type="Script" uid="uid://dywtaffuxx4ei" path="res://scripts/pages/dynamic_collection_music.gd" id="1_q1khe"]
+[ext_resource type="AudioStream" uid="uid://8wdifbs76k6" path="res://audio/music/dynamic music/chiptune1/chiptune1_1.ogg" id="2_8atqw"]
+[ext_resource type="AudioStream" uid="uid://cok8bcedxmxgh" path="res://audio/music/dynamic music/chiptune1/chiptune1_2.ogg" id="3_kpdre"]
+[ext_resource type="AudioStream" uid="uid://3mw2rufd0pkp" path="res://audio/music/dynamic music/chiptune1/chiptune1_3.ogg" id="4_m3p2d"]
+[ext_resource type="AudioStream" uid="uid://chbd0f3bmpc52" path="res://audio/music/dynamic music/chiptune1/chiptune1_4.ogg" id="5_8ugw8"]
+[ext_resource type="AudioStream" uid="uid://bdmj3il650fy0" path="res://audio/music/dynamic music/chiptune1/chiptune1_5.ogg" id="6_u2upr"]
+
+[node name="DynamicCollectionMusic" type="Node" unique_id=1948757671]
+process_mode = 3
+script = ExtResource("1_q1khe")
+music_updates = Dictionary[int, AudioStream]({
+1: ExtResource("2_8atqw"),
+2: ExtResource("3_kpdre"),
+3: ExtResource("4_m3p2d"),
+4: ExtResource("5_8ugw8"),
+6: ExtResource("6_u2upr")
+})
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=943789178]
+volume_db = -12.0
+bus = &"GameMusic"

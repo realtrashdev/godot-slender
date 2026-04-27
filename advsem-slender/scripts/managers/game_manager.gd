@@ -5,6 +5,7 @@ var game_state: GameState
 # Tutorial
 @export var tutorial: bool = false
 
+var game_active: bool = false
 var run_timer_active: bool = false
 var run_timer: float
 
@@ -15,6 +16,7 @@ var run_timer: float
 @onready var ui_manager: UIManager = $"../UIManager"
 @onready var audio_manager: AudioManager = $"../AudioManager"
 @onready var player: CharacterBody3D = $"../Player"
+@onready var pause_menu: CanvasLayer = $"../PauseMenu"
 
 func _ready() -> void:
 	call_deferred("initialize_game")
@@ -24,6 +26,9 @@ func _process(delta: float) -> void:
 	if run_timer_active:
 		run_timer += delta
 		ui_manager.update_speedrun_timer(run_timer)
+	if Input.is_action_just_pressed("pause") and game_active and not tutorial:
+		get_tree().paused = true
+		pause_menu.pause_game()
 
 func initialize_game():
 	# create game state
@@ -85,10 +90,11 @@ func start_game():
 	player.activate()
 	
 	Signals.game_started.emit()
+	game_active = true
 	
 	# timer
 	# waits 1 second due to the start period where the player in not in control
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(1, false).timeout
 	run_timer = 0.0
 	run_timer_active = true
 
@@ -105,6 +111,7 @@ func finish_game(won: bool = true):
 	ui_manager.show_game_end()
 	
 	Signals.game_finished.emit()
+	game_active = false
 	
 	if game_state.game_mode == GameConfig.GameMode.CLASSIC and game_state.current_pages_collected == game_state.current_pages_required:
 		# unlocks stuff
@@ -113,7 +120,7 @@ func finish_game(won: bool = true):
 	
 	if won:
 		# handle next state
-		await get_tree().create_timer(5).timeout
+		await get_tree().create_timer(5, false).timeout
 		transition_to_next_state()
 
 func transition_to_next_state():

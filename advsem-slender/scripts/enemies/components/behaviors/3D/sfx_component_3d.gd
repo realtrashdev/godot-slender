@@ -46,7 +46,7 @@ func _audio_change(settings: SoundEffectSettings):
 	
 	if settings.fade_out_delay > 0:
 		print("delaying fade out")
-		await get_tree().create_timer(settings.fade_out_delay).timeout
+		await get_tree().create_timer(settings.fade_out_delay, false).timeout
 	
 	if not _check_state(): return # State has changed, do not continue
 	

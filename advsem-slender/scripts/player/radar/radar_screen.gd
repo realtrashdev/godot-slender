@@ -8,6 +8,7 @@ var game_state: GameState
 var player: CharacterBody3D
 
 var focused: bool = false
+var do_battery_drain: bool = true
 
 @onready var battery_component: BatteryComponent = $BatteryComponent
 const BatteryComponent = preload("uid://bl7j83h5ylc5h")
@@ -35,7 +36,8 @@ func initialize(state: GameState, play: CharacterBody3D):
 
 func _process(delta: float) -> void:
 	audio_component.update(battery_component.get_battery_remaining())
-	battery_component.update(delta, get_screen_state())
+	if do_battery_drain:
+		battery_component.update(delta, get_screen_state())
 
 # Public methods
 func activate():

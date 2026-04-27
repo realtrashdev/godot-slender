@@ -2,6 +2,8 @@ class_name PlayerFlashlightComponent extends Node
 
 signal target_brightness_reached
 
+const PAGE_LIGHT_DOWN_TIME: float = 1.0
+
 const LIGHT_BRIGHTNESS: float = 2.0
 const LOW_BATTERY_BRIGHTNESS: float = 1.0
 const PASSIVE_FLICKER_AMOUNT: float = 0.2
@@ -157,7 +159,7 @@ func point_flashlight() -> bool:
 
 func on_page_collected() -> void:
 	rotation_override = deg_to_rad(sprint_angle)
-	await get_tree().create_timer(3).timeout
+	await get_tree().create_timer(PAGE_LIGHT_DOWN_TIME, false).timeout
 	rotation_override = 0
 
 

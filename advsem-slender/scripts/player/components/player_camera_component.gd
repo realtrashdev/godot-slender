@@ -1,6 +1,6 @@
 class_name PlayerCameraComponent extends Node
 
-const MOUSE_SENSITIVITY: float = 0.002
+var mouse_sensitivity: float = 0.002
 const CAMERA_SMOOTHING: float = 10
 
 var camera_sensitivity: float = 0
@@ -12,6 +12,8 @@ var flashlight_offset: Vector3 = Vector3(0, 0, 0)
 var buffer: bool = false
 
 var sens_tween: Tween
+
+var radar_active: bool = false
 
 var player: CharacterBody3D
 var restriction_component: PlayerRestrictionComponent
@@ -29,9 +31,13 @@ func _ready():
 	head = player.get_node("Head")
 	camera = player.get_node("Head/Camera3D")
 	
+	mouse_sensitivity = Settings.get_actual_mouse_sensitivity()
+	
 	player.rotation.y = 0
 	start_rotation = Vector3(0, 0, 0)
 	camera_rotation = start_rotation
+	
+	Signals.game_unpaused.connect(_on_game_unpaused)
 
 func handle_input(event: InputEvent):
 	if event is InputEventMouseMotion:
@@ -59,15 +65,18 @@ func handle_mouse_movement(event):
 func check_radar_restriction(active):
 	if active:
 		camera_rotation.x = -deg_to_rad(45)
-		camera_sensitivity = MOUSE_SENSITIVITY / 2
+		camera_sensitivity = mouse_sensitivity / 2
+		radar_active = true
 	else:
+		camera_sensitivity = mouse_sensitivity
 		camera_rotation.x = deg_to_rad(0)
 		buffer = true
+		radar_active = false
 		
 		if sens_tween:
 			sens_tween.kill()
 		sens_tween = create_tween()
-		sens_tween.tween_property(self, "camera_sensitivity", MOUSE_SENSITIVITY, 1)
+		sens_tween.tween_property(self, "camera_sensitivity", mouse_sensitivity, 1)
 
 func get_flashlight_offset() -> Vector3:
 	return flashlight_offset
@@ -99,7 +108,7 @@ func activate():
 	if sens_tween:
 		sens_tween.kill()
 	sens_tween = create_tween()
-	sens_tween.tween_property(self, "camera_sensitivity", MOUSE_SENSITIVITY, 1)
+	sens_tween.tween_property(self, "camera_sensitivity", mouse_sensitivity, 1)
 	
 	camera.fov = 150.0
 	if camera.has_method("set_fov_smooth"):
@@ -107,3 +116,10 @@ func activate():
 
 func deactivate():
 	camera_sensitivity = 0
+
+func _on_game_unpaused():
+	mouse_sensitivity = Settings.get_actual_mouse_sensitivity()
+	if radar_active:
+		camera_sensitivity = mouse_sensitivity / 2
+	else:
+		camera_sensitivity = mouse_sensitivity

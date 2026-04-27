@@ -63,6 +63,7 @@ script = ExtResource("2_hjd67")
 ringtones = Array[AudioStream]([ExtResource("4_ngbpa"), ExtResource("3_hjd67")])
 
 [node name="RingtoneAudio" type="AudioStreamPlayer" parent="AudioComponent" unique_id=2026706530]
+process_mode = 3
 stream = ExtResource("4_ngbpa")
 volume_db = -15.0
 pitch_scale = 1.1
@@ -196,6 +197,7 @@ scroll_active = false
 shortcut_keys_enabled = false
 
 [node name="TrackerScreen" type="Node2D" parent="." unique_id=21859576]
+visible = false
 script = ExtResource("8_jgeqn")
 
 [node name="RadarText" type="RichTextLabel" parent="TrackerScreen" unique_id=684540705]
@@ -238,7 +240,6 @@ scale = Vector2(2, 2)
 texture = ExtResource("9_1qj1u")
 
 [node name="HelpScreen" type="Node2D" parent="." unique_id=1624675691]
-visible = false
 script = ExtResource("11_qqxeq")
 
 [node name="HelpText" type="RichTextLabel" parent="HelpScreen" unique_id=1690324185]
@@ -263,9 +264,9 @@ offset_bottom = 137.0
 theme_override_fonts/normal_font = ExtResource("4_on3qy")
 theme_override_font_sizes/normal_font_size = 5
 bbcode_enabled = true
-text = "TRY TO STAY ON THE PATH!
-PAGES WILL NOT SPAWN IN THE OUTER FOREST, AND THE GRASS SLOWS YOU DOWN.
-"
+text = "DON'T LET THE BATTERY DIE...
+
+REGAIN CHARGE BY COLLECTING PAGES!"
 scroll_active = false
 shortcut_keys_enabled = false
 

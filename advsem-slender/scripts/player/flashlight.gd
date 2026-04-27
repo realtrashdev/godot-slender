@@ -22,7 +22,7 @@ func _process(delta: float) -> void:
 
 func _on_ray_cast_3d_object_collected() -> void:
 	rotation_override = deg_to_rad(sprint_angle)
-	await get_tree().create_timer(3).timeout
+	await get_tree().create_timer(3, false).timeout
 	rotation_override = 0
 
 func toggle_light(on: bool):

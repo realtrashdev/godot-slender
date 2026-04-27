@@ -7,11 +7,13 @@ var game_state: GameState
 @onready var ambience: CustomAudioPlayer = $Ambient
 @onready var collection_music = $DynamicCollectionMusic
 
+
 func initialize(state: GameState):
 	Signals.page_collected.connect(_on_page_collected)
 	game_state = state
-	collection_music.initialize(game_state)
-	await get_tree().create_timer(1).timeout
+	if collection_music:
+		collection_music.initialize(game_state)
+	await get_tree().create_timer(1, false).timeout
 	$IntroAudio.play()
 
 

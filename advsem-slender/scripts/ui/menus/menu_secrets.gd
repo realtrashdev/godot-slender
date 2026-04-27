@@ -80,7 +80,7 @@ func tween_secret_text():
 	if (string_tween):
 		string_tween.kill()
 	string_tween = create_tween()
-	string_tween.tween_property(secret_string, "modulate", Color.TRANSPARENT, 2.0).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
+	string_tween.tween_property(secret_string, "modulate", Color.TRANSPARENT, 4.0).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
 	await string_tween.finished
 	recent_keys.clear()
 	visible_keys.clear()
@@ -101,7 +101,7 @@ func check_key_array():
 		if recent_keys[last_idx - 1] == "B" and \
 		   recent_keys[last_idx] == "G":
 			bg_typed.emit()
-			hit("bg")
+			hit("background seed changed!")
 			return
 	
 	if last_idx >= 2:
@@ -109,7 +109,7 @@ func check_key_array():
 		   recent_keys[last_idx - 1] == "U" and \
 		   recent_keys[last_idx] == "M":
 			spawn_gum()
-			hit("gum")
+			hit("gum summoned!")
 			return
 	
 	if last_idx >= 3:
@@ -117,15 +117,23 @@ func check_key_array():
 		   recent_keys[last_idx - 2] == "E" and \
 		   recent_keys[last_idx - 1] == "O" and \
 		   recent_keys[last_idx] == "W":
-			meow_music()
-			hit("meow")
+			#meow_music()
+			hit("meow!")
 			return
 		if recent_keys[last_idx - 3] == "T" and \
 		   recent_keys[last_idx - 2] == "O" and \
 		   recent_keys[last_idx - 1] == "B" and \
 		   recent_keys[last_idx] == "Y":
-			meow_music()
-			hit("toby")
+			#meow_music()
+			match randi_range(0, 3):
+				0:
+					hit("toby is so cute!")
+				1:
+					hit("toby is so cool!")
+				2:
+					hit("toby is so swag!")
+				3:
+					hit("toby is so neat!")
 			return
 	
 	if last_idx >= 4:
@@ -135,7 +143,7 @@ func check_key_array():
 		   recent_keys[last_idx - 1] == "I" and \
 		   recent_keys[last_idx] == "C":
 			toggle_bgm_pitch()
-			hit("music")
+			hit("music pitch shifted!")
 			return
 		if recent_keys[last_idx - 4] == "B" and \
 		   recent_keys[last_idx - 3] == "R" and \
@@ -143,7 +151,7 @@ func check_key_array():
 		   recent_keys[last_idx - 1] == "D" and \
 		   recent_keys[last_idx] == "Y":
 			brody_typed.emit()
-			hit("brody")
+			hit("no settings for brody!")
 			return
 		if recent_keys[last_idx - 4] == "R" and \
 		   recent_keys[last_idx - 3] == "E" and \
@@ -151,41 +159,32 @@ func check_key_array():
 		   recent_keys[last_idx - 1] == "E" and \
 		   recent_keys[last_idx] == "T":
 			reset_typed.emit()
-			hit("reset")
+			hit("(use in settings) reset progress in the bottom right.")
 			return
 	
-	if last_idx >= 5:
-		if recent_keys[last_idx - 5] == "W" and \
-		   recent_keys[last_idx - 4] == "I" and \
-		   recent_keys[last_idx - 3] == "Z" and \
+	if last_idx >= 8:
+		if recent_keys[last_idx - 8] == "U" and \
+		   recent_keys[last_idx - 7] == "N" and \
+		   recent_keys[last_idx - 6] == "L" and \
+		   recent_keys[last_idx - 5] == "O" and \
+		   recent_keys[last_idx - 4] == "C" and \
+		   recent_keys[last_idx - 3] == "K" and \
 		   recent_keys[last_idx - 2] == "A" and \
-		   recent_keys[last_idx - 1] == "R" and \
-		   recent_keys[last_idx] == "D":
-			wizard_bgm()
-			hit("wizard")
-	
-	if last_idx >= 7:
-		if recent_keys[last_idx - 7] == "O" and \
-		   recent_keys[last_idx - 6] == "I" and \
-		   recent_keys[last_idx - 5] == "R" and \
-		   recent_keys[last_idx - 4] == "A" and \
-		   recent_keys[last_idx - 3] == "N" and \
-		   recent_keys[last_idx - 2] == "E" and \
-		   recent_keys[last_idx - 1] == "C" and \
-		   recent_keys[last_idx] == "S":
+		   recent_keys[last_idx - 1] == "L" and \
+		   recent_keys[last_idx] == "L":
 			for scenario in ResourceDatabase.get_all_scenarios():
 				Progression.unlock_scenario(scenario.resource_name)
-			print("Unlocked all scenarios.")
-			hit("oiranecs")
+			hit("unlocked all challenges! (does not update until you leave play menu)")
 
 
-## 1 in 2000 chance every second to spawn gum enemy on title screen
+## 1 in 5000 chance every second to spawn gum enemy on title screen
 func check_gum():
 	await get_tree().create_timer(1).timeout
 	var num = randi_range(1, 5000)
 	if num == 5000:
 		if enabled:
 			spawn_gum()
+			hit("a wild gum appears! (1/5000 chance!)")
 	check_gum()
 
 
@@ -246,35 +245,6 @@ func meow_music():
 		bgm.stream = music
 		pitch_scale = 0.4
 	bgm.play(pos)
-	
-	music_tween = create_tween()
-	music_tween.tween_property(bgm, "pitch_scale", pitch_scale, 0.5)
-
-
-## Switches BGM to the running wizard theme
-func wizard_bgm():
-	if not manager.can_switch_music:
-		return
-	
-	var bgm: AudioStreamPlayer = manager.get_node("Music")
-	var pitch_scale: float
-	
-	if music_tween:
-		music_tween.kill()
-	
-	music_tween = create_tween()
-	music_tween.tween_property(bgm, "pitch_scale", 0.01, 0.5)
-	await music_tween.finished
-	
-	# replace stream
-	bgm.stop()
-	if bgm.stream != wizard_music:
-		bgm.stream = wizard_music
-		pitch_scale = 1.0
-	else:
-		bgm.stream = music
-		pitch_scale = 0.4
-	bgm.play(0.0)
 	
 	music_tween = create_tween()
 	music_tween.tween_property(bgm, "pitch_scale", pitch_scale, 0.5)

@@ -64,7 +64,7 @@ func _display_text():
 	await tween.finished
 	
 	# Wait for display time
-	await get_tree().create_timer(display_time).timeout
+	await get_tree().create_timer(display_time, false).timeout
 	
 	# Make the text disappear
 	tween = create_tween().set_parallel(true)

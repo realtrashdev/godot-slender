@@ -74,7 +74,7 @@ func get_path_boost() -> float:
 	return 0
 
 func activate():
-	await get_tree().create_timer(START_SPEED_DELAY).timeout
+	await get_tree().create_timer(START_SPEED_DELAY, false).timeout
 	active = true
 
 func deactivate():

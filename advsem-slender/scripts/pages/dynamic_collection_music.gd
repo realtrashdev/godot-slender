@@ -30,7 +30,7 @@ func _on_page_collected():
 		audio.stream = music_updates[pages]
 		
 		if pause > 0.0:
-			await get_tree().create_timer(pause).timeout
+			await get_tree().create_timer(pause, false).timeout
 		
 		if pages == _game_state.current_pages_collected and enabled:
 			audio.play(pos)

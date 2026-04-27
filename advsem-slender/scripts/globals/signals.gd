@@ -6,6 +6,10 @@ signal game_started
 @warning_ignore("unused_signal")
 signal game_finished
 @warning_ignore("unused_signal")
+signal game_paused
+@warning_ignore("unused_signal")
+signal game_unpaused
+@warning_ignore("unused_signal")
 signal show_message(text: String)
 
 # Player

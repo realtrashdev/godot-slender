@@ -8,9 +8,9 @@ class_name MouseParallax extends Control
 @export_group("Tool")
 @export var do_offset_in_editor: bool = false
 @export_subgroup("Presets")
-@export_tool_button("Weak Offset", "Control")
+@export_tool_button("Weak Parallax", "Control")
 var weak_button = _set_weak_offset
-@export_tool_button("Strong Offset", "Control")
+@export_tool_button("Strong Parallax", "Control")
 var strong_button = _set_strong_offset
 
 var start_pos: Vector2
@@ -39,7 +39,9 @@ func _get_menu_offset() -> Vector2:
 
 func _set_weak_offset():
 	parallax_strength = 5.0
+	name = "WeakMouseParallax"
 
 
 func _set_strong_offset():
 	parallax_strength = 10.0
+	name = "StrongMouseParallax"

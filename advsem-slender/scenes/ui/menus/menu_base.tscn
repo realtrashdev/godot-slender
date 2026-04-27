@@ -92,7 +92,7 @@ secret_string = NodePath("RichTextLabel")
 [node name="RichTextLabel" type="RichTextLabel" parent="Secrets" unique_id=1680714854]
 offset_left = 8.0
 offset_top = 8.0
-offset_right = 260.0
+offset_right = 1908.0
 offset_bottom = 39.0
 theme = ExtResource("10_whi8p")
 theme_override_constants/outline_size = 8

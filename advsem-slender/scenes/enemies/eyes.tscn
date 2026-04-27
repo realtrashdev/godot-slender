@@ -27,7 +27,7 @@ metadata/_custom_type_script = "uid://fc0srrsdlvkn"
 
 [sub_resource type="Resource" id="Resource_g7ljx"]
 script = ExtResource("7_u7np2")
-message = "-1 Battery Chunk"
+message = "Radar Battery Chunk Lost!"
 metadata/_custom_type_script = "uid://cph8rufdhfxfo"
 
 [sub_resource type="Resource" id="Resource_pmg11"]
