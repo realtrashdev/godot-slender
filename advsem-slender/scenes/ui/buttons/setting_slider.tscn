@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bkqf54hj5ec1s"]
+[gd_scene format=3 uid="uid://bkqf54hj5ec1s"]
 
 [ext_resource type="Theme" uid="uid://bommyqwo15hbx" path="res://theme1.tres" id="1_t0f36"]
 [ext_resource type="Script" uid="uid://duanmw3p1hvib" path="res://scripts/ui/buttons/settings_slider.gd" id="2_tu3tv"]
 
-[node name="SettingSlider" type="HSlider"]
+[node name="SettingSlider" type="HSlider" unique_id=1861900441]
 size_flags_vertical = 8
 mouse_default_cursor_shape = 2
 theme = ExtResource("1_t0f36")
@@ -16,7 +16,7 @@ script = ExtResource("2_tu3tv")
 setting_name = "CRT"
 variable_name = "crt_opacity"
 
-[node name="NameText" type="RichTextLabel" parent="."]
+[node name="NameText" type="RichTextLabel" parent="." unique_id=1828505643]
 layout_mode = 0
 offset_top = -68.0
 offset_right = 600.0
@@ -28,4 +28,3 @@ theme_override_constants/outline_size = 16
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
 text = "[pulse]NAME"
-horizontal_alignment = 1
