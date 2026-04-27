@@ -28,6 +28,6 @@ vertical_alignment = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1086400981]
 stream = ExtResource("3_u2v0a")
-volume_db = -6.0
+volume_db = -10.0
 
 [connection signal="toggled" from="." to="." method="_on_toggled"]

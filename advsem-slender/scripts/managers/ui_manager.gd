@@ -34,6 +34,7 @@ func initialize(state: GameState):
 	Signals.page_collected.connect(_on_page_collected)
 	Signals.killed_player.connect(_on_enemy_killed_player)
 	Signals.show_message.connect(_on_show_message)
+	Signals.game_unpaused.connect(_on_game_unpaused)
 	
 	# enable/disable run timer depending on settings
 	in_game_timer_text.visible = Settings.get_run_timer()
@@ -48,6 +49,9 @@ func _exit_tree():
 func _on_page_collected():
 	if scenario:
 		_scenario_specific_events()
+
+func _on_game_unpaused():
+	in_game_timer_text.visible = Settings.get_run_timer()
 
 # public interface
 func show_game_start():

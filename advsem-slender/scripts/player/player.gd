@@ -3,7 +3,7 @@ class_name Player extends CharacterBody3D
 @export var starting_rotation: Vector3 = Vector3.ZERO
 @export var instant_activate: bool = false
 
-const MENU_SCENE = "res://scenes/ui/menus/menu_base.tscn"
+#const MENU_SCENE = "res://scenes/ui/menus/menu_base.tscn"
 
 var game_state: GameState
 
@@ -27,13 +27,13 @@ func _ready() -> void:
 		activate()
 
 
-func _process(delta: float) -> void:
-	if Input.is_key_pressed(KEY_ESCAPE):
-		quit_timer += delta
-		if quit_timer >= 1.0:
-			get_tree().change_scene_to_file(MENU_SCENE)
-	elif quit_timer > 0:
-		quit_timer = 0.0
+#func _process(delta: float) -> void:
+	#if Input.is_key_pressed(KEY_ESCAPE):
+		#quit_timer += delta
+		#if quit_timer >= 1.0:
+			#get_tree().change_scene_to_file(MENU_SCENE)
+	#elif quit_timer > 0:
+		#quit_timer = 0.0
 
 
 func _physics_process(delta: float) -> void:

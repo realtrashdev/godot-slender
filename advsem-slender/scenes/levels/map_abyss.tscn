@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dcy7ewx8f37mf" path="res://scenes/ui/canvases/in_game_ui.tscn" id="8_465k3"]
 [ext_resource type="PackedScene" uid="uid://c1q5yjqc6li4f" path="res://scenes/collection/dynamic_collection_music.tscn" id="8_pa2ps"]
 [ext_resource type="PackedScene" uid="uid://dqhlmv6mga3ln" path="res://scenes/player/player.tscn" id="9_ejsno"]
+[ext_resource type="PackedScene" uid="uid://butj0f02n1mh0" path="res://scenes/ui/canvases/pause_menu.tscn" id="10_6klke"]
 [ext_resource type="Texture2D" uid="uid://b0oaoqusfayma" path="res://art/2d/textures/grass1.aseprite" id="12_45jfg"]
 [ext_resource type="PackedScene" uid="uid://cuouj5je2wv8g" path="res://scenes/collection/page_location.tscn" id="15_nwf1m"]
 [ext_resource type="PackedScene" uid="uid://c5j4dypjweuc2" path="res://scenes/ui/canvases/jumpscare_canvaslayer.tscn" id="21_q2kvd"]
@@ -81,6 +82,8 @@ script = ExtResource("6_6iroa")
 
 [node name="UIManager" parent="." unique_id=47194936 instance=ExtResource("8_465k3")]
 tutorial = true
+
+[node name="PauseMenu" parent="." unique_id=947043538 instance=ExtResource("10_6klke")]
 
 [node name="Player" parent="." unique_id=523781810 instance=ExtResource("9_ejsno")]
 transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 1, 0)

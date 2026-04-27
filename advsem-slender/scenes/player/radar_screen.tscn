@@ -197,7 +197,6 @@ scroll_active = false
 shortcut_keys_enabled = false
 
 [node name="TrackerScreen" type="Node2D" parent="." unique_id=21859576]
-visible = false
 script = ExtResource("8_jgeqn")
 
 [node name="RadarText" type="RichTextLabel" parent="TrackerScreen" unique_id=684540705]
@@ -240,6 +239,7 @@ scale = Vector2(2, 2)
 texture = ExtResource("9_1qj1u")
 
 [node name="HelpScreen" type="Node2D" parent="." unique_id=1624675691]
+visible = false
 script = ExtResource("11_qqxeq")
 
 [node name="HelpText" type="RichTextLabel" parent="HelpScreen" unique_id=1690324185]

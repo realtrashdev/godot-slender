@@ -32,7 +32,6 @@ func _ready() -> void:
 	manager = get_parent()
 	if (Progression.is_scenario_completed("basics1")):
 		check_gum()
-	Signals.change_menu_music_pitch.connect(toggle_bgm_pitch)
 
 func _input(event: InputEvent) -> void:
 	if not enabled:

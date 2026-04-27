@@ -39,7 +39,3 @@ signal killed_player(profile: EnemyProfile)
 # Tutorial-specific
 @warning_ignore("unused_signal")
 signal tutorial_distance_reached
-
-# Menu
-@warning_ignore("unused_signal")
-signal change_menu_music_pitch
