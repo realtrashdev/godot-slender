@@ -5,7 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://b212agmo4rsuw" path="res://art/2d/characters/icons/icon_blank.aseprite" id="3_wmfhq"]
 [ext_resource type="Script" uid="uid://ny0s8850mmpr" path="res://scripts/audio_player.gd" id="4_aurvb"]
 [ext_resource type="Script" uid="uid://c3ysaqnmo1oo8" path="res://scripts/ui/ui_text.gd" id="4_ie3g4"]
-[ext_resource type="PackedScene" uid="uid://bkqf54hj5ec1s" path="res://scenes/ui/buttons/setting_slider.tscn" id="4_tqint"]
 [ext_resource type="PackedScene" uid="uid://bf56ninpioec6" path="res://scenes/ui/settings.tscn" id="4_yf4wt"]
 [ext_resource type="PackedScene" uid="uid://6lvn3tolsp7r" path="res://scenes/ui/buttons/menu_button.tscn" id="5_fjx6c"]
 [ext_resource type="AudioStream" uid="uid://ga65x2ikqfdg" path="res://audio/ambient/wind_ambient.wav" id="5_tqint"]
@@ -175,51 +174,6 @@ offset_left = -506.0
 offset_top = -332.0
 offset_right = 506.0
 offset_bottom = 332.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Settings" unique_id=1564626007]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -300.0
-offset_top = -215.0
-offset_right = 300.0
-offset_bottom = 435.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 64
-
-[node name="Volume" type="MarginContainer" parent="Settings/VBoxContainer" unique_id=1362987410]
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 2
-
-[node name="VolumeSlider" parent="Settings/VBoxContainer/Volume" unique_id=963110239 instance=ExtResource("4_tqint")]
-layout_mode = 2
-max_value = 2.0
-step = 0.1
-setting_name = "Volume"
-variable_name = "master_volume"
-
-[node name="CRT" type="MarginContainer" parent="Settings/VBoxContainer" unique_id=1475139484]
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 2
-
-[node name="CRTSlider" parent="Settings/VBoxContainer/CRT" unique_id=362763528 instance=ExtResource("4_tqint")]
-layout_mode = 2
-max_value = 0.5
-step = 0.025
-
-[node name="Vignette" type="MarginContainer" parent="Settings/VBoxContainer" unique_id=951796265]
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 2
-
-[node name="VignetteSlider" parent="Settings/VBoxContainer/Vignette" unique_id=726377619 instance=ExtResource("4_tqint")]
-layout_mode = 2
-setting_name = "Vignette"
-variable_name = "vignette_intensity"
 
 [node name="ConfirmButton" parent="Settings" unique_id=673474425 instance=ExtResource("5_fjx6c")]
 layout_mode = 1

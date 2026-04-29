@@ -24,6 +24,38 @@ The radar now has a limited battery.
 
 
 
+##### Audio
+
+\---
+
+Added new in-game music. This music dynamically builds as pages are collected.
+
+* The previous in-game music has been removed.
+
+
+
+Added credits music.
+
+
+
+
+
+##### Settings
+
+\---
+
+Added a mouse sensitivity setting.
+
+
+
+Added a fullscreen setting.
+
+* This can also be toggled at any time using \[F11].
+
+
+
+
+
 ##### New Enemies
 
 \---
@@ -43,11 +75,10 @@ Added Shade, an enemy that will chase down and kill you shortly after your radar
 
 Chaser:
 
-* Now attracts the flashlight, making it easier to get rid of it.
+* Now attracts the flashlight, making it much easier to get rid of it.
 * Now moves faster the further it is you.
 * Now moves slower when close to you.
 * Now has a unique sprite for when it is successfully repelled.
-* Now shifts the pitch of its ambient sound the more the light is shined on it.
 * Adjusted max instances from 3 to 1.
 
   * Only one Chaser can be active at once per spawner.
@@ -62,9 +93,12 @@ Gum:
 
 Eyes:
 
+* Has received an art redesign to keep their style consistent with other enemies.
+* Now has unique sprite for when your light is on.
 * Now close (leave) much faster (8sec -> 2sec).
 * Now attack faster (12sec -> 5sec).
 * No longer kill you. Instead, they will take a chunk of your radar battery away for the rest of the run.
+* When they take battery, text will show at the bottom of the screen to notify you.
 
 
 
@@ -78,6 +112,21 @@ Scam Likely:
 
 
 
+##### Maps
+
+\---
+
+Edited tutorial map.
+
+* Added two pages.
+* Made the "exit" spawn after collecting a page instead of walking far enough.
+* Added a path.
+* Added fences to keep the play area contained.
+
+
+
+
+
 ##### Challenge Mode
 
 \---
@@ -86,7 +135,7 @@ Renamed Scenarios to Challenges.
 
 
 
-Slightly changed descriptions of almost all existing Challenges.
+Slightly changed descriptions some Challenges.
 
 
 
@@ -134,9 +183,7 @@ Fixed a layering issue with the enemy overview.
 
 
 
-Added basic credits.
-
-* Type "credits" on the title screen to view.
+Added a credits menu.
 
 
 
@@ -155,5 +202,14 @@ Added a game over screen.
 
 
 
-Changed the animation of the "Pages: x/x" text.
+Added a pause menu which allows you to:
+
+* Change settings.
+* View the enemy overview for the current challenge.
+* Restart the level.
+* Quit to the main menu.
+
+
+
+Changed the animation of the "Pages: X/X" text.
 

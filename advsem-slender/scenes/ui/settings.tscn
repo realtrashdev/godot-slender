@@ -17,7 +17,7 @@ border_color = Color(0.6255971, 0.6255971, 0.6255971, 1)
 bg_color = Color(0.3779188, 0.3779189, 0.37791875, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cfoln"]
-bg_color = Color(0.20511743, 0.20511743, 0.20511743, 1)
+bg_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
 
 [node name="Settings" type="PanelContainer" unique_id=72089477]
 anchors_preset = 8

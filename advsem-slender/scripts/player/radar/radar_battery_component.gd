@@ -1,15 +1,15 @@
 extends Node
 
-enum BatteryState { ALIVE, DEAD, OVERCHARGED }
+enum BatteryState { ALIVE, DEAD }
 
 const STARTING_CHUNKS: int = 4
 
 const BATTERY_PER_CHUNK: float = 20.0
 const PAGE_CHARGE_AMOUNT: float = 20.0
 
-const IDLE_BATTERY_LOSS: float = 0.4
-const ACTIVE_BATTERY_LOSS: float = 0.8
-const RINGING_BATTERY_LOSS: float = 2.0
+const IDLE_BATTERY_LOSS: float = 0.3
+const ACTIVE_BATTERY_LOSS: float = 0.5
+const RINGING_BATTERY_LOSS: float = 1.0
 
 var battery_container: HBoxContainer
 

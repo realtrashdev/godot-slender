@@ -30,8 +30,10 @@ func _process(delta: float) -> void:
 		
 		if button_down:
 			decline_progress += delta
-		else:
+		elif decline_progress > 0.0:
 			decline_progress -= delta * 0.33
+			if decline_progress < 0.0:
+				decline_progress = 0.0
 
 
 func start_call():

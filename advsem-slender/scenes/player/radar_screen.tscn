@@ -66,12 +66,10 @@ ringtones = Array[AudioStream]([ExtResource("4_ngbpa"), ExtResource("3_hjd67")])
 process_mode = 3
 stream = ExtResource("4_ngbpa")
 volume_db = -15.0
-pitch_scale = 1.1
 bus = &"PlayerRadar"
 
 [node name="NotificationAudio" type="AudioStreamPlayer" parent="AudioComponent" unique_id=1693151742]
 stream = ExtResource("7_ngbpa")
-pitch_scale = 0.5
 bus = &"PlayerRadar"
 
 [node name="BaseScreen" type="Sprite2D" parent="." unique_id=676594184]

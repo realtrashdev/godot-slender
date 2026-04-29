@@ -68,7 +68,7 @@ func _unmute():
 func _battery_pitch_shifting(battery_remaining: float):
 	if battery_remaining <= 20:
 		pitch_scale = clamp(battery_remaining / 20, 0.5, 1.0)
-	elif pitch_scale < 1.1:
-		pitch_scale = 1.1
+	elif pitch_scale < 1.0:
+		pitch_scale = 1.0
 	for child in _get_all_audio_sources():
 		child.pitch_scale = pitch_scale
