@@ -56,14 +56,14 @@ func _on_mouse_exited() -> void:
 func _on_button_down() -> void:
 	if disabled:
 		return
-	AudioTools.play_one_shot(get_tree(), sfx_press, randf_range(0.8, 1.2), -10)
+	AudioTools.play_one_shot(get_tree(), sfx_press, 4, randf_range(0.8, 1.2), -10)
 	text_label.add_theme_color_override("default_color", press_color)
 
 func _on_button_up() -> void:
 	if disabled:
 		return
 	if focus:
-		AudioTools.play_one_shot(get_tree(), sfx_release, randf_range(1.2, 1.4), -10)
+		AudioTools.play_one_shot(get_tree(), sfx_release, 4, randf_range(1.2, 1.4), -10)
 		pass
 	text_label.add_theme_color_override("default_color", default_color)
 

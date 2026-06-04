@@ -8,6 +8,8 @@ extends Node
 @export var use_previous_position: bool = true
 
 var _game_state: GameState
+var _current_stream: AudioStream
+var _current_pos: float = 0.0
 
 @onready var audio: AudioStreamPlayer = $AudioStreamPlayer
 
@@ -25,20 +27,22 @@ func _on_page_collected():
 	var pages: int = _game_state.current_pages_collected
 	
 	if pages in music_updates:
-		var pos = _get_new_playback_position()
+		_current_pos = _get_new_playback_position()
 		var pause = _get_pause_time()
 		
 		audio.stop()
 		audio.stream = music_updates[pages]
+		_current_stream = audio.stream
 		
 		if pause > 0.0:
 			await get_tree().create_timer(pause, false).timeout
 		
 		if pages == _game_state.current_pages_collected and enabled:
-			audio.play(pos)
+			audio.play(_current_pos)
 
 
 func _on_game_finished():
+	_current_pos = audio.get_playback_position()
 	audio.stop()
 	enabled = false
 
@@ -46,11 +50,11 @@ func _on_game_finished():
 func _on_player_died():
 	if audio.stream == null:
 		return
-	var pos: float = audio.get_playback_position()
 	audio.stop()
 	audio.pitch_scale = 0.5
 	await get_tree().create_timer(1.0).timeout
-	audio.play(pos)
+	audio.stream = _current_stream
+	audio.play(_current_pos)
 
 
 func _get_new_playback_position() -> float:

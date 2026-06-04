@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="JukeboxSongNormal" format=3 uid="uid://cds6qiaa4mmg5"]
+
+[ext_resource type="Script" uid="uid://b3ule6a81mefh" path="res://scripts/resources/jukebox_song_normal.gd" id="1_t8y2y"]
+[ext_resource type="AudioStream" uid="uid://cjg6hknm6qj2d" path="res://audio/music/credits.ogg" id="2_d5ih5"]
+
+[resource]
+script = ExtResource("1_t8y2y")
+song = ExtResource("2_d5ih5")
+song_name = "Credits"
+song_desc = "Thanks for playing!
+
+I wanted this song to serve as a culmination of my progress as a game developer so far, so I included my favorite melodies from previous projects of mine. I wouldn't recommend playing them though, they're very barebones compared to this."
+metadata/_custom_type_script = "uid://b3ule6a81mefh"

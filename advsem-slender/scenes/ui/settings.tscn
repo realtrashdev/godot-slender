@@ -4,6 +4,9 @@
 [ext_resource type="Script" uid="uid://br2ge107x4qrj" path="res://scripts/ui/settings_panel.gd" id="1_ptynm"]
 [ext_resource type="PackedScene" uid="uid://bkqf54hj5ec1s" path="res://scenes/ui/buttons/setting_slider.tscn" id="2_ptynm"]
 [ext_resource type="PackedScene" uid="uid://c2tm8p5c3mxlf" path="res://scenes/ui/buttons/setting_checkbox.tscn" id="3_ncfhn"]
+[ext_resource type="Script" uid="uid://bgqglerkcylxx" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="5_4xk3x"]
+[ext_resource type="Script" uid="uid://b7h0k2h2qwlqv" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="6_jw8st"]
+[ext_resource type="Theme" uid="uid://bommyqwo15hbx" path="res://theme1.tres" id="7_d4m38"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xte0n"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -18,6 +21,12 @@ bg_color = Color(0.3779188, 0.3779189, 0.37791875, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cfoln"]
 bg_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
+
+[sub_resource type="Resource" id="Resource_mn4ci"]
+script = ExtResource("6_jw8st")
+
+[sub_resource type="Resource" id="Resource_2vpyc"]
+script = ExtResource("6_jw8st")
 
 [node name="Settings" type="PanelContainer" unique_id=72089477]
 anchors_preset = 8
@@ -82,12 +91,14 @@ layout_mode = 2
 
 [node name="Settings" type="MarginContainer" parent="HBoxContainer" unique_id=1069465209]
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/margin_left = 32
 theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 
 [node name="GameSettings" type="VBoxContainer" parent="HBoxContainer/Settings" unique_id=379902127]
+visible = false
 custom_minimum_size = Vector2(600, 100)
 layout_mode = 2
 theme_override_constants/separation = 64
@@ -149,22 +160,106 @@ size_flags_vertical = 0
 display_name = "Fullscreen"
 variable_name = "fullscreen"
 
-[node name="AudioSettings" type="VBoxContainer" parent="HBoxContainer/Settings" unique_id=692738351]
-visible = false
+[node name="AudioSettings" type="ScrollContainer" parent="HBoxContainer/Settings" unique_id=1243082046]
 custom_minimum_size = Vector2(600, 100)
 layout_mode = 2
+follow_focus = true
+script = ExtResource("5_4xk3x")
+wheel_scroll_damper = SubResource("Resource_mn4ci")
+dragging_scroll_damper = SubResource("Resource_2vpyc")
+allow_overdragging = false
+metadata/_custom_type_script = "uid://bgqglerkcylxx"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Settings/AudioSettings" unique_id=692738351]
+custom_minimum_size = Vector2(600, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_constants/separation = 64
 
-[node name="Volume" type="MarginContainer" parent="HBoxContainer/Settings/AudioSettings" unique_id=1630358444]
-custom_minimum_size = Vector2(0, 100)
+[node name="Master" type="MarginContainer" parent="HBoxContainer/Settings/AudioSettings/VBoxContainer" unique_id=1630358444]
+custom_minimum_size = Vector2(560, 100)
 layout_mode = 2
+size_flags_horizontal = 0
 
-[node name="VolumeSlider" parent="HBoxContainer/Settings/AudioSettings/Volume" unique_id=711108786 instance=ExtResource("2_ptynm")]
+[node name="VolumeSlider" parent="HBoxContainer/Settings/AudioSettings/VBoxContainer/Master" unique_id=711108786 instance=ExtResource("2_ptynm")]
 layout_mode = 2
 max_value = 2.0
 step = 0.1
-setting_name = "Volume"
+setting_name = "Master Volume"
 variable_name = "master_volume"
+
+[node name="InGame" type="RichTextLabel" parent="HBoxContainer/Settings/AudioSettings/VBoxContainer" unique_id=2137827242]
+clip_contents = false
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+mouse_filter = 1
+theme = ExtResource("7_d4m38")
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "IN-GAME"
+vertical_alignment = 2
+
+[node name="GameMusic" type="MarginContainer" parent="HBoxContainer/Settings/AudioSettings/VBoxContainer" unique_id=1711088917]
+custom_minimum_size = Vector2(560, 100)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="VolumeSlider" parent="HBoxContainer/Settings/AudioSettings/VBoxContainer/GameMusic" unique_id=109685394 instance=ExtResource("2_ptynm")]
+layout_mode = 2
+max_value = 2.0
+step = 0.1
+setting_name = "Music Volume"
+variable_name = "game_music_volume"
+
+[node name="GameSound" type="MarginContainer" parent="HBoxContainer/Settings/AudioSettings/VBoxContainer" unique_id=1125306028]
+custom_minimum_size = Vector2(560, 100)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="VolumeSlider" parent="HBoxContainer/Settings/AudioSettings/VBoxContainer/GameSound" unique_id=1262617692 instance=ExtResource("2_ptynm")]
+layout_mode = 2
+max_value = 2.0
+step = 0.1
+setting_name = "Sound Volume"
+variable_name = "game_sound_volume"
+
+[node name="Menu" type="RichTextLabel" parent="HBoxContainer/Settings/AudioSettings/VBoxContainer" unique_id=395480068]
+clip_contents = false
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+mouse_filter = 1
+theme = ExtResource("7_d4m38")
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "MENU"
+vertical_alignment = 2
+
+[node name="MenuMusic" type="MarginContainer" parent="HBoxContainer/Settings/AudioSettings/VBoxContainer" unique_id=101463170]
+custom_minimum_size = Vector2(560, 100)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="VolumeSlider" parent="HBoxContainer/Settings/AudioSettings/VBoxContainer/MenuMusic" unique_id=639171753 instance=ExtResource("2_ptynm")]
+layout_mode = 2
+max_value = 2.0
+step = 0.1
+setting_name = "Music Volume"
+variable_name = "menu_music_volume"
+
+[node name="MenuSound" type="MarginContainer" parent="HBoxContainer/Settings/AudioSettings/VBoxContainer" unique_id=384822465]
+custom_minimum_size = Vector2(560, 100)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="VolumeSlider" parent="HBoxContainer/Settings/AudioSettings/VBoxContainer/MenuSound" unique_id=777677525 instance=ExtResource("2_ptynm")]
+layout_mode = 2
+max_value = 2.0
+step = 0.1
+setting_name = "Sound Volume"
+variable_name = "menu_sound_volume"
 
 [connection signal="pressed" from="HBoxContainer/Categories/VBoxContainer/GameSettings" to="." method="_on_game_settings_pressed"]
 [connection signal="pressed" from="HBoxContainer/Categories/VBoxContainer/DisplaySettings" to="." method="_on_display_settings_pressed"]

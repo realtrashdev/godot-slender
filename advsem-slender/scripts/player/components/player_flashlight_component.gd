@@ -178,7 +178,7 @@ func set_flicker_light(starting_energy: float):
 		return
 	
 	flickering = true
-	AudioTools.play_one_shot(get_tree(), flicker_sound, randf_range(0.9, 1.1), -4.0)
+	AudioTools.play_one_shot(get_tree(), flicker_sound, 2, randf_range(0.9, 1.1), -4.0)
 	target_brightness = starting_energy
 	await target_brightness_reached
 	flickering = false

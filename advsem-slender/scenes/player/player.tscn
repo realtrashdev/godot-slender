@@ -55,6 +55,7 @@ movement_path = Array[AudioStream]([ExtResource("11_gkgcs"), ExtResource("12_al2
 movement_tile = Array[AudioStream]([ExtResource("12_i4ail"), ExtResource("13_a38lo"), ExtResource("14_4ni07"), ExtResource("15_l71n6"), ExtResource("16_ke2ow")])
 
 [node name="MovementAudio" type="AudioStreamPlayer" parent="AudioComponent" unique_id=1959510025]
+bus = &"GameSounds"
 
 [node name="RestrictionComponent" type="Node" parent="." unique_id=354481320]
 script = ExtResource("17_a38lo")
@@ -102,6 +103,7 @@ spot_angle_attenuation = 0.5
 
 [node name="FlashlightAudio" type="AudioStreamPlayer" parent="Head/Flashlight" unique_id=1049604451]
 stream = ExtResource("10_d2wvv")
+bus = &"GameSounds"
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Head/Flashlight" unique_id=42622425]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)

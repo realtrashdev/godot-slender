@@ -11,7 +11,11 @@ var data: Dictionary = {
 	"selected_map": "abyss",
 	
 	## Audio
-	"master_volume": 1.0,
+	"master_volume": 1.0,       # all 0.00 - 2.00
+	"game_music_volume": 1.0,
+	"game_sound_volume": 1.0,
+	"menu_music_volume": 1.0,
+	"menu_sound_volume": 1.0,
 	
 	## Control
 	"mouse_sensitivity": 1.0,   # 0.00 - 2.00
@@ -25,10 +29,11 @@ var data: Dictionary = {
 	"run_timer": false,
 }
 
-#region Getters/Setters
 ##
-## Saved Preferences
+## Getters/Setters
 ##
+
+#region Saved Preferences
 func get_selected_game_mode() -> GameConfig.GameMode:
 	return data.get("selected_game_mode", GameConfig.GameMode.CLASSIC)
 
@@ -63,14 +68,9 @@ func get_selected_map() -> Map:
 func set_selected_map(map_name: String):
 	data["selected_map"] = map_name
 	setting_changed.emit("selected_map", map_name)
+#endregion
 
-##
-## Settings
-##
-
-##
-## Audio
-##
+#region Audio
 func get_master_volume() -> float:
 	return data.get("master_volume", 1.0)
 
@@ -79,10 +79,40 @@ func set_master_volume(volume: float):
 	AudioServer.set_bus_volume_linear(0, volume)
 	setting_changed.emit("master_volume", volume)
 
+func get_game_music_volume() -> float:
+	return data.get("game_music_volume", 0.5)
 
-##
-## Display
-##
+func set_game_music_volume(volume: float):
+	data["game_music_volume"] = volume
+	AudioServer.set_bus_volume_linear(1, volume)
+	setting_changed.emit("game_music_volume", volume)
+
+func get_game_sound_volume() -> float:
+	return data.get("game_sound_volume", 1.0)
+
+func set_game_sound_volume(volume: float):
+	data["game_sound_volume"] = volume
+	AudioServer.set_bus_volume_linear(2, volume)
+	setting_changed.emit("game_sound_volume", volume)
+
+func get_menu_music_volume() -> float:
+	return data.get("menu_music_volume", 1.0)
+
+func set_menu_music_volume(volume: float):
+	data["menu_music_volume"] = volume
+	AudioServer.set_bus_volume_linear(3, volume)
+	setting_changed.emit("menu_music_volume", volume)
+
+func get_menu_sound_volume() -> float:
+	return data.get("menu_sound_volume", 1.0)
+
+func set_menu_sound_volume(volume: float):
+	data["menu_sound_volume"] = volume
+	AudioServer.set_bus_volume_linear(4, volume)
+	setting_changed.emit("menu_sound_volume", volume)
+#endregion
+
+#region Display
 func get_fullscreen() -> bool:
 	return data.get("fullscreen", false)
 
@@ -107,10 +137,9 @@ func get_vignette_intensity() -> float:
 func set_vignette_intensity(intensity: float):
 	data["vignette_intensity"] = intensity
 	setting_changed.emit("vignette_intensity", intensity)
+#endregion
 
-##
-## Gameplay
-##
+#region Gameplay
 func get_actual_mouse_sensitivity() -> float: # 0.001 - 0.003
 	return (data.get("mouse_sensitivity", 1.0) + 1) / 1000
 
@@ -139,6 +168,10 @@ func reset_to_defaults():
 		"selected_map": "abyss",
 		
 		"master_volume": 1.0,
+		"game_music_volume": 1.0,
+		"game_sound_volume": 1.0,
+		"menu_music_volume": 1.0,
+		"menu_sound_volume": 1.0,
 		
 		"mouse_sensitivity": 1.0,
 		

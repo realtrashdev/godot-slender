@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="JukeboxSongLayered" format=3 uid="uid://cqqsdltppm2tv"]
+
+[ext_resource type="AudioStream" uid="uid://dx1bukvkgotdm" path="res://audio/music/dynamic music/castle/castle_layer1.ogg" id="1_ti84m"]
+[ext_resource type="Script" uid="uid://bg3djawnlrmjn" path="res://scripts/resources/jukebox_song_layered.gd" id="1_wjyp0"]
+[ext_resource type="AudioStream" uid="uid://cu48kgigyord3" path="res://audio/music/dynamic music/castle/castle_layer2.ogg" id="2_504f0"]
+[ext_resource type="AudioStream" uid="uid://cat0g7ni8a71r" path="res://audio/music/dynamic music/castle/castle_layer3.ogg" id="3_cblya"]
+[ext_resource type="AudioStream" uid="uid://db22rr6g4xtl" path="res://audio/music/dynamic music/castle/castle_layer4.ogg" id="4_iji3y"]
+[ext_resource type="AudioStream" uid="uid://6hsbqs78wasx" path="res://audio/music/dynamic music/castle/castle_layer5.ogg" id="5_pjhrm"]
+[ext_resource type="AudioStream" uid="uid://hvsfitc6waf7" path="res://audio/music/dynamic music/castle/castle_layer6.ogg" id="6_dmwro"]
+
+[resource]
+script = ExtResource("1_wjyp0")
+layers = Array[AudioStream]([ExtResource("1_ti84m"), ExtResource("2_504f0"), ExtResource("3_cblya"), ExtResource("4_iji3y"), ExtResource("5_pjhrm"), ExtResource("6_dmwro")])
+song_name = "Castle (Layered)"
+song_desc = "The idea for a castle environment was inspired by a previous project of mine called Running Wizard, an endless runner that takes place in a castle.
+
+The latter part of the song actually uses the main melody from that game, I've always kind of wanted to use it again!"
+metadata/_custom_type_script = "uid://bg3djawnlrmjn"

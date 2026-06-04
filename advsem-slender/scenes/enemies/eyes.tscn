@@ -69,6 +69,7 @@ render_priority = 5
 sprite_frames = ExtResource("2_tcmdf")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1977690114]
+bus = &"GameSounds"
 
 [node name="ChaseComponent3D" type="Node" parent="." unique_id=268188121]
 script = ExtResource("5_7dbnu")

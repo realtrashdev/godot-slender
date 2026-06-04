@@ -7,15 +7,21 @@
 [ext_resource type="PackedScene" uid="uid://d2ilqs2rsu4l1" path="res://scenes/enemies/spawning/spawn_marker.tscn" id="5_f0frg"]
 [ext_resource type="Texture2D" uid="uid://b0oaoqusfayma" path="res://art/2d/textures/grass1.aseprite" id="6_84il1"]
 [ext_resource type="PackedScene" uid="uid://c1q5yjqc6li4f" path="res://scenes/collection/dynamic_collection_music.tscn" id="7_tlwqg"]
+[ext_resource type="AudioStream" uid="uid://dx1bukvkgotdm" path="res://audio/music/dynamic music/castle/castle_layer1.ogg" id="8_cvgem"]
 [ext_resource type="PackedScene" uid="uid://dcy7ewx8f37mf" path="res://scenes/ui/canvases/in_game_ui.tscn" id="8_hag7o"]
 [ext_resource type="PackedScene" uid="uid://cxsorime4wuh2" path="res://scenes/playground_scenes/tree.tscn" id="8_u3044"]
 [ext_resource type="PackedScene" uid="uid://butj0f02n1mh0" path="res://scenes/ui/canvases/pause_menu.tscn" id="9_3twdr"]
+[ext_resource type="AudioStream" uid="uid://cu48kgigyord3" path="res://audio/music/dynamic music/castle/castle_layer2.ogg" id="9_r45ri"]
 [ext_resource type="PackedScene" uid="uid://cuouj5je2wv8g" path="res://scenes/collection/page_location.tscn" id="9_yeg04"]
+[ext_resource type="AudioStream" uid="uid://cat0g7ni8a71r" path="res://audio/music/dynamic music/castle/castle_layer3.ogg" id="10_3u3of"]
 [ext_resource type="PackedScene" uid="uid://c6pe2a6g7kie7" path="res://scenes/levels/landmarks/building.tscn" id="10_mn2h8"]
+[ext_resource type="AudioStream" uid="uid://db22rr6g4xtl" path="res://audio/music/dynamic music/castle/castle_layer4.ogg" id="11_b0hnt"]
 [ext_resource type="PackedScene" uid="uid://dq6178lkha864" path="res://scenes/playground_scenes/tree_page.tscn" id="11_g13vg"]
 [ext_resource type="NavigationMesh" uid="uid://dsmij2wanukbg" path="res://forest_navmesh.tres" id="11_tlwqg"]
 [ext_resource type="PackedScene" uid="uid://dv7qx4tyi7gih" path="res://scenes/levels/landmarks/playground_rocks_1.tscn" id="12_sq1ny"]
+[ext_resource type="AudioStream" uid="uid://6hsbqs78wasx" path="res://audio/music/dynamic music/castle/castle_layer5.ogg" id="12_vijbt"]
 [ext_resource type="PackedScene" uid="uid://dq5omphnqtlkf" path="res://scenes/levels/landmarks/playground_bigtree_page.tscn" id="13_h37d0"]
+[ext_resource type="AudioStream" uid="uid://hvsfitc6waf7" path="res://audio/music/dynamic music/castle/castle_layer6.ogg" id="13_rqdef"]
 [ext_resource type="Material" uid="uid://bnlknaj0g2m6d" path="res://shaders/flowing_water.tres" id="13_wwrpj"]
 [ext_resource type="Texture2D" uid="uid://c4he6fivjqx5e" path="res://art/2d/textures/chain_fence.aseprite" id="14_3kiwc"]
 [ext_resource type="PackedScene" uid="uid://c5j4dypjweuc2" path="res://scenes/ui/canvases/jumpscare_canvaslayer.tscn" id="18_typfu"]
@@ -103,6 +109,14 @@ parameters/looping = true
 script = ExtResource("21_6h64i")
 
 [node name="DynamicCollectionMusic" parent="AudioManager" unique_id=1948757671 instance=ExtResource("7_tlwqg")]
+music_updates = Dictionary[int, AudioStream]({
+1: ExtResource("8_cvgem"),
+2: ExtResource("9_r45ri"),
+3: ExtResource("10_3u3of"),
+4: ExtResource("11_b0hnt"),
+5: ExtResource("12_vijbt"),
+6: ExtResource("13_rqdef")
+})
 
 [node name="UIManager" parent="." unique_id=75622884 instance=ExtResource("8_hag7o")]
 

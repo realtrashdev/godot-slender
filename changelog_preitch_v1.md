@@ -44,6 +44,10 @@ Added credits music.
 
 \---
 
+Revamped the settings menu, splitting it into different categories.
+
+
+
 Added a mouse sensitivity setting.
 
 
@@ -75,13 +79,13 @@ Added Shade, an enemy that will chase down and kill you shortly after your radar
 
 Chaser:
 
-* Now attracts the flashlight, making it much easier to get rid of it.
+* Now attracts the flashlight's beam.
 * Now moves faster the further it is you.
 * Now moves slower when close to you.
 * Now has a unique sprite for when it is successfully repelled.
 * Adjusted max instances from 3 to 1.
 
-  * Only one Chaser can be active at once per spawner.
+  * (Only one Chaser can be active at once per spawner.)
 
 
 
@@ -121,7 +125,7 @@ Edited tutorial map.
 * Added two pages.
 * Made the "exit" spawn after collecting a page instead of walking far enough.
 * Added a path.
-* Added fences to keep the play area contained.
+* Added fences.
 
 
 
@@ -135,7 +139,7 @@ Renamed Scenarios to Challenges.
 
 
 
-Slightly changed descriptions some Challenges.
+Slightly changed descriptions of some Challenges.
 
 
 
@@ -145,7 +149,7 @@ Slightly changed descriptions some Challenges.
 
 \---
 
-is in development...
+Is now in development...
 
 
 
@@ -174,6 +178,7 @@ Added text to the top left corner of the menu that allows you to see a string of
 Added the ability to reset progress.
 
 * Type "reset" when in the settings menu, a button will show up in the bottom right.
+* This does not work in the in game pause menu's settings, only the main menu.
 
 
 

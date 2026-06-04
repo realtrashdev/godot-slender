@@ -1,11 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://6lvn3tolsp7r"]
+[gd_scene format=3 uid="uid://6lvn3tolsp7r"]
 
 [ext_resource type="Theme" uid="uid://bommyqwo15hbx" path="res://theme1.tres" id="1_sd4kj"]
 [ext_resource type="Script" uid="uid://c2prcdjivgnr5" path="res://scripts/ui/buttons/custom_button.gd" id="2_fpmxc"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wld85"]
 
-[node name="CustomButton" type="Button"]
+[node name="CustomButton" type="Button" unique_id=1314914115]
 custom_minimum_size = Vector2(0, 100)
 offset_right = 300.0
 offset_bottom = 100.0
@@ -17,8 +17,9 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_wld85")
 flat = true
 alignment = 0
 script = ExtResource("2_fpmxc")
+focus_speed = 20.0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=997612675]
 clip_contents = false
 layout_mode = 1
 anchors_preset = 15

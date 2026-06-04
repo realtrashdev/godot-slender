@@ -124,7 +124,7 @@ func _on_unhover():
 
 func _on_mouse_down():
 	if not button_checked:
-		AudioTools.play_one_shot(get_tree(), sfx_press, randf_range(0.8, 1.2), -10)
+		AudioTools.play_one_shot(get_tree(), sfx_press, 4, randf_range(0.8, 1.2), -10)
 
 func _on_mouse_up():
 	pass

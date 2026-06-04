@@ -60,10 +60,10 @@ func _get_volume():
 	return default_volume + volume_modifier
 
 func _mute():
-	AudioServer.set_bus_volume_linear(1, 0.0)
+	AudioServer.set_bus_volume_linear(5, 0.0)
 
 func _unmute():
-	AudioServer.set_bus_volume_linear(1, 1.0)
+	AudioServer.set_bus_volume_linear(5, 1.0)
 
 func _battery_pitch_shifting(battery_remaining: float):
 	if battery_remaining <= 20:

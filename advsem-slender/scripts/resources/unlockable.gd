@@ -8,7 +8,7 @@ var secret_unlock_descriptions = [
 ]
 
 @export_category("Unlocking")
-## "scenarios", "deaths"
+## "scenarios", "deaths", etc.
 @export var unlock_requirements: Dictionary[String, Array] = {
 	"scenarios": [],
 }

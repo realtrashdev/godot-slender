@@ -117,7 +117,7 @@ func stop_running_sound() -> void:
 	running_sound.stop()
 
 func play_death_sound() -> void:
-	AudioTools.play_one_shot(get_tree(), death_sound, 1.0, -5.0)
+	AudioTools.play_one_shot(get_tree(), death_sound, 2, 1.0, -5.0)
 
 
 ## player interaction

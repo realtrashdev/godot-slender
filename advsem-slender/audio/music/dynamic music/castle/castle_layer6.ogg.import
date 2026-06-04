@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://hvsfitc6waf7"
+path="res://.godot/imported/castle_layer6.ogg-d3ebc1b438e57e40cc41b77d3caf280d.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/music/dynamic music/castle/castle_layer6.ogg"
+dest_files=["res://.godot/imported/castle_layer6.ogg-d3ebc1b438e57e40cc41b77d3caf280d.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

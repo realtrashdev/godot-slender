@@ -91,6 +91,7 @@ stream = ExtResource("4_apvou")
 volume_db = -2.0
 autoplay = true
 max_distance = 20.0
+bus = &"GameSounds"
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1475648775]
 

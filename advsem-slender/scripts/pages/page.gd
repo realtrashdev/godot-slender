@@ -6,5 +6,5 @@ signal collected
 
 func collect():
 	collected.emit()
-	AudioTools.play_one_shot_3d(get_tree(), audio.stream, audio.global_position, audio.max_distance, audio.pitch_scale, audio.volume_db)
+	AudioTools.play_one_shot_3d(get_tree(), audio.stream, 2, audio.global_position, audio.max_distance, audio.pitch_scale, audio.volume_db)
 	queue_free()
