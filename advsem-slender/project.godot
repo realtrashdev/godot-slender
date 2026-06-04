@@ -78,8 +78,9 @@ Slows="Ground that slows the player down when walking on it."
 ComponentEnemy="All enemies that act as components rather than physical enemies in the scene."
 AttractsFlashlight="Attracts the player's flashlight."
 GrassSounds=""
-PathSounds=""
 TileSounds=""
+WaterSounds="water walking sounds"
+GravelSounds=""
 
 [input]
 
@@ -161,6 +162,7 @@ pause={
 3d_physics/layer_4="Enemy"
 3d_physics/layer_5="Player"
 3d_physics/layer_6="Flashlight Cast"
+3d_physics/layer_7="GroundObstacle"
 3d_physics/layer_8="Interactible"
 3d_physics/layer_20="RadarScreen"
 

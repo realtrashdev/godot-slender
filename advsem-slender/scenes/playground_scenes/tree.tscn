@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://cxsorime4wuh2"]
+[gd_scene format=3 uid="uid://cxsorime4wuh2"]
 
-[ext_resource type="Script" uid="uid://dkw83jr6dbkgd" path="res://scripts/tree.gd" id="1_j21aw"]
+[ext_resource type="Script" uid="uid://dkw83jr6dbkgd" path="res://scripts/maps/tree.gd" id="1_j21aw"]
 [ext_resource type="ArrayMesh" uid="uid://bpc6beugbqay3" path="res://art/3d/tree1_smooth.obj" id="2_vehxk"]
 
 [node name="PG_Tree" type="Node3D"]

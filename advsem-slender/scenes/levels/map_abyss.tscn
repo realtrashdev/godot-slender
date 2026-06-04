@@ -213,7 +213,7 @@ layers = 0
 use_collision = true
 size = Vector3(254, 6, 1)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1955335386 groups=["PathSounds"]]
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1955335386 groups=["GravelSounds"]]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, -0.48, 0)
 use_collision = true
 collision_layer = 3

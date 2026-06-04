@@ -1,8 +1,9 @@
 class_name PlayerAudioComponent extends Node
 
 @export var movement_grass: Array[AudioStream]
-@export var movement_path: Array[AudioStream]
+@export var movement_gravel: Array[AudioStream]
 @export var movement_tile: Array[AudioStream]
+@export var movement_water: Array[AudioStream]
 
 var previous_sound_index: int
 var move_sound_timer: float
@@ -22,7 +23,7 @@ func _process(delta: float):
 	move_sound_timer -= delta
 
 func handle_movement_audio():
-	if not player.velocity.length() > 1 or not player.is_on_floor():
+	if not player.velocity.length() > 0.5 or not player.is_on_floor():
 		return
 	
 	if move_sound_timer > 0:
@@ -39,7 +40,7 @@ func play_footstep_sound():
 	var sound_array = get_ground_sounds()
 	if sound_array.size() == 0:
 		push_warning("No ground sounds found. Defaulting.")
-		sound_array = movement_path
+		sound_array = movement_gravel
 	
 	# prevent repeat sounds
 	var rand_max = sound_array.size() - 1
@@ -57,7 +58,9 @@ func get_ground_sounds():
 	match ground_cast.get_ground_type():
 		ground_cast.GroundType.GRASS:
 			return movement_grass
-		ground_cast.GroundType.PATH:
-			return movement_path
+		ground_cast.GroundType.GRAVEL:
+			return movement_gravel
 		ground_cast.GroundType.TILE:
 			return movement_tile
+		ground_cast.GroundType.WATER:
+			return movement_water

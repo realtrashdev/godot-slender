@@ -13,7 +13,8 @@ func _ready() -> void:
 		direction_arrow.visible = false
 
 func _process(delta: float) -> void:
-	if not visible: return
+	if not visible:
+		return
 	
 	var result = get_nearest_page_data()
 	distance_text.text = str(result.distance) + "m"
@@ -32,6 +33,9 @@ func _process(delta: float) -> void:
 		#direction_arrow.visible = false
 
 func get_nearest_page_data() -> Dictionary:
+	if not player:
+		return {"distance": 999999, "direction": Vector3.ZERO}
+	
 	var locations = get_tree().get_nodes_in_group("PageLocation")
 	var min_distance: int = 999999
 	var nearest_position: Vector3 = Vector3.ZERO

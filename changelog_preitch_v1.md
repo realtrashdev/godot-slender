@@ -143,6 +143,10 @@ Slightly changed descriptions of some Challenges.
 
 
 
+Added per-map challenge completion progress to the map selection screen.
+
+
+
 
 
 ##### Endless Mode

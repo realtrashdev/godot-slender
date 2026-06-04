@@ -1,11 +1,10 @@
 class_name PlayerMovementComponent extends Node 
 
-const SPEED = 2.0
-const SPRINT_SPEED = 4.0
+const SPEED = 3.0
+const SPRINT_SPEED = 5.0
 # delay before the player can move at the start
 const START_SPEED_DELAY = 1
-const ACCELERATION = 7.0
-const PATH_MODIFIER = 1.0
+const ACCELERATION = 12.0
 
 var player: CharacterBody3D
 var camera_component: PlayerCameraComponent
@@ -15,12 +14,14 @@ var ground_cast: GroundCastComponent
 
 var active: bool = false
 
+
 func _ready():
 	player = get_parent()
 	camera_component = player.get_node("CameraComponent")
 	restriction_component = player.get_node("RestrictionComponent")
 	audio_component = player.get_node("AudioComponent")
 	ground_cast = player.get_node("GroundCastComponent")
+
 
 func handle_physics(delta: float):
 	if not active:
@@ -30,7 +31,7 @@ func handle_physics(delta: float):
 	if not player.is_on_floor():
 		player.velocity += player.get_gravity() * delta
 	
-		# Handle movement
+	# Handle movement
 	var direction = get_movement_direction()
 	if direction:
 		var target_velocity = direction * get_movement_speed()
@@ -47,6 +48,7 @@ func handle_physics(delta: float):
 	player.move_and_slide()
 	audio_component.handle_movement_audio()
 
+
 func get_movement_direction() -> Vector3:
 	if restriction_component.check_for_restriction(PlayerRestriction.RestrictionType.MOVEMENT_FULL):
 		return Vector3.ZERO
@@ -56,26 +58,34 @@ func get_movement_direction() -> Vector3:
 	var direction := (target_basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	return direction
 
+
 func get_movement_speed() -> float:
 	if is_sprinting():
-		return SPRINT_SPEED + get_path_boost()
+		return SPRINT_SPEED - get_speed_reduction()
 	else:
-		return SPEED + get_path_boost()
+		return SPEED - get_speed_reduction()
+
 
 func is_sprinting() -> bool:
 	if restriction_component.check_for_restriction(PlayerRestriction.RestrictionType.RADAR):
 		return false
 	return Input.is_action_pressed("sprint") and player.velocity != Vector3.ZERO
 
-func get_path_boost() -> float:
+
+func get_speed_reduction() -> float:
 	if ground_cast.is_colliding():
-		if not ground_cast.get_collider().is_in_group("Slows"):
-			return PATH_MODIFIER
+		var col = ground_cast.get_collider()
+		if col is SlowingObstacle:
+			return abs(col.slow_amount)
+		if ground_cast.get_collider().is_in_group("Slows"): # old generic ver
+			return 1.0
 	return 0
+
 
 func activate():
 	await get_tree().create_timer(START_SPEED_DELAY, false).timeout
 	active = true
+
 
 func deactivate():
 	player.velocity = Vector3.ZERO
