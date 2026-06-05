@@ -3,13 +3,13 @@
 [ext_resource type="Script" uid="uid://dkw83jr6dbkgd" path="res://scripts/maps/tree.gd" id="1_j21aw"]
 [ext_resource type="ArrayMesh" uid="uid://bpc6beugbqay3" path="res://art/3d/tree1_smooth.obj" id="2_vehxk"]
 
-[node name="PG_Tree" type="Node3D"]
+[node name="PG_Tree" type="Node3D" unique_id=273587383]
 script = ExtResource("1_j21aw")
 
-[node name="Model" type="MeshInstance3D" parent="."]
+[node name="Model" type="MeshInstance3D" parent="." unique_id=407629934]
 mesh = ExtResource("2_vehxk")
 
-[node name="Hitbox" type="CSGCylinder3D" parent="."]
+[node name="Hitbox" type="CSGCylinder3D" parent="." unique_id=2091593704]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 visible = false
 use_collision = true

@@ -57,20 +57,20 @@ uv1_triplanar = true
 uv1_world_triplanar = true
 texture_filter = 0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ajba2"]
-albedo_color = Color(0.8776157, 0.8776158, 0.87761563, 1)
-albedo_texture = ExtResource("6_84il1")
-metallic_specular = 0.0
-uv1_triplanar = true
-uv1_triplanar_sharpness = 0.4597194
-texture_filter = 0
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u1wns"]
 albedo_color = Color(0.5019608, 0.5019608, 0.5019608, 1)
 metallic_specular = 0.0
 uv1_scale = Vector3(0.2, 1, 0.3)
 uv1_offset = Vector3(0.52, 0, 0)
 uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ajba2"]
+albedo_color = Color(0.8776157, 0.8776158, 0.87761563, 1)
+albedo_texture = ExtResource("6_84il1")
+metallic_specular = 0.0
+uv1_triplanar = true
+uv1_triplanar_sharpness = 0.4597194
 texture_filter = 0
 
 [sub_resource type="Sky" id="Sky_kyvai"]
@@ -336,7 +336,7 @@ navigation_mesh = ExtResource("11_tlwqg")
 [node name="Fence" type="MeshInstance3D" parent="Map" unique_id=1895116114]
 transform = Transform3D(1, 0, 0, 0, -1, -1.509958e-07, 0, 1.509958e-07, -1, 0, 2.4999995, 127)
 mesh = SubResource("QuadMesh_ajba2")
-skeleton = NodePath("../../OutsideMap")
+skeleton = NodePath("../../OutsideFence")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Map/Fence" unique_id=263106912]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.49999976, 0)
@@ -347,7 +347,7 @@ size = Vector3(257, 6, 1)
 [node name="Fence2" type="MeshInstance3D" parent="Map" unique_id=1975860373]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -45)
 mesh = SubResource("QuadMesh_ajba2")
-skeleton = NodePath("../../OutsideMap")
+skeleton = NodePath("../../OutsideFence")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="Map/Fence2" unique_id=73995355]
 transform = Transform3D(1, 0, 0, 0, -1, -1.509958e-07, 0, 1.509958e-07, -1, 0, 0.5, 0)
@@ -390,60 +390,14 @@ radius = 23.85
 radial_segments = 8
 rings = 4
 
-[node name="Lakes" type="Node3D" parent="Map" unique_id=418430520]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-
-[node name="NavigationObstacle3D3" type="NavigationObstacle3D" parent="Map/Lakes" unique_id=452384577]
-transform = Transform3D(0.99999994, 0, 2.9802322e-08, 0, 1, 0, 2.9802322e-08, 0, 1, 0, 0.5, 0)
-height = 9.85
-vertices = PackedVector3Array(127.54888, 0, -128.49382, -128.54173, 0, -129.17033, -128.748, 0, -44.394344, 129.37894, 0, -45.73714)
-affect_navigation_mesh = true
-
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Map/Lakes" unique_id=1387638559]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 0.01, 0, -8.742278e-08, 0, -1, -67.007256, 0.49698448, 27.01015)
-radius = 24.0
-material = ExtResource("13_wwrpj")
-
-[node name="NavigationObstacle3D2" type="NavigationObstacle3D" parent="Map/Lakes/CSGCylinder3D" unique_id=1397576810]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 100, 0, 8.742278e-08, 0, -1, -67, 0, 27.000006)
-height = 9.85
-vertices = PackedVector3Array(-68.727806, 0, 20.623165, -67.020775, 0, 19.83973, -62.11853, 0, 22.148144, -59.94012, 0, 26.939075, -61.904533, 0, 32.08073, -66.91279, 0, 33.963234, -71.8758, 0, 31.953053, -73.83469, 0, 27.222343, -73.11455, 0, 24.803257, -85.12173, 0, 12.89773, -91.26221, 0, 27.000198, -84.128044, 0, 44.334656, -67.04497, 0, 51.355793, -49.712498, 0, 44.200874, -43.002617, 0, 27.292423, -50.10364, 0, 9.974119, -67.1732, 0, 2.9485397, -80.60714, 0, 8.529098)
-affect_navigation_mesh = true
-
-[node name="CSGBox3D" type="CSGBox3D" parent="Map/Lakes/CSGCylinder3D" unique_id=2098386918]
-transform = Transform3D(-0.7071068, 0, 0.7071067, 0, 100, 0, -0.7071067, 0, -0.7071068, 10.570503, 350, 11.065528)
+[node name="CSGTorus3D" type="CSGTorus3D" parent="Map/Floor" unique_id=341034549]
+transform = Transform3D(-1, 0, 1.509958e-07, 0, 0.15, 0, -1.509958e-07, 0, -1, -67, 2.5, 27.5)
 operation = 2
-size = Vector3(20, 9, 5.988023)
-
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Map/Lakes/CSGCylinder3D" unique_id=1344681543]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 29.749996, 0)
-operation = 2
-radius = 7.0
-height = 60.0
-
-[node name="CSGTorus3D" type="CSGTorus3D" parent="Map/Lakes" unique_id=341034549]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1.1203921, 0, -8.742278e-08, 0, -1, -67, 0.5, 27)
-visible = false
 use_collision = true
 collision_layer = 4
-inner_radius = 7.0
+inner_radius = 10.0
 outer_radius = 24.0
 material = SubResource("StandardMaterial3D_nbvtq")
-
-[node name="CSGBox3D" type="CSGBox3D" parent="Map/Lakes/CSGTorus3D" unique_id=400708180]
-transform = Transform3D(-0.7071068, 0, 0.7071067, 0, 0.8925447, 0, -0.7071067, 0, -0.7071068, 10.570717, 3.1239064, 11.065324)
-operation = 2
-size = Vector3(20, 9, 6.0005126)
-
-[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Map/Lakes" unique_id=1607714732 groups=["WaterSounds"]]
-transform = Transform3D(-0.70710665, 0, -1.1313708, 0, 0.009999998, 0, 0.7071066, 0, -1.1313709, 48, 0.5, 17)
-use_collision = true
-collision_layer = 64
-collision_mask = 0
-radius = 24.0
-material = ExtResource("13_wwrpj")
-script = ExtResource("22_r45ri")
-slow_amount = 2.0
 
 [node name="Trees" type="Node3D" parent="Map" unique_id=1495175591]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.365, -0.5, -14.171)
@@ -2498,7 +2452,7 @@ transform = Transform3D(-8.940697e-08, 0, -1.0000001, 0, 1, 0, 1.0000001, 0, -8.
 transform = Transform3D(-0.5214862, 0, 0.85326, 0, 1, 0, -0.85326, 0, -0.5214862, -97.19634, 1.9073486e-06, 69.94418)
 
 [node name="PG_Tree4" parent="Map" unique_id=109756772 instance=ExtResource("11_g13vg")]
-transform = Transform3D(-0.86602575, 0, -0.49999997, 0, 1, 0, 0.49999997, 0, -0.86602575, -64, 0, 31)
+transform = Transform3D(-0.7063539, 0, -0.7078593, 0, 1, 0, 0.7078593, 0, -0.7063539, -64.18567, 0, 29.8374)
 
 [node name="PG_Tree5" parent="Map" unique_id=1560688415 instance=ExtResource("11_g13vg")]
 transform = Transform3D(0.9659261, 0, 0.25881892, 0, 1, 0, -0.25881892, 0, 0.9659261, -85, 0, -33)
@@ -2512,181 +2466,211 @@ transform = Transform3D(0.96592605, 0, -0.2588191, 0, 1, 0, 0.2588191, 0, 0.9659
 [node name="PG_BigTree" parent="Map" unique_id=1773398201 instance=ExtResource("13_h37d0")]
 transform = Transform3D(0.8660253, 0, -0.49999997, 0, 1, 0, 0.49999997, 0, 0.8660253, 44, 0, -38)
 
-[node name="OutsideMap" type="Node3D" parent="." unique_id=1713998217]
+[node name="Paths" type="Node3D" parent="Map" unique_id=560537721]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0001335144, 0, 0.00024414063)
 
-[node name="Ground" type="CSGBox3D" parent="OutsideMap" unique_id=1485541815]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -1.0241897, 0.5)
-use_collision = true
-size = Vector3(255, 1, 253)
-material = SubResource("StandardMaterial3D_ajba2")
-
-[node name="CSGBox3D" type="CSGBox3D" parent="OutsideMap/Ground" unique_id=1319553636]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.039383, 20.275436)
-operation = 2
-size = Vector3(126, 5.9003906, 85.877045)
-
-[node name="Paths" type="Node3D" parent="." unique_id=560537721]
-
-[node name="CSGBox3D" type="CSGBox3D" parent="Paths" unique_id=2003221380 groups=["GravelSounds"]]
+[node name="CSGBox3D" type="CSGBox3D" parent="Map/Paths" unique_id=2003221380 groups=["GravelSounds"]]
 transform = Transform3D(0.9659258, 0, -0.25881904, 0, 1, 0, 0.25881904, 0, 0.9659258, -27.675524, -0.48, 125.92196)
 use_collision = true
 collision_layer = 3
 size = Vector3(6, 1, 142)
 material = SubResource("StandardMaterial3D_u1wns")
 
-[node name="CSGBox3D22" type="CSGBox3D" parent="Paths" unique_id=1769249215 groups=["GravelSounds"]]
+[node name="CSGBox3D22" type="CSGBox3D" parent="Map/Paths" unique_id=1769249215 groups=["GravelSounds"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.819168, -0.48, -29.110695)
 use_collision = true
 collision_layer = 3
 size = Vector3(3.6661377, 1, 13.022217)
 material = SubResource("StandardMaterial3D_u1wns")
 
-[node name="CSGBox3D21" type="CSGBox3D" parent="Paths" unique_id=675502244 groups=["GravelSounds"]]
+[node name="CSGBox3D21" type="CSGBox3D" parent="Map/Paths" unique_id=675502244 groups=["GravelSounds"]]
 transform = Transform3D(-0.27125573, 0, -0.96250737, 0, 1, 0, 0.96250737, 0, -0.27125573, -52.79024, -0.48, 92.88327)
 use_collision = true
 collision_layer = 3
 size = Vector3(4.5649414, 1, 64.90515)
 material = SubResource("StandardMaterial3D_u1wns")
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="Paths" unique_id=918199562 groups=["GravelSounds"]]
+[node name="CSGBox3D2" type="CSGBox3D" parent="Map/Paths" unique_id=918199562 groups=["GravelSounds"]]
 transform = Transform3D(0.7071068, 0, 0.70710695, 0, 1, 0, -0.70710695, 0, 0.7071068, -23.367, -0.48, 45.384)
 use_collision = true
 collision_layer = 3
 size = Vector3(6, 1, 42)
 material = SubResource("StandardMaterial3D_u1wns")
 
-[node name="CSGBox3D9" type="CSGBox3D" parent="Paths" unique_id=388841242 groups=["GravelSounds"]]
+[node name="CSGBox3D9" type="CSGBox3D" parent="Map/Paths" unique_id=388841242 groups=["GravelSounds"]]
 transform = Transform3D(0.86602557, 0, -0.49999994, 0, 1, 0, 0.49999994, 0, 0.86602557, -99.067, -0.48, -0.5576687)
 use_collision = true
 collision_layer = 3
 size = Vector3(6, 1, 68)
 material = SubResource("StandardMaterial3D_u1wns")
 
-[node name="CSGBox3D13" type="CSGBox3D" parent="Paths" unique_id=2042842963 groups=["GravelSounds"]]
+[node name="CSGBox3D13" type="CSGBox3D" parent="Map/Paths" unique_id=2042842963 groups=["GravelSounds"]]
 transform = Transform3D(0.86602557, 0, -0.49999994, 0, 1, 0, 0.49999994, 0, 0.86602557, -99.067, -0.48, -0.5576687)
 use_collision = true
 collision_layer = 3
 size = Vector3(6, 1, 68)
 material = SubResource("StandardMaterial3D_u1wns")
 
-[node name="CSGBox3D14" type="CSGBox3D" parent="Paths" unique_id=1219356185 groups=["GravelSounds"]]
+[node name="CSGBox3D14" type="CSGBox3D" parent="Map/Paths" unique_id=1219356185 groups=["GravelSounds"]]
 transform = Transform3D(0.86602557, 0, -0.49999994, 0, 1, 0, 0.49999994, 0, 0.86602557, -99.067, -0.48, -0.5576687)
 use_collision = true
 collision_layer = 3
 size = Vector3(6, 1, 68)
 material = SubResource("StandardMaterial3D_u1wns")
 
-[node name="CSGBox3D15" type="CSGBox3D" parent="Paths" unique_id=2145264102 groups=["GravelSounds"]]
+[node name="CSGBox3D15" type="CSGBox3D" parent="Map/Paths" unique_id=2145264102 groups=["GravelSounds"]]
 transform = Transform3D(0.96592593, 0, -0.25881892, 0, 1, 0, 0.25881892, 0, 0.96592593, 89.4118, -0.47999904, 36.999844)
 use_collision = true
 collision_layer = 3
 size = Vector3(6, 1, 42.90492)
 material = SubResource("StandardMaterial3D_u1wns")
 
-[node name="CSGBox3D10" type="CSGBox3D" parent="Paths" unique_id=1753187269 groups=["GravelSounds"]]
+[node name="CSGBox3D10" type="CSGBox3D" parent="Map/Paths" unique_id=1753187269 groups=["GravelSounds"]]
 transform = Transform3D(0.86602545, 0, 0.50000024, 0, 1, 0, -0.50000024, 0, 0.86602545, -99.067, -0.48, 55.34233)
 use_collision = true
 collision_layer = 3
 size = Vector3(6, 1, 68)
 material = SubResource("StandardMaterial3D_u1wns")
 
-[node name="CSGBox3D7" type="CSGBox3D" parent="Paths" unique_id=2071229254 groups=["GravelSounds"]]
+[node name="CSGBox3D7" type="CSGBox3D" parent="Map/Paths" unique_id=2071229254 groups=["GravelSounds"]]
 transform = Transform3D(-1.1920929e-07, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -1.1920929e-07, 36.533, -0.48, -20.216002)
 use_collision = true
 collision_layer = 3
 size = Vector3(6, 1, 42)
 material = SubResource("StandardMaterial3D_u1wns")
 
-[node name="CSGBox3D11" type="CSGBox3D" parent="Paths" unique_id=1310995017 groups=["GravelSounds"]]
+[node name="CSGBox3D11" type="CSGBox3D" parent="Map/Paths" unique_id=1310995017 groups=["GravelSounds"]]
 transform = Transform3D(0.2536228, 0, 0.96730334, 0, 1, 0, -0.96730334, 0, 0.2536228, 121.98414, -0.47999236, 64.73213)
 use_collision = true
 collision_layer = 3
 size = Vector3(6, 1, 82)
 material = SubResource("StandardMaterial3D_u1wns")
 
-[node name="CSGBox3D5" type="CSGBox3D" parent="Paths" unique_id=93333679 groups=["GravelSounds"]]
+[node name="CSGBox3D5" type="CSGBox3D" parent="Map/Paths" unique_id=93333679 groups=["GravelSounds"]]
 transform = Transform3D(0.7071068, 0, 0.70710695, 0, 1, 0, -0.70710695, 0, 0.7071068, -31.367, -0.48, -3.6160011)
 use_collision = true
 collision_layer = 3
 size = Vector3(6, 1, 42)
 material = SubResource("StandardMaterial3D_u1wns")
 
-[node name="CSGBox3D8" type="CSGBox3D" parent="Paths" unique_id=144106787 groups=["GravelSounds"]]
+[node name="CSGBox3D8" type="CSGBox3D" parent="Map/Paths" unique_id=144106787 groups=["GravelSounds"]]
 transform = Transform3D(0.25881898, 0, 0.96592593, 0, 1, 0, -0.96592593, 0, 0.25881898, -65.16701, -0.48, -23.116001)
 use_collision = true
 collision_layer = 3
 size = Vector3(6, 1, 42)
 material = SubResource("StandardMaterial3D_u1wns")
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="Paths" unique_id=1977812961 groups=["GravelSounds"]]
+[node name="CSGBox3D3" type="CSGBox3D" parent="Map/Paths" unique_id=1977812961 groups=["GravelSounds"]]
 transform = Transform3D(0.7071068, 0, 0.70710695, 0, 1, 0, -0.70710695, 0, 0.7071068, -10.285525, -0.48, 6.846671)
 use_collision = true
 collision_layer = 3
 size = Vector3(79, 1, 6)
 material = SubResource("StandardMaterial3D_u1wns")
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="Paths" unique_id=1229094576 groups=["GravelSounds"]]
+[node name="CSGBox3D4" type="CSGBox3D" parent="Map/Paths" unique_id=1229094576 groups=["GravelSounds"]]
 transform = Transform3D(0.7028238, 0, -0.71136403, 0, 1, 0, 0.71136403, 0, 0.7028238, 9.548969, -0.48, 18.918419)
 use_collision = true
 collision_layer = 3
 size = Vector3(46.29847, 1, 4.9438477)
 material = SubResource("StandardMaterial3D_u1wns")
 
-[node name="CSGBox3D12" type="CSGBox3D" parent="Paths" unique_id=963734253 groups=["GravelSounds"]]
+[node name="CSGBox3D12" type="CSGBox3D" parent="Map/Paths" unique_id=963734253 groups=["GravelSounds"]]
 transform = Transform3D(0.70710677, 0, -0.7071068, 0, 1, 0, 0.7071068, 0, 0.70710677, 75.55475, -0.48, -0.9390564)
 use_collision = true
 collision_layer = 3
 size = Vector3(57, 1, 6)
 material = SubResource("StandardMaterial3D_u1wns")
 
-[node name="CSGBox3D19" type="CSGBox3D" parent="Paths" unique_id=167162945 groups=["GravelSounds"]]
+[node name="CSGBox3D19" type="CSGBox3D" parent="Map/Paths" unique_id=167162945 groups=["GravelSounds"]]
 transform = Transform3D(-1.1920929e-07, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -1.1920929e-07, 36.533, -0.48, -20.216002)
 use_collision = true
 collision_layer = 3
 size = Vector3(6, 1, 42)
 material = SubResource("StandardMaterial3D_u1wns")
 
-[node name="CSGBox3D20" type="CSGBox3D" parent="Paths" unique_id=277053424 groups=["GravelSounds"]]
+[node name="CSGBox3D20" type="CSGBox3D" parent="Map/Paths" unique_id=277053424 groups=["GravelSounds"]]
 transform = Transform3D(0.70710677, 0, -0.7071068, 0, 1, 0, 0.7071068, 0, 0.70710677, 75.55475, -0.48, -0.9390564)
 use_collision = true
 collision_layer = 3
 size = Vector3(57, 1, 6)
 material = SubResource("StandardMaterial3D_u1wns")
 
-[node name="CSGBox3D18" type="CSGBox3D" parent="Paths" unique_id=2135273429 groups=["GravelSounds"]]
-transform = Transform3D(0.70710677, 0, -0.7071068, 0, 1, 0, 0.7071068, 0, 0.70710677, -84.7056, -0.48, 8.87621)
+[node name="CSGBox3D18" type="CSGBox3D" parent="Map/Paths" unique_id=2135273429 groups=["GravelSounds"]]
+transform = Transform3D(0.70710677, 0, -0.7071068, 0, 1, 0, 0.7071068, 0, 0.70710677, -82.05688, -0.48, 12.0020275)
 use_collision = true
 collision_layer = 3
-size = Vector3(39.4, 1, 6.102051)
+size = Vector3(47.56643, 1, 6.102051)
 material = SubResource("StandardMaterial3D_u1wns")
 
-[node name="CSGBox3D16" type="CSGBox3D" parent="Paths" unique_id=1944739321 groups=["GravelSounds"]]
+[node name="CSGBox3D16" type="CSGBox3D" parent="Map/Paths" unique_id=1944739321 groups=["GravelSounds"]]
 transform = Transform3D(0.8660253, 0, -0.5, 0, 1, 0, 0.5, 0, 0.8660253, 3.51404, -0.48, -27.189056)
 use_collision = true
 collision_layer = 3
 size = Vector3(34, 1, 6)
 material = SubResource("StandardMaterial3D_u1wns")
 
-[node name="CSGBox3D17" type="CSGBox3D" parent="Paths" unique_id=751729402 groups=["GravelSounds"]]
+[node name="CSGBox3D17" type="CSGBox3D" parent="Map/Paths" unique_id=751729402 groups=["GravelSounds"]]
 transform = Transform3D(0.9063077, 0, 0.42261827, 0, 1, 0, -0.42261827, 0, 0.9063077, -27.03719, -0.48, -26.877747)
 use_collision = true
 collision_layer = 3
 size = Vector3(41, 1, 6)
 material = SubResource("StandardMaterial3D_u1wns")
 
-[node name="CSGBox3D6" type="CSGBox3D" parent="Paths" unique_id=534149575 groups=["GravelSounds"]]
+[node name="CSGBox3D6" type="CSGBox3D" parent="Map/Paths" unique_id=534149575 groups=["GravelSounds"]]
 transform = Transform3D(0.9659258, 0, 0.25881907, 0, 1, 0, -0.25881907, 0, 0.9659258, 35.292885, -0.48, 69.179085)
 use_collision = true
 collision_layer = 3
 size = Vector3(104.959045, 1, 6)
 material = SubResource("StandardMaterial3D_u1wns")
 
-[node name="CSGBox3D23" type="CSGBox3D" parent="Paths" unique_id=183837088 groups=["GravelSounds"]]
+[node name="CSGBox3D23" type="CSGBox3D" parent="Map/Paths" unique_id=183837088 groups=["GravelSounds"]]
 transform = Transform3D(-0.25881904, 0, 0.9659258, 0, 1, 0, -0.9659258, 0, -0.25881904, 29.541822, -0.48, 50.763252)
 use_collision = true
 collision_layer = 3
 size = Vector3(34.106667, 1, 5.0629883)
 material = SubResource("StandardMaterial3D_u1wns")
+
+[node name="Lakes" type="Node3D" parent="." unique_id=418430520]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0001335144, -0.5, -0.00024414063)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Lakes" unique_id=1387638559 groups=["WaterSounds"]]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 0.01, 0, -8.742278e-08, 0, -1, -67.007, 0.489, 27.01)
+use_collision = true
+collision_layer = 64
+collision_mask = 0
+radius = 24.0
+material = ExtResource("13_wwrpj")
+script = ExtResource("22_r45ri")
+slow_amount = 2.0
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Lakes/CSGCylinder3D" unique_id=1344681543]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 29.749992, 0)
+operation = 2
+radius = 10.0
+height = 60.0
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Lakes" unique_id=1607714732 groups=["WaterSounds"]]
+transform = Transform3D(-0.70710665, 0, -1.1313708, 0, 0.009999998, 0, 0.7071066, 0, -1.1313709, 48, 0.489, 17)
+use_collision = true
+collision_layer = 64
+collision_mask = 0
+radius = 24.0
+material = ExtResource("13_wwrpj")
+script = ExtResource("22_r45ri")
+slow_amount = 2.0
+
+[node name="OutsideFence" type="Node3D" parent="." unique_id=1713998217]
+
+[node name="Ground" type="CSGBox3D" parent="OutsideFence" unique_id=1485541815]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -1.0241897, 0.5)
+use_collision = true
+size = Vector3(255, 1, 253)
+material = SubResource("StandardMaterial3D_ajba2")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="OutsideFence/Ground" unique_id=1319553636]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.039383, 20.275436)
+operation = 2
+size = Vector3(126, 5.9003906, 85.877045)
 
 [node name="Jumpscare" parent="." unique_id=518415373 instance=ExtResource("18_typfu")]
 layer = 9
