@@ -25,6 +25,7 @@ func _ready() -> void:
 	deactivate()
 	if instant_activate:
 		activate()
+	#rotation = starting_rotation
 
 
 #func _process(delta: float) -> void:

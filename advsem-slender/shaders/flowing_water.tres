@@ -10,4 +10,4 @@ shader_parameter/textures = ExtResource("2_xsci2")
 shader_parameter/swap_interval = 0.75000003236512
 shader_parameter/triplanar_sharpness = 5.0
 shader_parameter/texture_scale = 0.50000002049012
-shader_parameter/scroll_speed = 0.050000002375
+shader_parameter/scroll_speed = 0.010000000475

@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://lvhdp5wdhyvs"]
+
+[node name="FoliageGrass1" type="Node3D" unique_id=592395882]
+
+[node name="CSGSphere3D" type="CSGCylinder3D" parent="." unique_id=1623689324]
+transform = Transform3D(0.51097804, 0, 0.85959375, 0, 1, 0, -0.85959375, 0, 0.51097804, 0.037738707, 0.0692749, -0.043704387)
+radius = 0.024414063
+height = 0.16882324
+sides = 4
+smooth_faces = false
+
+[node name="CSGSphere3D2" type="CSGCylinder3D" parent="." unique_id=941925910]
+transform = Transform3D(0.8589778, 0, 0.51201284, 0, 1, 0, -0.51201284, 0, 0.8589778, -0.050232645, 0.022735626, -0.040055122)
+radius = 0.024414063
+height = 0.07574463
+sides = 4
+smooth_faces = false
+
+[node name="CSGSphere3D3" type="CSGCylinder3D" parent="." unique_id=377662427]
+transform = Transform3D(-0.48976296, 0, -0.8718556, 0, 1, 0, 0.8718556, 0, -0.48976296, 0.048304077, 0.0074615777, 0.043380026)
+radius = 0.024414063
+height = 0.045196533
+sides = 4
+smooth_faces = false

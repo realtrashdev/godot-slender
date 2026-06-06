@@ -34,9 +34,11 @@ var sfx_release: AudioStream = load("res://audio/menu/ui/button_release.mp3")
 @onready var description_label: RichTextLabel = $VBoxContainer/DescriptionLabel
 @onready var overview_button: Button = $CheckBox/CustomButton
 
+
 func _ready():
 	_setup_ui()
 	_connect_signals()
+
 
 func _setup_ui():
 	if not disabled:
@@ -71,6 +73,7 @@ func _setup_ui():
 	if item is ColorSet:
 		overview_button.visible = false
 
+
 func _connect_signals():
 	mouse_entered.connect(_on_hover)
 	mouse_exited.connect(_on_unhover)
@@ -79,6 +82,7 @@ func _connect_signals():
 	check_box.button_up.connect(_on_mouse_up)
 	if overview_button:
 		overview_button.pressed.connect(_show_overview)
+
 
 func _get_item_name() -> String:
 	if item is Map:
@@ -89,10 +93,12 @@ func _get_item_name() -> String:
 		return item.name
 	return ""
 
+
 func _get_item_description() -> String:
 	if item is ClassicModeScenario or Map:
 		return item.description
 	return ""
+
 
 func _on_hover():
 	if not focus:
@@ -108,6 +114,7 @@ func _on_hover():
 		_tween_size(FOCUSED_SIZE)
 		hovered.emit()
 
+
 func _on_unhover():
 	if not focus:
 		return
@@ -122,12 +129,15 @@ func _on_unhover():
 		desc_text_tween = create_tween()
 		desc_text_tween.tween_property(description_label, "visible_ratio", 0, 0.3)
 
+
 func _on_mouse_down():
 	if not button_checked:
 		AudioTools.play_one_shot(get_tree(), sfx_press, 4, randf_range(0.8, 1.2), -10)
 
+
 func _on_mouse_up():
 	pass
+
 
 func _on_toggled(toggled: bool):
 	if disabled:
@@ -154,6 +164,7 @@ func _on_toggled(toggled: bool):
 		desc_text_tween = create_tween()
 		desc_text_tween.tween_property(description_label, "visible_ratio", 0, 0.3)
 
+
 func _save_selection():
 	if item is Map:
 		Settings.set_selected_map(item.resource_name)
@@ -161,6 +172,7 @@ func _save_selection():
 		Settings.set_selected_scenario(item)
 	elif item is ColorSet:
 		Settings.set_selected_color_palette(item)
+
 
 func _tween_size(new_size: Vector2, time: float = 0.2):
 	if not focus:
@@ -171,9 +183,11 @@ func _tween_size(new_size: Vector2, time: float = 0.2):
 	size_tween = create_tween()
 	size_tween.tween_property(self, "custom_minimum_size", new_size, time).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 
+
 func _show_overview():
 	if item is ClassicModeScenario:
 		EnemyOverview.populate_via_scenario(item)
+
 
 # for resetting the pulse effect to keep the map and scenario pulses in line
 func reset_text():

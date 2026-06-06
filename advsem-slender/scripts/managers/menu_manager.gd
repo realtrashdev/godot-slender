@@ -52,7 +52,7 @@ func open_menu(type: MenuConfig.MenuType, direction: MenuConfig.TransitionDirect
 
 
 func open_menu_instant(type: MenuConfig.MenuType, direction: MenuConfig.TransitionDirection, play_sound: bool = true):
-	pixel_transition.transition(0.0, 0.0)
+	pixel_transition.transition(0.0, 0.0, 0.0, Tween.EaseType.EASE_OUT, Tween.TransitionType.TRANS_CUBIC)
 	
 	var scene_path = MenuConfig.MENU_SCENES.get(type)
 	if not scene_path:
@@ -112,6 +112,7 @@ func fade_out_music_and_swap(vol: float, time: float, new_stream: AudioStream, n
 	music.volume_db = base_music_volume
 	music.pitch_scale = new_pitch
 	music.play()
+
 
 ## 2^32 different bg possibilities
 func _update_background_noise_seed(menu: MenuConfig.MenuType):

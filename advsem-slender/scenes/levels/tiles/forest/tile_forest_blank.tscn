@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://v08jc48ggd3c"]
+
+[ext_resource type="Script" uid="uid://pr8au1h0xeyw" path="res://scripts/maps/map_tile.gd" id="1_7pfqy"]
+[ext_resource type="PackedScene" uid="uid://5ut5541ee8do" path="res://scenes/levels/decor/foliage_rock1.tscn" id="2_ad4u4"]
+[ext_resource type="Material" uid="uid://bl8i5mwkhsrvh" path="res://materials/grass.tres" id="3_lyyg2"]
+
+[node name="TileForestBlank" type="Node3D" unique_id=1301385909]
+script = ExtResource("1_7pfqy")
+area_size = Vector2(40, 40)
+fol_possible_foliage = Array[PackedScene]([ExtResource("2_ad4u4")])
+fol_amount_to_generate = 12
+
+[node name="MainFloor" type="CSGBox3D" parent="." unique_id=776732702]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.5, 0)
+use_collision = true
+collision_layer = 257
+collision_mask = 0
+size = Vector3(40, 5, 40)
+material = ExtResource("3_lyyg2")
+
+[node name="FoliageContainer" type="Node3D" parent="." unique_id=934732869]
+
+[node name="FoliageRock1" type="Node3D" parent="FoliageContainer" unique_id=592395882 instance=ExtResource("2_ad4u4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.893543, 0, -4.938567)
+
+[node name="FoliageRock2" type="Node3D" parent="FoliageContainer" unique_id=159477176 instance=ExtResource("2_ad4u4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.175406, 0, 5.9794865)
+
+[node name="FoliageRock3" type="Node3D" parent="FoliageContainer" unique_id=460955146 instance=ExtResource("2_ad4u4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.853564, 0, 1.6012393)
+
+[node name="FoliageRock4" type="Node3D" parent="FoliageContainer" unique_id=1544089328 instance=ExtResource("2_ad4u4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0805625, 0, -2.477585)
+
+[node name="FoliageRock5" type="Node3D" parent="FoliageContainer" unique_id=2011754579 instance=ExtResource("2_ad4u4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.665233, 0, -7.3214717)
+
+[node name="FoliageRock6" type="Node3D" parent="FoliageContainer" unique_id=141893473 instance=ExtResource("2_ad4u4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9586077, 0, -12.055906)
+
+[node name="FoliageRock7" type="Node3D" parent="FoliageContainer" unique_id=1489225936 instance=ExtResource("2_ad4u4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.143365, 0, 15.960411)
+
+[node name="FoliageRock8" type="Node3D" parent="FoliageContainer" unique_id=220907573 instance=ExtResource("2_ad4u4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.3716564, 0, -18.297953)
+
+[node name="FoliageRock9" type="Node3D" parent="FoliageContainer" unique_id=1030605182 instance=ExtResource("2_ad4u4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.706835, 0, 10.078249)
+
+[node name="FoliageRock10" type="Node3D" parent="FoliageContainer" unique_id=391010540 instance=ExtResource("2_ad4u4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.265201, 0, 2.0269709)
+
+[node name="FoliageRock11" type="Node3D" parent="FoliageContainer" unique_id=1361123173 instance=ExtResource("2_ad4u4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.88732, 0, 13.146297)
+
+[node name="FoliageRock12" type="Node3D" parent="FoliageContainer" unique_id=2083334202 instance=ExtResource("2_ad4u4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.199227, 0, -5.003374)

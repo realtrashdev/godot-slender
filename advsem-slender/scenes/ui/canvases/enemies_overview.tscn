@@ -35,7 +35,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="SkullLeft" type="TextureRect" parent="." unique_id=483843620]
+[node name="SkullBG" type="TextureRect" parent="." unique_id=483843620]
 modulate = Color(0.22710815, 0.22710815, 0.22710815, 1)
 material = SubResource("ShaderMaterial_tdw8b")
 anchors_preset = 15

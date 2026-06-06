@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://5ut5541ee8do"]
+
+[ext_resource type="Material" uid="uid://bo42w2oqkc8e" path="res://materials/rock.tres" id="1_4yiyj"]
+
+[node name="FoliageRock1" type="Node3D" unique_id=592395882]
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="." unique_id=165020255]
+radius = 0.2
+material = ExtResource("1_4yiyj")

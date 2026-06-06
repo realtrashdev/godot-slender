@@ -70,7 +70,7 @@ scale = Vector2(1.5, 1.5)
 default_text = "Start"
 justification = 1
 
-[node name="TmpBackButton" parent="." unique_id=2059429280 instance=ExtResource("4_4xk28")]
+[node name="BackButton" parent="." unique_id=2059429280 instance=ExtResource("4_4xk28")]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -85,7 +85,6 @@ default_color = Color(0.54497427, 0.5449743, 0.5449741, 1)
 press_color = Color(0, 0, 0, 1)
 
 [node name="MenuButton" parent="." unique_id=541436359 instance=ExtResource("4_4xk28")]
-visible = false
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -168,5 +167,5 @@ It will show you what monsters will be coming after you, and when!"
 horizontal_alignment = 1
 
 [connection signal="pressed" from="StartButton" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="TmpBackButton" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="BackButton" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="MenuButton" to="." method="_on_menu_pressed"]

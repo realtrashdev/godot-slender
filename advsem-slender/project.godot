@@ -62,6 +62,7 @@ enabled=PackedStringArray("res://addons/SmoothScroll/plugin.cfg", "res://addons/
 folder_colors={
 "res://art/": "red",
 "res://audio/": "orange",
+"res://materials/": "teal",
 "res://resources/": "pink",
 "res://scenes/": "green",
 "res://scripts/": "blue",
@@ -81,6 +82,7 @@ GrassSounds=""
 TileSounds=""
 WaterSounds="water walking sounds"
 GravelSounds=""
+NavmeshGeometry="Included in navmesh baking process."
 
 [input]
 
@@ -164,6 +166,7 @@ pause={
 3d_physics/layer_6="Flashlight Cast"
 3d_physics/layer_7="GroundObstacle"
 3d_physics/layer_8="Interactible"
+3d_physics/layer_9="Terrain"
 3d_physics/layer_20="RadarScreen"
 
 [rendering]

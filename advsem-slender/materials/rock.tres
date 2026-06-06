@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bo42w2oqkc8e"]
+
+[ext_resource type="Texture2D" uid="uid://blvkr31gwee1i" path="res://art/2d/textures/rock1.aseprite" id="1_xcelk"]
+
+[resource]
+albedo_color = Color(0.7529412, 0.7529412, 0.7529412, 1)
+albedo_texture = ExtResource("1_xcelk")
+uv1_scale = Vector3(0.63, 0.63, 0.63)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 2.0
+uv1_world_triplanar = true
+texture_filter = 0

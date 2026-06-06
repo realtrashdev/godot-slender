@@ -38,7 +38,7 @@ func defer():
 	secret.brody_typed.connect(_on_brody_typed)
 
 func _on_play_pressed():
-	go_to_menu(MenuConfig.MenuType.MAP_SELECT, MenuConfig.TransitionDirection.FORWARD, true)
+	go_to_menu(MenuConfig.MenuType.MODE_SELECT, MenuConfig.TransitionDirection.FORWARD, true)
 
 func _on_customize_pressed():
 	go_to_menu(MenuConfig.MenuType.CUSTOMIZE, MenuConfig.TransitionDirection.FORWARD, true)

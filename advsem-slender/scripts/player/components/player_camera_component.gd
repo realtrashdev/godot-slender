@@ -33,8 +33,8 @@ func _ready():
 	
 	mouse_sensitivity = Settings.get_actual_mouse_sensitivity()
 	
-	player.rotation.y = 0
-	start_rotation = Vector3(0, 0, 0)
+	#player.rotation.y = 0
+	start_rotation = Vector3(0, player.rotation.y, 0)
 	camera_rotation = start_rotation
 	
 	Signals.game_unpaused.connect(_on_game_unpaused)

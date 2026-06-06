@@ -11,8 +11,10 @@ var camera_component: PlayerCameraComponent
 var restriction_component: PlayerRestrictionComponent
 var audio_component: PlayerAudioComponent
 var ground_cast: GroundCastComponent
+var ground_cast_short: GroundCastComponent
 
 var active: bool = false
+var can_sprint: bool = true
 
 
 func _ready():
@@ -21,6 +23,7 @@ func _ready():
 	restriction_component = player.get_node("RestrictionComponent")
 	audio_component = player.get_node("AudioComponent")
 	ground_cast = player.get_node("GroundCastComponent")
+	ground_cast_short = player.get_node("GroundCastComponentShort")
 
 
 func handle_physics(delta: float):
@@ -69,17 +72,36 @@ func get_movement_speed() -> float:
 func is_sprinting() -> bool:
 	if restriction_component.check_for_restriction(PlayerRestriction.RestrictionType.RADAR):
 		return false
-	return Input.is_action_pressed("sprint") and player.velocity != Vector3.ZERO
+	return Input.is_action_pressed("sprint") and player.velocity != Vector3.ZERO and can_sprint
 
 
 func get_speed_reduction() -> float:
+	if ground_cast_short.is_colliding():
+		var col = ground_cast_short.get_collider()
+		if col is SlowingObstacle:
+			can_sprint = not _check_sprint_disabled(col, true)
+			return abs(col.slow_amount_deep)
 	if ground_cast.is_colliding():
 		var col = ground_cast.get_collider()
 		if col is SlowingObstacle:
+			can_sprint = not _check_sprint_disabled(col, false)
 			return abs(col.slow_amount)
 		if ground_cast.get_collider().is_in_group("Slows"): # old generic ver
 			return 1.0
 	return 0
+
+
+func _check_sprint_disabled(obst: SlowingObstacle, deep: bool = false) -> bool:
+	if deep:
+		if obst.disable_sprint_deep or obst.disable_sprint:
+			return true
+		else:
+			return false
+	else:
+		if obst.disable_sprint:
+			return true
+		else:
+			return false
 
 
 func activate():
