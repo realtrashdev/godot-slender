@@ -17,8 +17,8 @@ const MODE_CONFIG = {
 	}
 }
 
-const DEFAULT_CHARACTER = "default"
-const DEFAULT_PALETTE = "mono"
+#const DEFAULT_CHARACTER = "default"
+#const DEFAULT_PALETTE = "mono"
 
 func get_mode_description(mode: GameMode) -> String:
 	return MODE_CONFIG[mode]["description"]

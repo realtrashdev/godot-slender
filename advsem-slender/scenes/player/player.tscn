@@ -83,12 +83,18 @@ script = ExtResource("26_gkgcs")
 shape = SubResource("CapsuleShape3D_onrkg")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=825403710]
+visible = false
 mesh = SubResource("CapsuleMesh_i3pqv")
 
 [node name="Radar" parent="." unique_id=1909476544 instance=ExtResource("23_al2k6")]
 
 [node name="Head" type="Node3D" parent="." unique_id=2143091579]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="RayCast3D" type="RayCast3D" parent="Head" unique_id=241751905]
+target_position = Vector3(0, 0, -10)
+collision_mask = 3
+script = ExtResource("10_y4r1p")
 
 [node name="Camera3D" type="Camera3D" parent="Head" unique_id=512186000]
 current = true
@@ -126,10 +132,5 @@ light_indirect_energy = 0.0
 light_specular = 0.0
 omni_range = 4.0
 omni_attenuation = 0.0
-
-[node name="RayCast3D" type="RayCast3D" parent="Head/Flashlight" unique_id=241751905]
-target_position = Vector3(0, 0, -10)
-collision_mask = 3
-script = ExtResource("10_y4r1p")
 
 [connection signal="object_collected" from="Head/Camera3D/RayCast3D" to="Head/Flashlight" method="_on_ray_cast_3d_object_collected"]

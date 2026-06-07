@@ -111,7 +111,7 @@ func is_map_unlocked(map_id: String) -> bool:
 #
 # Get array of all unlocks
 #
-func get_unlocked_characters() -> Array[CharacterProfile]:
+func get_unlocked_characters() -> Array[VesselProfile]:
 	return ResourceDatabase.get_unlocked_characters(data.get("unlocked_characters", ["default"]))
 
 func get_unlocked_scenarios() -> Array[ClassicModeScenario]:

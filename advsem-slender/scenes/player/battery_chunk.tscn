@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dihp6ccy4ekeg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q86wp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ix3js"]
+bg_color = Color(0.30980393, 0.30980393, 0.30980393, 1)
+
+[node name="BatteryChunk" type="ProgressBar" unique_id=1535718867]
+custom_minimum_size = Vector2(0, 8)
+size_flags_horizontal = 3
+theme_override_styles/background = SubResource("StyleBoxEmpty_q86wp")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ix3js")
+max_value = 20.0
+step = 0.0
+value = 20.0
+show_percentage = false

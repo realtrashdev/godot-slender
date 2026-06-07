@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://0xwcev5ljsb1" path="res://scripts/player/radar/radar_audio_component.gd" id="2_hjd67"]
 [ext_resource type="Script" uid="uid://bl7j83h5ylc5h" path="res://scripts/player/radar/radar_battery_component.gd" id="2_kxb7t"]
 [ext_resource type="AudioStream" uid="uid://chggo02dqakbk" path="res://audio/music/not ogg/dragon_ringtone.mp3" id="3_hjd67"]
+[ext_resource type="PackedScene" uid="uid://dihp6ccy4ekeg" path="res://scenes/player/battery_chunk.tscn" id="3_lsy0a"]
 [ext_resource type="AudioStream" uid="uid://bccy7gjw3xxbx" path="res://audio/music/not ogg/default_ringtone_loop.wav" id="4_ngbpa"]
 [ext_resource type="FontFile" uid="uid://6lpo01dlrh4f" path="res://fonts/Pixeled.ttf" id="4_on3qy"]
 [ext_resource type="Script" uid="uid://cb4xt1lkvy6t2" path="res://scripts/player/radar/screens/screen_home.gd" id="5_hjd67"]
@@ -15,11 +16,6 @@
 [ext_resource type="Texture2D" uid="uid://cy0p13mbdia6r" path="res://art/2d/arrow_up.aseprite" id="9_1qj1u"]
 [ext_resource type="Script" uid="uid://bqnosmeroaqtr" path="res://scripts/player/radar/screens/screen_help.gd" id="11_qqxeq"]
 [ext_resource type="Texture2D" uid="uid://cujhbmh8mvf7b" path="res://art/2d/radar_deadreaction_default.aseprite" id="14_lsy0a"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q86wp"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ix3js"]
-bg_color = Color(0.30980393, 0.30980393, 0.30980393, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wowfs"]
 
@@ -57,6 +53,7 @@ editor_draw_limits = true
 
 [node name="BatteryComponent" type="Node" parent="." unique_id=873508663]
 script = ExtResource("2_kxb7t")
+battery_chunk_scene = ExtResource("3_lsy0a")
 
 [node name="AudioComponent" type="Node" parent="." unique_id=1749494738]
 script = ExtResource("2_hjd67")
@@ -82,50 +79,6 @@ offset_top = -68.0
 offset_right = 74.0
 offset_bottom = -60.0
 theme_override_constants/separation = 1
-
-[node name="BatteryChunk" type="ProgressBar" parent="BaseScreen/BatteryContainer" unique_id=490273710]
-custom_minimum_size = Vector2(0, 8)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/background = SubResource("StyleBoxEmpty_q86wp")
-theme_override_styles/fill = SubResource("StyleBoxFlat_ix3js")
-max_value = 20.0
-step = 0.0
-value = 20.0
-show_percentage = false
-
-[node name="BatteryChunk1" type="ProgressBar" parent="BaseScreen/BatteryContainer" unique_id=1916570230]
-custom_minimum_size = Vector2(0, 8)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/background = SubResource("StyleBoxEmpty_q86wp")
-theme_override_styles/fill = SubResource("StyleBoxFlat_ix3js")
-max_value = 20.0
-step = 0.0
-value = 20.0
-show_percentage = false
-
-[node name="BatteryChunk2" type="ProgressBar" parent="BaseScreen/BatteryContainer" unique_id=687540680]
-custom_minimum_size = Vector2(0, 8)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/background = SubResource("StyleBoxEmpty_q86wp")
-theme_override_styles/fill = SubResource("StyleBoxFlat_ix3js")
-max_value = 20.0
-step = 0.0
-value = 20.0
-show_percentage = false
-
-[node name="BatteryChunk3" type="ProgressBar" parent="BaseScreen/BatteryContainer" unique_id=1457340446]
-custom_minimum_size = Vector2(0, 8)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/background = SubResource("StyleBoxEmpty_q86wp")
-theme_override_styles/fill = SubResource("StyleBoxFlat_ix3js")
-max_value = 20.0
-step = 0.0
-value = 20.0
-show_percentage = false
 
 [node name="HomeButton" type="Button" parent="BaseScreen" unique_id=2023297311]
 offset_left = -80.0

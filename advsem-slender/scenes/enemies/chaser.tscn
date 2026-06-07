@@ -22,7 +22,7 @@
 [ext_resource type="Script" uid="uid://d0hm3sts6wa7d" path="res://scripts/enemies/OLD/spawn behaviors/spawn_behavior_markers.gd" id="18_mo2ph"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1xo2g"]
-radius = 0.856761
+radius = 1.0
 height = 4.0
 
 [sub_resource type="Resource" id="Resource_xb6xn"]

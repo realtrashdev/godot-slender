@@ -1,0 +1,166 @@
+[gd_scene format=3 uid="uid://8ymr1f4pwvs7"]
+
+[ext_resource type="Texture2D" uid="uid://t8dq5ijafg52" path="res://art/2d/characters/icons/icon_dragon_detailed.aseprite" id="1_6ngat"]
+[ext_resource type="Script" uid="uid://uobwgc64b22c" path="res://scripts/ui/misc/character_panel.gd" id="1_8bykn"]
+[ext_resource type="Theme" uid="uid://bommyqwo15hbx" path="res://theme1.tres" id="2_8bykn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iuf3o"]
+bg_color = Color(0.3779188, 0.3779189, 0.37791875, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+
+[node name="CharacterPanel" type="Panel" unique_id=1962110638]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -504.0
+offset_top = -254.0
+offset_right = 504.0
+offset_bottom = 254.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_iuf3o")
+script = ExtResource("1_8bykn")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1688822628]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=575221104]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="CharacterImage" type="TextureRect" parent="MarginContainer/HBoxContainer" unique_id=282238492]
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 2
+texture = ExtResource("1_6ngat")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=115849766]
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Name" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1800918320]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme = ExtResource("2_8bykn")
+theme_override_constants/outline_size = 12
+text = "DRAGON"
+vertical_alignment = 2
+
+[node name="Container" type="Container" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1335939236]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1539989451]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=1252520144]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="StatName" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=36188540]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("2_8bykn")
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/normal_font_size = 32
+text = "SPEED"
+vertical_alignment = 1
+
+[node name="StatDesc" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=669273897]
+modulate = Color(0.63375676, 0.6337568, 0.63375676, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("2_8bykn")
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/normal_font_size = 24
+text = "2.0"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=266908526]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="StatName" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=987315594]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("2_8bykn")
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/normal_font_size = 32
+text = "LIGHT"
+vertical_alignment = 1
+
+[node name="StatDesc" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=901298082]
+modulate = Color(0.63375676, 0.6337568, 0.63375676, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("2_8bykn")
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/normal_font_size = 24
+text = "3.0"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1576994488]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2" unique_id=216682993]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="StatName" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer" unique_id=1899520681]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("2_8bykn")
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/normal_font_size = 32
+text = "BATTERY"
+vertical_alignment = 1
+
+[node name="StatDesc" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer" unique_id=1650313688]
+modulate = Color(0.63375676, 0.6337568, 0.63375676, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("2_8bykn")
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/normal_font_size = 24
+text = "5"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2" unique_id=1125401266]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="StatName" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2" unique_id=514821140]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("2_8bykn")
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/normal_font_size = 32
+text = "HEIGHT"
+vertical_alignment = 1
+
+[node name="StatDesc" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2" unique_id=406981599]
+modulate = Color(0.63375676, 0.6337568, 0.63375676, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("2_8bykn")
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/normal_font_size = 24
+text = "3.0"

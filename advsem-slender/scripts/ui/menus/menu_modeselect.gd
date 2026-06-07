@@ -58,7 +58,7 @@ func _on_endless_toggled(pressed: bool):
 
 ## TODO change back to CHARACTER_SELECT once characters are implemented
 func _on_start_pressed():
-	go_to_menu(MenuConfig.MenuType.MAP_SELECT, MenuConfig.TransitionDirection.FORWARD, true)
+	go_to_menu(MenuConfig.MenuType.CHARACTER_SELECT, MenuConfig.TransitionDirection.FORWARD, true)
 	SaveManager.save_game()
 
 

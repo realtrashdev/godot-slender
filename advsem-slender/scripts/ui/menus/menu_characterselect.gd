@@ -2,7 +2,7 @@ extends Menu
 
 var button_to_press: CharacterIcon
 
-@onready var characters: HBoxContainer = $HScrollBar/Characters
+@onready var characters: BoxContainer = $ScrollBar/Characters
 @onready var icon_scene = preload("uid://cwiritx4rencv")
 
 func _ready():

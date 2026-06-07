@@ -10,6 +10,7 @@ enum Type {
 @export var type: Type
 @export_multiline var description: String
 @export var icon: Texture2D
+@export var icon_detailed: Texture2D
 
 @export_group("Unlocking")
 @export_multiline var unlock_description: String

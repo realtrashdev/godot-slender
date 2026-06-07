@@ -8,6 +8,8 @@ const OUT_ROT: Vector3 = Vector3(deg_to_rad(-45), 0, 0)
 const AWAY_POS: Vector3 = Vector3(0, -0.25, 1.25)
 const AWAY_ROT: Vector3 = Vector3(0, 0, deg_to_rad(30))
 
+var player_height_mod: float = 0.0
+
 var game_state: GameState
 
 var active: bool = false
@@ -29,11 +31,10 @@ func _ready() -> void:
 	restriction_component = player.get_node("RestrictionComponent")
 	audio = radar_screen.audio_component
 	
-	# connect to input component signals
 	input_component.screen_clicked.connect(_on_screen_clicked)
-	
-	# start with input disabled
 	input_component.set_enabled(false)
+	
+	_apply_base_character_stats()
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("toggle_radar") and can_toggle and active:
@@ -45,6 +46,10 @@ func _input(event: InputEvent) -> void:
 func initialize(state: GameState):
 	game_state = state
 	radar_screen.initialize(state, player)
+
+func _apply_base_character_stats() -> void:
+	var profile: VesselProfile = Settings.get_selected_character()
+	player_height_mod = profile.height - 2.0
 
 func toggle_radar():
 	# CRITICAL investigate bug where taking the radar out while gum is on screen and then clicking him crashes the game (not responding)
@@ -72,10 +77,10 @@ func update_position():
 	var final_pos: Vector3
 	var final_rot: Vector3
 	if focused:
-		final_pos = OUT_POS
+		final_pos = Vector3(OUT_POS.x, OUT_POS.y + player_height_mod, OUT_POS.z)
 		final_rot = OUT_ROT
 	else:
-		final_pos = AWAY_POS
+		final_pos = Vector3(AWAY_POS.x, AWAY_POS.y + player_height_mod, AWAY_POS.z)
 		final_rot = AWAY_ROT
 		#final_pos.x += randf_range(-0.25, 0.25)
 	

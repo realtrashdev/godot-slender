@@ -4,8 +4,6 @@ signal target_brightness_reached
 
 const PAGE_LIGHT_DOWN_TIME: float = 1.0
 
-const LIGHT_BRIGHTNESS: float = 2.0
-const LOW_BATTERY_BRIGHTNESS: float = 1.0
 const PASSIVE_FLICKER_AMOUNT: float = 0.2
 
 const DEFAULT_SPRINT_ANGLE: float = -60
@@ -17,6 +15,8 @@ const ATTRACTION_SMOOTHING: float = 12.0
 
 @export var flicker_sound: AudioStream
 var flickering: bool = false
+
+var light_brightness: float = 2.0
 
 var light_on: bool = false
 var passive_flicker: bool = false
@@ -61,9 +61,11 @@ func _ready() -> void:
 	audio_source = flashlight.get_node("FlashlightAudio")
 	omni_light = flashlight.get_node("OmniLight3D")
 	interaction_cast = player.get_node("Head/Camera3D/RayCast3D")
-	enemy_cast = player.get_node("Head/Flashlight/RayCast3D")
+	enemy_cast = player.get_node("Head/RayCast3D")
 	
-	target_brightness = light.light_energy
+	_apply_base_character_stats()
+	light.light_energy = light_brightness
+	target_brightness = light_brightness
 	sprint_angle = get_sprint_angle()
 	if not player.instant_activate:
 		call_deferred("deactivate")
@@ -80,10 +82,16 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	if player.radar.is_battery_low() and not flickering:
 		target_brightness += randf_range(-PASSIVE_FLICKER_AMOUNT / 10, PASSIVE_FLICKER_AMOUNT / 5)
-		if target_brightness > LIGHT_BRIGHTNESS:
-			target_brightness = LIGHT_BRIGHTNESS
+		if target_brightness > light_brightness:
+			target_brightness = light_brightness
 	elif not flickering:
-		target_brightness = LIGHT_BRIGHTNESS
+		target_brightness = light_brightness
+
+
+func _apply_base_character_stats() -> void:
+	var profile: VesselProfile = Settings.get_selected_character()
+	light_brightness = profile.light_brightness
+	enemy_cast.target_position.z = -5 * profile.light_brightness
 
 
 func handle_flashlight_physics(delta: float):

@@ -25,7 +25,7 @@ static func _scan_and_save_manifest() -> void:
 		"colorsets": _scan_directory("res://resources/color_sets/", "tres"),
 	}
 	
-	# Save as JSON file
+	# save as JSON file
 	var file := FileAccess.open("res://resources/resource_manifest.json", FileAccess.WRITE)
 	if file:
 		file.store_string(JSON.stringify(manifest, "\t"))
@@ -74,10 +74,10 @@ static func _load_resources_from_paths(paths: Array) -> Dictionary:
 	for path in paths:
 		var resource = load(path)
 		if resource:
-			# Extract just the filename without path or extension
+			# extract just the filename without path or extension
 			var file_name: String = path.get_file()  # "map_tutorial.tres"
 			var id: String = file_name.get_basename()  # "map_tutorial"
-			# Remove prefixes
+			# remove prefixes
 			id = id.replace("profile_", "").replace("scenario_", "").replace("map_", "").replace("colorset_", "")
 			resources[id] = resource
 	return resources
@@ -85,16 +85,16 @@ static func _load_resources_from_paths(paths: Array) -> Dictionary:
 ##
 ## CHARACTERS
 ##
-static func get_characters(id: String) -> CharacterProfile:
+static func get_character(id: String) -> VesselProfile:
 	return CHARACTERS.get(id)
 
-static func get_all_characters() -> Array[CharacterProfile]:
-	var result: Array[CharacterProfile] = []
+static func get_all_characters() -> Array[VesselProfile]:
+	var result: Array[VesselProfile] = []
 	result.assign(CHARACTERS.values())
 	return result
 
-static func get_unlocked_characters(unlocked_ids: Array) -> Array[CharacterProfile]:
-	var result: Array[CharacterProfile] = []
+static func get_unlocked_characters(unlocked_ids: Array) -> Array[VesselProfile]:
+	var result: Array[VesselProfile] = []
 	for id in unlocked_ids:
 		if CHARACTERS.has(id):
 			result.append(CHARACTERS[id])
@@ -103,16 +103,16 @@ static func get_unlocked_characters(unlocked_ids: Array) -> Array[CharacterProfi
 ##
 ## ENEMIES
 ##
-static func get_enemy(id: String) -> CharacterProfile:
+static func get_enemy(id: String) -> EnemyProfile:
 	return ENEMIES.get(id)
 
-static func get_all_enemies() -> Array[CharacterProfile]:
-	var result: Array[CharacterProfile] = []
+static func get_all_enemies() -> Array[EnemyProfile]:
+	var result: Array[EnemyProfile] = []
 	result.assign(ENEMIES.values())
 	return result
 
-static func get_unlocked_enemies(unlocked_ids: Array) -> Array[CharacterProfile]:
-	var result: Array[CharacterProfile] = []
+static func get_unlocked_enemies(unlocked_ids: Array) -> Array[EnemyProfile]:
+	var result: Array[EnemyProfile] = []
 	for id in unlocked_ids:
 		if ENEMIES.has(id):
 			result.append(ENEMIES[id])

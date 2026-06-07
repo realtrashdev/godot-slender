@@ -48,8 +48,8 @@ func set_selected_scenario(scenario: ClassicModeScenario):
 	data["selected_scenario"] = scenario.resource_name
 	setting_changed.emit("selected_scenario", scenario.resource_name)
 
-func get_selected_character() -> CharacterProfile:
-	return ResourceDatabase.get_characters(data.get("selected_character", "default"))
+func get_selected_character() -> VesselProfile:
+	return ResourceDatabase.get_character(data.get("selected_character", "default"))
 
 func set_selected_character_name(char_name: String):
 	data["selected_character"] = char_name

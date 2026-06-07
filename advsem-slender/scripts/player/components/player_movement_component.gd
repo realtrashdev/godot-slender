@@ -1,10 +1,11 @@
 class_name PlayerMovementComponent extends Node 
 
-const SPEED = 3.0
-const SPRINT_SPEED = 5.0
 # delay before the player can move at the start
 const START_SPEED_DELAY = 1
-const ACCELERATION = 12.0
+
+var speed = 3.0
+var sprint_speed = 5.0
+var acceleration = 12.0
 
 var player: CharacterBody3D
 var camera_component: PlayerCameraComponent
@@ -24,6 +25,7 @@ func _ready():
 	audio_component = player.get_node("AudioComponent")
 	ground_cast = player.get_node("GroundCastComponent")
 	ground_cast_short = player.get_node("GroundCastComponentShort")
+	_apply_base_character_stats()
 
 
 func handle_physics(delta: float):
@@ -39,17 +41,24 @@ func handle_physics(delta: float):
 	if direction:
 		var target_velocity = direction * get_movement_speed()
 		var current_horizontal = Vector3(player.velocity.x, 0, player.velocity.z)
-		var new_horizontal = current_horizontal.move_toward(target_velocity, ACCELERATION * delta)
+		var new_horizontal = current_horizontal.move_toward(target_velocity, acceleration * delta)
 		player.velocity.x = new_horizontal.x
 		player.velocity.z = new_horizontal.z
 	else:
 		var current_horizontal = Vector3(player.velocity.x, 0, player.velocity.z)
-		var new_horizontal = current_horizontal.move_toward(Vector3.ZERO, ACCELERATION * delta)
+		var new_horizontal = current_horizontal.move_toward(Vector3.ZERO, acceleration * delta)
 		player.velocity.x = new_horizontal.x
 		player.velocity.z = new_horizontal.z
 	
 	player.move_and_slide()
 	audio_component.handle_movement_audio()
+
+
+func _apply_base_character_stats() -> void:
+	var profile: VesselProfile = Settings.get_selected_character()
+	speed = profile.move_speed
+	sprint_speed = profile.move_sprint_speed
+	ground_cast_short.position.y = profile.height - 1.5
 
 
 func get_movement_direction() -> Vector3:
@@ -64,9 +73,9 @@ func get_movement_direction() -> Vector3:
 
 func get_movement_speed() -> float:
 	if is_sprinting():
-		return SPRINT_SPEED - get_speed_reduction()
+		return sprint_speed - get_speed_reduction()
 	else:
-		return SPEED - get_speed_reduction()
+		return speed - get_speed_reduction()
 
 
 func is_sprinting() -> bool:

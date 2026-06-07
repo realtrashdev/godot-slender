@@ -2,7 +2,9 @@ extends Node
 
 enum BatteryState { ALIVE, DEAD }
 
-const STARTING_CHUNKS: int = 4
+@export var battery_chunk_scene: PackedScene
+
+var starting_chunks: int = 4
 
 const BATTERY_PER_CHUNK: float = 20.0
 const PAGE_CHARGE_AMOUNT: float = 20.0
@@ -21,7 +23,10 @@ var dead: bool = false
 
 
 func initialize(container):
+	_apply_base_character_stats()
 	battery_container = container
+	for i in range(starting_chunks):
+		_add_chunk()
 	Signals.page_collected.connect(_on_page_collected)
 	Signals.radar_battery_drained.connect(remove_charge_chunks)
 
@@ -42,6 +47,16 @@ func update(delta: float, screen_state: RadarScreen.ScreenState):
 	_update_visible_chunks()
 
 
+func _apply_base_character_stats() -> void:
+	var profile: VesselProfile = Settings.get_selected_character()
+	starting_chunks = profile.radar_battery_chunks
+
+
+func _add_chunk() -> void:
+	var chunk = battery_chunk_scene.instantiate()
+	battery_container.add_child(chunk)
+
+
 # Public methods
 func get_battery_state() -> BatteryState:
 	return state
@@ -55,7 +70,7 @@ func remove_charge_chunks(amount: int, perma: bool):
 	if perma and not _get_chunks().is_empty():
 		_get_chunks()[_get_chunks().size() - 1].queue_free()
 	else:
-		_add_charge(!BATTERY_PER_CHUNK * amount)
+		_add_charge(-BATTERY_PER_CHUNK * amount)
 
 
 # Private methods

@@ -9,6 +9,9 @@ var button_to_press: CharacterIcon
 func _ready():
 	map_list.map_selected.connect(_on_map_selected)
 	scenario_list.scenario_selected.connect(_on_scenario_selected)
+	
+	if Settings.get_selected_game_mode() == GameConfig.GameMode.ENDLESS:
+		scenario_list.visible = false
 
 
 func _input(event: InputEvent) -> void:

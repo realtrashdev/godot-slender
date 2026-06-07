@@ -184,6 +184,7 @@ size_flags_horizontal = 0
 
 [node name="VolumeSlider" parent="HBoxContainer/Settings/AudioSettings/VBoxContainer/Master" unique_id=711108786 instance=ExtResource("2_ptynm")]
 layout_mode = 2
+mouse_filter = 1
 max_value = 2.0
 step = 0.1
 setting_name = "Master Volume"
@@ -208,6 +209,7 @@ size_flags_horizontal = 0
 
 [node name="VolumeSlider" parent="HBoxContainer/Settings/AudioSettings/VBoxContainer/GameMusic" unique_id=109685394 instance=ExtResource("2_ptynm")]
 layout_mode = 2
+mouse_filter = 1
 max_value = 2.0
 step = 0.1
 setting_name = "Music Volume"
@@ -220,6 +222,7 @@ size_flags_horizontal = 0
 
 [node name="VolumeSlider" parent="HBoxContainer/Settings/AudioSettings/VBoxContainer/GameSound" unique_id=1262617692 instance=ExtResource("2_ptynm")]
 layout_mode = 2
+mouse_filter = 1
 max_value = 2.0
 step = 0.1
 setting_name = "Sound Volume"
@@ -244,6 +247,7 @@ size_flags_horizontal = 0
 
 [node name="VolumeSlider" parent="HBoxContainer/Settings/AudioSettings/VBoxContainer/MenuMusic" unique_id=639171753 instance=ExtResource("2_ptynm")]
 layout_mode = 2
+mouse_filter = 1
 max_value = 2.0
 step = 0.1
 setting_name = "Music Volume"
@@ -256,6 +260,7 @@ size_flags_horizontal = 0
 
 [node name="VolumeSlider" parent="HBoxContainer/Settings/AudioSettings/VBoxContainer/MenuSound" unique_id=777677525 instance=ExtResource("2_ptynm")]
 layout_mode = 2
+mouse_filter = 1
 max_value = 2.0
 step = 0.1
 setting_name = "Sound Volume"

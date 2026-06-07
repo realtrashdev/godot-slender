@@ -173,7 +173,9 @@ func check_key_array():
 		   recent_keys[last_idx] == "L":
 			for scenario in ResourceDatabase.get_all_scenarios():
 				Progression.unlock_scenario(scenario.resource_name)
-			hit("unlocked all challenges! (does not update until you leave play menu)")
+			for character in ResourceDatabase.get_all_characters():
+				Progression.unlock_character(character.resource_name)
+			hit("unlocked all challenges and characters!")
 
 
 ## 1 in 5000 chance every second to spawn gum enemy on title screen
