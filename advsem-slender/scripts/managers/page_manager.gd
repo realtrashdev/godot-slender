@@ -2,10 +2,10 @@ class_name PageSpawnManager extends Node
 
 @export var mandatory_locations: Array[Node3D]
 
-var game_state: GameState
 
-func initialize(state: GameState):
-	game_state = state
+func initialize():
+	pass
+
 
 func _exit_tree():
 	# prevent the memory leakage
@@ -14,12 +14,13 @@ func _exit_tree():
 			if child.has_signal("collected") and child.collected.is_connected(on_page_collected):
 				child.collected.disconnect(on_page_collected)
 
+
 func generate_pages():
 	var locations = get_locations()
 	
 	# set max amount of pages the map can generate
-	game_state.current_max_pages = locations.size()
-	print("Maximum possible pages: %d" % game_state.current_max_pages)
+	GameState.current_max_pages = locations.size()
+	print("Maximum possible pages: %d" % GameState.current_max_pages)
 	
 	# check for valid locations
 	if locations.is_empty():
@@ -27,7 +28,7 @@ func generate_pages():
 		return
 	
 	# determine how many pages to spawn
-	var desired_count = game_state.get_page_gen_amount()
+	var desired_count = GameState.get_page_gen_amount()
 	var spawn_count = mini(desired_count, locations.size())
 	var pages_spawned := 0
 	
@@ -54,14 +55,17 @@ func generate_pages():
 	
 	print("Generated %d pages (%d mandatory, %d non-mandatory)" % [pages_spawned, mandatory_spawned, pages_spawned - mandatory_spawned])
 
+
 func get_locations() -> Array:
 	return get_tree().get_nodes_in_group("PageLocation")
+
 
 func clear_locations() -> void:
 	for location in get_locations():
 		location.reset()
 
+
 func on_page_collected():
-	game_state.current_pages_collected += 1
-	game_state.total_pages_collected += 1
+	GameState.current_pages_collected += 1
+	GameState.total_pages_collected += 1
 	Signals.page_collected.emit()

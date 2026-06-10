@@ -2,8 +2,9 @@ extends Menu
 
 var button_to_press: CharacterIcon
 
-@onready var characters: BoxContainer = $ScrollBar/Characters
+@onready var characters: BoxContainer = $StrongMouseParallax/ScrollBar/Characters
 @onready var icon_scene = preload("uid://cwiritx4rencv")
+@onready var character_panel: Panel = $StrongMouseParallax/CharacterPanel
 
 func _ready():
 	get_vessel_icons()
@@ -11,13 +12,20 @@ func _ready():
 	await get_tree().create_timer(0.3).timeout
 	show_icons()
 
+
 func get_vessel_icons():
 	var all_profiles = ResourceDatabase.get_all_characters()
 	
 	for profile in all_profiles:
-		var icon = icon_scene.instantiate()
+		var icon: CharacterIcon = icon_scene.instantiate()
 		icon.profile = profile
+		icon.selected.connect(_character_changed)
 		characters.add_child(icon)
+
+
+func _character_changed(profile: VesselProfile) -> void:
+	character_panel.populate(profile)
+
 
 func setup_mode_buttons():
 	var group = ButtonGroup.new()
@@ -33,6 +41,7 @@ func setup_mode_buttons():
 			if ch.profile.name.to_lower() == Settings.get_selected_character().resource_name:
 				button_to_press = ch
 
+
 func show_icons():
 	var tween: Tween = create_tween()
 	tween.tween_property(characters, "theme_override_constants/separation", 300, 0.2).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
@@ -44,16 +53,20 @@ func show_icons():
 	
 	button_to_press.set_selected(true)
 
+
 func _character_icon_selected(profile: CharacterProfile):
 	Settings.set_selected_character_name(profile.name.to_lower())
+
 
 func _on_start_pressed():
 	go_to_menu(MenuConfig.MenuType.MAP_SELECT, MenuConfig.TransitionDirection.FORWARD, false)
 	SaveManager.save_game()
 
+
 func _on_back_pressed():
 	go_to_menu(MenuConfig.MenuType.MODE_SELECT, MenuConfig.TransitionDirection.BACKWARD, true)
 	SaveManager.save_game()
+
 
 func _on_menu_pressed():
 	go_to_menu(MenuConfig.MenuType.MAIN, MenuConfig.TransitionDirection.BACKWARD, true)

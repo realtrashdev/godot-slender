@@ -4,7 +4,7 @@ signal selected(profile)
 signal hovered(profile)
 signal unhovered(profile)
 
-@export var profile: CharacterProfile
+@export var profile: CharacterProfile = preload("uid://5btde08a1exu")
 
 @export_group("Settings")
 @export var autofocus: bool = false

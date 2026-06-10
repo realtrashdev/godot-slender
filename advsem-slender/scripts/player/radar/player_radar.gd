@@ -8,10 +8,6 @@ const OUT_ROT: Vector3 = Vector3(deg_to_rad(-45), 0, 0)
 const AWAY_POS: Vector3 = Vector3(0, -0.25, 1.25)
 const AWAY_ROT: Vector3 = Vector3(0, 0, deg_to_rad(30))
 
-var player_height_mod: float = 0.0
-
-var game_state: GameState
-
 var active: bool = false
 var can_toggle: bool = true
 var focused: bool = false
@@ -26,6 +22,7 @@ var restriction_component: PlayerRestrictionComponent
 @onready var input_component: RadarInputComponent = $RadarInputComponent
 @onready var radar_screen: RadarScreen = $SubViewport/RadarScreen
 
+
 func _ready() -> void:
 	player = get_parent()
 	restriction_component = player.get_node("RestrictionComponent")
@@ -33,8 +30,7 @@ func _ready() -> void:
 	
 	input_component.screen_clicked.connect(_on_screen_clicked)
 	input_component.set_enabled(false)
-	
-	_apply_base_character_stats()
+
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("toggle_radar") and can_toggle and active:
@@ -43,13 +39,10 @@ func _input(event: InputEvent) -> void:
 		await get_tree().create_timer(0.5, false).timeout
 		can_toggle = true
 
-func initialize(state: GameState):
-	game_state = state
-	radar_screen.initialize(state, player)
 
-func _apply_base_character_stats() -> void:
-	var profile: VesselProfile = Settings.get_selected_character()
-	player_height_mod = profile.height - 2.0
+func initialize():
+	radar_screen.initialize(player)
+
 
 func toggle_radar():
 	# CRITICAL investigate bug where taking the radar out while gum is on screen and then clicking him crashes the game (not responding)
@@ -73,14 +66,15 @@ func toggle_radar():
 	radar_screen.focused = focused
 	radar_toggled.emit(focused)
 
+
 func update_position():
 	var final_pos: Vector3
 	var final_rot: Vector3
 	if focused:
-		final_pos = Vector3(OUT_POS.x, OUT_POS.y + player_height_mod, OUT_POS.z)
+		final_pos = Vector3(OUT_POS.x, OUT_POS.y, OUT_POS.z)
 		final_rot = OUT_ROT
 	else:
-		final_pos = Vector3(AWAY_POS.x, AWAY_POS.y + player_height_mod, AWAY_POS.z)
+		final_pos = Vector3(AWAY_POS.x, AWAY_POS.y, AWAY_POS.z)
 		final_rot = AWAY_ROT
 		#final_pos.x += randf_range(-0.25, 0.25)
 	
@@ -99,6 +93,7 @@ func update_position():
 		if focused:
 			input_component.set_enabled(true), CONNECT_ONE_SHOT)
 
+
 # TODO change to update audio component, move current stuff into a func in there
 func update_audio():
 	var bus = AudioServer.get_bus_index("PlayerRadar")
@@ -110,19 +105,23 @@ func update_audio():
 		false:
 			audio.volume_modifier -= 5
 
+
 func activate():
 	active = true
 	radar_screen.activate()
 	update_position()
+
 
 func deactivate():
 	active = false
 	radar_screen.deactivate()
 	update_position()
 
+
 func _on_screen_clicked(pos: Vector2):
 	#print("Screen clicked at: ", pos)
 	pass
+
 
 func is_battery_low() -> bool:
 	return radar_screen.is_battery_low()

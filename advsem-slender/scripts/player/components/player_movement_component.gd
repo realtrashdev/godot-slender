@@ -55,10 +55,8 @@ func handle_physics(delta: float):
 
 
 func _apply_base_character_stats() -> void:
-	var profile: VesselProfile = Settings.get_selected_character()
-	speed = profile.move_speed
-	sprint_speed = profile.move_sprint_speed
-	ground_cast_short.position.y = profile.height - 1.5
+	speed = GameState.get_walk_speed()
+	sprint_speed = GameState.get_run_speed()
 
 
 func get_movement_direction() -> Vector3:

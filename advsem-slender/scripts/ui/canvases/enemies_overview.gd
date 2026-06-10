@@ -9,13 +9,16 @@ var active_containers: Dictionary[int, Node]
 @onready var containers: HBoxContainer = $SmoothScrollContainer/Containers
 @onready var subtitle: RichTextLabel = $Subtitle
 
+
 func _ready() -> void:
 	visible = false
+
 
 func show_overview():
 	scroll_container.scale.x = 0
 	create_tween().tween_property(scroll_container, "scale", Vector2.ONE, 0.33).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
 	visible = true
+
 
 func populate_via_scenario(scenario: ClassicModeScenario):
 	_clear()
@@ -30,13 +33,27 @@ func populate_via_scenario(scenario: ClassicModeScenario):
 			con.initialize(i, scenario.enemies_to_add[i].profiles, index)
 		index += 1
 
-func populate_via_array(profiles: Array[EnemyProfile]):
-	pass
+
+func populate_via_game_state():
+	_clear()
+	show_overview()
+	var combined_text: String = "Collect %s/%s Pages" % [GameState.get_pages_required(), GameState.get_total_pages()]
+	subtitle.text = combined_text
+	var index: int = 0
+	var enemy_list = GameState.get_enemy_list()
+	for i in enemy_list:
+		if enemy_list[i] != null:
+			var con = CONTAINER_SCENE.instantiate()
+			containers.add_child(con)
+			con.initialize(i, enemy_list[i].profiles, index)
+		index += 1
+
 
 func _clear():
 	if not containers.get_children().is_empty():
 		for child in containers.get_children():
 			child.queue_free()
+
 
 func _on_close_button_pressed():
 	visible = false

@@ -111,6 +111,12 @@ static func get_all_enemies() -> Array[EnemyProfile]:
 	result.assign(ENEMIES.values())
 	return result
 
+static func get_all_usable_enemies() -> Array[EnemyProfile]:
+	var result: Array[EnemyProfile] = []
+	result.assign(ENEMIES.values())
+	result.erase(preload("uid://b2akbubrke2u1"))
+	return result
+
 static func get_unlocked_enemies(unlocked_ids: Array) -> Array[EnemyProfile]:
 	var result: Array[EnemyProfile] = []
 	for id in unlocked_ids:

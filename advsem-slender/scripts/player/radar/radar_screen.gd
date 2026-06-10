@@ -4,7 +4,6 @@ enum ScreenState { OFF, IDLE, ACTIVE, RINGING }
 
 @export var all_screens: Array[Node]
 
-var game_state: GameState
 var player: CharacterBody3D
 
 var focused: bool = false
@@ -23,8 +22,7 @@ const AudioComponent = preload("uid://0xwcev5ljsb1")
 @onready var dead_battery_screen: Node2D = $DeadBatteryScreen
 @onready var battery_container: HBoxContainer = $BaseScreen/BatteryContainer
 
-func initialize(state: GameState, play: CharacterBody3D):
-	game_state = state
+func initialize(play: CharacterBody3D):
 	player = play
 	
 	tracker_screen.player = player

@@ -1,0 +1,179 @@
+[gd_scene format=3 uid="uid://bvi40xtwfxw5k"]
+
+[ext_resource type="Script" uid="uid://5e3jxjj1maxh" path="res://scripts/ui/endless_enemy_select.gd" id="1_dr50d"]
+[ext_resource type="Shader" path="res://shaders/scroll_uv.gdshader" id="2_kaoc5"]
+[ext_resource type="Script" uid="uid://6gu3dcl8rsxn" path="res://scripts/ui/mouse_parallax.gd" id="2_ky3r5"]
+[ext_resource type="Texture2D" uid="uid://j7tlf6113ftt" path="res://art/2d/ui/skull_icon_spaced.aseprite" id="3_j7j3f"]
+[ext_resource type="Theme" uid="uid://bommyqwo15hbx" path="res://theme1.tres" id="3_mhw47"]
+[ext_resource type="Script" uid="uid://c3ysaqnmo1oo8" path="res://scripts/ui/ui_text.gd" id="4_32aey"]
+[ext_resource type="PackedScene" uid="uid://6lvn3tolsp7r" path="res://scenes/ui/buttons/menu_button.tscn" id="8_j7j3f"]
+[ext_resource type="AudioStream" uid="uid://3mw2rufd0pkp" path="res://audio/music/dynamic music/chiptune1/chiptune1_3.ogg" id="9_0noe8"]
+[ext_resource type="PackedScene" uid="uid://c4spvtkxggnw" path="res://scenes/ui/transitions/pixel_transition.tscn" id="9_50c1a"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_50c1a"]
+shader = ExtResource("2_kaoc5")
+shader_parameter/scroll_x = 0.125
+shader_parameter/scroll_y = 0.25
+shader_parameter/sin_x = true
+shader_parameter/sin_mult_x = 1.0
+shader_parameter/time_mult_x = 2.0
+
+[node name="EndlessEnemySelect" type="Control" unique_id=415726820]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dr50d")
+
+[node name="SkullBG" type="TextureRect" parent="." unique_id=2076204745]
+modulate = Color(0.22710815, 0.22710815, 0.22710815, 1)
+material = SubResource("ShaderMaterial_50c1a")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_j7j3f")
+stretch_mode = 1
+
+[node name="WeakMouseParallax" type="Control" parent="." unique_id=706416670]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("2_ky3r5")
+parallax_strength = 6.0
+metadata/_custom_type_script = "uid://6gu3dcl8rsxn"
+
+[node name="TitleText" type="RichTextLabel" parent="WeakMouseParallax" unique_id=1264605455]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -360.0
+offset_top = 120.0
+offset_right = 360.0
+offset_bottom = 202.00002
+grow_horizontal = 2
+pivot_offset = Vector2(360, 41)
+theme = ExtResource("3_mhw47")
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "[shake rate=4]Choose an Enemy"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+script = ExtResource("4_32aey")
+
+[node name="SlotText" type="RichTextLabel" parent="WeakMouseParallax" unique_id=1423764859]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -360.0
+offset_top = 190.0
+offset_right = 360.0
+offset_bottom = 272.00015
+grow_horizontal = 2
+pivot_offset = Vector2(360, 41)
+theme = ExtResource("3_mhw47")
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "Activates at 0 Pages Collected"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("4_32aey")
+
+[node name="RemainingText" type="RichTextLabel" parent="WeakMouseParallax" unique_id=1044028428]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -360.0
+offset_top = 240.0
+offset_right = 360.0
+offset_bottom = 322.00015
+grow_horizontal = 2
+pivot_offset = Vector2(360, 41)
+theme = ExtResource("3_mhw47")
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "Selections Remaining: 0"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("4_32aey")
+
+[node name="ChooseButton" parent="WeakMouseParallax" unique_id=1314914115 instance=ExtResource("8_j7j3f")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -251.0
+offset_top = -235.0
+offset_right = 251.0
+offset_bottom = -124.0
+grow_horizontal = 2
+grow_vertical = 0
+default_text = "Choose"
+justification = 1
+
+[node name="StrongMouseParallax" type="Control" parent="." unique_id=698367127]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("2_ky3r5")
+metadata/_custom_type_script = "uid://6gu3dcl8rsxn"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="StrongMouseParallax" unique_id=1114256904]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -800.0
+offset_top = -100.0
+offset_right = 800.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(800, 100)
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="PixelTransition" parent="." unique_id=1568466511 instance=ExtResource("9_50c1a")]
+layout_mode = 1
+mouse_filter = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=8278650]
+stream = ExtResource("9_0noe8")
+volume_db = -8.0
+autoplay = true
+bus = &"MenuMusic"
+
+[connection signal="pressed" from="WeakMouseParallax/ChooseButton" to="." method="_on_choose_button_pressed"]

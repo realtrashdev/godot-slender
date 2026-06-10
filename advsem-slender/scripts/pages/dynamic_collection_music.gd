@@ -7,15 +7,13 @@ extends Node
 ## Save previous position of the audio and start the new audio at that position.
 @export var use_previous_position: bool = true
 
-var _game_state: GameState
 var _current_stream: AudioStream
 var _current_pos: float = 0.0
 
 @onready var audio: AudioStreamPlayer = $AudioStreamPlayer
 
 
-func initialize(state: GameState):
-	_game_state = state
+func initialize():
 	if Settings.get_selected_scenario().resource_name == "tutorial":
 		return
 	Signals.page_collected.connect(_on_page_collected)
@@ -24,7 +22,7 @@ func initialize(state: GameState):
 
 
 func _on_page_collected():
-	var pages: int = _game_state.current_pages_collected
+	var pages: int = GameState.current_pages_collected
 	
 	if pages in music_updates:
 		_current_pos = _get_new_playback_position()
@@ -37,7 +35,7 @@ func _on_page_collected():
 		if pause > 0.0:
 			await get_tree().create_timer(pause, false).timeout
 		
-		if pages == _game_state.current_pages_collected and enabled:
+		if pages == GameState.current_pages_collected and enabled:
 			audio.play(_current_pos)
 
 

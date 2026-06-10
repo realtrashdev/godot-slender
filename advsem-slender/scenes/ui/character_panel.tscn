@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://8ymr1f4pwvs7"]
 
-[ext_resource type="Texture2D" uid="uid://t8dq5ijafg52" path="res://art/2d/characters/icons/icon_dragon_detailed.aseprite" id="1_6ngat"]
 [ext_resource type="Script" uid="uid://uobwgc64b22c" path="res://scripts/ui/misc/character_panel.gd" id="1_8bykn"]
 [ext_resource type="Theme" uid="uid://bommyqwo15hbx" path="res://theme1.tres" id="2_8bykn"]
+[ext_resource type="Texture2D" uid="uid://cmdn7n8lta0y" path="res://art/2d/characters/icons/icon_default_detailed.aseprite" id="2_mnf3e"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iuf3o"]
 bg_color = Color(0.3779188, 0.3779189, 0.37791875, 1)
@@ -42,7 +42,7 @@ theme_override_constants/separation = 0
 [node name="CharacterImage" type="TextureRect" parent="MarginContainer/HBoxContainer" unique_id=282238492]
 custom_minimum_size = Vector2(500, 500)
 layout_mode = 2
-texture = ExtResource("1_6ngat")
+texture = ExtResource("2_mnf3e")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=115849766]
 custom_minimum_size = Vector2(500, 500)
@@ -54,7 +54,7 @@ custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 theme = ExtResource("2_8bykn")
 theme_override_constants/outline_size = 12
-text = "DRAGON"
+text = "DEFAULT"
 vertical_alignment = 2
 
 [node name="Container" type="Container" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1335939236]
@@ -87,7 +87,7 @@ size_flags_vertical = 3
 theme = ExtResource("2_8bykn")
 theme_override_constants/outline_size = 12
 theme_override_font_sizes/normal_font_size = 24
-text = "2.0"
+text = "3.0"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=266908526]
 layout_mode = 2
@@ -111,7 +111,7 @@ size_flags_vertical = 3
 theme = ExtResource("2_8bykn")
 theme_override_constants/outline_size = 12
 theme_override_font_sizes/normal_font_size = 24
-text = "3.0"
+text = "2.0"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1576994488]
 layout_mode = 2
@@ -139,28 +139,4 @@ size_flags_vertical = 3
 theme = ExtResource("2_8bykn")
 theme_override_constants/outline_size = 12
 theme_override_font_sizes/normal_font_size = 24
-text = "5"
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2" unique_id=1125401266]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="StatName" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2" unique_id=514821140]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme = ExtResource("2_8bykn")
-theme_override_constants/outline_size = 12
-theme_override_font_sizes/normal_font_size = 32
-text = "HEIGHT"
-vertical_alignment = 1
-
-[node name="StatDesc" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2" unique_id=406981599]
-modulate = Color(0.63375676, 0.6337568, 0.63375676, 1)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme = ExtResource("2_8bykn")
-theme_override_constants/outline_size = 12
-theme_override_font_sizes/normal_font_size = 24
-text = "3.0"
+text = "4"

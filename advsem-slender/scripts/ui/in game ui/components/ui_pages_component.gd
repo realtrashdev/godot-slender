@@ -21,7 +21,6 @@ class_name UIPagesComponent extends UIComponent
 	[Tween.EASE_IN_OUT, Tween.TRANS_CIRC],
 ]
 
-var game_state: GameState
 var tween: Tween
 
 @onready var pages_text: RichTextLabel = $PagesText
@@ -31,7 +30,6 @@ var tween: Tween
 
 
 func _setup():
-	game_state = manager.get_game_state()
 	if Settings.get_selected_scenario().resource_name != "tutorial":
 		Signals.page_collected.connect(_display_text)
 
@@ -78,9 +76,9 @@ func _display_text():
 
 func _setup_ui():
 	# Text
-	pages_text.text = "Pages:     /%s" % [game_state.current_pages_required]
-	pages_old_number.text = str(game_state.current_pages_collected - 1)
-	pages_new_number.text = str(game_state.current_pages_collected)
+	pages_text.text = "Pages:     /%s" % [GameState.current_pages_required]
+	pages_old_number.text = str(GameState.current_pages_collected - 1)
+	pages_new_number.text = str(GameState.current_pages_collected)
 	
 	# Parent node
 	modulate = Color.TRANSPARENT

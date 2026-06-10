@@ -2,9 +2,9 @@ extends Menu
 
 var tween: Tween
 
-@onready var description: RichTextLabel = $DescriptionText
-@onready var classic_btn: Button = $ModeButtons/ClassicButton
-@onready var endless_btn: Button = $ModeButtons/EndlessButton
+@onready var description: RichTextLabel = $StrongMouseParallax/DescriptionText
+@onready var classic_btn: Button = $StrongMouseParallax/ModeButtons/ClassicButton
+@onready var endless_btn: Button = $StrongMouseParallax/ModeButtons/EndlessButton
 
 
 func _ready():
@@ -47,16 +47,17 @@ func animate_description(text: String):
 func _on_classic_toggled(pressed: bool):
 	if not pressed: return
 	Settings.set_selected_game_mode(GameConfig.GameMode.CLASSIC)
+	GameState.update_game_mode(GameConfig.GameMode.CLASSIC)
 	animate_description(GameConfig.get_mode_description(GameConfig.GameMode.CLASSIC))
 
 
 func _on_endless_toggled(pressed: bool):
 	if not pressed: return
 	Settings.set_selected_game_mode(GameConfig.GameMode.ENDLESS)
+	GameState.update_game_mode(GameConfig.GameMode.ENDLESS)
 	animate_description(GameConfig.get_mode_description(GameConfig.GameMode.ENDLESS))
 
 
-## TODO change back to CHARACTER_SELECT once characters are implemented
 func _on_start_pressed():
 	go_to_menu(MenuConfig.MenuType.CHARACTER_SELECT, MenuConfig.TransitionDirection.FORWARD, true)
 	SaveManager.save_game()

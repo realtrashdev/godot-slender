@@ -49,9 +49,8 @@ func _on_start_pressed():
 	SaveManager.save_game()
 
 
-## TODO change back to CHARACTER_SELECT once implemented
 func _on_back_pressed():
-	go_to_menu(MenuConfig.MenuType.MODE_SELECT, MenuConfig.TransitionDirection.BACKWARD, true)
+	go_to_menu(MenuConfig.MenuType.CHARACTER_SELECT, MenuConfig.TransitionDirection.BACKWARD, true)
 	SaveManager.save_game()
 
 

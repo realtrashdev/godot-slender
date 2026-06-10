@@ -2,10 +2,17 @@
 
 [ext_resource type="Texture2D" uid="uid://b212agmo4rsuw" path="res://art/2d/characters/icons/icon_blank.aseprite" id="1_l54h2"]
 [ext_resource type="Script" uid="uid://pimfnspuor4w" path="res://scripts/resources/vessel_profile.gd" id="1_rkv35"]
+[ext_resource type="Texture2D" uid="uid://cmdn7n8lta0y" path="res://art/2d/characters/icons/icon_default_detailed.aseprite" id="2_jsv3d"]
+[ext_resource type="Script" uid="uid://4syugkul6p7m" path="res://scripts/resources/player_stats.gd" id="4_6e3ti"]
+
+[sub_resource type="Resource" id="Resource_rb2ax"]
+script = ExtResource("4_6e3ti")
+metadata/_custom_type_script = "uid://4syugkul6p7m"
 
 [resource]
 resource_name = "default"
 script = ExtResource("1_rkv35")
+stats = SubResource("Resource_rb2ax")
 name = "default"
 type = 5
 description = "
@@ -18,4 +25,5 @@ It's you.
 
 Default stats."
 icon = ExtResource("1_l54h2")
+icon_detailed = ExtResource("2_jsv3d")
 metadata/_custom_type_script = "uid://pimfnspuor4w"

@@ -38,15 +38,7 @@ func _ready():
 	start_rotation = Vector3(0, player.rotation.y, 0)
 	camera_rotation = start_rotation
 	
-	_apply_base_character_stats()
-	
 	Signals.game_unpaused.connect(_on_game_unpaused)
-
-
-func _apply_base_character_stats() -> void:
-	var profile: VesselProfile = Settings.get_selected_character()
-	head.position.y = profile.height - 1.5
-	print(head.position.y)
 
 
 func handle_input(event: InputEvent):

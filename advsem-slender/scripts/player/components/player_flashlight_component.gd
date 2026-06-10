@@ -89,9 +89,8 @@ func _physics_process(delta: float) -> void:
 
 
 func _apply_base_character_stats() -> void:
-	var profile: VesselProfile = Settings.get_selected_character()
-	light_brightness = profile.light_brightness
-	enemy_cast.target_position.z = -5 * profile.light_brightness
+	light_brightness = GameState.get_light_brightness()
+	enemy_cast.target_position.z = -5 * light_brightness
 
 
 func handle_flashlight_physics(delta: float):

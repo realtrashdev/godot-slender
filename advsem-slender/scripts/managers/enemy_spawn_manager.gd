@@ -1,12 +1,10 @@
 class_name EnemySpawnManager extends Node
 
-var game_state: GameState
 var player: CharacterBody3D
 var spawners: Array[EnemySpawner] = []
 
 
-func initialize(state: GameState, player_ref: CharacterBody3D):
-	game_state = state
+func initialize(player_ref: CharacterBody3D):
 	player = player_ref
 	
 	Signals.radar_charged.connect(_on_radar_charged)
@@ -16,11 +14,31 @@ func initialize(state: GameState, player_ref: CharacterBody3D):
 	var shade: EnemySpawner = add_enemy_spawner(preload("uid://b2akbubrke2u1"), 0)
 	shade.needs_manual_enable = true
 	shade.disable_spawner()
+	
+	_setup_all_enemies()
+
+
+func _setup_all_enemies():
+	for page_number in GameState.get_enemy_list():
+		var enemy_list = GameState.get_enemy_list()[page_number]
+		
+		# check if it's an EnemyProfileList
+		if enemy_list and enemy_list is EnemyProfileList:
+			# access profile array inside the list
+			for enemy_profile in enemy_list.profiles:
+				if enemy_profile and enemy_profile is EnemyProfile:
+					print("Adding spawner: ", enemy_profile.name, " at page ", page_number)
+					add_enemy_spawner(enemy_profile, page_number)
+		elif enemy_list == null:
+			# page has no enemies
+			pass
+		else:
+			push_warning("Page ", page_number, " is not an EnemyProfileList: ", type_string(typeof(enemy_list)))
 
 
 func add_enemy_spawner(enemy_profile: EnemyProfile, required: int) -> EnemySpawner:
 	var spawner = EnemySpawner.new()
-	spawner.initialize(game_state, enemy_profile, required, player)
+	spawner.initialize(enemy_profile, required, player)
 	
 	add_child(spawner)
 	spawners.append(spawner)

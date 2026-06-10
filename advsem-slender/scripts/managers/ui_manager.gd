@@ -14,7 +14,6 @@ signal initialized
 const TL_CHARACTER_TIME: float = 1
 const TL_DISPLAY_TIME: float = 4
 
-var game_state: GameState
 var tip_manager: TipManager
 var scenario: ClassicModeScenario
 
@@ -26,8 +25,7 @@ var scenario: ClassicModeScenario
 @onready var in_game_timer_text: RichTextLabel = $InGameTimerText
 @onready var game_over_screen: PackedScene = preload("res://scenes/ui/canvases/game_over_screen.tscn")
 
-func initialize(state: GameState):
-	game_state = state
+func initialize():
 	tip_manager = TipManager.new()
 	
 	# connect to signals and handle internally
@@ -68,7 +66,7 @@ func show_tip():
 	display_text("TIP:\n" + tip, 1, 5, 0)
 
 func show_mode():
-	match game_state.game_mode:
+	match GameState.game_mode:
 		GameConfig.GameMode.CLASSIC:
 			display_text("[wave]CHALLENGE MODE", 1, 5, 0, TextLevel.TOP_BIG)
 		GameConfig.GameMode.ENDLESS:
@@ -81,7 +79,7 @@ func show_scenario(sc: ClassicModeScenario):
 	display_text(sc.name, 1, 5, 0, TextLevel.TOP)
 
 func show_objective():
-	display_text("[wave]Collect %d pages" % game_state.current_pages_required, 1, 3, 1)
+	display_text("[wave]Collect %d pages" % GameState.current_pages_required, 1, 3, 1)
 	
 	if scenario:
 		_scenario_specific_events()
@@ -135,25 +133,18 @@ func display_text(new_text: String, open_time: float, display_time: float, close
 	TextTools.change_visible_characters_timed(text_node, text_node.get_total_character_count(), open_time, display_time, close_time)
 
 func _scenario_specific_events():
-	if scenario.resource_name == "basics1" and game_state.current_pages_collected == 1:
+	if scenario.resource_name == "basics1" and GameState.current_pages_collected == 1:
 		await get_tree().create_timer(3, false).timeout
 		display_text("[wave][LSHIFT] Sprint", 1, 4, 1, TextLevel.CENTER)
 	
-	if scenario.resource_name == "basics2" and game_state.current_pages_collected == 4:
+	if scenario.resource_name == "basics2" and GameState.current_pages_collected == 4:
 		await get_tree().create_timer(3, false).timeout
 		display_text("[wave][F] Toggle Flashlight", 1, 5, 1, TextLevel.CENTER)
 	
-	if scenario.resource_name == "basics1" and game_state.current_pages_collected == 0:
+	if scenario.resource_name == "basics1" and GameState.current_pages_collected == 0:
 		await get_tree().create_timer(5, false).timeout
 		display_text("[wave][RIGHT CLICK] Toggle Radar", 1, 5, 1, TextLevel.CENTER)
 	
-	if scenario.resource_name == "basics3" and game_state.current_pages_collected == 1:
+	if scenario.resource_name == "basics3" and GameState.current_pages_collected == 1:
 		await get_tree().create_timer(3, false).timeout
 		display_text("[wave][RIGHT CLICK] Toggle Radar", 1, 5, 1, TextLevel.CENTER)
-
-# Helpers
-func get_game_state() -> GameState:
-	if game_state:
-		return game_state
-	push_warning("%s: Game state not found." % name)
-	return null

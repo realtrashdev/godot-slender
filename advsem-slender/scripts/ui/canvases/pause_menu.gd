@@ -42,7 +42,10 @@ func _game_pause_audio_effect(pause: bool):
 
 
 func _on_overview_button_pressed() -> void:
-	EnemyOverview.populate_via_scenario(Settings.get_selected_scenario())
+	if GameState.game_mode == GameConfig.GameMode.CLASSIC:
+		EnemyOverview.populate_via_scenario(Settings.get_selected_scenario())
+	else:
+		EnemyOverview.populate_via_game_state()
 	EnemyOverview.show_overview()
 
 

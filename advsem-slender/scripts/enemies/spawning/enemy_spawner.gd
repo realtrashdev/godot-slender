@@ -1,6 +1,5 @@
 class_name EnemySpawner extends Node
 
-var game_state: GameState
 var profile: EnemyProfile
 var player: CharacterBody3D
 var enabled: bool = false
@@ -15,8 +14,7 @@ var required_pages: int = 1
 var active_enemies: Array[Node] = []
 
 
-func initialize(state: GameState, enemy_profile: EnemyProfile, required: int, player_ref: CharacterBody3D):
-	game_state = state
+func initialize(enemy_profile: EnemyProfile, required: int, player_ref: CharacterBody3D):
 	profile = enemy_profile
 	required_pages = required
 	player = player_ref
@@ -139,10 +137,10 @@ func check_enable():
 		return
 	
 	# if the player has collected all required pages, don't enable
-	if game_state.current_pages_collected == game_state.current_pages_required:
+	if GameState.current_pages_collected == GameState.current_pages_required:
 		return
 	
-	if game_state.current_pages_collected >= required_pages and not enabled:
+	if GameState.current_pages_collected >= required_pages and not enabled:
 		enable_spawner()
 		_reset_timer()
 

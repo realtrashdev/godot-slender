@@ -1,5 +1,7 @@
 class_name MenuManager extends Node3D
 
+const ENDLESS_START_SCENE: PackedScene = preload("uid://bvi40xtwfxw5k")
+
 var current_menu: Menu
 var menu_transition: MenuTransition
 
@@ -84,7 +86,16 @@ func start_game():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	fade_out_music(-60, 0.2)
 	await menu_transition.close(current_menu, MenuConfig.TransitionDirection.FORWARD)
-	get_tree().change_scene_to_packed(Settings.get_selected_map().scene)
+	GameState.reset_game_data()
+	match Settings.get_selected_game_mode():
+		GameConfig.GameMode.CLASSIC:
+			get_tree().change_scene_to_packed(Settings.get_selected_map().scene)
+		GameConfig.GameMode.ENDLESS:
+			EndlessManager.reset_all_data()
+			get_tree().change_scene_to_packed(ENDLESS_START_SCENE)
+		_:
+			push_error("ERROR: MenuManager start_game() GameMode match defaulted. Acting as if CLASSIC is selected.")
+			get_tree().change_scene_to_packed(Settings.get_selected_map().scene)
 
 
 func quit_game():

@@ -5,8 +5,6 @@ class_name Player extends CharacterBody3D
 
 #const MENU_SCENE = "res://scenes/ui/menus/menu_base.tscn"
 
-var game_state: GameState
-
 var active: bool = false
 
 var quit_timer: float = 0.0
@@ -47,9 +45,8 @@ func _input(event):
 	camera_component.handle_input(event)
 
 
-func initialize(state: GameState):
-	game_state = state
-	radar.initialize(state)
+func initialize():
+	radar.initialize()
 
 
 func die(_dead = null):

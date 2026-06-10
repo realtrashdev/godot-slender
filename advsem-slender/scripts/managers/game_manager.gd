@@ -1,9 +1,10 @@
 extends Node
 
-var game_state: GameState
-
 # Tutorial
 @export var tutorial: bool = false
+
+const ENDLESS_TRANSITION_SCENE: PackedScene = preload("uid://bvi40xtwfxw5k")
+const CLASSIC_TRANSITION_SCENE: PackedScene = preload("uid://c3f6y28ur3tma")
 
 var game_active: bool = false
 var run_timer_active: bool = false
@@ -12,15 +13,18 @@ var run_timer: float
 # References to managers
 @onready var page_manager: PageSpawnManager = $"../PageManager"
 @onready var enemy_manager: EnemySpawnManager
-@onready var scenario_manager: ScenarioManager
 @onready var ui_manager: UIManager = $"../UIManager"
 @onready var audio_manager: AudioManager = $"../AudioManager"
 @onready var player: CharacterBody3D = $"../Player"
 @onready var pause_menu: CanvasLayer = $"../PauseMenu"
 
+
 func _ready() -> void:
+	GameState.reset_level_data()
 	call_deferred("initialize_game")
 	connect_signals()
+	print("Game Mode: %s" % GameState.game_mode)
+
 
 func _process(delta: float) -> void:
 	if run_timer_active:
@@ -30,36 +34,27 @@ func _process(delta: float) -> void:
 		get_tree().paused = true
 		pause_menu.pause_game()
 
+
 func initialize_game():
-	# create game state
-	game_state = GameState.new()
-	game_state.update_game_mode(Settings.get_selected_game_mode())
-	
 	# init player
-	player.initialize(game_state)
+	player.initialize()
 	
 	# init managers
-	page_manager.initialize(game_state)
+	page_manager.initialize()
 	
 	enemy_manager = EnemySpawnManager.new()
 	enemy_manager.name = "EnemySpawnManager"
-	enemy_manager.initialize(game_state, player)
+	enemy_manager.initialize(player)
 	add_child(enemy_manager)
 	
 	# check for classic mode, if so, get scenario and set up
-	if game_state.game_mode == GameConfig.GameMode.CLASSIC:
-		scenario_manager = ScenarioManager.new()
-		scenario_manager.name = "ScenarioManager"
-		add_child(scenario_manager)
-		
-		var scenario = load_classic_scenario()
-		scenario_manager.initialize(enemy_manager, scenario)
-		ui_manager.scenario = scenario
-		game_state.current_pages_required = scenario.required_pages
-		game_state.current_extra_pages = scenario.total_pages - scenario.required_pages
+	if GameState.game_mode == GameConfig.GameMode.CLASSIC:
+		ui_manager.scenario = load_classic_scenario()
+		#GameState.current_pages_required = scenario.required_pages
+		#GameState.current_extra_pages = scenario.total_pages - scenario.required_pages
 	
-	ui_manager.initialize(game_state)
-	audio_manager.initialize(game_state)
+	ui_manager.initialize()
+	audio_manager.initialize()
 	
 	# first time start
 	audio_manager.start_game_audio()
@@ -70,17 +65,18 @@ func initialize_game():
 	await get_tree().create_timer(6).timeout
 	start_game()
 
+
 func connect_signals():
 	Signals.page_collected.connect(_on_page_collected)
 	Signals.player_died.connect(_on_player_died)
 	Signals.game_started.connect(_on_game_started)
 
+
 func load_classic_scenario() -> ClassicModeScenario:
 	return Settings.get_selected_scenario()
 
+
 func start_game():
-	game_state.reset_level_data()
-	
 	# managers
 	page_manager.generate_pages()
 	audio_manager.start_game_audio()
@@ -98,6 +94,7 @@ func start_game():
 	run_timer = 0.0
 	run_timer_active = true
 
+
 func finish_game(won: bool = true):
 	# shut down
 	print("Game Finished")
@@ -113,8 +110,8 @@ func finish_game(won: bool = true):
 	Signals.game_finished.emit()
 	game_active = false
 	
-	if game_state.game_mode == GameConfig.GameMode.CLASSIC and game_state.current_pages_collected == game_state.current_pages_required:
-		# unlocks stuff
+	if GameState.game_mode == GameConfig.GameMode.CLASSIC and GameState.current_pages_collected >= GameState.current_pages_required:
+		# unlock stuff
 		Progression.complete_scenario(load_classic_scenario().resource_name)
 		print(load_classic_scenario().resource_name + " completed")
 	
@@ -123,27 +120,33 @@ func finish_game(won: bool = true):
 		await get_tree().create_timer(5, false).timeout
 		transition_to_next_state()
 
+
 func transition_to_next_state():
-	match game_state.game_mode:
+	match GameState.game_mode:
 		GameConfig.GameMode.ENDLESS:
-			game_state.current_pages_required += 1
-			start_game()
+			GameState.current_pages_required += 1
+			GameState.current_total_pages += 1
+			GameState.rounds_complete += 1
+			GameState.reset_level_data()
+			get_tree().change_scene_to_packed(ENDLESS_TRANSITION_SCENE)
 		GameConfig.GameMode.CLASSIC:
-			get_tree().change_scene_to_file("res://scenes/ui/menus/menu_base.tscn")
+			get_tree().change_scene_to_packed(CLASSIC_TRANSITION_SCENE)
+
 
 func get_player_spawn_position() -> Vector3:
-	# load from level data in the future
 	return Settings.get_selected_map().player_start_position
 
-# high-level event handlers
+
 func _on_page_collected():
 	if tutorial:
 		return
-	if game_state.current_pages_collected >= game_state.current_pages_required:
+	if GameState.current_pages_collected >= GameState.current_pages_required:
 		finish_game(true)
+
 
 func _on_player_died():
 	finish_game(false)
+
 
 func _on_game_started():
 	if tutorial:

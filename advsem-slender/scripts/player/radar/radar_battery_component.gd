@@ -48,8 +48,7 @@ func update(delta: float, screen_state: RadarScreen.ScreenState):
 
 
 func _apply_base_character_stats() -> void:
-	var profile: VesselProfile = Settings.get_selected_character()
-	starting_chunks = profile.radar_battery_chunks
+	starting_chunks = GameState.get_battery_chunks()
 
 
 func _add_chunk() -> void:

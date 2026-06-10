@@ -2,17 +2,14 @@ class_name AudioManager extends Node
 
 @export var do_collection_ambience: bool = true
 
-var game_state: GameState
-
 @onready var ambience: CustomAudioPlayer = $Ambient
 @onready var collection_music = $DynamicCollectionMusic
 
 
-func initialize(state: GameState):
+func initialize():
 	Signals.page_collected.connect(_on_page_collected)
-	game_state = state
 	if collection_music:
-		collection_music.initialize(game_state)
+		collection_music.initialize()
 	await get_tree().create_timer(1, false).timeout
 	$IntroAudio.play()
 

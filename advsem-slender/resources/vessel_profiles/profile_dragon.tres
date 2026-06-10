@@ -4,15 +4,20 @@
 [ext_resource type="Script" uid="uid://pimfnspuor4w" path="res://scripts/resources/vessel_profile.gd" id="1_x5eo4"]
 [ext_resource type="Texture2D" uid="uid://t8dq5ijafg52" path="res://art/2d/characters/icons/icon_dragon_detailed.aseprite" id="2_5mp76"]
 [ext_resource type="Texture2D" uid="uid://dju6al0bvhvp2" path="res://art/2d/characters/icons/icon_dragon_locked.aseprite" id="2_mi7md"]
+[ext_resource type="Script" uid="uid://4syugkul6p7m" path="res://scripts/resources/player_stats.gd" id="5_ioivw"]
+
+[sub_resource type="Resource" id="Resource_tt2o7"]
+script = ExtResource("5_ioivw")
+walk_speed = 2.5
+run_speed = 4.5
+light_brightness = 2.5
+starting_lives = 4
+metadata/_custom_type_script = "uid://4syugkul6p7m"
 
 [resource]
 resource_name = "dragon"
 script = ExtResource("1_x5eo4")
-move_speed = 2.5
-move_sprint_speed = 4.5
-light_brightness = 2.5
-radar_battery_chunks = 5
-height = 2.5
+stats = SubResource("Resource_tt2o7")
 name = "Dragon"
 type = 4
 description = "

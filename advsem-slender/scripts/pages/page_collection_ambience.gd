@@ -4,15 +4,13 @@ const DEFAULT_INTERVAL: float = 3.0
 const STOMPING_DEFAULT_VOLUME: float = -15.0
 const DISTOMPING_DEFAULT_VOLUME: float = -5.0
 
-var game_state: GameState
 var interval: float
 var play_interval: bool = false
 var too_long: bool = false
 
 var active_interval_sounds: Array[AudioStreamPlayer]
 
-func initialize(state: GameState):
-	game_state = state
+func initialize():
 	Signals.page_collected.connect(on_page_collected)
 
 func _exit_tree():
@@ -20,7 +18,7 @@ func _exit_tree():
 		Signals.page_collected.disconnect(on_page_collected)
 
 func on_page_collected():
-	match game_state.current_pages_collected:
+	match GameState.current_pages_collected:
 		1:
 			if too_long:
 				return

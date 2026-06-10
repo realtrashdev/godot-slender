@@ -1,1 +1,1 @@
-@abstract class_name Interactible extends Node
+@abstract class_name Interactible extends Node3D
