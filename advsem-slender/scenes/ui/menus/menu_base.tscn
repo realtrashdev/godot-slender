@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://dknupfsrnq16s" path="res://audio/menu/keyboard_sound4.mp3" id="8_y4m2o"]
 [ext_resource type="Script" uid="uid://1rp2y7xx8yax" path="res://scripts/ui/menus/menu_secrets.gd" id="9_qvyop"]
 [ext_resource type="Theme" uid="uid://bommyqwo15hbx" path="res://theme1.tres" id="10_whi8p"]
+[ext_resource type="PackedScene" uid="uid://cul8x4lid5dky" path="res://scenes/ui/pixelation.tscn" id="12_j6qfw"]
 [ext_resource type="PackedScene" uid="uid://c4spvtkxggnw" path="res://scenes/ui/transitions/pixel_transition.tscn" id="12_whi8p"]
 
 [sub_resource type="Sky" id="Sky_0xm2m"]
@@ -102,7 +103,7 @@ bbcode_enabled = true
 scroll_active = false
 
 [node name="Background" type="TextureRect" parent="." unique_id=657096726]
-z_index = -1
+z_index = -2
 material = SubResource("ShaderMaterial_y4m2o")
 anchors_preset = 15
 anchor_right = 1.0
@@ -120,5 +121,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0)
+
+[node name="Pixelation" parent="." unique_id=481670942 instance=ExtResource("12_j6qfw")]
+z_index = -1
 
 [node name="PixelTransition" parent="." unique_id=1568466511 instance=ExtResource("12_whi8p")]

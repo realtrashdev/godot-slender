@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cul8x4lid5dky"]
+
+[ext_resource type="Material" uid="uid://ch0bekt0ms7x5" path="res://shaders/pixelation.tres" id="1_2o52g"]
+
+[node name="Pixelation" type="ColorRect" unique_id=481670942]
+z_index = 1
+material = ExtResource("1_2o52g")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
