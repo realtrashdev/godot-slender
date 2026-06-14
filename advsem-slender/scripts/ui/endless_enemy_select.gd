@@ -22,9 +22,7 @@ var slot: int = 1
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	all_enemies = ResourceDatabase.get_all_usable_enemies()
-	var rand: int = randi_range(0, 1) if GameState.rounds_complete > 0 else 0
-	slot = clampi(GameState.rounds_complete + rand, 1, 100)
-	selections_remaining = GameState.required_enemy_selections + floori(GameState.rounds_complete % 2)
+	_calc_slots_and_selections()
 	_setup()
 
 
@@ -41,7 +39,13 @@ func _setup():
 
 
 func _randomize_enemy_choices():
-	var enemies = all_enemies.duplicate()
+	var enemies: Array[EnemyProfile] = all_enemies.duplicate()
+	
+	# No enemies, must pick a lethal enemy
+	if GameState.get_enemy_list().is_empty():
+		enemies = enemies.filter(func(e): return e.type == CharacterProfile.Type.LETHAL)
+	
+	# Normal
 	for i in range(GameState.enemy_choices):
 		if enemies.is_empty():
 			push_warning("Ran out of unique enemy choices!")
@@ -50,6 +54,18 @@ func _randomize_enemy_choices():
 		enemy_choices.append(enemy)
 		enemies.erase(enemy)
 		print("add enemy")
+
+
+func _calc_slots_and_selections():
+	var rand: int = randi_range(0, 1) if GameState.rounds_complete > 0 else 0
+	slot = clampi(GameState.rounds_complete + rand, 1, GameState.current_max_pages - 1)
+	
+	# Maximum pages required = completely randomized slots to prevent stacking at end
+	# Player will have already "won" at this point so this is meant to bring chaos
+	if GameState.get_pages_required() == GameState.current_max_pages:
+		slot = randi_range(0, GameState.current_max_pages - 1)
+	
+	selections_remaining = GameState.required_enemy_selections + floori(GameState.rounds_complete / 4)
 
 
 func _get_enemy_icons():

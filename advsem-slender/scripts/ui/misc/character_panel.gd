@@ -21,7 +21,10 @@ func populate(profile: VesselProfile) -> void:
 		character_image.texture = profile.icon_detailed
 	else:
 		character_image.texture = profile.icon
-	name_desc.text = profile.name.to_upper()
+	var char_name = profile.name
+	if char_name == "default":
+		char_name = Progression.get_player_name()
+	name_desc.text = char_name.to_upper()
 	speed_desc.text = str(profile.stats.walk_speed)
 	light_desc.text = str(profile.stats.light_brightness)
 	batt_desc.text = str(profile.stats.battery_chunks)

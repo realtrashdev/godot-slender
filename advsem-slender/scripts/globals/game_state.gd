@@ -85,8 +85,20 @@ func get_pages_required() -> int:
 	return current_pages_required
 
 
+func set_pages_required(req: int):
+	current_pages_required = req
+	if current_pages_required > current_max_pages:
+		current_pages_required = current_max_pages
+
+
 func get_total_pages() -> int:
 	return current_total_pages
+
+
+func set_total_pages(tot: int):
+	current_total_pages = tot
+	if current_total_pages > current_max_pages:
+		current_total_pages = current_max_pages
 
 
 #region Stats

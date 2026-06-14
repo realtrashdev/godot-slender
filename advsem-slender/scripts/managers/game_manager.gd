@@ -124,8 +124,8 @@ func finish_game(won: bool = true):
 func transition_to_next_state():
 	match GameState.game_mode:
 		GameConfig.GameMode.ENDLESS:
-			GameState.current_pages_required += 1
-			GameState.current_total_pages += 1
+			GameState.set_pages_required(GameState.current_pages_required + 1)
+			GameState.set_total_pages(GameState.current_total_pages + 1)
 			GameState.rounds_complete += 1
 			GameState.reset_level_data()
 			get_tree().change_scene_to_packed(ENDLESS_TRANSITION_SCENE)
