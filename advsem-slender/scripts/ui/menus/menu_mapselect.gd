@@ -2,9 +2,10 @@ extends Menu
 
 var button_to_press: CharacterIcon
 
-@onready var scenario_list: ScenarioList = $ScenarioList
-@onready var map_list: MapList = $MapList
-@onready var map_icon: VBoxContainer = $MapIcon
+@onready var scenario_list: ScenarioList = $StrongMouseParallax/ScenarioList
+@onready var map_list: MapList = $StrongMouseParallax/MapList
+@onready var map_icon: VBoxContainer = $StrongMouseParallax/MapIcon
+@onready var overview_tutorial = $StrongMouseParallax/EnemyOverviewTutorial
 
 func _ready():
 	map_list.map_selected.connect(_on_map_selected)
@@ -15,14 +16,17 @@ func _ready():
 
 
 func _input(event: InputEvent) -> void:
-	if Input.is_action_just_released("interact") and $EnemyOverviewTutorial.visible and EnemyOverview.visible:
-		$EnemyOverviewTutorial.visible = false
+	if Input.is_action_just_pressed("pause") and Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
+		_on_back_pressed()
+	
+	if Input.is_action_just_released("interact") and overview_tutorial.visible and EnemyOverview.visible:
+		overview_tutorial.visible = false
 		#HACK
 		Progression.complete_tutorial()
 
 
 func open_enemy_overview_tutorial():
-	$EnemyOverviewTutorial.visible = true
+	overview_tutorial.visible = true
 
 
 func _on_map_selected(map: Map):
@@ -33,7 +37,7 @@ func _on_map_selected(map: Map):
 	
 	scenario_list.populate()
 	
-	if not Progression.is_tutorial_completed() and map.resource_name == "forest":
+	if not Progression.is_tutorial_completed() and map.resource_name == "forest" and Settings.get_selected_game_mode() == GameConfig.GameMode.CLASSIC:
 		open_enemy_overview_tutorial()
 
 

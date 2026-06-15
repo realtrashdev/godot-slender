@@ -65,7 +65,7 @@ func _calc_slots_and_selections():
 	if GameState.get_pages_required() == GameState.current_max_pages:
 		slot = randi_range(0, GameState.current_max_pages - 1)
 	
-	selections_remaining = GameState.required_enemy_selections + floori(GameState.rounds_complete / 4)
+	selections_remaining = GameState.required_enemy_selections + floori(float(GameState.rounds_complete) / 4.0)
 
 
 func _get_enemy_icons():
@@ -116,7 +116,10 @@ func _on_choose_button_pressed() -> void:
 		await get_tree().create_timer(1.0).timeout
 		get_tree().change_scene_to_packed(Settings.get_selected_map().scene)
 	else:
-		slot += 1
+		if GameState.get_pages_required() == GameState.current_max_pages:
+			slot = randi_range(0, GameState.current_max_pages - 1)
+		else:
+			slot += 1
 		_clear_icons()
 		_setup()
 	

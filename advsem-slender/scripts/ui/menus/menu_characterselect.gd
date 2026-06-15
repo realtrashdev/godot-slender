@@ -13,6 +13,11 @@ func _ready():
 	show_icons()
 
 
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("pause") and Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
+		_on_back_pressed()
+
+
 func get_vessel_icons():
 	var all_profiles = ResourceDatabase.get_all_characters()
 	

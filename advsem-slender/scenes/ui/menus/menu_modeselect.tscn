@@ -96,7 +96,7 @@ alignment = 1
 [node name="ClassicButton" parent="StrongMouseParallax/ModeButtons" unique_id=1103879234 instance=ExtResource("3_f83us")]
 layout_mode = 2
 toggle_mode = true
-default_text = "Classic"
+default_text = "Challenge"
 justification = 2
 focus_font_size = 56.0
 focus_text_effect = ""

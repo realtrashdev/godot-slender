@@ -13,6 +13,11 @@ func _ready():
 	show_current_mode_description()
 
 
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("pause") and Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
+		_on_back_pressed()
+
+
 func setup_mode_buttons():
 	var group = ButtonGroup.new()
 	classic_btn.button_group = group

@@ -17,6 +17,11 @@ func _ready() -> void:
 	_refresh_title()
 
 
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("pause") and Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
+		_on_back_pressed()
+
+
 func defer():
 	var secret = get_parent().get_node("Secrets")
 	secret.reset_typed.connect(_on_reset_typed)
