@@ -6,6 +6,7 @@ class_name CustomAudioPlayer extends AudioStreamPlayer
 @export var fade_in_time: float = 0.0
 var default_volume: float = 0.0
 
+
 func _ready() -> void:
 	if fade_in_enabled:
 		default_volume = fade_in_volume
@@ -16,8 +17,10 @@ func _ready() -> void:
 		play()
 		set_volume_smooth(default_volume, fade_in_time, -60)
 
+
 func set_volume(new_volume: float):
 	volume_db = new_volume
+
 
 func set_volume_smooth(new_volume: float, tween_duration: float, start_volume: float = volume_db, easing: Tween.EaseType = Tween.EASE_OUT, transition: Tween.TransitionType = Tween.TRANS_QUAD):
 	volume_db = start_volume

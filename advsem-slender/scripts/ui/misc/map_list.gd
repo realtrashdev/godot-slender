@@ -2,6 +2,7 @@ class_name MapList extends GenericList
 
 signal map_selected(map: Map)
 
+
 func _ready() -> void:
 	# Set the button scene for this specific list
 	button_scene = preload("res://scenes/ui/buttons/generic_checkbox.tscn")

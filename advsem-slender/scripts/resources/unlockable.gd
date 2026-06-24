@@ -14,11 +14,13 @@ var secret_unlock_descriptions = [
 }
 @export_multiline var unlock_description = "Locked..."
 
+
 func check_for_unlock() -> bool:
 	for requirement in unlock_requirements["scenarios"]:
 		if requirement not in Progression.get_completed_scenarios():
 			return false
 	return true
+
 
 func get_unlock_description() -> String:
 	var requirements = unlock_requirements["scenarios"]

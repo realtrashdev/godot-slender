@@ -22,6 +22,7 @@ enum EnemyType { ENEMY_2D, ENEMY_3D, ENEMY_COMPONENT }
 ## What the game can tell the player when they die to this enemy.
 @export_multiline var death_tips: Array[String]
 
+
 func get_death_tip() -> String:
 	if death_tips.size() > 0:
 		return death_tips[randi_range(0, death_tips.size() - 1)]

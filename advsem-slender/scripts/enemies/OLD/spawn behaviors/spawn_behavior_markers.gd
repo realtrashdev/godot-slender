@@ -5,6 +5,7 @@ class_name SpawnMarkers extends SpawnBehavior
 @export var radius: float = 40.0
 @export var min_distance: float = 20.0
 
+
 func get_spawn_position(player: CharacterBody3D, markers: Node3D) -> Vector3:
 	var candidates: Array[Marker3D] = []
 	var spawn_points = markers.get_children()

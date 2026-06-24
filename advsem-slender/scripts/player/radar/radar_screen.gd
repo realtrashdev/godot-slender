@@ -22,6 +22,7 @@ const AudioComponent = preload("uid://0xwcev5ljsb1")
 @onready var dead_battery_screen: Node2D = $DeadBatteryScreen
 @onready var battery_container: HBoxContainer = $BaseScreen/BatteryContainer
 
+
 func initialize(play: CharacterBody3D):
 	player = play
 	
@@ -32,30 +33,37 @@ func initialize(play: CharacterBody3D):
 	
 	_connect_signals()
 
+
 func _process(delta: float) -> void:
 	audio_component.update(battery_component.get_battery_remaining())
 	if do_battery_drain:
 		battery_component.update(delta, get_screen_state())
+
 
 # Public methods
 func activate():
 	audio_component.activate()
 	battery_component.activate()
 
+
 func deactivate():
 	audio_component.deactivate()
 	battery_component.deactivate()
 
+
 func call_started():
 	audio_component.play_ringtone()
+
 
 func call_ended():
 	audio_component.stop_ringtone()
 	if get_battery_state() != BatteryComponent.BatteryState.DEAD:
 		audio_component.play_notification()
 
+
 func get_battery_state() -> BatteryComponent.BatteryState:
 	return battery_component.get_battery_state()
+
 
 func get_screen_state() -> ScreenState:
 	if battery_component.dead:
@@ -67,14 +75,17 @@ func get_screen_state() -> ScreenState:
 	else:
 		return ScreenState.IDLE
 
+
 func is_battery_low() -> bool:
 	return battery_component.low
+
 
 # Private methods
 func _reset_screens():
 	for screen in all_screens:
 		screen.visible = false
 	tracker_screen.visible = true
+
 
 # Radar signals
 func _on_home_button_pressed() -> void:
@@ -83,17 +94,20 @@ func _on_home_button_pressed() -> void:
 	help_screen.visible = false
 	audio_component.play_notification()
 
+
 func _on_page_button_pressed() -> void:
 	home_screen.visible = false
 	tracker_screen.visible = true
 	help_screen.visible = false
 	audio_component.play_notification()
 
+
 func _on_help_button_pressed() -> void:
 	home_screen.visible = false
 	tracker_screen.visible = false
 	help_screen.visible = true
 	audio_component.play_notification()
+
 
 # Global signals
 func _connect_signals():
@@ -103,16 +117,20 @@ func _connect_signals():
 	Signals.radar_charged.connect(_on_radar_charged)
 	Signals.radar_died.connect(_on_radar_died)
 
+
 func _on_game_finished():
 	_reset_screens()
 
+
 func _on_tutorial_distance_reached() -> void:
 	audio_component.play_notification()
+
 
 func _on_radar_charged():
 	if dead_battery_screen.visible:
 		dead_battery_screen.visible = false
 		audio_component.play_notification()
+
 
 func _on_radar_died():
 	dead_battery_screen.visible = true

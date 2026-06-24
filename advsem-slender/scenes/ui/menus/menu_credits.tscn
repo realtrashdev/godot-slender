@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://c3ysaqnmo1oo8" path="res://scripts/ui/ui_text.gd" id="4_p0776"]
 [ext_resource type="PackedScene" uid="uid://6lvn3tolsp7r" path="res://scenes/ui/buttons/menu_button.tscn" id="5_1cd10"]
 
-[node name="CreditsMenu" type="Control" unique_id=200221851 node_paths=PackedStringArray("timed_credits_tabs")]
+[node name="CreditsMenu" type="Control" unique_id=200221851 node_paths=PackedStringArray("tab_order", "timed_credits_tabs")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,12 +15,15 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(960, 540)
 script = ExtResource("1_mcmth")
+tab_order = [NodePath("WeakMouseParallax/Title"), NodePath("WeakMouseParallax/Developer"), NodePath("WeakMouseParallax/InspiredBy"), NodePath("WeakMouseParallax/SpecialThanks1"), NodePath("WeakMouseParallax/Playtesters1"), NodePath("WeakMouseParallax/ThankYou")]
 timed_credits_tabs = {
 NodePath("WeakMouseParallax/Title"): 8.34,
 NodePath("WeakMouseParallax/Developer"): 4.17,
 NodePath("WeakMouseParallax/InspiredBy"): 4.17,
-NodePath("WeakMouseParallax/Playtesters"): 4.17,
-NodePath("WeakMouseParallax/ThankYou"): -1.0
+NodePath("WeakMouseParallax/Playtesters1"): 4.17,
+NodePath("WeakMouseParallax/SpecialThanks1"): 4.17,
+NodePath("WeakMouseParallax/ThankYou"): -1.0,
+null: 0.0
 }
 
 [node name="StrongParallax" type="Control" parent="." unique_id=2041893371]
@@ -60,6 +63,7 @@ parallax_strength = 5.0
 metadata/_custom_type_script = "uid://6gu3dcl8rsxn"
 
 [node name="Title" type="RichTextLabel" parent="WeakMouseParallax" unique_id=1593106636]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -139,7 +143,38 @@ shortcut_keys_enabled = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Playtesters" type="RichTextLabel" parent="WeakMouseParallax" unique_id=2144388304]
+[node name="SpecialThanks1" type="RichTextLabel" parent="WeakMouseParallax" unique_id=1261501915]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -446.97803
+offset_top = -437.07214
+offset_right = 446.97803
+offset_bottom = 437.07214
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_h6nex")
+theme_override_constants/paragraph_separation = 4
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "[wave]Special Thanks[/wave]
+
+Godot Foundation
+for making an incredible game engine
+
+Maxwell Totten
+for being Endless Pages' #1 supporter"
+scroll_active = false
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Playtesters1" type="RichTextLabel" parent="WeakMouseParallax" unique_id=2144388304]
 visible = false
 layout_mode = 1
 anchors_preset = 8

@@ -3,10 +3,12 @@ class_name ScenarioManager extends Node
 var enemy_manager: EnemySpawnManager
 var current_scenario: ClassicModeScenario
 
+
 func initialize(esm: EnemySpawnManager, scenario: ClassicModeScenario):
 	enemy_manager = esm
 	current_scenario = scenario
 	setup_all_enemies()
+
 
 func setup_all_enemies():
 	for page_number in current_scenario.enemies_to_add:

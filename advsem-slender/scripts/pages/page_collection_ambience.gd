@@ -10,12 +10,15 @@ var too_long: bool = false
 
 var active_interval_sounds: Array[AudioStreamPlayer]
 
+
 func initialize():
 	Signals.page_collected.connect(on_page_collected)
+
 
 func _exit_tree():
 	if Signals.page_collected.is_connected(on_page_collected):
 		Signals.page_collected.disconnect(on_page_collected)
+
 
 func on_page_collected():
 	match GameState.current_pages_collected:
@@ -49,11 +52,13 @@ func on_page_collected():
 		8:
 			pass
 
+
 func sound_interval_loop():
 	while play_interval:
 		for sound in active_interval_sounds:
 			sound.play()
 		await get_tree().create_timer(interval).timeout
+
 
 func taking_too_long():
 	too_long = true
@@ -61,10 +66,12 @@ func taking_too_long():
 	await get_tree().create_timer(1).timeout
 	sound_interval_loop()
 
+
 func on_game_started():
 	interval = DEFAULT_INTERVAL
 	$StompingNormal.volume_db = STOMPING_DEFAULT_VOLUME
 	$StompingDistorted.volume_db = DISTOMPING_DEFAULT_VOLUME
+
 
 func on_game_finished():
 	for sound in active_interval_sounds:

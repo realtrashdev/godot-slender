@@ -16,10 +16,12 @@ extends RichTextLabel
 var default_pos: Vector2
 var time_elapsed: float = 0
 
+
 func _ready() -> void:
 	default_pos = position
 	if !display_by_default:
 		visible_characters = 0
+
 
 func _process(delta: float) -> void:
 	time_elapsed += delta
@@ -29,6 +31,7 @@ func _process(delta: float) -> void:
 	
 	if b_enabled:
 		position.y = default_pos.y + -abs(sin(time_elapsed * b_speed)) * b_height
+
 
 func toggle_visible_characters():
 	if visible_characters == 0:

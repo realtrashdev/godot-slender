@@ -14,15 +14,18 @@ signal tick
 static var global_tick: int = 0
 static var active_pathfinders: Array[TickComponent] = []
 
+
 func _ready():
 	active_pathfinders.append(self)
 	add_to_group("Pathfinder")
+
 
 func _exit_tree():
 	active_pathfinders.erase(self)
 	
 	if active_pathfinders.is_empty():
 		global_tick = 0
+
 
 func _physics_process(_delta: float) -> void:
 	# first pathfinder increments tick

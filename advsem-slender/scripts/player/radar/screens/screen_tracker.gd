@@ -6,11 +6,13 @@ var tutorial: bool = false
 @onready var distance_text: RichTextLabel = $DistanceText
 @onready var direction_arrow: Sprite2D = $DirectionArrow
 
+
 func _ready() -> void:
 	if Settings.get_selected_scenario().resource_name == "tutorial":
 		tutorial = true
 	if tutorial:
 		direction_arrow.visible = false
+
 
 func _process(delta: float) -> void:
 	if not visible:
@@ -31,6 +33,7 @@ func _process(delta: float) -> void:
 		#direction_arrow.visible = true
 	#else:
 		#direction_arrow.visible = false
+
 
 func get_nearest_page_data() -> Dictionary:
 	if not player:
@@ -57,33 +60,33 @@ func get_nearest_page_data() -> Dictionary:
 	
 	return {"distance": min_distance, "direction": direction}
 
+
 func update_arrow_direction(world_direction: Vector3) -> void:
-	# Get player's forward direction (assuming -Z is forward in Godot)
 	var player_forward = -player.global_transform.basis.z
 	var player_right = player.global_transform.basis.x
 	
-	# Project the direction onto the horizontal plane (ignore Y)
+	# ignore Y
 	var flat_direction = Vector3(world_direction.x, 0, world_direction.z).normalized()
 	var flat_forward = Vector3(player_forward.x, 0, player_forward.z).normalized()
 	var flat_right = Vector3(player_right.x, 0, player_right.z).normalized()
 	
-	# Calculate angle relative to player's forward direction
+	# calculate angle relative to player's forward direction
 	var dot_forward = flat_direction.dot(flat_forward)
 	var dot_right = flat_direction.dot(flat_right)
 	
-	# Convert to angle in radians (-PI to PI)
+	# convert to radians
 	var angle = atan2(dot_right, dot_forward)
 	
-	# Convert to 4 directions (0-3, where 0 is forward)
-	# Divide by PI/2 (90 degrees) to get 4 quadrants
+	# convert to 4 directions (0-3, where 0 is forward)
+	# divide by PI/2 (90 degrees) to get 4 quadrants
 	var direction_index = int(round(angle / (PI / 2))) % 4
 	
-	# Rotate arrow sprite based on direction
-	# Assuming your arrow sprite points up by default
+	# rotate arrow based on direction
 	var rotation_angle = direction_index * (PI / 2)
 	direction_arrow.rotation = rotation_angle
 
-# Helper function if you want to use discrete direction names
+
+# helper for direction names, if needed
 func get_direction_name(index: int) -> String:
 	var directions = ["Forward", "Right", "Back", "Left"]
 	return directions[index]

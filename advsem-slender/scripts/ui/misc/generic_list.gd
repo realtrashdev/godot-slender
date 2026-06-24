@@ -15,6 +15,7 @@ var current_item: Resource
 
 @onready var button_container: VBoxContainer = $PanelContainer/ScrollContainer/CheckBoxContainer
 
+
 ## Generic list population method.
 ## items: Array of Resources (Maps or Scenarios)
 ## get_current_func: Callable that returns the currently selected item
@@ -60,17 +61,21 @@ func populate_list(items: Array, get_current_func: Callable, is_unlocked_func: C
 	
 	opened = true
 
+
 func _clear_list():
 	for child in button_container.get_children():
 		child.queue_free()
+
 
 func _is_current_item(item: Resource) -> bool:
 	if not current_item:
 		return false
 	return item.resource_name == current_item.resource_name
 
+
 func _on_item_selected(item: Resource):
 	item_selected.emit(item)
+
 
 func text_effect_reset():
 	for child in $PanelContainer/ScrollContainer/CheckBoxContainer.get_children():

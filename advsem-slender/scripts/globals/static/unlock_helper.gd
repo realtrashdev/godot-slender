@@ -1,5 +1,6 @@
 class_name UnlockHelper extends Node
 
+
 ## process multiple unlocks from a dictionary
 static func process_unlocks(unlock_data: Dictionary) -> void:
 	if unlock_data.is_empty():
@@ -24,6 +25,7 @@ static func process_unlocks(unlock_data: Dictionary) -> void:
 		for palette_id in unlock_data["palettes"]:
 			Progression.unlock_palette(palette_id)
 			print("Unlocking %s" % palette_id)
+
 
 ## Since game modes unlock by enum, this is necessary
 static func unlock_mode_by_name(mode_name: String) -> void:

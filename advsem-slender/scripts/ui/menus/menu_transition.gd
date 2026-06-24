@@ -8,8 +8,10 @@ var menu_manager: Node3D
 var sfx_start = load("res://audio/menu/ui/transition_start.mp3")
 var sfx_finish = load("res://audio/menu/ui/transition_finish.mp3")
 
+
 func initialize(manager: Node3D):
 	menu_manager = manager
+
 
 # open next menu
 func open(menu: Menu, direction: MenuConfig.TransitionDirection,  play_sound: bool = true):
@@ -27,6 +29,7 @@ func open(menu: Menu, direction: MenuConfig.TransitionDirection,  play_sound: bo
 	
 	await tween.finished
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
 
 # close current menu
 func close(menu: Menu, direction: MenuConfig.TransitionDirection, play_sound: bool = true):

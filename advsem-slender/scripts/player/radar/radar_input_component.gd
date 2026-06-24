@@ -14,8 +14,10 @@ var camera: Camera3D
 var is_hovering: bool = false
 var last_viewport_pos: Vector2 = Vector2.ZERO
 
+
 func _ready() -> void:
 	set_process_unhandled_input(enabled)
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not enabled:
@@ -23,6 +25,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	if event is InputEventMouseButton or event is InputEventMouseMotion:
 		handle_mouse_event(event)
+
 
 func handle_mouse_event(event: InputEvent) -> bool:
 	# Returns true if the event was handled (hit the screen)
@@ -76,6 +79,7 @@ func handle_mouse_event(event: InputEvent) -> bool:
 	
 	return false
 
+
 func is_screen_hit(raycast_result: Dictionary) -> bool:
 	# Check if the raycast hit the screen sprite
 	if not raycast_result.has("collider"):
@@ -85,6 +89,7 @@ func is_screen_hit(raycast_result: Dictionary) -> bool:
 	
 	# Check if it's the StaticBody3D child of the sprite
 	return collider.get_parent() == screen_sprite
+
 
 func get_sprite_uv(hit_position: Vector3) -> Vector2:
 	# Convert 3D hit position to UV coords
@@ -115,6 +120,7 @@ func get_sprite_uv(hit_position: Vector3) -> Vector2:
 		return Vector2(-1, -1)
 	
 	return uv
+
 
 func handle_screen_hit(event: InputEvent, uv: Vector2) -> void:
 	# Forward input to the subviewport
@@ -160,6 +166,7 @@ func handle_screen_hit(event: InputEvent, uv: Vector2) -> void:
 		# Safely push input
 		if is_instance_valid(sub_viewport) and sub_viewport.is_inside_tree():
 			sub_viewport.push_input(new_event)
+
 
 func set_enabled(value: bool) -> void:
 	# enable or disable input processing

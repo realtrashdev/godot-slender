@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dfno40i012odi"]
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dfno40i012odi"]
 
 [ext_resource type="Shader" uid="uid://c13ybydgpphta" path="res://shaders/fourcolors_screen.gdshader" id="1_vuqbl"]
 

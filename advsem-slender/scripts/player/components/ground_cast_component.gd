@@ -2,6 +2,7 @@ class_name GroundCastComponent extends RayCast3D
 
 enum GroundType { GRASS, GRAVEL, TILE, WATER }
 
+
 func get_ground_type() -> GroundType:
 	if is_colliding():
 		var collider = get_collider()

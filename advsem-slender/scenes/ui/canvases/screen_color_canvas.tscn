@@ -1,14 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://b44g52cw8jhlu"]
+[gd_scene format=3 uid="uid://b44g52cw8jhlu"]
 
 [ext_resource type="Script" uid="uid://cjehxq1f2vicp" path="res://scripts/ui/canvases/screen_shader_manager.gd" id="1_cjvg8"]
 [ext_resource type="Material" uid="uid://dfno40i012odi" path="res://shaders/fourcolor_screen.tres" id="2_alglh"]
 
-[node name="ScreenColorCanvas" type="CanvasLayer"]
+[node name="ScreenColorCanvas" type="CanvasLayer" unique_id=793395491]
 layer = 10
 script = ExtResource("1_cjvg8")
 shader_material = ExtResource("2_alglh")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=118606436]
+offset_right = 482.0
+offset_bottom = 205.0
+text = "ploop"
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1079691113]
 material = ExtResource("2_alglh")
 anchors_preset = 15
 anchor_right = 1.0

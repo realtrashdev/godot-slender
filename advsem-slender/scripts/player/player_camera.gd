@@ -8,9 +8,11 @@ var restriction_component: PlayerRestrictionComponent
 
 var tween: Tween
 
+
 func _ready() -> void:
 	player = get_parent().get_parent()
 	restriction_component = player.get_node("RestrictionComponent")
+
 
 func radar_toggled(active):
 	if active:
@@ -19,6 +21,7 @@ func radar_toggled(active):
 	else:
 		set_fov_smooth(BASE_FOV, 0.3)
 		$RayCast3D.enabled = true
+
 
 func set_fov_smooth(new_fov: float = BASE_FOV, time: float = 1):
 	if tween:

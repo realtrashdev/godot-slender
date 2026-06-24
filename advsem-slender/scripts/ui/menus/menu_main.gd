@@ -6,13 +6,14 @@ var manager: MenuManager
 
 @onready var title_text: RichTextLabel = $StrongParallax/TitleText
 @onready var credits_text: RichTextLabel = $StrongParallax/CreditsText
-@onready var version_text: RichTextLabel = $StrongParallax/VersionText
+@onready var version_text: RichTextLabel = $StrongParallax/VersionNumberText
 
 @onready var play_button: CustomButton = $StrongParallax/VBoxContainer/PlayButton
 @onready var customize_button: CustomButton = $StrongParallax/VBoxContainer/CustomizeButton
 @onready var settings_button: CustomButton = $StrongParallax/VBoxContainer/SettingsButton
-@onready var credits_button: CustomButton = $StrongParallax/VBoxContainer/CreditsButton
+@onready var extras_button: CustomButton = $StrongParallax/VBoxContainer/ExtrasButton
 @onready var quit_button: CustomButton = $StrongParallax/VBoxContainer/QuitButton
+
 
 func _ready() -> void:
 	manager = get_parent() as MenuManager
@@ -29,29 +30,35 @@ func _ready() -> void:
 		play_button.wait_time = 0.3
 		customize_button.wait_time = 0.15
 		settings_button.wait_time = 0.2
-		credits_button.wait_time = 0.25
+		extras_button.wait_time = 0.25
 		quit_button.wait_time = 0.3
 	call_deferred("defer")
+
 
 func defer():
 	var secret = get_parent().get_node("Secrets")
 	secret.brody_typed.connect(_on_brody_typed)
 
+
 func _on_play_pressed():
 	go_to_menu(MenuConfig.MenuType.MODE_SELECT, MenuConfig.TransitionDirection.FORWARD, true)
+
 
 func _on_customize_pressed():
 	go_to_menu(MenuConfig.MenuType.CUSTOMIZE, MenuConfig.TransitionDirection.FORWARD, true)
 
+
 func _on_quit_pressed():
 	go_to_menu(MenuConfig.MenuType.QUIT, MenuConfig.TransitionDirection.BACKWARD, true)
+
 
 func _on_settings_button_pressed() -> void:
 	go_to_menu(MenuConfig.MenuType.SETTINGS, MenuConfig.TransitionDirection.FORWARD, true)
 
+
 func _on_credits_button_pressed() -> void:
-	go_to_menu(MenuConfig.MenuType.CREDITS, MenuConfig.TransitionDirection.FORWARD, true)
-	manager.fade_out_music_and_swap(-60, 0.5, manager.music_dict["credits"])
+	go_to_menu(MenuConfig.MenuType.EXTRAS, MenuConfig.TransitionDirection.FORWARD, true)
+
 
 func _on_brody_typed() -> void:
 	settings_button.visible = !settings_button.visible

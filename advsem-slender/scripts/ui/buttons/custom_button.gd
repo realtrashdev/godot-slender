@@ -33,14 +33,17 @@ var focus: bool = false
 
 @onready var text_label: RichTextLabel = $RichTextLabel
 
+
 #region Default Methods
 func _ready() -> void:
 	setup()
 	call_deferred("delay_display")
 
+
 func _process(delta: float) -> void:
 	if enabled:
 		lerp_size(delta)
+
 
 func _on_mouse_entered() -> void:
 	if disabled:
@@ -48,16 +51,19 @@ func _on_mouse_entered() -> void:
 	focus = true
 	update_text_effect()
 
+
 func _on_mouse_exited() -> void:
 	focus = false
 	update_text_effect()
 	text_label.add_theme_color_override("default_color", default_color)
+
 
 func _on_button_down() -> void:
 	if disabled:
 		return
 	AudioTools.play_one_shot(get_tree(), sfx_press, 4, randf_range(0.8, 1.2), -10)
 	text_label.add_theme_color_override("default_color", press_color)
+
 
 func _on_button_up() -> void:
 	if disabled:
@@ -66,6 +72,7 @@ func _on_button_up() -> void:
 		AudioTools.play_one_shot(get_tree(), sfx_release, 4, randf_range(1.2, 1.4), -10)
 		pass
 	text_label.add_theme_color_override("default_color", default_color)
+
 
 func _on_toggled(toggled_on: bool) -> void:
 	update_text_effect()
@@ -76,6 +83,7 @@ func delay_display():
 	await get_tree().create_timer(wait_time).timeout
 	update_text_effect()
 	display_text()
+
 
 func lerp_size(delta: float) -> void:
 	if toggle_mode and button_pressed:
@@ -90,6 +98,7 @@ func lerp_size(delta: float) -> void:
 	
 	text_label.add_theme_font_size_override("normal_font_size", int(interp_font_size))
 
+
 func update_text_effect():
 	if not text_label:
 		return
@@ -101,13 +110,16 @@ func update_text_effect():
 	else:
 		text_label.text = default_text
 
+
 func display_text():
 	if text_label.visible_characters != text_label.get_total_character_count():
 		create_tween().parallel().tween_property(text_label, "visible_characters", text_label.get_total_character_count(), 0.05 * text_label.get_total_character_count())
 
+
 func instant_display_text():
 	text_label.visible_characters = text_label.get_total_character_count()
 #endregion
+
 
 func setup():
 	default_size = custom_minimum_size

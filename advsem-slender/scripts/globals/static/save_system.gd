@@ -1,5 +1,6 @@
 class_name SaveSystem
 
+
 static func write(path: String, data: Dictionary) -> void:
 	var file = FileAccess.open(path, FileAccess.WRITE)
 	if file:
@@ -7,6 +8,7 @@ static func write(path: String, data: Dictionary) -> void:
 		file.close()
 	else:
 		push_error("Failed to save: %s" % path)
+
 
 static func read(path: String) -> Dictionary:
 	if not FileAccess.file_exists(path):

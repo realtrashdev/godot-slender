@@ -17,7 +17,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 config/name="endless-pages"
 config/version="0.0"
 run/main_scene="uid://c3f6y28ur3tma"
-config/features=PackedStringArray("4.6", "GL Compatibility")
+config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="uid://bmrcsg6aibqvj"
 config/windows_native_icon="res://art/2d/game_icon_chaser.ico"
 
@@ -41,6 +41,7 @@ ScreenCrtCanvas="*res://scenes/ui/canvases/screen_effects_canvas.tscn"
 EnemyOverview="*res://scenes/ui/canvases/enemies_overview.tscn"
 EndlessManager="*uid://c2jmu7gt3pdo2"
 GameState="*uid://0s331bvadtfn"
+PhantomCameraManager="*uid://duq6jhf6unyis"
 
 [debug]
 
@@ -57,7 +58,7 @@ window/stretch/mode="canvas_items"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/SmoothScroll/plugin.cfg", "res://addons/nklbdev.aseprite_importers/plugin.cfg")
+enabled=PackedStringArray("res://addons/SmoothScroll/plugin.cfg", "res://addons/nklbdev.aseprite_importers/plugin.cfg", "res://addons/phantom_camera/plugin.cfg")
 
 [file_customization]
 

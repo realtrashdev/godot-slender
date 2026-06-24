@@ -7,15 +7,18 @@ var update_frequency: int = 6
 
 @onready var parent: OldEnemy3D = get_parent()
 
+
 func _ready():
 	active_pathfinders.append(self)
 	add_to_group("Pathfinder")
+
 
 func _exit_tree():
 	active_pathfinders.erase(self)
 	
 	if active_pathfinders.is_empty():
 		global_tick = 0
+
 
 func _physics_process(_delta):
 	# first pathfinder increments tick

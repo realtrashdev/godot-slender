@@ -13,8 +13,10 @@ var current_profile: CharacterProfile
 @onready var category_label: RichTextLabel = $TextContainer/CategoryLabel
 @onready var description_label: RichTextLabel = $TextContainer/DescriptionLabel
 
+
 func _ready() -> void:
 	parent_icon = get_parent() as CharacterIcon
+
 
 func _input(event: InputEvent) -> void:
 	# allow scrolling only when description is visible
@@ -22,9 +24,11 @@ func _input(event: InputEvent) -> void:
 		var scroll_delta = Input.get_axis("ui_text_scroll_up", "ui_text_scroll_down")
 		description_label.get_v_scroll_bar().value += scroll_delta * 20
 
+
 func set_profile(profile: CharacterProfile) -> void:
 	current_profile = profile
 	update_content()
+
 
 func update_content() -> void:
 	if not current_profile:
@@ -34,6 +38,7 @@ func update_content() -> void:
 		_vessel_setup()
 	else:
 		_enemy_setup()
+
 
 func _vessel_setup():
 	var unlocked_ids = Progression.get_unlocked_characters()
@@ -46,15 +51,18 @@ func _vessel_setup():
 		category_label.text = get_category_effect() % "???"
 		description_label.text = current_profile.unlock_description
 
+
 func _enemy_setup():
 	name_label.text = "[tornado radius=3 freq=4]%s[/tornado]" % get_display_name().to_upper()
 	category_label.text = get_category_effect() % get_type_string()
 	description_label.text = current_profile.description
 
+
 func get_display_name() -> String:
 	if current_profile.name == "default":
 		return Progression.get_player_name()
 	return current_profile.name
+
 
 func get_category_effect() -> String:
 	match current_profile.type:
@@ -66,8 +74,10 @@ func get_category_effect() -> String:
 			return "[shake rate=12 level=6]%s[/shake]"
 	return "[wave freq=4]%s[/wave]"
 
+
 func get_type_string() -> String:
 	return current_profile.Type.keys()[current_profile.type]
+
 
 func show_description() -> void:
 	update_position()
@@ -81,6 +91,7 @@ func show_description() -> void:
 	tween = create_tween()
 	tween.tween_property(description_label, "visible_ratio", 1, DISPLAY_DURATION)
 
+
 func hide_description() -> void:
 	description_label.get_v_scroll_bar().value = 0
 	
@@ -92,11 +103,13 @@ func hide_description() -> void:
 		tween.kill()
 	description_label.visible_ratio = 0
 
+
 func hide_immediate() -> void:
 	modulate = Color.TRANSPARENT
 	name_label.visible_ratio = 0
 	category_label.visible_ratio = 0
 	description_label.visible_ratio = 0
+
 
 func update_position() -> void:
 	await get_tree().process_frame

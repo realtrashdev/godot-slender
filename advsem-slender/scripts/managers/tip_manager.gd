@@ -18,6 +18,7 @@ var rare_game_tips: Array[String] = [
 	"Try typing something out in the main menu, you might find a secret!"
 ]
 
+
 func get_random_tip() -> String:
 	if randi_range(1, RARE_TIP_CHANCE) == RARE_TIP_CHANCE:
 		return rare_game_tips.pick_random()

@@ -2,6 +2,7 @@ extends Node
 
 const SAVE_PATH: String = "user://endless.page"
 
+
 func _ready():
 	load_data()
 
@@ -14,6 +15,7 @@ func save_data():
 	
 	SaveSystem.write(SAVE_PATH, save_dict)
 
+
 func load_data():
 	var data = SaveSystem.read(SAVE_PATH)
 	
@@ -24,6 +26,7 @@ func load_data():
 	GameState.set_enemy_list(_get_loaded_enemy_list(data))
 	
 	print("Endless save loaded successfully")
+
 
 func reset_all_data():
 	GameState.enemy_list = {}

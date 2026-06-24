@@ -20,6 +20,7 @@ enum Map { FOREST }
 @export var required_pages: int = 8
 @export var total_pages: int = 0
 
+
 func check_if_scenario_unlocked() -> bool:
 	if Progression.is_scenario_unlocked(resource_name):
 		return true
@@ -27,6 +28,7 @@ func check_if_scenario_unlocked() -> bool:
 		Progression.unlock_scenario(resource_name)
 		return true
 	return false
+
 
 func get_all_enemy_profiles() -> Array[EnemyProfile]:
 	var array: Array[EnemyProfile] = []
@@ -37,6 +39,7 @@ func get_all_enemy_profiles() -> Array[EnemyProfile]:
 			array += profile_cluster.profiles
 	
 	return array
+
 
 ## Checks if the scenario's check box should be visible.
 ## Scenarios that have none of their required scenarios unlocked will be hidden.

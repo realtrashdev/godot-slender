@@ -11,5 +11,6 @@ const MODE_CONFIG = {
 	}
 }
 
+
 func get_mode_description(mode: GameMode) -> String:
 	return MODE_CONFIG[mode]["description"]

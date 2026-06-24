@@ -23,12 +23,14 @@ var is_locked: bool = false
 @onready var button: CustomButton = $PanelContainer/Button
 @onready var description_panel: DescriptionPanel = $DescriptionPanel
 
+
 func _ready() -> void:
 	call_deferred("setup_display")
 	description_panel.hide_immediate()
 	
 	button.toggle_mode = true
 	button.toggled.connect(_on_pressed)
+
 
 func setup_display() -> void:
 	if not profile:
@@ -54,6 +56,7 @@ func setup_display() -> void:
 		animate_to_size(focus_size)
 		set_disabled(true)
 
+
 func _on_hover() -> void:
 	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED or is_disabled:
 		return
@@ -63,6 +66,7 @@ func _on_hover() -> void:
 	
 	if not is_selected:
 		animate_to_size(focus_size)
+
 
 func _on_unhover() -> void:
 	if is_disabled:
@@ -74,12 +78,14 @@ func _on_unhover() -> void:
 	if not is_selected:
 		animate_to_size(default_size)
 
+
 func _on_pressed(select: bool) -> void:
 	if is_disabled or is_locked:
 		return
 	
 	set_selected(select)
 	selected.emit(profile)
+
 
 func set_selected(_selected: bool) -> void:
 	is_selected = _selected
@@ -90,9 +96,11 @@ func set_selected(_selected: bool) -> void:
 	else:
 		animate_to_size(default_size)
 
+
 func set_disabled(disabled: bool) -> void:
 	is_disabled = disabled
 	button.disabled = disabled
+
 
 func animate_to_size(target_size: Vector2) -> void:
 	var tween = create_tween()

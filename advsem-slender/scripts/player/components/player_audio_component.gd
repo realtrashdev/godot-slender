@@ -14,13 +14,16 @@ var ground_cast: GroundCastComponent
 
 @onready var movement_audio: AudioStreamPlayer = $MovementAudio
 
+
 func _ready():
 	player = get_parent()
 	movement_component = player.get_node("MovementComponent")
 	ground_cast = player.get_node("GroundCastComponent")
 
+
 func _process(delta: float):
 	move_sound_timer -= delta
+
 
 func handle_movement_audio():
 	if not player.velocity.length() > 0.5 or not player.is_on_floor():
@@ -30,6 +33,7 @@ func handle_movement_audio():
 		return
 	
 	play_footstep_sound()
+
 
 func play_footstep_sound():
 	# randomize pitch
@@ -53,6 +57,7 @@ func play_footstep_sound():
 	movement_audio.stream = sound_array[index]
 	movement_audio.play()
 	move_sound_timer = 1.5 / movement_component.get_movement_speed()
+
 
 func get_ground_sounds():
 	match ground_cast.get_ground_type():

@@ -10,6 +10,7 @@ var can_end: bool = false
 @onready var sounds: AudioStreamPlayer = $Sounds
 @onready var tutorial_end_ambient: AudioStreamPlayer3D = $"../TutorialEndAmbient"
 
+
 func _ready() -> void:
 	Signals.page_collected.connect(_on_tutorial_distance_reached)
 	call_deferred("_disable_radar_battery")
@@ -23,13 +24,16 @@ func _ready() -> void:
 	await get_tree().create_timer(2, false).timeout
 	ui_manager.display_text("[wave][F] Toggle Flashlight", 1, 3, 1)
 
+
 # debug
 #func _input(event: InputEvent) -> void:
 	#if Input.is_action_just_pressed("jump"):
 		#return_to_menu()
 
+
 func _disable_radar_battery():
 	player.radar.radar_screen.do_battery_drain = false
+
 
 func _on_tutorial_distance_reached():
 	ui_manager.display_text("[wave][RCLICK] Toggle Tracker", 1, 3, 1)
@@ -38,11 +42,13 @@ func _on_tutorial_distance_reached():
 	$"../CSGSphere3D".visible = true
 	$"../CSGSphere3D/Area3D/CollisionShape3D".disabled = false
 
+
 func _on_end_sphere_hit(body):
 	if body is not Player:
 		return
 	if can_end:
 		call_deferred("return_to_menu")
+
 
 func return_to_menu():
 	$"../Player".deactivate()

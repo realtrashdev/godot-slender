@@ -16,6 +16,7 @@ var progress: bool = false
 
 @onready var voice: RichTextLabel = $Voice
 
+
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	progression.append($Settings)
@@ -30,9 +31,11 @@ func _ready() -> void:
 	await get_tree().create_timer(1).timeout
 	show_line()
 
+
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("interact") and progress:
 		show_line()
+
 
 func show_line():
 	if voice.visible_characters != voice.get_total_character_count():
@@ -51,6 +54,7 @@ func show_line():
 	TextTools.change_visible_characters(voice, voice.get_total_character_count(), voice.get_total_character_count() * 0.08, 0)
 	await get_tree().create_timer(2).timeout
 	progress = true
+
 
 func next_stage():
 	var tween
@@ -74,6 +78,7 @@ func next_stage():
 	
 	await tween.finished
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
 
 func _on_line_edit_text_submitted(new_text: String) -> void:
 	if new_text.length() > 0:

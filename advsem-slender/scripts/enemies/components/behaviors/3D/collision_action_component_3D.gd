@@ -3,6 +3,7 @@ class_name CollisionActionComponent3D extends EnemyBehavior3D
 @export var delete_on_action: bool = true
 @export var actions_to_perform: Array[EnemyAction]
 
+
 func _physics_update(delta: float) -> void:
 	var body = enemy.get_character_body_3d()
 	

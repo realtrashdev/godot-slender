@@ -4,6 +4,7 @@ signal object_collected
 
 var interactible_position: Vector3
 
+
 func _process(delta: float) -> void:
 	if is_colliding():
 		var col = get_collider()
