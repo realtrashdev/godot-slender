@@ -21,6 +21,8 @@ var required_enemy_selections: int = 1
 
 func _ready() -> void:
 	game_mode = Settings.get_selected_game_mode()
+	reset_game_data()
+	#print("required: %s, max: %s, total: %s" % [current_pages_required, current_max_pages, current_total_pages])
 
 
 func update_game_mode(mode: GameConfig.GameMode):

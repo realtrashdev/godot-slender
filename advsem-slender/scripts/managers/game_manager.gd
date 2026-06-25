@@ -83,6 +83,8 @@ func start_game():
 	
 	# player
 	player.position = get_player_spawn_position()
+	if tutorial:
+		player.position = Vector3(0, 1, 0)
 	player.activate()
 	
 	Signals.game_started.emit()

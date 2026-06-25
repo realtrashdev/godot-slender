@@ -1,7 +1,5 @@
 class_name PageSpawnManager extends Node
 
-@export var mandatory_locations: Array[Node3D]
-
 
 func initialize():
 	pass

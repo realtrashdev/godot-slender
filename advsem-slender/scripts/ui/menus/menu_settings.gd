@@ -47,7 +47,7 @@ func _on_reset_typed():
 	$StrongMouseParallax/ProgressResetButton.visible = true
 
 
-## Resets progress other than inital setting changes and tutorial completion
+## Resets progress other than base setting changes and tutorial completion
 func _on_progress_reset_button_pressed() -> void:
 	SaveManager.reset_progression()
 	Progression.complete_tutorial()

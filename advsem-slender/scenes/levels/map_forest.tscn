@@ -2641,7 +2641,7 @@ collision_mask = 0
 radius = 24.0
 material = ExtResource("13_wwrpj")
 script = ExtResource("22_r45ri")
-slow_amount_deep = 0.0
+slow_amount_deep = 1.0
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="LakeWaters/CSGCylinder3D" unique_id=1344681543]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 29.749992, 0)
@@ -2657,7 +2657,7 @@ collision_mask = 0
 radius = 24.0
 material = ExtResource("13_wwrpj")
 script = ExtResource("22_r45ri")
-slow_amount_deep = 0.0
+slow_amount_deep = 1.0
 
 [node name="OutsideFence" type="Node3D" parent="." unique_id=1713998217]
 

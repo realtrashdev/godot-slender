@@ -222,8 +222,10 @@ material = SubResource("StandardMaterial3D_6klke")
 
 [node name="PageLocation" parent="." unique_id=481585682 instance=ExtResource("15_nwf1m")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.5, 59.45)
+mandatory = true
 
 [node name="PageLocation2" parent="." unique_id=1717665091 instance=ExtResource("15_nwf1m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -60.45)
+mandatory = true
 
 [connection signal="body_entered" from="CSGSphere3D/Area3D" to="TutorialManager" method="_on_end_sphere_hit"]

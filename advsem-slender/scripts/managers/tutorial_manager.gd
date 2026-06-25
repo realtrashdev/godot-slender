@@ -26,9 +26,9 @@ func _ready() -> void:
 
 
 # debug
-#func _input(event: InputEvent) -> void:
-	#if Input.is_action_just_pressed("jump"):
-		#return_to_menu()
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("jump"):
+		return_to_menu()
 
 
 func _disable_radar_battery():

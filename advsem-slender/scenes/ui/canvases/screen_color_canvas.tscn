@@ -8,11 +8,6 @@ layer = 10
 script = ExtResource("1_cjvg8")
 shader_material = ExtResource("2_alglh")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=118606436]
-offset_right = 482.0
-offset_bottom = 205.0
-text = "ploop"
-
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1079691113]
 material = ExtResource("2_alglh")
 anchors_preset = 15
