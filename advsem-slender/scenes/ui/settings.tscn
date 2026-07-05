@@ -98,7 +98,6 @@ theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 
 [node name="GameSettings" type="VBoxContainer" parent="HBoxContainer/Settings" unique_id=379902127]
-visible = false
 custom_minimum_size = Vector2(600, 100)
 layout_mode = 2
 theme_override_constants/separation = 64
@@ -161,6 +160,7 @@ display_name = "Fullscreen"
 variable_name = "fullscreen"
 
 [node name="AudioSettings" type="ScrollContainer" parent="HBoxContainer/Settings" unique_id=1243082046]
+visible = false
 custom_minimum_size = Vector2(600, 100)
 layout_mode = 2
 follow_focus = true
@@ -191,8 +191,8 @@ setting_name = "Master Volume"
 variable_name = "master_volume"
 
 [node name="InGame" type="RichTextLabel" parent="HBoxContainer/Settings/AudioSettings/VBoxContainer" unique_id=2137827242]
-clip_contents = false
 custom_minimum_size = Vector2(0, 100)
+clip_contents = false
 layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("7_d4m38")
@@ -229,8 +229,8 @@ setting_name = "Sound Volume"
 variable_name = "game_sound_volume"
 
 [node name="Menu" type="RichTextLabel" parent="HBoxContainer/Settings/AudioSettings/VBoxContainer" unique_id=395480068]
-clip_contents = false
 custom_minimum_size = Vector2(0, 100)
+clip_contents = false
 layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("7_d4m38")
