@@ -21,9 +21,9 @@ stats = SubResource("Resource_tt2o7")
 name = "Dragon"
 type = 4
 description = "
+she's a shopkeeper because dragons hoard gold
 
-
-WHATEVEEEER"
+i am a genius character designer!"
 icon = ExtResource("1_f4k8o")
 icon_detailed = ExtResource("2_5mp76")
 unlock_description = "

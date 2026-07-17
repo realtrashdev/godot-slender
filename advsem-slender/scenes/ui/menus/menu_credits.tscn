@@ -15,7 +15,7 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(960, 540)
 script = ExtResource("1_mcmth")
-tab_order = [NodePath("WeakMouseParallax/Title"), NodePath("WeakMouseParallax/Developer"), NodePath("WeakMouseParallax/InspiredBy"), NodePath("WeakMouseParallax/SpecialThanks1"), NodePath("WeakMouseParallax/Playtesters1"), NodePath("WeakMouseParallax/ThankYou")]
+tab_order = [NodePath("WeakMouseParallax/Title"), NodePath("WeakMouseParallax/Developer"), NodePath("WeakMouseParallax/InspiredBy"), NodePath("WeakMouseParallax/Playtesters1"), NodePath("WeakMouseParallax/ThankYou")]
 timed_credits_tabs = {
 NodePath("WeakMouseParallax/Title"): 8.34,
 NodePath("WeakMouseParallax/Developer"): 4.17,
@@ -221,9 +221,11 @@ theme_override_constants/paragraph_separation = 4
 theme_override_constants/outline_size = 16
 theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
-text = "[wave]thank you for playing my game!![/wave]
+text = "[wave]credits over[/wave]
 
-(credits over)"
+(credits over)
+
+they are over anmd finished"
 scroll_active = false
 shortcut_keys_enabled = false
 horizontal_alignment = 1
