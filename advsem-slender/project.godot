@@ -14,7 +14,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 [application]
 
-config/name="endless-pages"
+config/name="endlesspages"
 config/version="0.0"
 run/main_scene="uid://c3f6y28ur3tma"
 config/features=PackedStringArray("4.7", "GL Compatibility")
@@ -74,18 +74,19 @@ folder_colors={
 
 [global_group]
 
-Player="The player"
+Player="The player."
 PageLocation="A place where a page can generate."
 SpawnMarkers="Pre placed markers some 3D enemies use for spawning."
 Pathfinder="Enemies that pathfind to the player. Uses a tick system to prevent lag and stagger enemy pathfinding updates."
 Slows="Ground that slows the player down when walking on it."
 ComponentEnemy="All enemies that act as components rather than physical enemies in the scene."
 AttractsFlashlight="Attracts the player's flashlight."
-GrassSounds=""
-TileSounds=""
-WaterSounds="water walking sounds"
-GravelSounds=""
+GrassSounds="Uses grass stepping sounds."
+TileSounds="Uses tile stepping sounds."
+WaterSounds="Uses water stepping sounds."
+GravelSounds="Uses gravel stepping sounds."
 NavmeshGeometry="Included in navmesh baking process."
+ExitLocation="A place where the level exit can generate."
 
 [input]
 
