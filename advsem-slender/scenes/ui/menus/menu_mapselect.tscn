@@ -66,15 +66,15 @@ offset_bottom = 280.99963
 
 [node name="StartButton" parent="StrongMouseParallax" unique_id=2059504772 instance=ExtResource("4_4xk28")]
 layout_mode = 1
-anchors_preset = -1
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.78700006
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.78700006
-offset_left = 700.0
-offset_top = 818.52
-offset_right = 1020.0005
-offset_bottom = 918.5201
+anchor_bottom = 1.0
+offset_left = -237.0
+offset_top = -197.99994
+offset_right = 83.00049
+offset_bottom = -97.99994
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(1.5, 1.5)
