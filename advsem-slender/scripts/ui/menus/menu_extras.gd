@@ -18,7 +18,7 @@ func _process(delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("pause") and Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
+	if Input.is_action_pressed("pause") and Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
 		_on_back_pressed()
 
 

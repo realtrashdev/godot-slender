@@ -1,6 +1,6 @@
 extends VBoxContainer
 
-const START_DELAY: float = 0.4
+const START_DELAY: float = 0.0
 const MAP_EFFECT: String = "[wave]%s[/wave]"
 
 var map_tween: Tween
@@ -13,6 +13,7 @@ var scenario_tween: Tween
 var image_fade_material: ShaderMaterial
 var fade_tween: Tween
 
+
 func _ready() -> void:
 	image_fade_material = icon.material
 	
@@ -24,6 +25,7 @@ func _ready() -> void:
 	await map_tween.finished
 	scenario_tween = create_tween()
 	scenario_tween.tween_property(scenario_text, "visible_ratio", 1, 0.2)
+
 
 # public functions
 func update_map_text(map: Map):
@@ -39,6 +41,7 @@ func update_map_text(map: Map):
 	icon.texture = map.icon
 	fade_map_image(map.icon)
 
+
 func update_scenario_text(scenario: ClassicModeScenario):
 	if scenario_tween:
 		scenario_tween.kill()
@@ -46,8 +49,12 @@ func update_scenario_text(scenario: ClassicModeScenario):
 	scenario_text.visible_ratio = 0
 	scenario_text.text = scenario.name
 	
+	if map_text.visible_ratio != 1:
+		await get_tree().create_timer(1).timeout
+	
 	scenario_tween = create_tween()
 	scenario_tween.tween_property(scenario_text, "visible_ratio", 1, 0.2)
+
 
 ## Uses a shader to fade between images instead of hard cutting
 func fade_map_image(new_image: Texture2D):

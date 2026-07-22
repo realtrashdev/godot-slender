@@ -16,7 +16,7 @@ func _ready():
 
 
 func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("pause") and Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
+	if Input.is_action_pressed("pause") and Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
 		_on_back_pressed()
 	
 	if Input.is_action_just_released("interact") and overview_tutorial.visible and EnemyOverview.visible:
@@ -42,6 +42,9 @@ func _on_map_selected(map: Map):
 
 
 func _on_scenario_selected(scenario: ClassicModeScenario):
+	if GameState.game_mode == GameConfig.GameMode.ENDLESS:
+		return
+	
 	map_icon.update_scenario_text(scenario)
 	
 	map_list.text_effect_reset()

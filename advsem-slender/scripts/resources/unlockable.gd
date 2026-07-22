@@ -11,6 +11,7 @@ var secret_unlock_descriptions = [
 ## "scenarios", "deaths", etc.
 @export var unlock_requirements: Dictionary[String, Array] = {
 	"scenarios": [],
+	"play_character": [],
 }
 @export_multiline var unlock_description = "Locked..."
 
@@ -23,12 +24,12 @@ func check_for_unlock() -> bool:
 
 
 func get_unlock_description() -> String:
-	var requirements = unlock_requirements["scenarios"]
+	var scen_requirements = unlock_requirements["scenarios"]
 	var desc = "Complete "
 	var do_secret = false
 	
-	for i in range(requirements.size()):
-		var requirement = requirements[i]
+	for i in range(scen_requirements.size()):
+		var requirement = scen_requirements[i]
 		
 		if Progression.is_scenario_unlocked(requirement.resource_name):
 			desc += "[wave]%s[/wave]" % requirement.name
@@ -36,10 +37,28 @@ func get_unlock_description() -> String:
 			desc += "[wave]???[/wave]"
 			do_secret = true
 		
-		if i < requirements.size() - 2:
+		if i < scen_requirements.size() - 2:
 			desc += ", "
-		elif i < requirements.size() - 1:
+		elif i < scen_requirements.size() - 1:
 			desc += " and "
+	
+	var char_requirements = unlock_requirements["play_character"]
+	desc = "Play as "
+	
+	for i in range(char_requirements.size()):
+		var requirement = char_requirements[i]
+		
+		if Progression.is_character_unlocked(requirement.resource_name):
+			desc += "[wave]%s[/wave]" % requirement.name
+		else:
+			print(requirement.resource_name)
+			desc += "[wave]???[/wave]"
+			do_secret = true
+		
+		if i < char_requirements.size() - 2:
+			desc += ", "
+		elif i < char_requirements.size() - 1:
+			desc += " or "
 	
 	desc += " to unlock!"
 	

@@ -1,7 +1,9 @@
 [gd_resource type="Resource" script_class="ClassicModeScenario" format=3 uid="uid://cl3yw8vhoox2k"]
 
 [ext_resource type="Script" uid="uid://bf5ts565hp5p4" path="res://scripts/resources/enemies/enemy_profile_list.gd" id="1_aiyfu"]
+[ext_resource type="Script" uid="uid://pimfnspuor4w" path="res://scripts/resources/vessel_profile.gd" id="1_up773"]
 [ext_resource type="Script" uid="uid://cbb8lvjddytcc" path="res://scripts/resources/scenario.gd" id="2_l8rxp"]
+[ext_resource type="Resource" uid="uid://cb3psxe2lcth7" path="res://resources/vessel_profiles/profile_dragon.tres" id="2_uubew"]
 [ext_resource type="Script" uid="uid://c426kdmp0e6tf" path="res://scripts/resources/enemies/enemy_profile.gd" id="2_xkopt"]
 [ext_resource type="Resource" uid="uid://ceka8pclkwv8e" path="res://resources/enemy_profiles/profile_gum.tres" id="3_ejypt"]
 [ext_resource type="Resource" uid="uid://5btde08a1exu" path="res://resources/enemy_profiles/profile_chaser.tres" id="4_aiyfu"]
@@ -61,6 +63,7 @@ enemies_to_add = Dictionary[int, ExtResource("1_aiyfu")]({
 })
 required_pages = 7
 total_pages = 8
+characters = Array[ExtResource("1_up773")]([ExtResource("2_uubew")])
 unlock_requirements = Dictionary[String, Array]({
 "scenarios": [ExtResource("7_aiyfu")]
 })

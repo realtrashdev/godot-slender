@@ -20,6 +20,9 @@ enum Map { FOREST }
 @export var required_pages: int = 8
 @export var total_pages: int = 0
 
+@export_category("Characters")
+@export var characters: Array[VesselProfile]
+
 
 func check_if_scenario_unlocked() -> bool:
 	if Progression.is_scenario_unlocked(resource_name):
@@ -27,6 +30,16 @@ func check_if_scenario_unlocked() -> bool:
 	if check_for_unlock():
 		Progression.unlock_scenario(resource_name)
 		return true
+	return false
+
+
+func check_if_scenario_has_character() -> bool:
+	if characters.is_empty():
+		return true
+	
+	if characters.has(Settings.get_selected_character()):
+		return true
+	
 	return false
 
 

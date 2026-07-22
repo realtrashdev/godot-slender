@@ -1,12 +1,14 @@
 [gd_resource type="Resource" script_class="ClassicModeScenario" format=3 uid="uid://csigmb8evkba0"]
 
+[ext_resource type="Script" uid="uid://pimfnspuor4w" path="res://scripts/resources/vessel_profile.gd" id="1_bnl2p"]
 [ext_resource type="Script" uid="uid://bf5ts565hp5p4" path="res://scripts/resources/enemies/enemy_profile_list.gd" id="1_uhm2t"]
 [ext_resource type="Script" uid="uid://c426kdmp0e6tf" path="res://scripts/resources/enemies/enemy_profile.gd" id="2_bnl2p"]
 [ext_resource type="Script" uid="uid://cbb8lvjddytcc" path="res://scripts/resources/scenario.gd" id="2_icmfe"]
 [ext_resource type="Resource" uid="uid://ceka8pclkwv8e" path="res://resources/enemy_profiles/profile_gum.tres" id="3_uhm2t"]
 [ext_resource type="Resource" uid="uid://qmx2f7d1vom" path="res://resources/enemy_profiles/profile_scamlikely.tres" id="4_bnl2p"]
 [ext_resource type="Resource" uid="uid://bepy1x4bj1nga" path="res://resources/enemy_profiles/profile_eyes.tres" id="5_m7wl7"]
-[ext_resource type="Resource" uid="uid://cewinant3mi1v" path="res://resources/scenarios/scenario_basics3.tres" id="7_uhm2t"]
+[ext_resource type="Resource" uid="uid://bgdg1umse7sms" path="res://resources/scenarios/scenario_eyesattack.tres" id="8_m7wl7"]
+[ext_resource type="Resource" uid="uid://cb3psxe2lcth7" path="res://resources/vessel_profiles/profile_dragon.tres" id="9_x64rf"]
 
 [sub_resource type="Resource" id="Resource_x64rf"]
 script = ExtResource("1_uhm2t")
@@ -56,6 +58,7 @@ enemies_to_add = Dictionary[int, ExtResource("1_uhm2t")]({
 required_pages = 6
 total_pages = 8
 unlock_requirements = Dictionary[String, Array]({
-"scenarios": [ExtResource("7_uhm2t")]
+"play_character": [ExtResource("9_x64rf")],
+"scenarios": [ExtResource("8_m7wl7")]
 })
 metadata/_custom_type_script = "uid://cbb8lvjddytcc"

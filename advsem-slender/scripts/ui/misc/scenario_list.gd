@@ -27,7 +27,9 @@ func populate():
 	populate_list(
 		current_map.scenarios,
 		Settings.get_selected_scenario,
-		func(scenario): return scenario.check_if_scenario_unlocked()
+		func(scenario): return \
+		scenario.check_if_scenario_unlocked() and \
+		scenario.check_if_scenario_has_character()
 	)
 	
 	var completed = 0
