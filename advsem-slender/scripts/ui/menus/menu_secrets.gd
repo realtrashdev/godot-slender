@@ -28,10 +28,12 @@ var music: AudioStream = preload("uid://bw13p4ixmh3mk")
 var meowsic: AudioStream = preload("uid://cqaagyghacaij")
 var wizard_music: AudioStream = preload("uid://danr8v7ohy0sa")
 
+
 func _ready() -> void:
 	manager = get_parent()
 	if (Progression.is_scenario_completed("basics1")):
 		check_gum()
+
 
 func _input(event: InputEvent) -> void:
 	if not enabled:
@@ -59,8 +61,10 @@ func _input(event: InputEvent) -> void:
 	update_secret_text(event.as_text())
 	check_key_array()
 
+
 func is_letter(unicode_val: int) -> bool:
 	return (unicode_val >= 97 and unicode_val <= 122) or (unicode_val >= 65 and unicode_val <= 90)
+
 
 func update_secret_text(string: String):
 	visible_keys.append(string)
@@ -75,6 +79,7 @@ func update_secret_text(string: String):
 	secret_string.modulate = Color.WHITE
 	tween_secret_text()
 
+
 func tween_secret_text():
 	if (string_tween):
 		string_tween.kill()
@@ -85,6 +90,7 @@ func tween_secret_text():
 	visible_keys.clear()
 	secret_string.text = ""
 
+
 func hit(word: String):
 	just_hit = true
 	secret_string.text = "[wave]" + word.to_upper()
@@ -93,6 +99,7 @@ func hit(word: String):
 		scale_tween.kill()
 	scale_tween = create_tween()
 	scale_tween.tween_property(secret_string, "scale", Vector2.ONE, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+
 
 func check_key_array():
 	var last_idx = recent_keys.size() - 1
