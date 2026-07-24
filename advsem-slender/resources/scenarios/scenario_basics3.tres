@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="ClassicModeScenario" format=3 uid="uid://cewinant3mi1v"]
 
 [ext_resource type="Script" uid="uid://bf5ts565hp5p4" path="res://scripts/resources/enemies/enemy_profile_list.gd" id="1_d8xjs"]
+[ext_resource type="Script" uid="uid://pimfnspuor4w" path="res://scripts/resources/vessel_profile.gd" id="1_n30uk"]
 [ext_resource type="Script" uid="uid://c426kdmp0e6tf" path="res://scripts/resources/enemies/enemy_profile.gd" id="2_n30uk"]
 [ext_resource type="Resource" uid="uid://5btde08a1exu" path="res://resources/enemy_profiles/profile_chaser.tres" id="3_d8xjs"]
 [ext_resource type="Resource" uid="uid://ceka8pclkwv8e" path="res://resources/enemy_profiles/profile_gum.tres" id="4_n30uk"]
@@ -47,6 +48,7 @@ enemies_to_add = Dictionary[int, ExtResource("1_d8xjs")]({
 })
 total_pages = 10
 unlock_requirements = Dictionary[String, Array]({
+"play_character": [],
 "scenarios": [ExtResource("8_d8xjs")]
 })
 unlock_description = "Complete \"The Basics II\" to unlock!"

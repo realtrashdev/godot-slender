@@ -65,6 +65,7 @@ required_pages = 7
 total_pages = 8
 characters = Array[ExtResource("1_up773")]([ExtResource("2_uubew")])
 unlock_requirements = Dictionary[String, Array]({
+"play_character": [ExtResource("2_uubew")],
 "scenarios": [ExtResource("7_aiyfu")]
 })
 metadata/_custom_type_script = "uid://cbb8lvjddytcc"

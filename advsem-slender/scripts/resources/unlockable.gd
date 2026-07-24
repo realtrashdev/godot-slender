@@ -28,37 +28,39 @@ func get_unlock_description() -> String:
 	var desc = "Complete "
 	var do_secret = false
 	
-	for i in range(scen_requirements.size()):
-		var requirement = scen_requirements[i]
-		
-		if Progression.is_scenario_unlocked(requirement.resource_name):
-			desc += "[wave]%s[/wave]" % requirement.name
-		else:
-			desc += "[wave]???[/wave]"
-			do_secret = true
-		
-		if i < scen_requirements.size() - 2:
-			desc += ", "
-		elif i < scen_requirements.size() - 1:
-			desc += " and "
+	if not scen_requirements.is_empty():
+		for i in range(scen_requirements.size()):
+			var requirement = scen_requirements[i]
+			
+			if Progression.is_scenario_unlocked(requirement.resource_name):
+				desc += "[wave]%s[/wave]" % requirement.name
+			else:
+				desc += "[wave]???[/wave]"
+				do_secret = true
+			
+			if i < scen_requirements.size() - 2:
+				desc += ", "
+			elif i < scen_requirements.size() - 1:
+				desc += " and "
 	
-	var char_requirements = unlock_requirements["play_character"]
-	desc = "Play as "
-	
-	for i in range(char_requirements.size()):
-		var requirement = char_requirements[i]
-		
-		if Progression.is_character_unlocked(requirement.resource_name):
-			desc += "[wave]%s[/wave]" % requirement.name
-		else:
-			print(requirement.resource_name)
-			desc += "[wave]???[/wave]"
-			do_secret = true
-		
-		if i < char_requirements.size() - 2:
-			desc += ", "
-		elif i < char_requirements.size() - 1:
-			desc += " or "
+	#var char_requirements = unlock_requirements["play_character"]
+	#desc = "Play as "
+	#
+	#if not char_requirements.is_empty():
+		#for i in range(char_requirements.size()):
+			#var requirement = char_requirements[i]
+			#
+			#if Progression.is_character_unlocked(requirement.resource_name):
+				#desc += "[wave]%s[/wave]" % requirement.name
+			#else:
+				#print(requirement.resource_name)
+				#desc += "[wave]???[/wave]"
+				#do_secret = true
+			#
+			#if i < char_requirements.size() - 2:
+				#desc += ", "
+			#elif i < char_requirements.size() - 1:
+				#desc += " or "
 	
 	desc += " to unlock!"
 	

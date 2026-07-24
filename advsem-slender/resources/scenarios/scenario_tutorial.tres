@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="ClassicModeScenario" format=3 uid="uid://dl5qafaoxjdn5"]
 
+[ext_resource type="Script" uid="uid://pimfnspuor4w" path="res://scripts/resources/vessel_profile.gd" id="1_7wssg"]
 [ext_resource type="Script" uid="uid://bf5ts565hp5p4" path="res://scripts/resources/enemies/enemy_profile_list.gd" id="1_hsbv5"]
 [ext_resource type="Script" uid="uid://c426kdmp0e6tf" path="res://scripts/resources/enemies/enemy_profile.gd" id="2_7wssg"]
 [ext_resource type="Script" uid="uid://cbb8lvjddytcc" path="res://scripts/resources/scenario.gd" id="2_t6xww"]

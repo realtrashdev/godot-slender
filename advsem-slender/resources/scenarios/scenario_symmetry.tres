@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="ClassicModeScenario" format=3 uid="uid://dfppi52cluswe"]
 
+[ext_resource type="Script" uid="uid://pimfnspuor4w" path="res://scripts/resources/vessel_profile.gd" id="1_ag41v"]
 [ext_resource type="Script" uid="uid://bf5ts565hp5p4" path="res://scripts/resources/enemies/enemy_profile_list.gd" id="1_pj7na"]
 [ext_resource type="Script" uid="uid://cbb8lvjddytcc" path="res://scripts/resources/scenario.gd" id="2_4sqow"]
 [ext_resource type="Script" uid="uid://c426kdmp0e6tf" path="res://scripts/resources/enemies/enemy_profile.gd" id="2_ag41v"]
@@ -61,6 +62,7 @@ enemies_to_add = Dictionary[int, ExtResource("1_pj7na")]({
 })
 total_pages = 9
 unlock_requirements = Dictionary[String, Array]({
+"play_character": [],
 "scenarios": [ExtResource("8_pj7na")]
 })
 metadata/_custom_type_script = "uid://cbb8lvjddytcc"
