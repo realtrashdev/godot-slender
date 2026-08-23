@@ -13,7 +13,7 @@ func _ready():
 	show_current_mode_description()
 
 
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_pressed("pause") and Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
 		_on_back_pressed()
 
@@ -62,9 +62,9 @@ func _on_endless_toggled(pressed: bool):
 	GameState.update_game_mode(GameConfig.GameMode.ENDLESS)
 	animate_description(GameConfig.get_mode_description(GameConfig.GameMode.ENDLESS))
 
-
+# change to CHARACTER_SELECT if doing that
 func _on_start_pressed():
-	go_to_menu(MenuConfig.MenuType.CHARACTER_SELECT, MenuConfig.TransitionDirection.FORWARD, true)
+	go_to_menu(MenuConfig.MenuType.MAP_SELECT, MenuConfig.TransitionDirection.FORWARD, true)
 	SaveManager.save_game()
 
 

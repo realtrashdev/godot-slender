@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b5rrwodfv7prw" path="res://scripts/managers/menu_manager.gd" id="1_mbnms"]
 [ext_resource type="Shader" uid="uid://b7h471hqua86k" path="res://shaders/menu_background_tron.gdshader" id="2_eb1er"]
-[ext_resource type="AudioStream" uid="uid://bw13p4ixmh3mk" path="res://audio/music/not ogg/ep_menu.wav" id="2_qvyop"]
+[ext_resource type="AudioStream" uid="uid://bru8raxfx1yax" path="res://audio/music/main_loop_2_3.ogg" id="2_j6qfw"]
 [ext_resource type="PackedScene" uid="uid://d0ptdjkqr8637" path="res://scenes/ui/menus/typing_sounds.tscn" id="4_0yjfb"]
 [ext_resource type="AudioStream" uid="uid://b06alg60p7yto" path="res://audio/menu/keyboard_sound1.mp3" id="5_2d7pv"]
 [ext_resource type="AudioStream" uid="uid://drsfnougv00al" path="res://audio/menu/keyboard_sound2.mp3" id="6_qvyop"]
@@ -74,7 +74,7 @@ radius = 2.0
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 1, 2, 4)
 
 [node name="Music" type="AudioStreamPlayer" parent="." unique_id=679329039]
-stream = ExtResource("2_qvyop")
+stream = ExtResource("2_j6qfw")
 volume_db = -6.0
 pitch_scale = 0.4
 bus = &"MenuMusic"

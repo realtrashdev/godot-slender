@@ -1,8 +1,8 @@
-# Endless Pages Changelog: Pre-Itch Playtest v1
+# Endless Pages v1.0.0 Changelog
 
+###### 
 
-
-###### This text file details changes to the game since December 2025.
+###### This text file details most changes to the game since December 2025. I probably missed a few things. My bad.
 
 
 
@@ -15,10 +15,14 @@
 The radar now has a limited battery.
 
 * Collect pages to replenish it.
-* The flashlight is now powered by the radar.
+* The flashlight is now powered by the radar, and will flicker slightly when the battery is low.
 * Battery is measured in chunks, with each chunk lasting 20 seconds by default.
 * Battery chunks can be added or lost.
-* Do not run out of battery...
+* Do not run out of battery.
+
+
+
+Greatly reduced the amount of time the flashlight is held down when a page is taken.
 
 
 
@@ -35,6 +39,16 @@ Added new in-game music. This music dynamically builds as pages are collected.
 
 
 Added credits music.
+
+
+
+Added new main menu music.
+
+* The previous menu music has been removed.
+
+
+
+Added sound effects for walking in water.
 
 
 
@@ -129,6 +143,16 @@ Edited tutorial map.
 
 
 
+The tutorial map is no longer selectable in the map selection menu.
+
+
+
+You can now walk in the water of the "Silent Forest" map.
+
+* The water will slow you and prevent sprinting if you are deep enough.
+
+
+
 
 
 ##### Challenge Mode
@@ -153,7 +177,7 @@ Added per-map challenge completion progress to the map selection screen.
 
 \---
 
-Is now in development...
+A very basic version of Endless Mode is now playable.
 
 
 
@@ -182,7 +206,7 @@ Added text to the top left corner of the menu that allows you to see a string of
 Added the ability to reset progress.
 
 * Type "reset" when in the settings menu, a button will show up in the bottom right.
-* This does not work in the in game pause menu's settings, only the main menu.
+* This does not work while in-game.
 
 
 
@@ -193,6 +217,17 @@ Fixed a layering issue with the enemy overview.
 
 
 Added a credits menu.
+
+
+
+Added an extras menu. It allows you to:
+
+* Click a link to join the Endless Pages discord.
+* View the credits.
+
+
+
+Added an introductory settings menu for new players.
 
 
 

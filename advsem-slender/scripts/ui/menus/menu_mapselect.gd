@@ -15,7 +15,7 @@ func _ready():
 		scenario_list.visible = false
 
 
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_pressed("pause") and Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
 		_on_back_pressed()
 	
@@ -55,9 +55,9 @@ func _on_start_pressed():
 	go_to_menu(MenuConfig.MenuType.START_GAME, MenuConfig.TransitionDirection.FORWARD, false)
 	SaveManager.save_game()
 
-
+# change to CHARACTER_SELECT if doing that
 func _on_back_pressed():
-	go_to_menu(MenuConfig.MenuType.CHARACTER_SELECT, MenuConfig.TransitionDirection.BACKWARD, true)
+	go_to_menu(MenuConfig.MenuType.MODE_SELECT, MenuConfig.TransitionDirection.BACKWARD, true)
 	SaveManager.save_game()
 
 

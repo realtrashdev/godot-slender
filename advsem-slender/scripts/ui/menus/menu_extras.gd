@@ -17,7 +17,7 @@ func _process(delta: float) -> void:
 		_spam_timer -= delta
 
 
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_pressed("pause") and Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
 		_on_back_pressed()
 

@@ -23,16 +23,6 @@ func _ready() -> void:
 	deactivate()
 	if instant_activate:
 		activate()
-	#rotation = starting_rotation
-
-
-#func _process(delta: float) -> void:
-	#if Input.is_key_pressed(KEY_ESCAPE):
-		#quit_timer += delta
-		#if quit_timer >= 1.0:
-			#get_tree().change_scene_to_file(MENU_SCENE)
-	#elif quit_timer > 0:
-		#quit_timer = 0.0
 
 
 func _physics_process(delta: float) -> void:
