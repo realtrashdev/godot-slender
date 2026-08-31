@@ -21,8 +21,7 @@ metadata/_custom_type_script = "uid://bf5ts565hp5p4"
 resource_name = "basics1"
 script = ExtResource("5_75tqm")
 name = "The Basics I"
-description = "The abyss may have been empty, but at least it was safe.
-This place is not. So let's take it slow."
+description = "Let's take it slow to start."
 enemies_to_add = Dictionary[int, ExtResource("1_sdokn")]({
 0: null,
 1: SubResource("Resource_sdokn"),

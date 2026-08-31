@@ -86,11 +86,15 @@ grow_vertical = 2
 custom_minimum_size = Vector2(350, 100)
 layout_mode = 2
 size_flags_horizontal = 1
+disabled = true
 icon_alignment = 1
 expand_icon = true
+enabled = false
 default_text = "Discord"
+default_color = Color(0.33950958, 0.3395096, 0.33950958, 1)
 justification = 1
 wait_time = 0.0
+focus_enabled = false
 focus_size = Vector2(375, 130)
 
 [node name="JukeboxButton" parent="StrongParallax/VBoxContainer" unique_id=185929341 instance=ExtResource("5_csvr5")]
@@ -112,11 +116,14 @@ focus_size = Vector2(375, 130)
 custom_minimum_size = Vector2(350, 100)
 layout_mode = 2
 size_flags_horizontal = 1
+disabled = true
 icon_alignment = 1
 expand_icon = true
 default_text = "Credits"
+default_color = Color(0.3328807, 0.33288068, 0.33288068, 1)
 justification = 1
 wait_time = 0.0
+focus_enabled = false
 focus_size = Vector2(375, 130)
 
 [connection signal="pressed" from="StrongParallax/BackButton" to="." method="_on_back_pressed"]
