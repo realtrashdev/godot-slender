@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://qocwrt8r6cqj" path="res://scripts/ui/menus/menu_main.gd" id="1_jjl53"]
 [ext_resource type="Theme" uid="uid://bommyqwo15hbx" path="res://theme1.tres" id="1_l6cm7"]
 [ext_resource type="Script" uid="uid://6gu3dcl8rsxn" path="res://scripts/ui/mouse_parallax.gd" id="2_y0yns"]
-[ext_resource type="PackedScene" uid="uid://6lvn3tolsp7r" path="res://scenes/ui/buttons/menu_button.tscn" id="4_dkf5t"]
+[ext_resource type="PackedScene" uid="uid://6lvn3tolsp7r" path="res://scenes/ui/buttons/custom_button.tscn" id="4_dkf5t"]
 [ext_resource type="AudioStream" uid="uid://burmgn6fk7ymx" path="res://audio/menu/ui/button_press.mp3" id="4_y0yns"]
 [ext_resource type="FontFile" uid="uid://b78ski6kf8hw1" path="res://fonts/ari-w9500-display.ttf" id="5_y0yns"]
 
@@ -139,15 +139,17 @@ theme_override_constants/separation = 30
 alignment = 1
 
 [node name="PlayButton" parent="StrongParallax/VBoxContainer" unique_id=2079890261 instance=ExtResource("4_dkf5t")]
-custom_minimum_size = Vector2(350, 100)
+custom_minimum_size = Vector2(250, 100)
 layout_mode = 2
 size_flags_horizontal = 1
 icon_alignment = 1
 expand_icon = true
 default_text = "Play"
-justification = 1
-wait_time = 1.0
-focus_size = Vector2(375, 130)
+default_size = Vector2(250, 100)
+focus_size = Vector2(275, 100)
+focus_font_size = 64
+toggle_size = Vector2(300, 100)
+toggle_font_size = 72
 
 [node name="CustomizeButton" parent="StrongParallax/VBoxContainer" unique_id=1745528405 instance=ExtResource("4_dkf5t")]
 custom_minimum_size = Vector2(350, 100)
@@ -156,9 +158,11 @@ size_flags_horizontal = 1
 icon_alignment = 1
 expand_icon = true
 default_text = "Customize"
-justification = 1
-wait_time = 0.8
-focus_size = Vector2(375, 130)
+default_size = Vector2(350, 100)
+focus_size = Vector2(375, 100)
+focus_font_size = 64
+toggle_size = Vector2(300, 100)
+toggle_font_size = 72
 
 [node name="SettingsButton" parent="StrongParallax/VBoxContainer" unique_id=1877693982 instance=ExtResource("4_dkf5t")]
 custom_minimum_size = Vector2(350, 100)
@@ -167,9 +171,11 @@ size_flags_horizontal = 1
 icon_alignment = 1
 expand_icon = true
 default_text = "Settings"
-justification = 1
-wait_time = 0.8
-focus_size = Vector2(375, 130)
+default_size = Vector2(350, 100)
+focus_size = Vector2(375, 100)
+focus_font_size = 64
+toggle_size = Vector2(300, 100)
+toggle_font_size = 72
 
 [node name="ExtrasButton" parent="StrongParallax/VBoxContainer" unique_id=67383411 instance=ExtResource("4_dkf5t")]
 custom_minimum_size = Vector2(350, 100)
@@ -178,21 +184,25 @@ size_flags_horizontal = 1
 icon_alignment = 1
 expand_icon = true
 default_text = "Extras"
-justification = 1
-wait_time = 1.0
-focus_size = Vector2(375, 130)
+default_size = Vector2(350, 100)
+focus_size = Vector2(375, 100)
+focus_font_size = 64
+toggle_size = Vector2(300, 100)
+toggle_font_size = 72
 
 [node name="QuitButton" parent="StrongParallax/VBoxContainer" unique_id=748218649 instance=ExtResource("4_dkf5t")]
-custom_minimum_size = Vector2(350, 100)
+custom_minimum_size = Vector2(250, 100)
 layout_mode = 2
 size_flags_horizontal = 1
 icon_alignment = 1
 expand_icon = true
 default_text = "Quit"
-justification = 1
-wait_time = 1.2
-focus_size = Vector2(375, 130)
+default_size = Vector2(250, 100)
+focus_size = Vector2(275, 100)
+focus_font_size = 64
 focus_text_effect = "[shake]"
+toggle_size = Vector2(300, 100)
+toggle_font_size = 72
 
 [node name="ButtonPress" type="AudioStreamPlayer" parent="." unique_id=642759264]
 stream = ExtResource("4_y0yns")

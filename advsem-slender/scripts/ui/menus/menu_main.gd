@@ -27,11 +27,11 @@ func _ready() -> void:
 	else:
 		TextTools.change_visible_characters(title_text, title_text.get_total_character_count(), 0, 0)
 		TextTools.change_visible_characters(version_text, version_text.get_total_character_count(), 0, 0)
-		play_button.wait_time = 0.3
-		customize_button.wait_time = 0.15
-		settings_button.wait_time = 0.2
-		extras_button.wait_time = 0.25
-		quit_button.wait_time = 0.3
+		play_button.text_print_wait_time = 0.3
+		customize_button.text_print_wait_time = 0.15
+		settings_button.text_print_wait_time = 0.2
+		extras_button.text_print_wait_time = 0.25
+		quit_button.text_print_wait_time = 0.3
 	call_deferred("defer")
 
 

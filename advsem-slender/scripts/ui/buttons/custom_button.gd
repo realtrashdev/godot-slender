@@ -1,77 +1,149 @@
-class_name CustomButton extends Button
+@tool
+class_name CustomButton
+extends Button
+## Custom Button implementation that:
+##
+## - Uses a RichTextLabel child to support BBCode.[br]
+## - Can react to the player hovering, pressing, toggling the button.
 
-var default_size: Vector2
-var default_font_size: float
+enum Pivot {
+	BOTTOM_LEFT,
+	BOTTOM_RIGHT,
+	TOP_LEFT,
+	TOP_RIGHT,
+	CENTER,
+}
 
-@export var enabled: bool = true
-@export var default_text: String
-@export var default_color: Color = Color.WHITE
-@export var press_color: Color = Color.DARK_OLIVE_GREEN
-@export var justification: HorizontalAlignment
-@export var wait_time: float = 0.3
+@export var label: RichTextLabel
+@export var text_print_wait_time: float = 0.3
+@export var do_size: bool = true
 
-@export_subgroup("Focusing", "focus_")
+## Setters update values while editing in inspector.
+## Should never be updating these via code. Only in the exported fields before running.
+@export_group("Default", "default_")
+@export var default_text: String = "Button":
+	set(value):
+		default_text = value
+		_text = value
+@export var default_font_size: int = 48:
+	set(value):
+		default_font_size = value
+		_font_size = value
+@export var default_color: Color = Color.WHITE:
+	set(value):
+		default_color = value
+		_color = value
+@export var default_size: Vector2 = Vector2(300, 100):
+	set(value):
+		default_size = value
+		_size = value
+@export var default_alignment_h: HorizontalAlignment = HORIZONTAL_ALIGNMENT_LEFT:
+	set(value):
+		default_alignment_h = value
+		_align_h = value
+@export var default_alignment_v: VerticalAlignment = VERTICAL_ALIGNMENT_CENTER:
+	set(value):
+		default_alignment_v = value
+		_align_v = value
+@export var default_pivot: Pivot = Pivot.TOP_LEFT:
+	set(value):
+		default_pivot = value
+		_set_pivot(value)
+
+@export_group("Pressing", "press_")
+@export var press_color: Color = Color(0.25, 0.25, 0.25, 1.0)
+
+@export_group("Focusing", "focus_")
 @export var focus_enabled: bool = true
-@export var focus_size: Vector2 = Vector2(0, 130)
-@export var focus_font_size: float = 64
+@export var focus_size: Vector2 = Vector2(300, 130)
+@export var focus_font_size: int = 64.0
 @export var focus_text_effect: String = "[wave]"
-@export var focus_speed: float = 8
+@export var focus_speed: float = 20.0
 
-@export_subgroup("Toggling", "toggle_")
-@export var toggle_size: Vector2 = Vector2(0, 160)
-@export var toggle_font_size: float = 72
+@export_group("Toggling", "toggle_")
+@export var toggle_size: Vector2 = Vector2(300, 160)
+@export var toggle_font_size: int = 72
 @export var toggle_text_effect: String = "[wave]"
 
-@export_subgroup("Sounds", "sfx_")
+@export_group("Sounds", "sfx_")
 @export var sfx_press: AudioStream = load("res://audio/menu/ui/button_press.mp3")
 @export var sfx_release: AudioStream = load("res://audio/menu/ui/button_release.mp3")
 
-# interpolated font size, gets applied to text_label's theme override
-var interp_font_size: float
+# interpolated font size, gets applied to _label's theme override
+var _interp_font_size: float
 
-var focus: bool = false
+var _focus: bool = false
 
-@onready var text_label: RichTextLabel = $RichTextLabel
+var _text: String:
+	set(value):
+		_text = value
+		if label:
+			label.text = value
+var _font_size: int:
+	set(value):
+		_font_size = value
+		if label:
+			label.add_theme_font_size_override("normal_font_size", value)
+var _color: Color:
+	set(value):
+		_color = value
+		if label:
+			label.add_theme_color_override("default_color", value)
+var _size: Vector2:
+	set(value):
+		_size = value
+		custom_minimum_size = value
+		size = value
+var _align_h: HorizontalAlignment:
+	set(value):
+		_align_h = value
+		if label:
+			label.horizontal_alignment = value
+var _align_v: VerticalAlignment:
+	set(value):
+		_align_v = value
+		if label:
+			label.vertical_alignment = value
 
 
 #region Default Methods
 func _ready() -> void:
-	setup()
+	_setup()
 	call_deferred("delay_display")
 
 
 func _process(delta: float) -> void:
-	if enabled:
+	if not Engine.is_editor_hint():
 		lerp_size(delta)
 
 
 func _on_mouse_entered() -> void:
 	if disabled:
 		return
-	focus = true
+	_focus = true
 	update_text_effect()
 
 
 func _on_mouse_exited() -> void:
-	focus = false
+	_focus = false
 	update_text_effect()
-	text_label.add_theme_color_override("default_color", default_color)
+	_color = default_color
 
 
 func _on_button_down() -> void:
 	if disabled:
 		return
 	AudioTools.play_one_shot(get_tree(), sfx_press, 4, randf_range(0.8, 1.2), -10)
-	text_label.add_theme_color_override("default_color", press_color)
+	_color = press_color
 
 
 func _on_button_up() -> void:
 	if disabled:
 		return
-	if focus:
+	if _focus:
 		AudioTools.play_one_shot(get_tree(), sfx_release, 4, randf_range(1.2, 1.4), -10)
 		pass
-	text_label.add_theme_color_override("default_color", default_color)
+	_color = default_color
 
 
 func _on_toggled(toggled_on: bool) -> void:
@@ -80,52 +152,73 @@ func _on_toggled(toggled_on: bool) -> void:
 
 #region Display
 func delay_display():
-	await get_tree().create_timer(wait_time).timeout
+	await get_tree().create_timer(text_print_wait_time).timeout
 	update_text_effect()
 	display_text()
 
 
 func lerp_size(delta: float) -> void:
 	if toggle_mode and button_pressed:
-		custom_minimum_size = lerp(custom_minimum_size, toggle_size, focus_speed * delta)
-		interp_font_size = lerp(interp_font_size, toggle_font_size, focus_speed * delta)
-	elif focus and focus_enabled:
-		custom_minimum_size = lerp(custom_minimum_size, focus_size, focus_speed * delta)
-		interp_font_size = lerp(interp_font_size, focus_font_size, focus_speed * delta)
+		if do_size:
+			_size = lerp(_size, toggle_size, focus_speed * delta)
+		_interp_font_size = lerp(_interp_font_size, float(toggle_font_size), focus_speed * delta)
+	elif _focus and focus_enabled:
+		if do_size:
+			_size = lerp(_size, focus_size, focus_speed * delta)
+		_interp_font_size = lerp(_interp_font_size, float(focus_font_size), focus_speed * delta)
 	else:
-		custom_minimum_size = lerp(custom_minimum_size, default_size, focus_speed * delta)
-		interp_font_size = lerp(interp_font_size, default_font_size, focus_speed * delta)
+		if do_size:
+			_size = lerp(_size, default_size, focus_speed * delta)
+		_interp_font_size = lerp(_interp_font_size, float(default_font_size), focus_speed * delta)
 	
-	text_label.add_theme_font_size_override("normal_font_size", int(interp_font_size))
+	_font_size = int(_interp_font_size)
 
 
 func update_text_effect():
-	if not text_label:
+	if not label:
 		return
 	
 	if button_pressed:
-		text_label.text = toggle_text_effect + default_text
-	elif focus:
-		text_label.text = focus_text_effect + default_text
+		_text = toggle_text_effect + default_text
+	elif _focus:
+		_text = focus_text_effect + default_text
 	else:
-		text_label.text = default_text
+		_text = default_text
 
 
 func display_text():
-	if text_label.visible_characters != text_label.get_total_character_count():
-		create_tween().parallel().tween_property(text_label, "visible_characters", text_label.get_total_character_count(), 0.05 * text_label.get_total_character_count())
+	if label.visible_characters != label.get_total_character_count():
+		create_tween().parallel().tween_property(label, "visible_characters", label.get_total_character_count(), 0.05 * label.get_total_character_count())
 
 
 func instant_display_text():
-	text_label.visible_characters = text_label.get_total_character_count()
+	label.visible_characters = label.get_total_character_count()
 #endregion
 
 
-func setup():
-	default_size = custom_minimum_size
-	default_font_size = float(text_label.get_theme_default_font_size())
-	text_label.add_theme_color_override("default_color", default_color)
-	text_label.text = default_text
-	text_label.visible_characters = 0
-	text_label.horizontal_alignment = justification
-	interp_font_size = default_font_size
+func _setup():
+	label.visible_characters = 0
+	_interp_font_size = default_font_size
+	
+	_text = default_text
+	_font_size = default_font_size
+	_color = default_color
+	if do_size:
+		_size = default_size
+	_align_h = default_alignment_h
+	_align_v = default_alignment_v
+
+
+func _set_pivot(new: Pivot) -> void:
+	pivot_offset = Vector2.ZERO
+	match new:
+		Pivot.BOTTOM_LEFT:
+			pivot_offset_ratio = Vector2(0, 1)
+		Pivot.BOTTOM_RIGHT:
+			pivot_offset_ratio = Vector2(1, 1)
+		Pivot.TOP_LEFT:
+			pivot_offset_ratio = Vector2(0, 0)
+		Pivot.TOP_RIGHT:
+			pivot_offset_ratio = Vector2(1, 0)
+		Pivot.CENTER:
+			pivot_offset_ratio = Vector2(0.5, 0.5)

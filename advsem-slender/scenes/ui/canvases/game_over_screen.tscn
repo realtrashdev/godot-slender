@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://b0r504x6n44d1" path="res://scripts/resources/tween_settings.gd" id="2_p7edr"]
 [ext_resource type="Script" uid="uid://6gu3dcl8rsxn" path="res://scripts/ui/mouse_parallax.gd" id="3_prcok"]
 [ext_resource type="Texture2D" uid="uid://mnf2rh566anm" path="res://art/2d/enemies/deathscreens/deathscreen_chaser.aseprite" id="3_vqwwj"]
-[ext_resource type="PackedScene" uid="uid://6lvn3tolsp7r" path="res://scenes/ui/buttons/menu_button.tscn" id="5_5uohx"]
+[ext_resource type="PackedScene" uid="uid://6lvn3tolsp7r" path="res://scenes/ui/buttons/custom_button.tscn" id="5_5uohx"]
 [ext_resource type="AudioStream" uid="uid://dhy2oiyhu6p67" path="res://audio/ambient/stomp_regular.mp3" id="6_3rom5"]
 [ext_resource type="PackedScene" uid="uid://c4spvtkxggnw" path="res://scenes/ui/transitions/pixel_transition.tscn" id="7_23n55"]
 
@@ -76,19 +76,32 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 60.0
-offset_top = -244.0
-offset_right = 631.0
-offset_bottom = -40.0
+offset_left = 59.876472
+offset_top = -258.83392
+offset_right = 630.87646
+offset_bottom = -54.833984
 grow_vertical = 0
+theme_override_constants/separation = 8
 
 [node name="PlayAgainButton" parent="StrongMouseParallax/ButtonContainer" unique_id=556654345 instance=ExtResource("5_5uohx")]
 layout_mode = 2
+do_size = false
 default_text = "Try Again"
+default_alignment_h = 0
+default_alignment_v = 2
+default_pivot = 0
+focus_font_size = 64
+toggle_font_size = 72
 
 [node name="MenuButton" parent="StrongMouseParallax/ButtonContainer" unique_id=1645489660 instance=ExtResource("5_5uohx")]
 layout_mode = 2
-default_text = "Return to Menu"
+do_size = false
+default_text = "Quit to Menu"
+default_alignment_h = 0
+default_alignment_v = 2
+default_pivot = 0
+focus_font_size = 64
+toggle_font_size = 72
 
 [node name="BlackBG" type="ColorRect" parent="." unique_id=545032213]
 visible = false
@@ -127,6 +140,7 @@ mouse_filter = 2
 texture = ExtResource("3_vqwwj")
 
 [node name="PixelTransition" parent="." unique_id=1568466511 instance=ExtResource("7_23n55")]
+visible = false
 mouse_filter = 2
 
 [node name="BoomSound" type="AudioStreamPlayer" parent="." unique_id=1030397123]

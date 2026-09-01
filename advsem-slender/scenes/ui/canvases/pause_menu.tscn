@@ -3,13 +3,12 @@
 [ext_resource type="Script" uid="uid://derh0xwf6lc6q" path="res://scripts/ui/canvases/pause_menu.gd" id="1_mg0oj"]
 [ext_resource type="Theme" uid="uid://bommyqwo15hbx" path="res://theme1.tres" id="2_5qxoi"]
 [ext_resource type="Script" uid="uid://c3ysaqnmo1oo8" path="res://scripts/ui/ui_text.gd" id="3_r360a"]
-[ext_resource type="PackedScene" uid="uid://6lvn3tolsp7r" path="res://scenes/ui/buttons/menu_button.tscn" id="4_qr8y1"]
+[ext_resource type="PackedScene" uid="uid://6lvn3tolsp7r" path="res://scenes/ui/buttons/custom_button.tscn" id="4_qr8y1"]
 [ext_resource type="Script" uid="uid://6gu3dcl8rsxn" path="res://scripts/ui/mouse_parallax.gd" id="5_qr8y1"]
 [ext_resource type="PackedScene" uid="uid://bf56ninpioec6" path="res://scenes/ui/settings.tscn" id="5_r360a"]
 
 [node name="PauseMenu" type="CanvasLayer" unique_id=947043538]
 process_mode = 2
-visible = false
 script = ExtResource("1_mg0oj")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=78568012]
@@ -62,41 +61,55 @@ grow_vertical = 2
 
 [node name="ResumeButton" parent="VBoxContainer" unique_id=1211343220 instance=ExtResource("4_qr8y1")]
 layout_mode = 2
+do_size = false
 default_text = "Resume"
 default_color = Color(0.80049086, 0.80049074, 0.80049074, 1)
+default_alignment_h = 0
 press_color = Color(0, 0, 0, 1)
-wait_time = 0.0
+focus_font_size = 64
+toggle_font_size = 72
 
 [node name="SettingsButton" parent="VBoxContainer" unique_id=32452271 instance=ExtResource("4_qr8y1")]
 layout_mode = 2
+do_size = false
 default_text = "Settings"
 default_color = Color(0.80049086, 0.80049074, 0.80049074, 1)
+default_alignment_h = 0
 press_color = Color(0, 0, 0, 1)
-wait_time = 0.0
+focus_font_size = 64
+toggle_font_size = 72
 
 [node name="OverviewButton" parent="VBoxContainer" unique_id=2026837079 instance=ExtResource("4_qr8y1")]
 layout_mode = 2
+do_size = false
 default_text = "Enemy Overview"
 default_color = Color(0.80049086, 0.80049074, 0.80049074, 1)
+default_alignment_h = 0
 press_color = Color(0, 0, 0, 1)
-wait_time = 0.0
+focus_font_size = 64
+toggle_font_size = 72
 
 [node name="RestartButton" parent="VBoxContainer" unique_id=22272161 instance=ExtResource("4_qr8y1")]
 layout_mode = 2
-default_text = "Restart Game"
+do_size = false
+default_text = "Restart"
 default_color = Color(0.80049086, 0.80049074, 0.80049074, 1)
+default_alignment_h = 0
 press_color = Color(0, 0, 0, 1)
-wait_time = 0.0
+focus_font_size = 64
+toggle_font_size = 72
 
 [node name="QuitButton" parent="VBoxContainer" unique_id=206011233 instance=ExtResource("4_qr8y1")]
 layout_mode = 2
+do_size = false
 default_text = "Quit to Menu"
 default_color = Color(0.80049086, 0.80049074, 0.80049074, 1)
+default_alignment_h = 0
 press_color = Color(0, 0, 0, 1)
-wait_time = 0.0
+focus_font_size = 64
+toggle_font_size = 72
 
 [node name="Settings" type="Control" parent="." unique_id=800745621]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -140,9 +153,15 @@ offset_top = 34.0
 offset_right = -39.0
 offset_bottom = 134.0
 grow_horizontal = 0
+pivot_offset_ratio = Vector2(1, 0)
+do_size = false
 default_text = "Close"
 default_color = Color(0.6542321, 0.6542321, 0.654232, 1)
-justification = 2
+default_alignment_h = 2
+default_alignment_v = 0
+default_pivot = 3
+focus_font_size = 64
+toggle_font_size = 72
 
 [connection signal="pressed" from="VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]

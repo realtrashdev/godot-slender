@@ -4,7 +4,7 @@
 [ext_resource type="Theme" uid="uid://bommyqwo15hbx" path="res://theme1.tres" id="2_eoi1v"]
 [ext_resource type="Script" uid="uid://6gu3dcl8rsxn" path="res://scripts/ui/mouse_parallax.gd" id="2_q1d0k"]
 [ext_resource type="Script" uid="uid://c3ysaqnmo1oo8" path="res://scripts/ui/ui_text.gd" id="3_6dqwh"]
-[ext_resource type="PackedScene" uid="uid://6lvn3tolsp7r" path="res://scenes/ui/buttons/menu_button.tscn" id="5_11r0h"]
+[ext_resource type="PackedScene" uid="uid://6lvn3tolsp7r" path="res://scenes/ui/buttons/custom_button.tscn" id="5_11r0h"]
 [ext_resource type="PackedScene" uid="uid://btvk1eg63v62" path="res://scenes/ui/color_list.tscn" id="5_y702l"]
 
 [node name="CustomizeMenu" type="Control" unique_id=200221851]
@@ -60,13 +60,21 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 100.0
-offset_top = -150.0
-offset_right = 500.0
-offset_bottom = -50.0
+offset_top = -170.0
+offset_right = 400.0
+offset_bottom = -69.99939
 grow_vertical = 0
+pivot_offset = Vector2(0, 100)
+do_size = null
 default_text = "Go Back"
 default_color = Color(0.54497427, 0.5449743, 0.5449741, 1)
-press_color = Color(0, 0, 0, 1)
+default_alignment_h = 0
+default_alignment_v = 2
+default_pivot = 0
+focus_size = Vector2(300, 100)
+focus_font_size = 64
+toggle_size = Vector2(300, 100)
+toggle_font_size = 72
 
 [node name="PaletteList" parent="StrongParallax" unique_id=1607650077 instance=ExtResource("5_y702l")]
 layout_mode = 1

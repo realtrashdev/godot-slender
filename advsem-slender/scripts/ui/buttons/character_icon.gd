@@ -20,7 +20,7 @@ var is_locked: bool = false
 
 @onready var panel_container: PanelContainer = $PanelContainer
 @onready var texture: TextureRect = $PanelContainer/TextureRect
-@onready var button: CustomButton = $PanelContainer/Button
+@onready var button: CustomButton = $PanelContainer/CustomButton
 @onready var description_panel: DescriptionPanel = $DescriptionPanel
 
 

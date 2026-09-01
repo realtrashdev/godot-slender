@@ -1,23 +1,31 @@
 [gd_scene format=3 uid="uid://6lvn3tolsp7r"]
 
-[ext_resource type="Theme" uid="uid://bommyqwo15hbx" path="res://theme1.tres" id="1_sd4kj"]
-[ext_resource type="Script" uid="uid://c2prcdjivgnr5" path="res://scripts/ui/buttons/custom_button.gd" id="2_fpmxc"]
+[ext_resource type="Theme" uid="uid://bommyqwo15hbx" path="res://theme1.tres" id="1_mmdwj"]
+[ext_resource type="Script" uid="uid://c2prcdjivgnr5" path="res://scripts/ui/buttons/custom_button.gd" id="2_dfm0r"]
+[ext_resource type="AudioStream" uid="uid://burmgn6fk7ymx" path="res://audio/menu/ui/button_press.mp3" id="3_rd8o3"]
+[ext_resource type="AudioStream" uid="uid://bv7pta73f3gu3" path="res://audio/menu/ui/button_release.mp3" id="4_0qudt"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wld85"]
 
-[node name="CustomButton" type="Button" unique_id=1314914115]
-custom_minimum_size = Vector2(0, 100)
+[node name="CustomButton" type="Button" unique_id=1314914115 node_paths=PackedStringArray("label")]
+custom_minimum_size = Vector2(300, 100)
 offset_right = 300.0
 offset_bottom = 100.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme = ExtResource("1_sd4kj")
+theme = ExtResource("1_mmdwj")
 theme_override_font_sizes/font_size = 48
 theme_override_styles/focus = SubResource("StyleBoxEmpty_wld85")
 flat = true
 alignment = 0
-script = ExtResource("2_fpmxc")
-focus_speed = 20.0
+script = ExtResource("2_dfm0r")
+label = NodePath("RichTextLabel")
+default_alignment_h = 1
+press_color = Color(0.2520276, 0.25202766, 0.25202763, 1)
+focus_font_size = 64.0
+toggle_font_size = 72.0
+sfx_press = ExtResource("3_rd8o3")
+sfx_release = ExtResource("4_0qudt")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=997612675]
 clip_contents = false
@@ -28,14 +36,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme = ExtResource("1_sd4kj")
+theme = ExtResource("1_mmdwj")
+theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 16
+theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
+text = "Button"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
 shortcut_keys_enabled = false
+horizontal_alignment = 1
 vertical_alignment = 1
+visible_characters = 6
 
 [connection signal="button_down" from="." to="." method="_on_button_down"]
 [connection signal="button_up" from="." to="." method="_on_button_up"]

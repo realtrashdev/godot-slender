@@ -142,7 +142,7 @@ offset_bottom = 71.0
 theme_override_fonts/normal_font = ExtResource("4_on3qy")
 theme_override_font_sizes/normal_font_size = 5
 bbcode_enabled = true
-text = "[rainbow sat=0.999 val=10 speed=1]PAGES:
+text = "PAGES:
 0 / 8"
 scroll_active = false
 shortcut_keys_enabled = false

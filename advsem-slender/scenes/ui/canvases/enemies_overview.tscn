@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://bd7pox5rtp17u" path="res://scripts/ui/canvases/enemies_overview.gd" id="1_uquhx"]
 [ext_resource type="Script" uid="uid://bgqglerkcylxx" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="2_cuen5"]
 [ext_resource type="Script" uid="uid://b7h0k2h2qwlqv" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="3_uquhx"]
-[ext_resource type="PackedScene" uid="uid://6lvn3tolsp7r" path="res://scenes/ui/buttons/menu_button.tscn" id="5_uquhx"]
+[ext_resource type="PackedScene" uid="uid://6lvn3tolsp7r" path="res://scenes/ui/buttons/custom_button.tscn" id="5_uquhx"]
 [ext_resource type="Shader" path="res://shaders/scroll_uv.gdshader" id="6_op4vt"]
 [ext_resource type="Texture2D" uid="uid://j7tlf6113ftt" path="res://art/2d/ui/skull_icon_spaced.aseprite" id="7_31k03"]
 
@@ -109,16 +109,24 @@ size_flags_vertical = 3
 alignment = 1
 
 [node name="CustomButton" parent="." unique_id=2085338485 instance=ExtResource("5_uquhx")]
+custom_minimum_size = Vector2(250, 100)
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -339.0
+offset_left = -290.0
 offset_top = 34.0
-offset_right = -39.0
+offset_right = -40.0
 offset_bottom = 134.0
 grow_horizontal = 0
+pivot_offset_ratio = Vector2(1, 0)
+do_size = false
 default_text = "Close"
 default_color = Color(0.6542321, 0.6542321, 0.654232, 1)
-justification = 2
+default_size = Vector2(250, 100)
+default_alignment_h = 2
+default_alignment_v = 0
+default_pivot = 3
+focus_font_size = 64
+toggle_font_size = 72
 
 [connection signal="pressed" from="CustomButton" to="." method="_on_close_button_pressed"]

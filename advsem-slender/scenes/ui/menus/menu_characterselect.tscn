@@ -4,7 +4,7 @@
 [ext_resource type="Theme" uid="uid://bommyqwo15hbx" path="res://theme1.tres" id="2_iuf3o"]
 [ext_resource type="Script" uid="uid://6gu3dcl8rsxn" path="res://scripts/ui/mouse_parallax.gd" id="2_sssvk"]
 [ext_resource type="Script" uid="uid://c3ysaqnmo1oo8" path="res://scripts/ui/ui_text.gd" id="3_sssvk"]
-[ext_resource type="PackedScene" uid="uid://6lvn3tolsp7r" path="res://scenes/ui/buttons/menu_button.tscn" id="4_0o7yx"]
+[ext_resource type="PackedScene" uid="uid://6lvn3tolsp7r" path="res://scenes/ui/buttons/custom_button.tscn" id="4_0o7yx"]
 [ext_resource type="PackedScene" uid="uid://8ymr1f4pwvs7" path="res://scenes/ui/character_panel.tscn" id="5_iuf3o"]
 
 [node name="CharacterSelectMenu" type="Control" unique_id=1569684163]
@@ -76,21 +76,28 @@ size_flags_vertical = 6
 theme_override_constants/separation = 0
 
 [node name="StartButton" parent="StrongMouseParallax" unique_id=1127701477 instance=ExtResource("4_0o7yx")]
+custom_minimum_size = Vector2(400, 125)
 layout_mode = 1
-anchors_preset = -1
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.78700006
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.78700006
-offset_left = -240.0
-offset_top = 0.039916992
-offset_right = 80.00049
-offset_bottom = 100.03998
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -230.0
+offset_right = 200.0
+offset_bottom = -105.0
 grow_horizontal = 2
 grow_vertical = 0
-scale = Vector2(1.5, 1.5)
+pivot_offset = Vector2(200, 62.500458)
+do_size = false
 default_text = "Continue"
-justification = 1
+default_font_size = 64
+default_size = Vector2(400, 125)
+default_pivot = 4
+focus_size = Vector2(450, 150)
+focus_font_size = 80
+toggle_font_size = 72
 
 [node name="BackButton" parent="StrongMouseParallax" unique_id=352487103 instance=ExtResource("4_0o7yx")]
 layout_mode = 1
@@ -98,13 +105,20 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 100.0
-offset_top = -150.0
-offset_right = 500.0
-offset_bottom = -50.0
+offset_top = -170.0
+offset_right = 400.0
+offset_bottom = -69.99939
 grow_vertical = 0
+pivot_offset = Vector2(0, 100)
 default_text = "Go Back"
 default_color = Color(0.54497427, 0.5449743, 0.5449741, 1)
-press_color = Color(0, 0, 0, 1)
+default_alignment_h = 0
+default_alignment_v = 2
+default_pivot = 0
+focus_size = Vector2(300, 100)
+focus_font_size = 64
+toggle_size = Vector2(300, 100)
+toggle_font_size = 72
 
 [node name="MenuButton" parent="StrongMouseParallax" unique_id=2018335060 instance=ExtResource("4_0o7yx")]
 layout_mode = 1
@@ -112,13 +126,20 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 100.0
-offset_top = -275.0
-offset_right = 500.0
-offset_bottom = -174.9997
+offset_top = -290.0
+offset_right = 400.0
+offset_bottom = -190.0
 grow_vertical = 0
+pivot_offset = Vector2(0, 100)
 default_text = "Menu"
 default_color = Color(0.54497427, 0.5449743, 0.5449741, 1)
-press_color = Color(0, 0, 0, 1)
+default_alignment_h = 0
+default_alignment_v = 2
+default_pivot = 0
+focus_size = Vector2(300, 100)
+focus_font_size = 64
+toggle_size = Vector2(300, 100)
+toggle_font_size = 72
 
 [node name="CharacterPanel" parent="StrongMouseParallax" unique_id=1962110638 instance=ExtResource("5_iuf3o")]
 layout_mode = 1

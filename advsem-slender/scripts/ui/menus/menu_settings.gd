@@ -2,7 +2,9 @@ extends Menu
 
 const TITLE_TEXT_EFFECT: String = "[wave freq=3]"
 
-var tween: Tween
+var _category: String
+
+var _tween: Tween
 
 @onready var title: RichTextLabel = $StrongMouseParallax/Title
 @onready var settings: PanelContainer = $StrongMouseParallax/Settings
@@ -28,14 +30,17 @@ func defer():
 
 
 func _refresh_title():
-	if tween:
-		tween.kill()
-	tween = TextTools.change_visible_characters(title, title.get_total_character_count(), 0.5, 0)
+	if _tween:
+		_tween.kill()
+	_tween = TextTools.change_visible_characters(title, title.get_total_character_count(), 0.5, 0)
 
 
 func _on_category_updated(new_category: String):
+	if new_category == _category:
+		return
 	title.text = TITLE_TEXT_EFFECT + "%s Settings" % new_category.capitalize()
 	_refresh_title()
+	_category = new_category
 
 
 func _on_back_pressed():

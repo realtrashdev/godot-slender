@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bf56ninpioec6"]
 
-[ext_resource type="PackedScene" uid="uid://6lvn3tolsp7r" path="res://scenes/ui/buttons/menu_button.tscn" id="1_h175o"]
+[ext_resource type="PackedScene" uid="uid://6lvn3tolsp7r" path="res://scenes/ui/buttons/custom_button.tscn" id="1_h175o"]
 [ext_resource type="Script" uid="uid://br2ge107x4qrj" path="res://scripts/ui/settings_panel.gd" id="1_ptynm"]
 [ext_resource type="PackedScene" uid="uid://bkqf54hj5ec1s" path="res://scenes/ui/buttons/setting_slider.tscn" id="2_ptynm"]
 [ext_resource type="PackedScene" uid="uid://c2tm8p5c3mxlf" path="res://scenes/ui/buttons/setting_checkbox.tscn" id="3_ncfhn"]
@@ -21,6 +21,9 @@ bg_color = Color(0.3779188, 0.3779189, 0.37791875, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cfoln"]
 bg_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_xte0n"]
+resource_local_to_scene = false
 
 [sub_resource type="Resource" id="Resource_mn4ci"]
 script = ExtResource("6_jw8st")
@@ -74,20 +77,59 @@ layout_mode = 2
 theme_override_constants/separation = 64
 
 [node name="GameSettings" parent="HBoxContainer/Categories/VBoxContainer" unique_id=67662745 instance=ExtResource("1_h175o")]
+custom_minimum_size = Vector2(300, 175)
 layout_mode = 2
+toggle_mode = true
+button_pressed = true
+button_group = SubResource("ButtonGroup_xte0n")
+do_size = null
 default_text = "Game"
+default_size = Vector2(300, 175)
+default_alignment_h = 0
+default_pivot = 0
+focus_size = Vector2(300, 175)
+focus_font_size = 56
+toggle_size = Vector2(300, 175)
+toggle_font_size = 64
 
 [node name="DisplaySettings" parent="HBoxContainer/Categories/VBoxContainer" unique_id=368746347 instance=ExtResource("1_h175o")]
+custom_minimum_size = Vector2(300, 175)
 layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_xte0n")
+do_size = null
 default_text = "Display"
+default_size = Vector2(300, 175)
+default_alignment_h = 0
+default_pivot = 0
+focus_size = Vector2(300, 175)
+focus_font_size = 56
+toggle_size = Vector2(300, 175)
+toggle_font_size = 64
 
 [node name="AudioSettings" parent="HBoxContainer/Categories/VBoxContainer" unique_id=1524732205 instance=ExtResource("1_h175o")]
+custom_minimum_size = Vector2(300, 175)
 layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_xte0n")
+do_size = null
 default_text = "Audio"
+default_size = Vector2(300, 175)
+default_alignment_h = 0
+default_pivot = 0
+focus_size = Vector2(300, 175)
+focus_font_size = 56
+toggle_size = Vector2(300, 175)
+toggle_font_size = 64
 
 [node name="OtherSettings" parent="HBoxContainer/Categories/VBoxContainer" unique_id=1716546165 instance=ExtResource("1_h175o")]
 visible = false
 layout_mode = 2
+disabled = true
+do_size = null
+default_pivot = 0
+focus_font_size = 64
+toggle_font_size = 72
 
 [node name="Settings" type="MarginContainer" parent="HBoxContainer" unique_id=1069465209]
 layout_mode = 2

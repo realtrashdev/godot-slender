@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ic7q6hrbkrni" path="res://scripts/ui/buttons/character_icon.gd" id="1_uphpr"]
 [ext_resource type="Texture2D" uid="uid://dhpcoum0eycgh" path="res://art/2d/enemies/icons/chaser_icon.aseprite" id="2_ybdg3"]
-[ext_resource type="PackedScene" uid="uid://6lvn3tolsp7r" path="res://scenes/ui/buttons/menu_button.tscn" id="3_ken2s"]
+[ext_resource type="PackedScene" uid="uid://6lvn3tolsp7r" path="res://scenes/ui/buttons/custom_button.tscn" id="3_ken2s"]
 [ext_resource type="Script" uid="uid://bpvircsk3kgt" path="res://scripts/ui/buttons/description_panel.gd" id="4_onl1u"]
 [ext_resource type="FontFile" uid="uid://b78ski6kf8hw1" path="res://fonts/ari-w9500-display.ttf" id="5_t2aap"]
 
@@ -73,10 +73,13 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_2gkvw")
 layout_mode = 2
 texture = ExtResource("2_ybdg3")
 
-[node name="Button" parent="PanelContainer" unique_id=1074453170 instance=ExtResource("3_ken2s")]
+[node name="CustomButton" parent="PanelContainer" unique_id=1074453170 instance=ExtResource("3_ken2s")]
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 mouse_filter = 1
 toggle_mode = true
+default_text = ""
+default_size = Vector2(100, 100)
 focus_enabled = false
 
 [node name="DescriptionPanel" type="Panel" parent="." unique_id=957487810]

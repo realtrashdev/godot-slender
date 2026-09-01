@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://6gu3dcl8rsxn" path="res://scripts/ui/mouse_parallax.gd" id="2_egfae"]
 [ext_resource type="Theme" uid="uid://bommyqwo15hbx" path="res://theme1.tres" id="3_858yb"]
 [ext_resource type="Script" uid="uid://c3ysaqnmo1oo8" path="res://scripts/ui/ui_text.gd" id="4_0l0gh"]
-[ext_resource type="PackedScene" uid="uid://6lvn3tolsp7r" path="res://scenes/ui/buttons/menu_button.tscn" id="5_csvr5"]
+[ext_resource type="PackedScene" uid="uid://6lvn3tolsp7r" path="res://scenes/ui/buttons/custom_button.tscn" id="5_csvr5"]
 
 [node name="ExtrasMenu" type="Control" unique_id=200221851]
 layout_mode = 3
@@ -59,13 +59,21 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 100.0
-offset_top = -150.0
-offset_right = 500.0
-offset_bottom = -50.0
+offset_top = -170.0
+offset_right = 400.0
+offset_bottom = -69.99939
 grow_vertical = 0
+pivot_offset = Vector2(0, 100)
+do_size = false
 default_text = "Go Back"
 default_color = Color(0.54497427, 0.5449743, 0.5449741, 1)
-press_color = Color(0, 0, 0, 1)
+default_alignment_h = 0
+default_alignment_v = 2
+default_pivot = 0
+focus_size = Vector2(300, 100)
+focus_font_size = 64
+toggle_size = Vector2(300, 100)
+toggle_font_size = 72
 
 [node name="VBoxContainer" type="VBoxContainer" parent="StrongParallax" unique_id=181070197]
 custom_minimum_size = Vector2(600, 400)
@@ -83,48 +91,58 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="DiscordButton" parent="StrongParallax/VBoxContainer" unique_id=1314914115 instance=ExtResource("5_csvr5")]
-custom_minimum_size = Vector2(350, 100)
+custom_minimum_size = Vector2(600, 197)
 layout_mode = 2
 size_flags_horizontal = 1
 disabled = true
 icon_alignment = 1
 expand_icon = true
-enabled = false
+do_size = false
 default_text = "Discord"
 default_color = Color(0.33950958, 0.3395096, 0.33950958, 1)
-justification = 1
-wait_time = 0.0
+default_size = Vector2(600, 197)
+default_pivot = 4
 focus_enabled = false
-focus_size = Vector2(375, 130)
+focus_size = Vector2(600, 197)
+focus_font_size = 64
+toggle_size = Vector2(600, 197)
+toggle_font_size = 72
 
 [node name="JukeboxButton" parent="StrongParallax/VBoxContainer" unique_id=185929341 instance=ExtResource("5_csvr5")]
-custom_minimum_size = Vector2(350, 100)
+custom_minimum_size = Vector2(600, 197)
 layout_mode = 2
 size_flags_horizontal = 1
 disabled = true
 icon_alignment = 1
 expand_icon = true
-enabled = false
+do_size = null
 default_text = "Jukebox"
 default_color = Color(0.27752772, 0.27752775, 0.27752766, 1)
-justification = 1
-wait_time = 0.0
+default_size = Vector2(600, 197)
+default_pivot = 4
 focus_enabled = false
-focus_size = Vector2(375, 130)
+focus_size = Vector2(600, 197)
+focus_font_size = 64
+toggle_size = Vector2(600, 197)
+toggle_font_size = 72
 
 [node name="CreditsButton" parent="StrongParallax/VBoxContainer" unique_id=1346214825 instance=ExtResource("5_csvr5")]
-custom_minimum_size = Vector2(350, 100)
+custom_minimum_size = Vector2(600, 197)
 layout_mode = 2
 size_flags_horizontal = 1
 disabled = true
 icon_alignment = 1
 expand_icon = true
+do_size = null
 default_text = "Credits"
 default_color = Color(0.3328807, 0.33288068, 0.33288068, 1)
-justification = 1
-wait_time = 0.0
+default_size = Vector2(600, 197)
+default_pivot = 4
 focus_enabled = false
-focus_size = Vector2(375, 130)
+focus_size = Vector2(600, 197)
+focus_font_size = 64
+toggle_size = Vector2(600, 197)
+toggle_font_size = 72
 
 [connection signal="pressed" from="StrongParallax/BackButton" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="StrongParallax/VBoxContainer/DiscordButton" to="." method="_on_discord_button_pressed"]

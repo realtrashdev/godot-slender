@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://v8rvsqsanr0r" path="res://scripts/ui/menus/menu_modeselect.gd" id="1_5owl3"]
 [ext_resource type="Script" uid="uid://6gu3dcl8rsxn" path="res://scripts/ui/mouse_parallax.gd" id="2_8xxqu"]
 [ext_resource type="Theme" uid="uid://bommyqwo15hbx" path="res://theme1.tres" id="2_pbvuy"]
-[ext_resource type="PackedScene" uid="uid://6lvn3tolsp7r" path="res://scenes/ui/buttons/menu_button.tscn" id="3_f83us"]
+[ext_resource type="PackedScene" uid="uid://6lvn3tolsp7r" path="res://scenes/ui/buttons/custom_button.tscn" id="3_f83us"]
 [ext_resource type="Script" uid="uid://c3ysaqnmo1oo8" path="res://scripts/ui/ui_text.gd" id="3_pbvuy"]
 
 [node name="ModeSelectMenu" type="Control" unique_id=952024275]
@@ -17,9 +17,12 @@ pivot_offset = Vector2(960, 540)
 script = ExtResource("1_5owl3")
 
 [node name="StrongMouseParallax" type="Control" parent="." unique_id=394252931]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("2_8xxqu")
 metadata/_custom_type_script = "uid://6gu3dcl8rsxn"
 
@@ -30,10 +33,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 580.5
-offset_top = 140.0
-offset_right = 1300.5
-offset_bottom = 222.0
+offset_left = -359.5
+offset_top = -380.0
+offset_right = 360.5
+offset_bottom = -298.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(360, 41)
@@ -57,10 +60,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 340.0
-offset_top = 580.0
-offset_right = 1540.0
-offset_bottom = 730.0
+offset_left = -600.0
+offset_top = 85.0
+offset_right = 600.0
+offset_bottom = 234.99982
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(600, 75)
@@ -85,51 +88,67 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 540.0
-offset_top = 420.0
-offset_right = 1340.0
-offset_bottom = 520.0
+offset_left = -479.0
+offset_top = -130.0
+offset_right = 479.0
+offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
 [node name="ClassicButton" parent="StrongMouseParallax/ModeButtons" unique_id=1103879234 instance=ExtResource("3_f83us")]
+custom_minimum_size = Vector2(400, 100)
 layout_mode = 2
 toggle_mode = true
+do_size = false
 default_text = "Challenge"
-justification = 2
-focus_font_size = 56.0
-focus_text_effect = ""
+default_size = Vector2(400, 100)
+focus_size = Vector2(400, 130)
+focus_font_size = 56
+toggle_size = Vector2(400, 160)
+toggle_font_size = 64
 toggle_text_effect = "[wave amp=20]"
 
 [node name="Container" type="Container" parent="StrongMouseParallax/ModeButtons" unique_id=1754581051]
-custom_minimum_size = Vector2(300, 0)
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 
 [node name="EndlessButton" parent="StrongMouseParallax/ModeButtons" unique_id=1601841257 instance=ExtResource("3_f83us")]
+custom_minimum_size = Vector2(400, 160)
 layout_mode = 2
 toggle_mode = true
+do_size = false
 default_text = "Endless"
-focus_font_size = 56.0
-focus_text_effect = ""
+default_size = Vector2(400, 160)
+focus_size = Vector2(400, 160)
+focus_font_size = 56
+toggle_size = Vector2(400, 160)
+toggle_font_size = 64
 toggle_text_effect = "[wave amp=20]"
 
-[node name="StartButton" parent="StrongMouseParallax" unique_id=1695377926 instance=ExtResource("3_f83us")]
+[node name="StartButton" parent="StrongMouseParallax" unique_id=1314914115 instance=ExtResource("3_f83us")]
+custom_minimum_size = Vector2(400, 125)
 layout_mode = 1
-anchors_preset = -1
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.78700006
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.78700006
-offset_left = 700.0
-offset_top = 818.52
-offset_right = 1020.0005
-offset_bottom = 918.5201
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -230.0
+offset_right = 200.0
+offset_bottom = -104.99902
 grow_horizontal = 2
 grow_vertical = 0
-scale = Vector2(1.5, 1.5)
+pivot_offset = Vector2(200, 62.500458)
+do_size = false
 default_text = "Continue"
-justification = 1
+default_font_size = 64
+default_size = Vector2(400, 125)
+default_pivot = 4
+focus_size = Vector2(450, 150)
+focus_font_size = 80
+toggle_font_size = 72
 
 [node name="BackButton" parent="StrongMouseParallax" unique_id=1577767932 instance=ExtResource("3_f83us")]
 layout_mode = 1
@@ -137,13 +156,19 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 100.0
-offset_top = 890.0
-offset_right = 420.0
-offset_bottom = 990.0
+offset_top = -170.0
+offset_right = 400.0
+offset_bottom = -69.99939
 grow_vertical = 0
+pivot_offset = Vector2(0, 100)
+do_size = false
 default_text = "Menu"
 default_color = Color(0.54497427, 0.5449743, 0.5449741, 1)
-press_color = Color(0, 0, 0, 1)
+default_alignment_h = 0
+default_alignment_v = 2
+default_pivot = 0
+focus_font_size = 64
+toggle_font_size = 72
 
 [connection signal="pressed" from="StrongMouseParallax/StartButton" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="StrongMouseParallax/BackButton" to="." method="_on_back_pressed"]
